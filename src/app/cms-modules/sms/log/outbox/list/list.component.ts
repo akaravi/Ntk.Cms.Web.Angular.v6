@@ -97,6 +97,7 @@ export class SmsLogOutBoxListComponent implements OnInit, OnDestroy {
     'LinkPrivateConfigId',
     'Message',
     'SendDate',
+    'CreatedDate',
     'UpdatedDate',
     'Action'
   ];

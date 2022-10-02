@@ -50,6 +50,10 @@ const routes: Routes = [
         component: SmsLogOutBoxDetailListComponent
       },
       {
+        path: 'outbox-queue',
+        component: SmsLogOutBoxQueueListComponent
+      },
+      {
         path: 'outbox-queue/LinkApiPathId/:LinkApiPathId',
         component: SmsLogOutBoxQueueListComponent
       },

@@ -4,7 +4,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-     <app-sms-apipath-tree (optionChange)="onActionSelectorSelect($event)"></app-sms-apipath-tree> 
+    <app-sms-apipath-tree (optionChange)="onActionSelectorSelect($event)"></app-sms-apipath-tree>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
@@ -55,7 +55,13 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
-
+      <!-- CreatedDate Column -->
+      <ng-container matColumnDef="CreatedDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
+          publicHelper.LocaleDateTime(row.createdDate)}}
+        </mat-cell>
+      </ng-container>
       <!-- isSended Column -->
       <ng-container matColumnDef="IsSended">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsSended']?.fieldTitle}}
@@ -64,12 +70,14 @@
       </ng-container>
       <!-- senderNumber Column -->
       <ng-container matColumnDef="SenderNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SenderNumber']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SenderNumber']?.fieldTitle}}
+        </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.senderNumber}} </mat-cell>
       </ng-container>
       <!-- receiverNumber Column -->
       <ng-container matColumnDef="ReceiverNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ReceiverNumber']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ReceiverNumber']?.fieldTitle}}
+        </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.receiverNumber}} </mat-cell>
       </ng-container>
 
@@ -84,8 +92,8 @@
       <!-- <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'> -->
-          <!-- Action Menu -->
-          <!-- <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
+      <!-- Action Menu -->
+      <!-- <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">

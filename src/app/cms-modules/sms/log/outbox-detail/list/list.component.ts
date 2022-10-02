@@ -94,7 +94,7 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[]=[];
   tabledisplayedColumnsSource: string[] = [
     'Id',
-    'SendDate',
+    'CreatedDate',
     'IsSended',
     'SenderNumber',
     'ReceiverNumber',

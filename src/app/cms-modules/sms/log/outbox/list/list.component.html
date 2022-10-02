@@ -2,7 +2,7 @@
   [optionTreeDisplay]="!requestLinkPrivateConfigId || requestLinkPrivateConfigId.length==0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-     <app-sms-apipath-tree (optionChange)="onActionSelectorSelect($event)"></app-sms-apipath-tree> 
+    <app-sms-apipath-tree (optionChange)="onActionSelectorSelect($event)"></app-sms-apipath-tree>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
@@ -43,8 +43,8 @@
       (click)="onActionbuttonSendMessage()" type="button" class="btn btn-primary" id="openModalButton"
       data-toggle="modal" data-target="#categoryModal">{{'ACTION.SEND_ANSWER' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected?.id?.length>0"
-      (click)="onActionbuttonDetailRow()" type="button" class="btn btn-primary" id="openModalButton"
-      data-toggle="modal" data-target="#categoryModal">{{'ACTION.DETAIL' | translate}}</button>
+      (click)="onActionbuttonDetailRow()" type="button" class="btn btn-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.DETAIL' | translate}}</button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPrivateConfigId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
@@ -66,8 +66,8 @@
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
 
-       <!-- LinkPrivateConfigId Column -->
-       <ng-container matColumnDef="LinkPrivateConfigId">
+      <!-- LinkPrivateConfigId Column -->
+      <ng-container matColumnDef="LinkPrivateConfigId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPrivateConfigId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPrivateConfigId | cmstitle: dataModelPrivateResult.listItems}}
@@ -94,8 +94,9 @@
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.createdDate) }}
-          {{ publicHelper.getTime(row.createdDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
+          publicHelper.LocaleDateTime(row.createdDate)}}
+        </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">

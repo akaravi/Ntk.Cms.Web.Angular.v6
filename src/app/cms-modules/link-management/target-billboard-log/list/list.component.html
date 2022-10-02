@@ -156,17 +156,26 @@
                 <td></td>
                 <td>
 
-                  <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow"
-                    class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
+                  <ng-container *ngIf="dataModelResult.access.accessEditRow">
+                    <a (click)="onActionbuttonEditRow(row)" class="link-primary pointer"> {{'ACTION.EDIT' | translate}}
+                    </a>|
+                  </ng-container>
 
-                  <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
-                    class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
+                  <ng-container *ngIf="dataModelResult.access.accessDeleteRow">
+                    <a (click)="onActionbuttonDeleteRow(row)" class="link-primary pointer"> {{'ACTION.DELETE' |
+                      translate}} </a>|
+                  </ng-container>
 
-                  <a (click)="onActionbuttonViewRowLinkBillbordId(row)" *ngIf="row.linkManagementBillboardId>0"
-                    class="link-primary pointer"> {{'ACTION.BILLBOARD' | translate}} </a>|
+                  <ng-container *ngIf="row.linkManagementBillboardId>0">
+                    <a (click)="onActionbuttonViewRowLinkBillbordId(row)" class="link-primary pointer">
+                      {{'ACTION.BILLBOARD' | translate}} </a>|
+                  </ng-container>
 
-                  <a (click)="onActionbuttonViewRowLinkTargetId(row)" *ngIf="row.linkManagementTargetId>0" class="link-primary pointer">
+                  <ng-container *ngIf="row.linkManagementTargetId>0">
+                    <a (click)="onActionbuttonViewRowLinkTargetId(row)"
+                    class="link-primary pointer">
                     {{'ACTION.BANNER' | translate}} </a>
+                  </ng-container>
                 </td>
               </tr>
 
