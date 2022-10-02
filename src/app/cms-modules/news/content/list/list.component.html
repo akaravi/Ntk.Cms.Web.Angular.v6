@@ -90,6 +90,11 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
       </ng-container>
+      <!-- ViewCount Column -->
+      <ng-container matColumnDef="ViewCount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewCount']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.viewCount}} </mat-cell>
+      </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}

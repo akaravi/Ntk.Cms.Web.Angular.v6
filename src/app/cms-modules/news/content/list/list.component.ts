@@ -73,6 +73,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
+    'ViewCount',
     'Title',
     'CreatedDate',
     'Action',

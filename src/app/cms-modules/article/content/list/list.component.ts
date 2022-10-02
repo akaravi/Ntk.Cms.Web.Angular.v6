@@ -74,6 +74,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
+    'ViewCount',
     'Title',
     'CreatedDate',
     'Action',

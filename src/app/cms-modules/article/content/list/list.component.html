@@ -1,4 +1,5 @@
-<app-cms-guide-notice [Key]="'article.content.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+<app-cms-guide-notice [Key]="'article.content.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
+</app-cms-guide-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -54,7 +55,7 @@
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
-    multiTemplateDataRows>
+      multiTemplateDataRows>
       <!-- LinkMainImageIdSrc Column -->
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
@@ -77,11 +78,17 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> 
-          <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+        <mat-cell *matCellDef="let row">
+          <i [ngClass]="row.recordStatus|statusClass"></i>
+          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select>
-         </mat-cell>
+        </mat-cell>
+      </ng-container>
+      <!-- ViewCount Column -->
+      <ng-container matColumnDef="ViewCount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewCount']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.viewCount}} </mat-cell>
       </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
@@ -123,8 +130,8 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <button mat-icon-button>
-          <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
-        </button>
+            <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
       <!--expandedDetail-->
@@ -160,7 +167,8 @@
                   <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
                     class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
 
-                  <a (click)="onActionbuttonComment(row)" class="link-primary pointer"> {{'ACTION.COMMENT' | translate}} </a>
+                  <a (click)="onActionbuttonComment(row)" class="link-primary pointer"> {{'ACTION.COMMENT' | translate}}
+                  </a>
                 </td>
               </tr>
 
@@ -168,10 +176,10 @@
           </div>
         </mat-cell>
       </ng-container>
-      
+
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-      (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
       </mat-row>
       <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
