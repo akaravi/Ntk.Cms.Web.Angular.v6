@@ -300,17 +300,26 @@
                 <mat-label>{{fieldsInfo['BuildKey1String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey1String"
                   [disabled]="!fieldsInfo['BuildKey1String']?.accessAddField" name="dataModel.buildKey1String"
-                  #BuildKey1String type="text" placeholder="KEY" minlength="0" maxlength="1000" />
-                <mat-hint align="end">{{ BuildKey1String.value.length }} / 1000</mat-hint>
+                  #BuildKey1String type="text" placeholder="KEY" minlength="0" />
+                <mat-hint align="end">{{ BuildKey1String.value.length }}</mat-hint>
               </mat-form-field>
             </td>
             <td>
+              <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey1Files']?.accessWatchField">
+                <mat-label>{{fieldsInfo['BuildKey1Files']?.fieldTitle}}</mat-label>
+                <input matInput [(ngModel)]="dataModel.buildKey1Files"
+                  [disabled]="!fieldsInfo['BuildKey1Files']?.accessAddField" name="dataModel.buildKey1Files"
+                  #BuildKey1Files type="text" placeholder="Files" minlength="0" />
+                <mat-hint align="end">{{ BuildKey1Files.value.length }}</mat-hint>
+              </mat-form-field>
+            </td>          
+              <td>
               <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey1Value']?.accessWatchField">
                 <mat-label>{{fieldsInfo['BuildKey1Value']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey1Value"
                   [disabled]="!fieldsInfo['BuildKey1Value']?.accessAddField" name="dataModel.buildKey1Value"
-                  #BuildKey1Value type="text" placeholder="Value" minlength="0" maxlength="1000" />
-                <mat-hint align="end">{{ BuildKey1Value.value.length }} / 1000</mat-hint>
+                  #BuildKey1Value type="text" placeholder="Value" minlength="0" />
+                <mat-hint align="end">{{ BuildKey1Value.value.length }}</mat-hint>
               </mat-form-field>
             </td>
           </tr>
@@ -320,8 +329,17 @@
                 <mat-label>{{fieldsInfo['BuildKey2String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey2String"
                   [disabled]="!fieldsInfo['BuildKey2String']?.accessAddField" name="dataModel.buildKey2String"
-                  #BuildKey2String type="text" placeholder="KEY" minlength="0" maxlength="1000" />
-                <mat-hint align="end">{{ BuildKey2String.value.length }} / 1000</mat-hint>
+                  #BuildKey2String type="text" placeholder="KEY" minlength="0"  />
+                <mat-hint align="end">{{ BuildKey2String.value.length }}</mat-hint>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey2Files']?.accessWatchField">
+                <mat-label>{{fieldsInfo['BuildKey2Files']?.fieldTitle}}</mat-label>
+                <input matInput [(ngModel)]="dataModel.buildKey2Files"
+                  [disabled]="!fieldsInfo['BuildKey2Files']?.accessAddField" name="dataModel.buildKey2Files"
+                  #BuildKey2Files type="text" placeholder="Files" minlength="0" />
+                <mat-hint align="end">{{ BuildKey2Files.value.length }}</mat-hint>
               </mat-form-field>
             </td>
             <td>
@@ -329,8 +347,8 @@
                 <mat-label>{{fieldsInfo['BuildKey2Value']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey2Value"
                   [disabled]="!fieldsInfo['BuildKey2Value']?.accessAddField" name="dataModel.buildKey2Value"
-                  #BuildKey2Value type="text" placeholder="Value" minlength="0" maxlength="1000" />
-                <mat-hint align="end">{{ BuildKey2Value.value.length }} / 1000</mat-hint>
+                  #BuildKey2Value type="text" placeholder="Value" minlength="0" />
+                <mat-hint align="end">{{ BuildKey2Value.value.length }}</mat-hint>
               </mat-form-field>
             </td>
           </tr>
@@ -340,8 +358,17 @@
                 <mat-label>{{fieldsInfo['BuildKey3String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey3String"
                   [disabled]="!fieldsInfo['BuildKey3String']?.accessAddField" name="dataModel.buildKey3String"
-                  #BuildKey3String type="text" placeholder="KEY" minlength="0" maxlength="1000" />
-                <mat-hint align="end">{{ BuildKey3String.value.length }} / 1000</mat-hint>
+                  #BuildKey3String type="text" placeholder="KEY" minlength="0"  />
+                <mat-hint align="end">{{ BuildKey3String.value.length }} </mat-hint>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey3Files']?.accessWatchField">
+                <mat-label>{{fieldsInfo['BuildKey3Files']?.fieldTitle}}</mat-label>
+                <input matInput [(ngModel)]="dataModel.buildKey3Files"
+                  [disabled]="!fieldsInfo['BuildKey3Files']?.accessAddField" name="dataModel.buildKey3Files"
+                  #BuildKey3Files type="text" placeholder="Files" minlength="0" />
+                <mat-hint align="end">{{ BuildKey3Files.value.length }} </mat-hint>
               </mat-form-field>
             </td>
             <td>
@@ -349,8 +376,8 @@
                 <mat-label>{{fieldsInfo['BuildKey3Value']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey3Value"
                   [disabled]="!fieldsInfo['BuildKey3Value']?.accessAddField" name="dataModel.buildKey3Value"
-                  #BuildKey3Value type="text" placeholder="Value" minlength="0" maxlength="1000" />
-                <mat-hint align="end">{{ BuildKey3Value.value.length }} / 1000</mat-hint>
+                  #BuildKey3Value type="text" placeholder="Value" minlength="0" />
+                <mat-hint align="end">{{ BuildKey3Value.value.length }} </mat-hint>
               </mat-form-field>
             </td>
           </tr>
@@ -360,8 +387,17 @@
                 <mat-label>{{fieldsInfo['BuildKey4String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey4String"
                   [disabled]="!fieldsInfo['BuildKey4String']?.accessAddField" name="dataModel.buildKey4String"
-                  #BuildKey4String type="text" placeholder="KEY" minlength="0" maxlength="1000" />
-                <mat-hint align="end">{{ BuildKey4String.value.length }} / 1000</mat-hint>
+                  #BuildKey4String type="text" placeholder="KEY" minlength="0"/>
+                <mat-hint align="end">{{ BuildKey4String.value.length }}</mat-hint>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey4Files']?.accessWatchField">
+                <mat-label>{{fieldsInfo['BuildKey4Files']?.fieldTitle}}</mat-label>
+                <input matInput [(ngModel)]="dataModel.buildKey4Files"
+                  [disabled]="!fieldsInfo['BuildKey4Files']?.accessAddField" name="dataModel.buildKey4Files"
+                  #BuildKey4Files type="text" placeholder="Files" minlength="0" />
+                <mat-hint align="end">{{ BuildKey4Files.value.length }} </mat-hint>
               </mat-form-field>
             </td>
             <td>
@@ -369,8 +405,8 @@
                 <mat-label>{{fieldsInfo['BuildKey4Value']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey4Value"
                   [disabled]="!fieldsInfo['BuildKey4Value']?.accessAddField" name="dataModel.buildKey4Value"
-                  #BuildKey4Value type="text" placeholder="Value" minlength="0" maxlength="1000" />
-                <mat-hint align="end">{{ BuildKey4Value.value.length }} / 1000</mat-hint>
+                  #BuildKey4Value type="text" placeholder="Value" minlength="0" />
+                <mat-hint align="end">{{ BuildKey4Value.value.length }} </mat-hint>
               </mat-form-field>
             </td>
           </tr>
@@ -380,8 +416,17 @@
                 <mat-label>{{fieldsInfo['BuildKey5String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey5String"
                   [disabled]="!fieldsInfo['BuildKey5String']?.accessAddField" name="dataModel.buildKey5String"
-                  #BuildKey5String type="text" placeholder="KEY" minlength="0" maxlength="1000" />
-                <mat-hint align="end">{{ BuildKey5String.value.length }} / 1000</mat-hint>
+                  #BuildKey5String type="text" placeholder="KEY" minlength="0"  />
+                <mat-hint align="end">{{ BuildKey5String.value.length }} </mat-hint>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey5Files']?.accessWatchField">
+                <mat-label>{{fieldsInfo['BuildKey5Files']?.fieldTitle}}</mat-label>
+                <input matInput [(ngModel)]="dataModel.buildKey5Files"
+                  [disabled]="!fieldsInfo['BuildKey5Files']?.accessAddField" name="dataModel.buildKey5Files"
+                  #BuildKey5Files type="text" placeholder="Files" minlength="0" />
+                <mat-hint align="end">{{ BuildKey5Files.value.length }} </mat-hint>
               </mat-form-field>
             </td>
             <td>
@@ -389,8 +434,8 @@
                 <mat-label>{{fieldsInfo['BuildKey5Value']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey5Value"
                   [disabled]="!fieldsInfo['BuildKey5Value']?.accessAddField" name="dataModel.buildKey5Value"
-                  #BuildKey5Value type="text" placeholder="Value" minlength="0" maxlength="1000" />
-                <mat-hint align="end">{{ BuildKey5Value.value.length }} / 1000</mat-hint>
+                  #BuildKey5Value type="text" placeholder="Value" minlength="0" />
+                <mat-hint align="end">{{ BuildKey5Value.value.length }} </mat-hint>
               </mat-form-field>
             </td>
           </tr>
