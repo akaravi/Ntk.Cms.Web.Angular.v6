@@ -88,6 +88,7 @@ export class SmsLogOutBoxQueueListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[]=[];
   tabledisplayedColumnsSource: string[] = [
     'Id',
+    'RecordStatus',
     'IsFlash',
     'Message',
     'ScheduleSendStart',
