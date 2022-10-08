@@ -91,6 +91,8 @@ export class SmsLogOutBoxQueueListComponent implements OnInit, OnDestroy {
     'RecordStatus',
     'IsFlash',
     'Message',
+    'QueueCompleted',
+    'QueueCompleteDate',
     'ScheduleSendStart',
     'CreatedDate',
     'UpdatedDate',

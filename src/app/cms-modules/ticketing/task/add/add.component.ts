@@ -114,7 +114,7 @@ export class TicketingTaskAddComponent implements OnInit {
           if (next.isSuccess) {
             this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-            setTimeout(() => this.router.navigate(['/application/app/']), 1000);
+            setTimeout(() => this.router.navigate(['/ticketing/task/']), 1000);
           } else {
             this.cmsToastrService.typeErrorEdit(next.errorMessage);
           }

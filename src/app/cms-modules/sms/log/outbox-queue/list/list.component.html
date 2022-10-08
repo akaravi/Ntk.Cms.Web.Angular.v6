@@ -79,6 +79,18 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Message']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.message}} </mat-cell>
       </ng-container>
+      <!-- QueueCompleted Column -->
+      <ng-container matColumnDef="QueueCompleted">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['QueueCompleted']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.queueCompleted|statusClass"></i> </mat-cell>
+      </ng-container>
+      <!-- QueueCompleteDate Column -->
+      <ng-container matColumnDef="QueueCompleteDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['QueueCompleteDate']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.QueueCompleteDate) }}</mat-cell>
+      </ng-container>
 
       <!-- ScheduleSendStart Column -->
       <ng-container matColumnDef="ScheduleSendStart">
