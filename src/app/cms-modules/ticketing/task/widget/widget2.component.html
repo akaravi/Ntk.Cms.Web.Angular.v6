@@ -10,9 +10,12 @@
     <div class="ntk-cms-html-widget-body">
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <div *ngFor="let item of modelData| keyvalue ; index as i" [ngClass]="textInverseCSSClass"
+      <div *ngFor="let item of widgetInfoModel.items ; index as i" [ngClass]="textInverseCSSClass"
         class="font-weight-bolder font-size-h3 mt-3">
-        {{translateHelp('TITLE.',item.key)|translate}} : {{item.value}}
+        <a routerLink="{{item.link}}" routerLinkActive="active" [ngClass]="textInverseCSSClass"
+          class="font-weight-bold font-size-lg mt-1">
+          {{translateHelp('TITLE.',item.key)|translate}} : {{item.count}}
+        </a>
       </div>
       <!--end::cms-body-->
     </div>

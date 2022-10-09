@@ -4,7 +4,7 @@ import { TicketingTaskService, FilterDataModel, FilterModel, EnumTicketStatus } 
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
+import { WidgetInfoModel, WidgetContentInfoModel } from 'src/app/core/models/widget-info-model';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-ticketing-task-widget2',
@@ -24,10 +24,10 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   filteModelContent = new FilterModel();
-  modelData = new Map<string, number>();
+  // modelData = new WidgetContentInfoModel[];
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
   @Input()
@@ -49,24 +49,26 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Unread',this.translate.instant('MESSAGE.Get_unread_tickets_statistics'));
-    this.loading.Start(this.constructor.name + 'Read',this.translate.instant('MESSAGE.Get_read_tickets_statistics'));
-    this.loading.Start(this.constructor.name + 'Answered',this.translate.instant('MESSAGE.Get_answered_tickets_statistics'));
-    this.loading.Start(this.constructor.name + 'All',this.translate.instant('MESSAGE.Get_statistics_on_all_tickets'));
-    this.modelData.set('Unread', 0);
-    this.modelData.set('Read', 1);
-    this.modelData.set('Answered', 2);
-    this.modelData.set('All', 3);
+    this.loading.Start(this.constructor.name + 'Unread', this.translate.instant('MESSAGE.Get_unread_tickets_statistics'));
+    this.loading.Start(this.constructor.name + 'Read', this.translate.instant('MESSAGE.Get_read_tickets_statistics'));
+    this.loading.Start(this.constructor.name + 'Answered', this.translate.instant('MESSAGE.Get_answered_tickets_statistics'));
+    this.loading.Start(this.constructor.name + 'All', this.translate.instant('MESSAGE.Get_statistics_on_all_tickets'));
+
+    this.widgetInfoModel.set(new WidgetContentInfoModel('Unread', 0, 0, ''));
+    this.widgetInfoModel.set(new WidgetContentInfoModel('Read', 1, 0, ''));
+    this.widgetInfoModel.set(new WidgetContentInfoModel('Answered', 2, 0, ''));
+    this.widgetInfoModel.set(new WidgetContentInfoModel('All', 3, 0, ''));
     this.service.ServiceGetCount(this.filteModelContent).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         if (ret.isSuccess) {
-          this.modelData.set('All', ret.totalRowCount);
+          this.widgetInfoModel.set(new WidgetContentInfoModel('All', 3, ret.totalRowCount, '/ticketing/task/'));
         }
         this.loading.Stop(this.constructor.name + 'All');
       },
-      error:(er) => {
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'All');
-      }}
+      }
+    }
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
@@ -74,16 +76,17 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
     fastfilter.value = EnumTicketStatus.Read;
     filterStatist1.filters.push(fastfilter);
     this.service.ServiceGetCount(filterStatist1).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         if (ret.isSuccess) {
-          this.modelData.set('Read', ret.totalRowCount);
+          this.widgetInfoModel.set(new WidgetContentInfoModel('Read', 1, ret.totalRowCount, '/ticketing/task/listTicketStatus/'+EnumTicketStatus.Read));
         }
         this.loading.Stop(this.constructor.name + 'Read');
       }
       ,
-      error:(er) => {
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'Read');
-      }}
+      }
+    }
     );
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter2 = new FilterDataModel();
@@ -91,16 +94,17 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
     fastfilter2.value = EnumTicketStatus.Unread;
     filterStatist2.filters.push(fastfilter2);
     this.service.ServiceGetCount(filterStatist2).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         if (ret.isSuccess) {
-          this.modelData.set('Unread', ret.totalRowCount);
+          this.widgetInfoModel.set(new WidgetContentInfoModel('Unread', 0, ret.totalRowCount, '/ticketing/task/listTicketStatus/'+EnumTicketStatus.Unread));
         }
         this.loading.Stop(this.constructor.name + 'Unread');
       }
       ,
-      error:(er) => {
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'Unread');
-      }}
+      }
+    }
     );
     const filterStatist3 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter3 = new FilterDataModel();
@@ -108,16 +112,17 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
     fastfilter3.value = EnumTicketStatus.Answered;
     filterStatist3.filters.push(fastfilter3);
     this.service.ServiceGetCount(filterStatist3).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         if (ret.isSuccess) {
-          this.modelData.set('Answered', ret.totalRowCount);
+          this.widgetInfoModel.set(new WidgetContentInfoModel('Answered', 2, ret.totalRowCount, '/ticketing/task/listTicketStatus/'+EnumTicketStatus.Answered));
         }
         this.loading.Stop(this.constructor.name + 'Answered');
       }
       ,
-      error:(er) => {
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'Answered');
-      }}
+      }
+    }
     );
   }
   translateHelp(t: string, v: string): string {

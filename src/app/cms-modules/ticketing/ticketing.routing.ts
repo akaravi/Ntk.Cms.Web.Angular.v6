@@ -79,7 +79,7 @@ const routes: Routes = [
       }
       ,
       {
-        path: 'task/ticketStatus/:TicketStatus',
+        path: 'task/listTicketStatus/:TicketStatus',
         component: TicketingTaskListComponent
       }
       ,
