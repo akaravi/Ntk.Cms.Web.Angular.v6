@@ -54,8 +54,10 @@ import { CoreModuleLogReportAbuseWidget2Component } from 'src/app/cms-modules/co
 import { WebDesignerLogMemberInfoWidgetComponent } from 'src/app/cms-modules/web-designer/log-member-info/widget/widget.component';
 import { WebDesignerLogMemberInfoWidget2Component } from 'src/app/cms-modules/web-designer/log-member-info/widget/widget2.component';
 import { CoreModuleSiteCreditWidgetPriceComponent } from 'src/app/cms-modules/core-module/site-credit/widget/widget-price.component';
-import { TicketingTaskWidget2Component } from 'src/app/cms-modules/ticketing/task/widget/widget2.component';
 import { TicketingTaskWidgetComponent } from 'src/app/cms-modules/ticketing/task/widget/widget.component';
+import { TicketingTaskWidget2Component } from 'src/app/cms-modules/ticketing/task/widget/widget2.component';
+import { CoreModuleSiteUserCreditWidgetPriceComponent } from 'src/app/cms-modules/core-module/site-user-credit/widget/widget-price.component';
+
 
 @NgModule({
   declarations: [
@@ -91,6 +93,7 @@ import { TicketingTaskWidgetComponent } from 'src/app/cms-modules/ticketing/task
     TicketingTaskWidget2Component,
     CoreModuleLogReportAbuseWidget2Component,
     CoreModuleSiteCreditWidgetPriceComponent,
+    CoreModuleSiteUserCreditWidgetPriceComponent,
     // ForExport
   ],
   exports: [

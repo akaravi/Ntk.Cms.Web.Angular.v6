@@ -2,8 +2,8 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
-  CoreModuleSiteCreditModel,
-  CoreModuleSiteCreditService,
+  CoreModuleSiteUserCreditModel,
+  CoreModuleSiteUserCreditService,
   DataFieldInfoModel,
   ErrorExceptionResult,
   FilterModel,
@@ -17,11 +17,11 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-coremodule-site-credit-widget-price',
+  selector: 'app-coremodule-site-user-credit-widget-price',
   templateUrl: './widget-price.component.html',
   styleUrls: ['./widget-price.component.scss']
 })
-export class CoreModuleSiteCreditWidgetPriceComponent implements OnInit, OnDestroy {
+export class CoreModuleSiteUserCreditWidgetPriceComponent implements OnInit, OnDestroy {
   @Input() cssClass = '';
   @Input() widgetHeight = 'auto';
   @Input() baseColor = 'success';
@@ -29,7 +29,7 @@ export class CoreModuleSiteCreditWidgetPriceComponent implements OnInit, OnDestr
   textInverseCSSClass;
   svgCSSClass;
   constructor(
-    private service: CoreModuleSiteCreditService,
+    private service: CoreModuleSiteUserCreditService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
@@ -41,8 +41,8 @@ export class CoreModuleSiteCreditWidgetPriceComponent implements OnInit, OnDestr
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
-  dataModelResult: ErrorExceptionResult<CoreModuleSiteCreditModel> = new ErrorExceptionResult<CoreModuleSiteCreditModel>();
-  dataModel: CoreModuleSiteCreditModel = new CoreModuleSiteCreditModel();
+  dataModelResult: ErrorExceptionResult<CoreModuleSiteUserCreditModel> = new ErrorExceptionResult<CoreModuleSiteUserCreditModel>();
+  dataModel: CoreModuleSiteUserCreditModel = new CoreModuleSiteUserCreditModel();
   formInfo: FormInfoModel = new FormInfoModel();
 
   filteModelContent = new FilterModel();

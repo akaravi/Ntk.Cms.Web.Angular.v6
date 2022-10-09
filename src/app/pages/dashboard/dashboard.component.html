@@ -8,6 +8,18 @@
     </div>
     <br>
     <div class="row">
+      <div class="col-xl-6">
+        <app-coremodule-site-user-credit-widget-price [loading]="loading" cssClass="gutter-b card-stretch">
+        </app-coremodule-site-user-credit-widget-price>
+      </div>
+      <div class="col-xl-6">
+        <app-coremodule-site-credit-widget-price [loading]="loading" *ngIf="this.tokenHelper.isAdminSite"
+          cssClass="gutter-b card-stretch">
+        </app-coremodule-site-credit-widget-price>
+      </div>
+    </div>
+    <br>
+    <div class="row">
       <div class="col-xl-12">
         <app-core-site-widget-count2 [loading]="loading"></app-core-site-widget-count2>
       </div>

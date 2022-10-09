@@ -118,6 +118,7 @@ export class SmsMainApiPathPublicConfigListComponent implements OnInit, OnDestro
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new SmsMainApiPathPublicConfigModel();
     const pName = this.constructor.name + 'main';
