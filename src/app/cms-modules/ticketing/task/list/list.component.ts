@@ -38,6 +38,7 @@ import { TicketingTaskViewComponent } from '../view/view.component';
 export class TicketingTaskListComponent implements OnInit, OnDestroy {
   requestDepartemenId = 0;
   requestLinkCmsUserId = 0;
+  requestTicketStatus = 0;
   constructor(
     public contentService: TicketingTaskService,
     private activatedRoute: ActivatedRoute,
@@ -101,6 +102,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('DepartemenId'));
     this.requestLinkCmsUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkCmsUserId'));
+    this.requestTicketStatus = + Number(this.activatedRoute.snapshot.paramMap.get('TicketStatus'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -151,6 +153,11 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     if (this.requestLinkCmsUserId > 0) {
       filter.propertyName = 'LinkCmsUserId';
       filter.value = this.requestLinkCmsUserId;
+      filterModel.filters.push(filter);
+    }
+    if (this.requestTicketStatus > 0) {
+      filter.propertyName = 'TicketStatus';
+      filter.value = this.requestTicketStatus;
       filterModel.filters.push(filter);
     }
     this.contentService.ServiceGetAll(filterModel).subscribe({

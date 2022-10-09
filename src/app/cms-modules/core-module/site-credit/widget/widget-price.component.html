@@ -1,0 +1,27 @@
+<!--begin::Tiles Widget 11-->
+<div class="card card-custom bg- height background" [ngClass]="cssClass">
+  <div class="card-body">
+    <div class="ntk-cms-html-widget-header">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      <span [ngClass]="svgCSSClass" [inlineSVG]="'./assets/media/svg/icons/General/Smile.svg'"
+        class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </div>
+    <div class="ntk-cms-html-widget-body">
+      <app-progress-spinner [options]="loading"> </app-progress-spinner>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <div *ngFor="let row of dataModelResult.listItems ; index as i" [ngClass]="textInverseCSSClass"
+        class="row font-weight-bolder font-size-h5 mt-3">
+      </div>
+      <hr>
+      <!--end::cms-body-->
+    </div>
+    <div class="ntk-cms-html-widget-footer">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      <a routerLink="{{widgetInfoModel.link}}" routerLinkActive="active" [ngClass]="textInverseCSSClass"
+        class="font-weight-bold font-size-lg mt-1 color">{{widgetInfoModel.title}}</a>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </div>
+  </div>
+</div>
+<!--end::Tiles Widget 11-->

@@ -26,7 +26,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-coremodule-site-user-credit-list',
+  selector: 'app-coremodule-site-credit-list',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })

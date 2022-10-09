@@ -79,6 +79,11 @@ const routes: Routes = [
       }
       ,
       {
+        path: 'task/ticketStatus/:TicketStatus',
+        component: TicketingTaskListComponent
+      }
+      ,
+      {
         path: 'task/contactus-list',
         component: TicketingTaskContactUsListComponent
       },

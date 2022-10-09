@@ -21,12 +21,14 @@ import {
   BlogContentService,
   ChartContentService,
   CoreModuleLogReportAbuseService,
+  CoreModuleSiteCreditService,
   CoreSiteService,
   CoreUserClaimContentService,
   CoreUserClaimTypeService,
   CoreUserService,
   EstatePropertyService,
   NewsContentService,
+  TicketingTaskService,
   WebDesignerLogMemberInfoService
 } from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared.module';
@@ -51,6 +53,9 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CoreModuleLogReportAbuseWidget2Component } from 'src/app/cms-modules/core-module-log/report-abuse/widget/widget2.component';
 import { WebDesignerLogMemberInfoWidgetComponent } from 'src/app/cms-modules/web-designer/log-member-info/widget/widget.component';
 import { WebDesignerLogMemberInfoWidget2Component } from 'src/app/cms-modules/web-designer/log-member-info/widget/widget2.component';
+import { CoreModuleSiteCreditWidgetPriceComponent } from 'src/app/cms-modules/core-module/site-credit/widget/widget-price.component';
+import { TicketingTaskWidget2Component } from 'src/app/cms-modules/ticketing/task/widget/widget2.component';
+import { TicketingTaskWidgetComponent } from 'src/app/cms-modules/ticketing/task/widget/widget.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +87,10 @@ import { WebDesignerLogMemberInfoWidget2Component } from 'src/app/cms-modules/we
     EstatePropertyWidgetComponent,
     EstatePropertyWidget2Component,
     EstatePropertyWidgetAddComponent,
+    TicketingTaskWidgetComponent,
+    TicketingTaskWidget2Component,
     CoreModuleLogReportAbuseWidget2Component,
+    CoreModuleSiteCreditWidgetPriceComponent,
     // ForExport
   ],
   exports: [
@@ -111,6 +119,7 @@ import { WebDesignerLogMemberInfoWidget2Component } from 'src/app/cms-modules/we
     BiographyContentService,
     BlogContentService,
     EstatePropertyService,
+    TicketingTaskService,
     ChartContentService,
     ArticleContentService,
     CoreSiteService,
@@ -118,6 +127,7 @@ import { WebDesignerLogMemberInfoWidget2Component } from 'src/app/cms-modules/we
     CoreUserClaimContentService,
     CoreUserClaimTypeService,
     CoreModuleLogReportAbuseService,
+    CoreModuleSiteCreditService,
   ]
 })
 export class DashboardModule { }

@@ -33,7 +33,7 @@
               [optionSelectFirstItem]="true">
             </app-sms-api-number-selector>
             <mat-action-row>
-              <button type="button" mat-button color="primary" (click)="nextStep()">Next</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
 
@@ -65,8 +65,8 @@
               <i class="ft-x"></i> {{'TITLE.Message_Text' | translate}}
             </button>
             <mat-action-row>
-              <button type="button" mat-button color="warn" (click)="prevStep()">Previous</button>
-              <button type="button" mat-button color="primary" (click)="nextStep()">Next</button>
+              <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
 
@@ -85,8 +85,8 @@
               (optionSelectDisChecked)="onActionContactCategorySelectDisChecked($event)">
             </app-cms-contact-category-tree-selector>
             <mat-action-row>
-              <button type="button" mat-button color="warn" (click)="prevStep()">Previous</button>
-              <button type="button" mat-button color="primary" (click)="nextStep()">Next</button>
+              <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
 
@@ -155,8 +155,8 @@
             <hr>
             {{this.dataModel.scheduleSendStart}} >>> {{this.dataModel.scheduleSendExpire}}
             <mat-action-row>
-              <button type="button" mat-button color="warn" (click)="prevStep()">Previous</button>
-              <button type="button" mat-button color="primary" (click)="nextStep()">Next</button>
+              <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
             </mat-action-row>
 
           </mat-expansion-panel>
@@ -179,8 +179,8 @@
             <h2 style="direction: ltr;">Resulting Cron: {{dataModel.scheduleCron}}</h2>
 
             <mat-action-row>
-              <button type="button" mat-button color="warn" (click)="prevStep()">Previous</button>
-              <button type="button" mat-button color="primary" (click)="nextStep()">Next</button>
+              <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
           <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
@@ -208,8 +208,8 @@
             </div>
 
             <mat-action-row>
-              <button type="button" mat-button color="warn" (click)="prevStep()">Previous</button>
-              <button type="button" mat-button color="primary" (click)="nextStep()">End</button>
+              <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.END' | translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>

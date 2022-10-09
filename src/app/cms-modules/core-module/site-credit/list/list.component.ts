@@ -30,7 +30,7 @@ import { CoreModuleSiteCreditEditComponent } from '../edit/edit.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-coremodule-site-user-credit-list',
+  selector: 'app-coremodule-site-credit-list',
   templateUrl: './list.component.html',
 })
 export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
