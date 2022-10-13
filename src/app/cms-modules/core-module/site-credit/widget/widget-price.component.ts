@@ -80,7 +80,7 @@ export class CoreModuleSiteCreditWidgetPriceComponent implements OnInit, OnDestr
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.service.ServiceGetAllEditor(filterModel).subscribe({
+    this.service.ServiceGetAll(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 

@@ -96,6 +96,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainPageTemplateModel();
     const pName = this.constructor.name + 'main';
