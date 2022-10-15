@@ -193,7 +193,7 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(EstatePropertyProjectDeleteComponent, { height: '90%', data: { id: this.tableRowSelected.id } });
+    const dialogRef = this.dialog.open(EstatePropertyProjectDeleteComponent, { data: { id: this.tableRowSelected.id } });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
         this.DataGetAll();

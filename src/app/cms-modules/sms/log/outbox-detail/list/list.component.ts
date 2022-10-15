@@ -2,7 +2,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import {  
+import {
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
@@ -91,7 +91,7 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'CreatedDate',
@@ -129,8 +129,8 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
-    
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+
     this.tableRowsSelected = [];
     this.tableRowSelected = new SmsLogOutBoxDetailModel();
     const pName = this.constructor.name + 'main';
@@ -143,16 +143,16 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
     this.smsLogOutBoxDetailService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-    
+
         if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
-     
+
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);
           }
         }
-        else{
+        else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
@@ -190,7 +190,7 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
     this.filteModelContent.rowPerPage = event.pageSize;
   }
 
-  
+
 
 
   onActionbuttonDeleteRow(model: SmsLogOutBoxDetailModel = this.tableRowSelected): void {
@@ -319,7 +319,7 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
     }
     );
   }
-  
+
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -329,6 +329,17 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: SmsLogOutBoxDetailModel): void {
     this.tableRowSelected = row;
+
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: SmsLogOutBoxDetailModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: SmsLogOutBoxDetailModel): void {
+    row["expanded"] = false;
   }
   onActionBackToParent(): void {
     this.router.navigate(['/sms/log/outbox']);

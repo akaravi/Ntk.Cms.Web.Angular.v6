@@ -43,6 +43,7 @@ import { SmsLogOutBoxDetailListComponent } from './outbox-detail/list/list.compo
 import { SmsLogOutBoxQueueListComponent } from './outbox-queue/list/list.component';
 import { SmsLogOutBoxQueueEditComponent } from './outbox-queue/edit/edit.component';
 import { SmsLogOutBoxQueueViewComponent } from './outbox-queue/view/view.component';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { SmsLogOutBoxQueueViewComponent } from './outbox-queue/view/view.compone
     DynamicFormBuilderModule,
     NgxMaterialTimepickerModule,
     SmsSharedModule,
+    InlineSVGModule,
   ],
   providers: [
     CoreModuleService,

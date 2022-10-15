@@ -40,11 +40,13 @@
         <!-- LinkPublicConfigId Field -->
         <app-sms-publicconfig-selector (optionChange)="onActionSelectSource($event)"
           [optionDisabled]="!fieldsInfo['LinkPublicConfigId']?.accessEditField"
-          [optionSelectForce]="dataModel.linkPublicConfigId" [optionPlaceholder]="this.translate.instant('TITLE.Route_Type')">
+          [optionSelectForce]="dataModel.linkPublicConfigId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Route_Type')">
         </app-sms-publicconfig-selector>
         <!-- LinkApiPathCompanyId Field -->
         <app-sms-apipathcompany-selector (optionChange)="onActionSelectorSelectLinkApiPathCompanyId($event)"
-          [optionSelectForce]="dataModel.linkApiPathCompanyId" [optionPlaceholder]="this.translate.instant('TITLE.Service_Company')">
+          [optionSelectForce]="dataModel.linkApiPathCompanyId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Service_Company')">
         </app-sms-apipathcompany-selector>
 
         <!-- ApiDefaultNumber Field -->
@@ -288,8 +290,7 @@
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.apiAllowSuperSeder"
             *ngIf="fieldsInfo['ApiAllowSuperSeder']?.accessWatchField"
-            [disabled]="!fieldsInfo['ApiAllowSuperSeder']?.accessEditField"
-            name="dataModel.apiAllowSuperSeder">
+            [disabled]="!fieldsInfo['ApiAllowSuperSeder']?.accessEditField" name="dataModel.apiAllowSuperSeder">
             {{fieldsInfo['ApiAllowSuperSeder']?.fieldTitle}}
           </mat-slide-toggle>
         </div>
@@ -306,8 +307,7 @@
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.apiAbilityUseInside"
             *ngIf="fieldsInfo['ApiAbilityUseInside']?.accessWatchField"
-            [disabled]="!fieldsInfo['ApiAbilityUseInside']?.accessEditField"
-            name="dataModel.apiAbilityUseInside">
+            [disabled]="!fieldsInfo['ApiAbilityUseInside']?.accessEditField" name="dataModel.apiAbilityUseInside">
             {{fieldsInfo['ApiAbilityUseInside']?.fieldTitle}}
           </mat-slide-toggle>
         </div>
@@ -324,6 +324,72 @@
         </div>
       </mat-step>
       <mat-step label="وضعیت برگشت اعتبار" state="seo">
+
+        <!-- StatusOutOfServiceActive Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.statusOutOfServiceActive"
+            *ngIf="fieldsInfo['ApiAbilityUseInside']?.accessWatchField"
+            [disabled]="!fieldsInfo['ApiAbilityUseInside']?.accessEditField" name="dataModel.statusOutOfServiceActive">
+            {{fieldsInfo['ApiAbilityUseInside']?.fieldTitle}}
+          </mat-slide-toggle>
+        </div>
+        <!-- StatusOutOfServiceExpire Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['StatusOutOfServiceExpire']?.fieldTitle}}</mat-label>
+          <input matInput [matDatepicker]="StatusOutOfServiceExpire" [(ngModel)]="dataModel.statusOutOfServiceExpire"
+            name="dataModel.firstSubmit" />
+          <mat-icon matSuffix *ngIf="dataModel.statusOutOfServiceExpire && fieldsInfo['StatusOutOfServiceExpire']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.statusOutOfServiceExpire = null">close</mat-icon>
+          <mat-datepicker-toggle matSuffix [for]="StatusOutOfServiceExpire"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #StatusOutOfServiceExpire></mat-datepicker>
+        </mat-form-field>
+        <!-- StatusNotStableActive Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.statusNotStableActive"
+            *ngIf="fieldsInfo['ApiAbilityUseInside']?.accessWatchField"
+            [disabled]="!fieldsInfo['ApiAbilityUseInside']?.accessEditField" name="dataModel.statusNotStableActive">
+            {{fieldsInfo['ApiAbilityUseInside']?.fieldTitle}}
+          </mat-slide-toggle>
+        </div>
+        <!-- StatusNotStableExpire Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['StatusNotStableExpire']?.fieldTitle}}</mat-label>
+          <input matInput [matDatepicker]="StatusNotStableExpire" [(ngModel)]="dataModel.statusNotStableExpire"
+            name="dataModel.firstSubmit" />
+          <mat-icon matSuffix *ngIf="dataModel.statusNotStableExpire && fieldsInfo['StatusNotStableExpire']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.statusNotStableExpire = null">close</mat-icon>
+          <mat-datepicker-toggle matSuffix [for]="StatusNotStableExpire"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #StatusNotStableExpire></mat-datepicker>
+        </mat-form-field>
+
+        <!-- StatusNotStableCount Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StatusNotStableCount']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['StatusNotStableCount']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.statusNotStableCount" [disabled]="!fieldsInfo['StatusNotStableCount']?.accessEditField"
+            name="dataModel.statusNotStableCount" #StatusNotStableCount type="number" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.statusNotStableCount && fieldsInfo['StatusNotStableCount']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.statusNotStableCount = 1">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['StatusNotStableCount']?.accessEditField" matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- StatusNotStableCountLimit Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StatusNotStableCountLimit']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['StatusNotStableCountLimit']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.statusNotStableCountLimit" [disabled]="!fieldsInfo['StatusNotStableCountLimit']?.accessEditField"
+            name="dataModel.statusNotStableCountLimit" #StatusNotStableCountLimit type="number" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.statusNotStableCountLimit && fieldsInfo['StatusNotStableCountLimit']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.statusNotStableCountLimit = 1">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['StatusNotStableCountLimit']?.accessEditField" matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- StatusNotStableRunForMin Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StatusNotStableRunForMin']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['StatusNotStableRunForMin']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.statusNotStableRunForMin" [disabled]="!fieldsInfo['StatusNotStableRunForMin']?.accessEditField"
+            name="dataModel.statusNotStableRunForMin" #StatusNotStableRunForMin type="number" placeholder="" />
+          <mat-icon matSuffix *ngIf="dataModel.statusNotStableRunForMin && fieldsInfo['StatusNotStableRunForMin']?.accessEditField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.statusNotStableRunForMin = 1">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['StatusNotStableRunForMin']?.accessEditField" matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
