@@ -1,22 +1,26 @@
 <div class="table">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <div class="tr">
-    <div class="td"></div>
-    <div class="td align" style="color: darkblue;"> <h5><b>{{'TITLE.Property_Type_Selected'|translate}}</b></h5></div>
+    <div class="td">
+      <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'./assets/media/svg/icons/Communication/Flag.svg'"></span>
+    </div>
+    <div class="td" style="color: darkblue;">
+      <h5><b>{{'TITLE.Property_Type_Selected'|translate}}</b></h5>
+    </div>
     <div class="td" *ngIf="dataModelResult?.item?.id">
-    
+
     </div>
   </div>
   <div class="tr">
     <div class="td"><b>{{fieldsInfo['Id']?.fieldTitle}} : </b> </div>
-    <div class="td align">{{dataModelResult?.item?.id}}</div>
+    <div class="td width">{{dataModelResult?.item?.id}}</div>
     <div class="td"></div>
 
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
     <div class="td"> <b>{{fieldsInfo['Title']?.fieldTitle}} : </b></div>
-    <div class="td align">{{dataModelResult?.item?.title}}</div>
+    <div class="td width">{{dataModelResult?.item?.title}}</div>
     <div class="td"></div>
     <div style="clear: both;"></div>
   </div>

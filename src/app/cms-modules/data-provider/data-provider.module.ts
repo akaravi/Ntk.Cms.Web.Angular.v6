@@ -103,6 +103,7 @@ import { DataProviderClientHeaderComponent } from './client/header/header.compon
 import { DataProviderPlanSelectionlistComponent } from './plan/selectionlist/selectionlist.component';
 import { DataProviderClientChargeComponent } from './client/charge/charge.component';
 import { DataProviderClientChargePaymentComponent } from './client/charge-payment/charge-payment.component';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 @NgModule({
   declarations: [
     DataProviderComponent,
@@ -195,6 +196,7 @@ import { DataProviderClientChargePaymentComponent } from './client/charge-paymen
     MatStepperModule,
     IconPickerModule,
     DragDropModule,
+    InlineSVGModule,
   ],
   providers: [
     CoreModuleService,

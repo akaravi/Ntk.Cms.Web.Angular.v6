@@ -57,6 +57,7 @@ import { MemberPropertyDetailEditComponent } from './property-detail/edit/edit.c
 import { MemberPropertyDetailListComponent } from './property-detail/list/list.component';
 import { MemberPropertyDetailSelectorComponent } from './property-detail/selector/selector.component';
 import { MemberPropertyDetailTreeComponent } from './property-detail/tree/tree.component';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 @NgModule({
   declarations: [
     MemberComponent,
@@ -102,6 +103,7 @@ import { MemberPropertyDetailTreeComponent } from './property-detail/tree/tree.c
     MatFormFieldModule,
     MatStepperModule,
     IconPickerModule,
+    InlineSVGModule,
   ],
   providers: [
     CoreModuleService,

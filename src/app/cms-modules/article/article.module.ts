@@ -41,6 +41,7 @@ import { ArticleCategoryAddComponent } from './category/add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { ArticleCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
 import { ArticletHeaderComponent } from './content/header/header.component';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 @NgModule({
   declarations: [
     ArticleComponent,
@@ -67,7 +68,8 @@ import { ArticletHeaderComponent } from './content/header/header.component';
     SharedModule.forRoot(),
     AngularEditorModule,
     
-    CmsFileManagerModule
+    CmsFileManagerModule,
+    InlineSVGModule,
   ],
   providers: [
     CoreModuleService,

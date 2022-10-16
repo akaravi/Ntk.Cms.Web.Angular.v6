@@ -137,6 +137,7 @@ import { EstatePropertyProjectEditComponent } from './property-project/edit/edit
 import { EstatePropertyProjectListComponent } from './property-project/list/list.component';
 import { EstatePropertyProjectSelectorComponent } from './property-project/selector/selector.component';
 import { EstatePropertyProjectComponent } from './property-project/header/header.component';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 @NgModule({
   declarations: [
@@ -263,7 +264,7 @@ import { EstatePropertyProjectComponent } from './property-project/header/header
     IconPickerModule,
     DragDropModule,
     ColorPickerModule,
-
+    InlineSVGModule,
   ],
   providers: [
     CoreModuleService,

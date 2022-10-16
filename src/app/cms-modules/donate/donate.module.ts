@@ -67,6 +67,7 @@ import { DonateSponserTreeComponent } from './sponser/tree/tree.component';
 import { DonateTransactionListComponent } from './transaction/list/list.component';
 import { DonateTransactionViewComponent } from './transaction/view/view.component';
 import { DonateTargetHeaderComponent } from './target/header/header.component';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 @NgModule({
   declarations: [
@@ -134,6 +135,7 @@ import { DonateTargetHeaderComponent } from './target/header/header.component';
     MatStepperModule,
     IconPickerModule,
     DragDropModule,
+    InlineSVGModule,
   ],
   providers: [
     CoreModuleService,
