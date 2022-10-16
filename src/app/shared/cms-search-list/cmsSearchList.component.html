@@ -3,10 +3,19 @@
         </ngx-ntk-query-builder>
 
         <div class="position-relative">
-                <a *ngIf="show" class="btn btn-raised mr-1 shadow-z-3 btn-success d-none d-lg-inline position-absolute" style="left: 0px;"
-                        (click)="onActionCopied()" [cdkCopyToClipboard]="this.filters|json"> <i class="flaticon2-copy"></i> </a>
+                <a *ngIf="show"
+                        class="btn btn-raised mr-1 shadow-z-3 btn-success d-none d-lg-inline position-absolute popup"
+                        style="left: 0px;" (click)="onActionCopied()" [cdkCopyToClipboard]="this.filters|json"> <i
+                                class="flaticon2-copy"></i>
+                        <span [ngClass]="showLabel ? 'show' : ''" class="popuptext" id="myPopup">Copied!</span>
+                </a>
 
                 <a href="javascript:void(0)" (click)="onSubmit()"
                         class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
         </div>
 </div>
+
+
+<!-- <div class="popup" onclick="myFunction()">Click me!
+        <span class="popuptext" id="myPopup">Popup text...</span>
+</div> -->

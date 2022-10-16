@@ -35,6 +35,7 @@ export class CmsSearchListComponent implements OnInit {
   }
 
   show: boolean = false;
+  showLabel: boolean = false;
   filters: Array<FilterDataModel>;
   lang: string;
   model: any;
@@ -182,13 +183,17 @@ export class CmsSearchListComponent implements OnInit {
     }
   }
   onActionCopied(): void {
+    this.showLabel = !this.showLabel;
+    setTimeout(() => {
+      this.showLabel = false;
+    }, 3000);
     this.cmsToastrService.typeSuccessCopedToClipboard();
   }
   onGetRules(): void {
     // console.log(this.query);
   }
   onSaveRules(): void {
- 
+
   }
   onSetRules(): void {
 
