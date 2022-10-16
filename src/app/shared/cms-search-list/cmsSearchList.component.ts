@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { RuleSet, QueryBuilderFieldMap, Rule } from 'ngx-ntk-query-builder';
 import { AccessModel, EnumClauseType, FilterDataModel } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-cms-search-list',
@@ -33,7 +34,7 @@ export class CmsSearchListComponent implements OnInit {
     return this.optionsData;
   }
 
-
+  show: boolean = false;
   filters: Array<FilterDataModel>;
   lang: string;
   model: any;
@@ -41,11 +42,13 @@ export class CmsSearchListComponent implements OnInit {
   fieldMap: QueryBuilderFieldMap = {};
   constructor(
     public translate: TranslateService,
+    private cmsToastrService: CmsToastrService,
   ) {
     this.lang = this.translate.currentLang;
 
   }
   ngOnInit(): void {
+    this.show = false;
     // if (this.optionsData) {
     //   this.optionsData.childMethods = {
     //     setAccess: (x) => this.setAccess(x)
@@ -172,16 +175,20 @@ export class CmsSearchListComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.show = true;
     this.getRules();
     if (this.optionsData.parentMethods) {
       this.optionsData.parentMethods.onSubmit(this.filters);
     }
   }
+  onActionCopied(): void {
+    this.cmsToastrService.typeSuccessCopedToClipboard();
+  }
   onGetRules(): void {
     // console.log(this.query);
   }
   onSaveRules(): void {
-
+ 
   }
   onSetRules(): void {
 
