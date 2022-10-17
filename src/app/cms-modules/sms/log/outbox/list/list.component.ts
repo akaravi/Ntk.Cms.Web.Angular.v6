@@ -538,7 +538,7 @@ export class SmsLogOutBoxListComponent implements OnInit, OnDestroy {
     }
     const navigationExtras: NavigationExtras = {
       state: {
-        LinkApiId: model.linkApiPathId,
+        LinkApiPathId: model.linkApiPathId,
         LinkNumberId: model.linkApiNumberId,
         // ReceiverNumber: model.senderNumber,
         // SenderNumber: model.receiverNumber,

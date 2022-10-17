@@ -58,7 +58,7 @@ export class SmsActionSendMessageComponent implements OnInit {
     if (this.router && this.router.getCurrentNavigation()&& this.router.getCurrentNavigation().extras.state != null) {
       this.receiverNumber = this.router.getCurrentNavigation().extras.state.ReceiverNumber;
       this.senderNumber = this.router.getCurrentNavigation().extras.state.SenderNumber;
-      this.linkApiId = this.router.getCurrentNavigation().extras.state.LinkApiId;
+      this.linkApiPathId = this.router.getCurrentNavigation().extras.state.LinkApiPathId;
       this.linkNumberId = this.router.getCurrentNavigation().extras.state.LinkNumberId;
     }
   }
@@ -68,7 +68,7 @@ export class SmsActionSendMessageComponent implements OnInit {
 
   receiverNumber: string = '';
   senderNumber: string = '';
-  linkApiId: string = '';
+  linkApiPathId: string = '';
   linkNumberId: string = '';
   loading = new ProgressSpinnerModel();
   loadingAction = new ProgressSpinnerModel();
@@ -113,8 +113,8 @@ export class SmsActionSendMessageComponent implements OnInit {
     //this.readClipboardFromDevTools().then((r) => this.clipboardText = r as string);
     this.onActionScheduleSendNow();
 
-    if (this.linkApiId && this.linkApiId?.length > 0)
-      this.dataModel.linkApiPathId = this.linkApiId;
+    if (this.linkApiPathId && this.linkApiPathId?.length > 0)
+      this.dataModel.linkApiPathId = this.linkApiPathId;
     if (this.receiverNumber && this.receiverNumber?.length > 0)
       this.dataModel.toNumbers = this.receiverNumber;
     if (this.senderNumber && this.senderNumber?.length > 0)
