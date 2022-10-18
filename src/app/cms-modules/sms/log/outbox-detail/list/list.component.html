@@ -15,7 +15,9 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-
+    <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected?.id?.length>0"
+      (click)="onActionbuttonViewRow()" type="button" class="btn btn-outline-secondary BTN" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.VIEW' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected?.id?.length>0"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
       translate}}</button>
@@ -117,7 +119,11 @@
                 <td></td>
                 <td>{{fieldsInfo['GiveBackCredit']?.fieldTitle}} : {{row.giveBackCredit}} </td>
               </tr>
-
+<tr>
+  <td>
+    {{row|json}}
+  </td>
+</tr>
             </table>
           </div>
         </mat-cell>
