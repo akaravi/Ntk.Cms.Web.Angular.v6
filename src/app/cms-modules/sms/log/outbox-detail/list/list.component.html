@@ -61,7 +61,7 @@
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
+        <mat-cell *matCellDef="let row"> {{
           publicHelper.LocaleDateTime(row.createdDate)}}
         </mat-cell>
       </ng-container>
@@ -110,7 +110,10 @@
         <mat-cell *matCellDef="let row">
           <div>
             <table>
-
+              <tr>
+                <th></th>
+                <th>{{fieldsInfo['Id']?.fieldTitle}} : {{row.id}}</th>
+              </tr>
               <tr>
                 <td></td>
                 <td>{{fieldsInfo['Credit']?.fieldTitle}} : {{row.credit}} </td>
@@ -119,11 +122,19 @@
                 <td></td>
                 <td>{{fieldsInfo['GiveBackCredit']?.fieldTitle}} : {{row.giveBackCredit}} </td>
               </tr>
-<tr>
-  <td>
-    {{row|json}}
-  </td>
-</tr>
+              <tr *ngIf="row.slaLink">
+                <td></td>
+                <td>{{fieldsInfo['SlaLinkId']?.fieldTitle}} : {{row.slaLinkId}} </td>
+              </tr>
+              <tr *ngIf="row.slaChanceCount">
+                <td></td>
+                <td>{{fieldsInfo['SlaChanceCount']?.fieldTitle}} : {{row.slaChanceCount}} </td>
+              </tr>
+              <!-- <tr>
+                <td>
+                  {{row|json}}
+                </td>
+              </tr> -->
             </table>
           </div>
         </mat-cell>
