@@ -574,6 +574,22 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
       }
     });
   }
+  onActionbuttonReportsRow(model: SmsMainApiPathModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+    this.router.navigate(["/sms/log/api-path/LinkApiPathId", this.tableRowSelected.id]);
+  }
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

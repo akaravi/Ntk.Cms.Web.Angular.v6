@@ -34,7 +34,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './list.component.html'
 })
 export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
-  requestLinkOutBoxId = '';
+  requestLinkApiPathId = '';
   constructor(
     private smsLogApiPathService: SmsLogApiPathService,
     public publicHelper: PublicHelper,
@@ -49,7 +49,7 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.requestLinkOutBoxId = this.activatedRoute.snapshot.paramMap.get('LinkOutBoxId');
+    this.requestLinkApiPathId = this.activatedRoute.snapshot.paramMap.get('LinkApiPathId');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -60,9 +60,9 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
     const filter = new FilterDataModel();
-    if (this.requestLinkOutBoxId && this.requestLinkOutBoxId.length > 0) {
-      filter.propertyName = 'LinkOutBoxId';
-      filter.value = this.requestLinkOutBoxId;
+    if (this.requestLinkApiPathId && this.requestLinkApiPathId.length > 0) {
+      filter.propertyName = 'LinkApiPathId';
+      filter.value = this.requestLinkApiPathId;
       this.filteModelContent.filters.push(filter);
     }
   }
@@ -95,9 +95,12 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'CreatedDate',
-    'IsSended',
-    'SenderNumber',
-    'ReceiverNumber',
+    'StatusInfo',
+    'StatusOutOfServiceActive',
+    'StatusOutOfServiceExpire',
+    'StatusNotStableActive',
+    'StatusNotStableExpire',
+    'StatusNotStableCount',
     // 'Action'
   ];
 
