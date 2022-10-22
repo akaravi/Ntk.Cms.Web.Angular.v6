@@ -102,7 +102,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.requestDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('DepartemenId'));
     this.requestLinkCmsUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkCmsUserId'));
-    this.requestTicketStatus = + Number(this.activatedRoute.snapshot.paramMap.get('TicketStatus'));
+    this.requestTicketStatus = + Number(this.activatedRoute.snapshot.paramMap.get('TicketStatus')) | -1;
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -436,6 +436,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonReload(): void {
+    this.requestTicketStatus=-1;
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {
