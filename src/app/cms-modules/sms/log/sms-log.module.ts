@@ -45,7 +45,7 @@ import { SmsLogOutBoxQueueListComponent } from './outbox-queue/list/list.compone
 import { SmsLogOutBoxQueueEditComponent } from './outbox-queue/edit/edit.component';
 import { SmsLogOutBoxQueueViewComponent } from './outbox-queue/view/view.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { SmsLogApiPathListComponent } from './api-path/list.component';
+import { SmsLogApiPathListComponent } from './api-path/list/list.component';
 import { SmsLogOutBoxDetailViewComponent } from './outbox-detail/view/view.component';
 
 

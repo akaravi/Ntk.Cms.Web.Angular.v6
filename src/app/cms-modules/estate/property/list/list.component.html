@@ -141,11 +141,18 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.viewCount}} </mat-cell>
       </ng-container>
+      <!-- AdsActive Column -->
+      <ng-container matColumnDef="AdsActive">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ویژه
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i style="color: #f7db25;" [ngClass]="row.adsActive|statusClass"></i> </mat-cell>
+      </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
+          publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
@@ -226,7 +233,7 @@
                 <td></td>
                 <td> {{row.createdBy | cmsuserinfo |async}} </td>
               </tr>
-              
+
               <tr>
                 <td></td>
                 <td>

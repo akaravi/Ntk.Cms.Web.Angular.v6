@@ -345,6 +345,6 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
     row["expanded"] = false;
   }
   onActionBackToParent(): void {
-    this.router.navigate(['/sms/log/outbox']);
+    this.router.navigate(['/sms/main/api-path']);
   }
 }

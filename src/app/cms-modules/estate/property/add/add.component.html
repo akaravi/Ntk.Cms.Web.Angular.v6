@@ -150,12 +150,6 @@
           </mat-hint>
         </mat-form-field>
 
-        <!-- LinkCmsUserId Field -->
-        <app-cms-user-selector *ngIf="dataProfessional && this.tokenHelper.isAdminSite"
-          (optionChange)="onActionSelectorCmsUser($event)"
-          [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCmsUserId"
-          [optionPlaceholder]="'مالک ملک'">
-        </app-cms-user-selector>
         <!-- LinkLocationId Field -->
         <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
           [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessAddField"
@@ -231,6 +225,12 @@
       </mat-step>
 
       <mat-step label="اطلاعات شخصی" state="main">
+        <!-- LinkCmsUserId Field -->
+        <app-cms-user-selector *ngIf="dataProfessional && this.tokenHelper.isAdminSite"
+          (optionChange)="onActionSelectorCmsUser($event)"
+          [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCmsUserId"
+          [optionPlaceholder]="'مالک ملک'">
+        </app-cms-user-selector>
         <!-- LinkEstateUserId Field -->
         <app-estate-accountuser-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateUser($event)"
@@ -256,8 +256,7 @@
         </mat-form-field>
 
         <!-- AboutAgentTel Field -->
-        <mat-form-field *ngIf="fieldsInfo['AboutAgentTel']?.accessWatchField"
-          class="ntk-full-width">
+        <mat-form-field *ngIf="fieldsInfo['AboutAgentTel']?.accessWatchField" class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutAgentTel']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.aboutAgentTel" name="dataModel.aboutAgentTel" class="input-Mobile"
             #AboutAgentTel type="text" disabled="{{!fieldsInfo['AboutAgentTel']?.accessAddField}}"
@@ -290,8 +289,7 @@
         </mat-form-field>
 
         <!-- AboutCustomerTel Field -->
-        <mat-form-field *ngIf="fieldsInfo['AboutCustomerTel']?.accessWatchField"
-          class="ntk-full-width">
+        <mat-form-field *ngIf="fieldsInfo['AboutCustomerTel']?.accessWatchField" class="ntk-full-width">
           <mat-label>{{fieldsInfo['AboutCustomerTel']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.aboutCustomerTel" name="dataModel.aboutCustomerTel"
             class="input-Mobile" #AboutCustomerTel type="text"
@@ -711,8 +709,7 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
-          <button type="submit" mat-raised-button color="success"
-            [disabled]="!vform.form.valid">
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
             {{'ACTION.SAVE' | translate}}
           </button>
         </div>

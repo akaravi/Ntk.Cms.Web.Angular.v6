@@ -74,6 +74,7 @@ import { SmsMainMessageContentSelectorComponent } from './message-content/select
 
 
 
+
 @NgModule({
   declarations: [
     SmsMainComponent,
@@ -95,7 +96,6 @@ import { SmsMainMessageContentSelectorComponent } from './message-content/select
     SmsMainApiPathListComponent,
     SmsMainApiPathAddComponent,
     SmsMainApiPathEditComponent,
-
  
     SmsMainApiPathSendTestComponent,
     SmsMainApiPathSelectionlistComponent,

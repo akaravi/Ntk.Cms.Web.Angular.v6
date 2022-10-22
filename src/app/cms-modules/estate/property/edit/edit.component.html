@@ -204,11 +204,6 @@
           </mat-hint>
         </mat-form-field>
 
-        <!-- LinkCmsUserId Field -->
-        <app-cms-user-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorCmsUser($event)"
-          [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessEditField" [optionSelectForce]="dataModel.linkCmsUserId"
-          [optionPlaceholder]="this.translate.instant('TITLE.Property_Owner')">
-        </app-cms-user-selector>
         <!-- LinkLocationId Field -->
         <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
           [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessEditField"
@@ -285,6 +280,11 @@
       </mat-step>
 
       <mat-step label="اطلاعات شخصی" state="main">
+        <!-- LinkCmsUserId Field -->
+        <app-cms-user-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorCmsUser($event)"
+          [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessEditField" [optionSelectForce]="dataModel.linkCmsUserId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Property_Owner')">
+        </app-cms-user-selector>
         <!-- LinkEstateUserId Field -->
         <app-estate-accountuser-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateUser($event)"
@@ -470,7 +470,7 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.Contract' | translate}}" state="seo">
-
+        <p>{{'TITLE.If_you_sell_your_property_activate_the_option_below' | translate}}</p>
         <!-- IsSoldIt Field -->
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.isSoldIt" *ngIf="fieldsInfo['IsSoldIt']?.accessWatchField"

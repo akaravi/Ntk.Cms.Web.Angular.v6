@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SmsLogApiPathListComponent } from './api-path/list.component';
+import { SmsLogApiPathListComponent } from './api-path/list/list.component';
 import { SmsLogInBoxListComponent } from './inbox/list/list.component';
 import { SmsLogOutBoxDetailListComponent } from './outbox-detail/list/list.component';
 import { SmsLogOutBoxQueueListComponent } from './outbox-queue/list/list.component';

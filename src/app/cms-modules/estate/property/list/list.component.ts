@@ -176,6 +176,7 @@ export class EstatePropertyListComponent
     "ViewConfigHiddenInList",
     "LinkSiteId",
     "ViewCount",
+    "AdsActive",
     "CreatedDate",
     "UpdatedDate",
     "Action",
