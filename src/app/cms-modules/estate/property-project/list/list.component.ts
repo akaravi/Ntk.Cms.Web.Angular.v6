@@ -177,6 +177,22 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
     }
     this.router.navigate(['/estate/property-project/edit', this.tableRowSelected.id]);
   }
+  onActionbuttonProperty(model: EstatePropertyProjectModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+    this.router.navigate(['/estate/property/LinkProjectId', this.tableRowSelected.id]);
+  }
   onActionbuttonDeleteRow(model: EstatePropertyProjectModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');

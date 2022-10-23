@@ -42,7 +42,7 @@ export class EstatePropertyAdsAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data && data.linkPropertyId) {
       this.requestLinkPropertyId = data.linkPropertyId;
     }
@@ -63,6 +63,8 @@ export class EstatePropertyAdsAddComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
+  AdsTypeTitle: string = '';
+  PropertyTitle: string = '';
 
   ngOnInit(): void {
 
@@ -129,6 +131,8 @@ export class EstatePropertyAdsAddComponent implements OnInit {
       return;
     }
     this.dataModel.linkPropertyId = model.id;
+    this.PropertyTitle = model.title;
+    this.dataModel.title = model.title + '_' + this.AdsTypeTitle ;
   }
   onActionSelectorSelectLinkAdsTypeId(model: EstatePropertyModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
@@ -137,7 +141,8 @@ export class EstatePropertyAdsAddComponent implements OnInit {
       return;
     }
     this.dataModel.linkAdsTypeId = model.id;
-    this.dataModel.title = model.title;
+    this.AdsTypeTitle = model.title;
+    this.dataModel.title = this.PropertyTitle + '_' + model.title;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

@@ -22,17 +22,18 @@
       </mat-error>
     </mat-form-field>
 
+    <!-- LinkAdsTypeId Field -->
+    <app-estate-adstype-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
+      [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.accessAddField"
+      [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
+    </app-estate-adstype-selector>
+
     <!-- LinkPropertyId Field -->
     <app-estate-property-selector (optionChange)="onActionSelectorSelectLinkPropertyId($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkPropertyId"
       [optionPlaceholder]="'شناسه ملک'">
     </app-estate-property-selector>
 
-    <!-- LinkAdsTypeId Field -->
-    <app-estate-adstype-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
-      [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
-    </app-estate-adstype-selector>
 
     <!-- StationLevel Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StationLevel']?.accessWatchField">

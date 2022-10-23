@@ -78,7 +78,7 @@ export class EstatePropertyProjectSelectorComponent implements OnInit {
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
     filteModel.filters.push(filter);
-    if (text && typeof +text === 'number' && +text > 0) {
+    if (text && typeof text === 'string' && text.length > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
@@ -125,7 +125,7 @@ export class EstatePropertyProjectSelectorComponent implements OnInit {
     }));
   }
   onActionSelectForce(id: string | EstatePropertyProjectModel): void {
-    if (typeof id === 'number' && id > 0) {
+    if (typeof id === 'string' && id.length > 0) {
       this.contentService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
           if (ret.isSuccess) {

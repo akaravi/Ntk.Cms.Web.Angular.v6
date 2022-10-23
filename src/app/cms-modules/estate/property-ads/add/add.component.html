@@ -22,16 +22,16 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- LinkPropertyId Field -->
-    <app-estate-property-selector (optionChange)="onActionSelectorSelectLinkPropertyId($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkPropertyId"
-      [optionPlaceholder]="'شناسه ملک'">
-    </app-estate-property-selector>
     <!-- LinkAdsTypeId Field -->
     <app-estate-adstype-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
       [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.accessAddField"
       [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
     </app-estate-adstype-selector>
+    <!-- LinkPropertyId Field -->
+    <app-estate-property-selector (optionChange)="onActionSelectorSelectLinkPropertyId($event)"
+      [optionDisabled]="!fieldsInfo['LinkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkPropertyId"
+      [optionPlaceholder]="'شناسه ملک'">
+    </app-estate-property-selector>
     <!-- StationLevel Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StationLevel']?.accessWatchField">
       <mat-label> {{fieldsInfo['StationLevel']?.fieldTitle}}</mat-label>
@@ -57,7 +57,7 @@
     <!-- FromDate Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['FromDate']?.fieldTitle}}</mat-label>
-      <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate" />
+      <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate"/>
       <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['FromDate']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>

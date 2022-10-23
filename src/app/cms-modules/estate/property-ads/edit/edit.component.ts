@@ -42,7 +42,7 @@ export class EstatePropertyAdsEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id;
     }
@@ -60,6 +60,8 @@ export class EstatePropertyAdsEditComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
+  AdsTypeTitle: string = '';
+  PropertyTitle: string = '';
 
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
@@ -89,6 +91,7 @@ export class EstatePropertyAdsEditComponent implements OnInit {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
         this.dataModel = ret.item;
+        
         if (ret.isSuccess) {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           this.formInfo.formAlert = '';
@@ -143,6 +146,8 @@ export class EstatePropertyAdsEditComponent implements OnInit {
       return;
     }
     this.dataModel.linkPropertyId = model.id;
+    this.PropertyTitle = model.title;
+    this.dataModel.title = model.title + '_' + this.AdsTypeTitle;
   }
   onActionSelectorSelectLinkAdsTypeId(model: EstatePropertyModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
@@ -151,6 +156,8 @@ export class EstatePropertyAdsEditComponent implements OnInit {
       return;
     }
     this.dataModel.linkAdsTypeId = model.id;
+    this.AdsTypeTitle = model.title;
+    this.dataModel.title = this.PropertyTitle + '_' + model.title;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

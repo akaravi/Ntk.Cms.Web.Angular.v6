@@ -1,29 +1,32 @@
 <div class="table">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <div class="tr">
-    <div class="td">
+    <div class="td width">
       <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'./assets/media/svg/icons/Communication/Flag.svg'"></span>
     </div>
-    <div class="td">
-      <h5>{{'TITLE.Selected_Customer' | translate}}</h5>
+    <div class="td" style="color: darkblue;">
+      <h5> <b>{{'TITLE.Selected_Customer'|translate}}</b> </h5>
     </div>
     <div class="td" *ngIf="dataModelResult?.item?.id">
-      link to
-      <br>
-      <mat-icon (click)="onActionbuttonLinkTo()" *ngIf="dataModelResult?.item?.id">&#8599;</mat-icon>
     </div>
   </div>
   <div class="tr">
-    <div class="td">{{fieldsInfo['Id']?.fieldTitle}} : </div>
+    <div class="td width"><b>{{fieldsInfo['Id']?.fieldTitle}} </b>: </div>
     <div class="td width">{{dataModelResult?.item?.id}}</div>
     <div class="td"></div>
-
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
-    <div class="td">{{fieldsInfo['Title']?.fieldTitle}} : </div>
+    <div class="td width"><b>{{fieldsInfo['Title']?.fieldTitle}}</b> : </div>
     <div class="td width">{{dataModelResult?.item?.title}}</div>
-    <div class="td"></div>
+    <div class="td" style="text-align: left;">
+      <abbr title="link to">
+        <button class="btn btn-outline-primary">
+          <mat-icon (click)="onActionbuttonLinkTo()" *ngIf="dataModelResult?.item?.id">&#8599;
+          </mat-icon>
+        </button>
+      </abbr>
+    </div>
     <div style="clear: both;"></div>
   </div>
 </div>

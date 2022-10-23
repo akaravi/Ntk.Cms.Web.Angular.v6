@@ -51,6 +51,7 @@ export class EstatePropertyListComponent
   requestLinkContractTypeId = "";
   requestLinkBillboardId = "";
   requestLinkCustomerOrderId = "";
+  requestLinkProjectId = "";
   requestLinkUserId = 0;
   requestInChecking = false;
   constructor(
@@ -78,6 +79,9 @@ export class EstatePropertyListComponent
       this.activatedRoute.snapshot.paramMap.get("LinkBillboardId");
     this.requestLinkCustomerOrderId = this.activatedRoute.snapshot.paramMap.get(
       "LinkCustomerOrderId"
+    );
+    this.requestLinkProjectId = this.activatedRoute.snapshot.paramMap.get(
+      "LinkProjectId"
     );
     this.requestLinkUserId = +this.activatedRoute.snapshot.paramMap.get(
       "LinkUserId"
@@ -129,6 +133,12 @@ export class EstatePropertyListComponent
       filter.value = this.requestLinkUserId;
       this.filteModelProperty.filters.push(filter);
     }
+    if (this.requestLinkProjectId && this.requestLinkProjectId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = "LinkProjectId";
+      filter.value = this.requestLinkProjectId;
+      this.filteModelProperty.filters.push(filter);
+    }
   }
   @Input() optionloadComponent = true;
   @Input() optionloadByRoute = true;
@@ -166,7 +176,7 @@ export class EstatePropertyListComponent
   tableSource: MatTableDataSource<EstatePropertyModel> =
     new MatTableDataSource<EstatePropertyModel>();
   categoryModelSelected: EstatePropertyTypeLanduseModel;
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     "LinkMainImageIdSrc",
     "Id",
@@ -213,6 +223,7 @@ export class EstatePropertyListComponent
   }
 
   DataGetAll(): void {
+    debugger
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     if (!this.optionloadComponent) {
       return;
@@ -225,6 +236,7 @@ export class EstatePropertyListComponent
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelProperty));
     /*filter CLone*/
+    console.log(filterModel);
     if (
       this.categoryModelSelected &&
       this.categoryModelSelected.id &&

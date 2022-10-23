@@ -20,6 +20,10 @@
   [optionId]="this.requestLinkPropertyTypeUsageId">
 
 </app-estate-property-type-usage-header>
+<app-property-project-header *ngIf="this.requestLinkProjectId?.length>0"
+  [optionId]="this.requestLinkProjectId">
+
+</app-property-project-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPropertyTypeLanduseId?.length===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -143,9 +147,10 @@
       </ng-container>
       <!-- AdsActive Column -->
       <ng-container matColumnDef="AdsActive">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> ویژه
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.Is_Special' | translate}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i style="color: #f7db25;" [ngClass]="row.adsActive|statusClass"></i> </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [style.color]="row.adsActive ? '#f7db25' : '#ff0000'"
+            [ngClass]="row.adsActive | boolclass"></i> </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">

@@ -1,7 +1,7 @@
 <div class="table">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <div class="tr">
-    <div class="td">
+    <div class="td width">
       <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'./assets/media/svg/icons/Communication/Flag.svg'"></span>
     </div>
     <div class="td" style="color: darkblue;">
@@ -11,13 +11,13 @@
     </div>
   </div>
   <div class="tr">
-    <div class="td"><b>{{fieldsInfo['Id']?.fieldTitle}} </b>: </div>
+    <div class="td width"><b>{{fieldsInfo['Id']?.fieldTitle}} </b>: </div>
     <div class="td width">{{dataModelResult?.item?.id}}</div>
     <div class="td"></div>
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
-    <div class="td"><b>{{fieldsInfo['Title']?.fieldTitle}}</b> : </div>
+    <div class="td width"><b>{{fieldsInfo['Title']?.fieldTitle}}</b> : </div>
     <div class="td width">{{dataModelResult?.item?.title}}</div>
     <div class="td" style="text-align: left;">
       <abbr title="link to">
