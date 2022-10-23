@@ -135,7 +135,7 @@ export class EstatePropertyListComponent
     }
     if (this.requestLinkProjectId && this.requestLinkProjectId.length > 0) {
       const filter = new FilterDataModel();
-      filter.propertyName = "LinkProjectId";
+      filter.propertyName = "linkPropertyProjectId";
       filter.value = this.requestLinkProjectId;
       this.filteModelProperty.filters.push(filter);
     }
