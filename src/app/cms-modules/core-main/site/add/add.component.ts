@@ -14,6 +14,8 @@ import {
   ErrorExceptionResult,
   FormInfoModel,
   CoreSiteCategoryModel,
+  EnumSiteStatus,
+  EnumLanguage,
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -44,6 +46,8 @@ export class CoreSiteAddComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.dataModel.ownerSiteSetStatus=EnumSiteStatus.Active;
+    this.dataModel.userLanguage=EnumLanguage.fa;
   }
   requestId = 0;
 

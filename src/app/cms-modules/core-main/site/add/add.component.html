@@ -54,7 +54,7 @@
           </mat-select>
         </mat-form-field>
         <!-- LinkSiteCategoryId Field -->
-        <app-core-sitecategory-selector (optionChange)="onActionSelectCategory($event)"
+        <app-core-sitecategory-selector (optionChange)="onActionSelectCategory($event)"  [optionSelectFirstItem]="true"
           [optionSelectForce]="this.dataModel.linkSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Website_Type')"
           [optionDisabled]="!fieldsInfo['LinkSiteCategoryId']?.accessAddField"></app-core-sitecategory-selector>
         <!-- linkCreatedBySiteId Field -->
