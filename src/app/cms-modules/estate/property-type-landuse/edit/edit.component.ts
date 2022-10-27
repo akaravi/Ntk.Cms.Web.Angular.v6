@@ -80,7 +80,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
     }
     this.DataGetOneContent();
     this.getEnumRecordStatus();
-    this.DataGetAllEstateProprtyUsage();
+    this.DataGetAllEstatePropertyUsage();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
@@ -121,7 +121,7 @@ export class EstatePropertyTypeLanduseEditComponent implements OnInit {
     }
     );
   }
-  DataGetAllEstateProprtyUsage(): void {
+  DataGetAllEstatePropertyUsage(): void {
 
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.formError = '';

@@ -26,6 +26,7 @@ import {
   CoreCurrencyModel,
   EnumManageUserAccessDataTypes,
   EstatePropertyProjectModel,
+  EnumRecordStatus
 } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -43,7 +44,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
 import { Subscription } from 'rxjs';
-
+import { MatDialog } from '@angular/material/dialog';
+import { EstatePropertyActionComponent } from '../action/action.component';
 @Component({
   selector: 'app-estate-property-edit',
   templateUrl: './edit.component.html',
@@ -62,6 +64,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public tokenHelper: TokenHelper,
     public translate: TranslateService,
+    public dialog: MatDialog,
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -145,7 +148,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
+  lastRecordStatus:EnumRecordStatus;
   DataGetOne(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.formError = '';
@@ -158,7 +161,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
+        this.lastRecordStatus= ret.item.recordStatus;
         this.dataModel = ret.item;
         if (ret.isSuccess) {
           this.optionTabledataSource.data = this.dataModel.contracts;
@@ -423,7 +426,22 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.formInfo.formSubmitAllow = true;
       return;
     }
+if(this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus==EnumRecordStatus.Available && this.dataModel.recordStatus!=this.lastRecordStatus){
+    const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
+      height: '90%',
+      data: { model: this.dataModel }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        this.dataModel = result.model;
+        this.DataEdit();
+      } else {
+        this.formInfo.formSubmitAllow = false;
+      }
+    });
+  }else{
     this.DataEdit();
+  }
 
   }
   onFormCancel(): void {
