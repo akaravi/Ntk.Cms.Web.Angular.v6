@@ -89,14 +89,14 @@
       <ng-container matColumnDef="QueueCompleteDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['QueueCompleteDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.QueueCompleteDate) }}</mat-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.queueCompleteDate) }}</mat-cell>
       </ng-container>
 
       <!-- ScheduleSendStart Column -->
       <ng-container matColumnDef="ScheduleSendStart">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ScheduleSendStart']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.ScheduleSendStart) }}</mat-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.scheduleSendStart) }}</mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">

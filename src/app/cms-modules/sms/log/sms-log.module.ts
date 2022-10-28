@@ -23,7 +23,8 @@ import {
   SmsLogOutBoxService,
   SmsLogOutBoxDetailService,
   SmsLogOutBoxQueueService,
-  SmsLogApiPathService
+  SmsLogApiPathService,
+  SmsLogOutBoxTaskSchedulerService
 } from 'ntk-cms-api';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -44,6 +45,9 @@ import { SmsLogOutBoxDetailListComponent } from './outbox-detail/list/list.compo
 import { SmsLogOutBoxQueueListComponent } from './outbox-queue/list/list.component';
 import { SmsLogOutBoxQueueEditComponent } from './outbox-queue/edit/edit.component';
 import { SmsLogOutBoxQueueViewComponent } from './outbox-queue/view/view.component';
+import { SmsLogOutBoxTaskSchedulerListComponent } from './outbox-task-scheduler/list/list.component';
+import { SmsLogOutBoxTaskSchedulerEditComponent } from './outbox-task-scheduler/edit/edit.component';
+import { SmsLogOutBoxTaskSchedulerViewComponent } from './outbox-task-scheduler/view/view.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { SmsLogApiPathListComponent } from './api-path/list/list.component';
 import { SmsLogOutBoxDetailViewComponent } from './outbox-detail/view/view.component';
@@ -62,6 +66,9 @@ import { SmsLogOutBoxDetailViewComponent } from './outbox-detail/view/view.compo
     SmsLogOutBoxQueueListComponent,
     SmsLogOutBoxQueueEditComponent,
     SmsLogOutBoxQueueViewComponent,
+    SmsLogOutBoxTaskSchedulerListComponent,
+    SmsLogOutBoxTaskSchedulerEditComponent,
+    SmsLogOutBoxTaskSchedulerViewComponent,
     SmsLogOutBoxDetailListComponent,
     SmsLogOutBoxDetailViewComponent,
     SmsLogApiPathListComponent,
@@ -95,6 +102,7 @@ import { SmsLogOutBoxDetailViewComponent } from './outbox-detail/view/view.compo
     SmsLogOutBoxService,
     SmsLogOutBoxDetailService,
     SmsLogOutBoxQueueService,
+    SmsLogOutBoxTaskSchedulerService,
     SmsLogApiPathService,
     SmsMainApiPathCompanyService,//بررسی شود آیا نیاز است
     SmsMainApiPathPublicConfigService,//بررسی شود آیا نیاز است
