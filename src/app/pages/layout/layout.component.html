@@ -36,10 +36,10 @@
 
           <!-- begin:: Content Body -->
           <ng-container *ngIf="contentExtended">
-            <ng-container *ngIf="asideSelfDisplay">
-              <div class="d-lg-flex flex-row-fluid">
+            <!-- <ng-container *ngIf="asideSelfDisplay"> -->
+              <div class="d-lg-flex flex-row-fluid"  *ngIf="asideSelfDisplay">
       
-                <ng-container >
+                <!-- <ng-container > -->
                   <!--begin::DYNAMIC Aside-->
                   <app-aside-dynamic  *ngIf="this.tokenHelper?.tokenInfo?.siteId>0"
                     #ktAside
@@ -48,12 +48,12 @@
                     [ngClass]="asideCSSClasses"
                   ></app-aside-dynamic>
                   <!--end::DYNAMIC Aside-->
-                </ng-container>
+                <!-- </ng-container> -->
                 <div class="content-wrapper">
                   <router-outlet></router-outlet>
                 </div>
               </div>
-            </ng-container>
+            <!-- </ng-container> -->
             <ng-container *ngIf="!asideSelfDisplay">
               <router-outlet></router-outlet>
             </ng-container>
@@ -64,10 +64,10 @@
             <div class="d-flex flex-column-fluid">
               <!--begin::Container-->
               <div [ngClass]="contentContainerClasses">
-                <ng-container *ngIf="asideSelfDisplay">
-                  <div class="d-lg-flex flex-row-fluid">
+                <!-- <ng-container *ngIf="asideSelfDisplay"> -->
+                  <div class="d-lg-flex flex-row-fluid" *ngIf="asideSelfDisplay">
                
-                    <ng-container  >
+                    <!-- <ng-container  > -->
                       <!--begin::DYNAMIC Aside-->
                       <app-aside-dynamic *ngIf="this.tokenHelper?.tokenInfo?.siteId>0"
                         #ktAside
@@ -76,13 +76,13 @@
                         [ngClass]="asideCSSClasses"
                       ></app-aside-dynamic>
                       <!--end::DYNAMIC Aside-->
-                    </ng-container>
+                    <!-- </ng-container> -->
 
                     <div class="content-wrapper flex-row-fluid">
                       <router-outlet></router-outlet>
                     </div>
                   </div>
-                </ng-container>
+                <!-- </ng-container> -->
                 <ng-container *ngIf="!asideSelfDisplay">
                   <router-outlet></router-outlet>
                 </ng-container>

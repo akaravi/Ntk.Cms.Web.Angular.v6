@@ -4,7 +4,7 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
-  OnDestroy,
+  OnDestroy,ChangeDetectorRef
 } from '@angular/core';
 
 import KTLayoutContent from '../../../assets/js/layout/base/content';
@@ -53,13 +53,16 @@ export class LayoutComponent implements OnInit, AfterViewInit , OnDestroy {
     private initService: LayoutInitService,
     private layout: LayoutService,
     public tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef
   ) {
     this.initService.init();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.cdr.detectChanges();
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
+      this.cdr.detectChanges();
     });
   }
   tokenInfo: TokenInfoModel = new TokenInfoModel();
@@ -139,6 +142,7 @@ export class LayoutComponent implements OnInit, AfterViewInit , OnDestroy {
           ];
         }
       }
+
     }
 
     if (this.ktHeaderMobile) {
@@ -162,5 +166,6 @@ export class LayoutComponent implements OnInit, AfterViewInit , OnDestroy {
     }
     // Init Content
     KTLayoutContent.init('kt_content');
+    this.cdr.detectChanges();
   }
 }
