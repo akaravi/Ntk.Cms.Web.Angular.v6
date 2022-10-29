@@ -144,8 +144,7 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
     /*َAccess Field*/
     this.contentService.setAccessLoad();
     this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
-    this.contentService
-      .ServiceGetOneById(this.requestId)
+    this.contentService.ServiceGetOneById(this.requestId)
       .subscribe({
         next: (ret) => {
           /*َAccess Field*/
