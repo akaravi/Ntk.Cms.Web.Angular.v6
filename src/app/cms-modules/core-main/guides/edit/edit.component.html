@@ -26,6 +26,19 @@
     <app-core-guide-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
       [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
     </app-core-guide-selector>
+      <!-- Key Field -->
+      <mat-form-field class="ntk-full-width">
+        <mat-label>Key</mat-label>
+        <input matInput [(ngModel)]="dataModel.key" name="dataModel.key" #Key type="text" placeholder="Key" minlength="3"
+          maxlength="100" required />
+        <mat-icon matSuffix *ngIf="dataModel.key" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.key = ''">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-hint align="end">{{ Key.value.length }} / 100</mat-hint>
+        <mat-error *ngIf="Key.errors?.required">
+          Key is <strong>{{'MESSAGE.required' | translate}}</strong>
+        </mat-error>
+      </mat-form-field>
     <!-- TitleFa Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['TitleFa']?.fieldTitle}}</mat-label>
