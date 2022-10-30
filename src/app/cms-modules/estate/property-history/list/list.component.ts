@@ -1,5 +1,5 @@
 
-import { Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -34,6 +34,8 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './list.component.html'
 })
 export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
+  requestLinkPropertyId = '';
+
   constructor(
     private estatePropertyHistoryService: EstatePropertyHistoryService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -41,10 +43,13 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private tokenHelper: TokenHelper,
+    private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.requestLinkPropertyId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyId');
+
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -54,6 +59,12 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
+    if (this.requestLinkPropertyId && this.requestLinkPropertyId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'LinkPropertyId';
+      filter.value = this.requestLinkPropertyId;
+      this.filteModelContent.filters.push(filter);
+    }
   }
   comment: string;
   author: string;

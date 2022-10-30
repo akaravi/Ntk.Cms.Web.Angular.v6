@@ -118,6 +118,10 @@ const routes: Routes = [
         path: 'property-history',
         component: EstatePropertyHistoryListComponent
       },
+      {
+        path: 'property-history/LinkPropertyId/:LinkPropertyId',
+        component: EstatePropertyHistoryListComponent
+      },
       /**/
       {
         path: 'ads-type',
