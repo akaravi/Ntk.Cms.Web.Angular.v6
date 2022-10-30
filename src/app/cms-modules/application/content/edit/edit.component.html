@@ -410,7 +410,7 @@
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
         <div class="mb-12">
-          <angular-editor [placeholder]="'متن حریم خصوصی کاربر را وارد کنید'" [config]="publicHelper.editorConfigFull"
+          <angular-editor [placeholder]="this.translate.instantthis('TITLE.Enter_the_user_privacy_text')" [config]="publicHelper.editorConfigFull"
             id="main" *ngIf="fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
             [disabled]="!fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.accessEditField"
             [(ngModel)]="dataModel.aboutUsPrivacyPolicyHtmlBody" name="dataModel.aboutUsPrivacyPolicyHtmlBody">
@@ -464,7 +464,7 @@
           <mat-label>{{fieldsInfo['DownloadLinkSrcCustomize']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.downloadLinkSrcCustomize"
             [disabled]="!fieldsInfo['DownloadLinkSrcCustomize']?.accessEditField"
-            name="dataModel.downloadLinkSrcCustomize" #DownloadLinkSrcCustomize type="text" placeholder="لینک دانلود"
+            name="dataModel.downloadLinkSrcCustomize" #DownloadLinkSrcCustomize type="text" placeholder="{{'TITLE.download_link' | translate}}"
             minlength="0" maxlength="1000" />
           <mat-icon matSuffix
             *ngIf="dataModel.downloadLinkSrcCustomize && fieldsInfo['DownloadLinkSrcCustomize']?.accessEditField"
