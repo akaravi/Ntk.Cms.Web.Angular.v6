@@ -22,16 +22,16 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkPropertyTypeLanduseId Field -->
-    <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelect($event)"
       [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="'کاربری'"
       [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.accessEditField">
       <br>
-    </app-estate-propertytypelanduse-selector>
+    </app-estate-property-type-landuse-selector>
     <!-- LinkPropertyDetailGroupId Field -->
-    <app-estate-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)"
+    <app-estate-property-detail-group-selector (optionChange)="onActionSelectorDetailGroup($event)"
       [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['LinkPropertyDetailGroupId']?.accessEditField">
-    </app-estate-propertydetailgroup-selector>
+    </app-estate-property-detail-group-selector>
     <!-- IconFont Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.accessWatchField">
       <mat-label> {{fieldsInfo['IconFont']?.fieldTitle}}</mat-label>

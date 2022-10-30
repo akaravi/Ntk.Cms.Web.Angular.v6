@@ -18,7 +18,7 @@ import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-property-project-selector',
+  selector: 'app-estate-property-project-selector',
   templateUrl: './selector.component.html',
 })
 export class EstatePropertyProjectSelectorComponent implements OnInit {

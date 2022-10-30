@@ -14,11 +14,11 @@
 
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <!-- LinkPropertyTypeUsageId Field -->
-        <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
+        <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.accessAddField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
           [optionPlaceholder]="this.translate.instant('TITLE.User_Type')">
-        </app-estate-propertytypeusage-selector>
+        </app-estate-property-type-usage-selector>
 
         <!-- LinkPropertyTypeLanduseId Field -->
         <div
@@ -33,13 +33,13 @@
         </div>
 
         <!-- LinkPropertyTypeLanduseId Field -->
-        <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
+        <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
           *ngIf="(!listTypeLanduse || listTypeLanduse.length===0) && dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.accessAddField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_Type')"
           [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId">
-        </app-estate-propertytypelanduse-selector>
+        </app-estate-property-type-landuse-selector>
 
         <br>
         <br>
@@ -232,11 +232,11 @@
           [optionPlaceholder]="'مالک ملک'">
         </app-cms-user-selector>
         <!-- LinkEstateUserId Field -->
-        <app-estate-accountuser-selector *ngIf="this.tokenHelper.isAdminSite"
+        <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateUser($event)"
           [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessAddField"
           [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل املاک'">
-        </app-estate-accountuser-selector>
+        </app-estate-account-user-selector>
 
         <!-- AboutAgentMobile Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutAgentMobile']?.accessWatchField">
@@ -323,10 +323,10 @@
         <p>{{'TITLE.Property_details_according_to_the_type_of_property' | translate}}</p>
 
         <!-- LinkPropertyProjectId Field -->
-        <app-property-project-selector *ngIf="this.tokenHelper.isAdminSite"
+        <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
           [optionPlaceholder]="this.translate.instant('TITLE.Project')">
-        </app-property-project-selector>
+        </app-estate-property-project-selector>
 
         <hr>
 

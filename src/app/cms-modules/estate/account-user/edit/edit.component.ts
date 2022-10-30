@@ -30,7 +30,7 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-accountuser-edit',
+  selector: 'app-estate-account-user-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })

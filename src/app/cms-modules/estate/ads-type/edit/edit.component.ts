@@ -25,7 +25,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-adstype-edit',
+  selector: 'app-estate-ads-type-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })

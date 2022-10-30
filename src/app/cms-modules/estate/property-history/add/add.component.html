@@ -8,6 +8,11 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
+       <!-- linkActivityTypeId Field -->
+       <app-estate-activity-type-selector (optionChange)="onActionSelectorSelect($event)"
+       [optionSelectForce]="dataModel.linkActivityTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+     </app-estate-activity-type-selector>
+
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>

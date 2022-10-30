@@ -24,7 +24,7 @@ import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-propertyads-salepayment',
+  selector: 'app-estate-property-ads-salepayment',
   templateUrl: './sale-payment.component.html',
   styleUrls: ['./sale-payment.component.scss'],
 })

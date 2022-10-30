@@ -30,7 +30,7 @@ import { CoreLocationModel } from 'ntk-cms-api';
 import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
-  selector: 'app-property-project-edit',
+  selector: 'app-estate-property-project-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'
   ]

@@ -11,7 +11,8 @@ import {
   TokenInfoModel,
   EnumRecordStatus,
   FilterDataModel,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EstateActivityTypeModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -29,7 +30,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-hypershop-category-list',
+  selector: 'app-estate-property-history-list',
   templateUrl: './list.component.html'
 })
 export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
@@ -43,7 +44,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -70,9 +71,10 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<EstatePropertyHistoryModel> = [];
   tableRowSelected: EstatePropertyHistoryModel = new EstatePropertyHistoryModel();
   tableSource: MatTableDataSource<EstatePropertyHistoryModel> = new MatTableDataSource<EstatePropertyHistoryModel>();
+  categoryModelSelected: EstateActivityTypeModel;
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Title',
@@ -103,6 +105,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstatePropertyHistoryModel();
     const pName = this.constructor.name + 'main';
@@ -111,6 +114,15 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
+    /** filter Category */
+    if (this.categoryModelSelected && this.categoryModelSelected.id.length > 0) {
+      const filterChild = new FilterDataModel();
+      let fastfilter = new FilterDataModel();
+      fastfilter.propertyName = 'LinkActivityTypeId';
+      fastfilter.value = this.categoryModelSelected.id;
+      filterChild.filters.push(fastfilter);
+    }
+    /** filter Category */
     this.estatePropertyHistoryService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
@@ -163,7 +175,14 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
 
 
   onActionbuttonNewRow(): void {
-
+    if (
+      this.categoryModelSelected == null ||
+      this.categoryModelSelected.id.length === 0
+    ) {
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -174,7 +193,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
       height: '90%',
-      data: {}
+      data: { linkActivityTypeId: this.categoryModelSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -335,7 +354,11 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     }
     );
   }
-
+  onActionSelectorSelect(model: EstateActivityTypeModel | null): void {
+    this.filteModelContent = new FilterModel();
+    this.categoryModelSelected = model;
+    this.DataGetAll();
+  }
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

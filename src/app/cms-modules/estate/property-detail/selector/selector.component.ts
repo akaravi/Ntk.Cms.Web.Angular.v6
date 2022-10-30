@@ -19,7 +19,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-propertydetail-selector',
+  selector: 'app-estate-property-detail-selector',
   templateUrl: './selector.component.html'
 })
 export class EstatePropertyDetailSelectorComponent implements OnInit {

@@ -27,7 +27,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { EstatePropertyProjectDeleteComponent } from '../delete/delete.component';
 @Component({
-  selector: 'app-property-project-list',
+  selector: 'app-estate-property-project-list',
   templateUrl: './list.component.html',
   styleUrls: ["./list.component.scss"],
 })

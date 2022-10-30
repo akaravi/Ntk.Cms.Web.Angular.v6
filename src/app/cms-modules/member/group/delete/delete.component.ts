@@ -20,7 +20,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-property-project-delete',
+  selector: 'app-estate-property-project-delete',
   templateUrl: './delete.component.html',
 })
 export class MemberGroupDeleteComponent implements OnInit {

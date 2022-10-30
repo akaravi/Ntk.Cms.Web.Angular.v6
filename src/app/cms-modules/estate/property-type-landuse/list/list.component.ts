@@ -29,7 +29,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-estate-propertytypelanduse-list',
+  selector: 'app-estate-property-type-landuse-list',
   templateUrl: './list.component.html'
 })
 export class EstatePropertyTypeLanduseListComponent implements OnInit, OnDestroy {

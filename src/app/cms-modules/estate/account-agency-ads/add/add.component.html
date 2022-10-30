@@ -23,15 +23,15 @@
     </mat-form-field>
 
     <!-- LinkPropertyId Field -->
-    <app-estate-accountagency-selector (optionChange)="onActionSelectorSelectLinkAccountAgencyId($event)"
+    <app-estate-account-agency-selector (optionChange)="onActionSelectorSelectLinkAccountAgencyId($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkAccountAgencyId"
       [optionPlaceholder]="'شناسه آژانس'">
-    </app-estate-accountagency-selector>
+    </app-estate-account-agency-selector>
     <!-- LinkAdsTypeId Field -->
-    <app-estate-adstype-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
+    <app-estate-ads-type-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
       [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.accessAddField"
       [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
-    </app-estate-adstype-selector>
+    </app-estate-ads-type-selector>
     <!-- StationLevel Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StationLevel']?.accessWatchField">
       <mat-label> {{fieldsInfo['StationLevel']?.fieldTitle}}</mat-label>

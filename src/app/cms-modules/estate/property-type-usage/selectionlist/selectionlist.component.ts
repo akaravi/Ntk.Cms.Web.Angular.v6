@@ -17,7 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-estate-propertytypeusage-selectionlist',
+  selector: 'app-estate-property-type-usage-selectionlist',
   templateUrl: './selectionlist.component.html'
 })
 export class EstatePropertyTypeUsageSelectionlistComponent implements OnInit, OnDestroy {

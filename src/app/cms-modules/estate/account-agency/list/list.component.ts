@@ -29,7 +29,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-estate-accountagency-list',
+  selector: 'app-estate-account-agency-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })

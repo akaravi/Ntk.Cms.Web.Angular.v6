@@ -24,7 +24,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-property-project-header',
+  selector: 'app-estate-property-project-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })

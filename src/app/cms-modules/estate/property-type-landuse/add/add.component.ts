@@ -24,7 +24,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-propertytypelanduse-add',
+  selector: 'app-estate-property-type-landuse-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })

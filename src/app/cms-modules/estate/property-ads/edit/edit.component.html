@@ -23,10 +23,10 @@
     </mat-form-field>
 
     <!-- LinkAdsTypeId Field -->
-    <app-estate-adstype-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
+    <app-estate-ads-type-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
       [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.accessAddField"
       [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
-    </app-estate-adstype-selector>
+    </app-estate-ads-type-selector>
 
     <!-- LinkPropertyId Field -->
     <app-estate-property-selector (optionChange)="onActionSelectorSelectLinkPropertyId($event)"

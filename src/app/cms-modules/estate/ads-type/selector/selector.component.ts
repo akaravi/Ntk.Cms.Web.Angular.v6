@@ -20,7 +20,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-estate-adstype-selector',
+  selector: 'app-estate-ads-type-selector',
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })

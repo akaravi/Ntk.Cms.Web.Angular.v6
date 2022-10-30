@@ -36,7 +36,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-estate-propertydetail-list',
+  selector: 'app-estate-property-detail-list',
   templateUrl: './list.component.html'
 })
 export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {

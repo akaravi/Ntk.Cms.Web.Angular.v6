@@ -60,10 +60,10 @@
     </div>
     <hr>
     <!-- LinkEstateUserId Field -->
-    <app-estate-accountuser-selector (optionChange)="onActionSelectorEstateUser($event)"
+    <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)"
       [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessAddField"
       [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل/مشتری املاک'">
-    </app-estate-accountuser-selector>
+    </app-estate-account-user-selector>
     <!-- ContactMobiles Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{'TITLE.Mobile_staff_or_customer' | translate}}</mat-label>
@@ -98,20 +98,20 @@
     </app-cms-location-autocomplete>
     <hr>
     <!-- LinkPropertyTypeUsageId Field -->
-    <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
+    <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
       [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
       [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
       <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0"
         matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkPropertyTypeUsageId = null;">close
       </mat-icon>
-    </app-estate-propertytypeusage-selector>
+    </app-estate-property-type-usage-selector>
 
     <br>
     <br>
     <br>
     <!-- LinkPropertyTypeLanduseId Field -->
-    <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
+    <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
       [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
       [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
@@ -119,7 +119,7 @@
       <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeLanduseId && dataModel.linkPropertyTypeLanduseId?.length>0"
         matSuffix mat-icon-button aria-label="Clear" (click)="onActionSelectorSelectLanduse(null)">close
       </mat-icon>
-    </app-estate-propertytypelanduse-selector>
+    </app-estate-property-type-landuse-selector>
 
     <br>
     <br>

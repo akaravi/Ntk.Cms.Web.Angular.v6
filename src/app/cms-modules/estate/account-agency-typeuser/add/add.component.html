@@ -24,14 +24,14 @@
     </mat-form-field>
 
     <!-- LinkAccountUserId Field -->
-    <app-estate-accountuser-selector (optionChange)="onActionSelectorAccountUser($event)"
+    <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)"
       [optionSelectForce]="dataModel.linkAccountUserId" [optionPlaceholder]="'user'">
-    </app-estate-accountuser-selector>
+    </app-estate-account-user-selector>
 
     <!-- LinkAccountAgencyId Field -->
-    <app-estate-accountagency-selector (optionChange)="onActionSelectorAccountAgency($event)"
+    <app-estate-account-agency-selector (optionChange)="onActionSelectorAccountAgency($event)"
       [optionSelectForce]="dataModel.linkAccountAgencyId" [optionPlaceholder]="'Agency'">
-    </app-estate-accountagency-selector>
+    </app-estate-account-agency-selector>
 
     <!-- LinkPropertyId Field -->
     <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)"
