@@ -992,7 +992,7 @@
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
         <div class="mb-12">
-          <angular-editor [placeholder]="{{'TITLE.Enter_the_user_privacy_tex' | translate}}" [config]="publicHelper.editorConfigFull"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')" [config]="publicHelper.editorConfigFull"
             id="main" *ngIf="fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
             [disabled]="!fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.accessEditField"
             [(ngModel)]="dataModel.aboutUsPrivacyPolicyHtmlBody" name="dataModel.aboutUsPrivacyPolicyHtmlBody">
@@ -1004,14 +1004,14 @@
 
 
         <div class="mb-12">
-          <angular-editor [placeholder]="{{'TITLE.Site_management_note' | translate}}" [config]="publicHelper.editorConfigFull" id="main"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Site_management_note')" [config]="publicHelper.editorConfigFull" id="main"
             *ngIf="fieldsInfo['AdminSiteMemo']?.accessWatchField"
             [disabled]="!fieldsInfo['AdminSiteMemo']?.accessEditField" [(ngModel)]="dataModel.adminSiteMemo"
             name="dataModel.adminSiteMemo">
           </angular-editor>
         </div>
         <div class="mb-12">
-          <angular-editor [placeholder]="{{'TITLE.Management_note_of_the_whole_system' | translate}}" [config]="publicHelper.editorConfigFull" id="main"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Management_note_of_the_entire_site') " [config]="publicHelper.editorConfigFull" id="main"
             *ngIf="fieldsInfo['AdminMainMemo']?.accessWatchField"
             [disabled]="!fieldsInfo['AdminMainMemo']?.accessEditField" [(ngModel)]="dataModel.adminMainMemo"
             name="dataModel.adminMainMemo">
