@@ -85,8 +85,8 @@
       </mat-error>
     </mat-form-field>
     <!-- RuleHtmlBody Field -->
-    قوانین
-    <angular-editor [placeholder]="'متن قوانین را وارد کنید ...'" [config]="publicHelper.editorConfig" id="main"
+    {{'TITLE.rules' | translate}}
+    <angular-editor [placeholder]="'{{'TITLE.Enter_the_text_of_the_rules' | translate}} ...'" [config]="publicHelper.editorConfig" id="main"
       [(ngModel)]="dataModel.ruleHtmlBody" name="dataModel.ruleHtmlBody"></angular-editor>
 
 

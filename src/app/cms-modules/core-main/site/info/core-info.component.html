@@ -4,7 +4,7 @@
   </div>
   <div class="col-11">
     <h5>
-      مشخصات و لینک های اشترک گزاری برای شما و وب سایت شما
+      {{'TITLE.Profiles_and_affiliate_links_for_you_and_your_website' | translate}}
     </h5>
   </div>
   <div class="row">
@@ -12,7 +12,7 @@
       <br>
       <p *ngIf="dataModelResult.item?.userTitle?.length>0">
 
-        نام شما:
+       {{'TITLE.your_name' | translate}}:
         <br>
         {{dataModelResult.item.userTitle}}
       </p>
@@ -22,7 +22,7 @@
     <div class="col-md-12 col-sm-12 col-xs-18">
       <p *ngIf="dataModelResult.item?.siteTitle?.length>0">
 
-        عنوان سامانه:
+     {{'TITLE.system_title' | translate}}:
         <br>
         {{dataModelResult.item.siteTitle}}
       </p>
@@ -31,7 +31,7 @@
 
 </div>
 
-<!-- آدرس وب سایت -->
+<!-- {{'TITLE.website_address' | traslate}}   -->
 
 <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.item?.urlSiteHome?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
@@ -42,20 +42,20 @@
       </div>
       <div class="col-11">
         <h5>
-          آدرس وب سایت
+            {{'TITLE.website_address' | translate}}
         </h5>
       </div>
     </div>
     <br>
-    <h4>توضیحات:</h4>
+    <h4>{{'TITLE.Description' | translate}}:</h4>
     <p>
-      در این بخش شما میتوانید لینک وبسایت خود را مشاهده نمایید و آن را کپی کنید و با دیگران به اشتراک بگذارید.
+      {{'TITLE.In_this_section_you_can_view_your_website_link_and_copy_it_and_share_it_with_others' | translate}}
       <br>
-      همچنین میتوانید با کلیک بر روی گزینه "بارکد" لینک خود را به صورت بارکد دریافت نمایید.
+      {{'TITLE.You_can_also_get_your_link_as_a_barcode_by_clicking_on_the_Barcode_option.' | translate}}
     </p>
     <br>
     <h5>
-      آدرس وب سایت
+     {{'TITLE.website_address' | translate}}
     </h5>
     <a href="{{dataModelResult.item?.urlSiteHome}}">
       {{dataModelResult.item.urlSiteHome}}
@@ -78,7 +78,7 @@
   </div>
 </div>
 
-<!-- آدرس سامانه مدیریت محتوا -->
+<!-- {{'TITLE.The_address_of_the_content_management_system' | translate}}-->
 
 <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.item?.urlSiteCPanel?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
@@ -89,25 +89,22 @@
       </div>
       <div class="col-11" *ngIf="dataModelResult.item?.urlSiteCPanel?.length>0">
         <h5>
-          آدرس سامانه مدیریت محتوا
+          {{'TITLE.The_address_of_the_content_management_system' | translate}}
         </h5>
       </div>
     </div>
     <br>
-    <h4>توضیحات:</h4>
+    <h4>{{'TITLE.DESCRIPTION' | translate}}:</h4>
     <p>
-      در این بخش شما میتوانید لینک سامانه مدیریت محتوا خود را مشاهده نمایید و آن را کپی کنید و با دیگران به اشتراک
-      بگذارید.
+    {{'TITLE.In_this_section_you_can_see_the_link_of_your_content_management_system_and_copyit_and_share_it_with_others' | translate}}
       <br>
-      سامانه مدیریت محتوا به شما این امکان را میدهد که به سایت خود محتوا اضافه ،ویرایش و حذف کنید و تمام قسمت های سایت
-      خود را مدیریت کنید.
+      {{'TITLE.The_content_management_system_allows_you_to_add,_edit_and_delete_content_to_your_site_and_manage_all_parts_of_your_site.' | translate}}
       <br>
-      همچنین میتوانید با کلیک بر روی گزینه "بارکد" لینک خود را به صورت بارکد دریافت نمایید.
-
+      {{'TITLE.You_can_also_get_your_link_as_a_barcode_by_clicking_on_the_Barcode_option.' | translate}}
     </p>
     <br>
     <h5>
-      آدرس سامانه مدیریت محتوا
+      {{'TITLE.The_address_of_the_content_management_system' | translate}}
     </h5>
     <a href="{{dataModelResult.item.urlSiteCPanel}}">
       {{dataModelResult.item.urlSiteCPanel}}
@@ -130,7 +127,7 @@
   </div>
 </div>
 
-<!-- آدرس اشتراک گزاری وب سایت -->
+<!-- {{'TITLE.Website_sharing_address' | translate}} -->
 
 <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.item?.urlResellerSiteShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
@@ -141,25 +138,24 @@
       </div>
       <div class="col-11" *ngIf="dataModelResult.item?.urlResellerSite?.length>0">
         <h5>
-          آدرس اشتراک گزاری وب سایت
+          {{'TITLE.Website_sharing_address' | translate}}
         </h5>
       </div>
     </div>
     <br>
-    <h4>توضیحات:</h4>
+    <h4>{{'TITLE.DESCRIPTION' | translate}}:</h4>
     <p>
-      در این بخش شما میتوانید لینک آدرس اشتراک گزاری وب سایت خود را مشاهده نمایید و آن را کپی کنید و با دیگران به اشتراک
-      بگذارید.
+     {{'TITLE.In_this_section,_you_can_see_the_link_of_your_website's_sharing_address_and_copy_it_and_share_it_with_others' |translate}}
       <br>
-      میتوانید با کلیک بر روی گزینه "مشاهده چارت" لیست سایت های زیر مجموعه خود را مشاهده نمایید.
+      {{'TITLE.You_can_see_the_list_of_sites_under_your_collection_by_clicking_on_the_view_chart_option' | translate}}
       <br>
-      همچنین میتوانید با کلیک بر روی گزینه "مشاهده آمار بازدید" تعداد بازدید سایت خود را مشاهده نمایید.
+      {{'TITLE.You_can_also_see_the_number_of_visits_to_your_site_by_clicking_on_the_view_statistics_option' | translate}}
       <br>
-      علاوه بر آن با کلیک بر روی گزینه "بارکد" لینک خود را به صورت بارکد دریافت نمایید.
+      {{'TITLE.In_addition,_click_on_the_barcode_option_to_receive_your_link_as_a_barcode.' | translate}}
     </p>
     <br>
     <h5>
-      آدرس اشتراک گزاری وب سایت
+      {{'TITLE.Website_sharing_address' | translate}}
     </h5>
 
     <a href="{{dataModelResult.item.urlResellerSiteShortLinkUrl}}">
@@ -190,7 +186,7 @@
   </div>
 </div>
 
-<!-- آدرس اشتراک گزاری با حساب کاربری شما -->
+<!-- {{'TITLE.Sharing_address_with_your_user_account' | translate}}-->
 
 <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert" *ngIf="dataModelResult.item?.urlResellerUserShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
@@ -201,26 +197,24 @@
       </div>
       <div class="col-11" *ngIf="dataModelResult.item?.urlResellerUser?.length>0">
         <h5>
-          آدرس اشتراک گزاری با حساب کاربری شما
-        </h5>
+         {{'TITLE.Sharing_address_with_your_user_account' | translate}}
+                </h5>
       </div>
     </div>
     <br>
-    <h4>توضیحات:</h4>
+    <h4>{{'TITLE.DESCRIPTION' | translate}}:</h4>
     <p>
-      در این بخش شما میتوانید لینک آدرس اشتراک گزاری با حساب کاربری خودتان را مشاهده نمایید و آن را کپی کنید و با دیگران
-      به اشتراک
-      بگذارید.
+      {{'TITLE.In_this_section,_you_can_view_the_link_of_the_sharing_address_with_your_account_and_copy_it_with-others_Share-let_the.' | translate}}
       <br>
-      میتوانید با کلیک بر روی گزینه "مشاهده چارت" لیست سایت های زیر مجموعه خود را مشاهده نمایید.
+      {{'TITLE.You_can_see_the_list_of_sites_under_your_collection_by_clicking_on_the_view_chart_option' | translate}}
+       <br>
+    {{'TITLE.You_can_also_see_the_number_of_visits_to_your_site_by_clicking_on_the_view_statistics_option.' | translate}}
       <br>
-      همچنین میتوانید با کلیک بر روی گزینه "مشاهده آمار بازدید" تعداد بازدید سایت خود را مشاهده نمایید.
-      <br>
-      علاوه بر آن با کلیک بر روی گزینه "بارکد" لینک خود را به صورت بارکد دریافت نمایید.
+      {{'TITLE.In_addition,_click_on_the_barcode_option_to_receive_your_link_as_a_barcode' | translate}}
     </p>
     <br>
     <h5>
-      آدرس اشتراک گزاری با حساب کاربری شما
+      {{'TITLE.Sharing_address_with_your_user_account' | translate}}
     </h5>
 
     <a href="{{dataModelResult.item.urlResellerUserShortLinkUrl}}">
@@ -251,7 +245,7 @@
   </div>
 </div>
 
-<!-- آدرس اشتراک گزاری با دسته بندی سامانه موجود -->
+<!--  {{'TITLE.Sharing_address_with_existing_system_category' | translate}}-->
 
 <div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert" *ngIf="dataModelResult.item?.urlResellerSiteCategoryShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
@@ -262,27 +256,25 @@
       </div>
       <div class="col-11" *ngIf="dataModelResult.item?.urlResellerUser?.length>0">
         <h5>
-          آدرس اشتراک گزاری با دسته بندی سامانه موجود
+          {{'TITLE.Sharing_address_with_existing_system_category' | translate}}
         </h5>
       </div>
     </div>
     <br>
-    <h4>توضیحات:</h4>
+    <h4>{{'TITLE.DESCRIPTION' | translate}}:</h4>
     <p>
-      در این بخش شما میتوانید لینک آدرس اشتراک گزاری با دسته بندی سامانه موجود خود را مشاهده نمایید و آن را کپی کنید و
-      با دیگران به اشتراک
-      بگذارید.
+      {{'TITLE.In_this_section,_you_can_view_the_sharing_address_link_with_the_category_of_your_existing_system_and_copy_it_and_share_it_with_others.' | translate}}
       <br>
-      میتوانید با کلیک بر روی گزینه "مشاهده چارت" لیست سایت های زیر مجموعه خود را مشاهده نمایید.
+      {{'TITLE.You_can_see_the_list_of_sites_under_your_collection_by_clicking_on_the_view_chart_option' | translate}}
       <br>
-      همچنین میتوانید با کلیک بر روی گزینه "مشاهده آمار بازدید" تعداد بازدید سایت خود را مشاهده نمایید.
+      {{'TITLE.You_can_also_see_the_number_of_visits_to_your_site_by_clicking_on_the_view_statistics_option.' | translate}}
       <br>
-      علاوه بر آن با کلیک بر روی گزینه "بارکد" لینک خود را به صورت بارکد دریافت نمایید.
+      {{'TITLE.In_addition,_click_on_the_barcode_option_to_receive_your_link_as_a_barcode' | translate}}
     </p>
     <div >
       <br>
       <h5>
-        آدرس اشتراک گزاری با دسته بندی سامانه موجود
+        {{'TITLE.Sharing_address_with_existing_system_category' | translate}}
       </h5>
       <a href="{{dataModelResult.item.urlResellerSiteCategoryShortLinkUrl}}">
         {{dataModelResult.item.urlResellerSiteCategoryShortLinkUrl}}

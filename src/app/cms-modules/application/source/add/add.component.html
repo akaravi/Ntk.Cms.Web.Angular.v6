@@ -10,12 +10,12 @@
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <div>
-          کپی تنظیمات از محتوای :
+      {{'TITLE.Copy_settings_from_content' | translate}}:
           <br>
           <app-application-source-selector (optionChange)="onActionSourceCopySelect($event)"
             [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"></app-application-source-selector>
           <br>
-          با استفاده از این امکان می توانید تنطیمات سورس دیگر را کپی کنید و سپس تغییرات را انجام دهید
+            {{'TITLE.Using_this_option,_you_can_copy_other_source_settings_and_then_make_changes' | translate}}
         </div>
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">

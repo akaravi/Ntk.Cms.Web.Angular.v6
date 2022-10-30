@@ -214,7 +214,7 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
-        <p>عکس از اپلیکیشن.</p>
+        <p>{{'TITLE.Photo_of_the_application' | translate}}</p>
         <div class="mb-3">
           <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
             src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}"  height="50" width="50" />
@@ -251,8 +251,7 @@
 
       <mat-step label="{{'TITLE.Config_Template_and_Build' | translate}}" state="otherinfo">
         <p>{{'TITLE.Total_management_default_settings_in_build' | translate}}</p>
-
-        در سایت ها با دسته بندی زیر قالب بکار گیری باشد:
+    {{'TITLE.It_should_be_used_on_sites_with_the_following_categories' | translate}}:
         <br>
         <app-cms-sitecategory-selectionlist [optionSelectForce]="dataCoreSiteCategoryIds" [optionDisabled]="false"
           (optionChange)="onActionSelectorUserCategorySelect($event)"

@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-      <mat-step label="مشخصات منو" state="main">
+      <mat-step label="{{'TITLE.Menu_Profile' | translate}}" state="main">
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"

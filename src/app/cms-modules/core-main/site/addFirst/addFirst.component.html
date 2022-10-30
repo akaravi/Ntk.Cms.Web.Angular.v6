@@ -1,14 +1,13 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
-  ایجاد اولین سامانه شما.
-  <br>
-  لطفا تمام دقت لازم را در انتخاب نوع سامانه و دامنه داشته باشید.
+{{'TITLE.create_your_first_system' | translate}}  <br>
+{{'TITLE.Please_be_careful_in_choosing_the_type_of_system_and-domain' | translate}}
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-      <mat-step label="مشخصات سامانه" state="main">
+      <mat-step label="'{{TITLE.System_specifications | translate}}'" state="main">
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.System_Title' | translate}}</mat-label>
@@ -23,19 +22,17 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
-          <mat-label>عنوان لاتین</mat-label>
-          <input matInput [(ngModel)]="dataModel.subDomain" name="dataModel.subDomain" #SubDomain2 type="text"
-            (ngModelChange)="checkValidateDomain()" placeholder="عنوان لاتین" minlength="3" maxlength="20" required
+          <mat-label>{{'TITLE.Latin_title' | translate}}" minlength="3" maxlength="20" required
             pattern="[a-zA-Z]{2,20}" />
           <mat-icon matSuffix *ngIf="dataModel.subDomain" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.subDomain = 'myname'">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ SubDomain2.value.length }} / 20</mat-hint>
           <mat-error *ngIf="SubDomain2.errors?.required">
-            عنوان لاتین الزامی است
+            {{'TITLE.Latin_title_is_required' | translate}}
           </mat-error>
           <mat-error *ngIf="!validateDomain">
-            مجاز به ورود فقط کاراکتر لاتین هستید
+            {{'TITLE.You_are_allowed_to_enter_only_Latin_characters' | translate}}
           </mat-error>
         </mat-form-field>
         <!-- sitecategory Field -->
@@ -49,8 +46,8 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="امکانات سامانه" state="seo">
-        <p>نسبت به نوع سامانه انتخابی شما این امکانات در اختیار این سامانه قرار داده می شود</p>
+      <mat-step label="{{'TITLE.System_features | translate'}}" state="seo">
+        <p>{{'TITLE.Depending_on_the_type_of_system_you_choose,_these_facilities_are _provided_to_this_system' | translate}}</p>
 
         <app-core-sitecategorycmsmodule-listview [optionSiteCategoryId]="modelDateSiteCategory?.id">
         </app-core-sitecategorycmsmodule-listview>
@@ -64,9 +61,9 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="توافقنامه سامانه" state="rule"
+      <mat-step label="{{'TITLE.System_agreement' | translate}}" state="rule"
         *ngIf="this.modelDateSiteCategory?.ruleHtmlBody && this.modelDateSiteCategory?.ruleHtmlBody.length>0">
-        <p>نسبت به نوع سامانه انتخابی شما این توافقنامه مورد تایید شما می باشد</p>
+        <p>{{'TITLE.Depending_on_the_type_of_system_you_choose,_these_facilities_are _provided_to_this_system' | translate}}</p>
 
 
         <div [innerHTML]="this.modelDateSiteCategory.ruleHtmlBody"></div>
@@ -80,25 +77,24 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="آدرس دسترسی به سامانه" state="seo">
-        <p>از لیست دامنه های موجود یک دامنه را انتخاب کنید و عنوان لاتین برای متناسب با نام سامانه خود برای
-          آدرس دهی انخاب نمایید</p>
+      <mat-step label="{{'TITLE.System_access_address' | translate}}" state="seo">
+        <p>{{'TITLE.Select_a_domain_from_the_list_of_available_domains_and_select_a_Latin_title_to_match_your_system_name_for_addressing' | translate}}</p>
         <!-- Domain Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="دامنه" [(ngModel)]="dataModel.domain" name="dataModel.domain" #Domain="ngModel"
+          <mat-select placeholder="{{'TITLE.Domain' | translate}}" [(ngModel)]="dataModel.domain" name="dataModel.domain" #Domain="ngModel"
             panelClass="recordStatus-{{ dataModel.domain }}">
             <mat-option *ngFor="
         let item of dataModelResultDomains.listItems;
         index as i
       " [value]="item">{{ item }}</mat-option>
           </mat-select>
-          <mat-hint align="end">انتخاب دامنه برای این سامانه</mat-hint>
+          <mat-hint align="end">{{'TITLE.Choose_a_domain_for_this_system' | translate}}</mat-hint>
         </mat-form-field>
         <!-- Domain Field -->
         <div class="row input-group mb-3 set-select" style="margin: 2px 17px 0 0; padding-left: 34px;">
           <div class="input-group-prepend col-4 ">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-              aria-haspopup="false" aria-expanded="false">{{ dataModel.domain === undefined ? 'دامنه' :
+              aria-haspopup="false" aria-expanded="false">{{ dataModel.domain === undefined ? '{{'TITLE.Domain' | translate}}' :
               dataModel.domain }}</button>
             <div class="dropdown-menu">
               <option (click)="domain(item)" class="cursor-pointer"
@@ -106,13 +102,13 @@
             </div>
           </div>
           <input [(ngModel)]="dataModel.subDomain" name="subDomain" placeholder="YourSubDomain" type="text"
-            class="form-control text-left  col-4" aria-label="زیر دامنه  وب سایت " />
+            class="form-control text-left  col-4" aria-label="{{'TITLE.Website_subdomain' | translate}}" />
           <div class="input-group-prepend  col-4">
             <input type="text" class="form-control text-left" style="direction: ltr;" value="http://"
               style="text-align: left;" dir="ltr" readonly />
           </div>
         </div>
-        آدرس سامانه شما:
+          {{'TITLE.Your_system_address' | translate}}:
         <div class="text-left text-wrap"
           style="direction: ltr;font-size: xx-large; color: black;text-align-last:center">
           http://{{dataModel.subDomain === undefined ?'' : dataModel.subDomain + '.'}}{{ dataModel.domain ===
