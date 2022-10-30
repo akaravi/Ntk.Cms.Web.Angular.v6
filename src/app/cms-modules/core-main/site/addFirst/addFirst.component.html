@@ -1,29 +1,31 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Tools/Compass.svg'">
-  {{'TITLE.create_your_first_system' | translate}}  <br>
+  {{'TITLE.create_your_first_system' | translate}} <br>
   {{'TITLE.Please_be_careful_in_choosing_the_type_of_system_and-domain' | translate}}
-  </app-cms-html-notice>
-  <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-    <div class="ntk-cms-html-card-body">
-      <app-progress-spinner [options]="loading"> </app-progress-spinner>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-        <mat-step label="{{TITLE.System_specifications | translate}}" state="main">
-          <!-- Title Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-label>{{'TITLE.System_Title' | translate}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-              placeholder="{{'TITLE.System_Title' | translate}}" minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.title = ''">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="Title.errors?.required">
-              {{'MESSAGE.System.title_required' | translate}}
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="ntk-full-width">
-            <mat-label>{{'TITLE.Latin_title' | translate}}" minlength="3" maxlength="20" required
-              pattern="[a-zA-Z]{2,20}" />
+</app-cms-html-notice>
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <mat-step label="{{'TITLE.System_specifications' | translate}}" state="main">
+        <!-- Title Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'TITLE.System_Title' | translate}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+            placeholder="{{'TITLE.System_Title' | translate}}" minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.title = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Title.errors?.required">
+            {{'MESSAGE.System.title_required' | translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'TITLE.Latin_title' | translate}}</mat-label>
+          
+          <input matInput [(ngModel)]="dataModel.subDomain" name="dataModel.subDomain" #SubDomain2 type="text"
+            (ngModelChange)="checkValidateDomain()" placeholder="{{'TITLE.Latin_title' | translate}}" minlength="3" maxlength="20" required   pattern="[a-zA-Z]{2,20}" />
             <mat-icon matSuffix *ngIf="dataModel.subDomain" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.subDomain = 'myname'">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
@@ -34,103 +36,111 @@
             <mat-error *ngIf="!validateDomain">
               {{'TITLE.You_are_allowed_to_enter_only_Latin_characters' | translate}}
             </mat-error>
-          </mat-form-field>
-          <!-- sitecategory Field -->
-          <app-core-sitecategory-selector (optionChange)="onActionSelectorSelect($event)" [optionSelectFirstItem]="true"
-            [optionSelectForce]="this.dataModel.linkSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.System_Type')"
-            [optionDisabled]="siteTypeId>0"></app-core-sitecategory-selector>
-  
-          <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-          </div>
-        </mat-step>
-        <mat-step label="{{'TITLE.System_features' | translate}}" state="seo">
-          <p>{{'TITLE.Depending_on_the_type_of_system_you_choose_these_facilities_are _provided_to_this_system' | translate}}</p>
-  
-          <app-core-sitecategorycmsmodule-listview [optionSiteCategoryId]="modelDateSiteCategory?.id">
-          </app-core-sitecategorycmsmodule-listview>
-  
-          <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-            <button type="button" mat-raised-button color="primary" matStepperPrevious>
-              {{'ACTION.BEFOR' | translate}}
-            </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-          </div>
-        </mat-step>
-        <mat-step label="{{'TITLE.System_agreement' | translate}}" state="rule"
-          *ngIf="this.modelDateSiteCategory?.ruleHtmlBody && this.modelDateSiteCategory?.ruleHtmlBody.length>0">
-          <p>{{'TITLE.Depending_on_the_type_of_system_you_choose_these_facilities_are _provided_to_this_system' | translate}}</p>
-  
-  
-          <div [innerHTML]="this.modelDateSiteCategory.ruleHtmlBody"></div>
-  
-          <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-            <button type="button" mat-raised-button color="primary" matStepperPrevious>
-              {{'ACTION.BEFOR' | translate}}
-            </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-          </div>
-        </mat-step>
-        <mat-step label="{{'TITLE.System_access_address' | translate}}" state="seo">
-          <p>{{'TITLE.Select_a_domain_from_the_list_of_available_domains_and_select_a_Latin_title_to_match_your_system_name_for_addressing' | translate}}</p>
-          <!-- Domain Field -->
-          <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{'TITLE.Domain' | translate}}" [(ngModel)]="dataModel.domain" name="dataModel.domain" #Domain="ngModel"
-              panelClass="recordStatus-{{ dataModel.domain }}">
-              <mat-option *ngFor="
+        </mat-form-field>
+        <!-- sitecategory Field -->
+        <app-core-sitecategory-selector (optionChange)="onActionSelectorSelect($event)" [optionSelectFirstItem]="true"
+          [optionSelectForce]="this.dataModel.linkSiteCategoryId"
+          [optionPlaceholder]="this.translate.instant('TITLE.System_Type')" [optionDisabled]="siteTypeId>0">
+        </app-core-sitecategory-selector>
+
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+	  
+      <mat-step label="{{'TITLE.System_features' | translate}}" state="seo">
+        <p>{{'TITLE.Depending_on_the_type_of_system_you_choose_these_facilities_are _provided_to_this_system' |
+          translate}}</p>
+
+        <app-core-sitecategorycmsmodule-listview [optionSiteCategoryId]="modelDateSiteCategory?.id">
+        </app-core-sitecategorycmsmodule-listview>
+
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button color="primary" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="{{'TITLE.System_agreement' | translate}}" state="rule"
+        *ngIf="this.modelDateSiteCategory?.ruleHtmlBody && this.modelDateSiteCategory?.ruleHtmlBody.length>0">
+        <p>{{'TITLE.Depending_on_the_type_of_system_you_choose_these_facilities_are _provided_to_this_system' |
+          translate}}</p>
+
+
+        <div [innerHTML]="this.modelDateSiteCategory.ruleHtmlBody"></div>
+
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button color="primary" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="{{'TITLE.System_access_address' | translate}}" state="seo">
+        <p>
+          {{'TITLE.Select_a_domain_from_the_list_of_available_domains_and_select_a_Latin_title_to_match_your_system_name_for_addressing'
+          | translate}}</p>
+        <!-- Domain Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-select placeholder="{{'TITLE.Domain' | translate}}" [(ngModel)]="dataModel.domain"
+            name="dataModel.domain" #Domain="ngModel" panelClass="recordStatus-{{ dataModel.domain }}">
+            <mat-option *ngFor="
           let item of dataModelResultDomains.listItems;
           index as i
         " [value]="item">{{ item }}</mat-option>
-            </mat-select>
-            <mat-hint align="end">{{'TITLE.Choose_a_domain_for_this_system' | translate}}</mat-hint>
-          </mat-form-field>
-          <!-- Domain Field -->
-          <div class="row input-group mb-3 set-select" style="margin: 2px 17px 0 0; padding-left: 34px;">
-            <div class="input-group-prepend col-4 ">
-              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                aria-haspopup="false" aria-expanded="false">{{ dataModel.domain === undefined ? '{{'TITLE.Domain' | translate}}' :
-                dataModel.domain }}</button>
-              <div class="dropdown-menu">
-                <option (click)="domain(item)" class="cursor-pointer"
-                  *ngFor="let item of dataModelResultDomains.listItems;let i = index" value="{{item}}">{{item}}</option>
-              </div>
-            </div>
-            <input [(ngModel)]="dataModel.subDomain" name="subDomain" placeholder="YourSubDomain" type="text"
-              class="form-control text-left  col-4" aria-label="{{'TITLE.Website_subdomain' | translate}}" />
-            <div class="input-group-prepend  col-4">
-              <input type="text" class="form-control text-left" style="direction: ltr;" value="http://"
-                style="text-align: left;" dir="ltr" readonly />
+          </mat-select>
+          <mat-hint align="end">{{'TITLE.Choose_a_domain_for_this_system' | translate}}</mat-hint>
+        </mat-form-field>
+        <!-- Domain Field -->
+        <div class="row input-group mb-3 set-select" style="margin: 2px 17px 0 0; padding-left: 34px;">
+          <div class="input-group-prepend col-4 ">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+              aria-haspopup="false" aria-expanded="false">{{ dataModel.domain === undefined ? this.translate.instant('TITLE.Domain') : dataModel.domain }}</button>
+            <div class="dropdown-menu">
+              <option (click)="domain(item)" class="cursor-pointer"
+                *ngFor="let item of dataModelResultDomains.listItems;let i = index" value="{{item}}">{{item}}</option>
             </div>
           </div>
-            {{'TITLE.Your_system_address' | translate}}:
-          <div class="text-left text-wrap"
-            style="direction: ltr;font-size: xx-large; color: black;text-align-last:center">
-            http://{{dataModel.subDomain === undefined ?'' : dataModel.subDomain + '.'}}{{ dataModel.domain ===
-            undefined ? '' : dataModel.domain }}</div>
-  
-  
-          <div class="form-actions">
-            <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-            <small class="form-text text-muted danger">{{ formInfo.formError }}
-            </small>
+          <input [(ngModel)]="dataModel.subDomain" name="subDomain" placeholder="YourSubDomain" type="text"
+            class="form-control text-left  col-4" aria-label="this.translate.instant('TITLE.Website_subdomain')" />
+          <div class="input-group-prepend  col-4">
+            <input type="text" class="form-control text-left" style="direction: ltr;" value="http://"
+              style="text-align: left;" dir="ltr" readonly />
           </div>
-          <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-            <button type="button" mat-raised-button color="primary" matStepperPrevious>
-              {{'ACTION.BEFOR' | translate}}
-            </button>
-            <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-              {{'ACTION.SAVE' | translate}}
-            </button>
-          </div>
-        </mat-step>
-      </mat-horizontal-stepper>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </div>
-  
-  </form>
+        </div>
+        {{'TITLE.Your_system_address' | translate}}:
+        <div class="text-left text-wrap"
+          style="direction: ltr;font-size: xx-large; color: black;text-align-last:center">
+          http://{{dataModel.subDomain === undefined ?'' : dataModel.subDomain + '.'}}{{ dataModel.domain ===
+          undefined ? '' : dataModel.domain }}</div>
+
+
+        <div class="form-actions">
+          <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+          <small class="form-text text-muted danger">{{ formInfo.formError }}
+          </small>
+        </div>
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button color="primary" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+	  
+	  
+	  
+    </mat-horizontal-stepper>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+
+</form>
