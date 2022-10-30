@@ -1,6 +1,6 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
   <h4> {{'TITLE.Edit' | translate}}</h4>
-  در این بخش شما میتوانید محتوای سایت خود را ویرایش نمایید.
+{{'TITLE.In_this_section_you_can_edit_the_content_of_your_site' | translate}}
   <br>
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
@@ -597,7 +597,7 @@
           <mat-hint align="end">{{ SeoGoogleAnalytics.value.length }} </mat-hint>
         </mat-form-field>
         <hr>
-        <p>تنظیمات Twitter Card</p>
+        <p>{{'TITLE.Settings' | translate}} Twitter Card</p>
         <!-- SeoTwitterCardSite Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SeoTwitterCardSite']?.accessWatchField">
           <mat-label>{{ fieldsInfo['SeoTwitterCardSite']?.fieldTitle }}</mat-label>
@@ -992,7 +992,7 @@
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
         <div class="mb-12">
-          <angular-editor [placeholder]="'متن حریم خصوصی کاربر را وارد کنید'" [config]="publicHelper.editorConfigFull"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')" [config]="publicHelper.editorConfigFull"
             id="main" *ngIf="fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
             [disabled]="!fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.accessEditField"
             [(ngModel)]="dataModel.aboutUsPrivacyPolicyHtmlBody" name="dataModel.aboutUsPrivacyPolicyHtmlBody">
@@ -1004,14 +1004,14 @@
 
 
         <div class="mb-12">
-          <angular-editor [placeholder]="'یاداشت مدیریت سایت'" [config]="publicHelper.editorConfigFull" id="main"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Site_management_note')" [config]="publicHelper.editorConfigFull" id="main"
             *ngIf="fieldsInfo['AdminSiteMemo']?.accessWatchField"
             [disabled]="!fieldsInfo['AdminSiteMemo']?.accessEditField" [(ngModel)]="dataModel.adminSiteMemo"
             name="dataModel.adminSiteMemo">
           </angular-editor>
         </div>
         <div class="mb-12">
-          <angular-editor [placeholder]="'یاداشت مدیریت کل سامانه'" [config]="publicHelper.editorConfigFull" id="main"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Management_note_of_the_entire_site') " [config]="publicHelper.editorConfigFull" id="main"
             *ngIf="fieldsInfo['AdminMainMemo']?.accessWatchField"
             [disabled]="!fieldsInfo['AdminMainMemo']?.accessEditField" [(ngModel)]="dataModel.adminMainMemo"
             name="dataModel.adminMainMemo">
@@ -1082,7 +1082,7 @@
           <mat-datepicker touchUi #AccountingFormUpdatedDate></mat-datepicker>
         </mat-form-field>
         <div class="mb-12">
-          <angular-editor [placeholder]="'یاداشت حسابدری'" [config]="publicHelper.editorConfigFull" id="main"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Memory_Accounting')" [config]="publicHelper.editorConfigFull" id="main"
             *ngIf="fieldsInfo['AccountingMemo']?.accessWatchField"
             [disabled]="!fieldsInfo['AccountingMemo']?.accessEditField" [(ngModel)]="dataModel.accountingMemo"
             name="dataModel.accountingMemo">

@@ -1,7 +1,7 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
  <h4> {{'TITLE.Edit' | translate}}</h4>
-  در این بخش شما میتوانید مشخصات کاربر را ویرایش نمایید.
-  <br>
+  {{'TITLE.In_this_section_you_can_edit_the_user_profile' | translate}}
+ <br>
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <!-- <div class="ntk-cms-html-card-header"> -->
@@ -144,8 +144,8 @@
         </div>
       </mat-step>
 
-      <mat-step label="مشخصات شخصی" state="seo">
-        <p>اطلاعات صاحب حساب را وارد کنید</p>
+      <mat-step label="{{'TITLE.personal_information' | translate}}" state="seo">
+        <p>{{'TITLE.Enter_the_account_owner_information' | translate}}</p>
 
 
         <!-- Name Field -->
@@ -283,8 +283,8 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="تنظیمات امینتی" state="seo">
-        <p>تنظیمات لازیم برای امنیت این حساب کاربری</p>
+      <mat-step label="{{'TITLE.Security_settings' | translate}}" state="seo">
+        <p>{{'TITLE.Necessary_settings_for_the_security_of_this_user_account' | translate}}</p>
 
         <!-- LinkResellerUserId Field -->
         <app-cms-user-selector [optionDisabled]="!fieldsInfo['LinkResellerUserId']?.accessEditField"
@@ -331,7 +331,7 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
-        <p>فایل های مربوط به این حساب کاربری</p>
+        <p>{{'TITLE.Files_related_to_this_user_account' | translate }}</p>
 
 
         <mat-form-field class="ntk-full-width">
