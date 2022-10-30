@@ -49,6 +49,8 @@ export class EstatePropertyProjectAddComponent implements OnInit, AfterViewInit 
   dataModel = new EstatePropertyProjectModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyProjectModel> = new ErrorExceptionResult<EstatePropertyProjectModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataFileModelImgaes = new Map<number, string>();
+  dataFileModelFiles = new Map<number, string>();
   loading = new ProgressSpinnerModel();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   selectFileTypePodcast = ['mp3'];
@@ -172,6 +174,21 @@ export class EstatePropertyProjectAddComponent implements OnInit, AfterViewInit 
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
+
+
+    if (this.dataFileModelFiles) {
+      const keys = Array.from(this.dataFileModelFiles.keys());
+      if (keys && keys.length > 0) {
+        this.dataModel.linkFileIds = keys.join(',');
+      }
+    }
+    if (this.dataFileModelImgaes) {
+      const keys = Array.from(this.dataFileModelImgaes.keys());
+      if (keys && keys.length > 0) {
+        this.dataModel.linkExtraImageIds = keys.join(',');
+      }
+    }
+    
     this.contentService
       .ServiceAdd(this.dataModel)
       .subscribe({

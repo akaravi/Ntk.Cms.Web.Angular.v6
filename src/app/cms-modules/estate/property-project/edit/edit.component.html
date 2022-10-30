@@ -176,6 +176,11 @@
           [optionFileType]="selectFileTypeMainImage">
         </app-cms-files-selector>
         <br>
+        <div >
+          <p>{{'TITLE.List_of_attached_files' | translate}}</p>
+          <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles" [openDirectUploadView]="true">
+          </app-cms-files-selector>
+        </div>
         <!-- LinkFilePodcastIdSrc Field -->
         <div class="mb-3">
           <audio *ngIf="dataModel?.linkFilePodcastIdSrc?.length>0" controls>

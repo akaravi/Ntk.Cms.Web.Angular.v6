@@ -4,6 +4,7 @@ import { SmsLogApiPathListComponent } from './api-path/list/list.component';
 import { SmsLogInBoxListComponent } from './inbox/list/list.component';
 import { SmsLogOutBoxDetailListComponent } from './outbox-detail/list/list.component';
 import { SmsLogOutBoxQueueListComponent } from './outbox-queue/list/list.component';
+import { SmsLogOutBoxTaskSchedulerListComponent } from './outbox-task-scheduler/list/list.component';
 import { SmsLogOutBoxListComponent } from './outbox/list/list.component';
 import { SmsLogComponent } from './sms-log.component';
 
@@ -61,6 +62,14 @@ const routes: Routes = [
       {
         path: 'outbox-queue/LinkApiPathId/:LinkApiPathId',
         component: SmsLogOutBoxQueueListComponent
+      },
+      {
+        path: 'outbox-task-scheduler',
+        component: SmsLogOutBoxTaskSchedulerListComponent
+      },
+      {
+        path: 'outbox-task-scheduler/LinkApiPathId/:LinkApiPathId',
+        component: SmsLogOutBoxTaskSchedulerListComponent
       },
       //   {
       //     path: 'source/edit/:Id',
