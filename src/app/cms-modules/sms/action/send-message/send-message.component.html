@@ -25,12 +25,12 @@
             <!-- LinkPrivateSiteConfigId Field -->
             <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [loading]="loading"
               [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="' مسیر'"
-              [optionSelectFirstItem]="true">
+              [optionSelectFirstItem]="true" >
             </app-sms-apipath-selector>
             <app-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [loading]="loading"
-              (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]=""
+              (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]="" 
               [optionLinkApiPathId]="dataModel.linkApiPathId" [optionPlaceholder]="' شماره فرستنده'"
-              [optionSelectFirstItem]="true">
+              [optionSelectFirstItem]="true" [optionSelectFirstItemOnChangeApi]="true" >
             </app-sms-api-number-selector>
             <mat-action-row>
               <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>

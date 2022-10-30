@@ -33,6 +33,7 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public categoryService: SmsMainApiNumberService) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    
   }
 
   dataModelResult: ErrorExceptionResult<SmsMainApiNumberModel> = new ErrorExceptionResult<SmsMainApiNumberModel>();
@@ -42,22 +43,29 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
   filteredOptions: Observable<SmsMainApiNumberModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
+  @Input() optionSelectFirstItemOnChangeApi = false;
+
   @Input() optionPlaceholder = '';
   @Output() optionChange = new EventEmitter<SmsMainApiNumberModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | SmsMainApiNumberModel) {
     this.onActionSelectForce(x);
   }
-  
+
   @Input() set optionLinkApiPathId(x: string) {
     if (x == this.privateLinkApiPathId)
       return;
     if (this.privateLinkApiPathId != '')
       this.onActionSelectClear();
     this.privateLinkApiPathId = x;
+    if (this.privateLinkApiPathId != this.privateLinkApiPathIdLast)
+      this.optionSelectFirstItem = this.optionSelectFirstItemOnChangeApi;
+    this.privateLinkApiPathIdLast = x;
     this.loadOptions();
   }
   public privateLinkApiPathId = '';
+  private privateLinkApiPathIdLast = '';
+  
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -107,14 +115,12 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
         map(response => {
           this.dataModelResult = response;
           /*select First Item */
-          if (this.optionSelectFirstItem &&
-            (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id.length <= 0) &&
-            this.dataModelResult.listItems.length > 0) {
+          if (this.optionSelectFirstItem && (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id.length <= 0) && this.dataModelResult.listItems.length > 0) {
             this.optionSelectFirstItem = false;
-            setTimeout(() => { 
+            setTimeout(() => {
               this.formControl.setValue(this.dataModelResult.listItems[0]);
               this.onActionSelect(this.dataModelResult.listItems[0])
-             }, 1000);
+            }, 1000);
           }
           /*select First Item */
           this.loading.Stop('DataGetAll');
