@@ -79,7 +79,7 @@ export class SmsActionSendMessageComponent implements OnInit {
   dataModelDateByClockExpire: DateByClock = new DateByClock();
   formInfo: FormInfoModel = new FormInfoModel();
   clipboardText = '';
-
+  
 
   // Hangfire 1.7+ compatible expression: '3 2 12 1/1 ?'
   // Quartz compatible expression: '4 3 2 12 1/1 ? *'
@@ -186,6 +186,8 @@ export class SmsActionSendMessageComponent implements OnInit {
     this.dataModelParentSelected = model;
     if (model && model.id.length > 0) {
       this.dataModel.linkApiPathId = model.id;
+      this.dataModel.linkFromNumber=null;
+      
     }
   }
   dataMessageCategoryModel: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();
