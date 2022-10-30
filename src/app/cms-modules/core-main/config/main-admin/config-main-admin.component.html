@@ -313,7 +313,7 @@
         
         <!-- UserMembershipRuleHtmlBody Field -->
          {{'TITLE.User_Membership_Rules' | translate}} :
-        <angular-editor [placeholder]="{{'TITLE.Enter_the_text_of_the_user_membership_ruless' | translate}} ..." [config]="publicHelper.editorConfig"
+        <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_text_of_the_user_membership_ruless')" [config]="publicHelper.editorConfig"
           id="maineditor" [(ngModel)]="dataConfigAdminMainModel.userMembershipRuleHtmlBody"
           name="dataConfigAdminMainModel.userMembershipRuleHtmlBody"></angular-editor>
 
