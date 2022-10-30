@@ -7,7 +7,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-      <mat-step label="'{{TITLE.System_specifications | translate}}'" state="main">
+      <mat-step label="{{TITLE.System_specifications | translate}}" state="main">
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.System_Title' | translate}}</mat-label>
