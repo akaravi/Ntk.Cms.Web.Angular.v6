@@ -14,6 +14,7 @@ import {
   LinkManagementTargetCategoryModel,
   LinkManagementBillboardPatternModel,
   EnumManageUserAccessDataTypes,
+  CoreSiteModel,
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -27,6 +28,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-linkmanagement-target-edit',
@@ -43,6 +45,7 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
     private linkManagementEnumService: LinkManagementEnumService,
     private linkManagementTargetService: LinkManagementTargetService,
     private cmsToastrService: CmsToastrService,
+    private tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
@@ -93,10 +96,16 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
       this.cmsToastrService.typeErrorEditRowIsNull();
       return;
     }
-    this.DataGetOne();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.DataGetOne();
+    });
+    
     this.getEnumRecordStatus();
     this.getEnumSharingPriceType();
     this.getEnumManagementContentSettingType();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.DataGetOne();
+    });
   }
   getEnumManagementContentSettingType(): void {
     this.linkManagementEnumService.ServiceEnumManagementContentSettingType().subscribe((res) => {
@@ -240,5 +249,14 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
   onActionBackToParent(): void {
     this.router.navigate(['/linkmanagement/target/']);
   }
-
+  onActionSelectSite(model: CoreSiteModel | null): void {
+    if (!model || model.id <= 0) {
+      this.cmsToastrService.typeErrorMessage(
+        this.translate.instant('MESSAGE.Specify_the_site'),
+        this.translate.instant('MESSAGE.Information_site_is_not_clear')
+      );
+      return;
+    }
+    this.dataModel.linkSiteId = model.id;
+  }
 }
