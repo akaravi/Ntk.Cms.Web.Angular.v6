@@ -23,7 +23,7 @@
     </mat-form-field>
     <app-linkmanagement-accounting-selector (optionChange)="onActionSelectorAccount($event)"
       [optionDisabled]="!fieldsInfo['LinkManagementAccountingId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkManagementAccountingId" [optionPlaceholder]="'حساب '">
+      [optionSelectForce]="dataModel.linkManagementAccountingId" [optionPlaceholder]="this.translate.instant('TITLE.Account')">
     </app-linkmanagement-accounting-selector>
     <!-- AccountingType Field -->
     <mat-form-field class="ntk-full-width">

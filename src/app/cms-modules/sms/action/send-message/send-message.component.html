@@ -14,22 +14,22 @@
           <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                مسیر
+                {{'TITLE.Direction' | translate}}
               </mat-panel-title>
               <mat-panel-description>
-                انتخاب مسیر ارسال پیام
-                <mat-icon>account_circle</mat-icon>
+                {{'TITLE.Select_the_path_to_send_the_message' | translate}}
+               <mat-icon>account_circle</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
 
             <!-- LinkPrivateSiteConfigId Field -->
             <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [loading]="loading"
-              [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="' مسیر'"
+              [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="this.translate.instant('TITLE.Direction')"
               [optionSelectFirstItem]="true" >
             </app-sms-apipath-selector>
             <app-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [loading]="loading"
               (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]="" 
-              [optionLinkApiPathId]="dataModel.linkApiPathId" [optionPlaceholder]="' شماره فرستنده'"
+              [optionLinkApiPathId]="dataModel.linkApiPathId" [optionPlaceholder]="this.translate.instant('TITLE.sender_number')"
               [optionSelectFirstItem]="true" [optionSelectFirstItemOnChangeApi]="true" >
             </app-sms-api-number-selector>
             <mat-action-row>
@@ -43,7 +43,7 @@
                 {{'TITLE.Message_Text' | translate}}
               </mat-panel-title>
               <mat-panel-description>
-                انتخاب متن پیام های پیش فرض
+                {{'TITLE.Select_the_text_of_the_default_messages' | translate}}
                 <mat-icon>map</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
@@ -58,7 +58,7 @@
               *ngIf="dataMessageContentModel?.messageBody?.length>0" rows="10"></textarea>
             <button type="button" (click)="onActionMessageContentAdd()" class="btn btn-light"
               *ngIf="dataMessageContentModel?.messageBody?.length>0 && dataModel.message?.length>0">
-              <i class="ft-x"></i> اضافه به متن
+              <i class="ft-x"></i> {{'TITLE.Added_to_the_text' | translate}}
             </button>
             <button type="button" (click)="onActionMessageContentNew()" class="btn btn-light"
               *ngIf="dataMessageContentModel?.messageBody?.length>0">
@@ -73,10 +73,10 @@
           <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                دفترچه تلفن
+                {{'TITLE.Phonebook' | translate}}
               </mat-panel-title>
               <mat-panel-description>
-                انتخاب مخاطب
+                {{'TITLE.Audience_selection' | translate}}
                 <mat-icon>date_range</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
@@ -93,7 +93,7 @@
           <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                زمان ارسال
+                {{'TITLE.shipping_time' | translate}}
               </mat-panel-title>
               <mat-panel-description>
                 زمان شروع به ارسال و اتمام

@@ -24,7 +24,7 @@
     <!-- LinkExternalCmsUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
       [optionDisabled]="!fieldsInfo['LinkExternalCmsUserId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkExternalCmsUserId" [optionPlaceholder]="'حساب کاربری'">
+      [optionSelectForce]="dataModel.linkExternalCmsUserId" [optionPlaceholder]="this.translate.instant('TITLE.Account')">
     </app-cms-user-selector>
     <!-- IsInBlackList Field -->
     <div class="ntk-full-width">

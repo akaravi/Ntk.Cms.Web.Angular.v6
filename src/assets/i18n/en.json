@@ -1117,7 +1117,17 @@
 	"TITLE.user":"user",
 	"TITLE.Iran_Tehran ":"Iran_Tehran ",
 	"TITLE.Real_estate_customer_personnel":"Real estate customer personnel",
-
+	"TITLE.property_owner":"property owner",
+	"TITLE.This_option_is_correct":"This option is correct",
+	"TITLE.Direction":"Direction",
+	"TITLE.Select_the_path_to_send_the_message":"Select the path to send the message",
+	"TITLE.sender_number":"sender number",
+	"TITLE.Select_the_text_of_the_default_messages":"Select the text of the default messages",
+	"TITLE.Added_to_the_text":"Added to the text",
+	"TITLE.Phonebook":" Phonebook",
+	"TITLE.Audience_selection":" Audience selection",
+	"TITLE.shipping_time":"shipping time",
+	"TITLE.shipping_time":"shipping time",
 
 	"TRANSLATOR.HI": "hi",
 	"TRANSLATOR.SELECT": "Select your language",

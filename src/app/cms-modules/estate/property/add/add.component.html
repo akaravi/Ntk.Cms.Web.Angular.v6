@@ -229,13 +229,13 @@
         <app-cms-user-selector *ngIf="dataProfessional && this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorCmsUser($event)"
           [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCmsUserId"
-          [optionPlaceholder]="'مالک ملک'">
+          [optionPlaceholder]="this.translate.instant('TITLE.property owner')">
         </app-cms-user-selector>
         <!-- LinkEstateUserId Field -->
         <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateUser($event)"
           [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessAddField"
-          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل املاک'">
+          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Property_personne')">
         </app-estate-account-user-selector>
 
         <!-- AboutAgentMobile Field -->
@@ -422,7 +422,7 @@
           <br>
           <app-cms-currency-selector [optionSelectFirstItem]="currencyOptionSelectFirstItem"
             [optionSelectForce]="contractDataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)"
-            [optionPlaceholder]="'واحد پولی معامله را مشخص کنید'">
+            [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
           </app-cms-currency-selector>
 
           <div *ngIf="contractDataModel.linkCoreCurrencyId>0">
