@@ -23,7 +23,7 @@
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
       </mat-form-field>
       <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
-        [openSelectFileDescription]="'ابعاد عکس 600 در 600 باشد'" [(openForm)]="fileManagerOpenForm"
+        [openSelectFileDescription]="this.translate.instant('TITLE.The_dimensions_of_the_photo_should_be_600_x_600')" [(openForm)]="fileManagerOpenForm"
         [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'" [openDirectUploadView]="true"
         [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
     </div>

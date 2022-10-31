@@ -136,7 +136,7 @@
       <!-- linkCoreCurrencyId Field -->
       <app-cms-currency-selector [optionSelectFirstItem]="true"
       [optionSelectForce]="dataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)"
-      [optionPlaceholder]="'واحد پولی معامله را مشخص کنید'"></app-cms-currency-selector>
+      [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')"></app-cms-currency-selector>
     <!-- LinkLocationIds Field -->
     <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" *ngIf="!LinkPropertyIdsInUse"
       [optionDisabled]="!fieldsInfo['LinkLocationIds']?.accessAddField" [optionSelectForce]="dataModel.linkLocationIds"
@@ -148,7 +148,7 @@
     <br>
     <div *ngIf="dataModel?.urlViewContentQRCodeBase64?.length>0 && dataModel?.urlViewContent?.length>0">
       <a href="{{dataModel.urlViewContent}}" target="_blank">
-        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
+        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="300px" width="300px">
       </a>
       <app-cms-qdoc [optionUrl]="dataModel.urlViewContent"></app-cms-qdoc>
     </div>

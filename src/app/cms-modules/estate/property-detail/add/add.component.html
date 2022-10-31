@@ -23,7 +23,7 @@
     </mat-form-field>
     <!-- LinkPropertyTypeLanduseId Field -->
     <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="'کاربری'">
+      [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="this.translate.instant('TITLE.user')">
     </app-estate-propertytypelanduse-selector>
     <!-- LinkPropertyDetailGroupId Field -->
     <app-estate-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)"

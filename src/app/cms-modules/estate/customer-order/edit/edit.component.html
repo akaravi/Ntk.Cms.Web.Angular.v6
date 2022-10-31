@@ -56,7 +56,7 @@
       <!-- LinkEstateUserId Field -->
       <app-estate-accountuser-selector (optionChange)="onActionSelectorEstateUser($event)"
         [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessEditField"
-        [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل/مشتری املاک'">
+        [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Real_estate_customer_personnel')">
       </app-estate-accountuser-selector>
       <!-- ContactMobiles Field -->
       <mat-form-field class="ntk-full-width">
@@ -165,7 +165,7 @@
 
       <!-- linkCoreCurrencyId Field -->
       <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
-        (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="'واحد پولی معامله را مشخص کنید'">
+        (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
       </app-cms-currency-selector>
       <!-- SalePriceMin Field -->
       <mat-form-field class="ntk-full-width"
@@ -347,7 +347,7 @@
       *ngIf="dataModel?.urlViewContentQRCodeBase64?.length>0 && dataModel?.urlViewContent?.length>0">
 
       <a href="{{dataModel.urlViewContent}}" target="_blank">
-        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
+        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="300px" width="300px">
       </a>
       <span class="navi-icon" [cdkCopyToClipboard]="dataModel.urlViewContent" (click)="onActionCopied()">
         <i class="flaticon2-copy"></i></span>
@@ -356,14 +356,13 @@
         {{'TITLE.You_can_view_the_output_of_your_billboard' | translate}}
       </p>
       <p dir="rtl" style="text-align: right;" style="font-size: 17px;">
-        در بخش 'عنوان' میتوانید عنوان صفحه نمایش خود را ویرایش نمایید و برای آن پرسنل،آدرس و توضیحات بنویسید.
-        <br>
-        در بخش بعدی میتوانید محتوای نمایشی خود برای بیلبورد را مشاهده نمایید.
-        <br>
-        با پر کردن هر کدام از فیلد ها میتوانید محدوده جستجو خود را کوچکتر کنید.
-        <br>
-        در نهایت با کلیک بر روی گزینه 'مشاهده' میتوانید آگهی های مورد نظر خود را مشاهده و با کلیک بر روی گزینه 'ذخیره'
-        بیلبورد خود را بسازید.
+      {{'TITLE.In_the_title_section_you_can_edit_the_title_of_your_screen_and_write_the_address_and_description_for_that_staff' | translate}}
+            <br>
+      {{'TITLE.In_the_next_section_you_can_see_your_display_content_for_the_billboard' | translate}}
+            <br>
+      {{'TITLE.You_can_narrow_your_search_by_filling_in_any_of_the_fields' | translate}}
+             <br>
+       {{'TITLE.Finally_by_clicking_on_the_view_option_you_can_see_the_advertisements_you_want_and_by_clicking_on_the_save_option_you_can_create_your_own_billboard' | translate}}
       </p>
       <hr>
       <app-cms-qdoc [optionUrl]="dataModel.urlViewContent"></app-cms-qdoc>

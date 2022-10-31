@@ -25,13 +25,13 @@
     <!-- LinkAdsTypeId Field -->
     <app-estate-adstype-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
       [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="'شناسه نوع تبلغ'">
+      [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Ad_type_ID')">
     </app-estate-adstype-selector>
 
     <!-- LinkPropertyId Field -->
     <app-estate-property-selector (optionChange)="onActionSelectorSelectLinkPropertyId($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkPropertyId"
-      [optionPlaceholder]="'شناسه ملک'">
+      [optionPlaceholder]="this.translate.instant('TITLE.Property_ID')">
     </app-estate-property-selector>
 
 

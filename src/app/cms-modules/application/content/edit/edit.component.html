@@ -208,7 +208,7 @@
           <mat-label>{{ fieldsInfo['AboutUsAddress']?.fieldTitle }}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.aboutUsAddress"
             [disabled]="!fieldsInfo['AboutUsAddress']?.accessEditField" name="dataModel.aboutUsAddress" #AboutUsAddress
-            type="text" placeholder="ایران - تهران - ..." row="5" minlength="0" maxlength="100"></textarea>
+            type="text" placeholder="{{'TITLE.Iran_Tehran' | translate}} ..." row="5" minlength="0" maxlength="100"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.aboutUsAddress && fieldsInfo['AboutUsAddress']?.accessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsAddress = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['AboutUsAddress']?.accessEditField" matSuffix>mode_edit</mat-icon>

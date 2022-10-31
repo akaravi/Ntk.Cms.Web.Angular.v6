@@ -279,7 +279,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="اطلاعات شخصی" state="main">
+      <mat-step label="{{'TITLE.Personal_Information' | translate}}" state="main">
         <!-- LinkCmsUserId Field -->
         <app-cms-user-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorCmsUser($event)"
           [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessEditField" [optionSelectForce]="dataModel.linkCmsUserId"
@@ -289,7 +289,7 @@
         <app-estate-accountuser-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateUser($event)"
           [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessEditField"
-          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل املاک'">
+          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
         </app-estate-accountuser-selector>
 
         <!-- AboutAgentTel Field -->
@@ -503,7 +503,7 @@
           <br>
           <app-cms-currency-selector [optionSelectFirstItem]="currencyOptionSelectFirstItem"
             [optionSelectForce]="contractDataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)"
-            [optionPlaceholder]="'واحد پولی معامله را مشخص کنید'">
+            [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
           </app-cms-currency-selector>
           <div *ngIf="contractDataModel.linkCoreCurrencyId>0">
 
@@ -785,7 +785,7 @@
           <div class="col-md-6 col-sm-6 col-xs-9" height="300px" width="300px" style="float: left; text-align: center;">
             <div *ngIf="dataModel?.urlViewContentQRCodeBase64?.length>0 && dataModel?.urlViewContent?.length>0">
               <a href="{{dataModel.urlViewContent}}" target="_blank">
-                <img [src]="dataModel.urlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="200px" width="200px">
+                <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="200px" width="200px">
               </a>
               <span class="navi-icon" [cdkCopyToClipboard]="dataModel.urlViewContent" (click)="onActionCopied()">
                 <i class="flaticon2-copy"></i></span>

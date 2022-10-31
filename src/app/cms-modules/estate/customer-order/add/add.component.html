@@ -62,7 +62,7 @@
     <!-- LinkEstateUserId Field -->
     <app-estate-accountuser-selector (optionChange)="onActionSelectorEstateUser($event)"
       [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="'پرسنل/مشتری املاک'">
+      [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Real_estate_customer_personnel')">
     </app-estate-accountuser-selector>
     <!-- ContactMobiles Field -->
     <mat-form-field class="ntk-full-width">
@@ -176,7 +176,7 @@
     <hr>
     <!-- linkCoreCurrencyId Field -->
     <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
-      (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="'واحد پولی معامله را مشخص کنید'">
+      (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
     </app-cms-currency-selector>
     <div class="row">
       <div class="col-md-6 col-sm-6 col-xs-9">
@@ -367,7 +367,7 @@
 
     <div *ngIf="dataModel?.urlViewContentQRCodeBase64?.length>0 && dataModel?.urlViewContent?.length>0">
       <a href="{{dataModel.urlViewContent}}" target="_blank">
-        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="300px" width="300px">
+        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="300px" width="300px">
       </a>
       <app-cms-qdoc [optionUrl]="dataModel.urlViewContent"></app-cms-qdoc>
     </div>
