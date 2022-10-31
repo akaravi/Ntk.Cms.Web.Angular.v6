@@ -21,7 +21,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-estate-propertytypelanduse-selector',
+  selector: 'app-estate-property-type-landuse-selector',
   templateUrl: './selector.component.html'
 })
 export class EstatePropertyTypeLanduseSelectorComponent implements OnInit, OnDestroy {

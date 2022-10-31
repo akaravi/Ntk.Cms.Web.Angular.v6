@@ -29,7 +29,7 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 
 
 @Component({
-  selector: 'app-estate-accountagency-add',
+  selector: 'app-estate-account-agency-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })

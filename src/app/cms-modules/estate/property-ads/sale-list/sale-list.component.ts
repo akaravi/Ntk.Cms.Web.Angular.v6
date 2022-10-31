@@ -22,7 +22,7 @@ import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankp
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-propertyads-salelist',
+  selector: 'app-estate-property-ads-salelist',
   templateUrl: './sale-list.component.html',
   styleUrls: ['./sale-list.component.scss']
 })

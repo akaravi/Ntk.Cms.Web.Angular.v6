@@ -29,7 +29,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-estate-propertyads-list',
+  selector: 'app-estate-property-ads-list',
   templateUrl: './list.component.html'
 })
 export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {

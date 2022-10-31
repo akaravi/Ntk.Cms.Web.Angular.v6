@@ -20,7 +20,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
-  selector: 'app-estate-propertydetailgroup-selector',
+  selector: 'app-estate-property-detail-group-selector',
   templateUrl: './selector.component.html'
 })
 export class EstatePropertyDetailGroupSelectorComponent implements OnInit {

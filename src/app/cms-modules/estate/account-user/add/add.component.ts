@@ -29,7 +29,7 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-accountuser-add',
+  selector: 'app-estate-account-user-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })

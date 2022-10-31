@@ -111,7 +111,6 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
      this.categoryService.ServiceGetAllTree(filteModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          //debugger
           parentModel.children= ret.listItems;
           this.dataSource.data = null;
           this.dataSource.data = this.dataModelResult.listItems;

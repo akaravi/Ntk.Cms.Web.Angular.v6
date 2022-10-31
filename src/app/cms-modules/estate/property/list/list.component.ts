@@ -223,7 +223,6 @@ export class EstatePropertyListComponent
   }
 
   DataGetAll(): void {
-    debugger
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     if (!this.optionloadComponent) {
       return;

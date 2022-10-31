@@ -7,6 +7,7 @@ import {
   EstatePropertyHistoryService,
   EstatePropertyHistoryModel,
   DataFieldInfoModel,
+  EstateActivityTypeModel
 } from 'ntk-cms-api';
 import {
   Component,
@@ -24,7 +25,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-ticketing-departemen-add',
+  selector: 'app-estate-property-history-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
@@ -41,6 +42,10 @@ export class EstatePropertyHistoryAddComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    
+    if (data) {
+      this.dataModel.linkActivityTypeId = data.linkActivityTypeId;
+    }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -60,7 +65,7 @@ export class EstatePropertyHistoryAddComponent implements OnInit {
     this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
-
+    
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
@@ -114,7 +119,14 @@ export class EstatePropertyHistoryAddComponent implements OnInit {
     }
     );
   }
-
+  onActionSelectorSelect(model: EstateActivityTypeModel | null): void {
+    if (!model || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.dataModel.linkActivityTypeId = model.id;
+  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;

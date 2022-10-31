@@ -1,8 +1,8 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    --------------------------------------
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+    <app-estate-activity-type-tree [loading]="loading" (optionChange)="onActionSelectorSelect($event)">
+    </app-estate-activity-type-tree>    <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->

@@ -464,7 +464,7 @@
           <mat-label>{{fieldsInfo['DownloadLinkSrcCustomize']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.downloadLinkSrcCustomize"
             [disabled]="!fieldsInfo['DownloadLinkSrcCustomize']?.accessEditField"
-            name="dataModel.downloadLinkSrcCustomize" #DownloadLinkSrcCustomize type="text" placeholder="('TITLE.download_link' | translate)"
+            name="dataModel.downloadLinkSrcCustomize" #DownloadLinkSrcCustomize type="text" placeholder="{{'TITLE.download_link' | translate}}"
             minlength="0" maxlength="1000" />
           <mat-icon matSuffix
             *ngIf="dataModel.downloadLinkSrcCustomize && fieldsInfo['DownloadLinkSrcCustomize']?.accessEditField"

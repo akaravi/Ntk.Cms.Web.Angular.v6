@@ -23,6 +23,8 @@ import { EstateBillboardEditComponent } from './billbord/edit/edit.component';
 import { EstatePropertyProjectListComponent } from './property-project/list/list.component';
 import { EstatePropertyProjectAddComponent } from './property-project/add/add.component';
 import { EstatePropertyProjectEditComponent } from './property-project/edit/edit.component';
+import { EstateActivityTypeListComponent } from './activity-type/list/list.component';
+import { EstatePropertyHistoryListComponent } from './property-history/list/list.component';
 
 const routes: Routes = [
   {
@@ -105,6 +107,20 @@ const routes: Routes = [
       {
         path: 'property-ads/sale/:LinkPropertyId',
         component: EstatePropertyAdsSaleListComponent
+      },
+      /**/
+      {
+        path: 'activity-type',
+        component: EstateActivityTypeListComponent
+      },
+      /**/
+      {
+        path: 'property-history',
+        component: EstatePropertyHistoryListComponent
+      },
+      {
+        path: 'property-history/LinkPropertyId/:LinkPropertyId',
+        component: EstatePropertyHistoryListComponent
       },
       /**/
       {

@@ -23,7 +23,7 @@
     </mat-form-field>
 
     <!-- LinkAdsTypeId Field -->
-    <app-estate-adstype-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
+    <app-estate-ads-type-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
       [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.accessAddField"
       [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Ad_type_ID')">
     </app-estate-adstype-selector>

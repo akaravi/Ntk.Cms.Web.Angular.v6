@@ -26,12 +26,12 @@
       [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="this.translate.instant('TITLE.user')"
       [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.accessEditField">
       <br>
-    </app-estate-propertytypelanduse-selector>
+    </app-estate-property-type-landuse-selector>
     <!-- LinkPropertyDetailGroupId Field -->
-    <app-estate-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)"
+    <app-estate-property-detail-group-selector (optionChange)="onActionSelectorDetailGroup($event)"
       [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['LinkPropertyDetailGroupId']?.accessEditField">
-    </app-estate-propertydetailgroup-selector>
+    </app-estate-property-detail-group-selector>
     <!-- IconFont Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.accessWatchField">
       <mat-label> {{fieldsInfo['IconFont']?.fieldTitle}}</mat-label>

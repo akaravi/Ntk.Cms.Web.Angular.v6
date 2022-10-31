@@ -8,6 +8,7 @@ import {
   EstatePropertyHistoryModel,
   DataFieldInfoModel,
   EnumManageUserAccessDataTypes,
+  EstateActivityTypeModel
 } from 'ntk-cms-api';
 import {
   Component,
@@ -25,7 +26,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-ticketing-departemen-edit',
+  selector: 'app-estate-property-history-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
@@ -136,7 +137,14 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
     }
     );
   }
-
+  onActionSelectorSelect(model: EstateActivityTypeModel | null): void {
+    if (!model || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.dataModel.linkActivityTypeId = model.id;
+  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;

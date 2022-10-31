@@ -1,0 +1,22 @@
+<mat-form-field class="ntk-full-width" *ngIf="optionTypeView===1">
+  <input type="text" placeholder="{{optionPlaceholder}}" [attr.disabled]="optionDisabled? true : null"
+    aria-label="Assignee" matInput [formControl]="formControl" [matAutocomplete]="auto31">
+  <mat-autocomplete #auto31="matAutocomplete" [displayWith]="displayFn"
+    (optionSelected)="onActionSelect($event.option.value)">
+    <mat-option *ngFor="let state of filteredOptions | async" [value]="state" [disabled]="optionDisabled">
+      <span>{{ displayOption(state) }}</span>
+    </mat-option>
+  </mat-autocomplete>
+  <mat-icon matSuffix *ngIf="dataModelSelect.id" matSuffix mat-icon-button aria-label="Clear"
+    (click)="onActionSelectClear()">close</mat-icon>
+  <ng-content></ng-content>
+</mat-form-field>
+
+<div *ngIf="optionTypeView===2" style="display: inline-block;">
+  <div class="ntk-pull-right" *ngFor="let state of filteredOptions | async">
+    <button type="button" [attr.disabled]="optionDisabled? true : null" mat-raised-button
+      color="{{state.id===dataModelSelect.id ? 'primary' : 'info'}}" (click)="onActionSelect(state)">{{
+      displayOption(state) }}</button>
+  </div>
+  <ng-content></ng-content>
+</div>

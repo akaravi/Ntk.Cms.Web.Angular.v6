@@ -25,7 +25,7 @@ import { CoreLocationModel } from 'ntk-cms-api';
 import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
-  selector: 'app-property-project-add',
+  selector: 'app-estate-property-project-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'
   ]

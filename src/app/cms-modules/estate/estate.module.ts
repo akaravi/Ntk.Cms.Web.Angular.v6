@@ -14,6 +14,7 @@ import {
   CoreModuleTagService,
   EstateConfigurationService,
   EstatePropertyTypeLanduseService,
+  EstateActivityTypeService,
   EstatePropertyService,
   EstateContractTypeService,
   EstatePropertyDetailGroupService,
@@ -89,6 +90,11 @@ import { EstatePropertyTypeLanduseEditComponent } from './property-type-landuse/
 import { EstatePropertyTypeLanduseListComponent } from './property-type-landuse/list/list.component';
 import { EstatePropertyTypeLanduseSelectorComponent } from './property-type-landuse/selector/selector.component';
 import { EstatePropertyTypeLanduseTreeComponent } from './property-type-landuse/tree/tree.component';
+import { EstateActivityTypeAddComponent } from './activity-type/add/add.component';
+import { EstateActivityTypeEditComponent } from './activity-type/edit/edit.component';
+import { EstateActivityTypeListComponent } from './activity-type/list/list.component';
+import { EstateActivityTypeSelectorComponent } from './activity-type/selector/selector.component';
+import { EstateActivityTypeTreeComponent } from './activity-type/tree/tree.component';
 import { EstatePropertyTypeUsageAddComponent } from './property-type-usage/add/add.component';
 import { EstatePropertyTypeUsageEditComponent } from './property-type-usage/edit/edit.component';
 import { EstatePropertyTypeUsageListComponent } from './property-type-usage/list/list.component';
@@ -113,15 +119,19 @@ import { EstatePropertyCompleteComponent } from './property/autocomplete/autocom
 import { EstateContractTypeCompleteComponent } from './contract-type/autocomplete/autocomplete.component';
 import { EstatePropertyTypeUsageCompleteComponent } from './property-type-usage/autocomplete/autocomplete.component';
 import { EstatePropertyTypeLanduseCompleteComponent } from './property-type-landuse/autocomplete/autocomplete.component';
+import { EstateActivityTypeCompleteComponent } from './activity-type/autocomplete/autocomplete.component';
 import { EstateCustomerOrderAddComponent } from './customer-order/add/add.component';
 import { EstateCustomerOrderEditComponent } from './customer-order/edit/edit.component';
 import { EstateCustomerOrderListComponent } from './customer-order/list/list.component';
 import { EstateCustomerOrderSelectorComponent } from './customer-order/selector/selector.component';
 import { EstateCustomerOrderTreeComponent } from './customer-order/tree/tree.component';
 import { EstatePropertyTypeLanduseSelectionlistComponent } from './property-type-landuse/selectionlist/selectionlist.component';
+import { EstateActivityTypeSelectionlistComponent } from './activity-type/selectionlist/selectionlist.component';
 import { EstatePropertyHeaderComponent } from './property/header/header.component';
 import { EstateBillboardHeaderComponent } from './billbord/header/header.component';
 import { EstatePropertyTypeLanduseHeaderComponent } from './property-type-landuse/header/header.component';
+import { EstateActivityTypeHeaderComponent } from './activity-type/header/header.component';
+
 import { EstateContractTypeHeaderComponent } from './contract-type/header/header.component';
 import { EstateCustomerOrderHeaderComponent } from './customer-order/header/header.component';
 import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/header/header.component';
@@ -151,6 +161,15 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
     EstatePropertyTypeLanduseCompleteComponent,
     EstatePropertyTypeLanduseSelectionlistComponent,
     EstatePropertyTypeLanduseHeaderComponent,
+     /* */
+     EstateActivityTypeAddComponent,
+     EstateActivityTypeEditComponent,
+     EstateActivityTypeListComponent,
+     EstateActivityTypeSelectorComponent,
+     EstateActivityTypeTreeComponent,
+     EstateActivityTypeCompleteComponent,
+     EstateActivityTypeSelectionlistComponent,
+     EstateActivityTypeHeaderComponent,
     /* */
     EstatePropertyProjectAddComponent,
     EstatePropertyProjectEditComponent,
@@ -293,6 +312,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
     EstatePropertyShareSiteService,
     EstatePropertyProjectService,
     EstatePropertyTypeLanduseService,
+    EstateActivityTypeService,
     EstatePropertyTypeUsageService,
     EstatePropertyTypeService,
     EstatePropertyAdsService,

@@ -23,6 +23,20 @@
     </mat-form-field>
 
 
+    <!-- TitleResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.accessWatchField">
+      <mat-label> {{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleResourceLanguage" name="dataModel.titleResourceLanguage"
+        #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.accessEditField"
+        placeholder="{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleResourceLanguage.errors?.required">
+        TitleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
     <!-- TitleCreatedYaer Field -->
     <mat-form-field class="ntk-full-width">

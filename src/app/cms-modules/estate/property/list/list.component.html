@@ -20,15 +20,15 @@
   [optionId]="this.requestLinkPropertyTypeUsageId">
 
 </app-estate-property-type-usage-header>
-<app-property-project-header *ngIf="this.requestLinkProjectId?.length>0"
+<app-estate-property-project-header *ngIf="this.requestLinkProjectId?.length>0"
   [optionId]="this.requestLinkProjectId">
 
-</app-property-project-header>
+</app-estate-property-project-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPropertyTypeLanduseId?.length===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-estate-propertytypelanduse-tree (optionChange)="onActionSelectorSelect($event)">
-    </app-estate-propertytypelanduse-tree>
+    <app-estate-property-type-landuse-tree (optionChange)="onActionSelectorSelect($event)">
+    </app-estate-property-type-landuse-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>

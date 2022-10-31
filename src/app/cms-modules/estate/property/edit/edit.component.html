@@ -28,20 +28,20 @@
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
         <!-- LinkPropertyTypeUsageId Field -->
-        <app-estate-propertytypeusage-selector (optionChange)="onActionSelectorSelectUsage($event)"
+        <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
           [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
-        </app-estate-propertytypeusage-selector>
+        </app-estate-property-type-usage-selector>
         <br>
         <!-- LinkPropertyTypeLanduseId Field -->
-        <app-estate-propertytypelanduse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
+        <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
           *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_type')"
           [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId">
-        </app-estate-propertytypelanduse-selector>
+        </app-estate-property-type-landuse-selector>
         <br>
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
@@ -286,7 +286,7 @@
           [optionPlaceholder]="this.translate.instant('TITLE.Property_Owner')">
         </app-cms-user-selector>
         <!-- LinkEstateUserId Field -->
-        <app-estate-accountuser-selector *ngIf="this.tokenHelper.isAdminSite"
+        <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateUser($event)"
           [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessEditField"
           [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
@@ -375,10 +375,10 @@
         <p>{{'TITLE.Property_details_according_to_the_type_of_property' | translate}}</p>
 
         <!-- LinkPropertyProjectId Field -->
-        <app-property-project-selector *ngIf="this.tokenHelper.isAdminSite"
+        <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
           [optionPlaceholder]="this.translate.instant('TITLE.Project')">
-        </app-property-project-selector>
+        </app-estate-property-project-selector>
 
         <hr>
 

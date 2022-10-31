@@ -21,7 +21,7 @@
         placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="100" readonly required
         rows=5></textarea>
     </mat-form-field>
-    <app-biography-category-selector [optionPlaceholder]="'{{'TITLE.Alternative_classification_to_move_information_to_this_branch' | translate}}'">
+    <app-biography-category-selector [optionPlaceholder]="this.translate.instant('TITLE.Alternative_classification_to_move_information_to_this_branch')">
     </app-biography-category-selector>
   </ng-container>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
