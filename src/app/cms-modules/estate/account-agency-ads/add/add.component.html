@@ -25,7 +25,7 @@
     <!-- LinkPropertyId Field -->
     <app-estate-account-agency-selector (optionChange)="onActionSelectorSelectLinkAccountAgencyId($event)"
       [optionDisabled]="!fieldsInfo['LinkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkAccountAgencyId"
-      [optionPlaceholder]="'شناسه آژانس'">
+      [optionPlaceholder]="this.translate.instant('TITLE.Agency_ID')">
     </app-estate-account-agency-selector>
     <!-- LinkAdsTypeId Field -->
     <app-estate-ads-type-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"

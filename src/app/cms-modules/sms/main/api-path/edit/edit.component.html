@@ -250,7 +250,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="متغیر های ارسال" state="seo">
+      <mat-step label="{{'TITLE.Dispatch_variables' | translate}}" state="seo">
         <p>{{'TITLE.Port_settings' | translate}}</p>
         <dynamic-form-builder-cms [formGroup]="vform.form" [(jsonValue)]="dataModel.privateConfigJsonValues"
           [propertiesInfos]="dataModel.privateConfigJsonFormatter"></dynamic-form-builder-cms>
@@ -266,7 +266,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="متغیرهای دریافت وضعیت" state="seo">
+      <mat-step label="{{'TITLE.Status_receiving_variables' | translate}}" state="seo">
         <p>{{'TITLE.Set_acess' | translate}}</p>
         <!-- apiAbilitySendUnicodeMessage Field -->
         <div class="ntk-full-width">
@@ -323,7 +323,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="وضعیت برگشت اعتبار" state="seo">
+      <mat-step label="{{'TITLE.Credit_return_status' | translate}}" state="seo">
 
         <!-- StatusOutOfServiceMonitorApiChar Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StatusOutOfServiceMonitorApiChar']?.accessWatchField">
@@ -437,7 +437,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label=" متغیرهای دریافت " state="seo">
+      <mat-step label="{{'TITLE.Receiving_variable' | translate}}" state="seo">
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
@@ -451,7 +451,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="بررسی اعتبار " state="seo">
+      <mat-step label="{{'TITLE.Check_validity' | translate}}" state="seo">
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
@@ -465,7 +465,7 @@
           </button>
         </div>
       </mat-step>
-      <mat-step label="متغیرهای بانک شماره" state="seo">
+      <mat-step label="{{'TITLE.Check_validity' | translate}}" state="seo">
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>

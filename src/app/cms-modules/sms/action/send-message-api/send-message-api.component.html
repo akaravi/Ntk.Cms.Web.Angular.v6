@@ -1,5 +1,5 @@
 <mat-form-field class="ntk-full-width">
-    <input type="text" placeholder="مسیر ارسال" [attr.disabled]="optionDisabled? true : null" aria-label="Assignee" matInput [formControl]="formPathControl" [matAutocomplete]="auto17">
+    <input type="text" placeholder="{{'TITLE.sending_route' | translate}}" [attr.disabled]="optionDisabled? true : null" aria-label="Assignee" matInput [formControl]="formPathControl" [matAutocomplete]="auto17">
     <mat-autocomplete #auto17="matAutocomplete" [displayWith]="displayPathFn"  (optionSelected)="onActionSelectPath($event.option.value)">
         <mat-option *ngFor="let state of filteredPathOptions | async" [value]="state"  [disabled]="optionDisabled">
             <span>{{ displayPathOption(state) }}</span>
@@ -11,7 +11,7 @@
 </mat-form-field>
 
 <mat-form-field class="ntk-full-width">
-    <input type="text" placeholder="شماره" [attr.disabled]="optionDisabled? true : null" aria-label="Assignee" matInput [formControl]="formNumberControl" [matAutocomplete]="auto18">
+    <input type="text" placeholder="{{'TITLE.No' | translate}}" [attr.disabled]="optionDisabled? true : null" aria-label="Assignee" matInput [formControl]="formNumberControl" [matAutocomplete]="auto18">
     <mat-autocomplete #auto18="matAutocomplete" [displayWith]="displayNumberFn"  (optionSelected)="onActionSelectNumber($event.option.value)">
         <mat-option *ngFor="let state of filteredNumberOptions | async" [value]="state"  [disabled]="optionDisabled">
             <span>{{ displayNumberOption(state) }}</span>

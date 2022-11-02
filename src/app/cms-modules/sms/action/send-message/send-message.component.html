@@ -142,7 +142,7 @@
               <div class="col-6">
                 <!-- scheduleSendExpireClock Field -->
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>ساعت پایان ارسال</mat-label>
+                  <mat-label>{{'TITLE.Send_end_time' | translate}}</mat-label>
                   <input matInput [ngxTimepicker]="scheduleSendExpireClock"
                     [(ngModel)]="dataModelDateByClockExpire.clock" [format]="24" name="scheduleSendExpireClock" />
                   <ngx-material-timepicker-toggle matSuffix [for]="scheduleSendExpireClock">
@@ -163,10 +163,10 @@
           <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                زمانبندی
+              {{'TITLE.Timing' | translate}}
               </mat-panel-title>
               <mat-panel-description>
-                زمانبندی تکرار ارسال
+                {{'TITLE.Retry_schedule' | translate}}
                 <mat-icon>date_range</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
@@ -186,10 +186,10 @@
           <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                تنظیمات
+                {{'TITLE.Settings' | translate}}
               </mat-panel-title>
               <mat-panel-description>
-                تنظیمات ارسال
+                {{'TITLE.Send_settings' | translate}}
                 <mat-icon>date_range</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
@@ -197,13 +197,13 @@
             <!-- IsFlash Field -->
             <div class="ntk-full-width">
               <mat-slide-toggle [(ngModel)]="dataModel.isFlash" name="dataModel.isFlash">
-                ارسال به صورت فلش
+                {{'TITLE.Send_as_flash' | translate}}
               </mat-slide-toggle>
             </div>
             <!-- SendByQeue Field -->
             <div class="ntk-full-width">
               <mat-slide-toggle [(ngModel)]="dataModel.sendByQeue" name="dataModel.sendByQeue">
-                ارسال در صف
+                {{'TITLE.Send_in_queue' | translate}}
               </mat-slide-toggle>
             </div>
 
@@ -240,14 +240,14 @@
             <!-- ToNumbers Field -->
             <mat-form-field class="ntk-full-width"
               *ngIf="(!this.dataModel.toContactCategories ||this.dataModel.toContactCategories?.length == 0) && (!this.dataModel.toContactContents||this.dataModel.toContactContents?.length == 0)">
-              <mat-label>شماره گیرنده</mat-label>
+              <mat-label>{{'TITLE.Receiver_number' | translate}}</mat-label>
               <textarea matInput [(ngModel)]="dataModel.toNumbers" name="dataModel.toNumbers" #ToNumbers type="text"
                 placeholder="0912" rows="5"></textarea>
               <mat-icon *ngIf="dataModel.toNumbers" mat-icon-button aria-label="Clear"
                 (click)="dataModel.toNumbers = ''">close</mat-icon>
               <mat-hint align="start">
                 <mat-icon class="info-field-icon">info</mat-icon>
-                <strong class="info-field-text">شماره گیرنده پیام را می توانید با اینتر از هم جدا کنید</strong>
+                <strong class="info-field-text">{{'TITLE.You_can_separate_the_number_of_the_recipient_of_the_message_with_an_inter' | translate}}</strong>
               </mat-hint>
               <mat-hint align="end">{{ ToNumbers.value.length }} / 500</mat-hint>
             </mat-form-field>

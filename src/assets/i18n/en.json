@@ -1130,10 +1130,26 @@
 	"TITLE.Time_to_start_sending_and_finish":"Time to start sending and finish",
 	"TITLE.postage_date":"postage date",
 	"TITLE.Deliveryend_date":"Delivery end date",
+	"TITLE.Send_end_time":"Send end time",
+	"TITLE.Timing":"Timing",
+	"TITLE.Retry_schedule":"Retry schedule",
+	"TITLE.Send_settings": "Send settings",
+	"TITLE.Send_as_flash": "Send as flash",
+	"TITLE.Send_in_queue": "Send in queue",
+	"TITLE.Receiver_number": "Receiver number",
+	"TITLE.You_can_separate_the_number_of_the_recipient_of_the_message_with_an_inter": "You can separate the number of the recipient of the message with an inter",
+	"TITLE.sending_route": "sending route",
+	"TITLE.No":"No",
+	"TITLE.Hide_contact_number":"Hide contact number",
+	"TITLE.Type_of_Activity":"Type of Activity",
+	"TITLE.Dispatch_variables":"Dispatch variables",
+	"TITLE.Status_receiving_variables":"Status receiving variables",
+	"TITLE.Credit_return_status":"Credit return status",
+	"TITLE.Receiving_variables":"Receiving variables",
+	"TITLE.Check_validity":"Check validity",
+	"TITLE.Bank_variables_noy":"Bank variables no",
 
-
-
-
+	
 
 	"TRANSLATOR.HI": "hi",
 	"TRANSLATOR.SELECT": "Select your language",

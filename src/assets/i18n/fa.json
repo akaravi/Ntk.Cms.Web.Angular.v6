@@ -1131,7 +1131,29 @@
 	"TITLE.Time_to_start_sending_and_finish":"زمان شروع به ارسال و اتمام",
 	"TITLE.postage_date":"تاریخ ارسال",
 	"TITLE.Delivery_end_date":"تاریخ پایان ارسال",
+	"TITLE.Send_end_time":"ساعت پایان ارسال",
+	"TITLE.Timing":"زمانبندی",
+	"TITLE.Retry_schedule":" زمانبندی تکرار ارسال",
+	"TITLE.Send_settings": "تنظیمات ارسال",
+	"TITLE.Send_as_flash": " ارسال به صورت فلش",
+	"TITLE.Send_in_queue": "ارسال در صف",
+	"TITLE.Receiver_number": "شماره گیرنده",
+	"TITLE.You_can_separate_the_number_of_the_recipient_of_the_message_with_an_inter": "شماره گیرنده پیام را می توانید با اینتر از هم جدا کنید",
+	"TITLE.sending_route": "مسیرارسال",
+	"TITLE.No":"شماره",
+	"TITLE.Hide_contact_number":"مخفی سازی شماره مخاطب",
+	"TITLE.Type_of_Activity":"نوع فعالیت",
+	"TITLE.Dispatch_variables":"متغیر های ارسال",
+	"TITLE.Status_receiving_variables":"متغیرهای دریافت وضعیت",
+	"TITLE.Credit_return_status":"وضعیت برگشت اعتبار",
+	"TITLE.Receiving_variables":"متغیرهای دریافت",
+	"TITLE.Check_validity":" اعتبار بررسی",
 
+
+
+
+
+	
 	"TRANSLATOR.HI": "سلام",
 	"TRANSLATOR.SELECT": "زبان خود را انتخاب کنید",
 	"TRANSLATOR.WELCOME": "خوش آمدید",
