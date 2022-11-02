@@ -93,10 +93,10 @@
           <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                {{'TITLE.shipping_time' | translate}}
+                {{'TITLE.Shipping_time' | translate}}
               </mat-panel-title>
               <mat-panel-description>
-                زمان شروع به ارسال و اتمام
+                {{'TITLE.Time_to_start_sending_and_finish' | translate}}
                 <mat-icon>date_range</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
@@ -104,7 +104,7 @@
               <div class="col-6">
                 <!-- scheduleSendStart Field -->
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>تاریخ ارسال</mat-label>
+                  <mat-label> {{'TITLE.postage_date' | translate}}</mat-label>
                   <input matInput [matDatepicker]="scheduleSendStartDate" [(ngModel)]="dataModelDateByClockStart.date"
                     name="scheduleSendStartDate" />
                   <mat-icon matSuffix *ngIf="scheduleSendStartDate" matSuffix mat-icon-button aria-label="Clear"
@@ -117,7 +117,7 @@
               <div class="col-6">
                 <!-- scheduleSendStartClock Field -->
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>ساعت ارسال</mat-label>
+                  <mat-label> {{'TITLE.Shipping_time' | translate}}</mat-label>
                   <input matInput [ngxTimepicker]="scheduleSendStartClock" [(ngModel)]="dataModelDateByClockStart.clock"
                     [format]="24" name="scheduleSendStartClock" />
                   <ngx-material-timepicker-toggle matSuffix [for]="scheduleSendStartClock">
@@ -129,7 +129,7 @@
               <div class="col-6">
                 <!-- scheduleSendExpire Field -->
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>تاریخ پایان ارسال</mat-label>
+                  <mat-label>{{'TITLE.Delivery_end_date' | translate}}</mat-label>
                   <input matInput [matDatepicker]="scheduleSendExpireDate" [(ngModel)]="dataModelDateByClockExpire.date"
                     name="scheduleSendExpireDate" />
                   <mat-icon matSuffix *ngIf="scheduleSendExpireDate" matSuffix mat-icon-button aria-label="Clear"

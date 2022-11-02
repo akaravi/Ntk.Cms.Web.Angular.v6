@@ -1127,7 +1127,10 @@
 	"TITLE.Added_to_the_text":"اضافه به متن",
 	"TITLE.Phonebook":"دفترچه تلفن",
 	"TITLE.Audience_selection":" انتخاب مخاطب",
-	"TITLE.shipping_time":"زمان ارسال",
+	"TITLE.Shipping_time":"زمان ارسال",
+	"TITLE.Time_to_start_sending_and_finish":"زمان شروع به ارسال و اتمام",
+	"TITLE.postage_date":"تاریخ ارسال",
+	"TITLE.Delivery_end_date":"تاریخ پایان ارسال",
 
 	"TRANSLATOR.HI": "سلام",
 	"TRANSLATOR.SELECT": "زبان خود را انتخاب کنید",
