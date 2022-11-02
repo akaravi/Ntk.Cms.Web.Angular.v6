@@ -33,7 +33,7 @@
             <div class="col-md-8 col-sm-8 col-xs-12" style="text-align: center;">
                 <div *ngIf="optionurlViewContentQRCodeBase64?.length>0 && optionurlViewContent?.length>0">
                     <a href="{{optionurlViewContent}}" target="_blank">
-                        <img [src]="optionurlViewContentQRCodeBase64" alt="بارکد را اسکن کنید" height="200px"
+                        <img [src]="optionurlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="200px"
                             width="200px">
                     </a>
                 </div>

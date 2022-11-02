@@ -24,7 +24,7 @@
     </mat-form-field>
     <!-- LinkCategoryId Field -->
     <app-ticketing-departemen-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.linkTicketingDepartemenId" [optionPlaceholder]="'دپارتمان'">
+      [optionSelectForce]="dataModel.linkTicketingDepartemenId" [optionPlaceholder]="this.translate.instant('TITLE.Department')">
     </app-ticketing-departemen-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">

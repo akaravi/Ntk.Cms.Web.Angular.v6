@@ -39,7 +39,7 @@
     <!-- Folder Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Folder']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.folder" name="dataModel.folder" #Folder type="text" placeholder="مسیر شاخه"
+      <input matInput [(ngModel)]="dataModel.folder" name="dataModel.folder" #Folder type="text" placeholder="{{'TITLE.branch_path' | translate}}"
         minlength="3" maxlength="100" required [disabled]="!fieldsInfo['Folder']?.accessAddField" />
       <mat-icon matSuffix *ngIf="dataModel.folder" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.folder = ''">close</mat-icon>

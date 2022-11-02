@@ -1,6 +1,6 @@
 <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    وضعیت تراکنش :{{requestId}}
+   {{'TITLE.Transaction_status' | translate}}:{{requestId}}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
@@ -8,12 +8,12 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <div class="table" *ngIf="dataModelResult.item&& dataModelResult.item.id>0">
         <div class="tr">
-            <div class="td">شناسه تراکنش</div>
+            <div class="td">{{'TITLE.Transaction_ID' | translate}}</div>
             <div class="td">{{dataModelResult.item.id}}</div>
             <div style="clear: both;"></div>
         </div>
         <div class="tr">
-            <div class="td">وضعیت تراکنش</div>
+            <div class="td">{{'TITLE.Transaction_status' | translate}}:{{requestId}}</div>
             <div class="td">
                 <div *ngIf="this.dataModelResult.item.transactionStatus==TransactionSuccessful">
                     <span
@@ -33,7 +33,7 @@
             <div style="clear: both;"></div>
         </div>
         <div class="tr">
-            <div class="td">پیام</div>
+            <div class="td">{{'TITLE.Message' | translate}} </div>
             <div class="td">{{dataModelResult.item.lastStatusMessage}}</div>
             <div style="clear: both;"></div>
         </div>

@@ -14,7 +14,7 @@
       </app-sms-apipath-selector>
       <!-- FromNumber Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>شماره فرستنده</mat-label>
+        <mat-label>{{'TITLE.sender_number' | translate}}</mat-label>
         <input matInput [(ngModel)]="dataModel.fromNumber" name="dataModel.fromNumber" #FromNumber type="text"
           placeholder="10000118" minlength="0" maxlength="50" />
         <mat-icon matSuffix *ngIf="dataModel.fromNumber" matSuffix mat-icon-button aria-label="Clear"
@@ -22,13 +22,13 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="start">
           <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-          <strong class="info-field-text">شماره فرستنده ای که در این مسیر فعال است</strong>
+          <strong class="info-field-text">{{'TITLE.The_number-of_the_sender_that_is_active_in_this_route' | translate}}</strong>
         </mat-hint>
         <mat-hint align="end">{{ FromNumber.value.length }} / 50</mat-hint>
       </mat-form-field>
       <!-- ToNumber Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>شماره گیرنده</mat-label>
+        <mat-label>{{'TITLE.Receiver_number' | translate}}</mat-label>
         <input matInput [(ngModel)]="dataModel.toNumber" name="dataModel.toNumber" #ToNumber type="text"
           placeholder="0912" minlength="0" maxlength="100" />
         <mat-icon matSuffix *ngIf="dataModel.toNumber" matSuffix mat-icon-button aria-label="Clear"
@@ -36,7 +36,7 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="start">
           <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-          <strong class="info-field-text">شماره گیرنده پیام را می توانید با کاما از هم جدا کنید</strong>
+          <strong class="info-field-text">{{'TITLE.You_can_separate_the_recipient_number_of_the_message_with_a_comma' | translate}}</strong>
         </mat-hint>
         <mat-hint align="end">{{ ToNumber.value.length }} / 100</mat-hint>
       </mat-form-field>
@@ -56,13 +56,13 @@
       <!-- IsFlash Field -->
       <div class="ntk-full-width">
         <mat-slide-toggle [(ngModel)]="dataModel.isFlash"    name="dataModel.isFlash">
-          ارسال به صورت فلش
+          {{'TITLE.Send_as_flash' | translate}}
         </mat-slide-toggle>
       </div>
            <!-- SendByQeue Field -->
            <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataModel.sendByQeue"    name="dataModel.sendByQeue">
-              ارسال در صف
+              {{'TITLE.Send_in_queue' | translate}}
             </mat-slide-toggle>
           </div>
     </div>

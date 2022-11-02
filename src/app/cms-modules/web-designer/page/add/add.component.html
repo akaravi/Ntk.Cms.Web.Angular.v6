@@ -38,18 +38,18 @@
     </mat-form-field>
     <app-webdesigner-pagedependency-selector (optionChange)="onActionSelectDependency($event)"
       [optionDisabled]="!fieldsInfo['LinkPageDependencyGuId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkPageDependencyGuId" [optionPlaceholder]="'محل نمایش '">
+      [optionSelectForce]="dataModel.linkPageDependencyGuId" [optionPlaceholder]="this.translate.instant('TITLE.Show_place')">
     </app-webdesigner-pagedependency-selector>
     <app-webdesigner-pagetemplate-selector (optionChange)="onActionSelectTemplate($event)"
       [optionDisabled]="!fieldsInfo['LinkPageTemplateGuId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="'قالب صفحه '"
+      [optionSelectForce]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="this.translate.instant('TITLE.Page_template')"
       [optionSelectFirstItem]="true">
     </app-webdesigner-pagetemplate-selector>
     <app-webdesigner-page-selector (optionChange)="onActionSelectParent($event)"
       *ngIf="dataModel.linkPageTemplateGuId && dataModel.linkPageTemplateGuId.length>0"
       [optionDisabled]="!fieldsInfo['LinkPageParentGuId']?.accessAddField"
       [optionSelectForce]="dataModel.linkPageParentGuId" [optionMasterPage]="true"
-      [optionMasterTemplateId]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="'صفحه والد'">
+      [optionMasterTemplateId]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="this.translate.instant('TITLE.parent_page')">
     </app-webdesigner-page-selector>
   <!-- PageDependencyIsDefaultPage Field -->
   <div class="ntk-full-width" *ngIf="fieldsInfo['PageDependencyIsDefaultPage']?.accessWatchField">

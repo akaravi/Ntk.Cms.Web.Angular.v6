@@ -31,7 +31,7 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint align="end">انتخاب قابلیت این محتوا</mat-hint>
+      <mat-hint align="end">{{'TITLE.Select_the_functionality_of_this_content' | translate}}</mat-hint>
       <mat-error *ngIf="PageAbilityType.errors?.required">
         PageAbilityType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -52,17 +52,17 @@
     </mat-form-field>
     <app-webdesigner-pagedependency-selector (optionChange)="onActionSelectDependency($event)"
       [optionDisabled]="!fieldsInfo['LinkPageDependencyGuId']?.accessEditField"
-      [optionSelectForce]="dataModel.linkPageDependencyGuId" [optionPlaceholder]="'محل نمایش '">
+      [optionSelectForce]="dataModel.linkPageDependencyGuId" [optionPlaceholder]="this.translate.instant('TITLE.Show_place')">
     </app-webdesigner-pagedependency-selector>
     <app-webdesigner-pagetemplate-selector (optionChange)="onActionSelectTemplate($event)"
       [optionDisabled]="!fieldsInfo['LinkPageTemplateGuId']?.accessEditField"
-      [optionSelectForce]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="'قالب صفحه '">
+      [optionSelectForce]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="this.translate.instant('TITLE.Page_template')">
     </app-webdesigner-pagetemplate-selector>
     <app-webdesigner-page-selector (optionChange)="onActionSelectParent($event)"
       *ngIf="dataModel.linkPageTemplateGuId && dataModel.linkPageTemplateGuId.length>0"
       [optionDisabled]="!fieldsInfo['LinkPageParentGuId']?.accessEditField"
       [optionSelectForce]="dataModel.linkPageParentGuId" [optionMasterPage]="true"
-      [optionMasterTemplateId]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="'صفحه والد'">
+      [optionMasterTemplateId]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="this.translate.instant('TITLE.parent_page')">
     </app-webdesigner-page-selector>
     <!-- PageDependencyIsDefaultPage Field -->
     <div class="ntk-full-width" *ngIf="fieldsInfo['PageDependencyIsDefaultPage']?.accessWatchField">

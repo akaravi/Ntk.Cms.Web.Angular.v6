@@ -74,7 +74,7 @@
 
     <!-- Action Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="نوع فعالیت" [(ngModel)]="dataModel.action" name="dataModel.action" #Action="ngModel"
+      <mat-select placeholder="{{'TITLE.Type_of_Activity' | translate}}" [(ngModel)]="dataModel.action" name="dataModel.action" #Action="ngModel"
         panelClass="recordStatus-{{ dataModel.action }}" required>
         <mat-option *ngFor="
                             let item of dataModelEnumApiPathPermissionActionResult.listItems;

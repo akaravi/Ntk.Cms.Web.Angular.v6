@@ -9,13 +9,13 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- LinkPageTemplateGuId Field -->
     <app-webdesigner-pagetemplate-selector (optionChange)="onActionSelectModule($event)"
-      [optionSelectForce]="this.dataModel.linkPageTemplateGuId" [optionPlaceholder]="'قالب را انتحاب کنید'"
+      [optionSelectForce]="this.dataModel.linkPageTemplateGuId" [optionPlaceholder]="this.translate.instant('TITLE.Select_the_template')"
       [optionDisabled]="false">
     </app-webdesigner-pagetemplate-selector>
     <!-- LinkPageParentGuId Field -->
     <app-webdesigner-page-selector (optionChange)="onActionSelectParent($event)"
       *ngIf="dataModel.linkPageTemplateGuId && dataModel.linkPageTemplateGuId.length>0" [optionMasterPage]="true"
-      [optionMasterTemplateId]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="'صفحه والد'"
+      [optionMasterTemplateId]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="this.translate.instant('TITLE.parent_page')"
       [optionDisabled]="false">
     </app-webdesigner-page-selector>
     <!-- PageDependencyIsDefaultPage Field -->

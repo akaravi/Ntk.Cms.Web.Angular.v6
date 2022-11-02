@@ -65,7 +65,7 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Priority']?.accessWatchField">
           <mat-label>{{ fieldsInfo['Priority']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.priority" [disabled]="!fieldsInfo['Priority']?.accessEditField"
-            name="dataModel.priority" #Priority type="number" placeholder="الویت" required />
+            name="dataModel.priority" #Priority type="number" placeholder="{{'TITLE.priority' | translate}}"  required />
           <mat-icon matSuffix *ngIf="dataModel.priority && fieldsInfo['Priority']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.priority = 1">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Priority']?.accessEditField" matSuffix>mode_edit</mat-icon>

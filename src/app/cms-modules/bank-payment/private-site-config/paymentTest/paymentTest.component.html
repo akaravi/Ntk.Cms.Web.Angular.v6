@@ -16,7 +16,7 @@
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'TITLE.Amount' | translate}} </mat-label>
           <input matInput [(ngModel)]="dataModel.amount" name="dataModel.amount" #Amount type="number"
-            placeholder="مبلغ" required />
+            placeholder="{{'TITLE.preacher' | translate}}" required />
           <mat-icon matSuffix *ngIf="dataModel.amount" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.amount = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

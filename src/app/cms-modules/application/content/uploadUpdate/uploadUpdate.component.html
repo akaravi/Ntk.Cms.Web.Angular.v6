@@ -40,7 +40,7 @@
       <div class="form-actions">
         <button type="submit" *ngIf="formInfo.formSubmitAllow  && !loading.display" class="btn btn-raised btn-primary"
           [disabled]="!vform.form.valid">
-          <i class="fa fa-check-square-o"></i> ثبت
+          <i class="fa fa-check-square-o"></i> {{'TITLE.registered' | translate}}
         </button>
         <button (click)="onFormCancel()" class="btn btn-light">
           <i class="ft-x"></i> {{'ACTION.BACK' | translate}}

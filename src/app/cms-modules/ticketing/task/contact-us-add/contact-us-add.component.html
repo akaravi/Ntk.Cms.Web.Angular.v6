@@ -8,10 +8,10 @@
       <!--begin::Section-->
       <div class="text-center pt-15">
         <h1 class="h2 font-weight-bolder text-dark mb-6">
-          به دنبال راهنما هستید؟
+          {{'TITLE.Looking_for_help?' | translate}}
         </h1>
         <div class="h4 text-white-50 font-weight-normal">
-          درخواست خود را به یکی از کارشناسان ما ارسال کنید!
+          {{'TITLE.Send_your_request_to_one_of_our_experts!' | translate}}
         </div>
         <div class="row">
           <div class="offset-md-3 col-md-6">
@@ -454,7 +454,7 @@
             <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
             <div class="card-title">
               <h5 class="card-label align">
-                سوالات خود را برای ما ارسال کنید
+                {{'TITLE.Send_us_your_questions' | translate}}
               </h5>
             </div>
             <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
@@ -470,7 +470,7 @@
                   <label>{{'AUTH.INPUT.FULLNAME' | translate}}</label>
                   <input type="text" [(ngModel)]="dataModel.fullName" name="dataModel.fullName" #FullName required
                     class="form-control form-control-solid form-control-lg"
-                    placeholder="نام و نام خانوادگی خود را وارد کنید" />
+                    placeholder="{{'TITLE.Enter_your_first_and_last_name' | translate}}" />
                   <mat-error *ngIf="FullName.errors?.required">
                     FullName is <strong>{{'MESSAGE.required' | translate}}</strong>
                   </mat-error>
@@ -482,7 +482,7 @@
                   <label>{{'AUTH.INPUT.MOBILE' | translate}}</label>
                   <input type="text" [(ngModel)]="dataModel.phoneNo" name="dataModel.phoneNo" #PhoneNo required
                     class="form-control form-control-solid form-control-lg input-Mobile"
-                    placeholder="تلفن خود را وارد کنید" />
+                    placeholder="{{'TITLE.Enter_your_phone_number' | translate}}" />
 
                   <mat-error *ngIf="PhoneNo.errors?.required">
                     PhoneNo is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -494,12 +494,12 @@
                 <div class="form-group">
                   <label>{{'AUTH.INPUT.EMAIL' | translate}}</label>
                   <input type="email" [(ngModel)]="dataModel.email" name="dataModel.email" #Email required
-                    class="form-control form-control-solid form-control-lg " placeholder="ایمیل را وارد کنید" />
+                    class="form-control form-control-solid form-control-lg " placeholder="{{'TITLE.Enter_emai' | translate}}" />
 
                   <mat-error *ngIf="Email.errors?.required">
                     Email is <strong>{{'MESSAGE.required' | translate}}</strong>
                   </mat-error>
-                  <span class="form-text text-muted">ما هرگز ایمیل شما را با هیچ کس دیگری به اشتراک نمی گذاریم.</span>
+                  <span class="form-text text-muted">{{'TITLE.We_will_never_share_your_email_with_anyone_else' | translate}}</span>
                 </div>
                 <!-- LinkTicketingDepartemenId -->
                 <label>{{'TITLE.Categories' | translate}}</label>
@@ -511,9 +511,9 @@
 
                 <!--begin::ورودی-->
                 <div class="form-group">
-                  <label for="exampleتکس اریا">{{'AUTH.INPUT.YOURMEESAGE' | translate}}</label>
+                  <label for="example {{'TITLE.Tex_Aria' | translate}} ">{{'AUTH.INPUT.YOURMEESAGE' | translate}}</label>
                   <textarea [(ngModel)]="dataModel.htmlBody" name="dataModel.htmlBody" #HtmlBody
-                    class="form-control form-control-solid form-control-lg" id="exampleتکس اریا" rows="3"
+                    class="form-control form-control-solid form-control-lg" id="example {{'TITLE.Tex_Aria' | translate}} " rows="3"
                     required></textarea>
 
                   <mat-error *ngIf="HtmlBody.errors?.required">
@@ -568,10 +568,10 @@
                   <!--begin::Content-->
                   <div class="d-flex flex-column mr-5">
                     <a href="#" class="h4 text-dark text-hover-primary mb-5">
-                      پیام شما در سامانه ثبت شد.
+                     {{'TITLE.Your_message_has_been_registered_in_the_system' | translate}}
                     </a>
                     <p class="text-dark-50">
-                      برای پیگری های بعدی کد پیگیری را یاداشت نمایید.
+                      {{'TITLE.Note_the_tracking_code_for_further_tracking' | translate}}
                     </p>
                     <div [innerHTML]="this.dataModelResult.item?.virtual_Departemen?.DefaultAnswerBody">
 

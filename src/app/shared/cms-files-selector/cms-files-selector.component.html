@@ -1,7 +1,7 @@
 <!-- files Field -->
 <div class="mb-12">
   <mat-form-field class="ntk-full-width">
-    <mat-label (click)="fileManagerOpenForm = true">فایل
+    <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.File' | translate}}
     </mat-label>
     <input matInput name="dataModel.linkMainImageId" #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
       (click)="fileManagerOpenForm = true" />
@@ -16,7 +16,7 @@
 <!-- TABLE  -->
 <table>
   <tr>
-    <td>شناسه فایل</td>
+    <td>{{'TITLE.File_ID' | translate}}</td>
     <td></td>
     <td>لینک </td>
     <td></td>

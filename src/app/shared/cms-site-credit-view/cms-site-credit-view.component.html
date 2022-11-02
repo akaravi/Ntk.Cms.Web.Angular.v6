@@ -7,13 +7,13 @@
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    سایت:
+    {{'TITLE.site' | translate}}:
     {{tokenInfo?.title}}
     <br>
-    ماژول:
+    {{'TITLE.module' | translate}}:
     {{dataModuleModelResult?.item?.title}}
     <br>
-    اعتبار:
+    {{'TITLE.credit' | translate}}:
     {{dataModelResult?.item?.Credit}}
     <br>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

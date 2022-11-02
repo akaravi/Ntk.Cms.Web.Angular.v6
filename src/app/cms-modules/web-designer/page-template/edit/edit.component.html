@@ -53,7 +53,7 @@
     <!-- Folder Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Folder']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.folder" name="dataModel.folder" #Folder type="text" placeholder="مسیر شاخه"
+      <input matInput [(ngModel)]="dataModel.folder" name="dataModel.folder" #Folder type="text" placeholder="{{'TITLE.branch_path' | translate}}"
         minlength="3" maxlength="100" required [disabled]="!fieldsInfo['Folder']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.folder" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.folder = ''">close</mat-icon>
@@ -97,7 +97,7 @@
         Description is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-    در سایت ها با دسته بندی زیر قالب بکار گیری باشد:
+   {{'TITLE.It_should_be_used_on_sites_with_the_following_categories' | translate}}
     <br>
     <app-cms-sitecategory-selectionlist [optionSelectForce]="dataCoreSiteCategoryIds" [optionDisabled]="false"
       (optionChange)="onActionSelectorUserCategorySelect($event)"

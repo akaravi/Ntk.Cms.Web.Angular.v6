@@ -101,13 +101,13 @@
 
         <div>
           <button type="button" class="btn btn-outline-primary ms-2" (click)="onActionCloseBottunClick()">
-            بستن
+            {{'TITLE.close' | translate}}
           </button>
           <button type="button" *ngIf="!bodyShow" class="btn btn btn-secondary" (click)="onActionMoreBottunClick()">
-            بیشتر
+            {{'TITLE.more'  | translate}}
           </button>
           <button type="button" *ngIf="bodyShow" class="btn btn btn-secondary" (click)="onActionLessBottunClick()">
-            کمتر
+            {{'TITLE.inferior'  | translate}}
           </button>
         </div>
       </div>
