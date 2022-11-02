@@ -24,6 +24,11 @@
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
+        <!-- linkSiteId Field -->
+        <app-cms-site-selector  (optionChange)="onActionSelectSite($event)" [optionDisabled]="!fieldsInfo['LinkSiteId']?.accessEditField"
+          [optionSelectForce]=" this.dataModel.linkSiteId" *ngIf="fieldsInfo['LinkSiteId']?.accessWatchField"
+          [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
+
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
