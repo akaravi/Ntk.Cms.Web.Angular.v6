@@ -107,14 +107,14 @@
           <!-- KeywordModel Field -->
           <mat-form-field style="width: 100%;" appearance="fill">
             <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
-            <mat-chip-list #chipList aria-label="کلمه کلیدی">
+            <mat-chip-list #chipList aria-label="this.translate.instant('TITLE.key_word')">
               <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
                 {{item}}
                 <button matChipRemove>
                   <mat-icon>cancel</mat-icon>
                 </button>
               </mat-chip>
-              <input placeholder="کلمه کلیدی +"
+              <input placeholder="{{'TITLE.key_word' | translate}}+"
                      [matChipInputFor]="chipList"
                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                      [matChipInputAddOnBlur]="addOnBlurTag"
@@ -223,7 +223,7 @@
           </mat-form-field>
           <!-- TypeId Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>کلید</mat-label>
+            <mat-label>{{'TITLE.Key' | translate}</mat-label>
             <input matInput [(ngModel)]="contentOtherInfoSelected.typeId" name="contentOtherInfoSelected.typeId"
               #contentOtherInfoSelected_TypeId type="number" placeholder="{{'TITLE.Agreement_number_to_display' | translate}}" />
             <mat-icon matSuffix *ngIf="contentOtherInfoSelected.typeId" matSuffix mat-icon-button aria-label="Clear"

@@ -60,7 +60,7 @@
       [optionSelectForce]="this.dataModel.linkUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
     <!-- LinkMemberId Field -->
     <app-cms-member-selector (optionChange)="onActionMemberSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="this.dataModel.linkMemberId" [optionPlaceholder]="'عضو'"></app-cms-member-selector>
+      [optionSelectForce]="this.dataModel.linkMemberId" [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
     <!-- UserAccessAdminAllowToAllData Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.userAccessAdminAllowToAllData"

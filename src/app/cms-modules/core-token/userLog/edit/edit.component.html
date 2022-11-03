@@ -58,7 +58,7 @@
     [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
   <!-- linkMemberId Field -->
   <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkMemberId"
-    [optionPlaceholder]="'عضو'"></app-cms-member-selector>
+    [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
   <!-- UserAccessAdminAllowToAllData Field -->
   <div class="ntk-full-width">
     <mat-slide-toggle [(ngModel)]="dataModel.userAccessAdminAllowToAllData"

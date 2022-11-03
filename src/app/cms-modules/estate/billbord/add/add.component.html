@@ -98,7 +98,7 @@
 
     <!-- LinkPropertyIds Field -->
     <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessAddField" [optionPlaceholder]="' + ملک '"
+      [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessAddField" [optionPlaceholder]="this.translate.instant('TITLE.Property')"
       [optionSelectForce]="this.dataModel.linkPropertyIds">
     </app-estate-property-autocomplete>
     <p>{{'MESSAGE.Selecting_specific_property_will_remove_all_search_fields' | translate}}</p>

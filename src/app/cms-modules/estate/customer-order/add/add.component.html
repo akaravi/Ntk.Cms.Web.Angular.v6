@@ -284,7 +284,7 @@
     </p>
     <!-- LinkPropertyIds Field -->
     <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessAddField" [optionPlaceholder]="' + ملک '"
+      [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessAddField" [optionPlaceholder]="this.translate.instant('TITLE.Property')"
       [optionSelectForce]="this.dataModel.linkPropertyIds">
     </app-estate-property-autocomplete>
 

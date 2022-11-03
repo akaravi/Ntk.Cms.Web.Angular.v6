@@ -95,7 +95,7 @@
     <!-- Width Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Width']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.width" name="dataModel.width" #Width type="number" placeholder="عرض"
+      <input matInput [(ngModel)]="dataModel.width" name="dataModel.width" #Width type="number" placeholder="{{'TITLE.Width' | translate}}"
         min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.width" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.width = 0">close</mat-icon>
@@ -107,7 +107,7 @@
     <!-- Height Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Height']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.height" name="dataModel.height" #Height type="number" placeholder="طول"
+      <input matInput [(ngModel)]="dataModel.height" name="dataModel.height" #Height type="number" placeholder="{{'TITLE.length' | translate}}"
         min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.height" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.height = 0">close</mat-icon>

@@ -97,14 +97,14 @@
         </app-cms-tag-autocomplete>
         <mat-form-field style="width: 100%;" appearance="fill">
           <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
-          <mat-chip-list #chipList aria-label="کلمه کلیدی">
+          <mat-chip-list #chipList aria-label="this.translate.instant('TITLE.key_word')">
             <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
               {{item}}
               <button matChipRemove>
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-chip>
-            <input placeholder="کلمه کلیدی +"
+            <input placeholder="{{'TITLE.key_word' | translate}}+"
                    [matChipInputFor]="chipList"
                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                    [matChipInputAddOnBlur]="addOnBlurTag"

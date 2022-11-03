@@ -13,7 +13,7 @@
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AppVersion']?.accessWatchField">
         <mat-label>{{ fieldsInfo['AppVersion']?.FieldAppVersion }}</mat-label>
         <input matInput [(ngModel)]="dataModel.appVersion" [disabled]="!fieldsInfo['AppVersion']?.accessEditField"
-          name="dataModel.appVersion" #AppVersion type="number" placeholder="ورژن" min="0" max="1000" required />
+          name="dataModel.appVersion" #AppVersion type="number" placeholder="{{'TITLE.version' | translate}}" min="0" max="1000" required />
         <mat-icon matSuffix *ngIf="dataModel.appVersion && fieldsInfo['AppVersion']?.accessEditField" matSuffix
           mat-icon-button aria-label="Clear" (click)="dataModel.appVersion = 0">close</mat-icon>
         <mat-icon *ngIf="fieldsInfo['AppVersion']?.accessEditField" matSuffix>mode_edit</mat-icon>

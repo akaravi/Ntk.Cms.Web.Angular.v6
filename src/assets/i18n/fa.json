@@ -1212,8 +1212,12 @@
 	"TITLE.Text": "متن",
 	"TITLE.BUY": "خرید",
 	"TITLE.Menu_place": "محل منو",
-
-
+	"TITLE.version": "ورژن",
+	"TITLE.Width": "عرض",
+	"TITLE.length": "طول",
+	"TITLE.Member": "عضو",
+	"TITLE.Property":"ملک",
+	"TITLE.link": "لینک ",
 
 	"TRANSLATOR.HI": "سلام",
 	"TRANSLATOR.SELECT": "زبان خود را انتخاب کنید",
