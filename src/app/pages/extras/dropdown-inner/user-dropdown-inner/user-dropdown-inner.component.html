@@ -67,15 +67,11 @@
 
           <div class="text-muted">
             <a class="cursor-pointer" style="color: #999999;"
-              routerLink="{{'/core/user/edit/' +this.tokenInfo.userId}}">
-
-              {{'TITLE.Account_settings_and_more'| translate}}
-              <br>
-              <span class="label label-light-info label-inline font-weight-bold">{{'TITLE.User_Id'|
+              routerLink="{{'/core/user/edit/' +this.tokenInfo.userId}}"> {{'TITLE.Account_settings_and_more'| translate}}  <span class="label label-light-info label-inline font-weight-bold">{{'TITLE.User_Id'|
                 translate}}:{{this.tokenInfo.userId}}</span>
             </a>
 
-            <a class="navi-item cursor-pointer" routerLink="{{'/core/site/edit/' +this.tokenInfo.siteId}}">
+            <a class="navi-item cursor-pointer" routerLink="{{'/core/site/edit/' +this.tokenInfo.siteId}}"  *ngIf="this.tokenHelper.isAdminSite">
               <span class="label label-light-success label-inline font-weight-bold ms-1">{{'TITLE.Site_Id'|
                 translate}}:{{this.tokenInfo.siteId}}</span>
             </a>
