@@ -14,7 +14,7 @@
           {{fieldsInfo['serialNumber']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
-      <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-success BTN">برسی </button>
+      <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-success BTN">{{'TITLE.Check' | translate}} </button>
       <!-- pwdForUse Field -->
       <mat-form-field class="example-full-width-1" *ngIf="showBuy">
         <mat-label>{{fieldsInfo['pwdForUse']?.fieldTitle}}</mat-label>
@@ -28,7 +28,7 @@
           {{fieldsInfo['pwdForUse']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
-      <button (click)="onActionbuttonBuy()" type="button" class="btn btn-outline-success BTN" *ngIf="showBuy">خرید </button>
+      <button (click)="onActionbuttonBuy()" type="button" class="btn btn-outline-success BTN" *ngIf="showBuy">{{'TITLE.BUY' | translate}} </button>
       <button (click)="onActionBackToParent()" *ngIf="this.requestSerial &&this.requestSerial.length> 0" type="button"
         class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
 

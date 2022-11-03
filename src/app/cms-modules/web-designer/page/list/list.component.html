@@ -63,18 +63,18 @@
                   <i [ngClass]="row.recordStatus|statusClass" ></i>
          
                 </mat-card-title>
-                <mat-card-subtitle>  شناسه: {{row.id}}</mat-card-subtitle>
+                <mat-card-subtitle>  {{'TITLE.Id' | translate}}: {{row.id}}</mat-card-subtitle>
               </mat-card-header>
               <img mat-card-image src="{{row.thumbnailImageSrc}}">
               <mat-card-content>
-                عنوان قالب :
+                 {{'Template title' | translate}} :
                 {{row.linkPageTemplateGuId | cmstitle :
                   dataModelWebDesignerMainPageTemplateResult.listItems}} 
                   <br>
-                  پیش فرض سامانه دسته بندی قالب :
+                   {{'TITLE.Default_template_classification_system' | translate}} :
                   {{row.pageDependencyIsDefaultPageLinkSiteCategoryId | cmstitle : dataModelCoreSiteCategoryResult.listItems }}
                   <br>
-                  پیش فرض سامانه :
+                    {{'TITLE.System_default' | translate}} :
                   <i [ngClass]="row.pageDependencyIsDefaultPage | boolclass"></i>
                 <p>
                   {{row.description }}

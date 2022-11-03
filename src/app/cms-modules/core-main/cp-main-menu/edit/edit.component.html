@@ -64,7 +64,7 @@
 
         <!-- MenuPlaceType Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="محل منو" [(ngModel)]="dataModel.menuPlaceType" name="dataModel.menuPlaceType"
+          <mat-select placeholder="{{'TITLE.Menu_place' | translate}}" [(ngModel)]="dataModel.menuPlaceType" name="dataModel.menuPlaceType"
             #MenuPlaceType="ngModel" panelClass="MenuPlaceType-{{ dataModel.menuPlaceType }}">
             <mat-option *ngFor="
                   let item of dataModelEnumMenuPlaceTypeResult.listItems;

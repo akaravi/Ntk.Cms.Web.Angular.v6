@@ -1202,7 +1202,20 @@
 	"TITLE.preacher": "preacher",
 	"TITLE.close": "close",
 	"TITLE.inferior": "inferior",
-	"TITLE.imore": "more",
+	"TITLE.more": "more",
+	"TITLE.Check": "Check",
+	"TITLE.Template title": "Template title",
+	"TITLE.Default_template_classification_system": "Default template classification system",
+	"TITLE.System_default": "System default",
+	"TITLE.Assumption": "Assumptiont",
+	"TITLE.Tracking_Code": "Tracking Code",
+	"TITLE.Text": "Text",
+	"TITLE.BUY": "BUY",
+	"TITLE.Menu_place": "Menu_place",
+
+
+
+
 	"TRANSLATOR.HI": "hi",
 	"TRANSLATOR.SELECT": "Select your language",
 	"TRANSLATOR.WELCOME": "WELCOME",

@@ -42,8 +42,8 @@
     </mat-form-field>
     <!-- Content Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>متن</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.content" name="dataModel.content" #Content type="text" placeholder="متن"
+      <mat-label>{{'TITLE.Text' | translate}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.content" name="dataModel.content" #Content type="text" placeholder="{{'TITLE.Text' | translate}}"
         minlength="3" maxlength="500" required></textarea>
       <mat-icon matSuffix *ngIf="dataModel.content" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.content = ''">close</mat-icon>

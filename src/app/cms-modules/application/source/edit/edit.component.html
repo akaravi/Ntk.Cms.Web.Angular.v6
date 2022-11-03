@@ -146,7 +146,7 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DefaultAppId']?.accessWatchField">
           <mat-label>{{fieldsInfo['DefaultAppId']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.defaultAppId" [disabled]="!fieldsInfo['DefaultAppId']?.accessEditField"
-            name="dataModel.defaultAppId" #DefaultAppId type="number" placeholder="پش فرض" />
+            name="dataModel.defaultAppId" #DefaultAppId type="number" placeholder="{{'TITLE.Assumption' | translate}}"  />
           <mat-icon matSuffix *ngIf="dataModel.defaultAppId && fieldsInfo['DefaultAppId']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.defaultAppId = null">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['DefaultAppId']?.accessEditField" matSuffix>mode_edit</mat-icon>

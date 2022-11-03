@@ -1203,6 +1203,18 @@
 	"TITLE.close": "بستن",
 	"TITLE.inferior": "کمتر",
 	"TITLE.imore": "بیشتر",
+	"TITLE.Check": "بررسی",
+	"TITLE.Template title": " عنوان قالب",
+	"TITLE.Default_template_classification_system": "پیش فرض سامانه دسته بندی قالب",
+	"TITLE.System_default": "پیش فرض سامانه",
+	"TITLE.Assumption": "پیش فرض",
+	"TITLE.Tracking_Code": "کد پیگیری",
+	"TITLE.Text": "متن",
+	"TITLE.BUY": "خرید",
+	"TITLE.Menu_place": "محل منو",
+
+
+
 	"TRANSLATOR.HI": "سلام",
 	"TRANSLATOR.SELECT": "زبان خود را انتخاب کنید",
 	"TRANSLATOR.WELCOME": "خوش آمدید",
