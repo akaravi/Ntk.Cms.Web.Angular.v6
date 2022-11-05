@@ -67,7 +67,8 @@ Type ‘PowerShell’
 Right-click Windows PowerShell
 Click Run as Administrator
 Run the following command and confirm with ‘Y’
-
+Set-ExecutionPolicy RemoteSigned -Force
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 ============================
 path Add
