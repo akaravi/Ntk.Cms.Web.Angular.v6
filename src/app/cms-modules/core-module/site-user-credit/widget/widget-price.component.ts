@@ -2,6 +2,8 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
+  CoreModuleModel,
+  CoreModuleService,
   CoreModuleSiteUserCreditModel,
   CoreModuleSiteUserCreditService,
   DataFieldInfoModel,
@@ -36,12 +38,13 @@ export class CoreModuleSiteUserCreditWidgetPriceComponent implements OnInit, OnD
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
     public translate: TranslateService,
-
+    private coreModuleService: CoreModuleService,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<CoreModuleSiteUserCreditModel> = new ErrorExceptionResult<CoreModuleSiteUserCreditModel>();
+  dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   dataModel: CoreModuleSiteUserCreditModel = new CoreModuleSiteUserCreditModel();
   formInfo: FormInfoModel = new FormInfoModel();
 
@@ -49,6 +52,7 @@ export class CoreModuleSiteUserCreditWidgetPriceComponent implements OnInit, OnD
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
+
   @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
@@ -66,6 +70,15 @@ export class CoreModuleSiteUserCreditWidgetPriceComponent implements OnInit, OnD
     this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
     this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
     this.svgCSSClass = `svg-icon--${this.iconColor}`;
+    
+    this.getModuleList();
+  }
+  getModuleList(): void {
+    const filter = new FilterModel();
+    filter.rowPerPage = 100;
+    this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
+      this.dataModelCoreModuleResult = next;
+    });
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
@@ -85,6 +98,7 @@ export class CoreModuleSiteUserCreditWidgetPriceComponent implements OnInit, OnD
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
         if (ret.isSuccess) {
+          this.dataModelResult = ret
           this.dataModel = ret.item;
           if (ret.listItems && ret.listItems.length > 0) {
             this.dataModel = ret.listItems[0];

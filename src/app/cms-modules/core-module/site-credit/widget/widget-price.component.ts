@@ -2,12 +2,15 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
+  CoreModuleModel,
+  CoreModuleService,
   CoreModuleSiteCreditModel,
   CoreModuleSiteCreditService,
   DataFieldInfoModel,
   ErrorExceptionResult,
   FilterModel,
-  FormInfoModel} from 'ntk-cms-api';
+  FormInfoModel
+} from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -36,12 +39,13 @@ export class CoreModuleSiteCreditWidgetPriceComponent implements OnInit, OnDestr
     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
     public translate: TranslateService,
-
+    private coreModuleService: CoreModuleService,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<CoreModuleSiteCreditModel> = new ErrorExceptionResult<CoreModuleSiteCreditModel>();
+  dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   dataModel: CoreModuleSiteCreditModel = new CoreModuleSiteCreditModel();
   formInfo: FormInfoModel = new FormInfoModel();
 
@@ -66,6 +70,15 @@ export class CoreModuleSiteCreditWidgetPriceComponent implements OnInit, OnDestr
     this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
     this.textInverseCSSClass = `text-inverse-${this.baseColor}`;
     this.svgCSSClass = `svg-icon--${this.iconColor}`;
+
+    this.getModuleList();
+  }
+  getModuleList(): void {
+    const filter = new FilterModel();
+    filter.rowPerPage = 100;
+    this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
+      this.dataModelCoreModuleResult = next;
+    });
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
@@ -85,6 +98,7 @@ export class CoreModuleSiteCreditWidgetPriceComponent implements OnInit, OnDestr
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
         if (ret.isSuccess) {
+          this.dataModelResult = ret
           this.dataModel = ret.item;
           if (ret.listItems && ret.listItems.length > 0) {
             this.dataModel = ret.listItems[0];

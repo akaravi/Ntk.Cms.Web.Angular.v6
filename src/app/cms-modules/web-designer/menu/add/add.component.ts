@@ -39,7 +39,8 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestParentId = data.parentId + '';
     }
@@ -57,7 +58,7 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
   dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
   ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.ADD').instant('TITLE.ADD');
+    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.getEnumMenuPlaceType();
     this.DataGetAccess();

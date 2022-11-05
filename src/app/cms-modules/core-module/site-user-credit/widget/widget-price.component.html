@@ -11,9 +11,12 @@
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
-      <div [ngClass]="textInverseCSSClass" class="font-weight-bolder font-size-h4 mt-3">
-        <span>{{'ACTION.CREDIT_USER' | translate}}</span>:
-         <span style >{{ dataModel.credit }}</span> 
+      <h4 style="color: white;">{{'ACTION.CREDIT_USER' | translate}}</h4>
+
+      <div *ngFor="let item of dataModelResult.listItems" [ngClass]="textInverseCSSClass"
+        class="row font-weight-bolder font-size-h4 mt-3">
+        <div class="col-6">{{ item.linkModuleId | cmstitle : dataModelCoreModuleResult.listItems}} :</div>
+        <div class="col-4">{{ item.credit }}</div>
       </div>
       <hr>
       <!--end::cms-body-->
