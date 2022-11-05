@@ -166,6 +166,10 @@
               <mat-icon>devices</mat-icon>
               <span>{{'ACTION.MARKETING_SUBCATEGORY' | translate}}</span>
             </button>
+            <button mat-menu-item **ngIf="this.dataModelResult.emailConfirmed" (click)="onActionbuttonEmailConfirm()">
+              <mat-icon>visibility</mat-icon>
+              <span>{{'ACTION.CONFIRMEMAIL' | translate}}</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>
