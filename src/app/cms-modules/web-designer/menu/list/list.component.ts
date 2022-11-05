@@ -81,8 +81,6 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     'Id',
     'RecordStatus',
     'Title',
-    'TitleML',
-    'ShowInMenu',
     'ShowInAccessAdminAllowToProfessionalData',
     'MenuPlaceType',
     'ShowInMenuOrder',

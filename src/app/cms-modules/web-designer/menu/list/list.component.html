@@ -72,19 +72,6 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}}</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
       </ng-container>
-      <!-- TitleML Column -->
-      <ng-container matColumnDef="TitleML">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['TitleML']?.fieldTitle}}</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.titleML}} </mat-cell>
-      </ng-container>
-      <!-- ShowInMenu Column -->
-      <ng-container matColumnDef="ShowInMenu">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{fieldsInfo['ShowInMenu']?.fieldTitle}}</mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <i [ngClass]="row.showInMenu | boolclass"></i>
-        </mat-cell>
-      </ng-container>
       <!-- ShowInAccessAdminAllowToProfessionalData Column -->
       <ng-container matColumnDef="ShowInAccessAdminAllowToProfessionalData">
         <mat-header-cell *matHeaderCellDef mat-sort-header>

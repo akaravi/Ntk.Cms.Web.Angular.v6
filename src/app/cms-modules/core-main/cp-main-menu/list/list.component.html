@@ -78,7 +78,7 @@
       </ng-container>
       <!-- TitleML Column -->
       <ng-container matColumnDef="TitleML">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['TitleML']?.fieldTitle}}</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.TitleML' | translate}}</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.titleML}} </mat-cell>
       </ng-container>
       <!-- ShowInMenu Column -->
