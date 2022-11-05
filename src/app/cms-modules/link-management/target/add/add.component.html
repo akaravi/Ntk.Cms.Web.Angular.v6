@@ -10,6 +10,11 @@
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
       <!-- RecordStatus Field -->
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
+        <br>
+        <mat-slide-toggle style="position: inherit;" [(ngModel)]="dataProfessional" name="dataProfessional">
+          {{'TITLE.Would_you_like_to_complete_your_information' | translate}}
+        </mat-slide-toggle>
+        <br>
         <mat-form-field class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
             name="dataModel.recordStatus" #RecordStatus="ngModel"
@@ -45,7 +50,7 @@
         </app-linkmanagement-target-category-selector>
 
         <!-- LinkBillboardPatternId Field -->
-        <app-linkmanagement-billboard-pattern-selector
+        <app-linkmanagement-billboard-pattern-selector *ngIf="dataProfessional"
           (optionChange)="onActionSelectorSelectLinkBillboardPatternId($event)"
           [optionSelectForce]="dataModel.linkBillboardPatternId"
           [optionPlaceholder]="this.translate.instant('TITLE.Billboard_Pattern')">
@@ -53,7 +58,7 @@
 
 
         <!-- ContentSettingType Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-select placeholder="{{'TITLE.Content_Type' | translate}}" [(ngModel)]="dataModel.contentSettingType"
             name="dataModel.contentSettingType" #ContentSettingType="ngModel"
             panelClass="recordStatus-{{ dataModel.contentSettingType }}">
@@ -69,7 +74,7 @@
         </mat-form-field>
 
         <!-- SharingLinkType Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-select placeholder="{{'TITLE.Sharing_Type' | translate}}" [(ngModel)]="dataModel.sharingLinkType"
             name="dataModel.sharingLinkType" #SharingLinkType="ngModel"
             panelClass="recordStatus-{{ dataModel.sharingLinkType }}">
@@ -92,9 +97,9 @@
           </mat-slide-toggle>
         </div>
         <!-- ToWebAddress Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['ToWebAddress']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.toWebAddress" name="dataModel.toWebAddress" #ToWebAddress type="text"
+          <input style="direction: ltr; text-align: left !important;" matInput [(ngModel)]="dataModel.toWebAddress" name="dataModel.toWebAddress" #ToWebAddress type="text"
             placeholder="{{fieldsInfo['ToWebAddress']?.fieldTitle}}" minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.toWebAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.toWebAddress = ''">close</mat-icon>
@@ -105,9 +110,9 @@
           </mat-error>
         </mat-form-field>
         <!-- WebAddress Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['WebAddress']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.webAddress" name="dataModel.webAddress" #WebAddress type="text"
+          <input style="direction: ltr; text-align: left !important;" matInput [(ngModel)]="dataModel.webAddress" name="dataModel.webAddress" #WebAddress type="text"
             placeholder="{{fieldsInfo['WebAddress']?.fieldTitle}}" minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.webAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.webAddress = ''">close</mat-icon>
@@ -118,9 +123,9 @@
           </mat-error>
         </mat-form-field>
         <!-- SmallPreview Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['SmallPreview']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.smallPreview" name="dataModel.smallPreview" #SmallPreview type="text"
+          <input  matInput [(ngModel)]="dataModel.smallPreview" name="dataModel.smallPreview" #SmallPreview type="text"
             placeholder="{{fieldsInfo['SmallPreview']?.fieldTitle}}" minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.smallPreview" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.smallPreview = ''">close</mat-icon>
@@ -132,10 +137,10 @@
         </mat-form-field>
 
         <!-- ClickPrice Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['ClickPrice']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.clickPrice" name="dataModel.clickPrice" #ClickPrice type="number"
-            placeholder="{{'TITLE.Amount_Per_Click' | translate}}" min="0" required />
+            placeholder="{{'TITLE.Amount_Per_Click' | translate}}" min="0" />
           <mat-icon matSuffix *ngIf="dataModel.clickPrice" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.clickPrice = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -144,10 +149,10 @@
           </mat-error>
         </mat-form-field>
         <!-- ViewPrice Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['ViewPrice']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.viewPrice" name="dataModel.viewPrice" #ViewPrice type="number"
-            placeholder="{{'TITLE.Amount_Per_Show' | translate}}" min="0" required />
+            placeholder="{{'TITLE.Amount_Per_Show' | translate}}" min="0" />
           <mat-icon matSuffix *ngIf="dataModel.viewPrice" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.viewPrice = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -157,11 +162,10 @@
         </mat-form-field>
 
         <!-- MaxPriceOfSharePerDay Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['MaxPriceOfSharePerDay']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.maxPriceOfSharePerDay" name="dataModel.maxPriceOfSharePerDay"
-            #MaxPriceOfSharePerDay type="number" placeholder="{{'TITLE.Number_of_views_so_far' | translate}}" min="0"
-            required />
+            #MaxPriceOfSharePerDay type="number" placeholder="{{'TITLE.Number_of_views_so_far' | translate}}" min="0" />
           <mat-icon matSuffix *ngIf="dataModel.maxPriceOfSharePerDay" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.maxPriceOfSharePerDay = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -170,11 +174,10 @@
           </mat-error>
         </mat-form-field>
         <!-- MaxPriceOfShareTotal Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['MaxPriceOfShareTotal']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.maxPriceOfShareTotal" name="dataModel.maxPriceOfShareTotal"
-            #MaxPriceOfShareTotal type="number" placeholder="{{'TITLE.Number_of_click_so_far' | translate}}" min="0"
-            required />
+            #MaxPriceOfShareTotal type="number" placeholder="{{'TITLE.Number_of_click_so_far' | translate}}" min="0" />
           <mat-icon matSuffix *ngIf="dataModel.maxPriceOfShareTotal" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.maxPriceOfShareTotal = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -184,10 +187,10 @@
         </mat-form-field>
 
         <!-- FormulaPercent Field -->
-        <mat-form-field class="ntk-full-width">
+        <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['FormulaPercent']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.formulaPercent" name="dataModel.formulaPercent" #FormulaPercent
-            type="number" placeholder="{{'TITLE.Number_of_views_so_far' | translate}}" min="1" required />
+            type="number" placeholder="{{'TITLE.Number_of_views_so_far' | translate}}" min="1" />
           <mat-icon matSuffix *ngIf="dataModel.formulaPercent" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.formulaPercent = 1">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

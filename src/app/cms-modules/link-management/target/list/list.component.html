@@ -70,7 +70,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
-    
+
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
@@ -82,28 +82,29 @@
           </select>
         </mat-cell>
       </ng-container>
-           <!-- IsPublic Column -->
-           <ng-container matColumnDef="IsPublic">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsPublic']?.fieldTitle}}
-            </mat-header-cell>
-            <mat-cell *matCellDef="let row">  <i [ngClass]="row.isPublic | boolclass"></i> </mat-cell>
-          </ng-container>
-        <!-- CurrentViewCount Column -->
-        <ng-container matColumnDef="CurrentViewCount">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentViewCount']?.fieldTitle}}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.currentViewCount}} </mat-cell>
-        </ng-container>
-        <!-- CurrentClickCount Column -->
-        <ng-container matColumnDef="CurrentClickCount">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentClickCount']?.fieldTitle}}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row"> {{row.currentClickCount}} </mat-cell>
-        </ng-container>
+      <!-- IsPublic Column -->
+      <ng-container matColumnDef="IsPublic">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsPublic']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.isPublic | boolclass"></i> </mat-cell>
+      </ng-container>
+      <!-- CurrentViewCount Column -->
+      <ng-container matColumnDef="CurrentViewCount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentViewCount']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.currentViewCount}} </mat-cell>
+      </ng-container>
+      <!-- CurrentClickCount Column -->
+      <ng-container matColumnDef="CurrentClickCount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentClickCount']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.currentClickCount}} </mat-cell>
+      </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
+          publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
@@ -155,13 +156,22 @@
               </tr>
               <tr *ngIf="row.toWebAddress">
                 <td></td>
-                <td>{{fieldsInfo['WebAddress']?.fieldTitle}} : <a class="short-link" href="{{row.toWebAddress}}"
-                    target="_blank">{{row.toWebAddress}}</a></td>
+                <td>
+                  {{fieldsInfo['WebAddress']?.fieldTitle}} : <span class="navi-icon style cursor"
+                    [cdkCopyToClipboard]="row.toWebAddress" (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span>
+                  <a class="short-link" href="{{row.toWebAddress}}" target="_blank">{{row.toWebAddress}}</a>
+                </td>
               </tr>
               <tr *ngIf="row.carryToWebAddress">
                 <td></td>
-                <td> {{'TITLE.Short_link' | translate}} : <a href="{{row.carryToWebAddress}}"
-                    target="_blank">{{row.carryToWebAddress}}</a> </td>
+                <td>
+                  {{'TITLE.Short_link' | translate}} : <span class="navi-icon cursor"
+                    [cdkCopyToClipboard]="row.carryToWebAddress" (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span>&nbsp;
+                  <a href="{{row.carryToWebAddress}}" target="_blank">{{row.carryToWebAddress}}</a>
+
+                </td>
               </tr>
               <tr>
                 <td></td>

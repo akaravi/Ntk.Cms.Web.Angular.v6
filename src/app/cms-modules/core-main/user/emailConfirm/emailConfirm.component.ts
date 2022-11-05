@@ -132,7 +132,7 @@ export class CoreUserEmailConfirmComponent implements OnInit {
 
   onEmailConfirm(): void {
     const authModel: AuthEmailConfirmDtoModel = new AuthEmailConfirmDtoModel();
-    authModel.email = this.dataModel.email;
+    // authModel.email = this.dataModel.email;
 
     this.authService.ServiceEmailConfirm(authModel).subscribe({
       next: (ret) => {
