@@ -31,6 +31,7 @@ import { CoreUserChangePasswordComponent } from '../changePassword/changePasswor
 import { CoreUserViewComponent } from '../view/view.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { CoreUserEmailConfirmComponent } from '../emailConfirm/emailConfirm.component';
 @Component({
   selector: 'app-core-user-list',
   templateUrl: './list.component.html',
@@ -272,6 +273,28 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CoreUserChangePasswordComponent, {
       //height: '90%',
       data: { linkUserId: this.tableRowSelected.id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+  }
+
+  onActionbuttonEmailConfirm(): void {
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
+    ) {
+      this.cmsToastrService.typeErrorAccessAdd();
+      return;
+    }
+    const dialogRef = this.dialog.open(CoreUserEmailConfirmComponent, {
+      height: '70%',
+      width: '40%',
+      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

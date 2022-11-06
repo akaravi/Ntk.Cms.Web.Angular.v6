@@ -58,6 +58,8 @@
 	"ACTION.BATCHVIEW": "Batch view",
 	"ACTION.FOOTER": "Footer",
 	"ACTION.ENTERYOUREMAIL": "Enter Your Email",
+	"ACTION.CONFIRMEMAIL": "Confirm Email",
+	"ACTION.CONFIRM": "CONFIRM",
 	"ACTION.SEND": "Send",
 	"ACTION.SEND_TEST": "Send Test",
 	"ACTION.GENERALREPORTS": "General Reports",
@@ -362,6 +364,7 @@
 	"ERRORMESSAGE.MESSAGE.typeSuccessEdit": "Edited successfully",
 	"ERRORMESSAGE.MESSAGE.typeSuccessLogin": "You have successfully logged in to your account",
 	"ERRORMESSAGE.MESSAGE.typeSuccessLogout": "You have successfully logged out of your account",
+	"ERRORMESSAGE.MESSAGE.typeSuccessEmailConfirm": "Your email has been successfully verified",
 	"ERRORMESSAGE.MESSAGE.typeSuccessMove": "Transferred successfully",
 	"ERRORMESSAGE.MESSAGE.typeSuccessRegistery": "Your account has been successfully created",
 	"ERRORMESSAGE.MESSAGE.typeSuccessRemove": "Successfully removed",
@@ -431,6 +434,7 @@
 	"ERRORMESSAGE.TITLE.typeSuccessEdit": "Success",
 	"ERRORMESSAGE.TITLE.typeSuccessLogin": "Success",
 	"ERRORMESSAGE.TITLE.typeSuccessLogout": "Success",
+	"ERRORMESSAGE.TITLE.typeSuccessEmailConfirm": "Success",
 	"ERRORMESSAGE.TITLE.typeSuccessMove": "Success",
 	"ERRORMESSAGE.TITLE.typeSuccessRegistery": "Success",
 	"ERRORMESSAGE.TITLE.typeSuccessRemove": "Success",
@@ -1218,17 +1222,7 @@
 	"TITLE.Member": "Member",
 	"TITLE.Property":"Property",
 	"TITLE.link": "link ",
-
-
-
-
-
-
-
-
-
-
-
+	"TITLE.TitleML": "TitleML",
 
 	"TRANSLATOR.HI": "hi",
 	"TRANSLATOR.SELECT": "Select your language",

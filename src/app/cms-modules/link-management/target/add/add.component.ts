@@ -46,7 +46,7 @@ export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.loadingOption.cdr = this.cdr;
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -62,6 +62,7 @@ export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
   dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   optionActionTitle = this.translate.instant('ACTION.Add_To_List');
   optionActionButtomEnable = true;
+  dataProfessional = false;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
 
   loading = new ProgressSpinnerModel();

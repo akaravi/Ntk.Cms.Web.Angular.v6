@@ -1,39 +1,44 @@
+
 import {
   CoreEnumService,
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  WebDesignerMainMenuService,
-  WebDesignerMainMenuModel,
+  CoreUserService,
+  CoreUserModel,
   DataFieldInfoModel,
+  CoreAuthService,
+  AuthEmailConfirmDtoModel,
 } from 'ntk-cms-api';
 import {
   Component,
   OnInit,
   ViewChild,
-  Inject,
   ChangeDetectorRef,
+  Inject,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+
 @Component({
-  selector: 'app-webdesigner-menu-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss'],
+  selector: 'app-core-user-email-confirm',
+  templateUrl: './emailConfirm.component.html',
+  styleUrls: ['./emailConfirm.component.scss'],
 })
-export class WebDesignerMainMenuAddComponent implements OnInit {
-  requestParentId = '';
+export class CoreUserEmailConfirmComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<WebDesignerMainMenuAddComponent>,
+    private dialogRef: MatDialogRef<CoreUserEmailConfirmComponent>,
     public coreEnumService: CoreEnumService,
-    public webDesignerMainMenuService: WebDesignerMainMenuService,
+    public coreUserService: CoreUserService,
+    private authService: CoreAuthService,
     private cmsToastrService: CmsToastrService,
     private publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -41,51 +46,57 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    if (data) {
-      this.requestParentId = data.parentId + '';
-    }
-    if (this.requestParentId.length > 0) {
-      this.dataModel.linkParentId = this.requestParentId;
-    }
+    this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
-  @ViewChild('vform', { static: false }) formGroup: FormGroup;
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
+
+  fileManagerTree: TreeModel;
+  appLanguage = 'fa';
+
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<WebDesignerMainMenuModel> = new ErrorExceptionResult<WebDesignerMainMenuModel>();
-  dataModel: WebDesignerMainMenuModel = new WebDesignerMainMenuModel();
+  dataModelResult: ErrorExceptionResult<CoreUserModel> = new ErrorExceptionResult<CoreUserModel>();
+  dataModel: CoreUserModel = new CoreUserModel();
+  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  passwordIsValid = false;
+  @ViewChild('vform', { static: false }) formGroup: FormGroup;
+
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+
   fileManagerOpenForm = false;
-  ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
-    this.getEnumRecordStatus();
-    this.getEnumMenuPlaceType();
-    this.DataGetAccess();
+
+
+  onActionFileSelected(model: NodeInterface): void {
+    this.dataModel.linkMainImageId = model.id;
+    this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
+
   }
-  getEnumMenuPlaceType(): void {
-    this.coreEnumService.ServiceEnumMenuPlaceType().subscribe((next) => {
-      this.dataModelEnumMenuPlaceTypeResult = next;
-    });
+
+  ngOnInit(): void {
+
+    this.formInfo.formTitle = this.translate.instant('ACTION.CONFIRMEMAIL');
+    this.getEnumRecordStatus();
+    this.DataGetAccess();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
+
   DataGetAccess(): void {
-    this.webDesignerMainMenuService
+    this.coreUserService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.isSuccess) {
-            // this.dataAccessModel = next.access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
   DataAddContent(): void {
@@ -93,40 +104,48 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.webDesignerMainMenuService.ServiceAdd(this.dataModel).subscribe(
-      (next) => {
+
+    this.coreUserService.ServiceAdd(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.formSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.isSuccess) {
+        this.dataModelResult = ret;
+        if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeErrorMessage(next.errorMessage);
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
+
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.formSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
-  onActionSelectorSelect(model: WebDesignerMainMenuModel): void {
-    this.dataModel.linkParentId = null;
-    if (model && model.id.length > 0) {
-      this.dataModel.linkParentId = model.id;
-    }
+
+  onEmailConfirm(): void {
+    const authModel: AuthEmailConfirmDtoModel = new AuthEmailConfirmDtoModel();
+    // authModel.email = this.dataModel.email;
+
+    this.authService.ServiceEmailConfirm(authModel).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.cmsToastrService.typeSuccessEmailConfirm();
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+      }
+    });
   }
-  onFormSubmit(): void {
-    if (!this.formGroup.valid) {
-      return;
-    }
-    this.formInfo.formSubmitAllow = false;
-    this.DataAddContent();
+  passwordValid(event): void {
+    this.passwordIsValid = event;
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
@@ -141,8 +160,5 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
         }, 10);
       }
     }
-  }
-  onIconPickerSelect(model: any): void {
-    this.dataModel.icon = model;
   }
 }

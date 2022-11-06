@@ -17,6 +17,7 @@ import { CoreUserSelectorComponent } from './selector/selector.component';
 import { CoreUserChangePasswordComponent } from './changePassword/changePassword.component';
 import { CoreUserViewComponent } from './view/view.component';
 import { CoreUserResellerChartComponent } from './reseller-chart/reseller-chart.component';
+import { CoreUserEmailConfirmComponent } from './emailConfirm/emailConfirm.component';
 
 
 
@@ -29,7 +30,8 @@ import { CoreUserResellerChartComponent } from './reseller-chart/reseller-chart.
     CoreUserChangePasswordComponent,
     CoreUserSelectorComponent,
     CoreUserViewComponent,
-    CoreUserResellerChartComponent
+    CoreUserResellerChartComponent,
+    CoreUserEmailConfirmComponent,
   ],
   exports: [
     CoreUserComponent,
@@ -39,7 +41,8 @@ import { CoreUserResellerChartComponent } from './reseller-chart/reseller-chart.
     CoreUserChangePasswordComponent,
     CoreUserSelectorComponent,
     CoreUserViewComponent,
-    CoreUserResellerChartComponent
+    CoreUserResellerChartComponent,
+    CoreUserEmailConfirmComponent,
   ],
   imports: [
     CommonModule,

@@ -327,6 +327,10 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     );
   }
 
+  onActionCopied(): void {
+    this.cmsToastrService.typeSuccessCopedToClipboard();
+  }
+
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
