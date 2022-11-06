@@ -1223,6 +1223,20 @@
 	"TITLE.Property":"ملک",
 	"TITLE.link": "لینک ",
 	"TITLE.TitleML": "عنوان چند زبانه",
+	"TITLE.Add_New": "جدید اضافه کن",
+	"TITLE.Order": "سفارش",
+	"TITLE.Members": "اعضا",
+	"TITLE.project": "پروژه",
+	"TITLE.Record": "ثبت",
+	"TITLE.More_options": "گزینه های بیشتر",
+	"TITLE.Learn_more": "بیشتر بدانید",
+	"TITLE.Choose_Label": "برچسب را انتخاب کنید",
+	"TITLE.Customer": "مشتری",
+	"TITLE.Partner": "شریک",
+	"TITLE.Suplier": "تامین کننده",
+	"TITLE.Staff": "کارکنان",
+
+
 
 	"TRANSLATOR.HI": "سلام",
 	"TRANSLATOR.SELECT": "زبان خود را انتخاب کنید",

@@ -1223,6 +1223,21 @@
 	"TITLE.Property":"Property",
 	"TITLE.link": "link ",
 	"TITLE.TitleML": "TitleML",
+	"TITLE.Add_New": "Add New",
+	"TITLE.Order": "Order",
+	"TITLE.Members": "Members",
+	"TITLE.project": "project",
+	"TITLE.Record": "Record",
+	"TITLE.More_options": "More options",
+	"TITLE.Learn_more": "Learn more",
+	"TITLE.Choose_Label": "Choose Label",
+	"TITLE.Customer": "Customer",
+	"TITLE.Partner": "Partner",
+	"TITLE.Suplier": "Suplier",
+	"TITLE.Staff": "Staff",
+
+
+
 
 	"TRANSLATOR.HI": "hi",
 	"TRANSLATOR.SELECT": "Select your language",
