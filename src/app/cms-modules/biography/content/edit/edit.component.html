@@ -34,7 +34,7 @@
           <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
             placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.title = ''">close</mat-icon>
+            (click)="dataModel.title = ''">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
@@ -46,7 +46,7 @@
           <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
             placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.description = ''">close</mat-icon>
+            (click)="dataModel.description = ''">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
@@ -58,7 +58,7 @@
           <mat-label>{{fieldsInfo['FromDate']?.fieldTitle}}</mat-label>
           <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate" />
           <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['FromDate']?.accessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
+            mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #FromDate></mat-datepicker>
         </mat-form-field>
@@ -67,7 +67,7 @@
           <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
           <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
           <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
+            mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #ExpireDate></mat-datepicker>
         </mat-form-field>
@@ -104,7 +104,7 @@
           <input matInput [(ngModel)]="dataModel.source" name="dataModel.source" #Source type="text" dir="ltr"
             style="text-align: left;" placeholder="{{'TITLE.Content_reference_website_link' | translate}}" minlength="3" maxlength="500" />
           <mat-icon matSuffix *ngIf="dataModel.source" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.source = ''">close</mat-icon>
+            (click)="dataModel.source = ''">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Source.value.length }} / 500</mat-hint>
         </mat-form-field>
@@ -148,7 +148,7 @@
             <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
               type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.linkMainImageId = null">close</mat-icon>
+              (click)="dataModel.linkMainImageId = null">"this.translate.instant('TITLE.close')"</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
           </mat-form-field>
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
@@ -168,7 +168,7 @@
               #LinkFilePodcastId type="text" placeholder="{{'TITLE.Audio_File_ID' | translate}}"
               (click)="fileManagerOpenFormPodcast = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkFilePodcastId" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.linkFilePodcastId = null">close</mat-icon>
+              (click)="dataModel.linkFilePodcastId = null">"this.translate.instant('TITLE.close')"</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenFormPodcast = true">mode_edit</mat-icon>
           </mat-form-field>
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkFilePodcastId($event)" [language]="appLanguage"
@@ -187,7 +187,7 @@
             <input matInput [(ngModel)]="dataModel.linkFileMovieId" name="dataModel.linkFileMovieId" #LinkFileMovieId
               type="text" placeholder="{{'TITLE.Video_File_ID' | translate}}" (click)="fileManagerOpenFormMovie = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkFileMovieId" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.linkFileMovieId = null">close</mat-icon>
+              (click)="dataModel.linkFileMovieId = null">"this.translate.instant('TITLE.close')"</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>
           </mat-form-field>
           <cms-file-manager (itemSelected)="onActionFileSelectedLinkFileMovieId($event)" [language]="appLanguage"
@@ -212,7 +212,7 @@
             #contentOtherInfoSelected_Title type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
             maxlength="100" />
           <mat-icon matSuffix *ngIf="contentOtherInfoSelected.title" matSuffix mat-icon-button aria-label="Clear"
-            (click)="contentOtherInfoSelected.title = ''">close</mat-icon>
+            (click)="contentOtherInfoSelected.title = ''">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ contentOtherInfoSelected_Title.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -221,7 +221,7 @@
           <input matInput [(ngModel)]="contentOtherInfoSelected.typeId" name="contentOtherInfoSelected.typeId"
             #contentOtherInfoSelected_TypeId type="number" placeholder="{{'TITLE.Agreement_number_to_display' | translate}}" />
           <mat-icon matSuffix *ngIf="contentOtherInfoSelected.typeId" matSuffix mat-icon-button aria-label="Clear"
-            (click)="contentOtherInfoSelected.typeId = null">close</mat-icon>
+            (click)="contentOtherInfoSelected.typeId = null">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
@@ -230,7 +230,7 @@
             #contentOtherInfoSelected_Source type="text" dir="ltr" style="text-align: left;" placeholder="http://"
             maxlength="100" />
           <mat-icon matSuffix *ngIf="contentOtherInfoSelected.source" matSuffix mat-icon-button aria-label="Clear"
-            (click)="contentOtherInfoSelected.source = ''">close</mat-icon>
+            (click)="contentOtherInfoSelected.source = ''">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ contentOtherInfoSelected_Source.value.length }} / 500</mat-hint>
         </mat-form-field>

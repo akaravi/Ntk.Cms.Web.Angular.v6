@@ -30,7 +30,7 @@
           <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
             placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.title = ''">close</mat-icon>
+            (click)="dataModel.title = ''">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
@@ -49,7 +49,7 @@
             #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
             maxlength="100" required [disabled]="!fieldsInfo['TitleResourceLanguage']?.accessEditField" />
           <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
+            (click)="dataModel.titleResourceLanguage = ''">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
           <mat-error *ngIf="TitleResourceLanguage.errors?.required">
@@ -112,7 +112,7 @@
           <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
             placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
           <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.description = ''">close</mat-icon>
+            (click)="dataModel.description = ''">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
           <mat-error *ngIf="Description.errors?.required">

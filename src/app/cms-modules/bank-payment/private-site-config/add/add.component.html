@@ -34,7 +34,7 @@
           name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
           maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessEditField" matSuffix mat-icon-button
-          aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+          aria-label="Clear" (click)="dataModel.title = ''">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon *ngIf="fieldsInfo['Title']?.accessEditField" matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Title.errors?.required">
@@ -49,7 +49,7 @@
           #CurrencyUnitRatioByShop type="number" placeholder="Currency Unit Ratio By Shop" />
         <mat-icon matSuffix
           *ngIf="dataModel.currencyUnitRatioByShop && fieldsInfo['CurrencyUnitRatioByShop']?.accessEditField" matSuffix
-          mat-icon-button aria-label="Clear" (click)="dataModel.currencyUnitRatioByShop = 1">close</mat-icon>
+          mat-icon-button aria-label="Clear" (click)="dataModel.currencyUnitRatioByShop = 1">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon *ngIf="fieldsInfo['CurrencyUnitRatioByShop']?.accessEditField" matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- MinTransactionAmount Field -->
@@ -60,7 +60,7 @@
           #MinTransactionAmount type="number" placeholder="Min Transaction Amount" />
         <mat-icon matSuffix
           *ngIf="dataModel.minTransactionAmount && fieldsInfo['MinTransactionAmount']?.accessEditField" matSuffix
-          mat-icon-button aria-label="Clear" (click)="dataModel.minTransactionAmount = 0">close</mat-icon>
+          mat-icon-button aria-label="Clear" (click)="dataModel.minTransactionAmount = 0">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon *ngIf="fieldsInfo['MinTransactionAmount']?.accessEditField" matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- MaxTransactionAmount Field -->
@@ -71,7 +71,7 @@
           #MaxTransactionAmount type="number" placeholder="Max Transaction Amount" />
         <mat-icon matSuffix
           *ngIf="dataModel.maxTransactionAmount && fieldsInfo['MaxTransactionAmount']?.accessEditField" matSuffix
-          mat-icon-button aria-label="Clear" (click)="dataModel.maxTransactionAmount = 100000">close</mat-icon>
+          mat-icon-button aria-label="Clear" (click)="dataModel.maxTransactionAmount = 100000">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon *ngIf="fieldsInfo['MaxTransactionAmount']?.accessEditField" matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- FixFeeTransactionAmount Field -->
@@ -82,7 +82,7 @@
           #FixFeeTransactionAmount type="number" placeholder="Fix Fee Transaction Amount" />
         <mat-icon matSuffix
           *ngIf="dataModel.fixFeeTransactionAmount && fieldsInfo['FixFeeTransactionAmount']?.accessEditField" matSuffix
-          mat-icon-button aria-label="Clear" (click)="dataModel.fixFeeTransactionAmount = 0">close</mat-icon>
+          mat-icon-button aria-label="Clear" (click)="dataModel.fixFeeTransactionAmount = 0">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon *ngIf="fieldsInfo['FixFeeTransactionAmount']?.accessEditField" matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- PercentFeeTransactionAmount Field -->
@@ -94,7 +94,7 @@
           placeholder="Percent Fee Transaction Amount" />
         <mat-icon matSuffix
           *ngIf="dataModel.percentFeeTransactionAmount && fieldsInfo['PercentFeeTransactionAmount']?.accessEditField"
-          matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.percentFeeTransactionAmount = 100000">close
+          matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.percentFeeTransactionAmount = 100000">"this.translate.instant('TITLE.close')"
         </mat-icon>
         <mat-icon *ngIf="fieldsInfo['PercentFeeTransactionAmount']?.accessEditField" matSuffix>mode_edit</mat-icon>
       </mat-form-field>
@@ -105,7 +105,7 @@
           placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" required
           rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.memo" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.memo = ''">close</mat-icon>
+          (click)="dataModel.memo = ''">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Memo.value.length }} / 500</mat-hint>
         <mat-error *ngIf="Memo.errors?.required">

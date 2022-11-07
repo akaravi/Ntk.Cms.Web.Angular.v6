@@ -27,7 +27,7 @@
       <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
         placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.title = ''">close</mat-icon>
+        (click)="dataModel.title = ''">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
@@ -40,7 +40,7 @@
       <input matInput [(ngModel)]="dataModel.className" name="dataModel.className" #ClassName type="text"
         placeholder="ClassName" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.className" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.className = ''">close</mat-icon>
+        (click)="dataModel.className = ''">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ ClassName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ClassName.errors?.required">
@@ -59,7 +59,7 @@
         placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" required
         rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.memo" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.memo = ''">close</mat-icon>
+        (click)="dataModel.memo = ''">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Memo.value.length }} / 500</mat-hint>
       <mat-error *ngIf="Memo.errors?.required">
@@ -79,7 +79,7 @@
           #LinkModuleFileLogoId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
           (click)="fileManagerOpenForm = true" />
         <mat-icon matSuffix *ngIf="dataModel.linkModuleFileLogoId " matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.linkModuleFileLogoId = null">close</mat-icon>
+          (click)="dataModel.linkModuleFileLogoId = null">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
       </mat-form-field>
       <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"

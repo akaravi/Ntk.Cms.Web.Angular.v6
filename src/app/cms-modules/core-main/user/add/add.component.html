@@ -31,7 +31,7 @@
         [disabled]="!fieldsInfo['Username']?.accessAddField" placeholder="{{fieldsInfo['Username']?.fieldTitle}}"
         minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.username" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.username = ''">close</mat-icon>
+        (click)="dataModel.username = ''">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Username.errors?.required">
@@ -45,7 +45,7 @@
         [disabled]="!fieldsInfo['Email']?.accessAddField" placeholder="{{fieldsInfo['Email']?.fieldTitle}}"
         minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.email = ''">close</mat-icon>
+        (click)="dataModel.email = ''">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Email.errors?.required">
@@ -61,7 +61,7 @@
         [disabled]="!fieldsInfo['Mobile']?.accessAddField" placeholder="00989120000000" minlength="9" maxlength="20"
         required />
       <mat-icon matSuffix *ngIf="dataModel.mobile" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.mobile = ''">close</mat-icon>
+        (click)="dataModel.mobile = ''">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Mobile.value.length }} / 20</mat-hint>
       <mat-error *ngIf="Mobile.errors?.required">
@@ -77,7 +77,7 @@
         [disabled]="!fieldsInfo['Pwd']?.accessAddField" placeholder="{{fieldsInfo['Pwd']?.fieldTitle}}" minlength="3"
         maxlength="50" required />
       <mat-icon matSuffix *ngIf="dataModel.pwd" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.pwd = ''">close</mat-icon>
+        (click)="dataModel.pwd = ''">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Pwd.value.length }} / 50</mat-hint>
       <mat-error *ngIf="Pwd.errors?.required">

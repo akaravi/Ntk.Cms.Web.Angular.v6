@@ -57,7 +57,7 @@
             name="dataSiteStorageModel.mainDataContentRowCount" #dataSiteStorageModel_MainDataContentRowCount
             type="number" placeholder="0" />
           <mat-icon matSuffix *ngIf="dataSiteStorageModel.mainDataContentRowCount" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataSiteStorageModel.mainDataContentRowCount = null">close</mat-icon>
+            aria-label="Clear" (click)="dataSiteStorageModel.mainDataContentRowCount = null">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
 
         </mat-form-field>
@@ -67,7 +67,7 @@
           <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedContent"
             [(ngModel)]="dataSiteStorageModel.updatedContent" name="dataSiteStorageModel.updatedContent" />
           <mat-icon matSuffix *ngIf="dataSiteStorageModel.updatedContent " matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataSiteStorageModel.updatedContent = null">close</mat-icon>
+            (click)="dataSiteStorageModel.updatedContent = null">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-datepicker-toggle matSuffix [for]="dataSiteStorageModel_UpdatedContent"></mat-datepicker-toggle>
           <mat-datepicker touchUi #dataSiteStorageModel_UpdatedContent></mat-datepicker>
         </mat-form-field>
@@ -97,7 +97,7 @@
             name="dataConfigSiteAccessValuesModel.mainDataContentRowCount"
             #dataConfigSiteAccessValuesModel_MainDataContentRowCount type="number" placeholder="0" required />
           <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.mainDataContentRowCount" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.mainDataContentRowCount = null">close</mat-icon>
+            aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.mainDataContentRowCount = null">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="dataConfigSiteAccessValuesModel_MainDataContentRowCount.errors?.required">
             MainDataContentRowCount is <strong>{{'MESSAGE.required' | translate}}</strong>

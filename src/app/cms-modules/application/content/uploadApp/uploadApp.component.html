@@ -15,7 +15,7 @@
         <input matInput [(ngModel)]="dataModel.appVersion" [disabled]="!fieldsInfo['AppVersion']?.accessEditField"
           name="dataModel.appVersion" #AppVersion type="number" placeholder="{{'TITLE.version' | translate}}" min="0" max="1000" required />
         <mat-icon matSuffix *ngIf="dataModel.appVersion && fieldsInfo['AppVersion']?.accessEditField" matSuffix
-          mat-icon-button aria-label="Clear" (click)="dataModel.appVersion = 0">close</mat-icon>
+          mat-icon-button aria-label="Clear" (click)="dataModel.appVersion = 0">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon *ngIf="fieldsInfo['AppVersion']?.accessEditField" matSuffix>mode_edit</mat-icon>
         <mat-error *ngIf="AppVersion.errors?.required">
           {{ fieldsInfo['AppVersion']?.FieldAppVersion }} is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -27,7 +27,7 @@
           [disabled]="!fieldsInfo['LastBuildAppKey']?.accessEditField" name="dataModel.lastBuildAppKey" #LastBuildAppKey
           type="text" placeholder="{{'TITLE.Key_To_making_app' | translate}}" minlength="0" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.lastBuildAppKey && fieldsInfo['LastBuildAppKey']?.accessEditField"
-          matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.lastBuildAppKey = ''">close</mat-icon>
+          matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.lastBuildAppKey = ''">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon *ngIf="fieldsInfo['LastBuildAppKey']?.accessEditField" matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ 'Application.source.LastBuildAppKey_hint' | translate }}</mat-hint>
         <mat-hint align="start">{{ LastBuildAppKey.value.length }} / 100</mat-hint>

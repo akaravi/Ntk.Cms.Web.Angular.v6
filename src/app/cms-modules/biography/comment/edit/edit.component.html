@@ -25,7 +25,7 @@
         <input matInput [(ngModel)]="dataModel.writer" name="dataModel.writer" #Writer type="text" placeholder="{{fieldsInfo['Writer']?.fieldTitle}}"
           minlength="3" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.writer" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.writer = ''">close</mat-icon>
+          (click)="dataModel.writer = ''">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Writer.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Writer.errors?.required">
@@ -37,7 +37,7 @@
         <textarea matInput [(ngModel)]="dataModel.comment" name="dataModel.comment" #Comment type="text"
           placeholder="{{'TITLE.COMMENT' | translate}}" minlength="1" maxlength="500" required rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.comment" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.comment = ''">close</mat-icon>
+          (click)="dataModel.comment = ''">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Comment.value.length }} / 500</mat-hint>
         <mat-error *ngIf="Comment.errors?.required">

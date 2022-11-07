@@ -43,7 +43,7 @@
             name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
             maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessEditField" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+            aria-label="Clear" (click)="dataModel.title = ''">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Title']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong> </mat-hint>
@@ -60,7 +60,7 @@
             type="text" placeholder="{{fieldsInfo['Description']?.fieldTitle}}" row="10" minlength="3" maxlength="100"
             required></textarea>
           <mat-icon matSuffix *ngIf="dataModel.description && fieldsInfo['Description']?.accessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
+            mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">"this.translate.instant('TITLE.close')"</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Description']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Description']?.FieldDescription}}</strong> </mat-hint>
@@ -93,7 +93,7 @@
               #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
               (click)="fileManagerOpenForm = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkMainImageId && fieldsInfo['LinkMainImageId']?.accessEditField"
-              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkMainImageId = null">close</mat-icon>
+              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkMainImageId = null">"this.translate.instant('TITLE.close')"</mat-icon>
             <mat-icon *ngIf="fieldsInfo['LinkMainImageId']?.accessEditField" matSuffix
               (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
           </mat-form-field>
@@ -116,7 +116,7 @@
               #LinkMainVideoId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
               (click)="fileManagerOpenFormVideo = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkMainVideoId && fieldsInfo['LinkMainVideoId']?.accessEditField"
-              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkMainVideoId = null">close</mat-icon>
+              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkMainVideoId = null">"this.translate.instant('TITLE.close')"</mat-icon>
             <mat-icon *ngIf="fieldsInfo['LinkMainVideoId']?.accessEditField" matSuffix
               (click)="fileManagerOpenFormVideo = true">mode_edit</mat-icon>
           </mat-form-field>

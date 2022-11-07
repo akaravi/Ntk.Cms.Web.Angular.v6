@@ -28,7 +28,7 @@
       <input matInput [(ngModel)]="dataModel.serialNumber" name="dataModel.serialNumber" #SerialNumber type="text"
         placeholder="Serial Number" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.serialNumber" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.serialNumber = ''">close</mat-icon>
+        (click)="dataModel.serialNumber = ''">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ SerialNumber.value.length }} / 100</mat-hint>
       <mat-error *ngIf="SerialNumber.errors?.required">
@@ -41,7 +41,7 @@
       <input matInput [(ngModel)]="dataModel.pwdForUse" name="dataModel.pwdForUse" #PwdForUse type="text"
         placeholder="Serial Number" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.pwdForUse" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.pwdForUse = ''">close</mat-icon>
+        (click)="dataModel.pwdForUse = ''">cl"this.translate.instant('TITLE.close')"ose</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ PwdForUse.value.length }} / 100</mat-hint>
       <mat-error *ngIf="PwdForUse.errors?.required">
@@ -74,7 +74,7 @@
       <input matInput [(ngModel)]="dataModel.numberOfMaxUse" [disabled]="!fieldsInfo['NumberOfMaxUse']?.accessAddField"
         name="dataModel.numberOfMaxUse" #NumberOfMaxUse type="number" placeholder="0" required />
       <mat-icon matSuffix *ngIf="dataModel.numberOfMaxUse && fieldsInfo['NumberOfMaxUse']?.accessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.numberOfMaxUse = null">close</mat-icon>
+        mat-icon-button aria-label="Clear" (click)="dataModel.numberOfMaxUse = null">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon *ngIf="fieldsInfo['NumberOfMaxUse']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="NumberOfMaxUse.errors?.required">
         {{ fieldsInfo['NumberOfMaxUse']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -87,7 +87,7 @@
       <input matInput [matDatepicker]="MaxExpireToUse" [(ngModel)]="dataModel.maxExpireToUse"
         name="dataModel.maxExpireToUse" />
       <mat-icon matSuffix *ngIf="dataModel.maxExpireToUse && fieldsInfo['MaxExpireToUse']?.accessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.maxExpireToUse = null">close</mat-icon>
+        mat-icon-button aria-label="Clear" (click)="dataModel.maxExpireToUse = null">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="MaxExpireToUse"></mat-datepicker-toggle>
       <mat-datepicker touchUi #MaxExpireToUse></mat-datepicker>
     </mat-form-field>
@@ -99,7 +99,7 @@
         [disabled]="!fieldsInfo['NumberOfRegistered']?.accessAddField" name="dataModel.numberOfRegistered"
         #NumberOfRegistered type="number" placeholder="0" required />
       <mat-icon matSuffix *ngIf="dataModel.numberOfRegistered && fieldsInfo['NumberOfRegistered']?.accessAddField"
-        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.numberOfRegistered = null">close</mat-icon>
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.numberOfRegistered = null">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon *ngIf="fieldsInfo['NumberOfRegistered']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="NumberOfRegistered.errors?.required">
         {{ fieldsInfo['NumberOfRegistered']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -111,7 +111,7 @@
       <input matInput [(ngModel)]="dataModel.allowReuseDay" [disabled]="!fieldsInfo['AllowReuseDay']?.accessAddField"
         name="dataModel.allowReuseDay" #AllowReuseDay type="number" placeholder="0" required />
       <mat-icon matSuffix *ngIf="dataModel.allowReuseDay && fieldsInfo['AllowReuseDay']?.accessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.allowReuseDay = null">close</mat-icon>
+        mat-icon-button aria-label="Clear" (click)="dataModel.allowReuseDay = null">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon *ngIf="fieldsInfo['AllowReuseDay']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="AllowReuseDay.errors?.required">
         {{ fieldsInfo['AllowReuseDay']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>

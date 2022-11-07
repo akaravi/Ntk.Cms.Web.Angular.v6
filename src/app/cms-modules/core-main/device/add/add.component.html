@@ -26,7 +26,7 @@
         <input matInput [(ngModel)]="dataModel.securityKey" name="dataModel.securityKey" #SecurityKey type="text"
           placeholder="NTK.CMS.APP.1" minlength="3" maxlength="100" />
         <mat-icon matSuffix *ngIf="dataModel.securityKey" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.securityKey = ''">close</mat-icon>
+          (click)="dataModel.securityKey = ''">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ SecurityKey.value.length }} / 100</mat-hint>
         <mat-error *ngIf="SecurityKey.errors?.required">
@@ -39,7 +39,7 @@
         <input matInput [(ngModel)]="dataModel.packageName" name="dataModel.packageName" #PackageName type="text"
           placeholder="8.8.8.8" minlength="0" maxlength="500" />
         <mat-icon matSuffix *ngIf="dataModel.packageName" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.packageName = ''">close</mat-icon>
+          (click)="dataModel.packageName = ''">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ PackageName.value.length }} / 500</mat-hint>
       </mat-form-field>
@@ -49,7 +49,7 @@
         <input matInput [(ngModel)]="dataModel.deviceIPsAllow" name="dataModel.deviceIPsAllow" #DeviceIPsAllow
           type="text" placeholder="8.8.8.8" minlength="0" maxlength="500" />
         <mat-icon matSuffix *ngIf="dataModel.deviceIPsAllow" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.deviceIPsAllow = ''">close</mat-icon>
+          (click)="dataModel.deviceIPsAllow = ''">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ DeviceIPsAllow.value.length }} / 500</mat-hint>
       </mat-form-field>
@@ -63,7 +63,7 @@
         <input matInput [(ngModel)]="dataModel.linkApplicationId" name="dataModel.linkApplicationId"
           #LinkApplicationId type="number" placeholder="number " />
         <mat-icon matSuffix *ngIf="dataModel.linkApplicationId" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.linkApplicationId = null">close</mat-icon>
+          (click)="dataModel.linkApplicationId = null">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- OSType Field -->
@@ -95,7 +95,7 @@
         <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
           placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.description = ''">close</mat-icon>
+          (click)="dataModel.description = ''">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
         <mat-error *ngIf="Description.errors?.required">
@@ -108,7 +108,7 @@
         <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
         <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
         <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessAddField" matSuffix
-          mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
+          mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
         <mat-datepicker touchUi #ExpireDate></mat-datepicker>
       </mat-form-field>

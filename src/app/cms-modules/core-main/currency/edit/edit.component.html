@@ -29,7 +29,7 @@
       <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
         placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="20" required />
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.title = ''">close</mat-icon>
+        (click)="dataModel.title = ''">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Title.value.length }} / 20</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
@@ -49,7 +49,7 @@
       <input matInput [(ngModel)]="dataModel.symbol" name="dataModel.symbol" #Symbol type="text"
         placeholder="{{fieldsInfo['Symbol']?.fieldTitle}}" minlength="1" maxlength="20" required />
       <mat-icon matSuffix *ngIf="dataModel.symbol" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.symbol = ''">close</mat-icon>
+        (click)="dataModel.symbol = ''">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Symbol.value.length }} / 20</mat-hint>
       <mat-error *ngIf="Symbol.errors?.required">
@@ -62,7 +62,7 @@
       <input matInput [(ngModel)]="dataModel.exchangeBuyRatio" name="dataModel.exchangeBuyRatio" #ExchangeBuyRatio
         type="number" placeholder="{{fieldsInfo['ExchangeBuyRatio']?.fieldTitle}}" required step="0.001" />
       <mat-icon matSuffix *ngIf="dataModel.exchangeBuyRatio" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.exchangeBuyRatio = 1">close</mat-icon>
+        (click)="dataModel.exchangeBuyRatio = 1">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="ExchangeBuyRatio.errors?.required">
         ExchangeBuyRatio is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -74,7 +74,7 @@
       <input matInput [(ngModel)]="dataModel.exchangeSaleRatio" name="dataModel.exchangeSaleRatio" #ExchangeSaleRatio
         type="number" placeholder="{{fieldsInfo['ExchangeSaleRatio']?.fieldTitle}}" required step="0.001" />
       <mat-icon matSuffix *ngIf="dataModel.exchangeSaleRatio" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.exchangeSaleRatio = 1">close</mat-icon>
+        (click)="dataModel.exchangeSaleRatio = 1">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="ExchangeSaleRatio.errors?.required">
         ExchangeSaleRatio is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -92,7 +92,7 @@
         <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
           type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}al_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
         <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.linkMainImageId = null">close</mat-icon>
+          (click)="dataModel.linkMainImageId = null">"this.translate.instant('TITLE.close')"</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
       </mat-form-field>
       <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"

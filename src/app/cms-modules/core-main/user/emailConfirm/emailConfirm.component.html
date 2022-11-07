@@ -14,7 +14,7 @@
         [disabled]="!fieldsInfo['Email']?.accessAddField" placeholder="{{fieldsInfo['Email']?.fieldTitle}}"
         minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.email = ''">close</mat-icon>
+        (click)="dataModel.email = ''">"this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Email.errors?.required">
