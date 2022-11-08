@@ -1249,7 +1249,7 @@
 	"TITLE.Pit_stop_creates_quick_email_campaigns": "پیت استاپ کمپین های ایمیلی سریع ایجاد می کند",
 	"TITLE.We_help_to_strengthen_your_brand": "ما به تقویت برند شما کمک می کنیم",
 	"TITLE.for_your_every_purpose": "برای هر هدف شما",
-	"TITLE.Record_Status_is": "وضعیت رکورد استs",
+	"TITLE.Record_Status_is": "وضعیت رکورد است",
 	"TITLE.Title_is": " عنوان است",
 	"TITLE.Username_is": "نام کاربری است",
 	"TITLE.Bot_Token_is": "ربات توکن است",
@@ -1282,6 +1282,16 @@
 	"TITLE.New_Arrivals":"تازه رسیده ها",
 	"TITLE.Week":"تازه رسیده ها",
 	"TITLE.Day":"روز",
+	"TITLE.Today":"امروز",
+	"TITLE.Year":"سال",
+	"TITLE.Reports":"گزارش ها",
+	"TITLE.Import":"وارد كردن",
+	"TITLE.Actions":"اقدامات",
+	"TITLE.info":"اطلاعات",
+
+
+
+
 
 	"TRANSLATOR.HI": "سلام",
 	"TRANSLATOR.SELECT": "زبان خود را انتخاب کنید",
