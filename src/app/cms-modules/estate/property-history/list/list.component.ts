@@ -1,5 +1,5 @@
 
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -88,8 +88,10 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
+    'Id',
     'Title',
-    'Description',
+    'AppointmentDateFrom',
+    'AppointmentDateTo',
     'Action'
   ];
 
@@ -116,7 +118,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstatePropertyHistoryModel();
     const pName = this.constructor.name + 'main';
@@ -379,6 +381,13 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: EstatePropertyHistoryModel): void {
     this.tableRowSelected = row;
+  }
+  onActionTableRowMouseEnter(row: EstatePropertyHistoryModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: EstatePropertyHistoryModel): void {
+    row["expanded"] = false;
   }
 
 }
