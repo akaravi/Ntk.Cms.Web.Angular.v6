@@ -33,7 +33,7 @@
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">"this.translate.instant('TITLE.refresh')"</mat-icon>
     </button>
     <button *ngIf="dataModelResult.access.accessWatchRow && tableRowSelected.id>0" (click)="onActionbuttonTestPayment()"
       type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.PAYMENTTEST' | translate}}</button>

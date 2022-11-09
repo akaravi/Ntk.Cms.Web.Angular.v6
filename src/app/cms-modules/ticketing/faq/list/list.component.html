@@ -36,7 +36,7 @@
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">"this.translate.instant('TITLE.refresh')"</mat-icon>
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestDepartemenId>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>

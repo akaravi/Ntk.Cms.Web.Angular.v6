@@ -38,7 +38,7 @@
     <button *ngIf="requestLinkPropertyId && requestLinkPropertyId.length>0" (click)="onActionbuttonBuy()" type="button"
       class="btn btn-outline-danger">{{'ACTION.BUY' | translate}}</button>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">"this.translate.instant('TITLE.refresh')"</mat-icon>
     </button>
     <button type="button" (click)="onActionBackToParent()" class="btn btn-light">
       <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
