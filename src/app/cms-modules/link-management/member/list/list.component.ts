@@ -311,14 +311,4 @@ export class LinkManagementMemberListComponent implements OnInit, OnDestroy {
     row["expanded"] = false;
   }
   expandedElement: any;
-
-
-  onActionbuttonComment(model: LinkManagementMemberModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.router.navigate(['/linkmanagement/Member-log/', model.id]);
-  }
 }

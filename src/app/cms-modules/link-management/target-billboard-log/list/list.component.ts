@@ -30,7 +30,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-linkmanagement-target-billboard-log-list',
-  templateUrl: './list.component.html'
+  templateUrl: './list.component.html',
+  styleUrls: ["./list.component.scss"],
 })
 export class LinkManagementTargetBillboardLogListComponent implements OnInit, OnDestroy {
   requestLinkManagementBillboardId = 0;
@@ -47,7 +48,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     public dialog: MatDialog,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkManagementBillboardId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkManagementBillboardId'));
     this.requestLinkManagementTargetId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkManagementTargetId'));
     if (this.activatedRoute.snapshot.paramMap.get('Key')) {
@@ -76,6 +77,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     this.filteModelContent.sortType = EnumSortType.Descending;
 
   }
+  link: string;
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<LinkManagementTargetBillboardLogModel> = new ErrorExceptionResult<LinkManagementTargetBillboardLogModel>();
 
@@ -87,7 +89,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
   tableRowsSelected: Array<LinkManagementTargetBillboardLogModel> = [];
   tableRowSelected: LinkManagementTargetBillboardLogModel = new LinkManagementTargetBillboardLogModel();
   tableSource: MatTableDataSource<LinkManagementTargetBillboardLogModel> = new MatTableDataSource<LinkManagementTargetBillboardLogModel>();
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'ClickPrice',
@@ -116,7 +118,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-   this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new LinkManagementTargetBillboardLogModel();
     const pName = this.constructor.name + 'main';
@@ -248,23 +250,33 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
       }
     });
   }
-  onActionbuttonViewRowLinkBillbordId(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected): void {
+  onActionbuttonViewRowLinkBillbordId(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/linkmanagement/billboard/edit', this.tableRowSelected.linkManagementBillboardId]);
+    if (event?.ctrlKey) {
+      this.link = "/#/linkmanagement/billboard/edit/" + this.tableRowSelected.linkManagementBillboardId;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(["/linkmanagement/billboard/edit", this.tableRowSelected.linkManagementBillboardId]);
+    }
   }
-  onActionbuttonViewRowLinkTargetId(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected): void {
+  onActionbuttonViewRowLinkTargetId(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/linkmanagement/target/edit', this.tableRowSelected.linkManagementTargetId]);
+    if (event?.ctrlKey) {
+      this.link = "/#/linkmanagement/target/edit/" + this.tableRowSelected.linkManagementTargetId;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(["/linkmanagement/target/edit", this.tableRowSelected.linkManagementTargetId]);
+    }
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -342,7 +354,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
   }
   onActionTableRowSelect(row: LinkManagementTargetBillboardLogModel): void {
     this.tableRowSelected = row;
-  
+
     if (!row["expanded"])
       row["expanded"] = false;
     row["expanded"] = !row["expanded"]

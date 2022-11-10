@@ -167,12 +167,12 @@
                   </ng-container>
 
                   <ng-container *ngIf="row.linkManagementBillboardId>0">
-                    <a (click)="onActionbuttonViewRowLinkBillbordId(row)" class="link-primary pointer">
+                    <a (click)="onActionbuttonViewRowLinkBillbordId(row,$event)" class="link-primary pointer">
                       {{'ACTION.BILLBOARD' | translate}} </a>|
                   </ng-container>
 
                   <ng-container *ngIf="row.linkManagementTargetId>0">
-                    <a (click)="onActionbuttonViewRowLinkTargetId(row)"
+                    <a (click)="onActionbuttonViewRowLinkTargetId(row,$event)"
                     class="link-primary pointer">
                     {{'ACTION.BANNER' | translate}} </a>
                   </ng-container>
