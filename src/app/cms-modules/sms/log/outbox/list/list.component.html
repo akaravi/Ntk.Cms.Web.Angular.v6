@@ -76,7 +76,7 @@
 
       <!-- IsAccepted Column -->
       <ng-container matColumnDef="IsAccepted">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsAccepted']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.Accepted' | translate}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.isAccepted|statusClass"></i> </mat-cell>
       </ng-container>
