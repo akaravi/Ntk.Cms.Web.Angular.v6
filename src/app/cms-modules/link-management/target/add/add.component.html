@@ -100,11 +100,11 @@
         <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['ToWebAddress']?.fieldTitle}}</mat-label>
           <input style="direction: ltr; text-align: left !important;" matInput [(ngModel)]="dataModel.toWebAddress" name="dataModel.toWebAddress" #ToWebAddress type="text"
-            placeholder="{{fieldsInfo['ToWebAddress']?.fieldTitle}}" minlength="3" maxlength="100" />
+            placeholder="{{fieldsInfo['ToWebAddress']?.fieldTitle}}" minlength="3" maxlength="2000" />
           <mat-icon matSuffix *ngIf="dataModel.toWebAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.toWebAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ ToWebAddress.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ ToWebAddress.value.length }} / 2000</mat-hint>
           <mat-error *ngIf="ToWebAddress.errors?.required">
             ToWebAddress is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>

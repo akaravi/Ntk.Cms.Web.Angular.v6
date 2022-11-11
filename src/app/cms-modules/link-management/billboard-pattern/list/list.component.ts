@@ -324,14 +324,4 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
   onActionTableRowSelect(row: LinkManagementBillboardPatternModel): void {
     this.tableRowSelected = row;
   }
-
-
-  onActionbuttonComment(model: LinkManagementBillboardPatternModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.router.navigate(['/linkmanagement/target-billboard-log/', model.id]);
-  }
 }

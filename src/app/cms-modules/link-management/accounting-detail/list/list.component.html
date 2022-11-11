@@ -19,8 +19,6 @@
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
-    <button *ngIf=" tableRowSelected.id>0" (click)="onActionbuttonComment()" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.RESULTS' | translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
@@ -110,10 +108,6 @@
             <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonComment(row)">
-              <mat-icon>list</mat-icon>
-              <span>{{'ACTION.STATIST' | translate}}</span>
             </button>
 
           </mat-menu>

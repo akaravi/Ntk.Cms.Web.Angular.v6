@@ -384,7 +384,7 @@
 
         <mat-accordion class="example-headers-align">
           <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i"
-            [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+            [expanded]="step === i" (opened)="setStep(i)">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 {{itemGroup.title}}

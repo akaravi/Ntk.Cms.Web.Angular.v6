@@ -323,14 +323,4 @@ onActionTableRowMouseLeave(row: LinkManagementAccountingDetailModel): void {
   row["expanded"] = false;
 }
 expandedElement: any;
-
-
-  onActionbuttonComment(model: LinkManagementAccountingDetailModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.router.navigate(['/linkmanagement/AccountingDetail-log/', model.id]);
-  }
 }

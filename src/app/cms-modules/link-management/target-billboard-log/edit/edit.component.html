@@ -61,17 +61,6 @@
         (click)="dataModel.viewPrice = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
-    <!-- VisitTimeInSecond Field -->
-    <!-- <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['VisitTimeInSecond']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.visitTimeInSecond" name="dataModel.visitTimeInSecond" #VisitTimeInSecond
-        type="number" placeholder="{{fieldsInfo['VisitTimeInSecond']?.fieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.visitTimeInSecond" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.visitTimeInSecond = 0">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field> -->
-
-
 
     <!-- DeviceId Field -->
     <mat-form-field class="ntk-full-width">
@@ -103,7 +92,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['BrowserName']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.browserName" name="dataModel.browserName" #BrowserName type="text"
-        placeholder="{{fieldsInfo['BrowserName']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['BrowserName']?.fieldTitle}}" minlength="3" maxlength="100" />
       <mat-icon matSuffix *ngIf="dataModel.browserName" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.browserName = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

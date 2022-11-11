@@ -224,7 +224,7 @@
         </div>
       </mat-step>
 
-      <mat-step label="{{''}}" state="main">
+      <mat-step label="{{'TITLE.Personal_Information' | translate}}" state="main">
         <!-- LinkCmsUserId Field -->
         <app-cms-user-selector *ngIf="dataProfessional && this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorCmsUser($event)"
@@ -235,7 +235,7 @@
         <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateUser($event)"
           [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessAddField"
-          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Property_personne')">
+          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
         </app-estate-account-user-selector>
 
         <!-- AboutAgentMobile Field -->
@@ -332,7 +332,7 @@
 
         <mat-accordion class="example-headers-align">
           <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i"
-            [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+            [expanded]="step === i" (opened)="setStep(i)">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 {{itemGroup.title}}
