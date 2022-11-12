@@ -72,7 +72,7 @@
       <mat-select placeholder="{{'TITLE.TypeId' | translate}}" [(ngModel)]="dataModel.inputDataType" name="dataModel.inputDataType"
         #InputDataType="ngModel" panelClass="InputDataType-{{ dataModel.inputDataType }}">
         <mat-option *ngFor="
-                      let item of dataModelEnumInputDataTypeResult.listItems;
+                      let item of dataModelInputDataTypeEnumResult.listItems;
                       index as i
                     " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>

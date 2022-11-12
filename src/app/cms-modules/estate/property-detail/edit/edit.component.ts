@@ -64,7 +64,7 @@ export class EstatePropertyDetailEditComponent implements OnInit {
   dataModel: EstatePropertyDetailModel = new EstatePropertyDetailModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumInputDataTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelInputDataTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   keywordDataModel = [];
 
   fileManagerOpenForm = false;
@@ -78,11 +78,11 @@ export class EstatePropertyDetailEditComponent implements OnInit {
     }
     this.DataGetOneContent();
     this.getEnumRecordStatus();
-    this.getEnumInputDataType();
+    this.getInputDataTypeEnum();
   }
-  getEnumInputDataType(): void {
-    this.estateEnumService.ServiceEnumInputDataType().subscribe((next) => {
-      this.dataModelEnumInputDataTypeResult = next;
+  getInputDataTypeEnum(): void {
+    this.coreEnumService.ServiceInputDataTypeEnum().subscribe((next) => {
+      this.dataModelInputDataTypeEnumResult = next;
     });
   }
   async getEnumRecordStatus(): Promise<void> {

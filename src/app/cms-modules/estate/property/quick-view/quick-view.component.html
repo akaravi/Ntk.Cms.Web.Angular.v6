@@ -1,0 +1,52 @@
+<div class="ntk-cms-html-card-header">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    <!-- {{ formInfo.formTitle }} -->
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+</div>
+<div class="ntk-cms-html-card-body">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+
+
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>{{fieldsInfo['AboutAgentMobile']?.fieldTitle}}:</td>
+        <td>{{dataModel.aboutAgentMobile}}</td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['AboutCustomerMobile']?.fieldTitle}}:</td>
+        <td>{{dataModel.aboutCustomerMobile}}</td>
+      </tr>
+      <tr>
+        <td>{{'TITLE.General_Description' | translate}}:</td>
+        <td>{{dataModel.description}}</td>
+      </tr>
+      <tr *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
+        <td>{{'TITLE.Description_Hidden' | translate}}:</td>
+        <td>{{dataModel.descriptionHidden}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+</div>
+<div class="ntk-cms-html-card-message">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.formError }}
+    </small>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+</div>
+<div class="ntk-cms-html-card-footer">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+    <button type="button" (click)="onFormCancel()" class="btn btn-light">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+</div>

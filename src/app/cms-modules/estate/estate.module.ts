@@ -148,6 +148,7 @@ import { EstatePropertyProjectListComponent } from './property-project/list/list
 import { EstatePropertyProjectSelectorComponent } from './property-project/selector/selector.component';
 import { EstatePropertyProjectComponent } from './property-project/header/header.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
 
 @NgModule({
   declarations: [
@@ -194,6 +195,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
     EstatePropertyCompleteComponent,
     EstatePropertyHeaderComponent,
     EstatePropertyActionComponent,
+    EstatePropertyQuickViewComponent,
     /* */
     EstatePropertyHistoryAddComponent,
     EstatePropertyHistoryEditComponent,

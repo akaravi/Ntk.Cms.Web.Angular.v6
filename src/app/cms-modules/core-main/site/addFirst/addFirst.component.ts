@@ -66,8 +66,14 @@ export class CoreSiteAddFirstComponent implements OnInit {
     this.DataGetAccess();
   }
   checkValidateDomain() {
+    if (!this.dataModel.subDomain && this.dataModel.subDomain.length == 0) {
+      this.validateDomain = false;
+      return;
+    }
+    this.dataModel.subDomain = this.publicHelper.parseNumberArabic(this.dataModel.subDomain);
     this.validateDomain = this.alphaExp.test(this.dataModel.subDomain);
   }
+
   DataGetAccess(): void {
     const pName = this.constructor.name + '.DataGetAccess';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_access'));

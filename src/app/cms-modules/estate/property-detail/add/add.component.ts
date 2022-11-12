@@ -73,7 +73,7 @@ export class EstatePropertyDetailAddComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
 
-  dataModelEnumInputDataTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelInputDataTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   keywordDataModel = [];
 
   ngOnInit(): void {
@@ -81,11 +81,11 @@ export class EstatePropertyDetailAddComponent implements OnInit {
     this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
-    this.getEnumInputDataType();
+    this.getInputDataTypeEnum();
   }
-  getEnumInputDataType(): void {
-    this.estateEnumService.ServiceEnumInputDataType().subscribe((next) => {
-      this.dataModelEnumInputDataTypeResult = next;
+  getInputDataTypeEnum(): void {
+    this.coreEnumService.ServiceInputDataTypeEnum().subscribe((next) => {
+      this.dataModelInputDataTypeEnumResult = next;
     });
   }
   async getEnumRecordStatus(): Promise<void> {

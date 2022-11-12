@@ -37,6 +37,7 @@ import { TokenHelper } from "src/app/core/helpers/tokenHelper";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
 import { TranslateService } from '@ngx-translate/core';
 import { CmsMemoComponent } from "src/app/shared/cms-memo/cms-memo.component";
+import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
 
 
 @Component({
@@ -187,6 +188,7 @@ export class EstatePropertyListComponent
     "LinkSiteId",
     "ViewCount",
     "AdsActive",
+    "CaseCode",
     "CreatedDate",
     "UpdatedDate",
     "Action",
@@ -441,6 +443,31 @@ export class EstatePropertyListComponent
       this.router.navigate(["/estate/property/edit", this.tableRowSelected.id]);
     }
   }
+
+  onActionbuttonQuickViewRow(model: EstatePropertyModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
+      height: '90%',
+      data: { id: this.tableRowSelected.id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
+  }
+
   onActionbuttonAdsRow(
     mode: EstatePropertyModel = this.tableRowSelected, event?: MouseEvent
   ): void {
