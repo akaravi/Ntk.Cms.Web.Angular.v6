@@ -33,7 +33,7 @@
     </mat-form-field>
     <!--captchaText Field-->
     <img src="{{captchaModel.image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
-    <mat-icon matSuffix (click)="onCaptchaOrder()">"this.translate.instant('TITLE.refresh')"</mat-icon>
+    <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
     <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.captchaText"
@@ -99,7 +99,7 @@
     </mat-form-field>
     <!--captchaText Field-->
     <img src="{{captchaModel.image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
-    <mat-icon matSuffix (click)="onCaptchaOrder()">"this.translate.instant('TITLE.refresh')"</mat-icon>
+    <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
     <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.captchaText"

@@ -1,6 +1,6 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    <!-- {{ formInfo.formTitle }} -->
+    {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
@@ -17,6 +17,10 @@
       <tr>
         <td>{{fieldsInfo['AboutCustomerMobile']?.fieldTitle}}:</td>
         <td>{{dataModel.aboutCustomerMobile}}</td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['Address']?.fieldTitle}}:</td>
+        <td>{{dataModel.address}}</td>
       </tr>
       <tr>
         <td>{{'TITLE.General_Description' | translate}}:</td>

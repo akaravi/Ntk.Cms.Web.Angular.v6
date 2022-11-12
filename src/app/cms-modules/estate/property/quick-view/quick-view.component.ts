@@ -8,6 +8,7 @@ import {
   EstatePropertyService,
   TokenInfoModel,
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -60,7 +61,7 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.VIEW');
+    this.formInfo.formTitle = this.translate.instant('TITLE.QUICK_VIEW');
     if (this.requestId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
@@ -89,7 +90,7 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.estatePropertyService.setAccessLoad();
-
+    this.estatePropertyService.setAccessDataType(EnumManageUserAccessDataTypes.Viewer);
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/
@@ -97,7 +98,7 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         this.dataModel = ret.item;
         if (ret.isSuccess) {
-          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.id;
+          this.formInfo.formTitle = this.formInfo.formTitle;
           this.formInfo.formAlert = '';
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');

@@ -229,7 +229,7 @@
         <app-cms-user-selector *ngIf="dataProfessional && this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorCmsUser($event)"
           [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCmsUserId"
-          [optionPlaceholder]="this.translate.instant('TITLE.property owner')">
+          [optionPlaceholder]="this.translate.instant('TITLE.Property_Owner')">
         </app-cms-user-selector>
         <!-- LinkEstateUserId Field -->
         <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite"

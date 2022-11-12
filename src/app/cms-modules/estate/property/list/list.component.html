@@ -69,7 +69,7 @@
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">"this.translate.instant('TITLE.refresh')"</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
@@ -210,6 +210,16 @@
         <mat-cell *matCellDef="let row">
           <button mat-icon-button>
             <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <!-- QuickView Column -->
+      <ng-container matColumnDef="QuickView">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.QUICK_VIEW' | translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button>
+            <mat-icon (click)="onActionbuttonQuickViewRow(row)">visibility</mat-icon>
           </button>
         </mat-cell>
       </ng-container>

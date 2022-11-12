@@ -193,6 +193,7 @@ export class EstatePropertyListComponent
     "UpdatedDate",
     "Action",
     "LinkTo",
+    "QuickView",
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<
     string,
@@ -459,7 +460,7 @@ export class EstatePropertyListComponent
       return;
     }
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
-      height: '90%',
+      // height: '90%',
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {

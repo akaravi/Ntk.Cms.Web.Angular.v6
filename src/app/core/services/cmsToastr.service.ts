@@ -456,7 +456,7 @@ export class CmsToastrService {
   }
 
   typeError(model: any, str: string = ''): void {
-    let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError') + ' ' + str;
+    let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError') + ' ' + str + "\n" + model.errorTypeTitle;
     if (!model) {
       this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeError'));
       return;
