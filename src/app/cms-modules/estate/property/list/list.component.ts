@@ -21,6 +21,7 @@ import {
   EnumRecordStatus,
   DataFieldInfoModel,
   EnumFilterDataModelSearchTypes,
+  EnumManageUserAccessDataTypes,
 } from "ntk-cms-api";
 import { ComponentOptionSearchModel } from "src/app/core/cmsComponentModels/base/componentOptionSearchModel";
 import { PublicHelper } from "src/app/core/helpers/publicHelper";
@@ -719,6 +720,7 @@ export class EstatePropertyListComponent
 
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
+    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.id)
       .subscribe({

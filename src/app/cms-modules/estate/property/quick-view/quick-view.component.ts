@@ -90,7 +90,7 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.estatePropertyService.setAccessLoad();
-    this.estatePropertyService.setAccessDataType(EnumManageUserAccessDataTypes.Viewer);
+    this.estatePropertyService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/
