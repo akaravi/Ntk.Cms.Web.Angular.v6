@@ -39,7 +39,7 @@ export class CmsToastrService {
     // this.toastr.success('با موفقیت اضافه شد', this.now() + 'Success!');
     this.toastr.success(this.translate.instant('ERRORMESSAGE.MESSAGE.typeSuccessCopedToClipboard'), this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeSuccessAdd'));
   }
-   typeSuccessAdd(): void {
+  typeSuccessAdd(): void {
     // this.toastr.success('با موفقیت اضافه شد', this.now() + 'Success!');
     this.toastr.success(this.translate.instant('ERRORMESSAGE.MESSAGE.typeSuccessAdd'), this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeSuccessAdd'));
   }
@@ -59,13 +59,13 @@ export class CmsToastrService {
     // this.toastr.success('با موفقیت تگ مشابه حذف شد', this.now() + 'Success!');
     this.toastr.success(this.translate.instant('ERRORMESSAGE.MESSAGE.typeSuccessRemoveTag'), this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeSuccessRemoveTag'));
   }
-  typeSuccessSetStatus(str:string): void {
-     // let message = 'با موفقیت اضافه شد';
-     let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeSuccessSetStatus');
+  typeSuccessSetStatus(str: string): void {
+    // let message = 'با موفقیت اضافه شد';
+    let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeSuccessSetStatus');
 
-     if (str && str.length > 0) {
-       message = message + ' ' + this.translate.instant('ERRORMESSAGE.TITLE.Success') + ': ' + str;
-     }
+    if (str && str.length > 0) {
+      message = message + ' ' + this.translate.instant('ERRORMESSAGE.TITLE.Success') + ': ' + str;
+    }
     this.toastr.success(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeSuccessSetStatus'));
   }
   typeSuccessRemoveOtherInfo(): void {
@@ -454,7 +454,7 @@ export class CmsToastrService {
 
     this.toastr.error(message, this.now() + title);
   }
-  
+
   typeError(model: any, str: string = ''): void {
     let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError') + ' ' + str;
     if (!model) {
@@ -481,6 +481,11 @@ export class CmsToastrService {
     } else if (model && model.errorMessage) {
 
       message = model.errorMessage + ' ' + str;
+      this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeError'));
+    }
+    if (model && model.errorTypeTitle) {
+
+      message = model.errorTypeTitle + ' ' + str;
       this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeError'));
     }
     message = (model.message) ? model.message : model.status ? `${model.status} - ${model.statusText}` : 'Server error';
