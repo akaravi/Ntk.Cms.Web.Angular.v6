@@ -29,12 +29,15 @@ export class CmsSearchListComponent implements OnInit {
       setAccess: (x: AccessModel) => this.setAccess(x),
     };
     this.optionsChange.emit(model);
+
+    this.checkLoadSearch(false);
   }
   get options(): ComponentOptionSearchModel {
     return this.optionsData;
   }
-
-  show: boolean = false;
+  allowLoadSearch = false;
+  allowSaveSearch=false;
+  submited: boolean = false;
   showLabel: boolean = false;
   filters: Array<FilterDataModel>;
   lang: string;
@@ -46,21 +49,16 @@ export class CmsSearchListComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
   ) {
     this.lang = this.translate.currentLang;
-
   }
   ngOnInit(): void {
-    this.show = false;
-    // if (this.optionsData) {
-    //   this.optionsData.childMethods = {
-    //     setAccess: (x) => this.setAccess(x)
-    //   };
-    // }
+    this.submited = false;
   }
   setAccess(model: AccessModel): void {
     this.optionsData.data.access = model;
     if (!this.filters || this.filters.length === 0) {
       this.setFields();
     }
+    this.checkLoadSearch(false);
   }
   setFields(): void {
     if (
@@ -176,7 +174,8 @@ export class CmsSearchListComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.show = true;
+    this.submited = true;
+    this.allowSaveSearch=true;
     this.getRules();
     if (this.optionsData.parentMethods) {
       this.optionsData.parentMethods.onSubmit(this.filters);
@@ -189,10 +188,15 @@ export class CmsSearchListComponent implements OnInit {
     }, 3000);
     this.cmsToastrService.typeSuccessCopedToClipboard();
   }
-  onGetRules(): void {
-    // console.log(this.query);
+  onActionLoadRules(): void {
+
+    this.checkLoadSearch(true);
+
+
   }
-  onSaveRules(): void {
+  onActionSaveRules(): void {
+    debugger;
+    localStorage.setItem(this.optionsData.data.access.moduleName + "_" + this.optionsData.data.access.moduleEntityName, JSON.stringify(this.query));
 
   }
   onSetRules(): void {
@@ -225,4 +229,25 @@ export class CmsSearchListComponent implements OnInit {
     }
     return 0;
   }
+  checkLoadSearch(loadInfield: boolean): boolean {
+    if (this.optionsData && this.optionsData.data && this.optionsData.data.access) {
+      var storeVal = localStorage.getItem(this.optionsData.data.access.moduleName + "_" + this.optionsData.data.access.moduleEntityName);
+      if (storeVal) {
+        try {
+          if (loadInfield) {
+            this.query = JSON.parse(storeVal);
+            this.getRules()
+          }
+          this.allowLoadSearch = true;
+          this.allowSaveSearch=true;
+          return true;
+        } catch (error) {
+          console.log(error);
+          this.allowLoadSearch = false;
+        }
+      }
+    }
+    return false;
+  }
+
 }
