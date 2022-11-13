@@ -39,7 +39,8 @@ import {
   EstateCustomerOrderService,
   BankPaymentTransactionService,
   EstateAccountAgencyAdsService,
-  EstatePropertyProjectService
+  EstatePropertyProjectService,
+  EstatePropertyExpertPriceService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -149,6 +150,10 @@ import { EstatePropertyProjectSelectorComponent } from './property-project/selec
 import { EstatePropertyProjectComponent } from './property-project/header/header.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
+import { EstatePropertyExpertPriceAddComponent } from './property-expert-price/add/add.component';
+import { EstatePropertyExpertPriceEditComponent } from './property-expert-price/edit/edit.component';
+import { EstatePropertyExpertPriceHeaderComponent } from './property-expert-price/header/header.component';
+import { EstatePropertyExpertPriceListComponent } from './property-expert-price/list/list.component';
 
 @NgModule({
   declarations: [
@@ -246,6 +251,12 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstatePropertyDetailSelectorComponent,
     EstatePropertyDetailTreeComponent,
     /* */
+    EstatePropertyExpertPriceAddComponent,
+    EstatePropertyExpertPriceEditComponent,
+    EstatePropertyExpertPriceHeaderComponent,
+    EstatePropertyExpertPriceListComponent,
+    /* */
+
     EstateAccountUserAddComponent,
     EstateAccountUserEditComponent,
     EstateAccountUserListComponent,
@@ -308,6 +319,7 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstatePropertyAccountTypeUserService,
     EstatePropertyDetailGroupService,
     EstatePropertyDetailService,
+    EstatePropertyExpertPriceService,
     EstatePropertyHistoryService,
     EstatePropertyShareAgencyService,
     EstatePropertyShareAgentService,
