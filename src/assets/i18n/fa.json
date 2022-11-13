@@ -150,6 +150,7 @@
 	"ACTION.SITE_CHARGE": "شارژ سایت",
 	"ACTION.USER_CHARGE": "شارژ کاربر",
 	"ACTION.Donate_Money": "کمک مالی",
+	"ACTION.Price_Calculate": "محاسبه قیمت",
 	"ACTION.MARKETING_SUBSET": "زیرمجموع بازاریابی",
 	"ACTION.SITE_STATISTICS": "آمار سایت",
 	"ACTION.OPTIMIZATION": "بهینه سازی",

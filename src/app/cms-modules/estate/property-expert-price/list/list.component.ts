@@ -11,6 +11,8 @@ import {
   TokenInfoModel,
   EnumRecordStatus,
   DataFieldInfoModel,
+  EstatePriceInquiryDtoModel,
+  ErrorExceptionResultBase,
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
@@ -83,6 +85,8 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     'CreatedDate',
     'Action'
   ];
+  dataModelInquiryResult: ErrorExceptionResultBase;
+  dataModelInquiry: EstatePriceInquiryDtoModel = new EstatePriceInquiryDtoModel();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   cmsApiStoreSubscribe: Subscription;
@@ -271,6 +275,30 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
       );
 
   }
+//*********/
+  // onActionbuttonPriceInquiryCalculateRow(): void {
+
+  //   const pName = this.constructor.name + 'ServicePriceInquiryCalculate';
+  //   this.loading.Start(pName);
+  //   this.contentService.ServicePriceInquiryCalculate(this.dataModelInquiry).subscribe({
+  //     next: (ret) => {
+  //       if (ret.isSuccess) {
+  //         this.dataModelInquiryResult = ret;
+  //       }
+  //       else {
+  //         this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+  //       }
+  //       this.loading.Stop(pName);
+
+  //     },
+  //     error: (er) => {
+  //       this.cmsToastrService.typeError(er);
+  //       this.loading.Stop(pName);
+  //     }
+  //   }
+  //   );
+  // }
+//*********/
 
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
