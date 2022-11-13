@@ -483,11 +483,7 @@ export class CmsToastrService {
       message = model.errorMessage + ' ' + str;
       this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeError'));
     }
-    if (model && model.errorTypeTitle) {
 
-      message = model.errorTypeTitle + ' ' + str;
-      this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeError'));
-    }
     message = (model.message) ? model.message : model.status ? `${model.status} - ${model.statusText}` : 'Server error';
     this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeError'));
 

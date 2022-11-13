@@ -25,6 +25,7 @@ import { EstatePropertyProjectAddComponent } from './property-project/add/add.co
 import { EstatePropertyProjectEditComponent } from './property-project/edit/edit.component';
 import { EstateActivityTypeListComponent } from './activity-type/list/list.component';
 import { EstatePropertyHistoryListComponent } from './property-history/list/list.component';
+import { EstatePropertyExpertPriceListComponent } from './property-expert-price/list/list.component';
 
 const routes: Routes = [
   {
@@ -121,6 +122,11 @@ const routes: Routes = [
       {
         path: 'property-history/LinkPropertyId/:LinkPropertyId',
         component: EstatePropertyHistoryListComponent
+      },
+      /**/
+      {
+        path: 'expert-price',
+        component: EstatePropertyExpertPriceListComponent
       },
       /**/
       {
