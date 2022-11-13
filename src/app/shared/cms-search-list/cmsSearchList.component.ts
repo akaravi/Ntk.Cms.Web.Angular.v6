@@ -195,7 +195,6 @@ export class CmsSearchListComponent implements OnInit {
 
   }
   onActionSaveRules(): void {
-    debugger;
     localStorage.setItem(this.optionsData.data.access.moduleName + "_" + this.optionsData.data.access.moduleEntityName, JSON.stringify(this.query));
 
   }
