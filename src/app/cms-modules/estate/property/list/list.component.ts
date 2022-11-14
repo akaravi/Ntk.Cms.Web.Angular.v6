@@ -239,7 +239,6 @@ export class EstatePropertyListComponent
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelProperty));
     /*filter CLone*/
-    console.log(filterModel);
     if (
       this.categoryModelSelected &&
       this.categoryModelSelected.id &&
