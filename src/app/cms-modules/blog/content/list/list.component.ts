@@ -437,7 +437,7 @@ export class BlogContentListComponent implements OnInit, OnDestroy {
 
 
 
-  manageAllRows(flag: boolean) {
+  onActionGridExpandRows(flag: boolean) {
     this.tableSource.data.forEach(row => {
       row['expanded'] = flag;
     })

@@ -34,9 +34,9 @@
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
-    <button (click)="manageAllRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
+    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
       translate}}</button>
-    <button (click)="manageAllRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
+    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
       translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>

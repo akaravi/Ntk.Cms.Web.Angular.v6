@@ -524,7 +524,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   {
     this.router.navigate(['/core/user-support-access/list/LinkSiteId/', 0,'LinkUserId',row.id]);
   }
-  manageAllRows(flag: boolean) {
+  onActionGridExpandRows(flag: boolean) {
     this.tableSource.data.forEach(row => {
       row['expanded'] = flag;
     })

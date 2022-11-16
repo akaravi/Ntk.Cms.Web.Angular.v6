@@ -430,7 +430,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
 
   expandedElement: any;
 
-  manageAllRows(flag: boolean) {
+  onActionGridExpandRows(flag: boolean) {
     this.tableSource.data.forEach(row => {
       row['expanded'] = flag;
     })

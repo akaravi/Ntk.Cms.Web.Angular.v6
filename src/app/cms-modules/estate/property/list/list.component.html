@@ -73,9 +73,9 @@
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-    <button (click)="manageAllRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
+    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
       translate}}</button>
-    <button (click)="manageAllRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
+    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
       translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
