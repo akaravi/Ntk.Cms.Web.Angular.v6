@@ -153,6 +153,12 @@
               <mat-icon>login</mat-icon>
               <span>{{'ACTION.LOGIN_TO_THIS_USER' | translate}}</span>
             </button>
+
+            <button mat-menu-item (click)="onActionbuttonUserSupportList(row)" *ngIf="this.tokenHelper.isAdminSite">
+              <mat-icon>supervised_user_circle</mat-icon>
+              <span>{{'ACTION.ACEESS' | translate}}</span>
+            </button>
+
             <button mat-menu-item (click)="onActionbuttonSiteList(row,$event)">
               <mat-icon>supervised_user_circle</mat-icon>
               <span>{{'ACTION.MEMBER_SITES' | translate}}</span>

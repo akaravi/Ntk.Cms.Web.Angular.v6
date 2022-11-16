@@ -27,6 +27,11 @@ const routes: Routes = [
           import('./user-group/coreUserGroup.module').then((m) => m.CoreUserGroupCmsModule),
       },
       {
+        path: 'user-support-access',
+        loadChildren: () =>
+          import('./user-support-access/core-user-support-access.module').then((m) => m.CoreUserSupportAccessCmsModule),
+      },
+      {
         path: 'currency',
         loadChildren: () =>
           import('./currency/coreCurrency.module').then((m) => m.CoreCurrencyCmsModule),

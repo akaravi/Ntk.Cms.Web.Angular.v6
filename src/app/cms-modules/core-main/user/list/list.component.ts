@@ -13,7 +13,8 @@ import {
   FilterDataModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  AuthRenewTokenModel
+  AuthRenewTokenModel,
+  EnumManageUserAccessUserTypes
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -47,7 +48,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     private cmsToastrService: CmsToastrService,
     private activatedRoute: ActivatedRoute,
     private coreAuthService: CoreAuthService,
-    private tokenHelper: TokenHelper,
+    public tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
@@ -111,11 +112,14 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
+      this.tokenHelper.CheckIsAdmin();
     });
+    
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
       this.DataGetAll();
+      this.tokenHelper.CheckIsAdmin();
     });
   }
   ngOnDestroy(): void {
@@ -467,6 +471,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   onActionTableRowMouseLeave(row: CoreUserModel): void {
     row["expanded"] = false;
   }
+
   onActionbuttonSiteList(model: CoreUserModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -515,7 +520,10 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/core/site/']);
   }
 
-
+  onActionbuttonUserSupportList(row:CoreUserModel):void
+  {
+    this.router.navigate(['/core/user-support-access/list/LinkSiteId/', 0,'LinkUserId',row.id]);
+  }
   manageAllRows(flag: boolean) {
     this.tableSource.data.forEach(row => {
       row['expanded'] = flag;

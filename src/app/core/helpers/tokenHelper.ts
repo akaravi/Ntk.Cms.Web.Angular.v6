@@ -34,6 +34,8 @@ export class TokenHelper implements OnDestroy {
   tokenInfo: TokenInfoModel = new TokenInfoModel();
   cmsApiStoreSubscribe: Subscription;
   isAdminSite = false;
+  isSupportSite = false;
+
 
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
@@ -76,6 +78,17 @@ export class TokenHelper implements OnDestroy {
       return true;
     }
     this.isAdminSite=false;
+    return false;
+  }
+  CheckIsSupport(): boolean {
+    if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
+      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
+      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms)
+    {
+      this.isSupportSite=true;
+      return true;
+    }
+    this.isSupportSite=false;
     return false;
   }
   getDeviceToken(): void {
