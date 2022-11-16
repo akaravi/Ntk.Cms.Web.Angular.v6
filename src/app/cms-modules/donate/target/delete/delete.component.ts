@@ -13,7 +13,8 @@ import {
   ErrorExceptionResult,
   FormInfoModel,
   DonateTargetModel,
-  DonateTargetService
+  DonateTargetService,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -65,6 +66,7 @@ export class DonateTargetDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.donateTargetService.setAccessLoad();
+    this.donateTargetService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.donateTargetService
       .ServiceGetOneById(this.requestId)
       .subscribe({

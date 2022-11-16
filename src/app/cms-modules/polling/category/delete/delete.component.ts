@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, Inject, ChangeDetectorRef } from '@angula
 import { FormGroup } from '@angular/forms';
 import {
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
   ErrorExceptionResult,
   FilterModel,
   FormInfoModel,
@@ -66,6 +67,7 @@ export class PollingCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.pollingCategoryService.setAccessLoad();
+    this.pollingCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.pollingCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

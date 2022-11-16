@@ -13,7 +13,8 @@ import {
   ErrorExceptionResult,
   FormInfoModel,
   DonateTargetPeriodModel,
-  DonateTargetPeriodService
+  DonateTargetPeriodService,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -65,6 +66,7 @@ export class DonateTargetPeriodDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.donateTargetPeriodService.setAccessLoad();
+    this.donateTargetPeriodService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.donateTargetPeriodService
       .ServiceGetOneById(this.requestId)
       .subscribe({

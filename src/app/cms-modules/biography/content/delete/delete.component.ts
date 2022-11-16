@@ -13,7 +13,8 @@ import {
   FormInfoModel,
   BiographyContentModel,
   BiographyContentService,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -64,6 +65,7 @@ export class BiographyContentDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.biographyContentService.setAccessLoad();
+    this.biographyContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.biographyContentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

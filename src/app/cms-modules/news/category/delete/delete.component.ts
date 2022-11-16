@@ -1,7 +1,7 @@
 
 import { Component, OnInit, ViewChild, Inject, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DataFieldInfoModel, ErrorExceptionResult, FilterModel, FormInfoModel, NewsCategoryModel, NewsCategoryService } from 'ntk-cms-api';
+import { DataFieldInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterModel, FormInfoModel, NewsCategoryModel, NewsCategoryService } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -52,6 +52,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.categoryService.setAccessLoad();
+    this.categoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.categoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

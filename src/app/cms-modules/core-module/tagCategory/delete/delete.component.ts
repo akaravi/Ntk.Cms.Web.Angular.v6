@@ -7,7 +7,8 @@ import {
   FormInfoModel,
   CoreModuleTagCategoryModel,
   CoreModuleTagCategoryService,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -67,6 +68,7 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreModuleTagCategoryService.setAccessLoad();
+    this.coreModuleTagCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.coreModuleTagCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

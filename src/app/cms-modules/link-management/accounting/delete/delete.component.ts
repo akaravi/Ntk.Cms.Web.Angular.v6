@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
   ErrorExceptionResult,
   FormInfoModel,
   LinkManagementAccountingModel,
@@ -65,6 +66,7 @@ export class LinkManagementAccountingDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.linkManagementAccountingService.setAccessLoad();
+    this.linkManagementAccountingService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.linkManagementAccountingService
       .ServiceGetOneById(this.requestId)
       .subscribe({

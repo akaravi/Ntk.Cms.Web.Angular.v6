@@ -12,7 +12,8 @@ import {
   ErrorExceptionResult,
   FormInfoModel, ArticleContentModel,
   ArticleContentService,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -63,6 +64,7 @@ export class ArticleContentDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'fieldInfoConvertor';
     this.loading.Start(pName);
     this.contentService.setAccessLoad();
+    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

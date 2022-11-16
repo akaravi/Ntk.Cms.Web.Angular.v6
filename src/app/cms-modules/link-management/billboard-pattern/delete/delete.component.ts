@@ -7,7 +7,8 @@ import {
   FormInfoModel,
   LinkManagementBillboardPatternModel,
   LinkManagementBillboardPatternService,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -65,6 +66,7 @@ export class LinkManagementBillboardPatternDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.categoryService.setAccessLoad();
+    this.categoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.categoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

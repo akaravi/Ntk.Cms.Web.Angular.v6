@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, ChartContentModel, ChartContentService } from 'ntk-cms-api';
+import { DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, ChartContentModel, ChartContentService, EnumManageUserAccessDataTypes } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -60,6 +60,7 @@ export class ChartContentDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.contentService.setAccessLoad();
+    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, Inject, ChangeDetectorRef } from '@angula
 import { FormGroup } from '@angular/forms';
 import {
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
   ErrorExceptionResult,
   FilterModel,
   FormInfoModel,
@@ -66,6 +67,7 @@ export class SmsMainMessageCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainMessageCategoryService.setAccessLoad();
+    this.smsMainMessageCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.smsMainMessageCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

@@ -7,7 +7,8 @@ import {
   FilterModel,
   FormInfoModel,
   ContactCategoryModel,
-  ContactCategoryService
+  ContactCategoryService,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -66,6 +67,7 @@ export class ContactCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.contactCategoryService.setAccessLoad();
+    this.contactCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.contactCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

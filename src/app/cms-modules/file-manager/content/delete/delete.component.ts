@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ErrorExceptionResult, FormInfoModel, FileContentModel, FileContentService, DataFieldInfoModel } from 'ntk-cms-api';
+import { ErrorExceptionResult, FormInfoModel, FileContentModel, FileContentService, DataFieldInfoModel, EnumManageUserAccessDataTypes } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -60,6 +60,7 @@ export class FileContentDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.fileContentService.setAccessLoad();
+    this.fileContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.fileContentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

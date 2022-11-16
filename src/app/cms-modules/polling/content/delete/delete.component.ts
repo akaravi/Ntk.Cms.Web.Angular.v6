@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
   ErrorExceptionResult,
   FormInfoModel,
   PollingContentModel,
@@ -66,6 +67,7 @@ export class PollingContentDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.pollingContentService.setAccessLoad();
+    this.pollingContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.pollingContentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

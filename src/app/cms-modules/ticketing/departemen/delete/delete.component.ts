@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Inject, ChangeDetectorRef } from '@angula
 import { FormGroup } from '@angular/forms';
 import {
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
   ErrorExceptionResult,
   FilterModel,
   FormInfoModel,
@@ -64,6 +65,7 @@ export class TicketingDepartemenDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.ticketingDepartemenService.setAccessLoad();
+    this.ticketingDepartemenService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.ticketingDepartemenService
       .ServiceGetOneById(this.requestId)
       .subscribe(

@@ -14,6 +14,7 @@ import {
   FormInfoModel,
   DataProviderPlanSourceModel,
   DataProviderPlanSourceService,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -65,6 +66,7 @@ export class DataProviderPlanSourceDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.dataProviderPlanSourceService.setAccessLoad();
+    this.dataProviderPlanSourceService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.dataProviderPlanSourceService
       .ServiceGetOneById(this.requestId)
       .subscribe({

@@ -7,7 +7,8 @@ import {
   FilterModel,
   FormInfoModel,
   DonateTargetCategoryModel,
-  DonateTargetCategoryService
+  DonateTargetCategoryService,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -64,6 +65,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.donateTargetCategoryService.setAccessLoad();
+    this.donateTargetCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.donateTargetCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

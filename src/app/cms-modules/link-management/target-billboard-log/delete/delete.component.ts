@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   DataFieldInfoModel,
+  EnumManageUserAccessDataTypes,
   ErrorExceptionResult,
   FormInfoModel,
   LinkManagementTargetBillboardLogModel,
@@ -66,6 +67,7 @@ export class LinkManagementTargetBillboardLogDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.linkManagementTargetBillboardLogService.setAccessLoad();
+    this.linkManagementTargetBillboardLogService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.linkManagementTargetBillboardLogService
       .ServiceGetOneById(this.requestId)
       .subscribe({

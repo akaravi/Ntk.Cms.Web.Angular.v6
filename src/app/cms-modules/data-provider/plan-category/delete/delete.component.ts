@@ -8,6 +8,7 @@ import {
   FormInfoModel,
   DataProviderPlanCategoryModel,
   DataProviderPlanCategoryService,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -64,6 +65,7 @@ export class DataProviderPlanCategoryDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.dataProviderPlanCategoryService.setAccessLoad();
+    this.dataProviderPlanCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.dataProviderPlanCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

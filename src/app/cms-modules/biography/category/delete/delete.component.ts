@@ -7,7 +7,8 @@ import {
   FormInfoModel,
   BiographyCategoryModel,
   BiographyCategoryService,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -62,6 +63,7 @@ export class BiographyCategoryDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.biographyCategoryService.setAccessLoad();
+    this.biographyCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.biographyCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

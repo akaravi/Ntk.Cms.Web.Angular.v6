@@ -7,7 +7,8 @@ import {
   FormInfoModel,
   FileCategoryModel,
   FileCategoryService,
-  DataFieldInfoModel
+  DataFieldInfoModel,
+  EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -66,6 +67,7 @@ export class FileCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.fileCategoryService.setAccessLoad();
+    this.fileCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.fileCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({
