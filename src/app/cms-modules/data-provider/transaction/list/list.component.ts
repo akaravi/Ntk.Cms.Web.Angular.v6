@@ -135,7 +135,6 @@ export class DataProviderTransactionListComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new DataProviderTransactionModel();
     const pName = this.constructor.name + 'main';

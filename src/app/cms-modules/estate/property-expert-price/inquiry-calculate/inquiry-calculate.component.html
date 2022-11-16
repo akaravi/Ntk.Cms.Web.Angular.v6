@@ -1,0 +1,94 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+
+
+
+    <!-- LinkLocationId Field -->
+    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
+      [optionSelectForce]="dataModel.linkLocationId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')" [optionDisabled]="false">
+      <br>
+    </app-cms-location-selector>
+    <!-- linkCoreCurrencyId Field -->
+    <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
+      (optionChange)="onActionSelectCurrency($event)"
+      [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
+    </app-cms-currency-selector>
+    <br>
+    <!-- createdYaer Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['CreatedYaer']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.SalePriceAverage" #CreatedYaer type="number"
+        placeholder="0" />
+      <mat-icon matSuffix *ngIf="dataModel.createdYaer" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.createdYaer = 0">close</mat-icon>
+    </mat-form-field>
+    <br>
+    <!-- LinkContractTypeIds Field -->
+    <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
+      *ngIf="dataModel.linkCoreCurrencyId && dataModel.linkCoreCurrencyId>0" [optionDisabled]="false"
+      [optionSelectForce]="dataModel.linkContractTypeId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
+      <mat-icon matSuffix *ngIf="dataModel.linkContractTypeId && dataModel.linkContractTypeId?.length>0" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.linkContractTypeId = null;">close
+      </mat-icon>
+    </app-estate-contract-type-selector>
+
+    <br>
+    <!-- LinkPropertyTypeUsageId Field -->
+    <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
+      *ngIf="dataModel.linkCoreCurrencyId && dataModel.linkCoreCurrencyId>0" [optionDisabled]="false"
+      [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+      <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkPropertyTypeUsageId = null;">close
+      </mat-icon>
+    </app-estate-property-type-usage-selector>
+    <br>
+    <!-- LinkPropertyTypeLanduseId Field -->
+    <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
+      [optionDisabled]="false" [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
+
+      <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeLanduseId && dataModel.linkPropertyTypeLanduseId?.length>0"
+        matSuffix mat-icon-button aria-label="Clear" (click)="onActionSelectorSelectLanduse(null)">close
+      </mat-icon>
+    </app-estate-property-type-landuse-selector>
+
+    <hr>
+
+
+
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

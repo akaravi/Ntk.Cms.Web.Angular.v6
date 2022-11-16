@@ -76,7 +76,14 @@
           titleSoldItResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
-
+      <div class="ntk-full-width">
+        <!-- allowPriceInquiryCalculate Field -->
+        <mat-slide-toggle [(ngModel)]="dataModel.allowPriceInquiryCalculate" *ngIf="fieldsInfo['AllowPriceInquiryCalculate']?.accessWatchField"
+          [disabled]="!fieldsInfo['AllowPriceInquiryCalculate']?.accessEditField" name="dataModel.allowPriceInquiryCalculate">
+          {{fieldsInfo['AllowPriceInquiryCalculate']?.fieldTitle}}
+        </mat-slide-toggle>
+      </div>
+  
       <div class="ntk-full-width">
         <!-- HasSalePrice Field -->
         <mat-slide-toggle [(ngModel)]="dataModel.hasSalePrice" *ngIf="fieldsInfo['HasSalePrice']?.accessWatchField"

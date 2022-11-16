@@ -46,6 +46,7 @@ export class CoreModuleSelectionlistComponent implements OnInit {
   }
 
   DataGetAll(): void {
+    
     const filteModel = new FilterModel();
     filteModel.rowPerPage = 50;
     filteModel.accessLoad = true;

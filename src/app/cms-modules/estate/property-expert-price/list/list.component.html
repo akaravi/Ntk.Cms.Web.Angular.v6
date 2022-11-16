@@ -16,6 +16,10 @@
     <button *ngIf="dataModelResult.access.accessAddRow"
       (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton"
       data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
+      <button *ngIf="dataModelResult.access.accessAddRow"
+      (click)="actionPriceInquiryCalculate()" type="button" class="btn btn-outline-primary" id="openModalButton"
+      data-toggle="modal" data-target="#categoryModal">{{'ACTION.PriceInquiryCalculate' | translate}}</button>
+
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected?.id?.length>0" (click)="onActionbuttonEditRow()"
       type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
       translate}}</button>
@@ -82,10 +86,10 @@
           </select>
         </mat-cell>
       </ng-container>
-      <!-- Description Column -->
-      <ng-container matColumnDef="Description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Description']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+      <!-- CreatedYaer Column -->
+      <ng-container matColumnDef="CreatedYaer">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedYaer']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.createdYaer}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">

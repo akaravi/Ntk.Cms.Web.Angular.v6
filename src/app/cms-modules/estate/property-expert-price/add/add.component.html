@@ -30,6 +30,22 @@
       [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
       [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessAddField">
     </app-cms-location-selector>
+    <br>
+    <!-- createdYaer Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['CreatedYaer']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.SalePriceAverage" #CreatedYaer type="number"
+        placeholder="0" />
+      <mat-icon matSuffix *ngIf="dataModel.createdYaer" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.createdYaer = 0">close</mat-icon>
+      <br>
+    </mat-form-field>
+    <!-- linkCoreCurrencyId Field -->
+    <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
+      (optionChange)="onActionSelectCurrency($event)"
+      [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
+    </app-cms-currency-selector>
+    <br>
     <!-- LinkContractTypeIds Field -->
     <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
       [optionDisabled]="!fieldsInfo['LinkContractTypeId']?.accessAddField"
@@ -39,11 +55,7 @@
         mat-icon-button aria-label="Clear" (click)="dataModel.linkContractTypeId = null;">close
       </mat-icon>
     </app-estate-contract-type-selector>
-    <!-- linkCoreCurrencyId Field -->
-    <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
-      (optionChange)="onActionSelectCurrency($event)"
-      [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
-    </app-cms-currency-selector>
+
 
     <!-- LinkPropertyTypeUsageId Field -->
     <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
@@ -55,7 +67,7 @@
       </mat-icon>
     </app-estate-property-type-usage-selector>
 
-    <br>
+
     <br>
     <br>
     <!-- LinkPropertyTypeLanduseId Field -->

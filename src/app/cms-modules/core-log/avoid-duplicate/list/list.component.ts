@@ -130,6 +130,7 @@ export class CoreLogAvoidDuplicateDataEntryListComponent implements OnInit, OnDe
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreLogAvoidDuplicateDataEntryModel();
     const pName = this.constructor.name + 'main';

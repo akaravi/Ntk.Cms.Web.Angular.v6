@@ -210,6 +210,7 @@
 	"ACTION.SUBSET_OF_SITE_MARKETING": "Subset of site marketing",
 	"ACTION.MODULE_MANAGEMENT_SETTING": "Module management settings",
 	"ACTION.Property_to_be_traded": "Property to be traded",
+	"ACTION.PriceInquiryCalculate":"Price Inquiry Calculate",
 	"AUTH.FORGOT.CONFIRM_PASSWORD": "Confirm Password",
 	"AUTH.FORGOT.DESC": "Enter your email to reset your password",
 	"AUTH.FORGOT.DESCEMAIL": "Enter your email to receive a password recovery code",

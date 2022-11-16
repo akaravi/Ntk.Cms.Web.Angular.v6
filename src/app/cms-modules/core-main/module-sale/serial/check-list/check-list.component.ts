@@ -113,6 +113,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataCheckUseSerialForSite(serial: string): void {
+    
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
     const pName = this.constructor.name + 'main';

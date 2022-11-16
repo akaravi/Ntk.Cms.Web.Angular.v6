@@ -30,6 +30,7 @@ import { EstatePropertyExpertPriceEditComponent } from '../edit/edit.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { EstatePropertyExpertPriceInquiryCalculateComponent } from '../inquiry-calculate/inquiry-calculate.component';
 
 @Component({
   selector: 'app-estate-property-expert-price-list',
@@ -81,7 +82,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
-    'Description',
+    'CreatedYaer',
     'CreatedDate',
     'Action'
   ];
@@ -398,5 +399,31 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     this.tableSource.data.forEach(row => {
       row['expanded'] = flag;
     })
+  }
+  actionPriceInquiryCalculate():void{
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
+    ) {
+      this.cmsToastrService.typeErrorAccessAdd();
+      return;
+    }
+    // this.router.navigate(['/polling/content/edit', this.tableRowSelected.id]);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '90%';
+    dialogConfig.data = { id: this.tableRowSelected.id };
+
+
+    const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryCalculateComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
   }
 }

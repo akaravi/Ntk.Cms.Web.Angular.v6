@@ -143,6 +143,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+    
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSiteModel();
 

@@ -154,6 +154,8 @@ import { EstatePropertyExpertPriceAddComponent } from './property-expert-price/a
 import { EstatePropertyExpertPriceEditComponent } from './property-expert-price/edit/edit.component';
 import { EstatePropertyExpertPriceHeaderComponent } from './property-expert-price/header/header.component';
 import { EstatePropertyExpertPriceListComponent } from './property-expert-price/list/list.component';
+import { EstatePropertyExpertPriceInquiryCalculateComponent } from './property-expert-price/inquiry-calculate/inquiry-calculate.component';
+import { EstatePropertyExpertPriceInquiryListComponent } from './property-expert-price/inquiry-list/inquiry-list.component';
 
 @NgModule({
   declarations: [
@@ -255,6 +257,8 @@ import { EstatePropertyExpertPriceListComponent } from './property-expert-price/
     EstatePropertyExpertPriceEditComponent,
     EstatePropertyExpertPriceHeaderComponent,
     EstatePropertyExpertPriceListComponent,
+    EstatePropertyExpertPriceInquiryCalculateComponent,
+    EstatePropertyExpertPriceInquiryListComponent,
     /* */
 
     EstateAccountUserAddComponent,
@@ -337,7 +341,6 @@ import { EstatePropertyExpertPriceListComponent } from './property-expert-price/
     CmsConfirmationDialogService,
     CoreModuleTagService,
     BankPaymentTransactionService,
-
   ]
 })
 export class EstateModule { }
