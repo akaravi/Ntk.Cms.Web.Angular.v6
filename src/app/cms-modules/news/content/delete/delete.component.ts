@@ -47,6 +47,7 @@ export class NewsContentDeleteComponent implements OnInit {
     this.DataGetOne();
   }
   DataGetOne(): void {
+    debugger
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
@@ -68,7 +69,6 @@ export class NewsContentDeleteComponent implements OnInit {
             this.cmsToastrService.typeErrorGetOne();
           } else {
             this.formInfo.formAlert = '';
-            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
         },
