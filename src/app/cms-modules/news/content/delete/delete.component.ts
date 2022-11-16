@@ -47,7 +47,6 @@ export class NewsContentDeleteComponent implements OnInit {
     this.DataGetOne();
   }
   DataGetOne(): void {
-    debugger
     if (this.requestId === 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
