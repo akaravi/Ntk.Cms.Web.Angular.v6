@@ -1320,8 +1320,10 @@
 	"TITLE.Email_is":" ایمیل است",
 	"TITLE.Password_is":"رمز عبور است",
 	"TITLE.captcha_Text_is":"متن کپچا است",
-	
-	
+	"TITLE.Mobile_is":" موبایل است",
+	"TITLE.PIN_Code_is":"پین کد است",
+	"TITLE.Re_Password_is":"رمز عبور مجدد است",
+
 	"TRANSLATOR.HI": "سلام",
 	"TRANSLATOR.SELECT": "زبان خود را انتخاب کنید",
 	"TRANSLATOR.WELCOME": "خوش آمدید",

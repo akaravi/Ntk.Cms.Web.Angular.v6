@@ -1320,7 +1320,11 @@
 	"TITLE.Email_is":" Email is",
 	"TITLE.Password_is":" Password is",
 	"TITLE.captcha_Text_is":" captcha Text is",
-	
+	"TITLE.Mobile_is":" Mobile is",
+	"TITLE.PIN_Code_is":" PIN Code is",
+	"TITLE.Re_Password_is":" Re Password is",
+
+
 	"TRANSLATOR.HI": "hi",
 	"TRANSLATOR.SELECT": "Select your language",
 	"TRANSLATOR.WELCOME": "WELCOME",
