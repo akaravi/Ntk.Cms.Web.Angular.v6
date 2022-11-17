@@ -30,6 +30,12 @@
     <app-cms-user-selector [optionDisabled]="!fieldsInfo['ModuleName']?.accessAddField" [optionSelectForce]="this.dataModel.linkUserId"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
 
+        <!-- module-entity Field -->
+        <app-core-module-entity-selector (optionChange)="onActionSelectorModuleEntitySelect($event)" [optionDisabled]="!fieldsInfo['ModuleName']?.accessAddField"
+           [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
+        </app-core-module-entity-selector>
+
+
     <!-- moduleName Field -->
     <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['ModuleName']?.accessWatchField">
       <mat-label>{{fieldsInfo['ModuleName']?.fieldTitle}}</mat-label>

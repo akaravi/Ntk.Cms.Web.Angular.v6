@@ -144,6 +144,7 @@ import { CmsContactContentSelectionListComponent } from './shared/cms-contact-co
 import { CmsAccessInfoComponent } from './shared/cms-access-info/cms-access-info.component';
 import { CmsUserInfoPipe } from './core/pipe/cms-user-info.pipe';
 import { CmsSiteInfoPipe } from './core/pipe/cms-site-info.pipe';
+import { CmsModuleInfoPipe } from './core/pipe/cms-module-info.pipe';
 
 @NgModule({
   imports: [
@@ -212,6 +213,7 @@ import { CmsSiteInfoPipe } from './core/pipe/cms-site-info.pipe';
     CmsTitlePipe,
     CmsUserInfoPipe,
     CmsSiteInfoPipe,
+    CmsModuleInfoPipe,
     CmsImageThumbnailPipe,
     PrettyjsonPipe,
     RecordStatusClassPipe,
@@ -341,6 +343,7 @@ import { CmsSiteInfoPipe } from './core/pipe/cms-site-info.pipe';
     CmsTitlePipe,
     CmsUserInfoPipe,
     CmsSiteInfoPipe,
+    CmsModuleInfoPipe,
     CmsImageThumbnailPipe,
     PrettyjsonPipe,
     RecordStatusClassPipe,

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CoreUserSupportAccessRouting } from './core-user-support-access.routing';
 import { CoreUserSupportAccessComponent } from './core-user-support-access.component';
 import {
+  CoreModuleEntityModel,
   CoreModuleService,
   CoreUserSupportAccessService,
 } from 'ntk-cms-api';
@@ -11,6 +12,7 @@ import { SharedModule } from 'src/app/shared.module';
 import { CoreUserSupportAccessEditComponent } from './edit/edit.component';
 import { CoreUserSupportAccessAddComponent } from './add/add.component';
 import { CoreUserSupportAccessListComponent } from './list/list.component';
+import { CoreModuleEntityModule } from '../module-entity/core-module-entity.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { CoreUserSupportAccessListComponent } from './list/list.component';
     CoreUserSupportAccessRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),    
     SharedModule.forRoot(),
+    CoreModuleEntityModule,
   ],
   providers: [
     CoreUserSupportAccessService,

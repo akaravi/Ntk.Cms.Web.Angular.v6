@@ -1,10 +1,10 @@
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
-  CoreModuleModel,
-  CoreModuleService,
+  CoreModuleEntityModel,
+  CoreModuleEntityService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
@@ -12,8 +12,8 @@ import {
   FilterDataModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  EditStepDtoModel,
-  EnumActionGoStep
+  CoreModuleModel,
+  CoreModuleService,
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -25,23 +25,25 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { CoreModuleEditComponent } from '../edit/edit.component';
-import { CoreModuleAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TranslateService } from '@ngx-translate/core';
+import { CoreModuleEntityEditComponent } from '../edit/edit.component';
 @Component({
-  selector: 'app-core-module-list',
+  selector: 'app-core-module-entity-list',
   templateUrl: './list.component.html',
 })
-export class CoreModuleListComponent implements OnInit, OnDestroy {
+export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
+  requestLinkModuleId=0;
   constructor(
-    public contentService: CoreModuleService,
+    public contentService: CoreModuleEntityService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private tokenHelper: TokenHelper,
+    private activatedRoute:ActivatedRoute,
+    private coreModuleService: CoreModuleService,
     private router: Router,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
@@ -54,9 +56,17 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
     this.optionsExport.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
+    this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Ascending;
+    if (this.requestLinkModuleId > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'LinkModuleId';
+      filter.value = this.requestLinkModuleId;
+      this.filteModelContent.filters.push(filter);
+    }
   }
   comment: string;
   author: string;
@@ -65,35 +75,32 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
+  dataModelResult: ErrorExceptionResult<CoreModuleEntityModel> = new ErrorExceptionResult<CoreModuleEntityModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<CoreModuleModel> = [];
-  tableRowSelected: CoreModuleModel = new CoreModuleModel();
-  tableSource: MatTableDataSource<CoreModuleModel> = new MatTableDataSource<CoreModuleModel>();
+  tableRowsSelected: Array<CoreModuleEntityModel> = [];
+  tableRowSelected: CoreModuleEntityModel = new CoreModuleEntityModel();
+  tableSource: MatTableDataSource<CoreModuleEntityModel> = new MatTableDataSource<CoreModuleEntityModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
+  dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
 
   tabledisplayedColumns: string[]=[];
   tabledisplayedColumnsSource: string[] = [
-    'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
-    'Title',
-    'ClassName',
-    'ShowInOrder',
+    'LinkModuleId',
+    'ModuleName',
+    'ModuleEntityName',
     'CreatedDate',
     'UpdatedDate',
-    'ExpireDate',
-    'position',
     'Action'
   ];
 
 
-  expandedElement: CoreModuleModel | null;
+  expandedElement: CoreModuleEntityModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -107,14 +114,22 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       this.tokenInfo = next;
       this.DataGetAll();
     });
+    this.getModuleList();
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
+  getModuleList(): void {
+    const filter = new FilterModel();
+    filter.rowPerPage = 100;
+    this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
+      this.dataModelCoreModuleResult = next;
+    });
+  }
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreModuleModel();
+    this.tableRowSelected = new CoreModuleEntityModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -175,26 +190,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
 
 
 
-  onActionbuttonNewRow(): void {
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessAddRow
-    ) {
-      this.cmsToastrService.typeErrorAccessAdd();
-      return;
-    }
-    const dialogRef = this.dialog.open(CoreModuleAddComponent, {
-      height: '90%',
-      data: {}
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
-  }
+  
   onActionbuttonNewRowAuto(): any {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -216,7 +212,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
     }
     );
   }
-  onActionbuttonEditRow(model: CoreModuleModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: CoreModuleEntityModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -231,7 +227,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(CoreModuleEditComponent, {
+    const dialogRef = this.dialog.open(CoreModuleEntityEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });
@@ -241,7 +237,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: CoreModuleModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: CoreModuleEntityModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -260,7 +256,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
 
 
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.title + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
@@ -292,7 +288,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       );
   }
 
-  onActionbuttonGoToModuleList(model: CoreModuleModel = this.tableRowSelected): void {
+  onActionbuttonGoToModuleList(model: CoreModuleEntityModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
       const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
@@ -345,68 +341,15 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
 
   }
 
-  onTableDropRow(event: CdkDragDrop<CoreModuleModel[]>): void {
-    const previousIndex = this.tableSource.data.findIndex(row => row === event.item.data);
-    const model = new EditStepDtoModel<number>();
-    model.id = this.tableSource.data[previousIndex].id;
-    model.centerId = this.tableSource.data[event.currentIndex].id;
-    if (previousIndex > event.currentIndex) {
-      model.actionGo = EnumActionGoStep.GoUp;
-    }
-    else {
-      model.actionGo = EnumActionGoStep.GoDown;
-    }
-    this.contentService.ServiceEditStep(model).subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          moveItemInArray(this.tableSource.data, previousIndex, event.currentIndex);
-          this.tableSource.data = this.tableSource.data.slice();
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-      }
-    }
-    );
-  }
-  onActionbuttonConfigMainAdminRow(model: CoreModuleModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage);
-      return;
-    }
-    this.tableRowSelected = model;
-    this.router.navigate([model.className + '/config/mainadmin/']);
-  }
-  onActionbuttonSiteList(model: CoreModuleModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage);
-      return;
-    }
-    this.tableRowSelected = model;
-    this.router.navigate(['core/site/modulelist/LinkModuleId/', model.id]);
-  }
-  onActionbuttonSiteCategoryList(model: CoreModuleModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage);
-      return;
-    }
-    this.tableRowSelected = model;
-    this.router.navigate(['core/sitecategorymodule/LinkCmsModuleId/', model.id]);
-  }
-  onActionbuttonModuleEntityList(model: CoreModuleModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage);
-      return;
-    }
-    this.tableRowSelected = model;
-    this.router.navigate(['core/module-entity/LinkModuleId/', model.id]);
-  }
+  // onActionbuttonSiteCategoryList(model: CoreModuleEntityModel = this.tableRowSelected): void {
+  //   if (!model || !model.id || model.id === 0) {
+  //     const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+  //     this.cmsToastrService.typeErrorSelected(emessage);
+  //     return;
+  //   }
+  //   this.tableRowSelected = model;
+  //   this.router.navigate(['core/sitecategorymodule/LinkCmsModuleId/', model.id]);
+  // }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
@@ -437,7 +380,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: CoreModuleModel): void {
+  onActionTableRowSelect(row: CoreModuleEntityModel): void {
     this.tableRowSelected = row;
   }
 

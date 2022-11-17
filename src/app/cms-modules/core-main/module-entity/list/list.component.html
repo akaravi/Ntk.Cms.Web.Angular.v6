@@ -11,8 +11,6 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
-    class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessAddRow" (click)="onActionbuttonNewRowAuto()" type="button"
     class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.AUTOADD'|
     translate}} Dependency</button>
@@ -48,24 +46,13 @@
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
-      <!-- LinkMainImageIdSrc Column -->
-      <ng-container matColumnDef="LinkMainImageIdSrc">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
-        </mat-cell>
-      </ng-container>
+    
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
-      <!-- linkCreatedBySiteId Column -->
-      <ng-container matColumnDef="linkCreatedBySiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkCreatedBySiteId']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkCreatedBySiteId}} </mat-cell>
-      </ng-container>
+   
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
@@ -74,22 +61,21 @@
            <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select> </mat-cell>
       </ng-container>
-      <!-- Title Column -->
-      <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+           <!-- LinkModuleId Column -->
+           <ng-container matColumnDef="LinkModuleId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkModuleId']?.fieldTitle}} </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.linkModuleId}} | {{row.linkModuleId | cmstitle : dataModelCoreModuleResult.listItems}} </mat-cell>
+          </ng-container>
+      <!-- ModuleName Column -->
+      <ng-container matColumnDef="ModuleName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleName']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.moduleName}} </mat-cell>
       </ng-container>
-      <!-- ClassName Column -->
-      <ng-container matColumnDef="ClassName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ClassName']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.className}} </mat-cell>
-      </ng-container>
-      <!-- ShowInOrder Column -->
-      <ng-container matColumnDef="ShowInOrder">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShowInOrder']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.showInOrder}} </mat-cell>
-      </ng-container>
+           <!-- ModuleEntityName Column -->
+           <ng-container matColumnDef="ModuleEntityName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityName']?.fieldTitle}} </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.moduleEntityName}} </mat-cell>
+          </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
@@ -102,13 +88,7 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
       </ng-container>
-      <!-- ExpireDate Column -->
-      <ng-container matColumnDef="ExpireDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExpireDate']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'background':publicHelper.RowStyleExpireDate(row.expireDate) }">
-          {{ publicHelper.LocaleDate(row.expireDate) }} </mat-cell>
-      </ng-container>
+
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
@@ -127,26 +107,7 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonConfigMainAdminRow(row)"
-              *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
-              <mat-icon>extension</mat-icon>
-              <span>{{'ACTION.ADMINISTRATIVE_SETTINGS' | translate}}</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonSiteList(row)"
-              *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
-              <mat-icon>extension</mat-icon>
-              <span>{{'ACTION.LIST_SITES' | translate}}</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonSiteCategoryList(row)"
-              *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
-              <mat-icon>extension</mat-icon>
-              <span>{{'ACTION.CATEGORY_LIST_SITES' | translate}}</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonModuleEntityList(row)"
-            *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
-            <mat-icon>extension</mat-icon>
-            <span>{{'ACTION.Module_Entity_List' | translate}}</span>
-          </button>
+           
           </mat-menu>
         </mat-cell>
       </ng-container>

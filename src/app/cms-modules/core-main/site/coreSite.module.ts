@@ -42,8 +42,6 @@ import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.
 import { CoreSiteModuleSiteInfoComponent } from './module-site-info/module-site-info.component';
 import { CoreSiteModuleSiteOptimazeComponent } from './module-site-optimaze/module-site-optimaze.component';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { CoreSiteHeaderComponent } from './header/header.component';
-import { CoreModuleHeaderComponent } from '../module/header/header.component';
 import { CoreSharedModule } from '../core.shared.module';
 
 
