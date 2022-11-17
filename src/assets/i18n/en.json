@@ -671,6 +671,7 @@
 	"MESSAGE.The_ID_of_this_website_is_the_same_as_the_website_you_are_on": "The ID of this website is the same as the website you are on",
 	"MESSAGE.Password_and_password_confirmation_are_different": "Password and password confirmation are different",
 	"MESSAGE.By_activating_this_setting_the_income_of_this_ad_will_be_deposited_in_the_account_of_the_reference_website": "By activating this setting, the income of this ad will be deposited in the account of the reference website",
+	"MESSAGE.PriceInquiryCalculateNotFind":"Price Inquiry Calculate Not Find",
 	"TITLE.Create_your_first_system": "Create your first system",
 	"TITLE.World_Of_Data": "World of Data",
 	"TITLE.Mobile_staff_or_customer": "Mobile staff/customer",

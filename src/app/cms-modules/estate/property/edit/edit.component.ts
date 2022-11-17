@@ -44,8 +44,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
 import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EstatePropertyActionComponent } from '../action/action.component';
+import { EstatePropertyExpertPriceInquiryListComponent } from '../../property-expert-price/inquiry-list/inquiry-list.component';
 @Component({
   selector: 'app-estate-property-edit',
   templateUrl: './edit.component.html',
@@ -148,7 +149,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-  lastRecordStatus:EnumRecordStatus;
+  lastRecordStatus: EnumRecordStatus;
   DataGetOne(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.formError = '';
@@ -161,7 +162,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        this.lastRecordStatus= ret.item.recordStatus;
+        this.lastRecordStatus = ret.item.recordStatus;
         this.dataModel = ret.item;
         if (ret.isSuccess) {
           this.optionTabledataSource.data = this.dataModel.contracts;
@@ -426,22 +427,22 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.formInfo.formSubmitAllow = true;
       return;
     }
-if(this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus==EnumRecordStatus.Available && this.dataModel.recordStatus!=this.lastRecordStatus){
-    const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
-      height: '90%',
-      data: { model: this.dataModel }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-        this.dataModel = result.model;
-        this.DataEdit();
-      } else {
-        this.formInfo.formSubmitAllow = false;
-      }
-    });
-  }else{
-    this.DataEdit();
-  }
+    if (this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus == EnumRecordStatus.Available && this.dataModel.recordStatus != this.lastRecordStatus) {
+      const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
+        height: '90%',
+        data: { model: this.dataModel }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.dialogChangedDate) {
+          this.dataModel = result.model;
+          this.DataEdit();
+        } else {
+          this.formInfo.formSubmitAllow = false;
+        }
+      });
+    } else {
+      this.DataEdit();
+    }
 
   }
   onFormCancel(): void {
@@ -572,6 +573,33 @@ if(this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus==EnumRecordSta
     }
     this.dataModelCorCurrencySelector = model;
     this.contractDataModel.linkCoreCurrencyId = model.id;
+    //
+    if (this.tokenHelper.CheckIsAdmin() && this.contractTypeSelected.allowPriceInquiryCalculate){
+      this.onActionPriceInquiryList()
+    }
+  }
+  onActionPriceInquiryList(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '90%';
+    dialogConfig.data = {
+      linkLocationId: this.dataModel.linkLocationId,
+      linkCoreCurrencyId: this.contractDataModel.linkCoreCurrencyId,
+      createdYaer: this.dataModel.createdYaer,
+      linkPropertyTypeUsageId: this.dataModel.linkPropertyTypeUsageId,
+      linkPropertyTypeLanduseId: this.dataModel.linkPropertyTypeLanduseId,
+      linkContractTypeId: this.contractDataModel.linkEstateContractTypeId,
+    };
+
+
+    const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryListComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+      if (result && result.dialogChangedDate) {
+
+      }
+    });
   }
 }
 

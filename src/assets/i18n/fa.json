@@ -449,6 +449,7 @@
 	"ERRORMESSAGE.TITLE.typeSuccessRemoveSimilar": "موفقیت",
 	"ERRORMESSAGE.TITLE.typeSuccessRemoveTag": "موفقیت",
 	"ERRORMESSAGE.TITLE.typeSuccessSelected": "موفقیت",
+	
 	"MENU.ACTIONS": "فعالیت",
 	"MENU.APPS": "برنامه ها",
 	"MENU.CREATE_POST": "ُایجاد مطلب جدید",
@@ -673,6 +674,7 @@
 	"MESSAGE.The_ID_of_this_website_is_the_same_as_the_website_you_are_on": "شناسه این وب سایت با وب سایتی که در آن هستید یکسان است",
 	"MESSAGE.Password_and_password_confirmation_are_different": "پسورد و تاییدیه پسورد با هم مغایرت دارد",
 	"MESSAGE.By_activating_this_setting_the_income_of_this_ad_will_be_deposited_in_the_account_of_the_reference_website": "با فعال شدن این تنظیم در آمد این تبلیغ به حساب وب سایت مرجع واریز می شود",
+	"MESSAGE.PriceInquiryCalculateNotFind":"استعلام قیمت یافت نشد",
 	"TITLE.Create_your_first_system": "ایجاد اولین سامانه شما",
 	"TITLE.World_Of_Data": "دنیای اطلاعات",
 	"TITLE.Mobile_staff_or_customer": "موبایل پرسنل/مشتری",

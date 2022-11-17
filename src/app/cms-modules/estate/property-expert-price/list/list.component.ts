@@ -31,6 +31,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { EstatePropertyExpertPriceInquiryCalculateComponent } from '../inquiry-calculate/inquiry-calculate.component';
+import { EstatePropertyExpertPriceInquiryListComponent } from '../inquiry-list/inquiry-list.component';
 
 @Component({
   selector: 'app-estate-property-expert-price-list',
@@ -276,30 +277,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
       );
 
   }
-//*********/
-  // onActionbuttonPriceInquiryCalculateRow(): void {
 
-  //   const pName = this.constructor.name + 'ServicePriceInquiryCalculate';
-  //   this.loading.Start(pName);
-  //   this.contentService.ServicePriceInquiryCalculate(this.dataModelInquiry).subscribe({
-  //     next: (ret) => {
-  //       if (ret.isSuccess) {
-  //         this.dataModelInquiryResult = ret;
-  //       }
-  //       else {
-  //         this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-  //       }
-  //       this.loading.Stop(pName);
-
-  //     },
-  //     error: (er) => {
-  //       this.cmsToastrService.typeError(er);
-  //       this.loading.Stop(pName);
-  //     }
-  //   }
-  //   );
-  // }
-//*********/
 
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -400,7 +378,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
       row['expanded'] = flag;
     })
   }
-  actionPriceInquiryCalculate():void{
+  onActionPriceInquiryCalculate():void{
 
     if (
       this.dataModelResult == null ||
@@ -423,6 +401,32 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
+      }
+    });
+  }
+  onActionPriceInquiryList():void{
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
+    ) {
+      this.cmsToastrService.typeErrorAccessAdd();
+      return;
+    }
+    // this.router.navigate(['/polling/content/edit', this.tableRowSelected.id]);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '90%';
+    dialogConfig.data = { id: this.tableRowSelected.id };
+
+
+    const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryListComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+      if (result && result.dialogChangedDate) {
+        
       }
     });
   }

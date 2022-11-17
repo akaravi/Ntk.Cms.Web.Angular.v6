@@ -47,6 +47,14 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    if (data) {
+      this.dataModel.linkLocationId = +data.linkLocationId | 0;
+      this.dataModel.linkCoreCurrencyId = +data.linkCoreCurrencyId | 0;
+      this.dataModel.createdYaer = +data.createdYaer | 0;
+      this.dataModel.linkContractTypeId = data.linkContractTypeId;
+      this.dataModel.linkPropertyTypeLanduseId = data.linkPropertyTypeLanduseId;
+      this.dataModel.linkPropertyTypeUsageId = data.linkPropertyTypeUsageId;
+    }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -57,8 +65,9 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
+  
   dataModel: EstatePriceInquiryDtoModel = new EstatePriceInquiryDtoModel();
+  dataModelResult: ErrorExceptionResult<EstatePropertyExpertPriceModel> = new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
 
 
   formInfo: FormInfoModel = new FormInfoModel();
@@ -70,6 +79,15 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumRecordStatus();
+    this.getEnumRecordStatus();
+    if (this.dataModel.linkLocationId > 0 &&
+      this.dataModel.linkCoreCurrencyId > 0 &&
+      this.dataModel.createdYaer > 0 &&
+      this.dataModel.linkContractTypeId && this.dataModel.linkContractTypeId.length > 0 &&
+      this.dataModel.linkPropertyTypeLanduseId && this.dataModel.linkPropertyTypeLanduseId.length > 0 &&
+      this.dataModel.linkPropertyTypeUsageId && this.dataModel.linkPropertyTypeUsageId.length > 0) {
+      this.DataAddContent();
+    }
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
@@ -83,15 +101,20 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-
+    this.dataModelResult=new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
     this.estatePropertyExpertPriceService.ServicePriceInquiryList(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
-        this.dataModelResult = ret;
+        
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessAdd();
-          this.dialogRef.close({ dialogChangedDate: true });
+          if(ret.listItems&&ret.listItems.length>0)
+          {
+            this.dataModelResult = ret;
+          }else{
+            this.cmsToastrService.typeWarningMessage(this.translate.instant('MESSAGE.PriceInquiryCalculateNotFind'));
+            this.dialogRef.close({ dialogChangedDate: true });
+          }
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
