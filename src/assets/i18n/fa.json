@@ -1316,6 +1316,12 @@
 	"TITLE.Access_Count_Row_Other_Site_Id":"تعداد دسترسی ردیف شناسه سایت دیگر",
 	"TITLE.Access_Edit_Row_Other_Site_Id":"دسترسی به ویرایش ردیف دیگر شناسه سایت",
 	"TITLE.Access_Row_Watch_In_Sharing_Category":"در دسته اشتراک گذاری به ساعت ردیفی دسترسی پیدا کنید",
+	"TITLE.mode":"حالت",
+	"TITLE.Email_is":" ایمیل است",
+	"TITLE.Password_is":"رمز عبور است",
+	"TITLE.captcha_Text_is":"متن کپچا است",
+	
+	
 	"TRANSLATOR.HI": "سلام",
 	"TRANSLATOR.SELECT": "زبان خود را انتخاب کنید",
 	"TRANSLATOR.WELCOME": "خوش آمدید",
