@@ -75,22 +75,22 @@
         <td>{{item.expertPriceType| enums : dataModelEstatePropertyExpertPriceTypeEnumResult.listItems}}</td>
         <td>{{item.createdYaer}}</td>
         <td>
-          <div *ngIf="item.salePriceMin&& item.salePriceMin>0">Sale Price : {{item.salePriceMin}} </div>
-          <div *ngIf="item.rentPriceMin&& item.rentPriceMin>0">Rent Price : {{item.rentPriceMin}} </div>
-          <div *ngIf="item.depositPriceMin&& item.depositPriceMin>0">Deposit Price : {{item.depositPriceMin}} </div>
-          <div *ngIf="item.periodPriceMin&& item.periodPriceMin>0">Period Price: {{item.periodPriceMin}} </div>
+          <div *ngIf="item.salePriceMin&& item.salePriceMin>0">{{'TITLE.SalePrice'|translate}} : {{item.salePriceMin}} </div>
+          <div *ngIf="item.rentPriceMin&& item.rentPriceMin>0">{{'TITLE.RentPrice'|translate}} : {{item.rentPriceMin}} </div>
+          <div *ngIf="item.depositPriceMin&& item.depositPriceMin>0">{{'TITLE.DepositPrice'|translate}} : {{item.depositPriceMin}} </div>
+          <div *ngIf="item.periodPriceMin&& item.periodPriceMin>0">{{'TITLE.PeriodPrice'|translate}}: {{item.periodPriceMin}} </div>
         </td>
         <td>
-          <div *ngIf="item.salePriceAverage&& item.salePriceAverage>0">Sale Price : {{item.salePriceAverage}} </div>
-          <div *ngIf="item.rentPriceAverage&& item.rentPriceAverage>0">Rent Price : {{item.rentPriceAverage}} </div>
-          <div *ngIf="item.depositPriceAverage&& item.depositPriceAverage>0">Deposit Price : {{item.depositPriceAverage}} </div>
-          <div *ngIf="item.periodPriceAverage&& item.periodPriceAverage>0">Period Price: {{item.periodPriceAverage}} </div>
+          <div *ngIf="item.salePriceAverage&& item.salePriceAverage>0">{{'TITLE.SalePrice'|translate}} : {{item.salePriceAverage}} </div>
+          <div *ngIf="item.rentPriceAverage&& item.rentPriceAverage>0">{{'TITLE.RentPrice'|translate}} : {{item.rentPriceAverage}} </div>
+          <div *ngIf="item.depositPriceAverage&& item.depositPriceAverage>0">{{'TITLE.DepositPrice'|translate}} : {{item.depositPriceAverage}} </div>
+          <div *ngIf="item.periodPriceAverage&& item.periodPriceAverage>0">{{'TITLE.PeriodPrice'|translate}}: {{item.periodPriceAverage}} </div>
         </td>
         <td>
-          <div *ngIf="item.salePriceMax&& item.salePriceMax>0">Sale Price : {{item.salePriceMax}} </div>
-          <div *ngIf="item.rentPriceMax&& item.rentPriceMax>0">Rent Price : {{item.rentPriceMax}} </div>
-          <div *ngIf="item.depositPriceMax&& item.depositPriceMax>0">Deposit Price : {{item.depositPriceMax}} </div>
-          <div *ngIf="item.periodPriceMax&& item.periodPriceMax>0">Period Price: {{item.periodPriceMax}} </div>
+          <div *ngIf="item.salePriceMax&& item.salePriceMax>0">{{'TITLE.SalePrice'|translate}} : {{item.salePriceMax}} </div>
+          <div *ngIf="item.rentPriceMax&& item.rentPriceMax>0">{{'TITLE.RentPrice'|translate}} : {{item.rentPriceMax}} </div>
+          <div *ngIf="item.depositPriceMax&& item.depositPriceMax>0">{{'TITLE.DepositPrice'|translate}} : {{item.depositPriceMax}} </div>
+          <div *ngIf="item.periodPriceMax&& item.periodPriceMax>0">{{'TITLE.PeriodPrice'|translate}}: {{item.periodPriceMax}} </div>
         </td>
       </tr>
     </table>

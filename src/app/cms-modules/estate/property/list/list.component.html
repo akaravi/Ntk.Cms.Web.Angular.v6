@@ -238,6 +238,14 @@
                 <td></td>
                 <td> {{row.title}} </td>
               </tr>
+              <tr *ngIf="row.area && row.area>0">
+                <td>{{'TITLE.SquareMeters'|translate}}</td>
+                <td> {{row.area}} </td>
+              </tr>
+              <tr *ngIf="row.createdYaer && row.createdYaer>0">
+                <td>{{'TITLE.CreatedYaer'|translate}}</td>
+                <td> {{row.createdYaer}} </td>
+              </tr>
               <tr>
                 <td></td>
                 <td> {{row.linkLocationIdParentTitle}} </td>

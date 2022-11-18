@@ -100,6 +100,38 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedYaer']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.createdYaer}} </mat-cell>
       </ng-container>
+
+
+      <!-- LinkLocationId Column -->
+      <ng-container matColumnDef="LinkLocationId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkLocationId']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkLocationIdTitle}} / {{row.linkLocationIdParentTitle}}</mat-cell>
+      </ng-container>
+
+
+      <!-- LinkPropertyTypeUsageId Column -->
+      <ng-container matColumnDef="LinkPropertyTypeUsageId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyTypeUsageId']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkPropertyTypeUsageId |cmstitle:dataModelEstatePropertyTypeUsageResult.listItems}} </mat-cell>
+      </ng-container>
+
+      <!-- LinkPropertyTypeLanduseId Column -->
+      <ng-container matColumnDef="LinkPropertyTypeLanduseId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyTypeLanduseId']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkPropertyTypeLanduseId|cmstitle:dataModelEstatePropertyTypeLanduseResult.listItems}} </mat-cell>
+      </ng-container>
+      <!-- LinkContractTypeId Column -->
+      <ng-container matColumnDef="LinkContractTypeId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkContractTypeId']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkContractTypeId|cmstitle:dataModelEstateContractTypeResult.listItems}} </mat-cell>
+      </ng-container>
+      <!-- LinkCoreCurrencyId Column -->
+      <ng-container matColumnDef="LinkCoreCurrencyId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkCoreCurrencyId']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkCoreCurrencyId|cmstitle:dataModelCoreCurrencyResult.listItems}} </mat-cell>
+      </ng-container>
+
+
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
@@ -136,18 +168,37 @@
           <div>
             <table>
               <tr>
+                <td>حداقل</td>
+                <td>میانگین</td>
+                <td>حداکثر</td>
+              </tr>
+              <tr >
+                <td>
+                  <div *ngIf="row.salePriceMin&& row.salePriceMin>0">{{'TITLE.SalePrice'|translate}} : {{row.salePriceMin}} </div>
+                  <div *ngIf="row.rentPriceMin&& row.rentPriceMin>0">{{'TITLE.RentPrice'|translate}} : {{row.rentPriceMin}} </div>
+                  <div *ngIf="row.depositPriceMin&& row.depositPriceMin>0">{{'TITLE.DepositPrice'|translate}} : {{row.depositPriceMin}} </div>
+                  <div *ngIf="row.periodPriceMin&& row.periodPriceMin>0">{{'TITLE.PeriodPrice'|translate}}: {{row.periodPriceMin}} </div>
+                </td>
+                <td>
+                  <div *ngIf="row.salePriceAverage&& row.salePriceAverage>0">{{'TITLE.SalePrice'|translate}} : {{row.salePriceAverage}} </div>
+                  <div *ngIf="row.rentPriceAverage&& row.rentPriceAverage>0">{{'TITLE.RentPrice'|translate}} : {{row.rentPriceAverage}} </div>
+                  <div *ngIf="row.depositPriceAverage&& row.depositPriceAverage>0">{{'TITLE.DepositPrice'|translate}} : {{row.depositPriceAverage}} </div>
+                  <div *ngIf="row.periodPriceAverage&& row.periodPriceAverage>0">{{'TITLE.PeriodPrice'|translate}}: {{row.periodPriceAverage}} </div>
+                </td>
+                <td>
+                  <div *ngIf="row.salePriceMax&& row.salePriceMax>0">{{'TITLE.SalePrice'|translate}} : {{row.salePriceMax}} </div>
+                  <div *ngIf="row.rentPriceMax&& row.rentPriceMax>0">{{'TITLE.RentPrice'|translate}} : {{row.rentPriceMax}} </div>
+                  <div *ngIf="row.depositPriceMax&& row.depositPriceMax>0">{{'TITLE.DepositPrice'|translate}} : {{row.depositPriceMax}} </div>
+                  <div *ngIf="row.periodPriceMax&& row.periodPriceMax>0">{{'TITLE.PeriodPrice'|translate}}: {{row.periodPriceMax}} </div>
+                </td>
+              </tr>
+            </table>
+            <table>
+              <tr>
                 <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
                     class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
                     width="80" /></th>
                 <th>{{row.id}}</th>
-              </tr>
-              <tr *ngIf="row.updatedDate">
-                <td></td>
-                <td> {{fieldsInfo['UpdatedDate']?.fieldTitle}} : {{ publicHelper.LocaleDate(row.updatedDate) }}</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td> {{row.title}} </td>
               </tr>
               <tr>
                 <td></td>
