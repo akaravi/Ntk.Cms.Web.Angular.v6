@@ -12,6 +12,7 @@ import {
   CoreCurrencyModel,
   EstatePriceInquiryDtoModel,
   ErrorExceptionResultBase,
+  EstateEnumService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -42,6 +43,7 @@ export class EstatePropertyExpertPriceInquiryCalculateComponent implements OnIni
     public coreEnumService: CoreEnumService,
     public estatePropertyExpertPriceService: EstatePropertyExpertPriceService,
     private cmsToastrService: CmsToastrService,
+    private estateEnumService:EstateEnumService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
@@ -66,6 +68,7 @@ export class EstatePropertyExpertPriceInquiryCalculateComponent implements OnIni
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: EstatePriceInquiryDtoModel = new EstatePriceInquiryDtoModel();
+  dataModelEstatePropertyExpertPriceTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
   formInfo: FormInfoModel = new FormInfoModel();
@@ -78,11 +81,17 @@ export class EstatePropertyExpertPriceInquiryCalculateComponent implements OnIni
     this.formInfo.formTitle = this.translate.instant('TITLE.Register_New_Categories');
     
     this.getEnumRecordStatus();
+    this.getEstatePropertyExpertPriceTypeEnum();
+
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
+  getEstatePropertyExpertPriceTypeEnum(): void {
+    this.estateEnumService.ServiceEstatePropertyExpertPriceTypeEnum().subscribe((next) => {
+      this.dataModelEstatePropertyExpertPriceTypeEnumResult = next;
+    });
+  }
 
 
   DataGetAll(): void {

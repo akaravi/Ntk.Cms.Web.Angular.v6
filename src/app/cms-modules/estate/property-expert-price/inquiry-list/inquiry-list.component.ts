@@ -13,6 +13,7 @@ import {
   CoreCurrencyModel,
   EstatePriceInquiryDtoModel,
   ErrorExceptionResultBase,
+  EstateEnumService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -41,6 +42,7 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
     private dialogRef: MatDialogRef<EstatePropertyExpertPriceInquiryListComponent>,
     public coreEnumService: CoreEnumService,
     public estatePropertyExpertPriceService: EstatePropertyExpertPriceService,
+    private estateEnumService:EstateEnumService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -68,6 +70,7 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
   
   dataModel: EstatePriceInquiryDtoModel = new EstatePriceInquiryDtoModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyExpertPriceModel> = new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
+  dataModelEstatePropertyExpertPriceTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
   formInfo: FormInfoModel = new FormInfoModel();
@@ -79,7 +82,7 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumRecordStatus();
-    this.getEnumRecordStatus();
+    this.getEstatePropertyExpertPriceTypeEnum();
     if (this.dataModel.linkLocationId > 0 &&
       this.dataModel.linkCoreCurrencyId > 0 &&
       this.dataModel.createdYaer > 0 &&
@@ -93,7 +96,11 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
-
+  getEstatePropertyExpertPriceTypeEnum(): void {
+    this.estateEnumService.ServiceEstatePropertyExpertPriceTypeEnum().subscribe((next) => {
+      this.dataModelEstatePropertyExpertPriceTypeEnumResult = next;
+    });
+  }
 
   DataAddContent(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');

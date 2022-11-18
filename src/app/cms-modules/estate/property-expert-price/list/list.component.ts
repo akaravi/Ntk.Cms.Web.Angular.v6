@@ -13,6 +13,8 @@ import {
   DataFieldInfoModel,
   EstatePriceInquiryDtoModel,
   ErrorExceptionResultBase,
+  EstateEnumService,
+  EnumInfoModel,
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
@@ -44,7 +46,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     public publicHelper: PublicHelper,
     public contentService: EstatePropertyExpertPriceService,
     private cmsToastrService: CmsToastrService,
-    private router: Router,
+    private estateEnumService:EstateEnumService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -69,6 +71,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
   }
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyExpertPriceModel> = new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
+  dataModelEstatePropertyExpertPriceTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
@@ -83,6 +86,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
+    'ExpertPriceType',
     'CreatedYaer',
     'CreatedDate',
     'Action'
@@ -103,9 +107,15 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
       this.tokenInfo = next;
       this.DataGetAll();
     });
+    this.getEstatePropertyExpertPriceTypeEnum();
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
+  }
+  getEstatePropertyExpertPriceTypeEnum(): void {
+    this.estateEnumService.ServiceEstatePropertyExpertPriceTypeEnum().subscribe((next) => {
+      this.dataModelEstatePropertyExpertPriceTypeEnumResult = next;
+    });
   }
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
