@@ -63,8 +63,38 @@
     </app-estate-property-type-landuse-selector>
 
     <hr>
-
-    {{dataModelResult.listItems|json}}
+    <table>
+      <tr>
+        <td>نوع کارشناسی</td>
+        <td>سال ساخت</td>
+        <td>حداقل</td>
+        <td>میانگین</td>
+        <td>حداکثر</td>
+      </tr>
+      <tr *ngFor="let item of dataModelResult.listItems">
+        <td>{{item.expertPriceType| enums : dataModelEstatePropertyExpertPriceTypeEnumResult.listItems}}</td>
+        <td>{{item.createdYaer}}</td>
+        <td>
+          <div *ngIf="item.salePriceMin&& item.salePriceMin>0">Sale Price : {{item.salePriceMin}} </div>
+          <div *ngIf="item.rentPriceMin&& item.rentPriceMin>0">Rent Price : {{item.rentPriceMin}} </div>
+          <div *ngIf="item.depositPriceMin&& item.depositPriceMin>0">Deposit Price : {{item.depositPriceMin}} </div>
+          <div *ngIf="item.periodPriceMin&& item.periodPriceMin>0">Period Price: {{item.periodPriceMin}} </div>
+        </td>
+        <td>
+          <div *ngIf="item.salePriceAverage&& item.salePriceAverage>0">Sale Price : {{item.salePriceAverage}} </div>
+          <div *ngIf="item.rentPriceAverage&& item.rentPriceAverage>0">Rent Price : {{item.rentPriceAverage}} </div>
+          <div *ngIf="item.depositPriceAverage&& item.depositPriceAverage>0">Deposit Price : {{item.depositPriceAverage}} </div>
+          <div *ngIf="item.periodPriceAverage&& item.periodPriceAverage>0">Period Price: {{item.periodPriceAverage}} </div>
+        </td>
+        <td>
+          <div *ngIf="item.salePriceMax&& item.salePriceMax>0">Sale Price : {{item.salePriceMax}} </div>
+          <div *ngIf="item.rentPriceMax&& item.rentPriceMax>0">Rent Price : {{item.rentPriceMax}} </div>
+          <div *ngIf="item.depositPriceMax&& item.depositPriceMax>0">Deposit Price : {{item.depositPriceMax}} </div>
+          <div *ngIf="item.periodPriceMax&& item.periodPriceMax>0">Period Price: {{item.periodPriceMax}} </div>
+        </td>
+      </tr>
+    </table>
+    
 
 
 
