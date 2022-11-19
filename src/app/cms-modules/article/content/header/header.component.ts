@@ -95,7 +95,8 @@ export class ArticletHeaderComponent implements OnInit, OnDestroy {
     }
     //open popup
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
-      // height: "90%",
+      height: "90%",
+      width: "90%",
       data: {
         title: model.title,
         urlViewContentQRCodeBase64: model.urlViewContentQRCodeBase64,

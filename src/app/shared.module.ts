@@ -80,7 +80,9 @@ import {
   CoreSiteService,
   CoreUserGroupService,
   CoreUserService,
-  MemberUserService
+  MemberUserService,
+  SmsMainApiNumberService,
+  SmsMainApiPathService
 } from 'ntk-cms-api';
 import { PasswordStrengthComponent } from './shared/password-strength/password-strength.component';
 import { CmsJsonListComponent } from './shared/cms-json-list/cmsJsonList.component';
@@ -145,6 +147,8 @@ import { CmsAccessInfoComponent } from './shared/cms-access-info/cms-access-info
 import { CmsUserInfoPipe } from './core/pipe/cms-user-info.pipe';
 import { CmsSiteInfoPipe } from './core/pipe/cms-site-info.pipe';
 import { CmsModuleInfoPipe } from './core/pipe/cms-module-info.pipe';
+import { SmsMainApiPathSelectorComponent } from './cms-modules/sms/main/api-path/selector/selector.component';
+import { SmsMainApiNumberSelectorComponent } from './cms-modules/sms/main/api-number/selector/selector.component';
 
 @NgModule({
   imports: [
@@ -264,6 +268,8 @@ import { CmsModuleInfoPipe } from './core/pipe/cms-module-info.pipe';
     CmsContactCategoryTreeSelectorComponent,
     CmsContactContentSelectionListComponent,
     CmsAccessInfoComponent,
+    SmsMainApiPathSelectorComponent,
+    SmsMainApiNumberSelectorComponent,
     /** input */
     StringComponent,
     IntComponent,
@@ -392,6 +398,8 @@ import { CmsModuleInfoPipe } from './core/pipe/cms-module-info.pipe';
     CmsContactCategoryTreeSelectorComponent,
     CmsContactContentSelectionListComponent,
     CmsAccessInfoComponent,
+    SmsMainApiPathSelectorComponent,
+    SmsMainApiNumberSelectorComponent,
     /** input */
     StringComponent,
     IntComponent,
@@ -432,6 +440,8 @@ import { CmsModuleInfoPipe } from './core/pipe/cms-module-info.pipe';
     CoreModuleSiteCreditService,
     CoreModuleSiteUserCreditService,
     CoreModuleLogMemoService,
+    SmsMainApiPathService,
+    SmsMainApiNumberService,
   ]
   /* No providers here! Since they’ll be already provided in AppModule. */
 })

@@ -463,7 +463,8 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             //open popup
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
-              // height: "90%",
+              height: "90%",
+              width: "90%",
               data: {
                 title: ret.item.title,
                 urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,

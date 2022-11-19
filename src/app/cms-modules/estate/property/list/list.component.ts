@@ -756,7 +756,7 @@ export class EstatePropertyListComponent
           if (ret.isSuccess) {
             //open popup
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
-              height: "70%",
+              height: "90%",
               width: "90%",
               data: {
                 title: ret.item.title,
