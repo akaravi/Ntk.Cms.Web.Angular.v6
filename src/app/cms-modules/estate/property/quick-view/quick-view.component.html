@@ -11,6 +11,42 @@
   <table class="table table-striped">
     <tbody>
       <tr>
+        <td>{{'TITLE.Property_type' | translate}}:</td>
+        <td>{{propertyTypeLanduse}}</td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['Title']?.fieldTitle}}:</td>
+        <td>{{dataModel.title}}</td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['CaseCode']?.fieldTitle}}:</td>
+        <td>{{dataModel.caseCode}}</td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['SharingKey']?.fieldTitle}}:</td>
+        <td>{{dataModel.sharingKey}}</td>
+      </tr>
+      <tr>
+        <td>{{'TITLE.CreatedYaer' | translate}}:</td>
+        <td>{{dataModel.createdYaer}}</td>
+      </tr>
+      <tr>
+        <td>{{'TITLE.Region' | translate}}:</td>
+        <td>{{dataModel.linkLocationIdParentTitle}}<br>{{dataModel.linkLocationIdTitle}}</td>
+      </tr>
+      <tr>
+        <td>{{'TITLE.ROOM' | translate}}:</td>
+        <td>{{dataModel.partition}}</td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['Area']?.fieldTitle}}:</td>
+        <td>{{dataModel.area}}</td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['Address']?.fieldTitle}}:</td>
+        <td>{{dataModel.address}}</td>
+      </tr>
+      <tr>
         <td>{{fieldsInfo['AboutAgentMobile']?.fieldTitle}}:</td>
         <td>{{dataModel.aboutAgentMobile}}</td>
       </tr>

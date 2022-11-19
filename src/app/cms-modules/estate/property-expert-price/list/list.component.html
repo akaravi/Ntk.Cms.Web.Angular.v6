@@ -177,9 +177,7 @@
             <table id="table1" style="border-collapse: collapse;">
               <tr>
                 <td>حداقل</td>
-                <td>  </td>
                 <td>میانگین</td>
-                <td>  </td>
                 <td>حداکثر</td>
               </tr>
               <tr>
@@ -189,14 +187,12 @@
                   <div *ngIf="row.depositPriceMin&& row.depositPriceMin>0">{{'TITLE.DepositPrice'|translate}} : {{row.depositPriceMin | number}} </div>
                   <div *ngIf="row.periodPriceMin&& row.periodPriceMin>0">{{'TITLE.PeriodPrice'|translate}}: {{row.periodPriceMin | number}} </div>
                 </td>
-                <td></td>
                 <td>
                   <div *ngIf="row.salePriceAverage&& row.salePriceAverage>0">{{'TITLE.SalePrice'|translate}} : {{row.salePriceAverage | number}} </div>
                   <div *ngIf="row.rentPriceAverage&& row.rentPriceAverage>0">{{'TITLE.RentPrice'|translate}} : {{row.rentPriceAverage | number}} </div>
                   <div *ngIf="row.depositPriceAverage&& row.depositPriceAverage>0">{{'TITLE.DepositPrice'|translate}} : {{row.depositPriceAverage | number}} </div>
                   <div *ngIf="row.periodPriceAverage&& row.periodPriceAverage>0">{{'TITLE.PeriodPrice'|translate}}: {{row.periodPriceAverage | number}} </div>
                 </td>
-                <td></td>
                 <td>
                   <div *ngIf="row.salePriceMax&& row.salePriceMax>0">{{'TITLE.SalePrice'|translate}} : {{row.salePriceMax | number}} </div>
                   <div *ngIf="row.rentPriceMax&& row.rentPriceMax>0">{{'TITLE.RentPrice'|translate}} : {{row.rentPriceMax | number}} </div>
