@@ -32,7 +32,7 @@
     </mat-form-field>
     <br>
     <!-- LinkContractTypeIds Field -->
-    <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
+    <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="1"
       *ngIf="dataModel.linkCoreCurrencyId && dataModel.linkCoreCurrencyId>0" [optionDisabled]="false"
       [optionSelectForce]="dataModel.linkContractTypeId"
       [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
@@ -45,7 +45,7 @@
     <!-- LinkPropertyTypeUsageId Field -->
     <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
       *ngIf="dataModel.linkCoreCurrencyId && dataModel.linkCoreCurrencyId>0" [optionDisabled]="false"
-      [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
+      [optionTypeView]="1" [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
       [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
       <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0"
         matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkPropertyTypeUsageId = null;">close
@@ -54,7 +54,7 @@
     <br>
     <!-- LinkPropertyTypeLanduseId Field -->
     <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
-      [optionDisabled]="false" [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
+      [optionDisabled]="false" [optionTypeView]="1" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
       [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
       <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeLanduseId && dataModel.linkPropertyTypeLanduseId?.length>0"
