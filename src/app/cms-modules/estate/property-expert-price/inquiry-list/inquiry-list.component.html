@@ -24,7 +24,7 @@
     <br>
     <!-- createdYaer Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CreatedYaer']?.fieldTitle}}</mat-label>
+      <mat-label>{{'TITLE.CreatedYaer' | translate}}</mat-label>
       <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.SalePriceAverage" #CreatedYaer type="number"
         placeholder="0" />
       <mat-icon matSuffix *ngIf="dataModel.createdYaer" matSuffix mat-icon-button aria-label="Clear"
@@ -36,7 +36,7 @@
       *ngIf="dataModel.linkCoreCurrencyId && dataModel.linkCoreCurrencyId>0" [optionDisabled]="false"
       [optionSelectForce]="dataModel.linkContractTypeId"
       [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
-      <mat-icon matSuffix *ngIf="dataModel.linkContractTypeId && dataModel.linkContractTypeId?.length>0" matSuffix
+      <mat-icon class="margin-top" matSuffix *ngIf="dataModel.linkContractTypeId && dataModel.linkContractTypeId?.length>0" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.linkContractTypeId = null;">close
       </mat-icon>
     </app-estate-contract-type-selector>
@@ -47,7 +47,7 @@
       *ngIf="dataModel.linkCoreCurrencyId && dataModel.linkCoreCurrencyId>0" [optionDisabled]="false"
       [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
       [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
-      <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0"
+      <mat-icon class="margin-top" matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0"
         matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkPropertyTypeUsageId = null;">close
       </mat-icon>
     </app-estate-property-type-usage-selector>
@@ -57,7 +57,7 @@
       [optionDisabled]="false" [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
       [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
-      <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeLanduseId && dataModel.linkPropertyTypeLanduseId?.length>0"
+      <mat-icon class="margin-top" matSuffix *ngIf="dataModel.linkPropertyTypeLanduseId && dataModel.linkPropertyTypeLanduseId?.length>0"
         matSuffix mat-icon-button aria-label="Clear" (click)="onActionSelectorSelectLanduse(null)">close
       </mat-icon>
     </app-estate-property-type-landuse-selector>
