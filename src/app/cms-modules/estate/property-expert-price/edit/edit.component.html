@@ -32,7 +32,6 @@
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
-      <mat-hint align="end">{{ 'Application.source.ExpertPriceType_hint' | translate }}</mat-hint>
       <mat-error *ngIf="ExpertPriceType.errors?.required">
         {{ fieldsInfo['ExpertPriceType']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -46,8 +45,8 @@
     <br>
     <!-- createdYaer Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CreatedYaer']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.SalePriceAverage" #CreatedYaer type="number"
+      <mat-label>{{'TITLE.CreatedYaer' | translate}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.CreatedYaer" #CreatedYaer type="number"
         placeholder="0" />
       <mat-icon matSuffix *ngIf="dataModel.createdYaer" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.createdYaer = 0">close</mat-icon>
@@ -218,7 +217,7 @@
         <td>
           <!-- PeriodPriceAverage Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['PeriodPriceAverage']?.fieldTitle}}</mat-label>
+            <mat-label>{{'TITLE.Period_Price_Average' | translate}}</mat-label>
             <input matInput [(ngModel)]="dataModel.periodPriceAverage" name="dataModel.PeriodPriceAverage"
               #PeriodPriceAverage type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.periodPriceAverage" matSuffix mat-icon-button aria-label="Clear"

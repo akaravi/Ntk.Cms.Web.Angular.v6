@@ -24,8 +24,8 @@
     <br>
     <!-- createdYaer Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CreatedYaer']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.SalePriceAverage" #CreatedYaer type="number"
+      <mat-label>{{'TITLE.CreatedYaer' | translate}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.CreatedYaer" #CreatedYaer type="number"
         placeholder="0" />
       <mat-icon matSuffix *ngIf="dataModel.createdYaer" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.createdYaer = 0">close</mat-icon>

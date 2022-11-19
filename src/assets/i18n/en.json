@@ -1011,6 +1011,7 @@
 	"TITLE.Selected_User_Type":"Selected user type",
 	"TITLE.System_Type":"System type",
 	"TITLE.Site_Type":"System site",
+	"TITLE.Period_Price_Average":"Period Price Average",
 	"TITLE.typeErrorRegistration": "An error occurred",
 	"TITLE.List_Of_Transaction_Details_Of_This_Property": "List of transaction details of this property",
 	"TITLE.Enter_Text": "Enter text ...",
