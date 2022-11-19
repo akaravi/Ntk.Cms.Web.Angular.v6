@@ -27,7 +27,7 @@ export class CoreModuleSiteUserCreditWidgetPriceComponent implements OnInit, OnD
   @Input() cssClass = '';
   @Input() widgetHeight = 'auto';
   @Input() baseColor = 'success';
-  @Input() iconColor = 'success';
+  @Input() iconColor= 'success';
   textInverseCSSClass;
   svgCSSClass;
   constructor(

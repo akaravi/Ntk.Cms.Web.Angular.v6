@@ -55,7 +55,7 @@
         <mat-icon matSuffix *ngIf="dataModel.captchaText" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.captchaText = ''">
           "this.translate.instant('TITLE.close')"</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
+        <mat-icon matSuffix>"this.translate.instant('TITLE.mode')"_"this.translate.instant('TITLE.Edit')"</mat-icon>
         <mat-error *ngIf="captchaText.errors?.required">
           "this.translate.instant('TITLE.captcha_Text_is')" <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>

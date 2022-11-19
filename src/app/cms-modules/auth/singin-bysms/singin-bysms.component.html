@@ -28,7 +28,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Mobile.errors?.required">
-        Mobile is <strong>{{'MESSAGE.required' | translate}}</strong>
+        "this.translate.instant('TITLE.Mobile_is')" <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!--captchaText Field-->
@@ -45,7 +45,7 @@
         "this.translate.instant('TITLE.close')"</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="captchaText.errors?.required">
-        captchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
+         <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!--begin::Form group-->
@@ -91,7 +91,7 @@
       <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.code" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModelAuthUserSignInBySms.code = ''">
         "this.translate.instant('TITLE.close')"</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-icon matSuffix>"this.translate.instant('TITLE.mode')"_"this.translate.instant('TITLE.Edit')"</mat-icon>
       <mat-hint align="end">{{ Code.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Code.errors?.required">
         PIN Code is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -109,7 +109,7 @@
       <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.captchaText" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModelAuthUserSignInBySms.captchaText = ''">
         "this.translate.instant('TITLE.close')"</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-icon matSuffix>"this.translate.instant('TITLE.mode')"_"this.translate.instant('TITLE.Edit')"</mat-icon>
       <mat-error *ngIf="captchaText.errors?.required">
         captchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -159,11 +159,11 @@
         <div class="py-2">
           <h3 class="text-white font-weight-bolder mb-3">Email is correct!</h3>
           <p class="text-white font-size-lg">
-            Message with 'recovery' instruction<br />
+            "this.translate.instant('TITLE.Message_with_recovery_instruction')"<br />
             has been sent<br />
           </p>
           <a routerLink="/auth/singin" class="swal2-confirm btn font-weight-bold btn-light-primary">
-            Ok, got it!
+            "this.translate.instant('TITLE.Ok')",  "this.translate.instant('TITLE.got_it')"!
           </a>
         </div>
       </div>
