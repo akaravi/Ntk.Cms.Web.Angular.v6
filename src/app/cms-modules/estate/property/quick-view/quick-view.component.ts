@@ -58,7 +58,9 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
   formInfo: FormInfoModel = new FormInfoModel();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
-  errorMessage :string = '';
+  errorMessage: string = '';
+  propertyTypeLanduse: string = '';
+
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
@@ -98,13 +100,15 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
         // this.dataAccessModel = next.access;
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         this.dataModel = ret.item;
+        this.propertyTypeLanduse = this.dataModel.propertyTypeLanduse.titleML;
+
         if (ret.isSuccess) {
           this.formInfo.formTitle = this.formInfo.formTitle;
           this.formInfo.formAlert = '';
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
-          this.errorMessage = ret.errorMessage + '<br> ( ' + ret.errorTypeTitle + ' ) ' ;
+          this.errorMessage = ret.errorMessage + '<br> ( ' + ret.errorTypeTitle + ' ) ';
           this.cmsToastrService.typeErrorMessage(this.errorMessage);
         }
         this.loading.Stop(pName);
