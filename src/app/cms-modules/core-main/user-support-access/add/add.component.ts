@@ -7,6 +7,7 @@ import {
   CoreUserSupportAccessService,
   CoreUserSupportAccessModel,
   DataFieldInfoModel,
+  CoreModuleEntityModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -45,10 +46,10 @@ export class CoreUserSupportAccessAddComponent implements OnInit {
     if (data) {
       this.dataModel.linkSiteId = +data.linkSiteId || 0;
       this.dataModel.linkUserId = +data.linkUserId || 0;
-      this.dataModel.moduleName = data.moduleName ;
-      this.dataModel.moduleEntityName = data.moduleEntityName ;
+      this.dataModel.moduleName = data.moduleName;
+      this.dataModel.moduleEntityName = data.moduleEntityName;
     }
-    
+
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -132,8 +133,16 @@ export class CoreUserSupportAccessAddComponent implements OnInit {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
-      }
+    }
     );
+  }
+  onActionSelectorModuleEntitySelect(model: CoreModuleEntityModel): void {
+    this.dataModel.moduleName = '';
+    this.dataModel.moduleEntityName = '';
+    if (model && model.id > 0) {
+      this.dataModel.moduleName = model.moduleName;
+      this.dataModel.moduleEntityName = model.moduleEntityName;
+    }
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

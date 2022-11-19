@@ -11,6 +11,8 @@ import {
   EstatePropertyTypeUsageModel,
   EstatePropertyTypeLanduseModel,
   CoreCurrencyModel,
+  EstatePropertyExpertPriceTypeEnum,
+  EstateEnumService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -42,6 +44,7 @@ export class EstatePropertyExpertPriceAddComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    private estateEnumService:EstateEnumService,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -64,6 +67,7 @@ export class EstatePropertyExpertPriceAddComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyExpertPriceModel> = new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
   dataModel: EstatePropertyExpertPriceModel = new EstatePropertyExpertPriceModel();
+  dataModelEstatePropertyExpertPriceTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
   formInfo: FormInfoModel = new FormInfoModel();
@@ -75,12 +79,18 @@ export class EstatePropertyExpertPriceAddComponent implements OnInit {
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumRecordStatus();
+    this.getEstatePropertyExpertPriceTypeEnum();
     this.DataGetAccess();
+    
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
+  getEstatePropertyExpertPriceTypeEnum(): void {
+    this.estateEnumService.ServiceEstatePropertyExpertPriceTypeEnum().subscribe((next) => {
+      this.dataModelEstatePropertyExpertPriceTypeEnumResult = next;
+    });
+  }
 
   DataGetAccess(): void {
     this.estatePropertyExpertPriceService

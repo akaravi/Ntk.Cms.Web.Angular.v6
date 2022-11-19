@@ -1,10 +1,8 @@
-
 import {
   CoreEnumService,
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  EstatePropertyExpertPriceModel,
   EstatePropertyExpertPriceService,
   DataFieldInfoModel,
   CoreLocationModel,
@@ -13,6 +11,7 @@ import {
   CoreCurrencyModel,
   EstatePriceInquiryDtoModel,
   ErrorExceptionResultBase,
+  EstateEnumService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -35,23 +34,31 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./inquiry-calculate.component.scss'],
 })
 export class EstatePropertyExpertPriceInquiryCalculateComponent implements OnInit {
-  requestTargetCategoryId = 0;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<EstatePropertyExpertPriceInquiryCalculateComponent>,
     public coreEnumService: CoreEnumService,
     public estatePropertyExpertPriceService: EstatePropertyExpertPriceService,
     private cmsToastrService: CmsToastrService,
+    private estateEnumService:EstateEnumService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    if (data) {
+      this.dataModel.linkLocationId = +data.linkLocationId | 0;
+      this.dataModel.linkCoreCurrencyId = +data.linkCoreCurrencyId | 0;
+      this.dataModel.createdYaer = +data.createdYaer | 0;
+      this.dataModel.linkContractTypeId = data.linkContractTypeId;
+      this.dataModel.linkPropertyTypeLanduseId = data.linkPropertyTypeLanduseId;
+      this.dataModel.linkPropertyTypeUsageId = data.linkPropertyTypeUsageId;
+    }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
 
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
@@ -59,6 +66,7 @@ export class EstatePropertyExpertPriceInquiryCalculateComponent implements OnIni
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: EstatePriceInquiryDtoModel = new EstatePriceInquiryDtoModel();
+  dataModelEstatePropertyExpertPriceTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
   formInfo: FormInfoModel = new FormInfoModel();
@@ -69,15 +77,22 @@ export class EstatePropertyExpertPriceInquiryCalculateComponent implements OnIni
 
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Register_New_Categories');
+    
     this.getEnumRecordStatus();
+    this.getEstatePropertyExpertPriceTypeEnum();
+
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
+  getEstatePropertyExpertPriceTypeEnum(): void {
+    this.estateEnumService.ServiceEstatePropertyExpertPriceTypeEnum().subscribe((next) => {
+      this.dataModelEstatePropertyExpertPriceTypeEnumResult = next;
+    });
+  }
 
 
-
-  DataAddContent(): void {
+  DataGetAll(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
@@ -137,7 +152,7 @@ export class EstatePropertyExpertPriceInquiryCalculateComponent implements OnIni
       return;
     }
     this.dataModel.linkContractTypeId = model.id;
-   
+
   }
 
   onActionSelectorLocation(model: CoreLocationModel | null): void {
@@ -163,9 +178,7 @@ export class EstatePropertyExpertPriceInquiryCalculateComponent implements OnIni
       return;
     }
     this.formInfo.formSubmitAllow = false;
-
-    this.DataAddContent();
-
+    this.DataGetAll();
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

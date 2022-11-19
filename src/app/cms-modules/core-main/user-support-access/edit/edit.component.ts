@@ -10,6 +10,7 @@ import {
   EnumManageUserAccessDataTypes,
   FilterDataModel,
   FilterModel,
+  CoreModuleEntityModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -186,6 +187,14 @@ export class CoreUserSupportAccessEditComponent implements OnInit {
       }
     }
     );
+  }
+  onActionSelectorModuleEntitySelect(model: CoreModuleEntityModel): void {
+    this.dataModel.moduleName = '';
+    this.dataModel.moduleEntityName = '';
+    if (model && model.id > 0) {
+      this.dataModel.moduleName = model.moduleName;
+      this.dataModel.moduleEntityName = model.moduleEntityName;
+    }
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

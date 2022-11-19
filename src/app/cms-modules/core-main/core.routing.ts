@@ -67,6 +67,11 @@ const routes: Routes = [
           import('./module/coreModule.module').then((m) => m.CoreModuleModule),
       },
       {
+        path: 'module-entity',
+        loadChildren: () =>
+          import('./module-entity/core-module-entity.module').then((m) => m.CoreModuleEntityModule),
+      },
+      {
         path: 'modulesale',
         loadChildren: () =>
           import('./module-sale/core-module-sale.module').then((m) => m.CoreModuleSaleModule),

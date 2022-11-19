@@ -1,6 +1,5 @@
 
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import {
   EnumSortType,
   ErrorExceptionResult,
@@ -13,6 +12,16 @@ import {
   DataFieldInfoModel,
   EstatePriceInquiryDtoModel,
   ErrorExceptionResultBase,
+  EstateEnumService,
+  EnumInfoModel,
+  EstatePropertyTypeUsageModel,
+  EstatePropertyTypeLanduseModel,
+  EstateContractTypeModel,
+  CoreCurrencyModel,
+  CoreCurrencyService,
+  EstateContractTypeService,
+  EstatePropertyTypeLanduseService,
+  EstatePropertyTypeUsageService,
 } from 'ntk-cms-api';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
@@ -31,6 +40,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { EstatePropertyExpertPriceInquiryCalculateComponent } from '../inquiry-calculate/inquiry-calculate.component';
+import { EstatePropertyExpertPriceInquiryListComponent } from '../inquiry-list/inquiry-list.component';
 
 @Component({
   selector: 'app-estate-property-expert-price-list',
@@ -43,8 +53,12 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     public publicHelper: PublicHelper,
     public contentService: EstatePropertyExpertPriceService,
     private cmsToastrService: CmsToastrService,
-    private router: Router,
+    private estateEnumService: EstateEnumService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
+    private coreCurrencyService: CoreCurrencyService,
+    private estateContractTypeService:EstateContractTypeService,
+    private estatePropertyTypeUsageService:EstatePropertyTypeUsageService,
+    private estatePropertyTypeLanduseService:EstatePropertyTypeLanduseService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
@@ -62,12 +76,17 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
     /*filter Sort*/
-    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortColumn = 'CreatedYaer';
     this.filteModelContent.sortType = EnumSortType.Descending;
 
   }
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyExpertPriceModel> = new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
+  dataModelEstatePropertyExpertPriceTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEstatePropertyTypeUsageResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
+  dataModelEstatePropertyTypeLanduseResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
+  dataModelEstateContractTypeResult: ErrorExceptionResult<EstateContractTypeModel> = new ErrorExceptionResult<EstateContractTypeModel>();
+  dataModelCoreCurrencyResult: ErrorExceptionResult<CoreCurrencyModel> = new ErrorExceptionResult<CoreCurrencyModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
@@ -82,7 +101,13 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
+    'ExpertPriceType',
     'CreatedYaer',
+    'LinkLocationId',
+    'LinkPropertyTypeUsageId',
+    'LinkPropertyTypeLanduseId',
+    'LinkContractTypeId',
+    'LinkCoreCurrencyId',
     'CreatedDate',
     'Action'
   ];
@@ -102,10 +127,106 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
       this.tokenInfo = next;
       this.DataGetAll();
     });
+    this.getEstatePropertyExpertPriceTypeEnum();
+    this.getEstatePropertyTypeUsages();
+    this.getEstatePropertyTypeLanduses();
+    this.getEstateContractTypes();
+    this.getCoreCurrency();
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
+  getEstatePropertyExpertPriceTypeEnum(): void {
+    this.estateEnumService.ServiceEstatePropertyExpertPriceTypeEnum().subscribe((next) => {
+      this.dataModelEstatePropertyExpertPriceTypeEnumResult = next;
+    });
+  }
+  getEstatePropertyTypeUsages(): void {
+    const pName = this.constructor.name + 'getCoreCurrency';
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 100;
+    this.estatePropertyTypeUsageService.setAccessLoad();
+    this.estatePropertyTypeUsageService.ServiceGetAllEditor(filterModel).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+
+        if (ret.isSuccess) {
+          this.dataModelEstatePropertyTypeUsageResult = ret;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    });
+   }
+  getEstatePropertyTypeLanduses(): void { 
+    const pName = this.constructor.name + 'getCoreCurrency';
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 100;
+    this.estatePropertyTypeLanduseService.ServiceGetAllEditor(filterModel).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+
+        if (ret.isSuccess) {
+          this.dataModelEstatePropertyTypeLanduseResult = ret;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    });
+  }
+  getEstateContractTypes(): void {
+    const pName = this.constructor.name + 'getCoreCurrency';
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 100;
+    this.estateContractTypeService.ServiceGetAllEditor(filterModel).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+
+        if (ret.isSuccess) {
+          this.dataModelEstateContractTypeResult = ret;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    });
+   }
+  getCoreCurrency(): void {
+    const pName = this.constructor.name + 'getCoreCurrency';
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 100;
+    this.coreCurrencyService.ServiceGetAllEditor(filterModel).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+
+        if (ret.isSuccess) {
+          this.dataModelCoreCurrencyResult = ret;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    });
+  }
+
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
@@ -276,30 +397,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
       );
 
   }
-//*********/
-  // onActionbuttonPriceInquiryCalculateRow(): void {
 
-  //   const pName = this.constructor.name + 'ServicePriceInquiryCalculate';
-  //   this.loading.Start(pName);
-  //   this.contentService.ServicePriceInquiryCalculate(this.dataModelInquiry).subscribe({
-  //     next: (ret) => {
-  //       if (ret.isSuccess) {
-  //         this.dataModelInquiryResult = ret;
-  //       }
-  //       else {
-  //         this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-  //       }
-  //       this.loading.Stop(pName);
-
-  //     },
-  //     error: (er) => {
-  //       this.cmsToastrService.typeError(er);
-  //       this.loading.Stop(pName);
-  //     }
-  //   }
-  //   );
-  // }
-//*********/
 
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -400,7 +498,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
       row['expanded'] = flag;
     })
   }
-  actionPriceInquiryCalculate():void{
+  onActionPriceInquiryCalculate(): void {
 
     if (
       this.dataModelResult == null ||
@@ -423,6 +521,32 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
+      }
+    });
+  }
+  onActionPriceInquiryList(): void {
+
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
+    ) {
+      this.cmsToastrService.typeErrorAccessAdd();
+      return;
+    }
+    // this.router.navigate(['/polling/content/edit', this.tableRowSelected.id]);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.height = '90%';
+    dialogConfig.data = { id: this.tableRowSelected.id };
+
+
+    const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryListComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+      if (result && result.dialogChangedDate) {
+
       }
     });
   }

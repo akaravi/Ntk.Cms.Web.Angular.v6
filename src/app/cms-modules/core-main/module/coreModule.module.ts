@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CoreModuleRouting } from './coreModule.routing';
 import { CoreModuleComponent } from './coreModule.component';
 import {
+  CoreModuleEntityService,
   CoreModuleService,
 } from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +30,7 @@ import { CoreSharedModule } from '../core.shared.module';
     CoreModuleSelectorComponent,
     CoreModuleTreeComponent,
     CoreModuleSelectionlistComponent,
+
   ],
   exports: [
     CoreModuleComponent,
