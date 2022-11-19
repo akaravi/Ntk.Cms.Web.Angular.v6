@@ -32,7 +32,7 @@
     </mat-form-field>
     <br>
     <!-- LinkContractTypeIds Field -->
-    <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
+    <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="1"
       *ngIf="dataModel.linkCoreCurrencyId && dataModel.linkCoreCurrencyId>0" [optionDisabled]="false"
       [optionSelectForce]="dataModel.linkContractTypeId"
       [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
@@ -45,7 +45,7 @@
     <!-- LinkPropertyTypeUsageId Field -->
     <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
       *ngIf="dataModel.linkCoreCurrencyId && dataModel.linkCoreCurrencyId>0" [optionDisabled]="false"
-      [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
+      [optionTypeView]="1" [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
       [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
       <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0"
         matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkPropertyTypeUsageId = null;">close
@@ -54,7 +54,7 @@
     <br>
     <!-- LinkPropertyTypeLanduseId Field -->
     <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
-      [optionDisabled]="false" [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
+      [optionDisabled]="false" [optionTypeView]="1" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
       [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
       <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeLanduseId && dataModel.linkPropertyTypeLanduseId?.length>0"
@@ -75,22 +75,22 @@
         <td>{{item.expertPriceType| enums : dataModelEstatePropertyExpertPriceTypeEnumResult.listItems}}</td>
         <td>{{item.createdYaer}}</td>
         <td>
-          <div *ngIf="item.salePriceMin&& item.salePriceMin>0">{{'TITLE.SalePrice'|translate}} : {{item.salePriceMin}} </div>
-          <div *ngIf="item.rentPriceMin&& item.rentPriceMin>0">{{'TITLE.RentPrice'|translate}} : {{item.rentPriceMin}} </div>
-          <div *ngIf="item.depositPriceMin&& item.depositPriceMin>0">{{'TITLE.DepositPrice'|translate}} : {{item.depositPriceMin}} </div>
-          <div *ngIf="item.periodPriceMin&& item.periodPriceMin>0">{{'TITLE.PeriodPrice'|translate}}: {{item.periodPriceMin}} </div>
+          <div *ngIf="item.salePriceMin&& item.salePriceMin>0">{{'TITLE.SalePrice'|translate}} : {{item.salePriceMin | number}} </div>
+          <div *ngIf="item.rentPriceMin&& item.rentPriceMin>0">{{'TITLE.RentPrice'|translate}} : {{item.rentPriceMin | number}} </div>
+          <div *ngIf="item.depositPriceMin&& item.depositPriceMin>0">{{'TITLE.DepositPrice'|translate}} : {{item.depositPriceMin | number}} </div>
+          <div *ngIf="item.periodPriceMin&& item.periodPriceMin>0">{{'TITLE.PeriodPrice'|translate}}: {{item.periodPriceMin | number}} </div>
         </td>
         <td>
-          <div *ngIf="item.salePriceAverage&& item.salePriceAverage>0">{{'TITLE.SalePrice'|translate}} : {{item.salePriceAverage}} </div>
-          <div *ngIf="item.rentPriceAverage&& item.rentPriceAverage>0">{{'TITLE.RentPrice'|translate}} : {{item.rentPriceAverage}} </div>
-          <div *ngIf="item.depositPriceAverage&& item.depositPriceAverage>0">{{'TITLE.DepositPrice'|translate}} : {{item.depositPriceAverage}} </div>
-          <div *ngIf="item.periodPriceAverage&& item.periodPriceAverage>0">{{'TITLE.PeriodPrice'|translate}}: {{item.periodPriceAverage}} </div>
+          <div *ngIf="item.salePriceAverage&& item.salePriceAverage>0">{{'TITLE.SalePrice'|translate}} : {{item.salePriceAverage | number}} </div>
+          <div *ngIf="item.rentPriceAverage&& item.rentPriceAverage>0">{{'TITLE.RentPrice'|translate}} : {{item.rentPriceAverage | number}} </div>
+          <div *ngIf="item.depositPriceAverage&& item.depositPriceAverage>0">{{'TITLE.DepositPrice'|translate}} : {{item.depositPriceAverage | number}} </div>
+          <div *ngIf="item.periodPriceAverage&& item.periodPriceAverage>0">{{'TITLE.PeriodPrice'|translate}}: {{item.periodPriceAverage | number}} </div>
         </td>
         <td>
-          <div *ngIf="item.salePriceMax&& item.salePriceMax>0">{{'TITLE.SalePrice'|translate}} : {{item.salePriceMax}} </div>
-          <div *ngIf="item.rentPriceMax&& item.rentPriceMax>0">{{'TITLE.RentPrice'|translate}} : {{item.rentPriceMax}} </div>
-          <div *ngIf="item.depositPriceMax&& item.depositPriceMax>0">{{'TITLE.DepositPrice'|translate}} : {{item.depositPriceMax}} </div>
-          <div *ngIf="item.periodPriceMax&& item.periodPriceMax>0">{{'TITLE.PeriodPrice'|translate}}: {{item.periodPriceMax}} </div>
+          <div *ngIf="item.salePriceMax&& item.salePriceMax>0">{{'TITLE.SalePrice'|translate}} : {{item.salePriceMax | number}} </div>
+          <div *ngIf="item.rentPriceMax&& item.rentPriceMax>0">{{'TITLE.RentPrice'|translate}} : {{item.rentPriceMax | number}} </div>
+          <div *ngIf="item.depositPriceMax&& item.depositPriceMax>0">{{'TITLE.DepositPrice'|translate}} : {{item.depositPriceMax | number}} </div>
+          <div *ngIf="item.periodPriceMax&& item.periodPriceMax>0">{{'TITLE.PeriodPrice'|translate}}: {{item.periodPriceMax | number}} </div>
         </td>
       </tr>
     </table>
