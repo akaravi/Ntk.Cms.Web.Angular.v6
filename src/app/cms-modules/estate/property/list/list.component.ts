@@ -205,6 +205,7 @@ export class EstatePropertyListComponent
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
+      this.tokenHelper.CheckIsAdmin();
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper
@@ -212,8 +213,9 @@ export class EstatePropertyListComponent
       .subscribe((next) => {
         this.tokenInfo = next;
         this.DataGetAll();
+        this.tokenHelper.CheckIsAdmin();
       });
-
+      
     // this.SubjectTitle = this.CoreModuleLogMemoModel.SubjectTitle;
   }
 
@@ -589,7 +591,33 @@ export class EstatePropertyListComponent
     }
     );
   }
-
+  onActionbuttonActionSendSmsToCustomerOrder(model: EstatePropertyModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    const pName = this.constructor.name + "main";
+    this.loading.Start(pName, this.translate.instant('ACTION.ActionSendSmsToCustomerOrder'));
+    // ** */
+    this.contentService
+    .ServiceActionSendSmsToCustomerOrder(model.id)
+    .subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.cmsToastrService.typeSuccessMessage(ret.errorMessage);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    }
+    );
+  // ** */
+  }
   onActionbuttonViewOtherUserAdvertise(model: EstatePropertyModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
