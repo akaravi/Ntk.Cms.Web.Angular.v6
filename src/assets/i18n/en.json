@@ -212,7 +212,11 @@
 	"ACTION.Property_to_be_traded": "Property to be traded",
 	"ACTION.PriceInquiryCalculate":"Price Inquiry Calculate",
 	"ACTION.Module_Entity_List":"Module Enity List",
+<<<<<<< HEAD
 	"ACTION.Send_Sms_To_CustomerOrder":"Send Sms To CustomerOrder",
+=======
+	"ACTION.ActionSendSmsToCustomerOrder":"Send Sms To Customer Order",
+>>>>>>> main
 	"AUTH.FORGOT.CONFIRM_PASSWORD": "Confirm Password",
 	"AUTH.FORGOT.DESC": "Enter your email to reset your password",
 	"AUTH.FORGOT.DESCEMAIL": "Enter your email to receive a password recovery code",

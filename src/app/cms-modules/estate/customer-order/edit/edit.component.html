@@ -61,8 +61,9 @@
       <!-- ContactMobiles Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{'TITLE.Mobile_staff_or_customer' | translate}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" #ContactMobiles type="text"
-          placeholder="{{'TITLE.Mobile_staff_or_customer' | translate}}" minlength="3" maxlength="100"/>
+        <textarea matInput [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" #ContactMobiles type="text"
+          placeholder="{{'TITLE.Mobile_staff_or_customer' | translate}}" minlength="3" maxlength="100" rows="10">
+          </textarea>
         <mat-icon matSuffix *ngIf="dataModel.contactMobiles" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.contactMobiles = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>

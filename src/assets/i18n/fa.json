@@ -211,7 +211,11 @@
 	"ACTION.Property_to_be_traded": "املاک مورد معامله",
 	"ACTION.PriceInquiryCalculate":"محاسبه استعلام قیمت",
 	"ACTION.Module_Entity_List":"لیست اجزاء ماژول",
+<<<<<<< HEAD
 	"ACTION.Send_Sms_To_CustomerOrder":"ارسال پیام به سفارش مشتری",
+=======
+	"ACTION.ActionSendSmsToCustomerOrder":"ارسال پیامک به مشتری های منطبق",
+>>>>>>> main
 	"AUTH.FORGOT.CONFIRM_PASSWORD": "تکرار کلمه عبور جدید",
 	"AUTH.FORGOT.DESC": "ایمیل تان را وارد کنید تا پسوردتان ریست شود",
 	"AUTH.FORGOT.DESCEMAIL": "ایمیل تان را وارد کنید تا کد بازیابی کلمه عبور برای شما ایمیل شود",
