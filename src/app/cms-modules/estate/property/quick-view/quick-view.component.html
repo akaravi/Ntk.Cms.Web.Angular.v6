@@ -18,6 +18,10 @@
         <td>{{fieldsInfo['Title']?.fieldTitle}}:</td>
         <td>{{dataModel.title}}</td>
       </tr>
+      <!-- <tr>
+        <td>{{'TITLE.Transaction_type' | translate}}:</td>
+        <td>{{contractType}}</td>
+      </tr> -->
       <tr>
         <td>{{fieldsInfo['CaseCode']?.fieldTitle}}:</td>
         <td>{{dataModel.caseCode}}</td>
@@ -66,8 +70,82 @@
         <td>{{'TITLE.Description_Hidden' | translate}}:</td>
         <td>{{dataModel.descriptionHidden}}</td>
       </tr>
+      
     </tbody>
   </table>
+
+  <hr>
+        <p> {{'TITLE.List_Of_Transaction_Details_Of_This_Property' | translate}} </p>
+        <app-progress-spinner [options]="loadingOption">
+        </app-progress-spinner>
+        <!-- TABLE  -->
+        <div class="example-container mat-elevation-z8" *ngIf="!loadingOption.display">
+          <mat-table [dataSource]="optionTabledataSource" multiTemplateDataRows>
+            <!-- LinkEstateContractTypeId Column -->
+            <ng-container matColumnDef="LinkEstateContractTypeId">
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.Contract' | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.linkEstateContractTypeId | cmstitle:
+                dataModelEstateContractTypeResult.listItems}} </mat-cell>
+
+            </ng-container>
+            <!-- SalePrice Column -->
+            <ng-container matColumnDef="SalePrice">
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.SalePrice' | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.salePrice>0">
+                  {{row.salePrice | number}} <br>( {{row.currencyTitle}} {{row.currencySymbol}} )
+                </ng-container>
+                <ng-container *ngIf="row.salePriceByAgreement">
+                  {{'TITLE.PriceByAgreement' | translate}}
+                </ng-container>
+              </mat-cell>
+            </ng-container>
+            <!-- DepositPrice Column -->
+            <ng-container matColumnDef="DepositPrice">
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.DepositPrice' | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.depositPrice>0">
+                  {{row.depositPrice | number}}<br> ( {{row.currencyTitle}} {{row.currencySymbol}} )
+                </ng-container>
+                <ng-container *ngIf="row.depositPriceByAgreement">
+                  {{'TITLE.PriceByAgreement' | translate}}
+                </ng-container>
+              </mat-cell>
+            </ng-container>
+            <!-- RentPrice Column -->
+            <ng-container matColumnDef="RentPrice">
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.RentPrice' | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.rentPrice>0">
+                  {{row.rentPrice | number}}<br> ( {{row.currencyTitle}} {{row.currencySymbol}} )
+                </ng-container>
+                <ng-container *ngIf="row.rentPriceByAgreement">
+                  {{'TITLE.PriceByAgreement' | translate}}
+                </ng-container>
+              </mat-cell>
+            </ng-container>
+
+            <!-- PeriodPrice Column -->
+            <ng-container matColumnDef="PeriodPrice">
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.PeriodPrice' | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.periodPrice>0">
+                  {{row.periodPrice | number}}
+                  <br>
+                  ( {{row.currencyTitle}} {{row.currencySymbol}})
+                </ng-container>
+                <ng-container *ngIf="row.periodPriceByAgreement">
+                  {{'TITLE.PriceByAgreement' | translate}}
+                </ng-container>
+              </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="optionTabledisplayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: optionTabledisplayedColumns;">
+            </mat-row>
+          </mat-table>
+        </div>
 
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
