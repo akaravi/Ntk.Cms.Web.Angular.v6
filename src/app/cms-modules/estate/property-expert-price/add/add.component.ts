@@ -13,6 +13,7 @@ import {
   CoreCurrencyModel,
   EstatePropertyExpertPriceTypeEnum,
   EstateEnumService,
+  EstateContractTypeModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -74,6 +75,7 @@ export class EstatePropertyExpertPriceAddComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   dataModelCorCurrencySelector = new CoreCurrencyModel();
+  contractTypeSelected: EstateContractTypeModel;
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
@@ -162,13 +164,15 @@ export class EstatePropertyExpertPriceAddComponent implements OnInit {
     this.dataModel.linkPropertyTypeLanduseId = model.id;
   }
 
-  onActionSelectorContarctType(model: EstatePropertyTypeLanduseModel | null): void {
+  onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
     this.dataModel.linkContractTypeId = null;
+    this.contractTypeSelected = null;
     if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
+    this.contractTypeSelected = model;
     this.dataModel.linkContractTypeId = model.id;
     this.dataModel.rentPriceMin = 0;
     this.dataModel.rentPriceMax = 0;

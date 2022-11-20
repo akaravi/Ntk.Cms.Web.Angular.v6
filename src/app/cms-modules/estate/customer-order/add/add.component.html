@@ -16,6 +16,21 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width mt-3">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
+        required>
+        <mat-option *ngFor="
+                      let item of dataModelEnumRecordStatusResult.listItems;
+                      index as i
+                    " [value]="item.value">{{ item.description }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
@@ -66,13 +81,15 @@
     <!-- LinkEstateUserId Field -->
     <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)"
       [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Real_estate_customer_personnel')">
+      [optionSelectForce]="dataModel.linkEstateUserId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Real_estate_customer_personnel')">
     </app-estate-account-user-selector>
     <!-- ContactMobiles Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{'TITLE.Mobile_staff_or_customer' | translate}}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" #ContactMobiles type="text"  rows="10"
-        placeholder="{{'TITLE.Mobile_staff_or_customer' | translate}}" minlength="3" maxlength="100" >
+      <textarea matInput [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" #ContactMobiles
+        type="text" rows="10" placeholder="{{'TITLE.Mobile_staff_or_customer' | translate}}" minlength="3"
+        maxlength="100">
       </textarea>
       <mat-icon matSuffix *ngIf="dataModel.contactMobiles" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.contactMobiles = ''">close</mat-icon>
@@ -181,7 +198,8 @@
     <hr>
     <!-- linkCoreCurrencyId Field -->
     <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
-      (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
+      (optionChange)="onActionSelectCurrency($event)"
+      [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
     </app-cms-currency-selector>
     <div class="row">
       <div class="col-md-6 col-sm-6 col-xs-9">
@@ -289,7 +307,8 @@
     </p>
     <!-- LinkPropertyIds Field -->
     <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessAddField" [optionPlaceholder]="this.translate.instant('TITLE.Property')"
+      [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessAddField"
+      [optionPlaceholder]="this.translate.instant('TITLE.Property')"
       [optionSelectForce]="this.dataModel.linkPropertyIds">
     </app-estate-property-autocomplete>
 
@@ -372,7 +391,8 @@
 
     <div *ngIf="dataModel?.urlViewContentQRCodeBase64?.length>0 && dataModel?.urlViewContent?.length>0">
       <a href="{{dataModel.urlViewContent}}" target="_blank">
-        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="300px" width="300px">
+        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="300px"
+          width="300px">
       </a>
       <app-cms-qdoc [optionUrl]="dataModel.urlViewContent"></app-cms-qdoc>
     </div>

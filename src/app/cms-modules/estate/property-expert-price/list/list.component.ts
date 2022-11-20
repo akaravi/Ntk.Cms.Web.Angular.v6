@@ -56,9 +56,9 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     private estateEnumService: EstateEnumService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private coreCurrencyService: CoreCurrencyService,
-    private estateContractTypeService:EstateContractTypeService,
-    private estatePropertyTypeUsageService:EstatePropertyTypeUsageService,
-    private estatePropertyTypeLanduseService:EstatePropertyTypeLanduseService,
+    private estateContractTypeService: EstateContractTypeService,
+    private estatePropertyTypeUsageService: EstatePropertyTypeUsageService,
+    private estatePropertyTypeLanduseService: EstatePropertyTypeLanduseService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
@@ -148,8 +148,6 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     this.estatePropertyTypeUsageService.setAccessLoad();
     this.estatePropertyTypeUsageService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
         if (ret.isSuccess) {
           this.dataModelEstatePropertyTypeUsageResult = ret;
         } else {
@@ -162,15 +160,13 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
         this.loading.Stop(pName);
       }
     });
-   }
-  getEstatePropertyTypeLanduses(): void { 
+  }
+  getEstatePropertyTypeLanduses(): void {
     const pName = this.constructor.name + 'getCoreCurrency';
     const filterModel = new FilterModel();
     filterModel.rowPerPage = 100;
     this.estatePropertyTypeLanduseService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
         if (ret.isSuccess) {
           this.dataModelEstatePropertyTypeLanduseResult = ret;
         } else {
@@ -190,8 +186,6 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     filterModel.rowPerPage = 100;
     this.estateContractTypeService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
         if (ret.isSuccess) {
           this.dataModelEstateContractTypeResult = ret;
         } else {
@@ -204,15 +198,13 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
         this.loading.Stop(pName);
       }
     });
-   }
+  }
   getCoreCurrency(): void {
     const pName = this.constructor.name + 'getCoreCurrency';
     const filterModel = new FilterModel();
     filterModel.rowPerPage = 100;
     this.coreCurrencyService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
         if (ret.isSuccess) {
           this.dataModelCoreCurrencyResult = ret;
         } else {
@@ -241,7 +233,6 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        
         if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
@@ -502,13 +493,11 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
 
     if (
       this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessAddRow
+      this.dataModelResult.access == null 
     ) {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    // this.router.navigate(['/polling/content/edit', this.tableRowSelected.id]);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -518,7 +507,6 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
 
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryCalculateComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }

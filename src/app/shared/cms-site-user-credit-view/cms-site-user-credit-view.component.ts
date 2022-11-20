@@ -134,7 +134,6 @@ export class CmsSiteUserCreditViewComponent implements OnInit {
     this.coreModuleService.setAccessLoad();
     this.coreModuleService.ServiceGetOneById(this.requestLinkModuleId).subscribe(
       (next) => {
-        // this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
 
         this.dataModuleModelResult = next;
         if (next.isSuccess) {
