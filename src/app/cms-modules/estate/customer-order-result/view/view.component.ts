@@ -30,11 +30,11 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-estate-customer-order-result-view',
   templateUrl: './view.component.html',
 })
-export class EstateCustomerOrderResultComponent implements OnInit, OnDestroy {
+export class EstateCustomerOrderResultViewComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<EstateCustomerOrderResultComponent>,
+    private dialogRef: MatDialogRef<EstateCustomerOrderResultViewComponent>,
     public coreEnumService: CoreEnumService,
     public estateCustomerOrderResultService: EstateCustomerOrderResultService,
     private cmsToastrService: CmsToastrService,
