@@ -74,7 +74,7 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.Register_New_Categories');
+    this.formInfo.formTitle = this.translate.instant('TITLE.Expert_Price_Inquiry');
     this.getEnumRecordStatus();
     this.getEstatePropertyExpertPriceTypeEnum();
     if (this.dataModel.linkLocationId > 0 &&

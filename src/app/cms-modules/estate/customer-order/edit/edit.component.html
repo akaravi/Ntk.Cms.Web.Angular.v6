@@ -10,6 +10,21 @@
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <div class="row alert alert-custom alert-white alert-shadow gutter-b">
     <div class="col-md-6 col-sm-6 col-xs-9">
+      <!-- RecordStatus Field -->
+      <mat-form-field class="ntk-full-width">
+        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+          name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
+          required>
+          <mat-option *ngFor="
+                let item of dataModelEnumRecordStatusResult.listItems;
+                index as i
+              " [value]="item.value">{{ item.description }}</mat-option>
+        </mat-select>
+        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+        <mat-error *ngIf="RecordStatus.errors?.required">
+          RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+        </mat-error>
+      </mat-form-field>
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
@@ -56,13 +71,15 @@
       <!-- LinkEstateUserId Field -->
       <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)"
         [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessEditField"
-        [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Real_estate_customer_personnel')">
+        [optionSelectForce]="dataModel.linkEstateUserId"
+        [optionPlaceholder]="this.translate.instant('TITLE.Real_estate_customer_personnel')">
       </app-estate-account-user-selector>
       <!-- ContactMobiles Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{'TITLE.Mobile_staff_or_customer' | translate}}</mat-label>
-        <textarea matInput [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" #ContactMobiles type="text"
-          placeholder="{{'TITLE.Mobile_staff_or_customer' | translate}}" minlength="3" maxlength="100" rows="10">
+        <textarea matInput [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" #ContactMobiles
+          type="text" placeholder="{{'TITLE.Mobile_staff_or_customer' | translate}}" minlength="3" maxlength="100"
+          rows="10">
           </textarea>
         <mat-icon matSuffix *ngIf="dataModel.contactMobiles" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.contactMobiles = ''">close</mat-icon>
@@ -166,7 +183,8 @@
 
       <!-- linkCoreCurrencyId Field -->
       <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
-        (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
+        (optionChange)="onActionSelectCurrency($event)"
+        [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
       </app-cms-currency-selector>
       <!-- SalePriceMin Field -->
       <mat-form-field class="ntk-full-width"
@@ -262,7 +280,8 @@
       </p>
       <!-- LinkPropertyIds Field -->
       <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
-        [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessEditField" [optionPlaceholder]="this.translate.instant('TITLE.Property')"
+        [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessEditField"
+        [optionPlaceholder]="this.translate.instant('TITLE.Property')"
         [optionSelectForce]="this.dataModel.linkPropertyIds">
       </app-estate-property-autocomplete>
       <br>
@@ -348,7 +367,8 @@
       *ngIf="dataModel?.urlViewContentQRCodeBase64?.length>0 && dataModel?.urlViewContent?.length>0">
 
       <a href="{{dataModel.urlViewContent}}" target="_blank">
-        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="300px" width="300px">
+        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="300px"
+          width="300px">
       </a>
       <span class="navi-icon" [cdkCopyToClipboard]="dataModel.urlViewContent" (click)="onActionCopied()">
         <i class="flaticon2-copy"></i></span>
@@ -357,13 +377,15 @@
         {{'TITLE.You_can_view_the_output_of_your_billboard' | translate}}
       </p>
       <p dir="rtl" style="text-align: right;" style="font-size: 17px;">
-      {{'TITLE.In_the_title_section_you_can_edit_the_title_of_your_screen_and_write_the_address_and_description_for_that_staff' | translate}}
-            <br>
-      {{'TITLE.In_the_next_section_you_can_see_your_display_content_for_the_billboard' | translate}}
-            <br>
-      {{'TITLE.You_can_narrow_your_search_by_filling_in_any_of_the_fields' | translate}}
-             <br>
-       {{'TITLE.Finally_by_clicking_on_the_view_option_you_can_see_the_advertisements_you_want_and_by_clicking_on_the_save_option_you_can_create_your_own_billboard' | translate}}
+        {{'TITLE.In_the_title_section_you_can_edit_the_title_of_your_screen_and_write_the_address_and_description_for_that_staff'
+        | translate}}
+        <br>
+        {{'TITLE.In_the_next_section_you_can_see_your_display_content_for_the_billboard' | translate}}
+        <br>
+        {{'TITLE.You_can_narrow_your_search_by_filling_in_any_of_the_fields' | translate}}
+        <br>
+        {{'TITLE.Finally_by_clicking_on_the_view_option_you_can_see_the_advertisements_you_want_and_by_clicking_on_the_save_option_you_can_create_your_own_billboard'
+        | translate}}
       </p>
       <hr>
       <app-cms-qdoc [optionUrl]="dataModel.urlViewContent"></app-cms-qdoc>

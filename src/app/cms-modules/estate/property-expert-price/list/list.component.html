@@ -16,7 +16,7 @@
     <button *ngIf="dataModelResult.access.accessAddRow" (click)="onActionbuttonNewRow()" type="button"
       class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
-    <button *ngIf="dataModelResult.access.accessAddRow" (click)="onActionPriceInquiryCalculate()" type="button"
+    <button *ngIf="tableRowSelected?.id?.length>0" (click)="onActionPriceInquiryCalculate()" type="button"
       class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.PriceInquiryCalculate' | translate}}</button>
 
