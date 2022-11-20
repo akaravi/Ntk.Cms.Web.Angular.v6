@@ -36,13 +36,12 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./inquiry-list.component.scss'],
 })
 export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
-  requestTargetCategoryId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<EstatePropertyExpertPriceInquiryListComponent>,
     public coreEnumService: CoreEnumService,
     public estatePropertyExpertPriceService: EstatePropertyExpertPriceService,
-    private estateEnumService:EstateEnumService,
+    private estateEnumService: EstateEnumService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -59,15 +58,10 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-  selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
-
-  fileManagerTree: TreeModel;
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  
+
   dataModel: EstatePriceInquiryDtoModel = new EstatePriceInquiryDtoModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyExpertPriceModel> = new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
   dataModelEstatePropertyExpertPriceTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
@@ -89,7 +83,7 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
       this.dataModel.linkContractTypeId && this.dataModel.linkContractTypeId.length > 0 &&
       this.dataModel.linkPropertyTypeLanduseId && this.dataModel.linkPropertyTypeLanduseId.length > 0 &&
       this.dataModel.linkPropertyTypeUsageId && this.dataModel.linkPropertyTypeUsageId.length > 0) {
-      this.DataAddContent();
+      this.DataActionContent();
     }
   }
   async getEnumRecordStatus(): Promise<void> {
@@ -102,23 +96,22 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
     });
   }
 
-  DataAddContent(): void {
+  DataActionContent(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.dataModelResult=new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
+    this.dataModelResult = new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
     this.estatePropertyExpertPriceService.ServicePriceInquiryList(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
-        
+
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          if(ret.listItems&&ret.listItems.length>0)
-          {
+          if (ret.listItems && ret.listItems.length > 0) {
             this.dataModelResult = ret;
-          }else{
+          } else {
             this.cmsToastrService.typeWarningMessage(this.translate.instant('MESSAGE.PriceInquiryCalculateNotFind'));
             this.dialogRef.close({ dialogChangedDate: true });
           }
@@ -167,7 +160,7 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
       return;
     }
     this.dataModel.linkContractTypeId = model.id;
-   
+
   }
 
   onActionSelectorLocation(model: CoreLocationModel | null): void {
@@ -194,7 +187,7 @@ export class EstatePropertyExpertPriceInquiryListComponent implements OnInit {
     }
     this.formInfo.formSubmitAllow = false;
 
-    this.DataAddContent();
+    this.DataActionContent();
 
   }
   onFormCancel(): void {

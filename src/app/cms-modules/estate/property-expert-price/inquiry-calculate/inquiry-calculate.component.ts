@@ -57,7 +57,6 @@ export class EstatePropertyExpertPriceInquiryCalculateComponent implements OnIni
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
   fileManagerTree: TreeModel;

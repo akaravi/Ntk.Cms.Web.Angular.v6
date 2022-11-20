@@ -148,8 +148,6 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     this.estatePropertyTypeUsageService.setAccessLoad();
     this.estatePropertyTypeUsageService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
         if (ret.isSuccess) {
           this.dataModelEstatePropertyTypeUsageResult = ret;
         } else {
@@ -169,8 +167,6 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     filterModel.rowPerPage = 100;
     this.estatePropertyTypeLanduseService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
         if (ret.isSuccess) {
           this.dataModelEstatePropertyTypeLanduseResult = ret;
         } else {
@@ -190,8 +186,6 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     filterModel.rowPerPage = 100;
     this.estateContractTypeService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
         if (ret.isSuccess) {
           this.dataModelEstateContractTypeResult = ret;
         } else {
@@ -211,8 +205,6 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     filterModel.rowPerPage = 100;
     this.coreCurrencyService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
         if (ret.isSuccess) {
           this.dataModelCoreCurrencyResult = ret;
         } else {
@@ -241,7 +233,6 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        
         if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
