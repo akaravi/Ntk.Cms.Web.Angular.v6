@@ -40,7 +40,8 @@ import {
   BankPaymentTransactionService,
   EstateAccountAgencyAdsService,
   EstatePropertyProjectService,
-  EstatePropertyExpertPriceService
+  EstatePropertyExpertPriceService,
+  EstateCustomerOrderResultService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -156,6 +157,7 @@ import { EstatePropertyExpertPriceHeaderComponent } from './property-expert-pric
 import { EstatePropertyExpertPriceListComponent } from './property-expert-price/list/list.component';
 import { EstatePropertyExpertPriceInquiryCalculateComponent } from './property-expert-price/inquiry-calculate/inquiry-calculate.component';
 import { EstatePropertyExpertPriceInquiryListComponent } from './property-expert-price/inquiry-list/inquiry-list.component';
+import { EstateCustomerOrderResultListComponent } from './customer-order-result/list/list.component';
 
 @NgModule({
   declarations: [
@@ -241,6 +243,8 @@ import { EstatePropertyExpertPriceInquiryListComponent } from './property-expert
     EstateCustomerOrderTreeComponent,
     EstateCustomerOrderHeaderComponent,
     /* */
+    EstateCustomerOrderResultListComponent,
+    /* */
     EstatePropertyDetailGroupAddComponent,
     EstatePropertyDetailGroupEditComponent,
     EstatePropertyDetailGroupListComponent,
@@ -319,6 +323,7 @@ import { EstatePropertyExpertPriceInquiryListComponent } from './property-expert
     EstateEnumService,
     EstateBillboardService,
     EstateCustomerOrderService,
+    EstateCustomerOrderResultService,
     EstatePropertyService,
     EstatePropertyAccountTypeUserService,
     EstatePropertyDetailGroupService,

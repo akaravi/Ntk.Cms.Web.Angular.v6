@@ -84,27 +84,6 @@
         <mat-cell *matCellDef="let row"> {{row.receiverNumber}} </mat-cell>
       </ng-container>
 
-      <!-- SendDate Column -->
-      <ng-container matColumnDef="SendDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SendDate']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.sendDate) }} </mat-cell>
-      </ng-container>
-
-
-      <!-- Action Column -->
-      <!-- <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
-        <mat-cell *matCellDef="let row" class=' Action'> -->
-      <!-- Action Menu -->
-      <!-- <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #actionMenu="matMenu">
-
-
-          </mat-menu>
-        </mat-cell>
-      </ng-container> -->
       <!--expandedDetail-->
       <ng-container matColumnDef="expandedDetail">
         <mat-cell *matCellDef="let row">

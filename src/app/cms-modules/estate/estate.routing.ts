@@ -26,6 +26,7 @@ import { EstatePropertyProjectEditComponent } from './property-project/edit/edit
 import { EstateActivityTypeListComponent } from './activity-type/list/list.component';
 import { EstatePropertyHistoryListComponent } from './property-history/list/list.component';
 import { EstatePropertyExpertPriceListComponent } from './property-expert-price/list/list.component';
+import { EstateCustomerOrderResultListComponent } from './customer-order-result/list/list.component';
 
 const routes: Routes = [
   {
@@ -184,6 +185,15 @@ const routes: Routes = [
       {
         path: 'customer-order/edit/:id',
         component: EstateCustomerOrderEditComponent
+      },
+      /**/
+      {
+        path: 'customer-order-result/LinkCustomerOrder/:LinkCustomerOrder',
+        component: EstateCustomerOrderResultListComponent
+      },
+      {
+        path: 'customer-order-result/LinkProperty/:LinkProperty',
+        component: EstateCustomerOrderResultListComponent
       },
       /**/
       {
