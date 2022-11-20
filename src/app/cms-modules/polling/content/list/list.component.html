@@ -37,10 +37,14 @@
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
-    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
-      translate}}</button>
-    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
-      translate}}</button>
+    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPAND_ALL' |
+      translate}}">unfold_more_double</mat-icon>
+    </button>
+    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.COLLPASE_ALL' |
+      translate}}">unfold_less_double</mat-icon>
+    </button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>

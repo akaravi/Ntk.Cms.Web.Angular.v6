@@ -37,8 +37,8 @@
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN button_refresh">
+      <mat-icon style=" color:rgba(229, 162, 16, 0.918);font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button (click)="onActionBackToParentSiteList()" *ngIf="this.requestLinkSiteId>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
@@ -46,10 +46,14 @@
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
     <button (click)="onActionBackToParentUserGroupList()" *ngIf="this.requestLinkUserGroupId>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
-      translate}}</button>
-    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
-      translate}}</button>
+
+    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success button_expand_all">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPAND_ALL' |
+      translate}}">unfold_more_double</mat-icon>
+    </button>
+    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success button_close_all"><mat-icon
+        style="font-size: 20px;margin: -1px;" title="{{'ACTION.COLLPASE_ALL' |
+        translate}}">unfold_less_double</mat-icon></button>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
@@ -239,16 +243,19 @@
                   <a (click)="onActionbuttonDeleteRow(row)" *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData"
                     class="link-primary pointer"> {{'ACTION.DELETE' | translate}} |</a>
 
-                  <a (click)="onActionbuttonSiteList(row,$event)" class="link-primary pointer"> {{'ACTION.MEMBER_SITES' |
+                  <a (click)="onActionbuttonSiteList(row,$event)" class="link-primary pointer"> {{'ACTION.MEMBER_SITES'
+                    |
                     translate}}|</a>
 
-                  <a (click)="onActionbuttonEditSiteRow(row,$event)" class="link-primary pointer"> {{'ACTION.EDIT_SITES' |
+                  <a (click)="onActionbuttonEditSiteRow(row,$event)" class="link-primary pointer"> {{'ACTION.EDIT_SITES'
+                    |
                     translate}}|</a>
 
-                  <a (click)="onActionbuttonEditUserRow(row,$event)" class="link-primary pointer"> {{'ACTION.USER_EDITING' |
+                  <a (click)="onActionbuttonEditUserRow(row,$event)" class="link-primary pointer">
+                    {{'ACTION.USER_EDITING' |
                     translate}}|</a>
 
-                    <a (click)="onActionbuttonChangePassword(row)"
+                  <a (click)="onActionbuttonChangePassword(row)"
                     *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
                     class="link-primary pointer"> {{'ACTION.CHANGE_PASSWORD' | translate}} |</a>
 

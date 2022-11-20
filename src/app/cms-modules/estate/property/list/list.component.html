@@ -20,8 +20,7 @@
   [optionId]="this.requestLinkPropertyTypeUsageId">
 
 </app-estate-property-type-usage-header>
-<app-estate-property-project-header *ngIf="this.requestLinkProjectId?.length>0"
-  [optionId]="this.requestLinkProjectId">
+<app-estate-property-project-header *ngIf="this.requestLinkProjectId?.length>0" [optionId]="this.requestLinkProjectId">
 
 </app-estate-property-project-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPropertyTypeLanduseId?.length===0">
@@ -50,9 +49,9 @@
       *ngIf="dataModelResult.access.accessDeleteRow && optionloadByRoute&& (tableRowSelected?.id?.length>0 || requestLinkPropertyTypeLanduseId?.length>0)"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
       translate}}</button>
-    <button
-      *ngIf="this.tokenHelper.isAdminSite && optionloadByRoute&& tableRowSelected?.id?.length>0 "
-      (click)="onActionbuttonActionSendSmsToCustomerOrder()" type="button" class="btn btn-outline-danger">{{'ACTION.Send_Sms_To_CustomerOrder' | translate}}</button>
+    <button *ngIf="this.tokenHelper.isAdminSite && optionloadByRoute&& tableRowSelected?.id?.length>0 "
+      (click)="onActionbuttonActionSendSmsToCustomerOrder()" type="button"
+      class="btn btn-outline-danger">{{'ACTION.ActionSendSmsToCustomerOrder' | translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
@@ -75,10 +74,14 @@
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
       class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
-      translate}}</button>
-    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
-      translate}}</button>
+    <button (click)="onActionGridExpandRows(true)" class="btn BTN btn-outline-success ">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPAND_ALL' | translate}}">unfold_more_double
+      </mat-icon>
+    </button>
+    <button (click)="onActionGridExpandRows(false)" class="btn BTN btn-outline-success ">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.COLLPASE_ALL' |translate}}">
+        unfold_less_double</mat-icon>
+    </button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
