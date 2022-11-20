@@ -26,7 +26,7 @@ import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
-import { EstateCustomerOrderResultComponent } from '../view/view.component';
+import { EstateCustomerOrderResultViewComponent } from '../view/view.component';
 @Component({
   selector: 'app-estate-customer-order-result-list',
   templateUrl: './list.component.html',
@@ -325,7 +325,7 @@ export class EstateCustomerOrderResultListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
-    const dialogRef = this.dialog.open(EstateCustomerOrderResultComponent, {
+    const dialogRef = this.dialog.open(EstateCustomerOrderResultViewComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });
