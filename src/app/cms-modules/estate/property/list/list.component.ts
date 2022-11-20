@@ -463,7 +463,7 @@ export class EstatePropertyListComponent
       return;
     }
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
-      // height: '90%',
+      height: '90%',
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -756,7 +756,7 @@ export class EstatePropertyListComponent
           if (ret.isSuccess) {
             //open popup
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
-              height: "70%",
+              height: "90%",
               width: "90%",
               data: {
                 title: ret.item.title,

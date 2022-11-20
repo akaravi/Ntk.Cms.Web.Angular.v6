@@ -53,7 +53,7 @@ export class CoreSiteSelectionComponent implements OnInit {
     const pName = this.constructor.name + 'ServiceGetAll';
     this.loading.Start(pName);
 
-    this.coreSiteUserService.ServiceGetAll(null).subscribe({
+    this.coreSiteUserService.ServiceGetAllSiteCurrentUser().subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

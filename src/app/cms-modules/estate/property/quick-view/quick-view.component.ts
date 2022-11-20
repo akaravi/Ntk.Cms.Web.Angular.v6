@@ -9,6 +9,9 @@ import {
   TokenInfoModel,
   DataFieldInfoModel,
   EnumManageUserAccessDataTypes,
+  EstateContractModel,
+  EstateContractTypeService,
+  EstateContractTypeModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -26,6 +29,7 @@ import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-estate-property-quick-view',
@@ -38,6 +42,7 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
     private dialogRef: MatDialogRef<EstatePropertyQuickViewComponent>,
     public coreEnumService: CoreEnumService,
     public estatePropertyService: EstatePropertyService,
+    public estateContractTypeService: EstateContractTypeService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -54,12 +59,17 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
+  dataModelEstateContractTypeResult: ErrorExceptionResult<EstateContractTypeModel> = new ErrorExceptionResult<EstateContractTypeModel>();
   dataModel: EstatePropertyModel = new EstatePropertyModel();
   formInfo: FormInfoModel = new FormInfoModel();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  loadingOption = new ProgressSpinnerModel();
+  optionTabledataSource = new MatTableDataSource<EstateContractModel>();
+  optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'DepositPrice', 'RentPrice', 'PeriodPrice'];
   fileManagerOpenForm = false;
   errorMessage: string = '';
   propertyTypeLanduse: string = '';
+  contractType: string = '';
 
 
   cmsApiStoreSubscribe: Subscription;
@@ -71,12 +81,14 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
       return;
     }
     this.DataGetOneContent();
+    this.getEstateContractType();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
 
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
+      this.getEstateContractType();
     });
   }
 
@@ -84,6 +96,17 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
 
+  getEstateContractType(): void {
+    const pName = this.constructor.name + 'getEstateContractType';
+    this.loading.Start(pName, this.translate.instant('TITLE.Get_Estate_Contract_Type'));
+    this.estateContractTypeService.ServiceGetAll(null).subscribe((next) => {
+      this.dataModelEstateContractTypeResult = next;
+      this.loading.Stop(pName);
+    }, () => {
+      this.loading.Stop(pName);
+    });
+
+  }
 
   DataGetOneContent(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
@@ -101,8 +124,11 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         this.dataModel = ret.item;
         this.propertyTypeLanduse = this.dataModel.propertyTypeLanduse.titleML;
+        // this.contractType = this.dataModel.contracts[0].contractType.titleML;
 
         if (ret.isSuccess) {
+          this.optionTabledataSource.data = this.dataModel.contracts;
+
           this.formInfo.formTitle = this.formInfo.formTitle;
           this.formInfo.formAlert = '';
         } else {
