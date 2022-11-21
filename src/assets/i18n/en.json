@@ -1340,7 +1340,9 @@
 	"TITLE.Site_Title":"Site Title",
 	"TITLE.Site_Domain":"Site Domain",
 	"TITLE.Site_Sub_Domain":"Site Sub Domain",
-
+	"TITLE.End":"End",
+	"TITLE.NEXT": "NEXT",
+	"TITLE.Previous": "Previous",
 
 	
 	"TRANSLATOR.HI": "hi",
