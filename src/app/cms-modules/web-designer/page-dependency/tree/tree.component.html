@@ -7,7 +7,8 @@
     <button *ngIf="dataModelResult.access.accessEditRow && dataModelSelect.id?.length>0" (click)="onActionEdit()"
         type="button" class="btn btn-outline-warning">{{'ACTION.EDIT' |
         translate}}</button>
-     <button *ngIf="dataModelResult.access.accessWatchRow" (click)="onActionReload()" type="button" class="btn btn-outline-secondary BTN-text">
+    <button *ngIf="dataModelResult.access.accessWatchRow" (click)="onActionReload()" type="button"
+        class="btn btn-outline-secondary BTN-icon">
         <mat-icon style="font-size: 20px;margin: -6px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
