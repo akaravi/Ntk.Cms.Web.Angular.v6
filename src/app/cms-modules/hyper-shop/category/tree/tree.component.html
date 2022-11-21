@@ -9,7 +9,7 @@
         class="btn btn-outline-warning">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && dataModelSelect?.code?.length>0" (click)="onActionDelete()"
         type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
-    <button *ngIf="dataModelResult.access.accessWatchRow" (click)="onActionReload()" type="button" class="btn btn-outline-secondary BTN">
+    <button *ngIf="dataModelResult.access.accessWatchRow" (click)="onActionReload()" type="button" class="btn btn-outline-secondary BTN-text">
         <mat-icon style="font-size: 20px;margin: -6px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->

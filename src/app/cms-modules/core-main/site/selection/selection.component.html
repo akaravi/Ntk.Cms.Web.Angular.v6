@@ -62,7 +62,7 @@
             <br>
             <button *ngIf="this.formInfo.buttonSubmittedEnabled || selectSiteId==item.id"
               (click)="onActionClickSelectSite(item.virtual_CmsSite.id)" type="button"
-              [disabled]="!this.formInfo.buttonSubmittedEnabled" class="btn btn-outline-success BTN">{{'ACTION.LOGIN' |
+              [disabled]="!this.formInfo.buttonSubmittedEnabled" class="btn btn-outline-success BTN-text">{{'ACTION.LOGIN' |
               translate}}</button>
 
           </div>

@@ -20,22 +20,22 @@
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
 
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
     </a>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-text">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refrrefreshesh</mat-icon>
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkApplicationId>0" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
+      class="btn btn-outline-success BTN-text">{{'ACTION.BACK' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>

@@ -21,14 +21,14 @@
                             </mat-form-field>
 
 
-                            <button type="button" (click)="onActionSendUrlToQDoc()" class="btn btn-success BTN"
+                            <button type="button" (click)="onActionSendUrlToQDoc()" class="btn btn-success BTN-text"
                                 *ngIf="optionurlViewContent && optionurlViewContent.length>0 && QDocModel.username">
                                 <i class="fa fa-check-square-o"></i> {{'ACTION.VIEW' | translate}}
                             </button>
                             <br>
                             <app-cms-guide-notice [Key]="'linkto.content'"></app-cms-guide-notice>
                             <br>
-                            <button class="btn btn-secondary BTN" type="button"
+                            <button class="btn btn-secondary BTN-text" type="button"
                                 (click)="onActionOpenLink()">{{'ACTION.VIEW_PAGE' |
                                 translate}}</button>
                         </div>

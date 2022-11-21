@@ -173,8 +173,14 @@ mat-paginator {
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
 }
 
-.BTN {
-    margin-right: 5px;
+.BTN-text {
+    margin-right: 5px !important;
+    
+}
+.BTN-icon {
+    margin-right: 5px !important;
+    padding-bottom: 0px !important;
+
 }
 
 ::ng-deep .mat-slide-toggle-content {

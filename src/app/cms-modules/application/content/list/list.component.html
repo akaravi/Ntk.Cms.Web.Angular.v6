@@ -20,35 +20,35 @@
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
     </a>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-text">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button (click)="onActionbuttonUploadApp()"
       *ngIf="tableRowSelected.id>0 && this.tokenInfo.userAccessAdminAllowToProfessionalData" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.UPLOAD_THE_INSTALLATION_FILE' | translate}}</button>
+      class="btn btn-outline-success BTN-text">{{'ACTION.UPLOAD_THE_INSTALLATION_FILE' | translate}}</button>
     <button (click)="onActionbuttonUploadUpdate()"
       *ngIf="tableRowSelected.id>0 && this.tokenInfo.userAccessAdminAllowToProfessionalData" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.UPLOAD_THE_UPDATE_FILE' | translate}}</button>
+      class="btn btn-outline-success BTN-text">{{'ACTION.UPLOAD_THE_UPDATE_FILE' | translate}}</button>
     <button (click)="onActionbuttonBuildApp()" *ngIf="tableRowSelected.id>0" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.BUILDANAPP' | translate}}</button>
+      class="btn btn-outline-success BTN-text">{{'ACTION.BUILDANAPP' | translate}}</button>
     <button (click)="onActionbuttonDownloadApp()"
       *ngIf="tableRowSelected.id>0 && tableRowSelected.lastSuccessfullyBuildDate" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.DOWNLOADTHEAPP' | translate}}</button>
+      class="btn btn-outline-success BTN-text">{{'ACTION.DOWNLOADTHEAPP' | translate}}</button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkSourceId>0" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
+      class="btn btn-outline-success BTN-text">{{'ACTION.BACK' | translate}}</button>
     <button (click)="onActionBackToParentTheme()" *ngIf="requestLinkThemeConfigId>0" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
+      class="btn btn-outline-success BTN-text">{{'ACTION.BACK' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>

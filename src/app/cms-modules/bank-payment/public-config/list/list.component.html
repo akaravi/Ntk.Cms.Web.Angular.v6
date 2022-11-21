@@ -23,18 +23,18 @@
       class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.AUTOADD'|
       translate}} Module</button>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
     </a>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-text">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->

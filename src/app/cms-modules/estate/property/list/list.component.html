@@ -52,33 +52,33 @@
     <button *ngIf="this.tokenHelper.isAdminSite && optionloadByRoute&& tableRowSelected?.id?.length>0 "
       (click)="onActionbuttonActionSendSmsToCustomerOrder()" type="button"
       class="btn btn-outline-danger">{{'ACTION.ActionSendSmsToCustomerOrder' | translate}}</button>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
 
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
     </a>
-    <a class="btn btn-outline-info btn-sm BTN" *ngIf="optionloadByRoute">
+    <a class="btn btn-outline-info btn-sm BTN-text" *ngIf="optionloadByRoute">
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle (click)="onActionbuttonInChecking(!searchInChecking)" [checked]="searchInCheckingChecked">
         {{'ACTION.INCHECKING' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN">
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-text">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
-      class="btn btn-outline-success BTN">{{'ACTION.BACK' | translate}}</button>
-    <button (click)="onActionGridExpandRows(true)" class="btn BTN btn-outline-success ">
+      class="btn btn-outline-success BTN-text">{{'ACTION.BACK' | translate}}</button>
+    <button (click)="onActionGridExpandRows(true)" class="btn BTN-text btn-outline-success ">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPAND_ALL' | translate}}">unfold_more_double
       </mat-icon>
     </button>
-    <button (click)="onActionGridExpandRows(false)" class="btn BTN btn-outline-success ">
+    <button (click)="onActionGridExpandRows(false)" class="btn BTN-text btn-outline-success ">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.COLLPASE_ALL' |translate}}">
         unfold_less_double</mat-icon>
     </button>

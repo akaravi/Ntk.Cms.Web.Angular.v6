@@ -16,18 +16,18 @@
       type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.linkSiteId>0"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle  (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
     </a>
-    <a class="btn btn-outline-info btn-sm BTN">
+    <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN"><mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon></button>
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-text"><mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon></button>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
