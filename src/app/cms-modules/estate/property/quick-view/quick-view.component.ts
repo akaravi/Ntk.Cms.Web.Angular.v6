@@ -65,7 +65,7 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
-  optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'DepositPrice', 'RentPrice', 'PeriodPrice'];
+  optionTabledisplayedColumns = ['LinkEstateContractTypeId','Price'];// 'SalePrice', 'DepositPrice', 'RentPrice', 'PeriodPrice'];
   fileManagerOpenForm = false;
   errorMessage: string = '';
   propertyTypeLanduse: string = '';

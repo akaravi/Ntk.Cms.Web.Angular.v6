@@ -164,6 +164,15 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/estate/customer-order/add']);
   }
+  onActionbuttonCopyNewRow(model: EstateCustomerOrderModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    
+    this.router.navigate(['/estate/customer-order/add-copy',this.tableRowSelected.id]);
+  }
   onActionbuttonEditRow(model: EstateCustomerOrderModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();

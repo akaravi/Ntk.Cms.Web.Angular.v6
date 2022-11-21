@@ -183,6 +183,10 @@ const routes: Routes = [
         component: EstateCustomerOrderAddComponent
       },
       {
+        path: 'customer-order/add-copy/:id',
+        component: EstateCustomerOrderAddComponent
+      },
+      {
         path: 'customer-order/edit/:id',
         component: EstateCustomerOrderEditComponent
       },

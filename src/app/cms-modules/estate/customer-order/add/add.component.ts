@@ -17,6 +17,7 @@ import {
   EnumInputDataType,
   EstatePropertyDetailValueModel,
   CoreCurrencyModel,
+  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -30,7 +31,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 import { HttpClient } from '@angular/common/http';
 
@@ -40,6 +41,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./add.component.scss'],
 })
 export class EstateCustomerOrderAddComponent implements OnInit {
+  requestId = '';
   constructor(
     private router: Router,
     public coreEnumService: CoreEnumService,
@@ -48,11 +50,13 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     public estatePropertyDetailGroupService: EstatePropertyDetailGroupService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute,
     public http: HttpClient,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -83,6 +87,9 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
+    if (this.requestId && this.requestId.length > 0) {
+      this.DataGetOneContent();
+    }
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
@@ -144,9 +151,14 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
+    var id = '';
+    if (this.dataModelResult && this.dataModelResult.item && this.dataModelResult.item.id && this.dataModelResult.item.id.length > 0) {
+      id = this.dataModelResult.item.id;
+    } else if (this.requestId && this.requestId.length > 0) {
+      id = this.requestId;
+    }
     this.estateCustomerOrderService.setAccessLoad();
-    this.estateCustomerOrderService.ServiceGetOneById(this.dataModelResult.item.id).subscribe({
+    this.estateCustomerOrderService.ServiceGetOneById(id).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
@@ -321,7 +333,10 @@ export class EstateCustomerOrderAddComponent implements OnInit {
         });
       });
     // ** Save Value */
-    if (this.dataModel.id && this.dataModel.id.length > 0) {
+    if (this.requestId && this.requestId.length > 0) {
+      this.requestId = '';
+      this.DataAddContent();
+    } else if (this.dataModel.id && this.dataModel.id.length > 0) {
       this.DataEditContent();
     }
     else {
