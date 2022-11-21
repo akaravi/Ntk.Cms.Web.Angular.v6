@@ -496,6 +496,30 @@ export class EstatePropertyListComponent
       this.router.navigate(["/estate/property-ads/LinkPropertyId", this.tableRowSelected.id]);
     }
   }
+  onActionbuttonHistoryRow(
+    mode: EstatePropertyModel = this.tableRowSelected, event?: MouseEvent
+  ): void {
+    if (!mode || !mode.id || mode.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = mode;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/property-history/LinkPropertyId/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(["/estate/property-history/LinkPropertyId", this.tableRowSelected.id]);
+    }
+  }
 
   onActionbuttonDeleteRow(
     mode: EstatePropertyModel = this.tableRowSelected

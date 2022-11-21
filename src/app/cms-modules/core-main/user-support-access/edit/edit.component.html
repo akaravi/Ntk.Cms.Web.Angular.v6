@@ -118,7 +118,7 @@
       <mat-slide-toggle [(ngModel)]="dataModel.accessRowInPanelDemo"
         *ngIf="fieldsInfo['AccessRowInPanelDemo']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessRowInPanelDemo']?.accessEditField" name="dataModel.accessRowInPanelDemo">
-        {{fieldsInfo['AccessRowInPanelDemo']?.fieldTitle}}
+        {{'TITLE.Access_Row_In_Panel_Demo' | translate}}
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">

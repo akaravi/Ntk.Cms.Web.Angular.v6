@@ -205,6 +205,10 @@
               <mat-icon>description</mat-icon>
               <span>{{'ACTION.MEMO' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonHistoryRow(row,$event)">
+              <mat-icon>history</mat-icon>
+              <span>{{'ACTION.HISTORY' | translate}}</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>
@@ -274,6 +278,9 @@
                     translate}} </a>|
 
                   <a (click)="onActionbuttonAdsRow(row,$event)" class="link-primary pointer"> {{'ACTION.ADS' |
+                    translate}} </a>|
+
+                  <a (click)="onActionbuttonHistoryRow(row,$event)" class="link-primary pointer"> {{'ACTION.HISTORY' |
                     translate}} </a>|
 
                   <a (click)="onActionbuttonEditRow(row,$event)" *ngIf="dataModelResult.access.accessEditRow"
