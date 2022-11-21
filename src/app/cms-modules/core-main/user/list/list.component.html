@@ -44,10 +44,14 @@
     </button>
     <button (click)="onActionBackToParentSiteList()" *ngIf="this.requestLinkSiteId>0" type="button"
       class="btn btn-outline-success BTN-text">{{'ACTION.BACK' | translate}}</button>
-    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
-      translate}}</button>
-    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
-      translate}}</button>
+    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPAND_ALL' | translate}}">unfold_more_double
+      </mat-icon>
+    </button>
+    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success  BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.COLLPASE_ALL' |translate}}">
+        unfold_less_double</mat-icon>
+    </button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -219,7 +223,7 @@
                 <td>
 
                   <a (click)="onActionbuttonViewRow(row)" class="link-primary pointer"> {{'ACTION.VIEW' | translate}}
-                  |</a>
+                    |</a>
 
                   <a (click)="onActionbuttonEditRow(row,$event)"
                     *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData || row.id==tokenInfo.userId"
@@ -238,7 +242,8 @@
                   <a (click)="onActionbuttonSiteList(row,$event)" class="link-primary pointer"> {{'ACTION.MEMBER_SITES'
                     | translate}}|</a>
 
-                  <a (click)="onActionbuttonSiteByGroupList(row,$event)" class="link-primary pointer"> {{'ACTION.ACCESS_MEMBER_SITES'
+                  <a (click)="onActionbuttonSiteByGroupList(row,$event)" class="link-primary pointer">
+                    {{'ACTION.ACCESS_MEMBER_SITES'
                     | translate}}|</a>
 
                   <a (click)="onActionbuttonResller(row,$event)"

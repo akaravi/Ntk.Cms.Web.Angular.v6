@@ -9,14 +9,16 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf="dataModelResult.access.accessAddRow "
-      (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton"
-      data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
-    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected?.id?.length>0" (click)="onActionbuttonEditRow()"
-      type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
+    <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
+      class="btn btn-outline-primary BTN-text" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
+    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected?.id?.length>0"
+      (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning BTN-text" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.EDIT' |
       translate}}</button>
-    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected?.id?.length>0" (click)="onActionbuttonDeleteRow()"
-      type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
+    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected?.id?.length>0"
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger BTN-text">{{'ACTION.DELETE' |
+      translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
@@ -34,10 +36,14 @@
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
-    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success">{{'ACTION.EXPAND_ALL' |
-      translate}}</button>
-    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success">{{'ACTION.COLLPASE_ALL' |
-      translate}}</button>
+    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPAND_ALL' | translate}}">unfold_more_double
+      </mat-icon>
+    </button>
+    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.COLLPASE_ALL' |translate}}">
+        unfold_less_double</mat-icon>
+    </button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
   <ng-container cms-action-area>
@@ -50,7 +56,7 @@
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
-    multiTemplateDataRows>
+      multiTemplateDataRows>
       <!-- LinkMainImageIdSrc Column -->
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
@@ -73,11 +79,12 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> 
-          <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+        <mat-cell *matCellDef="let row">
+          <i [ngClass]="row.recordStatus|statusClass"></i>
+          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select>
-         </mat-cell>
+        </mat-cell>
       </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
@@ -153,10 +160,10 @@
           </div>
         </mat-cell>
       </ng-container>
-      
+
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-      (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
       </mat-row>
       <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
