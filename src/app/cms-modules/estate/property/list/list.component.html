@@ -38,22 +38,22 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow && optionloadByRoute " (click)="onActionbuttonNewRow()"
-      type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      type="button" class="btn btn-outline-primary BTN-text" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button
       *ngIf="dataModelResult.access.accessEditRow && (tableRowSelected?.id?.length>0 || requestLinkPropertyTypeLanduseId?.length>0)"
-      (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
+      (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning BTN-text" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button
       *ngIf="dataModelResult.access.accessDeleteRow && optionloadByRoute&& (tableRowSelected?.id?.length>0 || requestLinkPropertyTypeLanduseId?.length>0)"
-      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger BTN-text">{{'ACTION.DELETE' |
       translate}}</button>
     <button *ngIf="this.tokenHelper.isAdminSite && optionloadByRoute&& tableRowSelected?.id?.length>0 "
       (click)="onActionbuttonActionSendSmsToCustomerOrder()" type="button"
-      class="btn btn-outline-danger">{{'ACTION.ActionSendSmsToCustomerOrder' | translate}}</button>
+      class="btn btn-outline-danger BTN-text">{{'ACTION.ActionSendSmsToCustomerOrder' | translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN-text">
-      <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="optionsSearch.data.show ">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
 
     <a class="btn btn-outline-info btn-sm BTN-text">
@@ -69,16 +69,16 @@
         {{'ACTION.INCHECKING' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-text">
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
       class="btn btn-outline-success BTN-text">{{'ACTION.BACK' | translate}}</button>
-    <button (click)="onActionGridExpandRows(true)" class="btn BTN-text btn-outline-success ">
+    <button (click)="onActionGridExpandRows(true)" class="btn BTN-text btn-outline-success BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPAND_ALL' | translate}}">unfold_more_double
       </mat-icon>
     </button>
-    <button (click)="onActionGridExpandRows(false)" class="btn BTN-text btn-outline-success ">
+    <button (click)="onActionGridExpandRows(false)" class="btn BTN-text btn-outline-success BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.COLLPASE_ALL' |translate}}">
         unfold_less_double</mat-icon>
     </button>

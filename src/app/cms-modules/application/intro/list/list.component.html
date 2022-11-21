@@ -31,8 +31,8 @@
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-text">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refrrefreshesh</mat-icon>
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkApplicationId>0" type="button"
       class="btn btn-outline-success BTN-text">{{'ACTION.BACK' | translate}}</button>

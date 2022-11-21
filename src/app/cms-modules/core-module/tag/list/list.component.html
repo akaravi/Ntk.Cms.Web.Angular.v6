@@ -1,39 +1,44 @@
-<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true"  [optionClassTree]="'col-6'" [optionClassList]="'col-6'">
+<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true" [optionClassTree]="'col-6'"
+  [optionClassList]="'col-6'">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-coremodule-tag-category-tree (optionChange)="onActionSelectorSelect($event)"></app-coremodule-tag-category-tree>
+    <app-coremodule-tag-category-tree (optionChange)="onActionSelectorSelect($event)">
+    </app-coremodule-tag-category-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow && this.categoryModelSelected?.id>0"
-      (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
-      data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
-      <button *ngIf="dataModelResult.access.accessAddRow && this.categoryModelSelected?.id>0"
-        (click)="onActionbuttonNewRowBulk()" type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
-        data-target="#categoryModal">{{'ACTION.ADDBULK' | translate}}</button>
+      (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton"
+      data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
+    <button *ngIf="dataModelResult.access.accessAddRow && this.categoryModelSelected?.id>0"
+      (click)="onActionbuttonNewRowBulk()" type="button" class="btn btn-outline-primary" id="openModalButton"
+      data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADDBULK' | translate}}</button>
 
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id>0" (click)="onActionbuttonEditRow()"
-      type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
-    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id>0"
-      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
+      type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
+      translate}}</button>
+    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id>0" (click)="onActionbuttonDeleteRow()"
+      type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
     <a class="btn btn-outline-info btn-sm BTN-text">
-      <mat-slide-toggle  (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
+      <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
     </a>
     <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-text"><mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon></button>
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+    </button>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
   </ng-container>
@@ -52,8 +57,8 @@
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+            aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
 
         </mat-cell>
       </ng-container>
@@ -64,8 +69,9 @@
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i> </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i> </mat-cell>
       </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
@@ -77,20 +83,20 @@
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class='Action'>
-    <!-- Action Menu -->
-    <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #actionMenu="matMenu">
-      <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
-        <mat-icon>mode_edit</mat-icon>
-        <span>{{'ACTION.EDIT' | translate}}</span>
-      </button>
-      <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
-        <mat-icon>delete_forever</mat-icon>
-        <span>{{'ACTION.DELETE' | translate}}</span>
-      </button>
-    </mat-menu>
+          <!-- Action Menu -->
+          <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #actionMenu="matMenu">
+            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
+              <mat-icon>mode_edit</mat-icon>
+              <span>{{'ACTION.EDIT' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
+              <mat-icon>delete_forever</mat-icon>
+              <span>{{'ACTION.DELETE' | translate}}</span>
+            </button>
+          </mat-menu>
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
@@ -104,8 +110,8 @@
   <ng-container cms-footer>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
-    [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
-    [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
+      [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </ng-container>
