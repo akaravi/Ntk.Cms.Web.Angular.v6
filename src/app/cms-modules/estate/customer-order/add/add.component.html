@@ -403,9 +403,9 @@
       <button type="submit" (click)="onFormSubmit()" class="btn btn-success BTN-text" [disabled]="!vform.form.valid">
         <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
       </button>
-      <button type="button" (click)="onFormLoadResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 ">
+      <!-- <button type="button" (click)="onFormLoadResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 ">
         <i class="ft-x"></i> {{'ACTION.VIEW' | translate}}
-      </button>
+      </button> -->
     </div>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -421,6 +421,6 @@
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>
-
-<app-estate-property-list [optionLinkCustomerOrderId]="dataModel.id" [optionloadComponent]="optionloadComponent"
-  [optionloadByRoute]="false" #optionReloadList></app-estate-property-list>
+<!-- 
+<app-estate-property-list [optionLinkCustomerOrderId]="dataModel.id" [optionloadComponent]="optionloadComponent" *ngIf="this.dataModel.id && this.dataModel.id.length > 0"
+  [optionloadByRoute]="false" #optionReloadList></app-estate-property-list> -->

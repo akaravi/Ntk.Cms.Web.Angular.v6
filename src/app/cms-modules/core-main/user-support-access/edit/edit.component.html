@@ -114,22 +114,14 @@
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">
-      <!-- accessRowInPanelDemo Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessRowInPanelDemo"
-        *ngIf="fieldsInfo['AccessRowInPanelDemo']?.accessWatchField"
-        [disabled]="!fieldsInfo['AccessRowInPanelDemo']?.accessEditField" name="dataModel.accessRowInPanelDemo">
+      <!-- accessExportFile Field -->
+      <mat-slide-toggle [(ngModel)]="dataModel.accessExportFile"
+        *ngIf="fieldsInfo['AccessExportFile']?.accessWatchField"
+        [disabled]="!fieldsInfo['AccessExportFile']?.accessEditField" name="dataModel.accessExportFile">
         {{'TITLE.Access_Row_In_Panel_Demo' | translate}}
       </mat-slide-toggle>
     </div>
-    <div class="ntk-full-width">
-      <!-- accessRowWatchInSharingCategory Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessRowWatchInSharingCategory"
-        *ngIf="fieldsInfo['AccessRowWatchInSharingCategory']?.accessWatchField"
-        [disabled]="!fieldsInfo['AccessRowWatchInSharingCategory']?.accessEditField"
-        name="dataModel.accessRowWatchInSharingCategory">
-        {{'TITLE.Access_Row_Watch_In_Sharing_Category' | translate}}
-      </mat-slide-toggle>
-    </div>
+
     <div class="ntk-full-width">
       <!-- accessWatchRowOtherSiteId Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRowOtherSiteId"

@@ -68,10 +68,10 @@ export class CoreModuleEntitySelectorComponent implements OnInit {
   }
 
   displayFn(model?: CoreModuleEntityModel): string | undefined {
-    return model ? (model.moduleName+' # '+model.moduleEntityName) : undefined;
+    return model ? (model.moduleNameML+'('+model.moduleName+')' +' # '+model.moduleEntityNameML+'('+model.moduleEntityNameML+')') : undefined;
   }
   displayOption(model?: CoreModuleEntityModel): string | undefined {
-    return model ? (model.moduleName+' # '+model.moduleEntityName) : undefined;
+    return model ? (model.moduleNameML+'('+model.moduleName+')' +' # '+model.moduleEntityNameML+'('+model.moduleEntityNameML+')') : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreModuleEntityModel[]> {
     const filteModel = new FilterModel();

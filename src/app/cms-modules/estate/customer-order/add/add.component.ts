@@ -69,7 +69,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
+  // dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
   dataModel: EstateCustomerOrderModel = new EstateCustomerOrderModel();
   dataModelCorCurrencySelector = new CoreCurrencyModel();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -120,13 +120,15 @@ export class EstateCustomerOrderAddComponent implements OnInit {
 
     this.estateCustomerOrderService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
-        this.dataModelResult = ret;
+        // this.dataModelResult = ret;
         if (ret.isSuccess) {
-          this.DataGetOneContent();
+          //this.DataGetOneContent();
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
 
-          this.optionReload();
+          //this.optionReload();
+          this.router.navigate(['/estate/customer-order/edit', ret.item.id]);
+
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -151,14 +153,14 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    var id = '';
-    if (this.dataModelResult && this.dataModelResult.item && this.dataModelResult.item.id && this.dataModelResult.item.id.length > 0) {
-      id = this.dataModelResult.item.id;
-    } else if (this.requestId && this.requestId.length > 0) {
-      id = this.requestId;
-    }
+    // var id = '';
+    // if (this.dataModelResult && this.dataModelResult.item && this.dataModelResult.item.id && this.dataModelResult.item.id.length > 0) {
+    //   id = this.dataModelResult.item.id;
+    // } else if (this.requestId && this.requestId.length > 0) {
+    //   id = this.requestId;
+    // }
     this.estateCustomerOrderService.setAccessLoad();
-    this.estateCustomerOrderService.ServiceGetOneById(id).subscribe({
+    this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
@@ -181,36 +183,36 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     }
     );
   }
-  DataEditContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.formError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+  // DataEditContent(): void {
+  //   this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+  //   this.formInfo.formError = '';
+  //   const pName = this.constructor.name + 'main';
+  //   this.loading.Start(pName);
 
-    this.estateCustomerOrderService.ServiceEdit(this.dataModel).subscribe({
-      next: (ret) => {
-        this.dataModelResult = ret;
-        if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessEdit();
-          this.optionReload();
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
+  //   this.estateCustomerOrderService.ServiceEdit(this.dataModel).subscribe({
+  //     next: (ret) => {
+  //       this.dataModelResult = ret;
+  //       if (ret.isSuccess) {
+  //         this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+  //         this.cmsToastrService.typeSuccessEdit();
+  //         this.optionReload();
+  //       } else {
+  //         this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+  //         this.formInfo.formError = ret.errorMessage;
+  //         this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+  //       }
+  //       this.loading.Stop(pName);
 
-        this.formInfo.formSubmitAllow = true;
-      },
-      error: (er) => {
-        this.formInfo.formSubmitAllow = true;
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
-      }
-    }
-    );
-  }
+  //       this.formInfo.formSubmitAllow = true;
+  //     },
+  //     error: (er) => {
+  //       this.formInfo.formSubmitAllow = true;
+  //       this.cmsToastrService.typeError(er);
+  //       this.loading.Stop(pName);
+  //     }
+  //   }
+  //   );
+  // }
   DataGetPropertyDetailGroup(id: string): void {
     const filteModelProperty = new FilterModel();
     const filter = new FilterDataModel();
@@ -290,12 +292,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     }
     this.contractTypeSelected = model;
     this.dataModel.linkContractTypeId = model.id;
-    this.dataModel.rentPriceMin = 0;
-    this.dataModel.rentPriceMax = 0;
-    this.dataModel.salePriceMin = 0;
-    this.dataModel.salePriceMax = 0;
-    this.dataModel.depositPriceMin = 0;
-    this.dataModel.depositPriceMax = 0;
+
   }
   onActionSelectorLocation(model: number[] | null): void {
 
@@ -333,28 +330,33 @@ export class EstateCustomerOrderAddComponent implements OnInit {
         });
       });
     // ** Save Value */
-    if (this.requestId && this.requestId.length > 0) {
-      this.requestId = '';
-      this.DataAddContent();
-    } else if (this.dataModel.id && this.dataModel.id.length > 0) {
-      this.DataEditContent();
-    }
-    else {
-      this.DataAddContent();
-    }
+    // if (this.requestId && this.requestId.length > 0) {
+    //   this.requestId = '';
+    //   this.DataAddContent();
+    // }
+    //  else if (this.dataModel.id && this.dataModel.id.length > 0) {
+    //   this.DataEditContent();
+    // }
+    //else {
+    this.DataAddContent();
+    //}
   }
 
   onFormCancel(): void {
     this.router.navigate(['/estate/customer-order/']);
   }
-  optionReload = (): void => {
-    this.estatePropertyList.optionloadComponent = true;
-    this.estatePropertyList.DataGetAll();
-  }
-  onFormLoadResult(): void {
-    this.estatePropertyList.optionloadComponent = true;
-    this.estatePropertyList.DataGetAll();
-  }
+  // optionReload = (): void => {
+  //   if (this.dataModel.id && this.dataModel.id.length > 0){
+  //   this.estatePropertyList.optionloadComponent = true;
+  //   this.estatePropertyList.DataGetAll();
+  //   }
+  // }
+  // onFormLoadResult(): void {
+  //   if (this.dataModel.id && this.dataModel.id.length > 0){
+  //   this.estatePropertyList.optionloadComponent = true;
+  //   this.estatePropertyList.DataGetAll();
+  //   }
+  // }
   onActionSelectCurrency(model: CoreCurrencyModel): void {
     if (!model || model.id <= 0) {
       // this.cmsToastrService.typeErrorSelected();

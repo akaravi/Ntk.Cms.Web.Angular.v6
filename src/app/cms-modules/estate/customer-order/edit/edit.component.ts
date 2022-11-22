@@ -252,14 +252,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     }
     this.contractTypeSelected = model;
     this.dataModel.linkContractTypeId = model.id;
-    this.dataModel.rentPriceMin = 0;
-    this.dataModel.rentPriceMax = 0;
-    this.dataModel.salePriceMin = 0;
-    this.dataModel.salePriceMax = 0;
-    this.dataModel.depositPriceMin = 0;
-    this.dataModel.depositPriceMax = 0;
-    this.dataModel.periodPriceMin = 0;
-    this.dataModel.periodPriceMax = 0;
+
     this.cdr.detectChanges();
   }
   onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
