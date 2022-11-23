@@ -55,8 +55,16 @@
         <td>{{dataModel.aboutAgentMobile}}</td>
       </tr>
       <tr>
+        <td>{{fieldsInfo['AboutAgentTel']?.fieldTitle}}:</td>
+        <td>{{dataModel.aboutAgentTel}}</td>
+      </tr>
+      <tr>
         <td>{{fieldsInfo['AboutCustomerMobile']?.fieldTitle}}:</td>
         <td>{{dataModel.aboutCustomerMobile}}</td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['AboutCustomerTel']?.fieldTitle}}:</td>
+        <td>{{dataModel.aboutCustomerTel}}</td>
       </tr>
       <tr>
         <td>{{fieldsInfo['Address']?.fieldTitle}}:</td>
@@ -96,7 +104,7 @@
             {{'TITLE.SalePrice' | translate}}:
             {{row.salePrice | number}} <br>( {{row.currencyTitle}} {{row.currencySymbol}} )
             <ng-container *ngIf="dataModel.area>0">
-              (مترمربع :{{row.salePrice/dataModel.area | number}})
+              (مترمربع :{{row.salePrice/dataModel.area | number: '1.0-0'}})
             </ng-container>
             
           </ng-container>
