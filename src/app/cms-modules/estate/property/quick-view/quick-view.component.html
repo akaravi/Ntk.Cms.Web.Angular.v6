@@ -92,37 +92,48 @@
       <ng-container matColumnDef="Price">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.Price' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          {{'TITLE.SalePrice' | translate}}:
           <ng-container *ngIf="row.salePrice>0">
+            {{'TITLE.SalePrice' | translate}}:
             {{row.salePrice | number}} <br>( {{row.currencyTitle}} {{row.currencySymbol}} )
+            <ng-container *ngIf="dataModel.area>0">
+              (مترمربع :{{row.salePrice/dataModel.area | number}})
+            </ng-container>
+            
           </ng-container>
           <ng-container *ngIf="row.salePriceByAgreement">
+            {{'TITLE.SalePrice' | translate}}:
             {{'TITLE.PriceByAgreement' | translate}}
           </ng-container>
           <br>
-          {{'TITLE.DepositPrice' | translate}}:
+          
           <ng-container *ngIf="row.depositPrice>0">
+            {{'TITLE.DepositPrice' | translate}}:
             {{row.depositPrice | number}}<br> ( {{row.currencyTitle}} {{row.currencySymbol}} )
           </ng-container>
           <ng-container *ngIf="row.depositPriceByAgreement">
+            {{'TITLE.DepositPrice' | translate}}:
             {{'TITLE.PriceByAgreement' | translate}}
           </ng-container>
           <br>
-          {{'TITLE.RentPrice' | translate}}
+          
           <ng-container *ngIf="row.rentPrice>0">
+            {{'TITLE.RentPrice' | translate}}
             {{row.rentPrice | number}}<br> ( {{row.currencyTitle}} {{row.currencySymbol}} )
           </ng-container>
           <ng-container *ngIf="row.rentPriceByAgreement">
+            {{'TITLE.RentPrice' | translate}}
             {{'TITLE.PriceByAgreement' | translate}}
           </ng-container>
           <br>
-          {{'TITLE.PeriodPrice' | translate}}:
+          
           <ng-container *ngIf="row.periodPrice>0">
+            {{'TITLE.PeriodPrice' | translate}}:
             {{row.periodPrice | number}}
             <br>
             ( {{row.currencyTitle}} {{row.currencySymbol}})
           </ng-container>
           <ng-container *ngIf="row.periodPriceByAgreement">
+            {{'TITLE.PeriodPrice' | translate}}:
             {{'TITLE.PriceByAgreement' | translate}}
           </ng-container>
 
@@ -188,7 +199,86 @@
       </mat-row>
     </mat-table>
   </div>
+  <hr>
 
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i"
+      [expanded]="step === i" (opened)="setStep(i)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{itemGroup.title}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{itemGroup.description}}
+          <mat-icon>{{itemGroup.iconFont}}</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <!-- value-->
+      <ng-container *ngFor="let itemDetail of itemGroup.propertyDetails">
+        <ng-container [ngSwitch]="itemDetail.inputDataType" *ngIf="propertyDetails[itemDetail.id] && propertyDetails[itemDetail.id].length >0" >
+          <!-- ngSwitchCase-->
+          <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
+            <app-input-string [(model)]="propertyDetails[itemDetail.id]"
+              [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
+              [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
+              [optionDefaultValue]="itemDetail.configValueDefaultValue" [optionDisabled]="true"
+              [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+            </app-input-string>
+          </div>
+          <!-- ngSwitchCase-->
+          <div *ngSwitchCase="enumInputDataType.Int" class="ntk-full-width">
+            <app-input-int [(model)]="propertyDetails[itemDetail.id]" [optionDisabled]="true"
+              [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+            </app-input-int>
+          </div>
+          <!-- ngSwitchCase-->
+          <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
+            <app-input-boolean [(model)]="propertyDetails[itemDetail.id]"  [optionDisabled]="true">{{itemDetail.title}}
+            </app-input-boolean>
+          </div>
+          <!-- ngSwitchCase-->
+          <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
+            <app-input-float [(model)]="propertyDetails[itemDetail.id]"  [optionDisabled]="true"
+              [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+            </app-input-float>
+          </div>
+          <!-- ngSwitchCase-->
+          <div *ngSwitchCase="enumInputDataType.Date" class="ntk-full-width">
+            <label style="color:'{{itemDetail.iconColor}}';">{{itemDetail.title}}</label>
+            <app-input-date [(model)]="propertyDetails[itemDetail.id]" [optionDisabled]="true">
+            </app-input-date>
+          </div>
+          <!-- ngSwitchCase-->
+          <div *ngSwitchCase="enumInputDataType.TextArea" class="ntk-full-width">
+            <app-input-textarea [(model)]="propertyDetails[itemDetail.id]" [optionDisabled]="true"
+              [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+            </app-input-textarea>
+          </div>
+          <!-- ngSwitchCase-->
+          <div *ngSwitchDefault class="ntk-full-width">
+            <app-input-string [(model)]="propertyDetails[itemDetail.id]"
+              [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
+              [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
+              [optionDefaultValue]="itemDetail.configValueDefaultValue" [optionDisabled]="true"
+              [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+            </app-input-string>
+          </div>
+        </ng-container>
+      </ng-container>
+      <mat-action-row>
+        <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">{{'ACTION.PREVIOUS' |
+          translate}}</button>
+        <button mat-button type="button" color="primary" *ngIf="(i+1)<dataModel.propertyDetailGroups.length"
+          (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
+        <button mat-button type="button" color="primary" *ngIf="(i+1)==dataModel.propertyDetailGroups.length"
+          (click)="nextStep()">{{'ACTION.END' | translate}}</button>
+
+      </mat-action-row>
+    </mat-expansion-panel>
+    <br>
+
+  </mat-accordion>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 <div class="ntk-cms-html-card-message">

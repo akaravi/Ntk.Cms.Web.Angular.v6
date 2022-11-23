@@ -120,14 +120,10 @@ export class EstateCustomerOrderAddComponent implements OnInit {
 
     this.estateCustomerOrderService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
-        // this.dataModelResult = ret;
         if (ret.isSuccess) {
-          //this.DataGetOneContent();
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-
-          //this.optionReload();
-          this.router.navigate(['/estate/customer-order/edit', ret.item.id]);
+          this.router.navigate(['/estate/billboard/edit', ret.item.id]);
 
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');

@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class BooleanComponent implements OnInit {
 
   constructor() { }
-
+  @Input() optionDisabled = false;
   @Input() set model(val: any) {
     if (val && (val === true || val === 'true' || val === 1 || val === '1')) {
       this.checkedValue = true;

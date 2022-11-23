@@ -19,6 +19,10 @@
       class="btn btn-outline-primary BTN-text" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
+      <button *ngIf="dataModelResult.access.accessAddRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
+        (click)="onActionbuttonCopyNewRow()" type="button" class="btn btn-outline-primary BTN-text" id="openModalButton"
+        data-toggle="modal" data-target="#categoryModal">{{'ACTION.COPY' |
+        translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning BTN-text" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>

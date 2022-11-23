@@ -14,6 +14,7 @@ export class DateComponent implements OnInit {
   }
   @Output() modelChange: EventEmitter<Date> = new EventEmitter<Date>();
   @Input() optionRequired = false;
+  @Input() optionDisabled = false;
   private privateModelDate: Date;
   get modelDate(): Date {
     return this.privateModelDate;

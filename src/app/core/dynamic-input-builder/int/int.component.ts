@@ -16,6 +16,7 @@ export class IntComponent implements OnInit {
   @Input() optionValueMin: number = null;
   @Input() optionValueMax: number = null;
   @Input() optionRequired = false;
+  @Input() optionDisabled = false;
   @Input() optionTitle = '';
   @Input() optionPlaceholder = '';
 

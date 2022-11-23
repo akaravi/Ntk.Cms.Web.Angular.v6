@@ -158,6 +158,10 @@ const routes: Routes = [
         component: EstateBillboardAddComponent
       },
       {
+        path: 'billboard/add-copy/:id',
+        component: EstateBillboardAddComponent
+      },
+      {
         path: 'billboard/edit/:id',
         component: EstateBillboardEditComponent
       },

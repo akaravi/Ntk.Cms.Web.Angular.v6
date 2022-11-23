@@ -339,7 +339,15 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
     }
     );
   }
-
+  onActionbuttonCopyNewRow(model: EstateBillboardModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    
+    this.router.navigate(['/estate/billboard/add-copy',this.tableRowSelected.id]);
+  }
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

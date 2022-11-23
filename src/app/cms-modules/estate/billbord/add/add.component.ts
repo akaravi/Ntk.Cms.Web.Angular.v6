@@ -20,7 +20,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 
 @Component({
@@ -29,18 +29,20 @@ import { EstatePropertyListComponent } from '../../property/list/list.component'
   styleUrls: ['./add.component.scss'],
 })
 export class EstateBillboardAddComponent implements OnInit {
+  requestId = '';
   constructor(
     private router: Router,
     public coreEnumService: CoreEnumService,
     public estateBillboardService: EstateBillboardService,
     private cmsToastrService: CmsToastrService,
+    private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-
+    this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -53,7 +55,7 @@ export class EstateBillboardAddComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstateBillboardModel> = new ErrorExceptionResult<EstateBillboardModel>();
+  
   dataModel: EstateBillboardModel = new EstateBillboardModel();
   dataModelCorCurrencySelector = new CoreCurrencyModel();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -64,7 +66,9 @@ export class EstateBillboardAddComponent implements OnInit {
     this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
-
+    if (this.requestId && this.requestId.length > 0) {
+      this.DataGetOneContent();
+    }
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
@@ -96,12 +100,13 @@ export class EstateBillboardAddComponent implements OnInit {
 
     this.estateBillboardService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
-        this.dataModelResult = ret;
+        
         if (ret.isSuccess) {
           this.DataGetOneContent();
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-          this.optionReload();
+          this.router.navigate(['/estate/customer-order/edit', ret.item.id]);
+
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -127,7 +132,7 @@ export class EstateBillboardAddComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateBillboardService.setAccessLoad();
-    this.estateBillboardService.ServiceGetOneById(this.dataModelResult.item.id).subscribe({
+    this.estateBillboardService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
@@ -158,11 +163,10 @@ export class EstateBillboardAddComponent implements OnInit {
 
     this.estateBillboardService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.dataModelResult = ret;
+        //this.dataModelResult = ret;
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
-          this.optionReload();
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -232,14 +236,8 @@ export class EstateBillboardAddComponent implements OnInit {
   onFormCancel(): void {
     this.router.navigate(['/estate/billboard/']);
   }
-  optionReload = (): void => {
-    this.estatePropertyList.optionloadComponent = true;
-    this.estatePropertyList.DataGetAll();
-  }
-  onFormLoadResult(): void {
-    this.estatePropertyList.optionloadComponent = true;
-    this.estatePropertyList.DataGetAll();
-  }
+
+
   onActionSelectCurrency(model: CoreCurrencyModel): void {
     if (!model || model.id <= 0) {
       // this.cmsToastrService.typeErrorSelected();

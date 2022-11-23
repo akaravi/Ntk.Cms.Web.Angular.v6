@@ -12,6 +12,7 @@ import {
   EstateContractModel,
   EstateContractTypeService,
   EstateContractTypeModel,
+  EnumInputDataType,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -70,6 +71,8 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
   errorMessage: string = '';
   propertyTypeLanduse: string = '';
   contractType: string = '';
+  propertyDetails: Map<string, string> = new Map<string, string>();
+  enumInputDataType = EnumInputDataType;
 
 
   cmsApiStoreSubscribe: Subscription;
@@ -131,6 +134,21 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
 
           this.formInfo.formTitle = this.formInfo.formTitle;
           this.formInfo.formAlert = '';
+                      /** load Value */
+                      if (this.dataModel.propertyDetailGroups)
+                      this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+                        itemGroup.propertyDetails.forEach(element => {
+                          this.propertyDetails[element.id] = 0;
+        
+                          if (this.dataModel.propertyDetailValues) {
+                            const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
+                            if (value) {
+                              this.propertyDetails[element.id] = value.value;
+                            }
+                          }
+                        });
+                      });
+                    /** load Value */
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -147,7 +165,17 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
     }
     );
   }
+  setStep(index: number): void {
+    this.step = index;
+  }
+  step = 0;
+  nextStep(): void {
+    this.step++;
+  }
 
+  prevStep(): void {
+    this.step--;
+  }
 
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

@@ -145,13 +145,6 @@
 
 
 
-    <br>
-    <div *ngIf="dataModel?.urlViewContentQRCodeBase64?.length>0 && dataModel?.urlViewContent?.length>0">
-      <a href="{{dataModel.urlViewContent}}" target="_blank">
-        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="300px" width="300px">
-      </a>
-      <app-cms-qdoc [optionUrl]="dataModel.urlViewContent"></app-cms-qdoc>
-    </div>
 
     <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light BTN-text">
@@ -160,9 +153,7 @@
       <button type="submit" (click)="onFormSubmit()" class="btn btn-success BTN-text" [disabled]="!vform.form.valid">
         <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
       </button>
-      <button type="button" (click)="onFormLoadResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 ">
-        <i class="ft-x"></i> {{'ACTION.VIEW' | translate}}
-      </button>
+     
     </div>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
@@ -178,6 +169,3 @@
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>
-
-<app-estate-property-list [optionLinkBillboardId]="dataModel.id" [optionloadComponent]="optionloadComponent"
-  [optionloadByRoute]="false" #optionReloadList></app-estate-property-list>
