@@ -658,6 +658,9 @@
                 <ng-container *ngIf="row.salePriceByAgreement">
                   {{'TITLE.PriceByAgreement' | translate}}
                 </ng-container>
+                <ng-container *ngIf="row.salePrice>0&&dataModel.area>0">
+                  (مترمربع :{{row.salePrice/dataModel.area | number}})
+                </ng-container>
               </mat-cell>
             </ng-container>
             <!-- DepositPrice Column -->

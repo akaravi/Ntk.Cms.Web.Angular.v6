@@ -1,6 +1,6 @@
 <mat-form-field class="ntk-full-width">
     <mat-label>{{optionTitle}}</mat-label>
-    <input matInput [(ngModel)]="modelDate" name="number"  step="0.01" [#number type="number" placeholder="{{optionPlaceholder}}" disabled="optionDisabled"
+    <input matInput [(ngModel)]="modelDate" name="number"  step="0.01" [#number type="number" placeholder="{{optionPlaceholder}}" [disabled]="optionDisabled"
         [ngModelOptions]="{standalone: true}" [required]="optionRequired" />
     <mat-icon matSuffix>mode_edit</mat-icon>
 </mat-form-field>
