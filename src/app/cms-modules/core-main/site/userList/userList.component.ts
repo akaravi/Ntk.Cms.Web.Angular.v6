@@ -433,9 +433,14 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     }
     );
   }
-  onActionbuttonUserSupportList(row:CoreSiteUserModel):void
+  onActionbuttonUserSupportList(row:CoreSiteUserModel, event?: MouseEvent):void
   {
-    this.router.navigate(['/core/user-support-access/list/LinkSiteId/', row.linkSiteId,'LinkUserId',row.linkUserId]);
+    if (event?.ctrlKey) {
+      this.link = "/#/core/user-support-access/list/LinkSiteId/" + row.linkSiteId + "/LinkUserId/" + row.linkUserId;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/core/user-support-access/list/LinkSiteId/', row.linkSiteId,'LinkUserId',row.linkUserId]);
+    }
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;

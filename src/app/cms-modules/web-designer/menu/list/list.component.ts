@@ -75,7 +75,7 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<WebDesignerMainMenuModel> = [];
   tableRowSelected: WebDesignerMainMenuModel = new WebDesignerMainMenuModel();
   tableSource: MatTableDataSource<WebDesignerMainMenuModel> = new MatTableDataSource<WebDesignerMainMenuModel>();
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Icon',
     'Id',
@@ -115,7 +115,7 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainMenuModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -126,22 +126,23 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
       filter.value = this.categoryModelSelected.id;
       filterModel.filters.push(filter);
     }
-    this.contentService.ServiceGetAllEditor(filterModel).subscribe(
-      (next) => {
-        if (next.isSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
-          this.dataModelResult = next;
-          this.tableSource.data = next.listItems;
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          this.dataModelResult = ret;
+          this.tableSource.data = ret.listItems;
           if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(next.access);
+            this.optionsSearch.childMethods.setAccess(ret.access);
           }
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
   onTableSortData(sort: MatSort): void {
