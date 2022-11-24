@@ -75,6 +75,8 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     'LinkSiteId',
     'RecordStatus',
     'Title',
+    'CreatedDate',
+    'UpdatedDate',
     'Action',
     "LinkTo",
   ];
