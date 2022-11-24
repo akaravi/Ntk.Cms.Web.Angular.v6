@@ -41,14 +41,14 @@
       <mat-slide-toggle (click)="onActionbuttonExport()">{{'ACTION.EXPORTFILE' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
+    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary button_refresh BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
-    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success BTN-icon">
+    <button (click)="onActionGridExpandRows(true)" class="btn btn-outline-success button_expand_all BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPAND_ALL' | translate}}">unfold_more_double
       </mat-icon>
     </button>
-    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success BTN-icon">
+    <button (click)="onActionGridExpandRows(false)" class="btn btn-outline-success button_close_all BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.COLLPASE_ALL' |translate}}">
         unfold_less_double</mat-icon>
     </button>
@@ -96,21 +96,20 @@
       </ng-container>
 
 
- <!-- CreatedDate Column -->
- <ng-container matColumnDef="CreatedDate">
-  <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
-  </mat-header-cell>
-  <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
-    publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
-</ng-container>
-<!-- UpdatedDate Column -->
-<ng-container matColumnDef="UpdatedDate">
-  <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
-  </mat-header-cell>
-  <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.updatedDate)
-    }}
-  </mat-cell>
-</ng-container>
+      <!-- CreatedDate Column -->
+      <ng-container matColumnDef="CreatedDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
+      </ng-container>
+      <!-- UpdatedDate Column -->
+      <ng-container matColumnDef="UpdatedDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDateTime(row.updatedDate) }}
+        </mat-cell>
+      </ng-container>
 
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
