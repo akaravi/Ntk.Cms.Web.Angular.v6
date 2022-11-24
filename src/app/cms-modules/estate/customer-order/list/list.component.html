@@ -95,6 +95,23 @@
         <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
       </ng-container>
 
+
+ <!-- CreatedDate Column -->
+ <ng-container matColumnDef="CreatedDate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+  </mat-header-cell>
+  <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
+    publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
+</ng-container>
+<!-- UpdatedDate Column -->
+<ng-container matColumnDef="UpdatedDate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
+  </mat-header-cell>
+  <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.updatedDate)
+    }}
+  </mat-cell>
+</ng-container>
+
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
