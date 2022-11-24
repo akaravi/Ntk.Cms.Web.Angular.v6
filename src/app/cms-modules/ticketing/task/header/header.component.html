@@ -1,32 +1,33 @@
 <div class="table">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <div class="tr">
-    <div class="td"></div>
-    <div class="td align" style="color: darkblue;">
-      <h5><b> {{'TITLE.Selected_Task'|translate}} </b> </h5>
+    <div class="td width">
+      <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'./assets/media/svg/icons/Communication/Flag.svg'"></span>
     </div>
-    <div class="td" style="text-align: left;">
-      <!-- *ngIf="dataModelResult?.item?.id" -->
+    <div class="td" style="color: darkblue;">
+      <h5><b> {{'TITLE.Selected_Ticket'|translate}} </b> </h5>
+    </div>
+    <div class="td" *ngIf="dataModelResult?.item?.id">
     </div>
   </div>
   <div class="tr">
-    <div class="td"><b>{{fieldsInfo['Id']?.fieldTitle}} </b>: </div>
-    <div class="td align">{{dataModelResult?.item?.id}}</div>
+    <div class="td width"><b>{{fieldsInfo['Id']?.fieldTitle}} </b>: </div>
+    <div class="td width">{{dataModelResult?.item?.id}}</div>
     <div class="td"></div>
 
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
-    <div class="td"><b>{{fieldsInfo['Title']?.fieldTitle}} </b>: </div>
-    <div class="td align">{{dataModelResult?.item?.title}}</div>
+    <div class="td width"><b>{{fieldsInfo['Title']?.fieldTitle}} </b>: </div>
+    <div class="td width">{{dataModelResult?.item?.title}}</div>
     <div class="td" style="text-align: left;">
 
     </div>
     <div style="clear: both;"></div>
   </div>
   <div class="tr" *ngIf="dataModelResult?.item?.htmlBody?.length>0">
-    <div class="td"><b>{{'TITLE.Description'|translate}} </b>: </div>
-    <div class="td align" [innerText]="dataModelResult.item.htmlBody"></div>
+    <div class="td width"><b>{{'TITLE.Description'|translate}} </b>: </div>
+    <div class="td width" [innerText]="dataModelResult.item.htmlBody"></div>
     <div class="td" style="text-align: left;">
 
     </div>

@@ -351,11 +351,11 @@
             </ng-container>
           </ng-container>
           <mat-action-row>
-            <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">Previous</button>
+            <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">{{'ACTION.PREVIOUS' | translate}}</button>
             <button mat-button type="button" color="primary" *ngIf="(i+1)<dataModel.propertyDetailGroups.length"
-              (click)="nextStep()">Next</button>
+              (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
             <button mat-button type="button" color="primary" *ngIf="(i+1)==dataModel.propertyDetailGroups.length"
-              (click)="nextStep()">End</button>
+              (click)="nextStep()">{{'ACTION.END' | translate}}</button>
 
           </mat-action-row>
         </mat-expansion-panel>

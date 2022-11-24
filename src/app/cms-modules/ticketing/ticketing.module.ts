@@ -57,6 +57,7 @@ import { TicketingTaskViewComponent } from './task/view/view.component';
 import { TicketingAnswerViewComponent } from './answer/view/view.component';
 import { TicketingTaskHeaderComponent } from './task/header/header.component';
 import { TicketingTemplateSelectorComponent } from './template/selector/selector.component';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 
 
 
@@ -112,7 +113,8 @@ import { TicketingTemplateSelectorComponent } from './template/selector/selector
     SharedModule.forRoot(),
     AngularEditorModule,
     
-    CmsFileManagerModule
+    CmsFileManagerModule,
+    InlineSVGModule,
   ],
   providers: [
     CoreModuleService,
