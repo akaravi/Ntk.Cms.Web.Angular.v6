@@ -35,7 +35,7 @@
 
       </textarea>
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.title = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+        (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Title.value.length }} / 1000</mat-hint>
       <mat-error *ngIf="Title.errors?.required">

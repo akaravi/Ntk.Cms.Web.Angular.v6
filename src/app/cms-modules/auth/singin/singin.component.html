@@ -20,8 +20,8 @@
         maxlength="50" required />
       <mat-icon matSuffix *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.email = ''">
-        "this.translate.instant('TITLE.close')"</mat-icon>
-      <mat-icon matSuffix>"this.translate.instant('TITLE.mode')"_"this.translate.instant('TITLE.Edit')"</mat-icon>
+        close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
       
       <mat-error *ngIf="Email.errors?.required">
         "this.translate.instant('TITLE.Email_is')"<strong>{{'MESSAGE.required' | translate}}</strong>
@@ -36,7 +36,7 @@
         placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="50" required />
       <mat-icon matSuffix *ngIf="dataModel.password" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.password = ''">
-        "this.translate.instant('TITLE.close')"</mat-icon>
+        close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="Password.errors?.required">
         "this.translate.instant('TITLE.Password_is')" <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -54,8 +54,8 @@
           placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
         <mat-icon matSuffix *ngIf="dataModel.captchaText" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.captchaText = ''">
-          "this.translate.instant('TITLE.close')"</mat-icon>
-        <mat-icon matSuffix>"this.translate.instant('TITLE.mode')"_"this.translate.instant('TITLE.Edit')"</mat-icon>
+          close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-error *ngIf="captchaText.errors?.required">
           "this.translate.instant('TITLE.captcha_Text_is')" <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>

@@ -35,7 +35,7 @@
             [disabled]="!fieldsInfo['Title']?.accessEditField" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
             minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.title = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
@@ -54,7 +54,7 @@
             #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.accessEditField"
             placeholder="{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.titleResourceLanguage = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
           <mat-error *ngIf="TitleResourceLanguage.errors?.required">
@@ -80,7 +80,7 @@
             type="text" [disabled]="!fieldsInfo['RouteAddressLink']?.accessEditField"
             placeholder="{{fieldsInfo['RouteAddressLink']?.fieldTitle}}" minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.routeAddressLink" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.routeAddressLink = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.routeAddressLink = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ RouteAddressLink.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -99,7 +99,7 @@
             [style.background]="dataModel.color" [(colorPicker)]="dataModel.color" type="text"
             [disabled]="!fieldsInfo['Color']?.accessEditField" placeholder="{{fieldsInfo['Color']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.color" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.color = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.color = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
@@ -112,7 +112,7 @@
           <span class="input-group-addon"><i [ngClass]="dataModel.icon"></i></span>
           <mat-icon>{{dataModel.icon}}</mat-icon>
           <mat-icon matSuffix *ngIf="dataModel.icon" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.icon = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.icon = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
@@ -123,7 +123,7 @@
             type="number" [disabled]="!fieldsInfo['ShowInMenuOrder']?.accessEditField"
             placeholder="{{fieldsInfo['ShowInMenuOrder']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.showInMenuOrder" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.showInMenuOrder = 1">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.showInMenuOrder = 1">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- Description Field -->
@@ -132,7 +132,7 @@
           <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
             placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows="1"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.description = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.description = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
           <mat-error *ngIf="Description.errors?.required">

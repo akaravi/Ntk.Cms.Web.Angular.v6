@@ -20,7 +20,7 @@
          <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName
            type="text" placeholder="ModuleName" />
          <mat-icon matSuffix *ngIf="dataModel.moduleName" matSuffix mat-icon-button aria-label="Clear"
-           (click)="dataModel.moduleName = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+           (click)="dataModel.moduleName = ''">close</mat-icon>
          <mat-icon matSuffix>mode_edit</mat-icon>
        </mat-form-field>
  
@@ -30,7 +30,7 @@
          <input matInput [(ngModel)]="dataModel.moduleEntityName" name="dataModel.moduleEntityName" #ModuleEntityName type="text"
            placeholder="ModuleEntityName" />
          <mat-icon matSuffix *ngIf="dataModel.moduleEntityName" matSuffix mat-icon-button aria-label="Clear"
-           (click)="dataModel.moduleEntityName = null">"this.translate.instant('TITLE.close')"</mat-icon>
+           (click)="dataModel.moduleEntityName = null">close</mat-icon>
          <mat-icon matSuffix>mode_edit</mat-icon>
        </mat-form-field>
        <!-- EntityId Field -->
@@ -39,7 +39,7 @@
          <input matInput [(ngModel)]="dataModel.moduleEntityId" name="dataModel.moduleEntityId" #ModuleEntityId type="text"
            placeholder="ModuleEntityId" />
          <mat-icon matSuffix *ngIf="dataModel.moduleEntityId" matSuffix mat-icon-button aria-label="Clear"
-           (click)="dataModel.moduleEntityId = null">"this.translate.instant('TITLE.close')"</mat-icon>
+           (click)="dataModel.moduleEntityId = null">close</mat-icon>
          <mat-icon matSuffix>mode_edit</mat-icon>
        </mat-form-field>
  

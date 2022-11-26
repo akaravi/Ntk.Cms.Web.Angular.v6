@@ -14,7 +14,7 @@
           <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName type="text"
             placeholder="ModuleName" />
           <mat-icon matSuffix *ngIf="dataModel.moduleName" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.moduleName = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.moduleName = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
   
@@ -24,7 +24,7 @@
           <input matInput [(ngModel)]="dataModel.moduleEntityName" name="dataModel.moduleEntityName" #ModuleEntityName
             type="text" placeholder="ModuleEntityName" />
           <mat-icon matSuffix *ngIf="dataModel.moduleEntityName" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.moduleEntityName = null">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.moduleEntityName = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- ModuleEntityId Field -->
@@ -33,7 +33,7 @@
           <input matInput [(ngModel)]="dataModel.moduleEntityId" name="dataModel.moduleEntityId" #ModuleEntityId
             type="text" placeholder="ModuleEntityId" />
           <mat-icon matSuffix *ngIf="dataModel.moduleEntityId" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.moduleEntityId = null">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.moduleEntityId = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
   
@@ -43,7 +43,7 @@
           <textarea matInput [(ngModel)]="dataModel.subjectBody" name="dataModel.subjectBody" #SubjectBody type="text"
             placeholder="SubjectBody"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.subjectBody" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.subjectBody = null">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.subjectBody = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
@@ -53,7 +53,7 @@
           <textarea matInput [(ngModel)]="dataModel.subjectTitle" name="dataModel.subjectTitle" #SubjectTitle type="text"
             placeholder="SubjectTitle"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.subjectTitle" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.subjectTitle = null">"this.translate.instant('TITLE.close')"</mat-icon>
+            (click)="dataModel.subjectTitle = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 

@@ -48,7 +48,7 @@
           placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="5000" required cols="50" >
           </textarea>
         <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.title = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+          (click)="dataModel.title = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Title.value.length }} / 5000</mat-hint>
         <mat-error *ngIf="Title.errors?.required">
@@ -61,7 +61,7 @@
         <input matInput [(ngModel)]="dataModel.geoLocationLatitude" name="dataModel.geoLocationLatitude"
           #GeoLocationLatitude type="number" placeholder="Geo Location Latitude" />
         <mat-icon matSuffix *ngIf="dataModel.geoLocationLatitude" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.geoLocationLatitude = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+          (click)="dataModel.geoLocationLatitude = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- GeoLocationLongitude Field -->
@@ -70,7 +70,7 @@
         <input matInput [(ngModel)]="dataModel.geoLocationLongitude" name="dataModel.geoLocationLongitude"
           #GeoLocationLongitude type="number" placeholder="Geo Location Latitude" />
         <mat-icon matSuffix *ngIf="dataModel.geoLocationLongitude" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.geoLocationLongitude = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+          (click)="dataModel.geoLocationLongitude = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- LinkImageId Field -->
@@ -81,7 +81,7 @@
         <input matInput [(ngModel)]="dataModel.linkImageId" name="dataModel.linkImageId" #LinkImageId
           type="text" placeholder="{{'TITLE.Icon_File_ID' | translate}}" (click)="fileManagerOpenForm = true" />
         <mat-icon matSuffix *ngIf="dataModel.linkImageId" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.linkImageId = null">"this.translate.instant('TITLE.close')"</mat-icon>
+          (click)="dataModel.linkImageId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
       </mat-form-field>
 

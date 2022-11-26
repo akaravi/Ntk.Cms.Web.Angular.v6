@@ -33,7 +33,7 @@
           placeholder="{{fieldsInfo['Title']?.fieldTitle}}" [disabled]="!fieldsInfo['Writer']?.accessEditField"
            minlength="3" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.writer" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.writer = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+          (click)="dataModel.writer = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
           <strong class="info-field-text">{{fieldsInfo['Writer']?.FieldDescription}}</strong> </mat-hint>
@@ -49,7 +49,7 @@
           placeholder="{{fieldsInfo['Comment']?.fieldTitle}}" [disabled]="!fieldsInfo['Comment']?.accessEditField"
            minlength="1" maxlength="1000" required rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.comment" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.comment = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+          (click)="dataModel.comment = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
           <strong class="info-field-text">{{fieldsInfo['Comment']?.FieldDescription}}</strong> </mat-hint>

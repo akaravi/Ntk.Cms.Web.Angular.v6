@@ -7,7 +7,7 @@
         <input matInput [(ngModel)]="dataModel.serialNumber" name="dataModel.serialNumber" #serialNumber type="text"
           placeholder="Serial Number" minlength="3" maxlength="20" required />
         <mat-icon matSuffix *ngIf="dataModel.serialNumber" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.serialNumber = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+          (click)="dataModel.serialNumber = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ serialNumber.value.length }} / 20</mat-hint>
         <mat-error *ngIf="serialNumber.errors?.required">
@@ -21,7 +21,7 @@
         <input matInput [(ngModel)]="dataModel.pwdForUse" name="dataModel.pwdForUse" #pwdForUse type="text"
           placeholder="Paswword" minlength="3" maxlength="20" required />
         <mat-icon matSuffix *ngIf="dataModel.pwdForUse" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.pwdForUse = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+          (click)="dataModel.pwdForUse = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ pwdForUse.value.length }} / 20</mat-hint>
         <mat-error *ngIf="pwdForUse.errors?.required">

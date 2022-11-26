@@ -35,7 +35,7 @@
       <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
       <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">"this.translate.instant('TITLE.close')"</mat-icon>
+        mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #ExpireDate></mat-datepicker>
     </mat-form-field>

@@ -38,7 +38,7 @@
       <input matInput [(ngModel)]="dataModel.credit" name="dataModel.credit" #Credit type="number"
         placeholder="{{fieldsInfo['Credit']?.fieldTitle}}"  required />
       <mat-icon matSuffix *ngIf="dataModel.credit" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.credit = 0">"this.translate.instant('TITLE.close')"</mat-icon>
+        (click)="dataModel.credit = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="Credit.errors?.required">
         Credit is <strong>{{'MESSAGE.required' | translate}}</strong>

@@ -37,7 +37,7 @@
         [disabled]="!fieldsInfo['ConfigValuesJson']?.accessAddField" name="dataModel.configValuesJson" #ConfigValuesJson
         type="text" placeholder="ConfigValuesJson" row="6" minlength="0" maxlength="10000"></textarea>
       <mat-icon matSuffix *ngIf="dataModel.configValuesJson && fieldsInfo['ConfigValuesJson']?.accessAddField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.configValuesJson = ''">"this.translate.instant('TITLE.close')"</mat-icon>
+        mat-icon-button aria-label="Clear" (click)="dataModel.configValuesJson = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['ConfigValuesJson']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">{{ ConfigValuesJson.value.length }} / 10000</mat-hint>
     </mat-form-field>

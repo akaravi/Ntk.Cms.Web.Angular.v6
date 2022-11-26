@@ -19,7 +19,7 @@
             placeholder=" {{'AUTH.INPUT.FIRSTNAME' | translate}}" minlength="3" maxlength="50" required />
           <mat-icon matSuffix *ngIf="dataModel.name" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.name = ''">
-            "this.translate.instant('TITLE.close')"</mat-icon>
+            close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Name.value.length }} / 50</mat-hint>
           <mat-error *ngIf="Name.errors?.required">
@@ -34,7 +34,7 @@
             placeholder=" {{'AUTH.INPUT.LASTNAME' | translate}}" minlength="3" maxlength="50" required />
           <mat-icon matSuffix *ngIf="dataModel.family" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.family = ''">
-            "this.translate.instant('TITLE.close')"</mat-icon>
+            close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Family.value.length }} / 50</mat-hint>
           <mat-error *ngIf="Family.errors?.required">
@@ -49,7 +49,7 @@
             placeholder=" {{'AUTH.INPUT.EMAIL' | translate}}" minlength="5" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.email = ''">
-            "this.translate.instant('TITLE.close')"</mat-icon>
+            close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Email.errors?.required">
@@ -64,7 +64,7 @@
             minlength="0" maxlength="50" />
           <mat-icon matSuffix *ngIf="dataModel.mobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.mobile = ''">
-            "this.translate.instant('TITLE.close')"</mat-icon>
+            close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Mobile.value.length }} / 15</mat-hint>
           <mat-error *ngIf="Mobile.errors?.required">
@@ -79,7 +79,7 @@
             placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.password" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.password = ''">
-            "this.translate.instant('TITLE.close')"</mat-icon>
+            close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Password.value.length }} / 50</mat-hint>
           <mat-error *ngIf="Password.errors?.required">
@@ -97,7 +97,7 @@
             placeholder=" {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="RePasswordModel" matSuffix mat-icon-button aria-label="Clear"
             (click)="RePasswordModel = ''">
-            "this.translate.instant('TITLE.close')"</mat-icon>
+            close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ RePassword.value.length }} / 50</mat-hint>
           <mat-error *ngIf="RePassword.errors?.required">
@@ -118,7 +118,7 @@
             placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
           <mat-icon matSuffix *ngIf="dataModel.captchaText" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.captchaText = ''">
-            "this.translate.instant('TITLE.close')"</mat-icon>
+            close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="captchaText.errors?.required">
             captchaText is <strong>{{'MESSAGE.required' | translate}}</strong>

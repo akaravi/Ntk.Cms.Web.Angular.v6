@@ -24,7 +24,7 @@
         placeholder=" {{'AUTH.SINGINBYSMS.MOBILE' | translate}}" minlength="5" maxlength="50" required />
       <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.mobile" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModelAuthUserSignInBySms.mobile = ''">
-        "this.translate.instant('TITLE.close')"</mat-icon>
+        close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Mobile.errors?.required">
@@ -42,7 +42,7 @@
         autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
       <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.captchaText" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModelAuthUserSignInBySms.captchaText = ''">
-        "this.translate.instant('TITLE.close')"</mat-icon>
+        close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="captchaText.errors?.required">
          <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -90,8 +90,8 @@
         placeholder=" {{'AUTH.SINGINBYSMS.SEND_PIN_CODE' | translate}}" minlength="3" maxlength="50" required />
       <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.code" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModelAuthUserSignInBySms.code = ''">
-        "this.translate.instant('TITLE.close')"</mat-icon>
-      <mat-icon matSuffix>"this.translate.instant('TITLE.mode')"_"this.translate.instant('TITLE.Edit')"</mat-icon>
+        close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Code.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Code.errors?.required">
         PIN Code is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -108,8 +108,8 @@
         autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
       <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.captchaText" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModelAuthUserSignInBySms.captchaText = ''">
-        "this.translate.instant('TITLE.close')"</mat-icon>
-      <mat-icon matSuffix>"this.translate.instant('TITLE.mode')"_"this.translate.instant('TITLE.Edit')"</mat-icon>
+        close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="captchaText.errors?.required">
         captchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
