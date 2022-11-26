@@ -18,6 +18,7 @@ import {
   EstatePropertyDetailValueModel,
   CoreCurrencyModel,
   EnumManageUserAccessDataTypes,
+  EnumRecordStatus,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -34,6 +35,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { EstateCustomerOrderActionComponent } from '../action/action.component';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-estate-customer-order-edit',
@@ -52,7 +56,9 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
     public http: HttpClient,
+    public tokenHelper: TokenHelper,
     public translate: TranslateService,
+    public dialog: MatDialog,
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -96,6 +102,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
+  lastRecordStatus: EnumRecordStatus;
   DataGetOneContent(): void {
 
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
@@ -108,8 +115,8 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
-        this.dataModel = ret.item;
+        this.lastRecordStatus = ret.item.recordStatus;
+        this.dataModel = ret.item;  
         if (ret.isSuccess) {
           this.cdr.detectChanges();
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
@@ -301,7 +308,23 @@ export class EstateCustomerOrderEditComponent implements OnInit {
         });
       });
     // ** Save Value */
-    this.DataEditContent();
+    if (this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus == EnumRecordStatus.Available && this.dataModel.recordStatus != this.lastRecordStatus) {
+      const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
+        // height: '90%',
+        data: { model: this.dataModel }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.dialogChangedDate) {
+          this.dataModel = result.model;
+          this.DataEditContent();
+        } else {
+          this.formInfo.formSubmitAllow = false;
+        }
+      });
+    } else {
+      this.DataEditContent();
+    }
+    
   }
   onFormCancel(): void {
     this.router.navigate(['/estate/customer-order/']);

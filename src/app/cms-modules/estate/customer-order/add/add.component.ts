@@ -34,6 +34,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 import { HttpClient } from '@angular/common/http';
+import { EstateCustomerOrderActionComponent } from '../action/action.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-estate-customer-order-add',
@@ -52,6 +54,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
     public http: HttpClient,
+    public dialog: MatDialog,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
@@ -326,16 +329,19 @@ export class EstateCustomerOrderAddComponent implements OnInit {
         });
       });
     // ** Save Value */
-    // if (this.requestId && this.requestId.length > 0) {
-    //   this.requestId = '';
-    //   this.DataAddContent();
-    // }
-    //  else if (this.dataModel.id && this.dataModel.id.length > 0) {
-    //   this.DataEditContent();
-    // }
-    //else {
-    this.DataAddContent();
-    //}
+
+    const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
+      // height: '90%',
+      data: { model: this.dataModel }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        this.dataModel = result.model;
+        this.DataAddContent();
+      } else {
+        this.formInfo.formSubmitAllow = false;
+      }
+    });
   }
 
   onFormCancel(): void {

@@ -1,7 +1,7 @@
 import {
   FormInfoModel,
   DataFieldInfoModel,
-  EstatePropertyModel,
+  EstateCustomerOrderModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -15,15 +15,15 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-property-action',
+  selector: 'app-estate-customer-order-action',
   templateUrl: './action.component.html',
   styleUrls: ['./action.component.scss'],
 })
-export class EstatePropertyActionComponent implements OnInit {
+export class EstateCustomerOrderActionComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<EstatePropertyActionComponent>,
+    private dialogRef: MatDialogRef<EstateCustomerOrderActionComponent>,
     public publicHelper: PublicHelper,
     public translate: TranslateService,
   ) {
@@ -34,7 +34,7 @@ export class EstatePropertyActionComponent implements OnInit {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModel: EstatePropertyModel = new EstatePropertyModel();
+  dataModel: EstateCustomerOrderModel = new EstateCustomerOrderModel();
   formInfo: FormInfoModel = new FormInfoModel();
   fileManagerOpenForm = false;
 

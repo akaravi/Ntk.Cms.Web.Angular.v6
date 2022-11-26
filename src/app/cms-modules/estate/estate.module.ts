@@ -159,6 +159,7 @@ import { EstatePropertyExpertPriceInquiryCalculateComponent } from './property-e
 import { EstatePropertyExpertPriceInquiryListComponent } from './property-expert-price/inquiry-list/inquiry-list.component';
 import { EstateCustomerOrderResultListComponent } from './customer-order-result/list/list.component';
 import { EstateCustomerOrderResultViewComponent } from './customer-order-result/view/view.component';
+import { EstateCustomerOrderActionComponent } from './customer-order/action/action.component';
 
 @NgModule({
   declarations: [
@@ -243,6 +244,7 @@ import { EstateCustomerOrderResultViewComponent } from './customer-order-result/
     EstateCustomerOrderSelectorComponent,
     EstateCustomerOrderTreeComponent,
     EstateCustomerOrderHeaderComponent,
+    EstateCustomerOrderActionComponent,
     /* */
     EstateCustomerOrderResultListComponent,
     EstateCustomerOrderResultViewComponent,
