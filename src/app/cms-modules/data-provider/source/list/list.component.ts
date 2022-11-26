@@ -382,6 +382,9 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
+  onActionCopied(): void {
+    this.cmsToastrService.typeSuccessCopedToClipboard();
+  }
   onSubmitOptionsSearch(model: any): void {
     this.filteModelContent.filters = model;
     this.DataGetAll();

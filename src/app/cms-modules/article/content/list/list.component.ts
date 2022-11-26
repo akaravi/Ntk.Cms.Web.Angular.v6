@@ -69,7 +69,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<ArticleContentModel> = [];
   tableRowSelected: ArticleContentModel = new ArticleContentModel();
   tableSource: MatTableDataSource<ArticleContentModel> = new MatTableDataSource<ArticleContentModel>();
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
@@ -341,6 +341,9 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonReload(): void {
     this.DataGetAll();
+  }
+  onActionCopied(): void {
+    this.cmsToastrService.typeSuccessCopedToClipboard();
   }
   onSubmitOptionsSearch(model: any): void {
     this.filteModelContent.filters = model;

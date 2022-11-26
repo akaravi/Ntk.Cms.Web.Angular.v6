@@ -732,6 +732,9 @@ export class EstatePropertyListComponent
     this.optionloadComponent = true;
     this.DataGetAll();
   }
+  onActionCopied(): void {
+    this.cmsToastrService.typeSuccessCopedToClipboard();
+  }
   onSubmitOptionsSearch(model: any): void {
     this.filteModelProperty.filters = model;
     this.DataGetAll();

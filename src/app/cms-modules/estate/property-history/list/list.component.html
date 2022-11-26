@@ -122,7 +122,11 @@
                 <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
                     class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
                     width="80" /></th>
-                <th>{{row.id}}</th>
+                <th>
+                  {{row.id}}
+                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span>
+                </th>
               </tr>
               <tr>
                 <td></td>

@@ -305,6 +305,9 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
+  onActionCopied(): void {
+    this.cmsToastrService.typeSuccessCopedToClipboard();
+  }
   onSubmitOptionsSearch(model: any): void {
     this.filteModelContent.filters = model;
     this.DataGetAll();

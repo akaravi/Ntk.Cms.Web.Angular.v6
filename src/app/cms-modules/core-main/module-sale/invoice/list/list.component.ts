@@ -79,16 +79,13 @@ export class CoreModuleSaleInvoiceListComponent implements OnInit, OnDestroy {
   tabledisplayedColumnsSource: string[] = [
     'MainImageSrc',
     'Id',
+    'LinkSiteIdBuyer',
     'RecordStatus',
-    'Title',
-    'SubDomain',
-    'Domain',
+    'Price',
     'CreatedDate',
     'UpdatedDate',
     'Action'
   ];
-
-
 
   expandedElement: CoreModuleSaleInvoiceModel | null;
   cmsApiStoreSubscribe: Subscription;
@@ -175,10 +172,6 @@ export class CoreModuleSaleInvoiceListComponent implements OnInit, OnDestroy {
     this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
-
-
-
-
 
   onActionSelectorSelect(model: CoreModuleSaleSerialModel | null): void {
     this.filteModelContent = new FilterModel();

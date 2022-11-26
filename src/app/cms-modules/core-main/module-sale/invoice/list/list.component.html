@@ -62,11 +62,11 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
-      <!-- linkCreatedBySiteId Column -->
-      <ng-container matColumnDef="linkCreatedBySiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkCreatedBySiteId']?.fieldTitle}}
+      <!-- linkSiteIdBuyer Column -->
+      <ng-container matColumnDef="LinkSiteIdBuyer">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteIdBuyer']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkCreatedBySiteId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkSiteIdBuyer}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
@@ -76,20 +76,10 @@
            <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select> </mat-cell>
       </ng-container>
-      <!-- Title Column -->
-      <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
-      </ng-container>
-      <!-- SubDomain Column -->
-      <ng-container matColumnDef="SubDomain">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SubDomain']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.subDomain}} </mat-cell>
-      </ng-container>
-      <!-- Domain Column -->
-      <ng-container matColumnDef="Domain">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Domain']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.domain}} </mat-cell>
+      <!-- Price Column -->
+      <ng-container matColumnDef="Price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Price']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
@@ -122,7 +112,7 @@
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.access.accessWatchRow">
-              <mat-icon>view_module</mat-icon>
+              <mat-icon>visibility</mat-icon>
               <span>{{'ACTION.VIEW' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonViewDetail(row)" *ngIf="dataModelResult.access.accessWatchRow">
