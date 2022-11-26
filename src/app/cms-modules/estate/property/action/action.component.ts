@@ -1,7 +1,5 @@
 import {
   CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
   FormInfoModel,
   EstateAdsTypeService,
   DataFieldInfoModel,
@@ -44,7 +42,6 @@ export class EstatePropertyActionComponent implements OnInit {
 
   dataModel: EstatePropertyModel = new EstatePropertyModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
 
   ngOnInit(): void {

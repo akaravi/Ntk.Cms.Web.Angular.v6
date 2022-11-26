@@ -1,4 +1,4 @@
-<div *ngIf="optionsData.data.show" class="alert alert-info" style="direction: ltr">
+<div *ngIf="optionsData.data.show" class="alert alert-primary">
   <!-- FileType Field -->
   <mat-form-field class="ntk-full-width">
     <mat-select placeholder="{{'TITLE.Output_file_format' | translate}}" [(ngModel)]="filterModel.exportFile.fileType"
@@ -30,7 +30,7 @@
     </mat-error>
   </mat-form-field>
   <!-- CurrentPageNumber Field -->
-  <mat-form-field class="ntk-full-width">
+  <mat-form-field class="ntk-full-width text-black">
     <mat-label>{{'TITLE.from_page' | translate}}</mat-label>
     <input matInput [(ngModel)]="filterModel.currentPageNumber" name="filterModel.currentPageNumber" #CurrentPageNumber
       type="number" placeholder="{{'TITLE.page_number' | translate}}" required />
@@ -43,7 +43,7 @@
   </mat-form-field>
 
   <!-- RowPerPage Field -->
-  <mat-form-field class="ntk-full-width">
+  <mat-form-field class="ntk-full-width text-black">
     <mat-label>{{'TITLE.page_number' | translate}}</mat-label>
     <input matInput [(ngModel)]="filterModel.rowPerPage" name="filterModel.rowPerPage" #RowPerPage type="number"
       placeholder="{{'TITLE.number_of_output_file_rows' | translate}}" required />
@@ -55,7 +55,7 @@
     </mat-error>
   </mat-form-field>
   <!-- SkipRowData Field -->
-  <mat-form-field class="ntk-full-width">
+  <mat-form-field class="ntk-full-width text-black">
     <mat-label>{{'TITLE.Over_the_number_of_rows' | translate}}</mat-label>
     <input matInput [(ngModel)]="filterModel.skipRowData" name="filterModel.skipRowData" #SkipRowData type="number"
       placeholder="{{'TITLE.Number_of_rows_row_rowss' | translate}}" required />
@@ -66,12 +66,12 @@
       Skip Row Data is <strong>{{'MESSAGE.required' | translate}}</strong>
     </mat-error>
   </mat-form-field>
-  <button (click)="onSubmit()" type="button" class="btn btn-warning BTN-text">{{'ACTION.FILE_CREATION' |translate}}</button>
+  <button (click)="onSubmit()" type="button" class="btn btn-secondary BTN-text">{{'ACTION.FILE_CREATION' |translate}}</button>
   <mat-list>
-    <div mat-subheader>{{'TITLE.download_list' | translate}} </div>
+    <div mat-subheader style="font-size: 20px;">{{'TITLE.download_list' | translate}} </div>
     <mat-list-item *ngFor="let folder of modelData| keyvalue">
-      <a href="{{folder.value}}" target="_blank"><mat-icon mat-list-icon>download</mat-icon></a>
-      <div mat-line><a href="{{folder.value}}" target="_blank"> {{folder.key}}</a></div>
+      <a class="text-white" href="{{folder.value}}" target="_blank"><mat-icon mat-list-icon>download</mat-icon></a>
+      <div mat-line><a class="text-white" href="{{folder.value}}" target="_blank"> {{folder.key}}</a></div>
     </mat-list-item>
     <mat-divider></mat-divider>
   </mat-list>
