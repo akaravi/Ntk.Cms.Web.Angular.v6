@@ -14,53 +14,53 @@
         </div>
       </ng-container>
       <div class="alert-text">
-        <h4 class="text-center">Access Check (   Module Name:{{access.moduleName}}     Module Entity Name: {{access.moduleEntityName}})</h4>
+        <h4 class="text-center">Access Check (   Module Name:{{access.moduleName}}     Module Entity Name: {{access.moduleEntityName}} )</h4>
         <div>
 
           <table class="table table-bordered">
             <tr>
-              <td class="text-center">"this.translate.instant('TITLE.Watch')"</td>
-              <td class="text-center">"this.translate.instant('TITLE.Count')"</td>
-              <td class="text-center">"this.translate.instant('TITLE.ADD')"</td>
-              <td class="text-center">"this.translate.instant('TITLE.Edit')"</td>
-              <td class="text-center">"this.translate.instant('TITLE.Delete')"</td>
+              <td class="text-center">{{'TITLE.Watch'  | translate}}</td>
+              <td class="text-center">{{'TITLE.Count'  | translate}}</td>
+              <td class="text-center">{{'TITLE.ADD'  | translate}}</td>
+              <td class="text-center">{{'TITLE.Edit'  | translate}}</td>
+              <td class="text-center">{{'TITLE.Delete'  | translate}}</td>
             </tr>
             <tr>
-              <td [ngClass]="detectColor(access.accessWatchRow)" class="grid-row-ltr">"this.translate.instant('TITLE.Access_Watch_Row')" :<i
+              <td [ngClass]="detectColor(access.accessWatchRow)" class="grid-row-ltr">{{'TITLE.Access_Watch_Row'  | translate}} :<i
                   [ngClass]="access.accessWatchRow|boolclass"></i> </td>
-              <td [ngClass]="detectColor(access.accessCountRow)" class="grid-row-ltr">"this.translate.instant('TITLE.Access_Count_Row')" : <i
+              <td [ngClass]="detectColor(access.accessCountRow)" class="grid-row-ltr">{{'TITLE.Access_Count_Row'  | translate}} : <i
                   [ngClass]="access.accessCountRow|boolclass"></i></td>
-              <td [ngClass]="detectColor(access.accessAddRow)" class="grid-row-ltr">"this.translate.instant('TITLE.Access_Add_Row')": <i
+              <td [ngClass]="detectColor(access.accessAddRow)" class="grid-row-ltr">{{'TITLE.Access_Add_Row'  | translate}} : <i
                   [ngClass]="access.accessAddRow|boolclass"></i></td>
-              <td [ngClass]="detectColor(access.accessEditRow)" class="grid-row-ltr">"this.translate.instant('TITLE.Access_Edit_Row')" : <i
+              <td [ngClass]="detectColor(access.accessEditRow)" class="grid-row-ltr">{{'TITLE.Access_Edit_Row'  | translate}} : <i
                   [ngClass]="access.accessEditRow|boolclass"></i></td>
-              <td [ngClass]="detectColor(access.accessDeleteRow)" class="grid-row-ltr">"this.translate.instant('TITLE.Access_Delete_Row')" : <i
+              <td [ngClass]="detectColor(access.accessDeleteRow)" class="grid-row-ltr">{{'TITLE.Access_Delete_Row'  | translate}} : <i
                   [ngClass]="access.accessDeleteRow|boolclass"></i></td>
             </tr>
             <tr>
               <td [ngClass]="detectColor(access.accessWatchRowOtherCreatedBy)" class="grid-row-ltr">
-                "this.translate.instant('TITLE.Access_Watch_Row_Other_Created_By')" : <i [ngClass]="access.accessWatchRowOtherCreatedBy|boolclass"></i></td>
+                {{'TITLE.Access_Watch_Row_Other_Created_By'  | translate}} : <i [ngClass]="access.accessWatchRowOtherCreatedBy|boolclass"></i></td>
               <td [ngClass]="detectColor(access.accessCountRowOtherCreatedBy)" class="grid-row-ltr">
-                "this.translate.instant('TITLE.Access_Count_Row_Other_Created_By')" : <i [ngClass]="access.accessCountRowOtherCreatedBy|boolclass"></i></td>
+                {{'TITLE.Access_Count_Row_Other_Created_By'  | translate}} : <i [ngClass]="access.accessCountRowOtherCreatedBy|boolclass"></i></td>
               <td>-</td>
               <td [ngClass]="detectColor(access.accessEditRowOtherCreatedBy)" class="grid-row-ltr">
-                "this.translate.instant('TITLE.Access_Edit_Row_Other_Created_By')" : <i [ngClass]="access.accessEditRowOtherCreatedBy|boolclass"></i></td>
+                {{'TITLE.Access_Edit_Row_Other_Created_By'  | translate}} : <i [ngClass]="access.accessEditRowOtherCreatedBy|boolclass"></i></td>
               <td [ngClass]="detectColor(access.accessDeleteRowOtherCreatedBy)" class="grid-row-ltr">
-                "this.translate.instant('TITLE.Access_Delete_Row_Other_Created_By')" : <i [ngClass]="access.accessDeleteRowOtherCreatedBy|boolclass"></i></td>
+                {{'TITLE.Access_Delete_Row_Other_Created_By'  | translate}} : <i [ngClass]="access.accessDeleteRowOtherCreatedBy|boolclass"></i></td>
             </tr>
             <tr>
               <td [ngClass]="detectColor(access.accessWatchRowOtherSiteId)" class="grid-row-ltr">
-                "this.translate.instant('TITLE.Access_Watch_Row_Other_Site_Id')" : <i [ngClass]="access.accessWatchRowOtherSiteId|boolclass"></i></td>
+                {{'TITLE.Access_Watch_Row_Other_Site_Id'  | translate}} : <i [ngClass]="access.accessWatchRowOtherSiteId|boolclass"></i></td>
               <td [ngClass]="detectColor(access.accessCountRowOtherSiteId)" class="grid-row-ltr">
-                "this.translate.instant('TITLE.Access_Count_Row_Other_Site_Id')" : <i [ngClass]="access.accessCountRowOtherSiteId|boolclass"></i></td>
+                {{'TITLE.Access_Count_Row_Other_Site_Id'  | translate}} : <i [ngClass]="access.accessCountRowOtherSiteId|boolclass"></i></td>
               <td>-</td>
-              <td [ngClass]="detectColor(access.accessEditRowOtherSiteId)" class="grid-row-ltr">"this.translate.instant('TITLE.Access_Edit_Row_Other_Site_Id')"
+              <td [ngClass]="detectColor(access.accessEditRowOtherSiteId)" class="grid-row-ltr">{{'TITLE.Access_Edit_Row_Other_Site_Id'  | translate}}
                 : <i [ngClass]="access.accessEditRowOtherSiteId|boolclass"></i></td>
               <td>-</td>
             </tr>
             <tr>
               <td [ngClass]="detectColor(access.accessRowWatchInSharingCategory)" class="grid-row-ltr">
-                "this.translate.instant('TITLE.Access_Row_Watch_In_Sharing_Category')" : <i [ngClass]="access.accessRowWatchInSharingCategory|boolclass"></i>
+                {{'TITLE.Access_Row_Watch_In_Sharing_Category'  | translate}} : <i [ngClass]="access.accessRowWatchInSharingCategory|boolclass"></i>
               </td>
               <td>-</td>
               <td>-</td>
@@ -74,25 +74,25 @@
           <table class="table table-bordered"  *ngIf="bodyShow">
             <thead>
               <tr>
-                <td class="text-center">"this.translate.instant('TITLE.Field_Name')"</td>
-                <td class="text-center">"this.translate.instant('TITLE.Watch')"</td>
-                <td class="text-center">"this.translate.instant('TITLE.ADD')"</td>
-                <td class="text-center">"this.translate.instant('TITLE.Edit')"</td>
-                <td class="text-center">"this.translate.instant('TITLE.Search')"</td>
+                <td class="text-center">{{'TITLE.Field_Name'  | translate}}</td>
+                <td class="text-center">{{'TITLE.Watch'  | translate}}</td>
+                <td class="text-center">{{'TITLE.ADD'  | translate}}</td>
+                <td class="text-center">{{'TITLE.Edit'  | translate}}</td>
+                <td class="text-center">{{'TITLE.Search'  | translate}}</td>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of access.fieldsInfo">
                 <th class="text-center">{{item.fieldName}}</th>
-                <td [ngClass]="detectColor(item.accessWatchField)" class="grid-row-ltr">"this.translate.instant('TITLE.Access_Watch_Field')": <i [ngClass]="item.accessWatchField|boolclass"></i>
+                <td [ngClass]="detectColor(item.accessWatchField)" class="grid-row-ltr">{{'TITLE.Access_Watch_Field'  | translate}}: <i [ngClass]="item.accessWatchField|boolclass"></i>
                 </td>
-                <td [ngClass]="detectColor(item.accessAddField)" class="grid-row-ltr">"this.translate.instant('TITLE.Access_Add_Field')":
+                <td [ngClass]="detectColor(item.accessAddField)" class="grid-row-ltr">{{'TITLE.Access_Add_Field'  | translate}}:
                   <i [ngClass]="item.accessAddField|boolclass"></i>
                 </td>
-                <td [ngClass]="detectColor(item.accessEditField)" class="grid-row-ltr">"this.translate.instant('TITLE.Access_Edit_Field')":
+                <td [ngClass]="detectColor(item.accessEditField)" class="grid-row-ltr">{{'TITLE.Access_Edit_Field'  | translate}}:
                   <i [ngClass]="item.accessEditField|boolclass"></i>
                 </td>
-                <td [ngClass]="detectColor(item.accessSearchField)" class="grid-row-ltr">"this.translate.instant('TITLE.Access_Search_Field')",:
+                <td [ngClass]="detectColor(item.accessSearchField)" class="grid-row-ltr">{{'TITLE.Access_Search_Field'  | translate}}:
                   <i [ngClass]="item.accessSearchField|boolclass"></i>
                 </td>
               </tr>
@@ -104,7 +104,7 @@
             {{'TITLE.close' | translate}}
           </button>
           <button type="button" *ngIf="!bodyShow" class="btn btn btn-secondary" (click)="onActionMoreBottunClick()">
-            {{'TITLE.more'  | translate}}
+            {{'TITLE.More'  | translate}}
           </button>
           <button type="button" *ngIf="bodyShow" class="btn btn btn-secondary" (click)="onActionLessBottunClick()">
             {{'TITLE.inferior'  | translate}}

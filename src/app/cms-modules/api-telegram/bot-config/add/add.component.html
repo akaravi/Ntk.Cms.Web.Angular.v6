@@ -18,7 +18,7 @@
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
-        "this.translate.instant('TITLE.Record_Status_is')"<strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['RecordStatus']?.fieldTitle }}<strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- Title Field -->
@@ -31,7 +31,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
-        "this.translate.instant('TITLE.Title_is')" <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['Title']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- Username Field -->
@@ -44,7 +44,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Username.errors?.required">
-        "this.translate.instant('TITLE.Username_is')" <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['Username']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
@@ -58,7 +58,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ BotToken.value.length }} / 100</mat-hint>
       <mat-error *ngIf="BotToken.errors?.required">
-        "this.translate.instant('TITLE.Bot_Token_is')" <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['BotToken']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
@@ -72,7 +72,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ SecurityKey.value.length }} / 100</mat-hint>
       <mat-error *ngIf="SecurityKey.errors?.required">
-        "this.translate.instant('TITLE.Security_Key_is')"<strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['SecurityKey']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
@@ -87,7 +87,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ UrlWebhook.value.length }} / 100</mat-hint>
       <mat-error *ngIf="UrlWebhook.errors?.required">
-        "this.translate.instant('TITLE.Url_Webhook_is')"<strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['UrlWebhook']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- StatusWebhook Field -->
