@@ -460,9 +460,64 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     if (!this.dataModel.contracts) {
       this.dataModel.contracts = [];
     }
+
+    var accepted = false;
+    if (this.contractTypeSelected.hasSalePrice) {
+      if (this.contractDataModel.salePrice && this.contractDataModel.salePrice > 0)
+        accepted = true;
+      if (this.contractTypeSelected.salePriceAllowAgreement && this.contractDataModel.salePriceByAgreement)
+        accepted = true;
+
+      if (!accepted) {
+        const message = this.translate.instant('MESSAGE.Sales_amount_is_not_entered_correctly');
+        this.cmsToastrService.typeErrorSelected(message);
+        return;
+      }
+    }
+    accepted = false;
+    if (this.contractTypeSelected.hasRentPrice) {
+      if (this.contractDataModel.rentPrice && this.contractDataModel.rentPrice > 0)
+        accepted = true;
+      if (this.contractTypeSelected.rentPriceAllowAgreement && this.contractDataModel.rentPriceByAgreement)
+        accepted = true;
+
+      if (!accepted) {
+        const message = this.translate.instant('MESSAGE.Rent_amount_is_not_entered_correctly');
+        this.cmsToastrService.typeErrorSelected(message);
+        return;
+      }
+    }
+    accepted = false;
+    if (this.contractTypeSelected.hasPeriodPrice) {
+      if (this.contractDataModel.periodPrice && this.contractDataModel.periodPrice > 0)
+        accepted = true;
+      if (this.contractTypeSelected.periodPriceAllowAgreement && this.contractDataModel.periodPriceByAgreement)
+        accepted = true;
+
+      if (!accepted) {
+        const message = this.translate.instant('MESSAGE.Period_amount_is_not_entered_correctly');
+        this.cmsToastrService.typeErrorSelected(message);
+        return;
+      }
+    }
+    accepted = false;
+    if (this.contractTypeSelected.hasDepositPrice) {
+      if (this.contractDataModel.depositPrice && this.contractDataModel.depositPrice > 0)
+        accepted = true;
+      if (this.contractTypeSelected.depositPriceAllowAgreement && this.contractDataModel.depositPriceByAgreement)
+        accepted = true;
+
+      if (!accepted) {
+        const message = this.translate.instant('MESSAGE.Deposit_amount_is_not_entered_correctly');
+        this.cmsToastrService.typeErrorSelected(message);
+        return;
+      }
+    }
+
     this.dataModel.contracts.push(this.contractDataModel);
     this.contractDataModel = new EstateContractModel();
     this.optionTabledataSource.data = this.dataModel.contracts;
+    this.contractTypeSelected = null;
   }
   onActionOptionRemoveFromList(index: number): void {
     if (index < 0) {

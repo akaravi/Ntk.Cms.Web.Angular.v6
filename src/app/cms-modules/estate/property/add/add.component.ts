@@ -443,7 +443,6 @@ export class EstatePropertyAddComponent implements OnInit {
   onFormCancel(): void {
     // this.dialogRef.close({ dialogChangedDate: false });
     this.router.navigate(['/estate/property']);
-
   }
 
   onActionOptionAddToList(viewAlert: boolean = true): void {
