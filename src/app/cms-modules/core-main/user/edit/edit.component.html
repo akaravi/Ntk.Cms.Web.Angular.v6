@@ -1,7 +1,7 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
- <h4> {{'TITLE.Edit' | translate}}</h4>
+  <h4> {{'TITLE.Edit' | translate}}</h4>
   {{'TITLE.In_this_section_you_can_edit_the_user_profile' | translate}}
- <br>
+  <br>
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <!-- <div class="ntk-cms-html-card-header"> -->
@@ -18,7 +18,8 @@
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
           <mat-label> {{fieldsInfo['RecordStatus']?.fieldTitle}}</mat-label>
-          <mat-select [disabled]="!fieldsInfo['RecordStatus']?.accessEditField" placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+          <mat-select [disabled]="!fieldsInfo['RecordStatus']?.accessEditField"
+            placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
             name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
             required>
             <mat-option *ngFor="
@@ -87,9 +88,9 @@
         <!-- Mobile Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Mobile']?.accessWatchField">
           <mat-label> {{fieldsInfo['Mobile']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.mobile" name="dataModel.mobile" #Mobile type="text" class="input-Mobile"
-            [disabled]="!fieldsInfo['Mobile']?.accessEditField" placeholder="{{fieldsInfo['Mobile']?.fieldTitle}}"
-            minlength="3" maxlength="100" />
+          <input matInput [(ngModel)]="dataModel.mobile" name="dataModel.mobile" #Mobile type="text"
+            class="input-Mobile" [disabled]="!fieldsInfo['Mobile']?.accessEditField"
+            placeholder="{{fieldsInfo['Mobile']?.fieldTitle}}" minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.mobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.mobile = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -126,11 +127,6 @@
           <mat-datepicker touchUi #ExpireDate></mat-datepicker>
         </mat-form-field>
 
-
-
-
-
-
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
@@ -138,7 +134,8 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
-          <button type="button" mat-raised-button color="primary" (click)="onActionbuttonChangePassword()" *ngIf="this.tokenInfo.userId == this.dataModel.id || dataModelResult.access.accessEditRow" >
+          <button type="button" mat-raised-button color="primary" (click)="onActionbuttonChangePassword()"
+            *ngIf="this.tokenInfo.userId == this.dataModel.id || dataModelResult.access.accessEditRow">
             {{'AUTH.FORGOT.PASSWORD' | translate}}
           </button>
         </div>
@@ -289,12 +286,14 @@
         <!-- LinkResellerUserId Field -->
         <app-cms-user-selector [optionDisabled]="!fieldsInfo['LinkResellerUserId']?.accessEditField"
           [optionSelectForce]="dataModel.linkResellerUserId"
-          (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)" [optionPlaceholder]="this.translate.instant('TITLE.Representative_User')">
+          (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)"
+          [optionPlaceholder]="this.translate.instant('TITLE.Representative_User')">
         </app-cms-user-selector>
         <!-- LinkResellerSiteId Field -->
         <app-cms-site-selector [optionDisabled]="!fieldsInfo['LinkResellerSiteId']?.accessEditField"
           [optionSelectForce]="dataModel.linkResellerSiteId"
-          (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)" [optionPlaceholder]="this.translate.instant('TITLE.Representative_Site')">
+          (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)"
+          [optionPlaceholder]="this.translate.instant('TITLE.Representative_Site')">
         </app-cms-site-selector>
         <!-- ExpireLockAccount Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireLockAccount']?.accessWatchField">
@@ -335,8 +334,8 @@
 
 
         <mat-form-field class="ntk-full-width">
-          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+            aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
           <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.PHOTO_FILE' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
             type="text" placeholder="{{'TITLE.Icon_File_ID' | translate}}" (click)="fileManagerOpenForm = true" />
@@ -351,6 +350,9 @@
           [openFilemanagerButtonView]="false">
         </cms-file-manager>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onActionBackToParent()">
+            {{'ACTION.BACK' | translate}}
+          </button>
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>

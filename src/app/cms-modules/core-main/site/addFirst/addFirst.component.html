@@ -25,7 +25,7 @@
           <mat-label>{{'TITLE.Latin_title' | translate}}</mat-label>
           
           <input matInput [(ngModel)]="dataModel.subDomain" name="dataModel.subDomain" #SubDomain2 type="text"
-            (ngModelChange)="checkValidateDomain()" placeholder="{{'TITLE.Latin_title' | translate}}" minlength="3" maxlength="20" required   pattern="[a-zA-Z]{2,20}" />
+            (ngModelChange)="checkValidateDomain()" placeholder="{{'TITLE.Latin_title' | translate}}" minlength="3" maxlength="20" required />
             <mat-icon matSuffix *ngIf="dataModel.subDomain" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.subDomain = 'myname'">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>

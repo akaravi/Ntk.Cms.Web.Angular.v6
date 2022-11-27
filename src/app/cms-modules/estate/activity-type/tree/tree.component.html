@@ -12,7 +12,7 @@
         translate}}</button>
     <button *ngIf="dataModelResult.access.accessWatchRow" (click)="onActionReload()" type="button"
         class="btn btn-outline-secondary BTN-icon">
-        <mat-icon style="font-size: 20px;margin: -6px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+        <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
 </div>
@@ -22,7 +22,9 @@
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
             [ngStyle]="{'background': dataModelSelect.id?.length>0 && dataModelSelect?.id === node.id ? '#d3d3da' : '' }">
             <button mat-icon-button disabled></button>
-            <i [ngClass]="node.IconFont" [style.color]="node.IconColor" aria-hidden="true"></i> {{node.title}}
+            <i [ngClass]="node.iconFont" [style.color]="node.iconColor" aria-hidden="true"></i>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            {{node.title}}
         </mat-tree-node>
         <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
             <li>
@@ -34,7 +36,9 @@
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>
                     </button>
-                    <i [ngClass]="node.IconFont" [style.color]="node.IconColor" aria-hidden="true"></i> {{node.title}}
+                    <i [ngClass]="node.iconFont" [style.color]="node.iconColor" aria-hidden="true"></i>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    {{node.title}}
                 </div>
                 <ul [class.category-tree-invisible]="!treeControl.isExpanded(node)">
                     <ng-container matTreeNodeOutlet></ng-container>

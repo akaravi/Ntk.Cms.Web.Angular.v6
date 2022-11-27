@@ -130,10 +130,9 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     /** filter Category */
     if (this.categoryModelSelected && this.categoryModelSelected.id.length > 0) {
       const filterChild = new FilterDataModel();
-      let fastfilter = new FilterDataModel();
-      fastfilter.propertyName = 'LinkActivityTypeId';
-      fastfilter.value = this.categoryModelSelected.id;
-      filterChild.filters.push(fastfilter);
+      filterChild.propertyName = 'LinkActivityTypeId';
+      filterChild.value = this.categoryModelSelected.id;
+      filterModel.filters.push(filterChild);
     }
     /** filter Category */
     this.estatePropertyHistoryService.ServiceGetAllEditor(filterModel).subscribe({
