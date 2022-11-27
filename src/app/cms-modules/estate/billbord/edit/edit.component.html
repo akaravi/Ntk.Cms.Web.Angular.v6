@@ -39,8 +39,9 @@
       <!-- DescriptionHidden Field -->
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
         <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
-        <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden" #DescriptionHidden type="text"
-          placeholder="{{fieldsInfo['DescriptionHidden']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
+          #DescriptionHidden type="text" placeholder="{{fieldsInfo['DescriptionHidden']?.fieldTitle}}" minlength="1"
+          maxlength="500" rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.descriptionHidden = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -72,7 +73,8 @@
 
       <!-- LinkPropertyIds Field -->
       <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
-        [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessEditField" [optionPlaceholder]="this.translate.instant('TITLE.Property')"
+        [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessEditField"
+        [optionPlaceholder]="this.translate.instant('TITLE.Property')"
         [optionSelectForce]="this.dataModel.linkPropertyIds">
       </app-estate-property-autocomplete>
       <p>{{'MESSAGE.Selecting_specific_property_will_remove_all_search_fields' | translate}}</p>
@@ -92,13 +94,15 @@
       <!-- LinkPropertyTypeUsageIds Field -->
       <app-estate-property-type-usage-autocomplete (optionChange)="onActionSelectorSelectUsage($event)"
         *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageIds']?.accessEditField"
-        [optionSelectForce]="dataModel.linkPropertyTypeUsageIds" [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+        [optionSelectForce]="dataModel.linkPropertyTypeUsageIds"
+        [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
       </app-estate-property-type-usage-autocomplete>
 
       <!-- LinkPropertyTypeLanduseIds Field -->
       <app-estate-property-type-landuse-autocomplete (optionChange)="onActionSelectorSelectLanduse($event)"
         *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseIds']?.accessEditField"
-        [optionSelectForce]="dataModel.linkPropertyTypeLanduseIds" [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
+        [optionSelectForce]="dataModel.linkPropertyTypeLanduseIds"
+        [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
       </app-estate-property-type-landuse-autocomplete>
 
@@ -106,11 +110,13 @@
       <!-- LinkContractTypeIds Field -->
       <app-estate-contract-type-autocomplete (optionChange)="onActionSelectorContarctType($event)"
         *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkContractTypeIds']?.accessEditField"
-        [optionSelectForce]="dataModel.linkContractTypeIds" [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
+        [optionSelectForce]="dataModel.linkContractTypeIds"
+        [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
       </app-estate-contract-type-autocomplete>
       <!-- linkCoreCurrencyId Field -->
       <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
-        (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
+        (optionChange)="onActionSelectCurrency($event)"
+        [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
       </app-cms-currency-selector>
       <!-- LinkLocationIds Field -->
       <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" *ngIf="!LinkPropertyIdsInUse"
@@ -126,9 +132,10 @@
       *ngIf="dataModel?.urlViewContentQRCodeBase64?.length>0 && dataModel?.urlViewContent?.length>0">
 
       <a href="{{dataModel.urlViewContent}}" target="_blank">
-        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="300px" width="300px">
+        <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="300px"
+          width="300px">
       </a>
-      <span class="navi-icon" [cdkCopyToClipboard]="dataModel.urlViewContent" (click)="onActionCopied()">
+      <span class="navi-icon pointer" [cdkCopyToClipboard]="dataModel.urlViewContent" (click)="onActionCopied()">
         <i class="flaticon2-copy"></i></span>
 
       <h5 style="text-align: right;">{{'TITLE.DESCRIPTION' | translate}}:</h5>
@@ -136,15 +143,18 @@
         {{'TITLE.You_can_view_the_output_of_your_billboard' | translate}}
       </p>
       <p dir="rtl" style="text-align: right;" style="font-size: 17px;">
-        {{'TITLE.In_the_title_section_you_can_edit_the_title_of_your_billboard_and_write_a_description_for_it' | translate}}
+        {{'TITLE.In_the_title_section_you_can_edit_the_title_of_your_billboard_and_write_a_description_for_it' |
+        translate}}
         <br>
-        {{'TITLE.In_the_next_section_you_can_set_the_speed_of_scrolling_the_page_and_reloading_the_page_every_minute_and_choose_a_picture_for_it' | translate}} 
+        {{'TITLE.In_the_next_section_you_can_set_the_speed_of_scrolling_the_page_and_reloading_the_page_every_minute_and_choose_a_picture_for_it'
+        | translate}}
         <br>
         {{'TITLE.In_the_next_section_you_can_see_your_display_content_for_the_billboard' | translate}}
-                <br>
-                {{'TITLE.You_can_narrow_your_search_by_filling_in_any_of_the_fields' | translate}}
         <br>
-        {{'TITLE.Finally_by_clicking_on_the_view_option_you_can_view_the_ads_you_want_and_create_your_own_billboard_by_clicking_on_the_save_option' | translate}}
+        {{'TITLE.You_can_narrow_your_search_by_filling_in_any_of_the_fields' | translate}}
+        <br>
+        {{'TITLE.Finally_by_clicking_on_the_view_option_you_can_see_the_advertisements_you_want_and_by_clicking_on_the_save_option_you_can_create_your_own_billboard'
+        | translate}}
       </p>
       <hr>
       <app-cms-qdoc [optionUrl]="dataModel.urlViewContent"></app-cms-qdoc>
@@ -158,10 +168,12 @@
           <button type="button" (click)="onFormCancel()" class="btn btn-light BTN-text">
             <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
           </button>
-          <button type="submit" (click)="onFormSubmit()" class="btn btn-success BTN-text" [disabled]="!vform.form.valid">
+          <button type="submit" (click)="onFormSubmit()" class="btn btn-success BTN-text"
+            [disabled]="!vform.form.valid">
             <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
           </button>
-          <button type="button" (click)="onFormLoadResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 ">
+          <button type="button" (click)="onFormLoadResult()" class="btn btn-info BTN-text"
+            *ngIf="dataModel?.id?.length >0 ">
             <i class="ft-x"></i> {{'ACTION.VIEW' | translate}}
           </button>
         </div>
