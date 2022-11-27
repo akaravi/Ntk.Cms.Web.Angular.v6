@@ -82,35 +82,35 @@
       <!-- accessDeleteRow Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.accessDeleteRow" *ngIf="fieldsInfo['AccessDeleteRow']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessDeleteRow']?.accessEditField" name="dataModel.accessDeleteRow">
-        {{'TITLE.Access_Delete_Row' | translate}}
+        {{fieldsInfo['AccessDeleteRow']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">
       <!-- accessWatchRow Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRow" *ngIf="fieldsInfo['AccessWatchRow']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessWatchRow']?.accessEditField" name="dataModel.accessWatchRow">
-        {{'TITLE.Access_Watch_Row' | translate}}
+        {{fieldsInfo['AccessWatchRow']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">
       <!-- accessCountRow Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.accessCountRow" *ngIf="fieldsInfo['AccessCountRow']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessCountRow']?.accessEditField" name="dataModel.accessCountRow">
-        {{'TITLE.Access_Count_Row' | translate}}
+        {{fieldsInfo['AccessCountRow']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">
       <!-- accessEditRow Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.accessEditRow" *ngIf="fieldsInfo['AccessEditRow']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessEditRow']?.accessEditField" name="dataModel.accessEditRow">
-        {{'TITLE.Access_Edit_Row' | translate}}
+        {{fieldsInfo['AccessEditRow']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">
       <!-- accessAddRow Field -->
       <mat-slide-toggle [(ngModel)]="dataModel.accessAddRow" *ngIf="fieldsInfo['AccessAddRow']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessAddRow']?.accessEditField" name="dataModel.accessAddRow">
-        {{'TITLE.Access_Add_Row' | translate}}
+        {{fieldsInfo['AccessAddRow']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">
@@ -118,7 +118,7 @@
       <mat-slide-toggle [(ngModel)]="dataModel.accessExportFile"
         *ngIf="fieldsInfo['AccessExportFile']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessExportFile']?.accessEditField" name="dataModel.accessExportFile">
-        {{'TITLE.Access_Export_File' | translate}}
+        {{fieldsInfo['AccessExportFile']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 
@@ -128,7 +128,7 @@
         *ngIf="fieldsInfo['AccessWatchRowOtherSiteId']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessWatchRowOtherSiteId']?.accessEditField"
         name="dataModel.accessWatchRowOtherSiteId">
-        {{'TITLE.Access_Watch_Row_Other_Site_Id' | translate}}
+        {{fieldsInfo['AccessWatchRowOtherSiteId']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">
@@ -137,7 +137,7 @@
         *ngIf="fieldsInfo['AccessWatchRowOtherCreatedBy']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessWatchRowOtherCreatedBy']?.accessEditField"
         name="dataModel.accessWatchRowOtherCreatedBy">
-        {{'TITLE.Access_Watch_Row_Other_Created_By' | translate}}
+        {{fieldsInfo['AccessWatchRowOtherCreatedBy']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">
@@ -146,7 +146,7 @@
         *ngIf="fieldsInfo['AccessCountRowOtherSiteId']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessCountRowOtherSiteId']?.accessEditField"
         name="dataModel.accessCountRowOtherSiteId">
-        {{'TITLE.Access_Count_Row_Other_Site_Id' | translate}}
+        {{fieldsInfo['AccessCountRowOtherSiteId']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <div class="ntk-full-width">
@@ -155,7 +155,7 @@
         *ngIf="fieldsInfo['AccessCountRowOtherCreatedBy']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessCountRowOtherCreatedBy']?.accessEditField"
         name="dataModel.accessCountRowOtherCreatedBy">
-        {{'TITLE.Access_Count_Row_Other_Created_By' | translate}}
+        {{fieldsInfo['AccessCountRowOtherCreatedBy']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 
@@ -164,7 +164,7 @@
       <mat-slide-toggle [(ngModel)]="dataModel.accessEditRowOtherSiteId"
         *ngIf="fieldsInfo['AccessEditRowOtherSiteId']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessEditRowOtherSiteId']?.accessEditField" name="dataModel.accessEditRowOtherSiteId">
-        {{'TITLE.Access_Edit_Row_Other_Site_Id' | translate}}
+        {{fieldsInfo['AccessEditRowOtherSiteId']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 
@@ -174,7 +174,7 @@
         *ngIf="fieldsInfo['AccessEditRowOtherCreatedBy']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessEditRowOtherCreatedBy']?.accessEditField"
         name="dataModel.accessEditRowOtherCreatedBy">
-        {{'TITLE.Access_Edit_Row_Other_Created_By' | translate}}
+        {{fieldsInfo['AccessEditRowOtherCreatedBy']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 
@@ -184,7 +184,7 @@
         *ngIf="fieldsInfo['AccessDeleteRowOtherCreatedBy']?.accessWatchField"
         [disabled]="!fieldsInfo['AccessDeleteRowOtherCreatedBy']?.accessEditField"
         name="dataModel.accessDeleteRowOtherCreatedBy">
-        {{'TITLE.Access_Delete_Row_Other_Created_By' | translate}}
+        {{fieldsInfo['AccessDeleteRowOtherCreatedBy']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 

@@ -95,6 +95,7 @@ export class CoreUserSupportAccessAddComponent implements OnInit {
         next: (ret) => {
           if (ret.isSuccess) {
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+            console.log(this.fieldsInfo);
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }

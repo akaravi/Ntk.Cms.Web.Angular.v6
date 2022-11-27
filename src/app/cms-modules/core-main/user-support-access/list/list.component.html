@@ -94,7 +94,7 @@
       </ng-container>
       <!-- accessWatchRow Column -->
       <ng-container matColumnDef="AccessWatchRow">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.Access_Watch_Row' | translate}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AccessWatchRow']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"><i [ngClass]="row.accessWatchRow | boolclass"></i> </mat-cell>
       </ng-container>
