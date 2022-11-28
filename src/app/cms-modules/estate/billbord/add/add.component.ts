@@ -105,7 +105,7 @@ export class EstateBillboardAddComponent implements OnInit {
           this.DataGetOneContent();
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-          this.router.navigate(['/estate/customer-order/edit', ret.item.id]);
+          this.router.navigate(['/estate/billbord/edit', ret.item.id]);
 
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
