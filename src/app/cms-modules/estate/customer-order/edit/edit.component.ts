@@ -308,7 +308,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
         });
       });
     // ** Save Value */
-    if (this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus == EnumRecordStatus.Available && this.dataModel.recordStatus != this.lastRecordStatus) {
+    if (this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus == EnumRecordStatus.Available ) {
       const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
         // height: '90%',
         data: { model: this.dataModel }

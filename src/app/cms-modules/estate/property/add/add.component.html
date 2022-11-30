@@ -79,15 +79,16 @@
             minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
-            <mat-icon matSuffix class=" info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong>
-          </mat-hint>
-          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-          <mat-error *ngIf="Title.errors?.required">
-            {{fieldsInfo['Title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
+          <mat-icon matSuffix *ngIf="dataModel.title" (click)="onActionbuttonQuickListSearchTitle()">find_replace</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class=" info-field-icon">info</mat-icon>
+              <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+            <mat-error *ngIf="Title.errors?.required">
+              {{fieldsInfo['Title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+            </mat-error>
         </mat-form-field>
         <!-- CaseCode Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['CaseCode']?.accessWatchField">
@@ -235,7 +236,8 @@
         <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateUser($event)"
           [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessAddField"
-          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
+          [optionSelectForce]="dataModel.linkEstateUserId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
         </app-estate-account-user-selector>
 
         <!-- AboutAgentMobile Field -->
@@ -280,6 +282,8 @@
             placeholder="{{fieldsInfo['AboutCustomerMobile']?.fieldTitle}}" minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.aboutCustomerMobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.aboutCustomerMobile = ''">close</mat-icon>
+            <mat-icon matSuffix *ngIf="dataModel.aboutCustomerMobile"
+            (click)="onActionbuttonQuickListSearchCustomerMobile()">find_replace</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -297,6 +301,8 @@
             placeholder="{{fieldsInfo['AboutCustomerTel']?.fieldTitle}}" minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.aboutCustomerTel = ''">close</mat-icon>
+            <mat-icon matSuffix *ngIf="dataModel.aboutCustomerTel" (click)="onActionbuttonQuickListSearchCustomerTel()">
+              find_replace</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>

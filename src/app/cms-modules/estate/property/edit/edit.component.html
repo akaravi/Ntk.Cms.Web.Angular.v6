@@ -108,7 +108,10 @@
             minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.title" (click)="onActionbuttonQuickListSearchTitle()">find_replace
+          </mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
+
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong>
@@ -118,6 +121,7 @@
             {{fieldsInfo['Title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
+
         <!-- CaseCode Field -->
         <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['CaseCode']?.accessWatchField">
           <mat-label>{{fieldsInfo['CaseCode']?.fieldTitle}}</mat-label>
@@ -289,24 +293,10 @@
         <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateUser($event)"
           [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessEditField"
-          [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
+          [optionSelectForce]="dataModel.linkEstateUserId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
         </app-estate-account-user-selector>
 
-        <!-- AboutAgentTel Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutAgentTel']?.accessWatchField">
-          <mat-label>{{fieldsInfo['AboutAgentTel']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.aboutAgentTel" name="dataModel.aboutAgentTel" class="input-Mobile"
-            #AboutAgentTel type="text" disabled="{{!fieldsInfo['AboutAgentTel']?.accessEditField}}"
-            placeholder="{{fieldsInfo['AboutAgentTel']?.fieldTitle}}" minlength="0" maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.aboutAgentTel" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.aboutAgentTel = ''">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
-            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['AboutAgentTel']?.FieldDescription}}</strong>
-          </mat-hint>
-          <mat-hint align="end">{{ AboutAgentTel.value.length }} / 100</mat-hint>
-        </mat-form-field>
         <!-- AboutAgentMobile Field -->
         <mat-form-field class="ntk-full-width " *ngIf="fieldsInfo['AboutAgentMobile']?.accessWatchField">
           <mat-label>{{fieldsInfo['AboutAgentMobile']?.fieldTitle}}</mat-label>
@@ -324,22 +314,24 @@
           <mat-hint align="end">{{ AboutAgentMobile.value.length }} / 100</mat-hint>
         </mat-form-field>
 
-        <!-- AboutCustomerTel Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutCustomerTel']?.accessWatchField">
-          <mat-label>{{fieldsInfo['AboutCustomerTel']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.aboutCustomerTel" name="dataModel.aboutCustomerTel"
-            class="input-Mobile" #AboutCustomerTel type="text"
-            disabled="{{!fieldsInfo['AboutCustomerTel']?.accessEditField}}"
-            placeholder="{{fieldsInfo['AboutCustomerTel']?.fieldTitle}}" minlength="0" maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.aboutCustomerTel = ''">close</mat-icon>
+        <!-- AboutAgentTel Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutAgentTel']?.accessWatchField">
+          <mat-label>{{fieldsInfo['AboutAgentTel']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.aboutAgentTel" name="dataModel.aboutAgentTel" class="input-Mobile"
+            #AboutAgentTel type="text" disabled="{{!fieldsInfo['AboutAgentTel']?.accessEditField}}"
+            placeholder="{{fieldsInfo['AboutAgentTel']?.fieldTitle}}" minlength="0" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.aboutAgentTel" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.aboutAgentTel = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['AboutCustomerTel']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['AboutAgentTel']?.FieldDescription}}</strong>
           </mat-hint>
-          <mat-hint align="end">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
+          <mat-hint align="end">{{ AboutAgentTel.value.length }} / 100</mat-hint>
         </mat-form-field>
+
+
+
         <!-- AboutCustomerMobile Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutCustomerMobile']?.accessWatchField">
           <mat-label>{{fieldsInfo['AboutCustomerMobile']?.fieldTitle}}</mat-label>
@@ -349,7 +341,10 @@
             placeholder="{{fieldsInfo['AboutCustomerMobile']?.fieldTitle}}" minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.aboutCustomerMobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.aboutCustomerMobile = ''">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.aboutCustomerMobile"
+            (click)="onActionbuttonQuickListSearchCustomerMobile()">find_replace</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
+
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutCustomerMobile']?.FieldDescription}}</strong>
@@ -357,8 +352,25 @@
           <mat-hint align="end">{{ AboutCustomerMobile.value.length }} / 100</mat-hint>
         </mat-form-field>
 
+        <!-- AboutCustomerTel Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutCustomerTel']?.accessWatchField">
+          <mat-label>{{fieldsInfo['AboutCustomerTel']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.aboutCustomerTel" name="dataModel.aboutCustomerTel"
+            class="input-Mobile" #AboutCustomerTel type="text"
+            disabled="{{!fieldsInfo['AboutCustomerTel']?.accessEditField}}"
+            placeholder="{{fieldsInfo['AboutCustomerTel']?.fieldTitle}}" minlength="0" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.aboutCustomerTel = ''">close</mat-icon>
+          <mat-icon matSuffix *ngIf="dataModel.aboutCustomerTel" (click)="onActionbuttonQuickListSearchCustomerTel()">
+            find_replace</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
 
-
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['AboutCustomerTel']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
+        </mat-form-field>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -788,7 +800,8 @@
           <div class="col-md-6 col-sm-6 col-xs-9" height="300px" width="300px" style="float: left; text-align: center;">
             <div *ngIf="dataModel?.urlViewContentQRCodeBase64?.length>0 && dataModel?.urlViewContent?.length>0">
               <a href="{{dataModel.urlViewContent}}" target="_blank">
-                <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}" height="200px" width="200px">
+                <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}"
+                  height="200px" width="200px">
               </a>
               <span class="navi-icon" [cdkCopyToClipboard]="dataModel.urlViewContent" (click)="onActionCopied()">
                 <i class="flaticon2-copy"></i></span>

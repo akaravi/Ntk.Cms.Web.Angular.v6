@@ -48,6 +48,7 @@ import { Subscription } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EstatePropertyActionComponent } from '../action/action.component';
 import { EstatePropertyExpertPriceInquiryListComponent } from '../../property-expert-price/inquiry-list/inquiry-list.component';
+import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
 @Component({
   selector: 'app-estate-property-add',
   templateUrl: './add.component.html',
@@ -660,5 +661,60 @@ export class EstatePropertyAddComponent implements OnInit {
       }
     });
   }
-
+  onActionbuttonQuickListSearchTitle(): void {
+    if (!this.dataModel || !this.dataModel.title || this.dataModel.title.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
+      height: '90%',
+      data: { searchTitle: this.dataModel.title }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
+  }
+  onActionbuttonQuickListSearchCustomerTel(): void {
+    if (!this.dataModel || !this.dataModel.aboutAgentTel || this.dataModel.aboutAgentTel.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
+      height: '90%',
+      data: { searchCustomerTel: this.dataModel.aboutAgentTel }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
+  }
+  onActionbuttonQuickListSearchCustomerMobile(): void {
+    if (!this.dataModel || !this.dataModel.aboutCustomerMobile || this.dataModel.aboutCustomerMobile.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
+      height: '90%',
+      data: { searchCustomerTel: this.dataModel.aboutCustomerMobile }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
+  }
+  onActionbuttonQuickListSearchCaseCode(): void {
+    if (!this.dataModel || !this.dataModel.caseCode || this.dataModel.caseCode.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
+      height: '90%',
+      data: { searchCaseCode: this.dataModel.caseCode }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
+  }
 }

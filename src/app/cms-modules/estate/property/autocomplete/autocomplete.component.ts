@@ -67,9 +67,17 @@ export class EstatePropertyCompleteComponent implements OnInit {
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
     filteModel.filters.push(filter);
-    if (text && typeof +text === 'string' && +text > 0) {
+    if (text && typeof text === 'string' ) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
+      filter.value = text;
+      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+      filter.clauseType = EnumClauseType.Or;
+      filteModel.filters.push(filter);
+    }
+    if (text && typeof +text === 'number' && +text > 0) {
+      filter = new FilterDataModel();
+      filter.propertyName = 'caseCode';
       filter.value = text;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
       filter.clauseType = EnumClauseType.Or;

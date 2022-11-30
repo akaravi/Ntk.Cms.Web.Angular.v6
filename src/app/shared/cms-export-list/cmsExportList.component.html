@@ -1,4 +1,4 @@
-<div *ngIf="optionsData.data.show" class="alert alert-primary">
+<div *ngIf="optionsData.data.show" class="alert alert-info">
   <!-- FileType Field -->
   <mat-form-field class="ntk-full-width">
     <mat-select placeholder="{{'TITLE.Output_file_format' | translate}}" [(ngModel)]="filterModel.exportFile.fileType"
@@ -67,7 +67,7 @@
     </mat-error>
   </mat-form-field>
   <button (click)="onSubmit()" type="button" class="btn btn-secondary BTN-text">{{'ACTION.FILE_CREATION' |translate}}</button>
-  <mat-list>
+  <mat-list *ngIf="modelData&& modelData.size>0">
     <div mat-subheader style="font-size: 20px;">{{'TITLE.download_list' | translate}} </div>
     <mat-list-item *ngFor="let folder of modelData| keyvalue">
       <a class="text-white" href="{{folder.value}}" target="_blank"><mat-icon mat-list-icon>download</mat-icon></a>

@@ -1,6 +1,7 @@
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { Component, OnInit, Input, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import {
+  CoreLocationModel,
   CoreLocationService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
@@ -30,14 +31,14 @@ export class CmsLocationCompleteComponent implements OnInit {
     public service: CoreLocationService,
     private cmsToastrService: CmsToastrService,
     public translate: TranslateService,
-    ) {
-      this.filteredOptions = this.tagCtrl.valueChanges.pipe(
-        startWith(null),
-        debounceTime(400),
-        switchMap(val => {
-          return this.filter(val || '')
-        })
-      );
+  ) {
+    this.filteredOptions = this.tagCtrl.valueChanges.pipe(
+      startWith(null),
+      debounceTime(400),
+      switchMap(val => {
+        return this.filter(val || '')
+      })
+    );
   }
   @Input() optionDisabled = false;
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
@@ -56,7 +57,21 @@ export class CmsLocationCompleteComponent implements OnInit {
   addOnBlur = true;
   ngOnInit(): void {
   }
-
+ 
+  displayOption(model?: CoreLocationModel): string | undefined {
+    if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0
+      && model.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.title.length > 0
+      && model.virtual_Parent.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.virtual_Parent.title.length > 0) {
+      return model.virtual_Parent.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.titleML + ' > ' + model.titleML;
+    }
+    if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0 && model.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.title.length > 0) {
+      return model.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.titleML + ' > ' + model.titleML;
+    }
+    if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0) {
+      return model.virtual_Parent.titleML + ' > ' + model.titleML;
+    }
+    return model ? (model.titleML) : undefined;
+  }
   // filter and return the values
   filter(text: string): Observable<chipModel[]> {
 
@@ -79,7 +94,10 @@ export class CmsLocationCompleteComponent implements OnInit {
     }
     return this.service.ServiceGetAll(filteModel).pipe(
       map((data) => {
-        this.tagLastDataModel = data.listItems.map(val => ({ display: val.titleML, value: val.id }));
+        this.tagLastDataModel = data.listItems.map(val => ({
+          display: this.displayOption(val)//val.titleML
+          , value: val.id
+        }));
         return this.tagLastDataModel;
       })
     );
@@ -88,10 +106,10 @@ export class CmsLocationCompleteComponent implements OnInit {
 
   checkIndex(val: number): number {
     var index = 0;
-    var ret=-1;
+    var ret = -1;
     this.tagDataModel.forEach(element => {
       if (element.value == val) {
-        ret= index;
+        ret = index;
       }
       index++;
     });
@@ -99,11 +117,11 @@ export class CmsLocationCompleteComponent implements OnInit {
   }
   add(event: MatChipInputEvent): void {
     // Add our item
-    var val:chipModel;
+    var val: chipModel;
     if (event.value) {
       this.tagLastDataModel.forEach(element => {
         if ((element.display == event.value || element.value + "" == event.value)) {
-          val=element;
+          val = element;
         }
       });
     }
@@ -167,7 +185,7 @@ export class CmsLocationCompleteComponent implements OnInit {
           next.listItems.forEach(val => {
             this.tagDataModel.push({
               value: val.id,
-              display: val.titleML
+              display: this.displayOption(val) //val.titleML
             });
           });
         } else {
@@ -177,7 +195,7 @@ export class CmsLocationCompleteComponent implements OnInit {
       },
         (error) => {
 
-          
+
           this.cmsToastrService.typeErrorGetAll(error);
         })).toPromise();
   }

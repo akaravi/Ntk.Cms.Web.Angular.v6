@@ -18,6 +18,7 @@ import {
   EstatePropertyDetailValueModel,
   CoreCurrencyModel,
   EnumManageUserAccessDataTypes,
+  EnumRecordStatus,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -36,6 +37,7 @@ import { EstatePropertyListComponent } from '../../property/list/list.component'
 import { HttpClient } from '@angular/common/http';
 import { EstateCustomerOrderActionComponent } from '../action/action.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-estate-customer-order-add',
@@ -53,6 +55,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
+    public tokenHelper: TokenHelper,
     public http: HttpClient,
     public dialog: MatDialog,
     public translate: TranslateService,
@@ -329,7 +332,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
         });
       });
     // ** Save Value */
-
+    if (this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus == EnumRecordStatus.Available ){
     const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
       // height: '90%',
       data: { model: this.dataModel }
@@ -342,6 +345,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
         this.formInfo.formSubmitAllow = false;
       }
     });
+  }
   }
 
   onFormCancel(): void {
