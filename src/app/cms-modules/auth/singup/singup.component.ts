@@ -29,7 +29,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  Roulaccespt = false;
+  Roulaccespt = '';
   isLoading$: Observable<boolean>;
   captchaModel: CaptchaModel = new CaptchaModel();
   expireDate: string;

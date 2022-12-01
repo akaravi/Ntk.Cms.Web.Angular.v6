@@ -28,6 +28,7 @@ export class SingupRuleComponent implements OnInit {
       .subscribe({
         next: (ret) => {
           if (ret.isSuccess) {
+            // console.log(ret);
             this.dataModelResult = ret;
           } else {
             this.cmsToastrService.typeErrorGetOne(ret.errorMessage);

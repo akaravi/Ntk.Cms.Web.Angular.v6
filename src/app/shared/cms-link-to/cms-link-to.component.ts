@@ -119,7 +119,6 @@ export class CmsLinkToComponent implements OnInit {
     this.loadingAction.Start(pName);
     this.formInfo.formAlert = '';
     this.formInfo.formError = '';
-    console.log(this.dataModel);
     this.smsMainApiPathService.ServiceSendMessage(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
