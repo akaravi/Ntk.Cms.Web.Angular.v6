@@ -4,8 +4,10 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { FormInfoModel, SmsApiSendMessageDtoModel, SmsMainApiNumberModel, SmsMainApiPathModel, SmsMainApiPathService } from 'ntk-cms-api';
+import { FormInfoModel, SmsApiSendMessageDtoModel, SmsMainApiNumberModel, SmsMainApiPathModel, SmsMainApiPathService, TokenInfoModel } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { environment } from 'src/environments/environment';
@@ -25,6 +27,7 @@ export class CmsLinkToComponent implements OnInit {
     public http: HttpClient,
     private router: Router,
     public translate: TranslateService,
+    private tokenHelper: TokenHelper,
   ) {
     if (data) {
       this.optionTitle = data.title;
@@ -36,6 +39,8 @@ export class CmsLinkToComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   loadingAction = new ProgressSpinnerModel();
+  tokenInfo = new TokenInfoModel();
+  
   
   @ViewChild('Message') message: ElementRef;
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -43,9 +48,20 @@ export class CmsLinkToComponent implements OnInit {
   @Input() optionurlViewContentQRCodeBase64 = '';
   @Input() optionurlViewContent = '';
   QDocModel: any = {};
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.dataModel.message = `${this.optionTitle}
-    ${this.optionurlViewContent}`
+    ${this.optionurlViewContent}`;
+
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.tokenInfo = next;
+    });
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionSelectApiNumber(model: SmsMainApiNumberModel): void {
     if (model && model.id.length > 0) {
@@ -103,6 +119,7 @@ export class CmsLinkToComponent implements OnInit {
     this.loadingAction.Start(pName);
     this.formInfo.formAlert = '';
     this.formInfo.formError = '';
+    console.log(this.dataModel);
     this.smsMainApiPathService.ServiceSendMessage(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
