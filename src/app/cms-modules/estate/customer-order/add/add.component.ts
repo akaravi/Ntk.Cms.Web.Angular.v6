@@ -19,6 +19,7 @@ import {
   CoreCurrencyModel,
   EnumManageUserAccessDataTypes,
   EnumRecordStatus,
+  EstateCustomerCategoryModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -348,6 +349,14 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   }
   }
 
+  onActionSelectorSelect(model: EstateCustomerCategoryModel | null): void {
+    if (!model || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.dataModel.linkEstateCustomerCategoryId = model.id;
+  }
   onFormCancel(): void {
     this.router.navigate(['/estate/customer-order/']);
   }

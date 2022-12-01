@@ -69,7 +69,9 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<EstateCustomerOrderModel> = [];
   tableRowSelected: EstateCustomerOrderModel = new EstateCustomerOrderModel();
   tableSource: MatTableDataSource<EstateCustomerOrderModel> = new MatTableDataSource<EstateCustomerOrderModel>();
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
+  categoryModelSelected: EstateCustomerOrderModel;
+
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkSiteId',
@@ -106,6 +108,14 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
+    /** filter Category */
+    if (this.categoryModelSelected && this.categoryModelSelected.id.length > 0) {
+      const filterChild = new FilterDataModel();
+      filterChild.propertyName = 'linkEstateCustomerCategoryId';
+      filterChild.value = this.categoryModelSelected.id;
+      filterModel.filters.push(filterChild);
+    }
+    /** filter Category */
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
@@ -171,8 +181,8 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-    
-    this.router.navigate(['/estate/customer-order/add-copy',this.tableRowSelected.id]);
+
+    this.router.navigate(['/estate/customer-order/add-copy', this.tableRowSelected.id]);
   }
   onActionbuttonEditRow(model: EstateCustomerOrderModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
@@ -321,6 +331,11 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       }
     }
     );
+  }
+  onActionSelectorSelect(model: EstateCustomerOrderModel | null): void {
+    this.filteModelContent = new FilterModel();
+    this.categoryModelSelected = model;
+    this.DataGetAll();
   }
   onActionbuttonReload(): void {
     this.DataGetAll();

@@ -41,7 +41,8 @@ import {
   EstateAccountAgencyAdsService,
   EstatePropertyProjectService,
   EstatePropertyExpertPriceService,
-  EstateCustomerOrderResultService
+  EstateCustomerOrderResultService,
+  EstateCustomerCategoryService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -161,6 +162,10 @@ import { EstateCustomerOrderResultListComponent } from './customer-order-result/
 import { EstateCustomerOrderResultViewComponent } from './customer-order-result/view/view.component';
 import { EstateCustomerOrderActionComponent } from './customer-order/action/action.component';
 import { EstatePropertyQuickListComponent } from './property/quick-list/quick-list.component';
+import { EstateCustomerCategoryAddComponent } from './customer-category/add/add.component';
+import { EstateCustomerCategoryEditComponent } from './customer-category/edit/edit.component';
+import { EstateCustomerCategorySelectorComponent } from './customer-category/selector/selector.component';
+import { EstateCustomerCategoryTreeComponent } from './customer-category/tree/tree.component';
 
 @NgModule({
   declarations: [
@@ -293,6 +298,12 @@ import { EstatePropertyQuickListComponent } from './property/quick-list/quick-li
     EstateAccountAgencyAdsListComponent,
     EstateAccountAgencyAdsSaleListComponent,
     EstateAccountAgencyAdsSalePaymentComponent,
+    /* */
+    EstateCustomerCategoryAddComponent,
+    EstateCustomerCategoryEditComponent,
+    EstateCustomerCategorySelectorComponent,
+    EstateCustomerCategoryTreeComponent,
+    /* */
 
   ],
   imports: [
@@ -328,6 +339,7 @@ import { EstatePropertyQuickListComponent } from './property/quick-list/quick-li
     EstateContractTypeService,
     EstateEnumService,
     EstateBillboardService,
+    EstateCustomerCategoryService,
     EstateCustomerOrderService,
     EstateCustomerOrderResultService,
     EstatePropertyService,

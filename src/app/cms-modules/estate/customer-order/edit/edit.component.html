@@ -25,6 +25,10 @@
           RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
+          <!-- LinkCategoryId Field -->
+    <app-estate-customer-category-selector (optionChange)="onActionSelectorSelect($event)"
+    [optionSelectForce]="dataModel.linkEstateCustomerCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+  </app-estate-customer-category-selector>
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
