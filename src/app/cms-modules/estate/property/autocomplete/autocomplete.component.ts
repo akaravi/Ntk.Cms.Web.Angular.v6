@@ -79,7 +79,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
       filter = new FilterDataModel();
       filter.propertyName = 'caseCode';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
       filter.clauseType = EnumClauseType.Or;
       filteModel.filters.push(filter);
     }
