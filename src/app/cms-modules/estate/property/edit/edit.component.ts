@@ -438,7 +438,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
           this.dataModel = result.model;
           this.DataEdit();
         } else {
-          this.formInfo.formSubmitAllow = false;
+          this.formInfo.formSubmitAllow = true;
         }
       });
     } else {

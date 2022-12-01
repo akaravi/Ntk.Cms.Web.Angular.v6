@@ -434,7 +434,7 @@ export class EstatePropertyAddComponent implements OnInit {
         this.dataModel = result.model;
         this.DataAdd();
       } else {
-        this.formInfo.formSubmitAllow = false;
+        this.formInfo.formSubmitAllow = true;
       }
     });
 

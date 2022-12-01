@@ -319,7 +319,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
           this.dataModel = result.model;
           this.DataEditContent();
         } else {
-          this.formInfo.formSubmitAllow = false;
+          this.formInfo.formSubmitAllow = true;
         }
       });
     } else {
