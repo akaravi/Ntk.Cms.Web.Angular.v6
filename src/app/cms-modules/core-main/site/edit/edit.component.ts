@@ -278,7 +278,7 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     this.dataModel.pwaIconSize190x192IdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedPwaIconSize512x512Id(model: NodeInterface): void {
-    this.dataModel.linkFavIconId = model.id;
+    this.dataModel.pwaIconSize512x512Id = model.id;
     this.dataModel.pwaIconSize512x512IdSrc = model.downloadLinksrc;
   }
   onActionFileSelectedLinkImageLogoId(model: NodeInterface): void {
