@@ -42,8 +42,9 @@
     <!-- DescriptionHidden Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
       <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden" #DescriptionHidden type="text"
-        placeholder="{{fieldsInfo['DescriptionHidden']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+      <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden" #DescriptionHidden
+        type="text" placeholder="{{fieldsInfo['DescriptionHidden']?.fieldTitle}}" minlength="1" maxlength="500"
+        rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.descriptionHidden = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -82,7 +83,8 @@
         <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.PHOTO_FILE' | translate}}
         </mat-label>
         <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-          type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
+          type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+          (click)="fileManagerOpenForm = true" />
         <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.linkMainImageId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
@@ -93,12 +95,13 @@
       </cms-file-manager>
     </div>
 
-
-
-
+    <p>
+      {{'TITLE.specific_property_list' | translate}}
+    </p>
     <!-- LinkPropertyIds Field -->
     <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessAddField" [optionPlaceholder]="this.translate.instant('TITLE.Property')"
+      [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessAddField"
+      [optionPlaceholder]="this.translate.instant('TITLE.Property')"
       [optionSelectForce]="this.dataModel.linkPropertyIds">
     </app-estate-property-autocomplete>
     <p>{{'MESSAGE.Selecting_specific_property_will_remove_all_search_fields' | translate}}</p>
@@ -112,18 +115,21 @@
       </mat-slide-toggle>
     </div>
     <p *ngIf="!LinkPropertyIdsInUse">{{'MESSAGE.Content_of_your_choice_to_display_On_this_billboard' | translate}}</p>
-    <P *ngIf="!LinkPropertyIdsInUse">{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
+    <P *ngIf="!LinkPropertyIdsInUse">
+      {{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
 
     <!-- LinkPropertyTypeUsageIds Field -->
     <app-estate-property-type-usage-autocomplete (optionChange)="onActionSelectorSelectUsage($event)"
       *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageIds']?.accessAddField"
-      [optionSelectForce]="dataModel.linkPropertyTypeUsageIds" [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+      [optionSelectForce]="dataModel.linkPropertyTypeUsageIds"
+      [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
     </app-estate-property-type-usage-autocomplete>
 
     <!-- LinkPropertyTypeLanduseIds Field -->
     <app-estate-property-type-landuse-autocomplete (optionChange)="onActionSelectorSelectLanduse($event)"
       *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseIds']?.accessAddField"
-      [optionSelectForce]="dataModel.linkPropertyTypeLanduseIds" [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
+      [optionSelectForce]="dataModel.linkPropertyTypeLanduseIds"
+      [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
     </app-estate-property-type-landuse-autocomplete>
 
@@ -131,18 +137,19 @@
     <!-- LinkContractTypeIds Field -->
     <app-estate-contract-type-autocomplete (optionChange)="onActionSelectorContarctType($event)"
       *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkContractTypeIds']?.accessAddField"
-      [optionSelectForce]="dataModel.linkContractTypeIds" [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
+      [optionSelectForce]="dataModel.linkContractTypeIds"
+      [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
     </app-estate-contract-type-autocomplete>
-      <!-- linkCoreCurrencyId Field -->
-      <app-cms-currency-selector [optionSelectFirstItem]="true"
-      [optionSelectForce]="dataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)"
-      [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')"></app-cms-currency-selector>
+    <!-- linkCoreCurrencyId Field -->
+    <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
+      *ngIf="!LinkPropertyIdsInUse" (optionChange)="onActionSelectCurrency($event)"
+      [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
+    </app-cms-currency-selector>
     <!-- LinkLocationIds Field -->
     <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" *ngIf="!LinkPropertyIdsInUse"
       [optionDisabled]="!fieldsInfo['LinkLocationIds']?.accessAddField" [optionSelectForce]="dataModel.linkLocationIds"
       [optionPlaceholder]="this.translate.instant('TITLE.Region')">
     </app-cms-location-autocomplete>
-
 
 
 
@@ -153,7 +160,7 @@
       <button type="submit" (click)="onFormSubmit()" class="btn btn-success BTN-text" [disabled]="!vform.form.valid">
         <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
       </button>
-     
+
     </div>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

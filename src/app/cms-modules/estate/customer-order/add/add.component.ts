@@ -86,6 +86,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   propertyDetails: Map<string, string> = new Map<string, string>();
   contractTypeSelected: EstateContractTypeModel;
   optionloadComponent = false;
+  LinkPropertyIdsInUse = false;
   // ** Accardon */
   step = 0;
   hidden = true;
@@ -303,6 +304,11 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   }
   onActionSelectorProperty(model: string[] | null): void {
     this.dataModel.linkPropertyIds = model;
+    if (this.dataModel.linkPropertyIds && this.dataModel.linkPropertyIds.length > 0) {
+      this.LinkPropertyIdsInUse = true;
+    } else {
+      this.LinkPropertyIdsInUse = false;
+    }
   }
   setStep(index: number): void {
     this.step = index;

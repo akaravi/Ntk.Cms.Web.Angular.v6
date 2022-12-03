@@ -86,6 +86,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   propertyDetails: Map<string, string> = new Map<string, string>();
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   optionloadComponent = false;
+  LinkPropertyIdsInUse = false;
   // ** Accardon */
   step = 0;
   hidden = true;
@@ -121,6 +122,8 @@ export class EstateCustomerOrderEditComponent implements OnInit {
         if (ret.isSuccess) {
           this.cdr.detectChanges();
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
+          if (this.dataModel.linkPropertyIds && this.dataModel.linkPropertyIds.length > 0)
+            this.LinkPropertyIdsInUse = true;
           this.formInfo.formAlert = '';
           /** load Value */
           if (this.dataModel.propertyDetailGroups)
@@ -278,6 +281,11 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   }
   onActionSelectorProperty(model: string[] | null): void {
     this.dataModel.linkPropertyIds = model;
+    if (this.dataModel.linkPropertyIds && this.dataModel.linkPropertyIds.length > 0) {
+      this.LinkPropertyIdsInUse = true;
+    } else {
+      this.LinkPropertyIdsInUse = false;
+    }
   }
 
   setStep(index: number): void {

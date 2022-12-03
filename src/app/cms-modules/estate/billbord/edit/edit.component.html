@@ -70,7 +70,9 @@
           (click)="dataModel.reloadViewPerMin = 1">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
-
+      <p>
+        {{'TITLE.specific_property_list' | translate}}
+      </p>
       <!-- LinkPropertyIds Field -->
       <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
         [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessEditField"
@@ -87,7 +89,8 @@
           {{fieldsInfo['IncludeAllSite']?.fieldTitle}}
         </mat-slide-toggle>
       </div>
-      <p *ngIf="!LinkPropertyIdsInUse">{{'MESSAGE.Content_of_your_choice_to_display_On_this_billboard' | translate}}</p>
+      <p *ngIf="!LinkPropertyIdsInUse">{{'MESSAGE.Content_of_your_choice_to_display_On_this_billboard' | translate}}
+      </p>
       <P *ngIf="!LinkPropertyIdsInUse">
         {{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
 
@@ -115,7 +118,7 @@
       </app-estate-contract-type-autocomplete>
       <!-- linkCoreCurrencyId Field -->
       <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
-        (optionChange)="onActionSelectCurrency($event)"
+        *ngIf="!LinkPropertyIdsInUse" (optionChange)="onActionSelectCurrency($event)"
         [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
       </app-cms-currency-selector>
       <!-- LinkLocationIds Field -->
