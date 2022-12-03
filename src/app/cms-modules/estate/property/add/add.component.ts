@@ -676,13 +676,13 @@ export class EstatePropertyAddComponent implements OnInit {
     });
   }
   onActionbuttonQuickListSearchCustomerTel(): void {
-    if (!this.dataModel || !this.dataModel.aboutAgentTel || this.dataModel.aboutAgentTel.length === 0) {
+    if (!this.dataModel || !this.dataModel.aboutCustomerTel || this.dataModel.aboutCustomerTel.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
-      data: { searchCustomerTel: this.dataModel.aboutAgentTel }
+      data: { searchCustomerTel: this.dataModel.aboutCustomerTel }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

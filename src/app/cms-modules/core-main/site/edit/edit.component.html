@@ -1,6 +1,6 @@
 <app-cms-html-notice [svg]="'assets/media/svg/icons/Design/Edit.svg'">
   <h4> {{'TITLE.Edit' | translate}}</h4>
-    {{'TITLE.In_this_section_you_can_edit_the_content_of_your_site' | translate}}
+  {{'TITLE.In_this_section_you_can_edit_the_content_of_your_site' | translate}}
   <br>
 </app-cms-html-notice>
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
@@ -46,8 +46,9 @@
         </mat-form-field>
         <!-- UserLanguage Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="{{'TITLE.Site_Language' | translate}}" [(ngModel)]="dataModel.userLanguage" name="dataModel.userLanguage"
-            #UserLanguage="ngModel" panelClass="UserLanguage-{{ dataModel.userLanguage }}">
+          <mat-select placeholder="{{'TITLE.Site_Language' | translate}}" [(ngModel)]="dataModel.userLanguage"
+            name="dataModel.userLanguage" #UserLanguage="ngModel"
+            panelClass="UserLanguage-{{ dataModel.userLanguage }}">
             <mat-option *ngFor="
                                   let item of dataModelEnumLanguageResult.listItems;
                                   index as i
@@ -56,11 +57,13 @@
         </mat-form-field>
         <!-- LinkSiteCategoryId Field -->
         <app-core-sitecategory-selector (optionChange)="onActionSelectCategory($event)"
-          [optionSelectForce]="this.dataModel.linkSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Website_Type')"
+          [optionSelectForce]="this.dataModel.linkSiteCategoryId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Website_Type')"
           [optionDisabled]="!fieldsInfo['LinkSiteCategoryId']?.accessEditField"></app-core-sitecategory-selector>
         <!-- linkCreatedBySiteId Field -->
         <app-core-site-selector (optionChange)="onActionSelectCategory($event)"
-          [optionSelectForce]="this.dataModel.linkCreatedBySiteId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Site')"
+          [optionSelectForce]="this.dataModel.linkCreatedBySiteId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Parent_Site')"
           [optionDisabled]="!fieldsInfo['LinkCreatedBySiteId']?.accessEditField"></app-core-site-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">
@@ -143,6 +146,9 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.Web_Application' | translate}}" state="seo">
@@ -208,8 +214,8 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.pwaIconSize190x192Id"
               [disabled]="!fieldsInfo['PwaIconSize190x192Id']?.accessEditField" name="dataModel.pwaIconSize190x192Id"
-              #PwaIconSize190x192Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
-              (click)="fileManagerOpenFormPwaIconSize190x192Id = true" />
+              #PwaIconSize190x192Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
+              autocomplete="off" (click)="fileManagerOpenFormPwaIconSize190x192Id = true" />
             <mat-icon matSuffix
               *ngIf="dataModel.pwaIconSize190x192Id && fieldsInfo['PwaIconSize190x192Id']?.accessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.pwaIconSize190x192Id = null">close</mat-icon>
@@ -236,8 +242,8 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.pwaIconSize512x512Id"
               [disabled]="!fieldsInfo['PwaIconSize512x512Id']?.accessEditField" name="dataModel.pwaIconSize512x512Id"
-              #PwaIconSize512x512Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
-              (click)="fileManagerOpenFormPwaIconSize512x512Id = true" />
+              #PwaIconSize512x512Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
+              autocomplete="off" (click)="fileManagerOpenFormPwaIconSize512x512Id = true" />
             <mat-icon matSuffix
               *ngIf="dataModel.pwaIconSize512x512Id && fieldsInfo['PwaIconSize512x512Id']?.accessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.pwaIconSize512x512Id = null">close</mat-icon>
@@ -326,6 +332,9 @@
           </button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
           </button>
         </div>
       </mat-step>
@@ -434,6 +443,9 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
         </div>
       </mat-step>
 
@@ -492,23 +504,21 @@
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-chip>
-            <input placeholder="{{'TITLE.key_word' | translate}}+"
-                   [matChipInputFor]="chipList"
-                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                   [matChipInputAddOnBlur]="addOnBlurTag"
-                   (matChipInputTokenEnd)="addTag($event)">
+            <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
+              (matChipInputTokenEnd)="addTag($event)">
           </mat-chip-list>
         </mat-form-field>
-		
-		
-		
+
+
+
         <!-- CurrentSiteDomainUrl Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['CurrentSiteDomainUrl']?.accessWatchField">
           <mat-label>{{ fieldsInfo['CurrentSiteDomainUrl']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.currentSiteDomainUrl"
             [disabled]="!fieldsInfo['CurrentSiteDomainUrl']?.accessEditField" name="dataModel.currentSiteDomainUrl"
-            #CurrentSiteDomainUrl type="text" class="input-ltr" placeholder="https://...." minlength="3" maxlength="100"
-            />
+            #CurrentSiteDomainUrl type="text" class="input-ltr" placeholder="https://...." minlength="3"
+            maxlength="100" />
           <mat-icon matSuffix
             *ngIf="dataModel.currentSiteDomainUrl && fieldsInfo['CurrentSiteDomainUrl']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.currentSiteDomainUrl = ''">close</mat-icon>
@@ -634,6 +644,9 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
         </div>
       </mat-step>
       <mat-step label="{{'ACTION.ABOUT' | translate}}" state="seo">
@@ -699,9 +712,9 @@
         <!-- AboutUsTel Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AboutUsTel']?.accessWatchField">
           <mat-label>{{ fieldsInfo['AboutUsTel']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.aboutUsTel" [disabled]="!fieldsInfo['AboutUsTel']?.accessEditField" class="input-Mobile"
-            name="dataModel.aboutUsTel" #AboutUsTel type="text" placeholder="021444444444" minlength="0"
-            maxlength="100" />
+          <input matInput [(ngModel)]="dataModel.aboutUsTel" [disabled]="!fieldsInfo['AboutUsTel']?.accessEditField"
+            class="input-Mobile" name="dataModel.aboutUsTel" #AboutUsTel type="text" placeholder="021444444444"
+            minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.aboutUsTel && fieldsInfo['AboutUsTel']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsTel = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['AboutUsTel']?.accessEditField" matSuffix>mode_edit</mat-icon>
@@ -746,7 +759,8 @@
           <mat-label>{{ fieldsInfo['AboutUsAddress']?.fieldTitle }}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.aboutUsAddress"
             [disabled]="!fieldsInfo['AboutUsAddress']?.accessEditField" name="dataModel.aboutUsAddress" #AboutUsAddress
-            type="text" placeholder="{{'TITLE.Iran_Tehran' | translate}} ..." row="5" minlength="0" maxlength="100"></textarea>
+            type="text" placeholder="{{'TITLE.Iran_Tehran' | translate}} ..." row="5" minlength="0"
+            maxlength="100"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.aboutUsAddress && fieldsInfo['AboutUsAddress']?.accessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsAddress = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['AboutUsAddress']?.accessEditField" matSuffix>mode_edit</mat-icon>
@@ -992,8 +1006,9 @@
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
         <div class="mb-12">
-          <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')" [config]="publicHelper.editorConfigFull"
-            id="main" *ngIf="fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')"
+            [config]="publicHelper.editorConfigFull" id="main"
+            *ngIf="fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
             [disabled]="!fieldsInfo['AboutUsPrivacyPolicyHtmlBody']?.accessEditField"
             [(ngModel)]="dataModel.aboutUsPrivacyPolicyHtmlBody" name="dataModel.aboutUsPrivacyPolicyHtmlBody">
           </angular-editor>
@@ -1004,15 +1019,15 @@
 
 
         <div class="mb-12">
-          <angular-editor [placeholder]="this.translate.instant('TITLE.Site_management_note')" [config]="publicHelper.editorConfigFull" id="main"
-            *ngIf="fieldsInfo['AdminSiteMemo']?.accessWatchField"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Site_management_note')"
+            [config]="publicHelper.editorConfigFull" id="main" *ngIf="fieldsInfo['AdminSiteMemo']?.accessWatchField"
             [disabled]="!fieldsInfo['AdminSiteMemo']?.accessEditField" [(ngModel)]="dataModel.adminSiteMemo"
             name="dataModel.adminSiteMemo">
           </angular-editor>
         </div>
         <div class="mb-12">
-          <angular-editor [placeholder]="this.translate.instant('TITLE.Management_note_of_the_entire_site') " [config]="publicHelper.editorConfigFull" id="main"
-            *ngIf="fieldsInfo['AdminMainMemo']?.accessWatchField"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Management_note_of_the_entire_site') "
+            [config]="publicHelper.editorConfigFull" id="main" *ngIf="fieldsInfo['AdminMainMemo']?.accessWatchField"
             [disabled]="!fieldsInfo['AdminMainMemo']?.accessEditField" [(ngModel)]="dataModel.adminMainMemo"
             name="dataModel.adminMainMemo">
           </angular-editor>
@@ -1024,6 +1039,9 @@
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.Accounting' | translate}}" state="seo">
@@ -1031,12 +1049,14 @@
         <!-- LinkResellerUserId Field -->
         <app-cms-user-selector [optionDisabled]="!fieldsInfo['LinkResellerUserId']?.accessEditField"
           [optionSelectForce]="dataModel.linkResellerUserId"
-          (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)" [optionPlaceholder]="this.translate.instant('TITLE.Representative_User')">
+          (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)"
+          [optionPlaceholder]="this.translate.instant('TITLE.Representative_User')">
         </app-cms-user-selector>
         <!-- LinkResellerSiteId Field -->
         <app-cms-site-selector [optionDisabled]="!fieldsInfo['LinkResellerSiteId']?.accessEditField"
           [optionSelectForce]="dataModel.linkResellerSiteId"
-          (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)" [optionPlaceholder]="this.translate.instant('TITLE.Representative_Site')">
+          (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)"
+          [optionPlaceholder]="this.translate.instant('TITLE.Representative_Site')">
         </app-cms-site-selector>
         <!-- HasAccountingForm Field -->
         <div class="ntk-full-width">
@@ -1082,8 +1102,8 @@
           <mat-datepicker touchUi #AccountingFormUpdatedDate></mat-datepicker>
         </mat-form-field>
         <div class="mb-12">
-          <angular-editor [placeholder]="this.translate.instant('TITLE.Memory_Accounting')" [config]="publicHelper.editorConfigFull" id="main"
-            *ngIf="fieldsInfo['AccountingMemo']?.accessWatchField"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Memory_Accounting')"
+            [config]="publicHelper.editorConfigFull" id="main" *ngIf="fieldsInfo['AccountingMemo']?.accessWatchField"
             [disabled]="!fieldsInfo['AccountingMemo']?.accessEditField" [(ngModel)]="dataModel.accountingMemo"
             name="dataModel.accountingMemo">
           </angular-editor>

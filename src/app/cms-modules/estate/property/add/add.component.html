@@ -77,10 +77,10 @@
           <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
             disabled="{{!fieldsInfo['Title']?.accessAddField}}" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
             minlength="3" maxlength="100" required />
-          <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+          <mat-icon matSuffix class="pointer" *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
-          <mat-icon matSuffix *ngIf="dataModel.title" (click)="onActionbuttonQuickListSearchTitle()">find_replace</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-icon matSuffix class="pointer" *ngIf="dataModel.title" (click)="onActionbuttonQuickListSearchTitle()">find_replace</mat-icon>
+            <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
             <mat-hint align="start">
               <mat-icon matSuffix class=" info-field-icon">info</mat-icon>
               <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong>
@@ -280,11 +280,11 @@
             class="input-Mobile" #AboutCustomerMobile type="text"
             disabled="{{!fieldsInfo['AboutCustomerMobile']?.accessAddField}}"
             placeholder="{{fieldsInfo['AboutCustomerMobile']?.fieldTitle}}" minlength="0" maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.aboutCustomerMobile" matSuffix mat-icon-button aria-label="Clear"
+          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerMobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.aboutCustomerMobile = ''">close</mat-icon>
-            <mat-icon matSuffix *ngIf="dataModel.aboutCustomerMobile"
+            <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerMobile"
             (click)="onActionbuttonQuickListSearchCustomerMobile()">find_replace</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutCustomerMobile']?.FieldDescription}}</strong>
@@ -299,11 +299,11 @@
             class="input-Mobile" #AboutCustomerTel type="text"
             disabled="{{!fieldsInfo['AboutCustomerTel']?.accessAddField}}"
             placeholder="{{fieldsInfo['AboutCustomerTel']?.fieldTitle}}" minlength="0" maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button aria-label="Clear"
+          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.aboutCustomerTel = ''">close</mat-icon>
-            <mat-icon matSuffix *ngIf="dataModel.aboutCustomerTel" (click)="onActionbuttonQuickListSearchCustomerTel()">
+            <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel" (click)="onActionbuttonQuickListSearchCustomerTel()">
               find_replace</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['AboutCustomerTel']?.FieldDescription}}</strong>
