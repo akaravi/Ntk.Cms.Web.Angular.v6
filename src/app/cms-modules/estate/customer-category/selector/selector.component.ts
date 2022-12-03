@@ -81,10 +81,10 @@ export class EstateCustomerCategorySelectorComponent implements OnInit, OnDestro
       );
   }
   displayFn(model?: EstateCustomerCategoryModel): string | undefined {
-    return model ? model.titleML : undefined;
+    return model ? model.title : undefined;
   }
   displayOption(model?: EstateCustomerCategoryModel): string | undefined {
-    return model ? model.titleML : undefined;
+    return model ? model.title : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstateCustomerCategoryModel[]> {
     const filteModel = new FilterModel();
