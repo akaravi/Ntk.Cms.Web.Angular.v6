@@ -64,8 +64,10 @@ export class CoreSiteAddComponent implements OnInit {
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenFormAboutUsLinkImageId = false;
   fileManagerOpenFormLinkFavIconId = false;
-  fileManagerOpenFormPwaIconSize190x192Id = false;
   fileManagerOpenFormPwaIconSize512x512Id = false;
+  fileManagerOpenFormPwaIconSize72x72Id = false;
+  fileManagerOpenFormPwaIconSize192x192Id = false;
+  fileManagerOpenFormPwaIconSize384x384Id = false;
   fileManagerOpenFormLinkFileIdLogo = false;
   fileManagerOpenFormLinkImageLogoId = false;
   appLanguage = 'fa';
