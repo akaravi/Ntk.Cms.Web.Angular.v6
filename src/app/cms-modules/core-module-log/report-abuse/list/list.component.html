@@ -136,7 +136,7 @@
           </button>
           <mat-menu #actionMenu="matMenu">
             <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.access.accessWatchRow">
-              <mat-icon>view</mat-icon>
+              <mat-icon>visibility</mat-icon>
               <span>{{'ACTION.VIEW' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">

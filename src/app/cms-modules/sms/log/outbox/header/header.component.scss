@@ -27,8 +27,11 @@ background-color: #F9F9F9;
 .table .tr:last-child .td{
  border: 0;
 }
-.width{
+.small-width{
   width: 90px;
+}
+.large-width{
+  width: 400px;
 }
 .clear {
  clear: both;
