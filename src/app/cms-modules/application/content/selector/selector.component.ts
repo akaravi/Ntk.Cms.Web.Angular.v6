@@ -31,7 +31,6 @@ export class ApplicationAppSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<ApplicationAppModel> = new ErrorExceptionResult<ApplicationAppModel>();
   dataModelSelect: ApplicationAppModel = new ApplicationAppModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<ApplicationAppModel[]>;
   @Input() optionDisabled = false;
@@ -42,6 +41,15 @@ export class ApplicationAppSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: number | ApplicationAppModel) {
     this.onActionSelectForce(x);
   }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
+
   ngOnInit(): void {
     this.loadOptions();
   }

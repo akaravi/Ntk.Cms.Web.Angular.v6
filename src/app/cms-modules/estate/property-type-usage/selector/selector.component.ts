@@ -38,7 +38,6 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit, OnDestr
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
   dataModelSelect: EstatePropertyTypeUsageModel = new EstatePropertyTypeUsageModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<EstatePropertyTypeUsageModel[]>;
   @Input() optionTypeView = 1;
@@ -51,6 +50,14 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit, OnDestr
     this.onActionSelectForce(x);
   }
   cmsApiStoreSubscribe: Subscription;
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
   ngOnInit(): void {
     this.loadOptions();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {

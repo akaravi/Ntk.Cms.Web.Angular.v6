@@ -36,7 +36,6 @@ export class CoreModuleSaleHeaderGroupSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreModuleSaleHeaderGroupModel> = new ErrorExceptionResult<CoreModuleSaleHeaderGroupModel>();
   dataModelSelect: CoreModuleSaleHeaderGroupModel = new CoreModuleSaleHeaderGroupModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreModuleSaleHeaderGroupModel[]>;
   @Input() optionDisabled = false;
@@ -46,6 +45,14 @@ export class CoreModuleSaleHeaderGroupSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreModuleSaleHeaderGroupModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

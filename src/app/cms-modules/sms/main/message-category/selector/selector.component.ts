@@ -35,7 +35,6 @@ export class SmsMainMessageCategorySelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<SmsMainMessageCategoryModel> = new ErrorExceptionResult<SmsMainMessageCategoryModel>();
   dataModelSelect: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();
-  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<SmsMainMessageCategoryModel[]>;
   @Input() optionPlaceholder = '';
@@ -44,6 +43,14 @@ export class SmsMainMessageCategorySelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | SmsMainMessageCategoryModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

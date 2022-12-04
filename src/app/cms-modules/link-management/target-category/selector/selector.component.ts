@@ -36,7 +36,6 @@ export class LinkManagementTargetCategorySelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<LinkManagementTargetCategoryModel> = new ErrorExceptionResult<LinkManagementTargetCategoryModel>();
   dataModelSelect: LinkManagementTargetCategoryModel = new LinkManagementTargetCategoryModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<LinkManagementTargetCategoryModel[]>;
   @Input() optionPlaceholder = '';
@@ -45,6 +44,14 @@ export class LinkManagementTargetCategorySelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | LinkManagementTargetCategoryModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

@@ -36,7 +36,6 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyDetailGroupModel> = new ErrorExceptionResult<EstatePropertyDetailGroupModel>();
   dataModelSelect: EstatePropertyDetailGroupModel = new EstatePropertyDetailGroupModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<EstatePropertyDetailGroupModel[]>;
   @Input() optionTypeView = 1;
@@ -47,6 +46,14 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | EstatePropertyDetailGroupModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
 

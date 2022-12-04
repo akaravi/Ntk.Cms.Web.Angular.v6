@@ -35,7 +35,6 @@ export class ChartCategorySelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<ChartCategoryModel> = new ErrorExceptionResult<ChartCategoryModel>();
   dataModelSelect: ChartCategoryModel = new ChartCategoryModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<ChartCategoryModel[]>;
   @Input() optionPlaceholder = '';
@@ -44,6 +43,14 @@ export class ChartCategorySelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | ChartCategoryModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

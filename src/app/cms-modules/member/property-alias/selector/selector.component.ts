@@ -33,7 +33,6 @@ export class MemberPropertyAliasSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<MemberPropertyAliasModel> = new ErrorExceptionResult<MemberPropertyAliasModel>();
   dataModelSelect: MemberPropertyAliasModel = new MemberPropertyAliasModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<MemberPropertyAliasModel[]>;
   @Input() optionPlaceholder = '';
@@ -42,6 +41,14 @@ export class MemberPropertyAliasSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | MemberPropertyAliasModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
   ngOnInit(): void {
     this.loadOptions();

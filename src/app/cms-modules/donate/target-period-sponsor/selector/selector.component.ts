@@ -35,7 +35,6 @@ export class DonateTargetPeriodSponserSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<DonateTargetPeriodSponsorModel> = new ErrorExceptionResult<DonateTargetPeriodSponsorModel>();
   dataModelSelect: DonateTargetPeriodSponsorModel = new DonateTargetPeriodSponsorModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<DonateTargetPeriodSponsorModel[]>;
   @Input() optionPlaceholder = '';
@@ -44,6 +43,14 @@ export class DonateTargetPeriodSponserSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | DonateTargetPeriodSponsorModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

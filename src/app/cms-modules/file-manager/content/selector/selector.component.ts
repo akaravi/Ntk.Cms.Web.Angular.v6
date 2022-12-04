@@ -35,7 +35,6 @@ export class FileContentSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<FileContentModel> = new ErrorExceptionResult<FileContentModel>();
   dataModelSelect: FileContentModel = new FileContentModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<FileContentModel[]>;
   @Input() optionPlaceholder = '';
@@ -44,6 +43,14 @@ export class FileContentSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | FileContentModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
   ngOnInit(): void {
     this.loadOptions();

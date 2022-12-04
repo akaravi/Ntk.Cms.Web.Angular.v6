@@ -29,7 +29,7 @@
     </app-core-site-selector>
     <!-- LinkuserId Field -->
     <app-core-user-selector (optionChange)="onActionSelectorUserSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
+      [optionSelectForce]="dataModel.linkUserId" [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-core-user-selector>
     <!-- LinkUserGroupId Field -->
     <app-core-usercategory-selector (optionChange)="onActionSelectorUserGroupSelect($event)" [optionDisabled]="false"

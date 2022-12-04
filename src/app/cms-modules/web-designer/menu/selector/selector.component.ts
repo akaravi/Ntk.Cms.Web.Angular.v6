@@ -29,7 +29,6 @@ export class WebDesignerMainMenuSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<WebDesignerMainMenuModel> = new ErrorExceptionResult<WebDesignerMainMenuModel>();
   dataModelSelect: WebDesignerMainMenuModel = new WebDesignerMainMenuModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<WebDesignerMainMenuModel[]>;
   @Input() optionDisabled = false;
@@ -39,6 +38,14 @@ export class WebDesignerMainMenuSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | WebDesignerMainMenuModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
   ngOnInit(): void {
     this.loadOptions();

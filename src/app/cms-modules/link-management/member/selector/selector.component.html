@@ -1,5 +1,5 @@
 <mat-form-field class="ntk-full-width">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+     
     <input type="text" placeholder="{{optionPlaceholder}}" aria-label="Assignee" matInput [formControl]="formControl" [matAutocomplete]="auto8">
     <mat-autocomplete #auto8="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onActionSelect($event.option.value)">
         <mat-option *ngFor="let state of filteredOptions | async" [value]="state">

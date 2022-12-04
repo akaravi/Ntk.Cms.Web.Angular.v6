@@ -36,7 +36,6 @@ export class CoreModuleSaleSerialSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreModuleSaleSerialModel> = new ErrorExceptionResult<CoreModuleSaleSerialModel>();
   dataModelSelect: CoreModuleSaleSerialModel = new CoreModuleSaleSerialModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreModuleSaleSerialModel[]>;
   @Input() optionDisabled = false;
@@ -46,6 +45,14 @@ export class CoreModuleSaleSerialSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreModuleSaleSerialModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

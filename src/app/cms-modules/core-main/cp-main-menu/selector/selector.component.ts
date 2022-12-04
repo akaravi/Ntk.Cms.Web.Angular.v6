@@ -36,7 +36,6 @@ export class CoreCpMainMenuSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreCpMainMenuModel> = new ErrorExceptionResult<CoreCpMainMenuModel>();
   dataModelSelect: CoreCpMainMenuModel = new CoreCpMainMenuModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreCpMainMenuModel[]>;
   @Input() optionDisabled = false;
@@ -46,6 +45,14 @@ export class CoreCpMainMenuSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreCpMainMenuModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

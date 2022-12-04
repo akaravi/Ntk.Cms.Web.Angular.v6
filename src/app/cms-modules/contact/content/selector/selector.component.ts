@@ -35,17 +35,24 @@ export class ContactContentSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<ContactContentModel> = new ErrorExceptionResult<ContactContentModel>();
   dataModelSelect: ContactContentModel = new ContactContentModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<ContactContentModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
+  @Input() optionDisabled = false;
   @Output() optionChange = new EventEmitter<ContactContentModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | ContactContentModel) {
     this.onActionSelectForce(x);
   }
-  @Input() optionDisabled = false;
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
   ngOnInit(): void {
     this.loadOptions();
   }

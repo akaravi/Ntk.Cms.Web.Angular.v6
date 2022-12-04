@@ -34,18 +34,25 @@ export class CoreUserSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreUserModel> = new ErrorExceptionResult<CoreUserModel>();
   dataModelSelect: CoreUserModel = new CoreUserModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreUserModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
+
   @Output() optionChange = new EventEmitter<CoreUserModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreUserModel) {
     this.onActionSelectForce(x);
   }
 
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -119,7 +126,7 @@ export class CoreUserSelectorComponent implements OnInit {
 
       }
     }
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 

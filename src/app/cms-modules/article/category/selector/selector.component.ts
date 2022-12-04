@@ -33,7 +33,6 @@ export class ArticleCategorySelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<ArticleCategoryModel> = new ErrorExceptionResult<ArticleCategoryModel>();
   dataModelSelect: ArticleCategoryModel = new ArticleCategoryModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<ArticleCategoryModel[]>;
   @Input() optionPlaceholder = '';
@@ -42,6 +41,14 @@ export class ArticleCategorySelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | ArticleCategoryModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
   ngOnInit(): void {
     this.loadOptions();

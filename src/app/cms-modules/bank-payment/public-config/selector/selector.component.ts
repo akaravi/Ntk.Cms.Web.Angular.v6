@@ -33,7 +33,6 @@ export class BankPaymentPublicConfigSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<BankPaymentPublicConfigModel> = new ErrorExceptionResult<BankPaymentPublicConfigModel>();
   dataModelSelect: BankPaymentPublicConfigModel = new BankPaymentPublicConfigModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<BankPaymentPublicConfigModel[]>;
   @Input() optionDisabled = false;
@@ -43,6 +42,14 @@ export class BankPaymentPublicConfigSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | BankPaymentPublicConfigModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
   ngOnInit(): void {
     this.loadOptions();

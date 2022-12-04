@@ -39,7 +39,6 @@ export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
   dataModelSelect: EstatePropertyModel = new EstatePropertyModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<EstatePropertyModel[]>;
   @Input() optionDisabled = false;
@@ -49,6 +48,14 @@ export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | EstatePropertyModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {

@@ -37,7 +37,6 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<WebDesignerMainPageModel> = new ErrorExceptionResult<WebDesignerMainPageModel>();
   dataModelSelect: WebDesignerMainPageModel = new WebDesignerMainPageModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<WebDesignerMainPageModel[]>;
   @Input() optionDisabled = false;
@@ -47,6 +46,14 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
   @Output() optionChange = new EventEmitter<WebDesignerMainPageModel>();
   masterTemplateId = '';
   @Input() optionReload = () => this.onActionReload();
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
   ngOnInit(): void {
     this.loadOptions();
   }

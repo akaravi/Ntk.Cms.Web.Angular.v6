@@ -37,7 +37,6 @@ export class SmsMainApiPathCompanySelectorComponent implements OnInit {
 
   dataModelResult: ErrorExceptionResult<SmsMainApiPathCompanyModel> = new ErrorExceptionResult<SmsMainApiPathCompanyModel>();
   dataModelSelect: SmsMainApiPathCompanyModel = new SmsMainApiPathCompanyModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<SmsMainApiPathCompanyModel[]>;
   @Input() optionDisabled = false;
@@ -47,6 +46,14 @@ export class SmsMainApiPathCompanySelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | SmsMainApiPathCompanyModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

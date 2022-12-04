@@ -35,7 +35,6 @@ export class SmsMainMessageContentSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<SmsMainMessageContentModel> = new ErrorExceptionResult<SmsMainMessageContentModel>();
   dataModelSelect: SmsMainMessageContentModel = new SmsMainMessageContentModel();
-  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<SmsMainMessageContentModel[]>;
   @Input() optionPlaceholder = '';
@@ -44,6 +43,14 @@ export class SmsMainMessageContentSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | SmsMainMessageContentModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   @Input() set optionLinkCategryId(x: string) {

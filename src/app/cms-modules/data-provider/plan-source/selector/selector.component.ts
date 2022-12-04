@@ -34,7 +34,6 @@ export class DataProviderPlanSourceSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<DataProviderPlanSourceModel> = new ErrorExceptionResult<DataProviderPlanSourceModel>();
   dataModelSelect: DataProviderPlanSourceModel = new DataProviderPlanSourceModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<DataProviderPlanSourceModel[]>;
   @Input() optionPlaceholder = '';
@@ -43,6 +42,14 @@ export class DataProviderPlanSourceSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | DataProviderPlanSourceModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

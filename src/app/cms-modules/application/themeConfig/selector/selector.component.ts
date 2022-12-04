@@ -43,7 +43,6 @@ export class ApplicationThemeConfigSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<ApplicationThemeConfigModel> = new ErrorExceptionResult<ApplicationThemeConfigModel>();
   dataModelSelect: ApplicationThemeConfigModel = new ApplicationThemeConfigModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<ApplicationThemeConfigModel[]>;
   parentId = 0;
@@ -55,6 +54,14 @@ export class ApplicationThemeConfigSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   ngOnInit(): void {
     this.loadOptions();
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
   loadOptions(): void {
     this.filteredOptions = this.formControl.valueChanges

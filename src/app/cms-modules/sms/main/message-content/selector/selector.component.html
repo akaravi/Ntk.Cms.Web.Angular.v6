@@ -1,5 +1,5 @@
 <mat-form-field class="ntk-full-width">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+     
     
     <input type="text" placeholder="{{optionPlaceholder}}" aria-label="Assignee" matInput [formControl]="formControl" [matAutocomplete]="auto27">
     <mat-autocomplete #auto27="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onActionSelect($event.option.value)">

@@ -36,7 +36,6 @@ export class PollingCategorySelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<PollingCategoryModel> = new ErrorExceptionResult<PollingCategoryModel>();
   dataModelSelect: PollingCategoryModel = new PollingCategoryModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<PollingCategoryModel[]>;
   @Input() optionPlaceholder = '';
@@ -45,6 +44,14 @@ export class PollingCategorySelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | PollingCategoryModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

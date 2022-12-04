@@ -36,7 +36,6 @@ export class BlogCategorySelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<BlogCategoryModel> = new ErrorExceptionResult<BlogCategoryModel>();
   dataModelSelect: BlogCategoryModel = new BlogCategoryModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<BlogCategoryModel[]>;
   @Input() optionPlaceholder = '';
@@ -47,6 +46,13 @@ export class BlogCategorySelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
   ngOnInit(): void {
     this.loadOptions();
   }

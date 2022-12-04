@@ -1,5 +1,5 @@
 <mat-form-field class="ntk-full-width">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+     
     <span matPrefix><img *ngIf="dataModelSelect && dataModelSelect.linkMainImageIdSrc" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{dataModelSelect.linkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" /> &nbsp;</span>
     <input type="text" placeholder="{{optionPlaceholder}}" [attr.disabled]="optionDisabled? true : null" aria-label="Assignee" matInput [formControl]="formControl" [matAutocomplete]="auto31">
     <mat-autocomplete #auto31="matAutocomplete" [displayWith]="displayFn"  (optionSelected)="onActionSelect($event.option.value)">

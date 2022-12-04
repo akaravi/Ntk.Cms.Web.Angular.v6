@@ -33,7 +33,6 @@ export class MemberPropertyDetailSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<MemberPropertyDetailModel> = new ErrorExceptionResult<MemberPropertyDetailModel>();
   dataModelSelect: MemberPropertyDetailModel = new MemberPropertyDetailModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<MemberPropertyDetailModel[]>;
   @Input() optionDisabled = false;
@@ -43,6 +42,14 @@ export class MemberPropertyDetailSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | MemberPropertyDetailModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

@@ -36,7 +36,6 @@ export class MemberPropertyDetailGroupSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<MemberPropertyDetailGroupModel> = new ErrorExceptionResult<MemberPropertyDetailGroupModel>();
   dataModelSelect: MemberPropertyDetailGroupModel = new MemberPropertyDetailGroupModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<MemberPropertyDetailGroupModel[]>;
   @Input() optionTypeView = 1;
@@ -49,6 +48,13 @@ export class MemberPropertyDetailGroupSelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
 
   ngOnInit(): void {
     this.loadOptions();

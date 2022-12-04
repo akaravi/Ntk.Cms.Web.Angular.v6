@@ -35,7 +35,6 @@ export class ApiTelegramBotConfigSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<ApiTelegramBotConfigModel> = new ErrorExceptionResult<ApiTelegramBotConfigModel>();
   dataModelSelect: ApiTelegramBotConfigModel = new ApiTelegramBotConfigModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<ApiTelegramBotConfigModel[]>;
   @Input() optionPlaceholder = '';
@@ -44,6 +43,14 @@ export class ApiTelegramBotConfigSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | ApiTelegramBotConfigModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

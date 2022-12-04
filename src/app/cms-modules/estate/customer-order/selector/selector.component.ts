@@ -36,7 +36,6 @@ export class EstateCustomerOrderSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
   dataModelSelect: EstateCustomerOrderModel = new EstateCustomerOrderModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<EstateCustomerOrderModel[]>;
   @Input() optionDisabled = false;
@@ -46,6 +45,14 @@ export class EstateCustomerOrderSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | EstateCustomerOrderModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

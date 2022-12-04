@@ -39,7 +39,6 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
   dataModelSelect: BankPaymentPrivateSiteConfigModel = new BankPaymentPrivateSiteConfigModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<BankPaymentPrivateSiteConfigModel[]>;
   parentId = 0;
@@ -48,6 +47,15 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
   @Input() optionPlaceholder = '';
   @Output() optionChange = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
   @Input() optionReload = () => this.onActionReload();
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
+
   ngOnInit(): void {
     this.loadOptions();
   }

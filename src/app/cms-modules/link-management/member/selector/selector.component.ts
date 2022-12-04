@@ -36,7 +36,6 @@ export class LinkManagementMemberSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<LinkManagementMemberModel> = new ErrorExceptionResult<LinkManagementMemberModel>();
   dataModelSelect: LinkManagementMemberModel = new LinkManagementMemberModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<LinkManagementMemberModel[]>;
   @Input() optionPlaceholder = '';
@@ -45,6 +44,14 @@ export class LinkManagementMemberSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | LinkManagementMemberModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

@@ -44,7 +44,6 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit, OnDes
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
   dataModelSelect: EstatePropertyTypeLanduseModel = new EstatePropertyTypeLanduseModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<EstatePropertyTypeLanduseModel[]>;
   @Input() optionDisabled = false;
@@ -56,6 +55,14 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit, OnDes
   typeUsageId = '';
   @Input() optionReload = () => this.onActionReload();
   cmsApiStoreSubscribe: Subscription;
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
   ngOnInit(): void {
     this.loadOptions();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {

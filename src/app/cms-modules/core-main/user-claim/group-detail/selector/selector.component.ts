@@ -37,7 +37,6 @@ export class CoreUserClaimGroupDetailSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreUserClaimGroupDetailModel> = new ErrorExceptionResult<CoreUserClaimGroupDetailModel>();
   dataModelSelect: CoreUserClaimGroupDetailModel = new CoreUserClaimGroupDetailModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreUserClaimGroupDetailModel[]>;
   @Input() optionDisabled = false;
@@ -47,6 +46,14 @@ export class CoreUserClaimGroupDetailSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: number | CoreUserClaimGroupDetailModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

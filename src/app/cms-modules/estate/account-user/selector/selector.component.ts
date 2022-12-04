@@ -37,7 +37,6 @@ export class EstateAccountUserSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<EstateAccountUserModel> = new ErrorExceptionResult<EstateAccountUserModel>();
   dataModelSelect: EstateAccountUserModel = new EstateAccountUserModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<EstateAccountUserModel[]>;
   @Input() optionDisabled = false;
@@ -47,6 +46,14 @@ export class EstateAccountUserSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | number | EstateAccountUserModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   ngOnInit(): void {

@@ -38,7 +38,6 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
 
   dataModelResult: ErrorExceptionResult<SmsMainApiNumberModel> = new ErrorExceptionResult<SmsMainApiNumberModel>();
   dataModelSelect: SmsMainApiNumberModel = new SmsMainApiNumberModel();
-  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<SmsMainApiNumberModel[]>;
   @Input() optionDisabled = false;
@@ -50,6 +49,14 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | SmsMainApiNumberModel) {
     this.onActionSelectForce(x);
+  }
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
   }
 
   @Input() set optionLinkApiPathId(x: string) {

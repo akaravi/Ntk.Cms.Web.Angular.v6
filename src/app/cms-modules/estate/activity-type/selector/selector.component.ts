@@ -44,7 +44,6 @@ export class EstateActivityTypeSelectorComponent implements OnInit, OnDestroy {
   }
   dataModelResult: ErrorExceptionResult<EstateActivityTypeModel> = new ErrorExceptionResult<EstateActivityTypeModel>();
   dataModelSelect: EstateActivityTypeModel = new EstateActivityTypeModel();
-  loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<EstateActivityTypeModel[]>;
   @Input() optionDisabled = false;
@@ -56,6 +55,14 @@ export class EstateActivityTypeSelectorComponent implements OnInit, OnDestroy {
   typeUsageId = '';
   @Input() optionReload = () => this.onActionReload();
   cmsApiStoreSubscribe: Subscription;
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
   ngOnInit(): void {
     this.loadOptions();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
