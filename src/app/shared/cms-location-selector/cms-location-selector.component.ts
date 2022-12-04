@@ -29,7 +29,8 @@ export class CmsLocationSelectorComponent implements OnInit {
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public categoryService: CoreLocationService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<CoreLocationModel> = new ErrorExceptionResult<CoreLocationModel>();
   dataModelSelect: CoreLocationModel = new CoreLocationModel();

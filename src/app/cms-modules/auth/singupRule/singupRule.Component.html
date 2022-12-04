@@ -1,5 +1,6 @@
 <h2 mat-dialog-title>{{'TITLE.Rules' | translate}}</h2>
 <mat-dialog-content>
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <div [innerHTML]="dataModelResult.item"></div>
 </mat-dialog-content>
 <mat-dialog-actions style="text-align: left;" class="ntk-button-row">

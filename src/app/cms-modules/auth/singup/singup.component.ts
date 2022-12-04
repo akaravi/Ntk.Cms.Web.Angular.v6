@@ -167,10 +167,14 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     });
   }
   onRoulaccespt(): void {
-    const dialogRef = this.dialog.open(SingupRuleComponent);
+    const dialogRef = this.dialog.open(SingupRuleComponent,{
+      height:"90%",
+      width:"90%",
+    });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       this.Roulaccespt = result;
+      console.log(result);
     });
   }
   passwordValid(event): void {

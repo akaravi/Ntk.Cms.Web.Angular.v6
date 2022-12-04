@@ -29,7 +29,8 @@ export class CmsUserSelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public categoryService: CoreUserService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<CoreUserModel> = new ErrorExceptionResult<CoreUserModel>();
   dataModelSelect: CoreUserModel = new CoreUserModel();

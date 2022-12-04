@@ -22,7 +22,7 @@ export class SingupRuleComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<string> = new ErrorExceptionResult<string>();
   ngOnInit(): void {
     const pName = this.constructor.name + 'ServiceUserMembershipRule';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_the_module_default_access'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_the_rules'));
     this.coreConfigurationService
       .ServiceUserMembershipRule()
       .subscribe({
@@ -42,4 +42,5 @@ export class SingupRuleComponent implements OnInit {
       }
       );
   }
+  
 }
