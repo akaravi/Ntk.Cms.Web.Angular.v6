@@ -344,17 +344,6 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
       );
 
   }
-  onActionbuttonContentList(model: EstatePropertyDetailModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    this.router.navigate(['/hypershop/content/PareintId/', this.tableRowSelected.id]);
-  }
-
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {

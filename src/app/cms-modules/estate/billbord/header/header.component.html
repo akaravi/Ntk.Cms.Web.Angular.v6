@@ -1,24 +1,24 @@
 <div class="table">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <div class="tr">
-    <div class="td width">
+    <div class="td small-width">
       <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'./assets/media/svg/icons/Communication/Flag.svg'"></span>
     </div>
-    <div class="td" style="color: darkblue;">
+    <div class="td large-width" style="color: darkblue;">
       <h5> <b>{{'TITLE.Selected_Billboard'|translate}}</b> </h5>
     </div>
     <div class="td" *ngIf="dataModelResult?.item?.id">
     </div>
   </div>
   <div class="tr">
-    <div class="td width"><b>{{fieldsInfo['Id']?.fieldTitle}} </b>: </div>
-    <div class="td width">{{dataModelResult?.item?.id}}</div>
+    <div class="td small-width"><b>{{fieldsInfo['Id']?.fieldTitle}} </b>: </div>
+    <div class="td large-width">{{dataModelResult?.item?.id}}</div>
     <div class="td"></div>
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
-    <div class="td width"><b>{{fieldsInfo['Title']?.fieldTitle}}</b> : </div>
-    <div class="td width">{{dataModelResult?.item?.title}}</div>
+    <div class="td small-width"><b>{{fieldsInfo['Title']?.fieldTitle}}</b> : </div>
+    <div class="td large-width">{{dataModelResult?.item?.title}}</div>
     <div class="td" style="text-align: left;">
       <abbr title="link to">
         <button class="btn btn-outline-primary">

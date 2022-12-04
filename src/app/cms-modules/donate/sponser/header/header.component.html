@@ -1,24 +1,24 @@
 <div class="table">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <div class="tr">
-    <div class="td">
+    <div class="td small-width">
       <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'./assets/media/svg/icons/Communication/Flag.svg'"></span>
     </div>
-    <div class="td">
+    <div class="td large-width">
       <h5>{{'TITLE.Selected_SPONSER'|translate}}</h5>
     </div>
     <div class="td"></div>
   </div>
   <div class="tr">
-    <div class="td">{{fieldsInfo['Id']?.fieldTitle}} : </div>
-    <div class="td width">{{dataModelResult?.item?.id}}</div>
+    <div class="td small-width">{{fieldsInfo['Id']?.fieldTitle}} : </div>
+    <div class="td large-width">{{dataModelResult?.item?.id}}</div>
     <div class="td"></div>
 
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
-    <div class="td">{{fieldsInfo['Title']?.fieldTitle}} : </div>
-    <div class="td width">{{dataModelResult?.item?.title}}</div>
+    <div class="td small-width">{{fieldsInfo['Title']?.fieldTitle}} : </div>
+    <div class="td large-width">{{dataModelResult?.item?.title}}</div>
     <div class="td"></div>
     <div style="clear: both;"></div>
   </div>

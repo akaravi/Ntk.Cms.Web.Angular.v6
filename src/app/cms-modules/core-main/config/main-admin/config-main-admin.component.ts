@@ -131,7 +131,7 @@ export class CoreConfigMainAdminComponent implements OnInit, OnDestroy {
   }
 
   onActionBackToParent(): void {
-    this.router.navigate(['/core/site/']);
+    this.router.navigate(['/core/module/']);
   }
 
   GetServiceSiteConfigDefault(): void {
