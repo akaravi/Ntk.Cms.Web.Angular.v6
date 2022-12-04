@@ -49,7 +49,7 @@ export class ProgressSpinnerModel {
     return false;
   }
 
-  Start(key: string, title: string = '----'): void {
+  Start(key: string, title: string = ' '): void {
     let model = new ProcessInfoModel();
     model.inRun = true;
     model.title = title;

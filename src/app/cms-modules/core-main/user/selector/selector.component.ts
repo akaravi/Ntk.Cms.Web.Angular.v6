@@ -31,7 +31,6 @@ export class CoreUserSelectorComponent implements OnInit {
     public categoryService: CoreUserService) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-
   }
   dataModelResult: ErrorExceptionResult<CoreUserModel> = new ErrorExceptionResult<CoreUserModel>();
   dataModelSelect: CoreUserModel = new CoreUserModel();
