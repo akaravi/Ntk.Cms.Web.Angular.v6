@@ -30,7 +30,7 @@
             <input matInput [(ngModel)]="dataConfigSiteValuesModel.autoArchiveDataDay" name="dataConfigSiteValuesModel.autoArchiveDataDay"
               #autoArchiveDataDay type="number" placeholder="60"  />
             <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.autoArchiveDataDay" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataConfigSiteValuesModel.autoArchiveDataDay = ''">close</mat-icon>
+              (click)="dataConfigSiteValuesModel.autoArchiveDataDay = 0">close</mat-icon>
             <mat-icon matTooltip="برای آرشیو خودکار اطلاعات تعداد روز را بیشتر از صفر قرار دهید" matSuffix>info</mat-icon>
             
           </mat-form-field>
