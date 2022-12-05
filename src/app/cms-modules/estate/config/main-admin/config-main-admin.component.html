@@ -26,6 +26,16 @@
             {{'TITLE.Display_the_default_site_information_on_the_site' | translate}}
           </mat-slide-toggle>
         </div>
+         <!-- autoArchiveDataDay Field -->
+         <mat-form-field class="ntk-full-width">
+          <mat-label>تعداد روز آرشیو خود کار اطلاعات</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteValuesDefaultModel.autoArchiveDataDay" name="dataConfigSiteValuesDefaultModel.autoArchiveDataDay"
+            #autoArchiveDataDay type="number" placeholder="60"  />
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesDefaultModel.autoArchiveDataDay" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataConfigSiteValuesDefaultModel.autoArchiveDataDay = ''">close</mat-icon>
+          <mat-icon matTooltip="برای آرشیو خودکار اطلاعات تعداد روز را بیشتر از صفر قرار دهید" matSuffix>info</mat-icon>
+          
+        </mat-form-field>
         <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataConfigSiteValuesDefaultModel | prettyjson"></div>
         </div>
