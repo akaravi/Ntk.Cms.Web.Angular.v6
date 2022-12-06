@@ -37,8 +37,8 @@
     <div class="ntk-full-width">
       {{'TITLE.Send_link_message_to_the_special_number' | translate}}
       <br>
-      <input matInput [(ngModel)]="dataModel.actionSendSmsToContactNumber" name="dataModel.actionSendSmsToContactNumber"
-        #ActionSendSmsToContactNumber type="number" class="text-line" placeholder="{{'TITLE.SMS_to_the_special_number' | translate}}" />
+      <textarea matInput [(ngModel)]="dataModel.actionSendSmsToContactNumber" name="dataModel.actionSendSmsToContactNumber"
+        #ActionSendSmsToContactNumber type="text" class="text-line" rows="5" maxlength="100" placeholder="09123456789" ></textarea>
     </div>
 
 
