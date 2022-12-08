@@ -35,14 +35,14 @@ import { CoreModuleEntityEditComponent } from '../edit/edit.component';
   templateUrl: './list.component.html',
 })
 export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
-  requestLinkModuleId=0;
+  requestLinkModuleId = 0;
   constructor(
     public contentService: CoreModuleEntityService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private tokenHelper: TokenHelper,
-    private activatedRoute:ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private coreModuleService: CoreModuleService,
     private router: Router,
     private cdr: ChangeDetectorRef,
@@ -63,7 +63,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortType = EnumSortType.Ascending;
     if (this.requestLinkModuleId > 0) {
       const filter = new FilterDataModel();
-      filter.propertyName = 'LinkModuleId';
+      filter.propertyName = 'linkModuleId';
       filter.value = this.requestLinkModuleId;
       this.filteModelContent.filters.push(filter);
     }
@@ -87,7 +87,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
@@ -190,7 +190,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
 
 
 
-  
+
   onActionbuttonNewRowAuto(): any {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

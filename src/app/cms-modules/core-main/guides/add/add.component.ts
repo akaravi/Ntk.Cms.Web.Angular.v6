@@ -21,6 +21,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 
 @Component({
   selector: 'app-core-guide-add',
@@ -41,6 +42,7 @@ export class CoreGuideAddComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (data) {
       this.requestParentId = +data.parentId || 0;
     }
@@ -60,8 +62,15 @@ export class CoreGuideAddComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
-  fileManagerOpenForm = false;
+  selectFileTypePodcast = ['mp3'];
+  selectFileTypeMovie = ['mp4', 'webm'];
 
+  fileManagerTree: TreeModel;
+
+  appLanguage = 'fa';
+  fileManagerOpenForm = false;
+  fileManagerOpenFormPodcast = false;
+  fileManagerOpenFormMovie = false;
 
 
 
@@ -128,6 +137,38 @@ export class CoreGuideAddComponent implements OnInit {
     if (model && model.id > 0) {
       this.dataModel.linkParentId = model.id;
     }
+  }
+  onActionFileSelectedlinkFilePodcastIdEn(model: NodeInterface): void {
+    this.dataModel.linkFilePodcastIdEn = model.id;
+    this.dataModel.linkFilePodcastIdEnSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedlinkFileMovieIdEn(model: NodeInterface): void {
+    this.dataModel.linkFileMovieIdEn = model.id;
+    this.dataModel.linkFileMovieIdEnSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedlinkFilePodcastIdFa(model: NodeInterface): void {
+    this.dataModel.linkFilePodcastIdFa = model.id;
+    this.dataModel.linkFilePodcastIdFaSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedlinkFileMovieIdFa(model: NodeInterface): void {
+    this.dataModel.linkFileMovieIdFa = model.id;
+    this.dataModel.linkFileMovieIdFaSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedlinkFilePodcastIdAr(model: NodeInterface): void {
+    this.dataModel.linkFilePodcastIdAr = model.id;
+    this.dataModel.linkFilePodcastIdArSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedlinkFileMovieIdAr(model: NodeInterface): void {
+    this.dataModel.linkFileMovieIdAr = model.id;
+    this.dataModel.linkFileMovieIdArSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedlinkFilePodcastIdDe(model: NodeInterface): void {
+    this.dataModel.linkFilePodcastIdDe = model.id;
+    this.dataModel.linkFilePodcastIdDeSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedlinkFileMovieIdDe(model: NodeInterface): void {
+    this.dataModel.linkFileMovieIdDe = model.id;
+    this.dataModel.linkFileMovieIdDeSrc = model.downloadLinksrc;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

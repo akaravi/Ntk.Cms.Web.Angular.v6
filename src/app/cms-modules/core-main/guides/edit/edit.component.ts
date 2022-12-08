@@ -25,6 +25,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { TranslateService } from '@ngx-translate/core';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 
 @Component({
   selector: 'app-core-guide-edit',
@@ -63,7 +64,14 @@ export class CoreGuideEditComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataAccessModel: AccessModel;
 
+  selectFileTypePodcast = ['mp3'];
+  selectFileTypeMovie = ['mp4', 'webm'];
+
+  fileManagerTree: TreeModel;
+
   fileManagerOpenForm = false;
+  fileManagerOpenFormPodcast = false;
+  fileManagerOpenFormMovie = false;
 
   dataCoreGuideIds: number[] = [];
 
@@ -149,6 +157,15 @@ export class CoreGuideEditComponent implements OnInit {
       }
     }
     );
+  }
+
+  onActionFileSelectedLinkFilePodcastIdFa(model: NodeInterface): void {
+    this.dataModel.linkFilePodcastIdFa = model.id;
+    this.dataModel.linkFilePodcastIdFaSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedLinkFileMovieIdFa(model: NodeInterface): void {
+    this.dataModel.linkFileMovieIdFa = model.id;
+    this.dataModel.linkFileMovieIdFaSrc = model.downloadLinksrc;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

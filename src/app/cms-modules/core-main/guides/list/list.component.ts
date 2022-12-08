@@ -76,7 +76,7 @@ export class CoreGuideListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreGuideModel> = new MatTableDataSource<CoreGuideModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
@@ -217,7 +217,14 @@ export class CoreGuideListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionbuttonNewRow(): void {
-
+    if (
+      this.categoryModelSelected == null ||
+      this.categoryModelSelected.id === 0
+    ) {
+      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

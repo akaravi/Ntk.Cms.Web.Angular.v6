@@ -55,18 +55,59 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- DescriptionEn Field -->
+    <!-- DescriptionFa Field -->
     <p> Description Fa </p>
-    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="DescriptionFa"
-      [(ngModel)]="dataModel.descriptionFa" name="dataModel.descriptionFa"></angular-editor>
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig"
+      id="DescriptionFa" [(ngModel)]="dataModel.descriptionFa" name="dataModel.descriptionFa"></angular-editor>
     <br>
     <!-- BodyFa Field -->
-    
     <p> Body Fa </p>
-    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig" id="BodyFa"
-      [(ngModel)]="dataModel.bodyFa" name="dataModel.bodyFa"></angular-editor>
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig"
+      id="BodyFa" [(ngModel)]="dataModel.bodyFa" name="dataModel.bodyFa"></angular-editor>
     <br>
-
+    <!-- LinkFilePodcastIdFa Field -->
+    <div class="mb-3">
+      <audio *ngIf="dataModel?.linkFilePodcastIdFaSrc?.length>0" controls>
+        <source src="{{dataModel.linkFilePodcastIdFaSrc | cmsthumbnail}}" type="audio/mp3">
+        Your browser does not support the audio tag.
+      </audio>
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <input matInput [(ngModel)]="dataModel.linkFilePodcastIdFa" name="dataModel.linkFilePodcastIdFa"
+          #LinkFilePodcastIdFa type="text" placeholder="{{'TITLE.Audio_File_ID' | translate}}"
+          (click)="fileManagerOpenFormPodcast = true" />
+        <mat-icon matSuffix *ngIf="dataModel.linkFilePodcastIdFa" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkFilePodcastIdFa = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenFormPodcast = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelectedlinkFilePodcastIdFa($event)" [language]="appLanguage"
+        [isPopup]="true" [(openForm)]="fileManagerOpenFormPodcast" [tree]="fileManagerTree"
+        [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+        [selectFileType]="selectFileTypePodcast" [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
+    <!-- LinkFileMovieIdFa Field -->
+    <div class="mb-3">
+      <video *ngIf="dataModel?.linkFileMovieIdEnSrc?.length>0" controls>
+        <source src="{{dataModel.linkFileMovieIdEnSrc }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <input matInput [(ngModel)]="dataModel.linkFileMovieIdFa" name="dataModel.linkFileMovieIdFa" #LinkFileMovieIdFa
+          type="text" placeholder="{{'TITLE.Video_File_ID' | translate}}" (click)="fileManagerOpenFormMovie = true" />
+        <mat-icon matSuffix *ngIf="dataModel.linkFileMovieIdFa" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkFileMovieIdFa = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelectedlinkFileMovieIdFa($event)" [language]="appLanguage"
+        [isPopup]="true" [(openForm)]="fileManagerOpenFormMovie" [tree]="fileManagerTree" [openDirectUploadView]="true"
+        [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMovie"
+        [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
+    <br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     <!-- TitleEn Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['TitleEn']?.fieldTitle}}</mat-label>
@@ -82,14 +123,57 @@
     </mat-form-field>
     <!-- DescriptionEn Field -->
     <p>Description En</p>
-    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="DescriptionEn"
-      [(ngModel)]="dataModel.descriptionEn" name="dataModel.descriptionEn"></angular-editor>
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig"
+      id="DescriptionEn" [(ngModel)]="dataModel.descriptionEn" name="dataModel.descriptionEn"></angular-editor>
     <br>
     <!-- BodyEn Field -->
     <p> Body En </p>
-    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig" id="BodyEn"
-      [(ngModel)]="dataModel.bodyEn" name="dataModel.bodyEn"></angular-editor>
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig"
+      id="BodyEn" [(ngModel)]="dataModel.bodyEn" name="dataModel.bodyEn"></angular-editor>
     <br>
+    <!-- LinkFilePodcastIdEn Field -->
+    <div class="mb-3">
+      <audio *ngIf="dataModel?.linkFilePodcastIdEnSrc?.length>0" controls>
+        <source src="{{dataModel.linkFilePodcastIdEnSrc | cmsthumbnail}}" type="audio/mp3">
+        Your browser does not support the audio tag.
+      </audio>
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <input matInput [(ngModel)]="dataModel.linkFilePodcastIdEn" name="dataModel.linkFilePodcastIdEn"
+          #LinkFilePodcastIdEn type="text" placeholder="{{'TITLE.Audio_File_ID' | translate}}"
+          (click)="fileManagerOpenFormPodcast = true" />
+        <mat-icon matSuffix *ngIf="dataModel.linkFilePodcastIdEn" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkFilePodcastIdEn = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenFormPodcast = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelectedlinkFilePodcastIdEn($event)" [language]="appLanguage"
+        [isPopup]="true" [(openForm)]="fileManagerOpenFormPodcast" [tree]="fileManagerTree"
+        [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+        [selectFileType]="selectFileTypePodcast" [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
+    <!-- LinkFileMovieIdEn Field -->
+    <div class="mb-3">
+      <video *ngIf="dataModel?.linkFileMovieIdEnSrc?.length>0" controls>
+        <source src="{{dataModel.linkFileMovieIdEnSrc }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <input matInput [(ngModel)]="dataModel.linkFileMovieIdEn" name="dataModel.linkFileMovieIdEn" #LinkFileMovieIdEn
+          type="text" placeholder="{{'TITLE.Video_File_ID' | translate}}" (click)="fileManagerOpenFormMovie = true" />
+        <mat-icon matSuffix *ngIf="dataModel.linkFileMovieIdEn" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkFileMovieIdEn = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelectedlinkFileMovieIdEn($event)" [language]="appLanguage"
+        [isPopup]="true" [(openForm)]="fileManagerOpenFormMovie" [tree]="fileManagerTree" [openDirectUploadView]="true"
+        [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMovie"
+        [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
+    <br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     <!-- TitleAr Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['TitleAr']?.fieldTitle}}</mat-label>
@@ -105,14 +189,57 @@
     </mat-form-field>
     <!-- DescriptionAr Field -->
     <p>Description Ar</p>
-    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="DescriptionAr"
-      [(ngModel)]="dataModel.descriptionAr" name="dataModel.descriptionAr"></angular-editor>
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig"
+      id="DescriptionAr" [(ngModel)]="dataModel.descriptionAr" name="dataModel.descriptionAr"></angular-editor>
     <br>
     <!-- BodyAr Field -->
     <p> Body Ar </p>
-    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig" id="BodyAr"
-      [(ngModel)]="dataModel.bodyAr" name="dataModel.bodyAr"></angular-editor>
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig"
+      id="BodyAr" [(ngModel)]="dataModel.bodyAr" name="dataModel.bodyAr"></angular-editor>
     <br>
+    <!-- LinkFilePodcastIdAr Field -->
+    <div class="mb-3">
+      <audio *ngIf="dataModel?.linkFilePodcastIdArSrc?.length>0" controls>
+        <source src="{{dataModel.linkFilePodcastIdArSrc | cmsthumbnail}}" type="audio/mp3">
+        Your browser does not support the audio tag.
+      </audio>
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <input matInput [(ngModel)]="dataModel.linkFilePodcastIdAr" name="dataModel.linkFilePodcastIdAr"
+          #LinkFilePodcastIdAr type="text" placeholder="{{'TITLE.Audio_File_ID' | translate}}"
+          (click)="fileManagerOpenFormPodcast = true" />
+        <mat-icon matSuffix *ngIf="dataModel.linkFilePodcastIdAr" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkFilePodcastIdAr = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenFormPodcast = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelectedlinkFilePodcastIdAr($event)" [language]="appLanguage"
+        [isPopup]="true" [(openForm)]="fileManagerOpenFormPodcast" [tree]="fileManagerTree"
+        [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+        [selectFileType]="selectFileTypePodcast" [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
+    <!-- LinkFileMovieIdAr Field -->
+    <div class="mb-3">
+      <video *ngIf="dataModel?.linkFileMovieIdArSrc?.length>0" controls>
+        <source src="{{dataModel.linkFileMovieIdArSrc }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <input matInput [(ngModel)]="dataModel.linkFileMovieIdAr" name="dataModel.linkFileMovieIdAr" #LinkFileMovieIdAr
+          type="text" placeholder="{{'TITLE.Video_File_ID' | translate}}" (click)="fileManagerOpenFormMovie = true" />
+        <mat-icon matSuffix *ngIf="dataModel.linkFileMovieIdAr" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkFileMovieIdAr = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelectedlinkFileMovieIdAr($event)" [language]="appLanguage"
+        [isPopup]="true" [(openForm)]="fileManagerOpenFormMovie" [tree]="fileManagerTree" [openDirectUploadView]="true"
+        [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMovie"
+        [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
+    <br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     <!-- TitleDe Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['TitleDe']?.fieldTitle}}</mat-label>
@@ -128,14 +255,55 @@
     </mat-form-field>
     <!-- DescriptionDe Field -->
     <p>Description De</p>
-    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="DescriptionDe"
-      [(ngModel)]="dataModel.descriptionDe" name="dataModel.descriptionDe"></angular-editor>
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig"
+      id="DescriptionDe" [(ngModel)]="dataModel.descriptionDe" name="dataModel.descriptionDe"></angular-editor>
     <br>
     <!-- Body De Field -->
     <p> Body De </p>
-    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig" id="BodyDe"
-      [(ngModel)]="dataModel.bodyDe" name="dataModel.bodyDe"></angular-editor>
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_File')" [config]="publicHelper.editorConfig"
+      id="BodyDe" [(ngModel)]="dataModel.bodyDe" name="dataModel.bodyDe"></angular-editor>
     <br>
+    <!-- LinkFilePodcastIdDe Field -->
+    <div class="mb-3">
+      <audio *ngIf="dataModel?.linkFilePodcastIdDeSrc?.length>0" controls>
+        <source src="{{dataModel.linkFilePodcastIdDeSrc | cmsthumbnail}}" type="audio/mp3">
+        Your browser does not support the audio tag.
+      </audio>
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <input matInput [(ngModel)]="dataModel.linkFilePodcastIdDe" name="dataModel.linkFilePodcastIdDe"
+          #LinkFilePodcastIdDe type="text" placeholder="{{'TITLE.Audio_File_ID' | translate}}"
+          (click)="fileManagerOpenFormPodcast = true" />
+        <mat-icon matSuffix *ngIf="dataModel.linkFilePodcastIdDe" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkFilePodcastIdDe = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenFormPodcast = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelectedlinkFilePodcastIdDe($event)" [language]="appLanguage"
+        [isPopup]="true" [(openForm)]="fileManagerOpenFormPodcast" [tree]="fileManagerTree"
+        [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+        [selectFileType]="selectFileTypePodcast" [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
+    <!-- LinkFileMovieIdDe Field -->
+    <div class="mb-3">
+      <video *ngIf="dataModel?.linkFileMovieIdDeSrc?.length>0" controls>
+        <source src="{{dataModel.linkFileMovieIdDeSrc }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <input matInput [(ngModel)]="dataModel.linkFileMovieIdDe" name="dataModel.linkFileMovieIdDe" #LinkFileMovieIdDe
+          type="text" placeholder="{{'TITLE.Video_File_ID' | translate}}" (click)="fileManagerOpenFormMovie = true" />
+        <mat-icon matSuffix *ngIf="dataModel.linkFileMovieIdDe" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkFileMovieIdDe = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelectedlinkFileMovieIdDe($event)" [language]="appLanguage"
+        [isPopup]="true" [(openForm)]="fileManagerOpenFormMovie" [tree]="fileManagerTree" [openDirectUploadView]="true"
+        [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMovie"
+        [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">

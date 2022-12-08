@@ -82,7 +82,7 @@ export class CoreModuleEntitySelectorComponent implements OnInit {
   }
   async DataGetAll(text: string | number | any): Promise<CoreModuleEntityModel[]> {
     const filteModel = new FilterModel();
-    filteModel.rowPerPage = 20;
+    filteModel.rowPerPage = 50;
     filteModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
