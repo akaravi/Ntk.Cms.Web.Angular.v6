@@ -15,6 +15,7 @@ import {
   CoreLogMemberService,
   CoreModuleService,
   CoreLogAvoidDuplicateDataEntryService,
+  CoreLogReportDataService,
 } from 'ntk-cms-api';
 import { CoreLogSmsListComponent } from './sms/list/list.component';
 import { CoreLogSmsEditComponent } from './sms/edit/edit.component';
@@ -28,6 +29,9 @@ import { CoreLogCurrencyListComponent } from './currency/list/list.component';
 import { CoreLogCurrencyViewComponent } from './currency/view/view.component';
 import { CoreLogAvoidDuplicateDataEntryListComponent } from './avoid-duplicate/list/list.component';
 import { CoreLogAvoidDuplicateDataEntryEditComponent } from './avoid-duplicate/edit/edit.component';
+import { CoreLogReportDataListComponent } from './report-data/list/list.component';
+import { CoreLogReportDataEditComponent } from './report-data/edit/edit.component';
+import { CoreLogReportDataViewComponent } from './report-data/view/view.component';
 
 
 
@@ -62,6 +66,10 @@ import { CoreLogAvoidDuplicateDataEntryEditComponent } from './avoid-duplicate/e
     /** */
     CoreLogCurrencyListComponent,
     CoreLogCurrencyViewComponent,
+    /** */
+    CoreLogReportDataListComponent,
+    CoreLogReportDataEditComponent,
+    CoreLogReportDataViewComponent,
   ],
   exports: [
     CoreLogComponent,
@@ -82,6 +90,10 @@ import { CoreLogAvoidDuplicateDataEntryEditComponent } from './avoid-duplicate/e
     /** */
     CoreLogCurrencyListComponent,
     CoreLogCurrencyViewComponent,
+    /** */
+    CoreLogReportDataListComponent,
+    CoreLogReportDataEditComponent,
+    CoreLogReportDataViewComponent,
   ],
   providers: [
     CoreModuleService,
@@ -90,6 +102,7 @@ import { CoreLogAvoidDuplicateDataEntryEditComponent } from './avoid-duplicate/e
     CoreLogMemberService,
     CoreLogCurrencyService,
     CoreLogAvoidDuplicateDataEntryService,
+    CoreLogReportDataService,
   ]
 })
 export class CoreLogModule { }

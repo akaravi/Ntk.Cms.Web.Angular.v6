@@ -5,6 +5,7 @@ import { CoreLogComponent } from './coreLog.component';
 import { CoreLogCurrencyListComponent } from './currency/list/list.component';
 import { CoreLogErrorListComponent } from './error/list/list.component';
 import { CoreLogMemberListComponent } from './member/list/list.component';
+import { CoreLogReportDataListComponent } from './report-data/list/list.component';
 import { CoreLogSmsListComponent } from './sms/list/list.component';
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'sms',
         component: CoreLogSmsListComponent
+      },
+      {
+        path: 'report-data',
+        component: CoreLogReportDataListComponent
       },
       {
         path: 'member',

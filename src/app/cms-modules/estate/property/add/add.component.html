@@ -194,25 +194,6 @@
           </mat-error>
         </mat-form-field>
 
-        <!-- DescriptionHidden Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
-          <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
-            #DescriptionHidden type="text" placeholder="{{fieldsInfo['DescriptionHidden']?.fieldTitle}}" minlength="1"
-            maxlength="2000" rows=5></textarea>
-          <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.descriptionHidden = ''">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
-            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['DescriptionHidden']?.FieldDescription}}</strong>
-          </mat-hint>
-          <mat-hint align="end">{{ DescriptionHidden.value.length }} / 2000</mat-hint>
-          <mat-error *ngIf="DescriptionHidden.errors?.required">
-            {{fieldsInfo['DescriptionHidden']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
@@ -414,6 +395,59 @@
           </button>
         </div>
       </mat-step>
+      
+      <mat-step label="{{'TITLE.SECRET_INFORMATION' | translate}}" state="main">
+        
+        <!-- DescriptionHidden Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
+          <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
+            #DescriptionHidden type="text" placeholder="{{fieldsInfo['DescriptionHidden']?.fieldTitle}}" minlength="1"
+            maxlength="2000" rows=5></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.descriptionHidden = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['DescriptionHidden']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{ DescriptionHidden.value.length }} / 2000</mat-hint>
+          <mat-error *ngIf="DescriptionHidden.errors?.required">
+            {{fieldsInfo['DescriptionHidden']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- AddressHidden Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AddressHidden']?.accessWatchField">
+          <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.addressHidden" name="dataModel.addressHidden"
+            #AddressHidden type="text" placeholder="{{fieldsInfo['AddressHidden']?.fieldTitle}}" minlength="1"
+            maxlength="2000" rows=5></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.addressHidden" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.addressHidden = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['AddressHidden']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{ AddressHidden.value.length }} / 2000</mat-hint>
+          <mat-error *ngIf="AddressHidden.errors?.required">
+            {{fieldsInfo['AddressHidden']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onActionBackToParent()">
+            {{'ACTION.BACK' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext
+            *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0">
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+
+
       <mat-step label="{{'TITLE.Transaction' | translate}}" state="contract">
         <p>{{'TITLE.Specify_the_type_of_transaction_for_this_property' | translate}}</p>
 

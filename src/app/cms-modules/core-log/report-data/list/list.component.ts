@@ -10,8 +10,8 @@ import {
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
-  CoreLogSmsService,
-  CoreLogSmsModel,
+  CoreLogReportDataService,
+  CoreLogReportDataModel,
   DataFieldInfoModel,
   EnumInfoModel,
   CoreEnumService
@@ -26,24 +26,24 @@ import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { CoreLogSmsEditComponent } from '../edit/edit.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { CoreLogSmsViewComponent } from '../view/view.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { CoreLogReportDataViewComponent } from '../view/view.component';
+import { CoreLogReportDataEditComponent } from '../edit/edit.component';
 
 @Component({
-  selector: 'app-core-log-sms-list',
+  selector: 'app-core-log-report-data-list',
   templateUrl: './list.component.html',
 
 })
-export class CoreLogSmsListComponent implements OnInit, OnDestroy {
+export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   requestLinkUserId = 0;
   requestLinkDeviceId = 0;
   constructor(
     private coreEnumService: CoreEnumService,
-    private contentService: CoreLogSmsService,
+    private contentService: CoreLogReportDataService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -95,15 +95,15 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<CoreLogSmsModel> = new ErrorExceptionResult<CoreLogSmsModel>();
+  dataModelResult: ErrorExceptionResult<CoreLogReportDataModel> = new ErrorExceptionResult<CoreLogReportDataModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<CoreLogSmsModel> = [];
-  tableRowSelected: CoreLogSmsModel = new CoreLogSmsModel();
-  tableSource: MatTableDataSource<CoreLogSmsModel> = new MatTableDataSource<CoreLogSmsModel>();
+  tableRowsSelected: Array<CoreLogReportDataModel> = [];
+  tableRowSelected: CoreLogReportDataModel = new CoreLogReportDataModel();
+  tableSource: MatTableDataSource<CoreLogReportDataModel> = new MatTableDataSource<CoreLogReportDataModel>();
 
 
   tabledisplayedColumns: string[]=[];
@@ -112,15 +112,13 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     'LinkUserId',
     'LinkSiteId',
     'LinkMemberId',
-    'SendStatusType',
-    'FromNumber',
-    'ToNumber',
-    'ApiNumber',
+    'ModuleName',
     'CreatedDate',
+    'ExpireDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumSendReportDataStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
 
 
@@ -139,14 +137,14 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
       this.tokenInfo = next;
       this.DataGetAll();
     });
-    this.getEnumSendSmsStatusType();
+    // this.getEnumSendReportDataStatusType();
   }
 
-  getEnumSendSmsStatusType(): void {
-    this.coreEnumService.ServiceEnumSendSmsStatusType().subscribe((next) => {
-      this.dataModelEnumSendSmsStatusTypeResult = next;
-    });
-  }
+  // getEnumSendReportDataStatusType(): void {
+  //   this.coreEnumService.ServiceEnumSendReportDataStatusType().subscribe((next) => {
+  //     this.dataModelEnumSendReportDataStatusTypeResult = next;
+  //   });
+  // }
 
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
@@ -154,7 +152,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreLogSmsModel();
+    this.tableRowSelected = new CoreLogReportDataModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -216,7 +214,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
 
 
 
-  onActionbuttonViewRow(model: CoreLogSmsModel = this.tableRowSelected): void {
+  onActionbuttonViewRow(model: CoreLogReportDataModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -231,7 +229,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
-    const dialogRef = this.dialog.open(CoreLogSmsViewComponent, {
+    const dialogRef = this.dialog.open(CoreLogReportDataViewComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });
@@ -240,7 +238,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonEditRow(model: CoreLogSmsModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: CoreLogReportDataModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -255,7 +253,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(CoreLogSmsEditComponent, {
+    const dialogRef = this.dialog.open(CoreLogReportDataEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });
@@ -265,7 +263,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: CoreLogSmsModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: CoreLogReportDataModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -367,7 +365,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
 
   }
 
-  onActionbuttonViewUserRow(model: CoreLogSmsModel = this.tableRowSelected): void {
+  onActionbuttonViewUserRow(model: CoreLogReportDataModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -381,7 +379,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/core/user/edit', this.tableRowSelected.linkUserId]);
   }
 
-  onActionbuttonViewMemberRow(model: CoreLogSmsModel = this.tableRowSelected): void {
+  onActionbuttonViewMemberRow(model: CoreLogReportDataModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -393,6 +391,20 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
       return;
     }
     this.router.navigate(['/member/user/edit', this.tableRowSelected.linkMemberId]);
+  }
+
+  onActionbuttonViewSiteRow(model: CoreLogReportDataModel = this.tableRowSelected): void {
+
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (!this.tableRowSelected.linkSiteId || this.tableRowSelected.linkSiteId === 0) {
+      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.content_does_not_include_site_information'));
+      return;
+    }
+    this.router.navigate(['/core/site/edit', this.tableRowSelected.linkSiteId]);
   }
 
   onActionbuttonExport(): void {
@@ -425,7 +437,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: CoreLogSmsModel): void {
+  onActionTableRowSelect(row: CoreLogReportDataModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {

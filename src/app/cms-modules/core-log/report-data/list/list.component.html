@@ -18,7 +18,8 @@
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected?.id?.length>0"
-      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
+      translate}}</button>
 
     <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
@@ -61,8 +62,8 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-           </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+        </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
@@ -82,35 +83,13 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkMemberId}} </mat-cell>
       </ng-container>
-
-
-      <!-- ApiNumber Column -->
-      <ng-container matColumnDef="ApiNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ApiNumber']?.fieldTitle}}
+      
+      <!-- ModuleName Column -->
+      <ng-container matColumnDef="ModuleName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleName']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.apiNumber}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.moduleName}} </mat-cell>
       </ng-container>
-      <!-- FromNumber Column -->
-      <ng-container matColumnDef="FromNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['FromNumber']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.fromNumber}} </mat-cell>
-      </ng-container>
-      <!-- ToNumber Column -->
-      <ng-container matColumnDef="ToNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ToNumber']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="grid-row-ltr"> {{row.toNumber}} </mat-cell>
-      </ng-container>
-      <!-- SendStatusType Column -->
-      <ng-container matColumnDef="SendStatusType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SendStatusType']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.sendStatusType | enums :
-          dataModelEnumSendSmsStatusTypeResult.listItems}} </mat-cell>
-      </ng-container>
-
-
 
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
@@ -118,7 +97,11 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
-
+      <!-- ExpireDate Column -->
+      <ng-container matColumnDef="ExpireDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExpireDate']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.expireDate) }} </mat-cell>
+      </ng-container>
 
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
@@ -130,7 +113,7 @@
           </button>
           <mat-menu #actionMenu="matMenu">
             <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.access.accessWatchRow">
-              <mat-icon>visibility</mat-icon>
+              <mat-icon>view</mat-icon>
               <span>{{'ACTION.VIEW' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
