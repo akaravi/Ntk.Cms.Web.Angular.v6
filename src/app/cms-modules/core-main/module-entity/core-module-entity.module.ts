@@ -12,6 +12,7 @@ import { CoreSharedModule } from '../core.shared.module';
 import { CoreModuleEntityEditComponent } from './edit/edit.component';
 import { CoreModuleEntityListComponent } from './list/list.component';
 import { CoreModuleEntitySelectorComponent } from './selector/selector.component';
+import { CoreModuleModule } from '../module/coreModule.module';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { CoreModuleEntitySelectorComponent } from './selector/selector.component
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
+    CoreModuleModule,
     
     CoreSharedModule,
   ],

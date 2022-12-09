@@ -1,7 +1,8 @@
-<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
+<app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    --------------------------------------
+    <app-core-module-tree (optionChange)="onActionSelectorSelect($event)"></app-core-module-tree>
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
@@ -76,18 +77,6 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityName']?.fieldTitle}} </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.moduleEntityName}} </mat-cell>
           </ng-container>
-      <!-- CreatedDate Column -->
-      <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
-      </ng-container>
-      <!-- UpdatedDate Column -->
-      <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
-      </ng-container>
 
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
@@ -107,7 +96,10 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-           
+            <button mat-menu-item (click)="onActionbuttonModuleEntityReportFileList(row)">
+            <mat-icon>extension</mat-icon>
+            <span>{{'ACTION.Module_Entity_REPORT_FILE_List' | translate}}</span>
+          </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
-  CoreModuleEntityModel,
-  CoreModuleEntityService,
+  CoreModuleEntityReportFileModel,
+  CoreModuleEntityReportFileService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
@@ -12,8 +12,8 @@ import {
   FilterDataModel,
   EnumRecordStatus,
   DataFieldInfoModel,
-  CoreModuleModel,
-  CoreModuleService,
+  CoreModuleEntityService,
+  CoreModuleEntityModel,
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -29,21 +29,22 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleEntityEditComponent } from '../edit/edit.component';
+import { CoreModuleEntityReportFileEditComponent } from '../edit/edit.component';
+import { CoreModuleEntityReportFileAddComponent } from '../add/add.component';
 @Component({
-  selector: 'app-core-module-entity-list',
+  selector: 'app-core-module-entity-report-file-list',
   templateUrl: './list.component.html',
 })
-export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
-  requestLinkModuleId = 0;
+export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestroy {
+  requestLinkModuleEntityId = 0;
   constructor(
-    public contentService: CoreModuleEntityService,
+    public contentService: CoreModuleEntityReportFileService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private tokenHelper: TokenHelper,
     private activatedRoute: ActivatedRoute,
-    private coreModuleService: CoreModuleService,
+    private coreModuleEntityService: CoreModuleEntityService,
     private router: Router,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
@@ -56,15 +57,15 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
     this.optionsExport.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionExport(model),
     };
-    this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
+    this.requestLinkModuleEntityId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleEntityReportFileId'));
 
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Ascending;
-    if (this.requestLinkModuleId > 0) {
+    if (this.requestLinkModuleEntityId > 0) {
       const filter = new FilterDataModel();
-      filter.propertyName = 'linkModuleId';
-      filter.value = this.requestLinkModuleId;
+      filter.propertyName = 'linkModuleEntityId';
+      filter.value = this.requestLinkModuleEntityId;
       this.filteModelContent.filters.push(filter);
     }
   }
@@ -75,31 +76,30 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleEntityModel> = new ErrorExceptionResult<CoreModuleEntityModel>();
+  dataModelResult: ErrorExceptionResult<CoreModuleEntityReportFileModel> = new ErrorExceptionResult<CoreModuleEntityReportFileModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<CoreModuleEntityModel> = [];
-  tableRowSelected: CoreModuleEntityModel = new CoreModuleEntityModel();
-  tableSource: MatTableDataSource<CoreModuleEntityModel> = new MatTableDataSource<CoreModuleEntityModel>();
+  tableRowsSelected: Array<CoreModuleEntityReportFileModel> = [];
+  tableRowSelected: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
+  tableSource: MatTableDataSource<CoreModuleEntityReportFileModel> = new MatTableDataSource<CoreModuleEntityReportFileModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
-  categoryModelSelected = new CoreModuleModel();
+  dataModelCoreModuleEntityResult: ErrorExceptionResult<CoreModuleEntityModel> = new ErrorExceptionResult<CoreModuleEntityModel>();
 
   tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
-    'LinkModuleId',
-    'ModuleName',
-    'ModuleEntityName',
+    'title',
+    'titleML',
+    'LinkModuleEntityId',
     'Action'
   ];
 
 
-  expandedElement: CoreModuleEntityModel | null;
+  expandedElement: CoreModuleEntityReportFileModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -121,27 +121,20 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
   getModuleList(): void {
     const filter = new FilterModel();
     filter.rowPerPage = 100;
-    this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
-      this.dataModelCoreModuleResult = next;
+    this.coreModuleEntityService.ServiceGetAll(filter).subscribe((next) => {
+      this.dataModelCoreModuleEntityResult = next;
     });
   }
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreModuleEntityModel();
+    this.tableRowSelected = new CoreModuleEntityReportFileModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
-    const filter = new FilterDataModel();
-
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    if (this.categoryModelSelected && this.categoryModelSelected.id > 0) {
-      filter.propertyName = 'LinkModuleId';
-      filter.value = this.categoryModelSelected.id;
-      filterModel.filters.push(filter);
-    }
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -196,31 +189,22 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
 
 
 
+  onActionbuttonNewRow(): void {
 
-  onActionbuttonNewRowAuto(): any {
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-    this.contentService.ServiceAutoAdd().subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          this.cmsToastrService.typeSuccessAdd();
-          this.DataGetAll();
-        }
-        else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
+    const dialogRef = this.dialog.open(CoreModuleEntityReportFileAddComponent, {
+      height: '90%',
+      data: { linkModuleEntityId: this.requestLinkModuleEntityId  }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
       }
-    }
-    );
+    });
   }
-  onActionbuttonEditRow(model: CoreModuleEntityModel = this.tableRowSelected): void {
 
-    if (!model || !model.id || model.id === 0) {
+  onActionbuttonEditRow(model: CoreModuleEntityReportFileModel = this.tableRowSelected): void {
+
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -233,7 +217,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(CoreModuleEntityEditComponent, {
+    const dialogRef = this.dialog.open(CoreModuleEntityReportFileEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });
@@ -243,18 +227,8 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  
-  onActionbuttonModuleEntityReportFileList(model: CoreModuleEntityModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage);
-      return;
-    }
-    this.tableRowSelected = model;
-    this.router.navigate(['core/module-entity-report-file/LinkModuleEntityReportFileId/', model.id]);
-  }
-  onActionbuttonDeleteRow(model: CoreModuleEntityModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
+  onActionbuttonDeleteRow(model: CoreModuleEntityReportFileModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -270,8 +244,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
       return;
     }
 
-    
-    
+
     const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
@@ -304,11 +277,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
       }
       );
   }
-  onActionSelectorSelect(model: CoreModuleModel | null): void {
-    this.filteModelContent = new FilterModel();
-    this.categoryModelSelected = model;
-    this.DataGetAll();
-  }
+
 
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
@@ -353,6 +322,15 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
 
   }
 
+  // onActionbuttonSiteCategoryList(model: CoreModuleEntityReportFileModel = this.tableRowSelected): void {
+  //   if (!model || !model.id || model.id === 0) {
+  //     const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+  //     this.cmsToastrService.typeErrorSelected(emessage);
+  //     return;
+  //   }
+  //   this.tableRowSelected = model;
+  //   this.router.navigate(['core/sitecategorymodule/LinkCmsModuleId/', model.id]);
+  // }
   onActionbuttonExport(): void {
     this.optionsExport.data.show = !this.optionsExport.data.show;
     this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
@@ -383,7 +361,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: CoreModuleEntityModel): void {
+  onActionTableRowSelect(row: CoreModuleEntityReportFileModel): void {
     this.tableRowSelected = row;
   }
 

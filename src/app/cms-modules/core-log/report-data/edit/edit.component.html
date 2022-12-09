@@ -17,25 +17,7 @@
     <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkMemberId"
       [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
 
-    <!-- ModuleName Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>ModuleName</mat-label>
-      <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName type="text"
-        placeholder="ModuleName" />
-      <mat-icon matSuffix *ngIf="dataModel.moduleName" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.moduleName = ''">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-
-    <!-- ModuleEntityName Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>ModuleEntityName</mat-label>
-      <input matInput [(ngModel)]="dataModel.moduleEntityName" name="dataModel.moduleEntityName" #ModuleEntityName
-        type="text" placeholder="ModuleEntityName" />
-      <mat-icon matSuffix *ngIf="dataModel.moduleEntityName" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.moduleEntityName = null">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
+   
     <!-- ModuleEntityId Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>ModuleEntityId</mat-label>
@@ -46,15 +28,6 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
-    <!-- ReportFile Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>Report File</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.reportFile" name="dataModel.reportFile" #ReportFile type="text"
-        placeholder="ReportFile"></textarea>
-      <mat-icon matSuffix *ngIf="dataModel.reportFile" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.reportFile = null">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
     <!-- ReportData Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>Report Data</mat-label>
