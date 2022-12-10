@@ -84,10 +84,10 @@ export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
   }
 
   displayFn(model?: EstatePropertyModel): string | undefined {
-    return model ? model.title : undefined;
+    return model ? model.title + ' # '+ model.caseCode : undefined;
   }
   displayOption(model?: EstatePropertyModel): string | undefined {
-    return model ? model.title : undefined;
+    return model ? model.title + ' # '+ model.caseCode : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstatePropertyModel[]> {
     const filteModel = new FilterModel();
@@ -103,6 +103,20 @@ export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
     filter.propertyName = 'Id';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+    filter.clauseType = EnumClauseType.Or;
+    filteModel.filters.push(filter);
+    /* */
+    filter = new FilterDataModel();
+    filter.propertyName = 'CaseCode';
+    filter.value = text;
+    filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+    filter.clauseType = EnumClauseType.Or;
+    filteModel.filters.push(filter);
+    /* */
+    filter = new FilterDataModel();
+    filter.propertyName = 'Title';
+    filter.value = text;
+    filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
     filteModel.filters.push(filter);
 

@@ -32,7 +32,8 @@ export class EstateAccountUserSelectorComponent implements OnInit {
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public categoryService: EstateAccountUserService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
   dataModelResult: ErrorExceptionResult<EstateAccountUserModel> = new ErrorExceptionResult<EstateAccountUserModel>();

@@ -35,6 +35,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   requestLinkPropertyId = '';
+  requestLinkAgentId = '';
+  requestLinkCustomerOrderId = '';
 
   constructor(
     private estatePropertyHistoryService: EstatePropertyHistoryService,
@@ -49,6 +51,8 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkPropertyId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyId');
+    this.requestLinkAgentId = this.activatedRoute.snapshot.paramMap.get('LinkAgentId');
+    this.requestLinkCustomerOrderId = this.activatedRoute.snapshot.paramMap.get('LinkCustomerOrderId');
 
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -59,10 +63,23 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
+    
     if (this.requestLinkPropertyId && this.requestLinkPropertyId.length > 0) {
       const filter = new FilterDataModel();
       filter.propertyName = 'LinkPropertyId';
       filter.value = this.requestLinkPropertyId;
+      this.filteModelContent.filters.push(filter);
+    }
+    if (this.requestLinkAgentId && this.requestLinkAgentId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'linkAgentId';
+      filter.value = this.requestLinkAgentId;
+      this.filteModelContent.filters.push(filter);
+    }
+    if (this.requestLinkCustomerOrderId && this.requestLinkCustomerOrderId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'linkCustomerOrderId';
+      filter.value = this.requestLinkCustomerOrderId;
       this.filteModelContent.filters.push(filter);
     }
   }

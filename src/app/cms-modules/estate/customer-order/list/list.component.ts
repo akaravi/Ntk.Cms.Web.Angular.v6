@@ -54,6 +54,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
   }
+  link: string;
   comment: string;
   author: string;
   dataSource: any;
@@ -247,6 +248,30 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
         // console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)')
       }
       );
+  }
+  onActionbuttonHistoryRow(
+    mode: EstateCustomerOrderModel = this.tableRowSelected, event?: MouseEvent
+  ): void {
+    if (!mode || !mode.id || mode.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = mode;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/property-history/LinkCustomerOrderId/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(["/estate/property-history/LinkCustomerOrderId", this.tableRowSelected.id]);
+    }
   }
   onActionbuttonOpenCustomerOrder(model: EstateCustomerOrderModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {

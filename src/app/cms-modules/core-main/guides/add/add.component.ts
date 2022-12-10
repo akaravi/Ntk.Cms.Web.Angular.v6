@@ -69,8 +69,14 @@ export class CoreGuideAddComponent implements OnInit {
 
   appLanguage = 'fa';
   fileManagerOpenForm = false;
-  fileManagerOpenFormPodcast = false;
-  fileManagerOpenFormMovie = false;
+  fileManagerOpenFormPodcastFa = false;
+  fileManagerOpenFormMovieFa = false;
+  fileManagerOpenFormPodcastEn = false;
+  fileManagerOpenFormMovieEn = false;
+  fileManagerOpenFormPodcastAr = false;
+  fileManagerOpenFormMovieAr = false;
+  fileManagerOpenFormPodcastDe = false;
+  fileManagerOpenFormMovieDe = false;
 
 
 
@@ -138,14 +144,6 @@ export class CoreGuideAddComponent implements OnInit {
       this.dataModel.linkParentId = model.id;
     }
   }
-  onActionFileSelectedlinkFilePodcastIdEn(model: NodeInterface): void {
-    this.dataModel.linkFilePodcastIdEn = model.id;
-    this.dataModel.linkFilePodcastIdEnSrc = model.downloadLinksrc;
-  }
-  onActionFileSelectedlinkFileMovieIdEn(model: NodeInterface): void {
-    this.dataModel.linkFileMovieIdEn = model.id;
-    this.dataModel.linkFileMovieIdEnSrc = model.downloadLinksrc;
-  }
   onActionFileSelectedlinkFilePodcastIdFa(model: NodeInterface): void {
     this.dataModel.linkFilePodcastIdFa = model.id;
     this.dataModel.linkFilePodcastIdFaSrc = model.downloadLinksrc;
@@ -153,6 +151,14 @@ export class CoreGuideAddComponent implements OnInit {
   onActionFileSelectedlinkFileMovieIdFa(model: NodeInterface): void {
     this.dataModel.linkFileMovieIdFa = model.id;
     this.dataModel.linkFileMovieIdFaSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedlinkFilePodcastIdEn(model: NodeInterface): void {
+    this.dataModel.linkFilePodcastIdEn = model.id;
+    this.dataModel.linkFilePodcastIdEnSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedlinkFileMovieIdEn(model: NodeInterface): void {
+    this.dataModel.linkFileMovieIdEn = model.id;
+    this.dataModel.linkFileMovieIdEnSrc = model.downloadLinksrc;
   }
   onActionFileSelectedlinkFilePodcastIdAr(model: NodeInterface): void {
     this.dataModel.linkFilePodcastIdAr = model.id;

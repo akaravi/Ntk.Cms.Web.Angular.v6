@@ -46,6 +46,7 @@ export class CoreGuideEditComponent implements OnInit {
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -70,8 +71,14 @@ export class CoreGuideEditComponent implements OnInit {
   fileManagerTree: TreeModel;
 
   fileManagerOpenForm = false;
-  fileManagerOpenFormPodcast = false;
-  fileManagerOpenFormMovie = false;
+  fileManagerOpenFormPodcastFa = false;
+  fileManagerOpenFormMovieFa = false;
+  fileManagerOpenFormPodcastEn = false;
+  fileManagerOpenFormMovieEn = false;
+  fileManagerOpenFormPodcastAr = false;
+  fileManagerOpenFormMovieAr = false;
+  fileManagerOpenFormPodcastDe = false;
+  fileManagerOpenFormMovieDe = false;
 
   dataCoreGuideIds: number[] = [];
 
@@ -166,6 +173,30 @@ export class CoreGuideEditComponent implements OnInit {
   onActionFileSelectedLinkFileMovieIdFa(model: NodeInterface): void {
     this.dataModel.linkFileMovieIdFa = model.id;
     this.dataModel.linkFileMovieIdFaSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedLinkFilePodcastIdEn(model: NodeInterface): void {
+    this.dataModel.linkFilePodcastIdEn = model.id;
+    this.dataModel.linkFilePodcastIdEnSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedLinkFileMovieIdEn(model: NodeInterface): void {
+    this.dataModel.linkFileMovieIdEn = model.id;
+    this.dataModel.linkFileMovieIdEnSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedLinkFilePodcastIdAr(model: NodeInterface): void {
+    this.dataModel.linkFilePodcastIdAr = model.id;
+    this.dataModel.linkFilePodcastIdArSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedLinkFileMovieIdAr(model: NodeInterface): void {
+    this.dataModel.linkFileMovieIdAr = model.id;
+    this.dataModel.linkFileMovieIdArSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedLinkFilePodcastIdDe(model: NodeInterface): void {
+    this.dataModel.linkFilePodcastIdDe = model.id;
+    this.dataModel.linkFilePodcastIdDeSrc = model.downloadLinksrc;
+  }
+  onActionFileSelectedLinkFileMovieIdDe(model: NodeInterface): void {
+    this.dataModel.linkFileMovieIdDe = model.id;
+    this.dataModel.linkFileMovieIdDeSrc = model.downloadLinksrc;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

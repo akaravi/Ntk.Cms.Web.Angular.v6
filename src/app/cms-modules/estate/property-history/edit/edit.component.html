@@ -8,9 +8,20 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- LinkCategoryId Field -->
-    <app-estate-activity-type-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-estate-activity-type-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkActivityTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-estate-activity-type-selector>
+
+    <!-- LinkAgentId Field -->
+    <app-estate-account-user-selector (optionChange)="onActionSelectorAgent($event)" [(loading)]="loading"
+      [optionSelectForce]="dataModel.linkAgentId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
+    </app-estate-account-user-selector>
+
+    <!-- LinkPropertyId Field -->
+    <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)" [(loading)]="loading"
+      [optionSelectForce]="dataModel.linkPropertyId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Property')"></app-estate-property-selector>
+
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
@@ -37,6 +48,9 @@
         Description is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+
+
+
     <div class="row">
       <div class="col-6">
         <!-- AppointmentDateFrom Field -->

@@ -124,6 +124,14 @@ const routes: Routes = [
         path: 'property-history/LinkPropertyId/:LinkPropertyId',
         component: EstatePropertyHistoryListComponent
       },
+      {
+        path: 'property-history/LinkAgentId/:LinkAgentId',
+        component: EstatePropertyHistoryListComponent
+      },
+      {
+        path: 'property-history/LinkCustomerOrderId/:LinkCustomerOrderId',
+        component: EstatePropertyHistoryListComponent
+      },
       /**/
       {
         path: 'expert-price',

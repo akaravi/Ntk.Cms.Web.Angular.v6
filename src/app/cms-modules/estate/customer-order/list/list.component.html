@@ -130,6 +130,10 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonHistoryRow(row,$event)">
+              <mat-icon>history</mat-icon>
+              <span>{{'ACTION.HISTORY' | translate}}</span>
+            </button>
             <button mat-menu-item (click)="onActionbuttonContentList(row)">
               <mat-icon>list</mat-icon>
               <span>{{'ACTION.THEPROPERTY_INCLUDESVIEWS' | translate}}</span>

@@ -8,7 +8,9 @@ import {
   EstatePropertyHistoryModel,
   DataFieldInfoModel,
   EnumManageUserAccessDataTypes,
-  EstateActivityTypeModel
+  EstateActivityTypeModel,
+  EstateAccountUserModel,
+  EstatePropertyModel
 } from 'ntk-cms-api';
 import {
   Component,
@@ -137,6 +139,18 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
       }
     }
     );
+  }
+  onActionSelectorAgent(model: EstateAccountUserModel | null): void {
+    this.dataModel.linkAgentId = null;
+    if (model && model.id.length > 0) {
+      this.dataModel.linkAgentId = model.id;
+    }
+  }
+  onActionSelectorProperty(model: EstatePropertyModel | null): void {
+    this.dataModel.linkPropertyId = null;
+    if (model && model.id.length > 0) {
+      this.dataModel.linkPropertyId = model.id;
+    }
   }
   onActionSelectorSelect(model: EstateActivityTypeModel | null): void {
     if (!model || model.id.length <= 0) {

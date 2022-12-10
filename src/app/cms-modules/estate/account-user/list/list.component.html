@@ -1,4 +1,5 @@
-<app-cms-guide-notice [Key]="'accountuser.content.list'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+<app-cms-guide-notice [Key]="'accountuser.content.list'"
+  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
 
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
@@ -14,7 +15,8 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
@@ -56,8 +58,8 @@
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+            aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
 
         </mat-cell>
       </ng-container>
@@ -98,6 +100,10 @@
             <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonHistoryRow(row,$event)">
+              <mat-icon>history</mat-icon>
+              <span>{{'ACTION.HISTORY' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

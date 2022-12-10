@@ -9,9 +9,26 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
     <!-- linkActivityTypeId Field -->
-    <app-estate-activity-type-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-estate-activity-type-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkActivityTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-estate-activity-type-selector>
+
+    <!-- LinkAgentId Field -->
+    <app-estate-account-user-selector (optionChange)="onActionSelectorAgent($event)" [(loading)]="loading"
+      [optionSelectForce]="dataModel.linkAgentId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
+    </app-estate-account-user-selector>
+
+    <!-- LinkPropertyId Field -->
+    <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)" [(loading)]="loading"
+      [optionSelectForce]="dataModel.linkPropertyId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Property')"></app-estate-property-selector>
+      
+    <!-- LinkPropertyId Field -->
+    <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)" [(loading)]="loading"
+      [optionSelectForce]="dataModel.linkPropertyId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Property')"></app-estate-property-selector>
+
+      
 
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">

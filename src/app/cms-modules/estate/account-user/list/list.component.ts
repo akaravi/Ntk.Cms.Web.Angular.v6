@@ -55,6 +55,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
   }
+  link: string;
   comment: string;
   author: string;
   dataSource: any;
@@ -260,6 +261,30 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
       }
       );
 
+  }
+  onActionbuttonHistoryRow(
+    mode: EstateAccountUserModel = this.tableRowSelected, event?: MouseEvent
+  ): void {
+    if (!mode || !mode.id || mode.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = mode;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/property-history/LinkAgentId/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(["/estate/property-history/LinkAgentId", this.tableRowSelected.id]);
+    }
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
