@@ -27,6 +27,7 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 
 @Component({
   selector: 'app-linkmanagement-target-list',
@@ -73,7 +74,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<LinkManagementTargetModel> = [];
   tableRowSelected: LinkManagementTargetModel = new LinkManagementTargetModel();
   tableSource: MatTableDataSource<LinkManagementTargetModel> = new MatTableDataSource<LinkManagementTargetModel>();
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
@@ -83,7 +84,8 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     'CurrentClickCount',
     'CreatedDate',
     'UpdatedDate',
-    'Action'
+    'Action',
+    "LinkTo",
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
@@ -230,7 +232,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
       return;
     }
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content')+ '?';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
@@ -325,6 +327,55 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
       }
     }
     );
+  }
+
+  onActionbuttonLinkTo(model: LinkManagementTargetModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_news_information'));
+    this.contentService
+      .ServiceGetOneById(this.tableRowSelected.id)
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            //open popup
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              height: "90%",
+              width: "90%",
+              data: {
+                title: ret.item.title,
+                urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,
+                urlViewContent: ret.item.urlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open popup
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      });
   }
 
   onActionCopied(): void {

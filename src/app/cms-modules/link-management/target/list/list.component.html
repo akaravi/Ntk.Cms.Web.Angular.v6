@@ -16,7 +16,8 @@
       (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary BTN-text" id="openModalButton"
       data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id>0" (click)="onActionbuttonEditRow()"
-      type="button" class="btn btn-outline-warning BTN-text" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
+      type="button" class="btn btn-outline-warning BTN-text" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.EDIT' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-outline-danger BTN-text">{{'ACTION.DELETE' | translate}}</button>
@@ -133,6 +134,16 @@
               <span>{{'ACTION.LOG' | translate}}</span>
             </button>
           </mat-menu>
+        </mat-cell>
+      </ng-container>
+      <!-- LinkTo Column -->
+      <ng-container matColumnDef="LinkTo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-icon-button>
+            <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
       <!--expandedDetail-->

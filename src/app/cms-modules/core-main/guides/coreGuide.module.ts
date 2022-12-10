@@ -19,7 +19,6 @@ import { CoreGuideListComponent } from './list/list.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CoreInfoComponent } from '../site/info/core-info.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 
 
 @NgModule({
@@ -51,7 +50,7 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
     
     InlineSVGModule,
 
-    CmsFileManagerModule,
+    // CmsFileManagerModule,
     DragDropModule,
   ],
   providers: [
