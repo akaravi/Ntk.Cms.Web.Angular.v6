@@ -383,7 +383,7 @@
         </mat-form-field>
         <!-- AddressHidden Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AddressHidden']?.accessWatchField">
-          <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
+          <mat-label>{{'TITLE.Address_Hidden' | translate}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.addressHidden" name="dataModel.addressHidden"
             #AddressHidden type="text" placeholder="{{fieldsInfo['AddressHidden']?.fieldTitle}}" minlength="1"
             maxlength="2000" rows=5></textarea>

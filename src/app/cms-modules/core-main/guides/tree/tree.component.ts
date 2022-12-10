@@ -55,7 +55,6 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreGuideModel = new CoreGuideModel();
   dataModelResult: ErrorExceptionResult<CoreGuideModel> = new ErrorExceptionResult<CoreGuideModel>();
   filteModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreGuideModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<CoreGuideModel>();
   @Output() optionChange = new EventEmitter<CoreGuideModel>();
@@ -63,6 +62,14 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
   @Input() optionReload = () => this.onActionReload();
 
   hasChild = (_: number, node: CoreGuideModel) => !!node.children && node.children.length > 0;
+
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
 
 
   ngOnInit(): void {

@@ -112,7 +112,6 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
     'LinkUserId',
     'LinkSiteId',
     'LinkMemberId',
-    'ModuleName',
     'CreatedDate',
     'ExpireDate',
     'Action'
@@ -166,7 +165,6 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
 
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
-      
 
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);

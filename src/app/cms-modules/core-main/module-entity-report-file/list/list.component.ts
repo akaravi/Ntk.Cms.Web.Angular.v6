@@ -92,9 +92,9 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
-    'title',
-    'titleML',
     'LinkModuleEntityId',
+    'Title',
+    'Description',
     'Action'
   ];
 
