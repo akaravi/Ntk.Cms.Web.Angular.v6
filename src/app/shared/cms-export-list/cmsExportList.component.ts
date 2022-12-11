@@ -27,8 +27,8 @@ export class CmsExportListComponent implements OnInit {
 
     eum = new EnumInfoModel();
     eum.value = 3;
-    eum.key = 'Text';
-    eum.description = 'Text';
+    eum.key = 'Json';
+    eum.description = 'Json';
     this.fileTypeListItems.push(eum);
 
     eum = new EnumInfoModel();
