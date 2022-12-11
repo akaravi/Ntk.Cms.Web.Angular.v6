@@ -237,6 +237,7 @@ export class DataProviderLogSourceListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
+    this.optionsExport.data.inProcess=true;
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -245,9 +246,11 @@ export class DataProviderLogSourceListComponent implements OnInit, OnDestroy {
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
+        this.optionsExport.data.inProcess=false;
       },
       error:(er) => {
         this.cmsToastrService.typeError(er);
+        this.optionsExport.data.inProcess=false;
       }
     }
     );

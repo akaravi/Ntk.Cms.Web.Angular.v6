@@ -265,17 +265,7 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     });
   }
 
-  // this.contentService.ServiceExportFile(model).subscribe({
-  //   next: (ret) => {
-  //     if (ret.isSuccess) {
-  //       exportlist.set('Download', ret.linkFile);
-  //       this.optionsExport.childMethods.setExportLinkFile(exportlist);
-  //     }
-  //   },
-  //   error: (er) => {
-  //     this.cmsToastrService.typeError(er);
-  //   }
-  // });
+
 
   onActionSelectorSelect(model: TicketingDepartemenModel | null): void {
     this.filteModelContent = new FilterModel();
@@ -423,17 +413,24 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
+    this.optionsExport.data.inProcess=true;
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
+        else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.optionsExport.data.inProcess=false;
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
+        this.optionsExport.data.inProcess=false;
       }
-    });
+    }
+    );
   }
 
   onActionbuttonReload(): void {

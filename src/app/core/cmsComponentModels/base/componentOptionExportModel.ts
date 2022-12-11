@@ -25,4 +25,5 @@ export class ComponentOptionExportParentMethodsModel {
 }
 export class ComponentOptionExportDataModel {
   show = false;
+  inProcess=false;
 }

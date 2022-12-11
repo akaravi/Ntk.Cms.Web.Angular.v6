@@ -365,16 +365,23 @@ export class TicketingAnswerListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.contentService.ServiceExportFile(model).subscribe(
-      (next) => {
-        if (next.isSuccess) {
-          exportlist.set('Download', next.linkFile);
+    this.optionsExport.data.inProcess=true;
+    this.contentService.ServiceExportFile(model).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
+        else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.optionsExport.data.inProcess=false;
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.optionsExport.data.inProcess=false;
       }
+    }
     );
   }
 

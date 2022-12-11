@@ -270,7 +270,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
       return;
     }
 
-    
+
     
     const title = this.translate.instant('MESSAGE.Please_Confirm');
     const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.id + ' ) ';
@@ -303,6 +303,15 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
         // console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)')
       }
       );
+  }
+  onActionbuttonModuleEntityDataReportRow(model: CoreModuleEntityModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id === 0) {
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+    this.router.navigate(['corelog/report-data/LinkModuleEntityId/', model.id]);
   }
   onActionSelectorSelect(model: CoreModuleModel | null): void {
     this.filteModelContent = new FilterModel();
@@ -360,17 +369,21 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
+    this.optionsExport.data.inProcess=true;
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
-        } else {
+        }
+        else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
+        this.optionsExport.data.inProcess=false;
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
+        this.optionsExport.data.inProcess=false;
       }
     }
     );

@@ -34,6 +34,22 @@ const routes: Routes = [
         component: CoreLogReportDataListComponent
       },
       {
+        path: 'report-data/LinkSiteId/:LinkSiteId',
+        component: CoreLogReportDataListComponent
+      },
+      {
+        path: 'report-data/LinkUserId/:LinkUserId',
+        component: CoreLogReportDataListComponent
+      },
+      {
+        path: 'report-data/LinkModuleEntityId/:LinkModuleEntityId',
+        component: CoreLogReportDataListComponent
+      },
+      {
+        path: 'report-data/LinkModuleEntityReportFileId/:LinkModuleEntityReportFileId',
+        component: CoreLogReportDataListComponent
+      },
+      {
         path: 'member',
         component: CoreLogMemberListComponent
       },

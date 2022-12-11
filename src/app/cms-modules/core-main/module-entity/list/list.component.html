@@ -106,6 +106,10 @@
               <mat-icon>extension</mat-icon>
               <span>{{'ACTION.Module_Entity_REPORT_FILE_List' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonModuleEntityDataReportRow(row)">
+              <mat-icon>delete_forever</mat-icon>
+              <span>{{'ACTION.Reports' | translate}}</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

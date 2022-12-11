@@ -40,7 +40,8 @@ import { CoreLogReportDataEditComponent } from '../edit/edit.component';
 export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   requestLinkUserId = 0;
-  requestLinkDeviceId = 0;
+  requestLinkModuleEntityId = 0;
+  requestLinkModuleEntityReportFileId = '';
   constructor(
     private coreEnumService: CoreEnumService,
     private contentService: CoreLogReportDataService,
@@ -58,7 +59,8 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
-    this.requestLinkDeviceId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkDeviceId'));
+    this.requestLinkModuleEntityId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleEntityId'));
+    this.requestLinkModuleEntityReportFileId = this.activatedRoute.snapshot.paramMap.get('LinkModuleEntityReportFileId');
 
     if (this.requestLinkSiteId > 0) {
       const filter = new FilterDataModel();
@@ -72,10 +74,16 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
       filter.value = this.requestLinkUserId;
       this.filteModelContent.filters.push(filter);
     }
-    if (this.requestLinkDeviceId > 0) {
+    if (this.requestLinkModuleEntityId > 0) {
       const filter = new FilterDataModel();
-      filter.propertyName = 'LinkDeviceId';
-      filter.value = this.requestLinkDeviceId;
+      filter.propertyName = 'LinkModuleEntityId';
+      filter.value = this.requestLinkModuleEntityId;
+      this.filteModelContent.filters.push(filter);
+    }
+    if (this.requestLinkModuleEntityReportFileId && this.requestLinkModuleEntityReportFileId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'LinkModuleEntityReportFileId';
+      filter.value = this.requestLinkModuleEntityReportFileId;
       this.filteModelContent.filters.push(filter);
     }
     this.optionsSearch.parentMethods = {
@@ -106,12 +114,14 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<CoreLogReportDataModel> = new MatTableDataSource<CoreLogReportDataModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkUserId',
     'LinkSiteId',
     'LinkMemberId',
+    'LinkModuleEntityId',
+    'LinkModuleEntityReportFileId',
     'CreatedDate',
     'ExpireDate',
     'Action'
@@ -149,7 +159,7 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreLogReportDataModel();
     const pName = this.constructor.name + 'main';
@@ -412,17 +422,21 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
+    this.optionsExport.data.inProcess=true;
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
-        } else {
+        }
+        else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
+        this.optionsExport.data.inProcess=false;
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
+        this.optionsExport.data.inProcess=false;
       }
     }
     );

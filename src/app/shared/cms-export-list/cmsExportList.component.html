@@ -66,7 +66,7 @@
       Skip Row Data is <strong>{{'MESSAGE.required' | translate}}</strong>
     </mat-error>
   </mat-form-field>
-  <button (click)="onSubmit()" type="button" class="btn btn-secondary BTN-text">{{'ACTION.FILE_CREATION' |translate}}</button>
+  <button (click)="onSubmit()" *ngIf="!optionsData.data.inProcess" type="button" class="btn btn-secondary BTN-text">{{'ACTION.FILE_CREATION' |translate}}</button>
   <mat-list *ngIf="modelData&& modelData.size>0">
     <div mat-subheader style="font-size: 20px;">{{'TITLE.download_list' | translate}} </div>
     <mat-list-item *ngFor="let folder of modelData| keyvalue">
