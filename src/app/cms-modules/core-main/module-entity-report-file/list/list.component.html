@@ -82,6 +82,13 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Description']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
       </ng-container>
+      <!-- ReportFileType Column -->
+      <ng-container matColumnDef="ReportFileType">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ReportFileType']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.reportFileType | enums :
+          dataModelEnumReportFileTypeResult.listItems}} </mat-cell>
+      </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>

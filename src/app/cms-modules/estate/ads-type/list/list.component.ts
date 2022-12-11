@@ -86,6 +86,13 @@ export class EstateAdsTypeListComponent implements OnInit, OnDestroy {
     'SalePrice',
     'Action'
   ];
+  tabledisplayedColumnsMobileSource: string[] = [
+    'LinkMainImageIdSrc',
+    'Title',
+    'StationLevel',
+    'SalePrice',
+    'Action'
+  ];
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 

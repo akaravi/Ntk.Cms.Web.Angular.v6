@@ -14,6 +14,8 @@ import {
   DataFieldInfoModel,
   CoreModuleEntityService,
   CoreModuleEntityModel,
+  CoreEnumService,
+  EnumInfoModel,
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -40,6 +42,7 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
   constructor(
     public contentService: CoreModuleEntityReportFileService,
     public publicHelper: PublicHelper,
+    public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     private tokenHelper: TokenHelper,
@@ -87,6 +90,7 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
   tableSource: MatTableDataSource<CoreModuleEntityReportFileModel> = new MatTableDataSource<CoreModuleEntityReportFileModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModelCoreModuleEntityResult: ErrorExceptionResult<CoreModuleEntityModel> = new ErrorExceptionResult<CoreModuleEntityModel>();
+  dataModelEnumReportFileTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
@@ -95,6 +99,7 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
     'LinkModuleEntityId',
     'Title',
     'Description',
+    'ReportFileType',
     'Action'
   ];
 
@@ -114,10 +119,19 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
       this.DataGetAll();
     });
     this.getModuleList();
+    this.getEnumReportFileType();
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
+  getEnumReportFileType(): void {
+    this.coreEnumService.ServiceReportFileTypeEnum().subscribe((next) => {
+      this.dataModelEnumReportFileTypeResult = next;
+    });
+  }
+
+
+
   getModuleList(): void {
     const filter = new FilterModel();
     filter.rowPerPage = 100;

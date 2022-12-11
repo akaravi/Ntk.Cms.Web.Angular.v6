@@ -1,0 +1,54 @@
+
+.style {
+    padding: 6px;
+    margin: 2px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    border: black solid 2px;
+    border-radius: 50%;
+}
+
+.style-copy {
+    color: black;
+    border-radius: 20%;
+}
+.whatsapp:hover{
+    background-color: greenyellow;
+}
+.facebook:hover {
+    background: #3B5998;
+  }
+  .twitter:hover {
+    background: #55ACEE;
+  }
+  .linkedin:hover {
+    background: #007bb5;
+  }
+  .telegram:hover {
+    background: #125688;
+  }
+.cursor{
+    cursor: pointer;
+}
+.message-box{
+  background-image: url("/assets/media/bg/iphone.png"); /* The image used */
+  //background-color: #cccccc; /* Used if the image is unavailable */
+  height: 600px; /* You must set a specified height */
+  width: 300px;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  padding-right: 33px;
+  padding-left: 33px;
+}
+.message-box-button{
+  color:blue;border-color: transparent;background-color :transparent;  
+}
+.message-box-button:hover {
+  color: red;
+  font-size: initial;
+}
+.message-box-button:active {
+  color: #a200ff;
+}

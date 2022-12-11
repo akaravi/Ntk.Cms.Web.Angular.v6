@@ -92,6 +92,11 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     'LastSuccessfullyBuildDate',
     'Action'
   ];
+  tabledisplayedColumnsMobileSource: string[] = [
+    'Title',
+    'AppVersion',
+    'Action'
+  ];
   expandedElement: ApplicationAppModel | null;
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
@@ -121,7 +126,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource,this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
 
     if (this.requestLinkSourceId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
