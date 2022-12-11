@@ -1,157 +1,161 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-    <div class="ntk-cms-html-card-header">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.formTitle }}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </div>
-    <div class="ntk-cms-html-card-body">
-	<app-progress-spinner [options]="loading"> </app-progress-spinner>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <!-- RecordStatus Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-            name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
-            required>
-            <mat-option *ngFor="
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
+        required>
+        <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
-          </mat-select>
-          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-          <mat-error *ngIf="RecordStatus.errors?.required">
-            RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- LinkModuleSaleHeaderGroupId Field -->
-        <app-core-modulesaleheadergroup-selector (optionChange)="onActionSelectHeaderGroup($event)"
-          [optionSelectForce]="this.dataModel.linkModuleSaleHeaderGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
-          [optionDisabled]="!fieldsInfo['LinkModuleSaleHeaderGroupId']?.accessAddField">
-        </app-core-modulesaleheadergroup-selector>
-  
-        <!-- Title Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
-          <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.title = ''">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-          <mat-error *ngIf="Title.errors?.required">
-            {{fieldsInfo['Title']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- SalePrice Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SalePrice']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['SalePrice']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.salePrice" [disabled]="!fieldsInfo['SalePrice']?.accessAddField"
-            name="dataModel.salePrice" #SalePrice type="number" placeholder="0" required />
-          <mat-icon matSuffix *ngIf="dataModel.salePrice && fieldsInfo['SalePrice']?.accessAddField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.salePrice = null">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['SalePrice']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-error *ngIf="SalePrice.errors?.required">
-            {{ fieldsInfo['SalePrice']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- AllowReuseDay Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AllowReuseDay']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['AllowReuseDay']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.allowReuseDay" [disabled]="!fieldsInfo['AllowReuseDay']?.accessAddField"
-            name="dataModel.allowReuseDay" #AllowReuseDay type="number" placeholder="0" required />
-          <mat-icon matSuffix *ngIf="dataModel.allowReuseDay && fieldsInfo['AllowReuseDay']?.accessAddField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.allowReuseDay = null">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['AllowReuseDay']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-error *ngIf="AllowReuseDay.errors?.required">
-            {{ fieldsInfo['AllowReuseDay']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- HasDemo Field -->
-        <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataModel.hasDemo" *ngIf="fieldsInfo['HasDemo']?.accessWatchField"
-            [disabled]="!fieldsInfo['HasDemo']?.accessAddField" name="dataModel.hasDemo">
-            {{fieldsInfo['HasDemo']?.fieldTitle}}
-          </mat-slide-toggle>
-        </div>
-        <!-- FromDate Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FromDate']?.accessWatchField">
-          <mat-label>{{fieldsInfo['FromDate']?.fieldTitle}}</mat-label>
-          <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate"
-            required />
-          <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['FromDate']?.accessAddField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
-          <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
-          <mat-datepicker touchUi #FromDate></mat-datepicker>
-          <mat-error *ngIf="Title.errors?.required">
-            {{fieldsInfo['FromDate']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- ExpireDate Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
-          <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
-          <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate"
-            required />
-          <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessAddField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
-          <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
-          <mat-datepicker touchUi #ExpireDate></mat-datepicker>
-          <mat-error *ngIf="Title.errors?.required">
-            {{fieldsInfo['ExpireDate']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- Description Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-            placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
-          <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.description = ''">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
-          <mat-error *ngIf="Description.errors?.required">
-            {{fieldsInfo['Description']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- LinkMainImageId Field -->
-        <div class="mb-3">
-          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
-        </div>
-        <div class="mb-9">
-          <mat-form-field class="ntk-full-width">
-            <mat-label (click)="fileManagerOpenForm = true"> {{'TITLE.Icon_File' | translate}}
-            </mat-label>
-            <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-              type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"  autocomplete="off" (click)="fileManagerOpenForm = true"   />
-            <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.linkMainImageId = null">close</mat-icon>
-            <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
-          </mat-form-field>
-          <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
-            [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
-            [openDirectUploadView]="true" [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
-        </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-     </div>
-	 <div class="ntk-cms-html-card-message">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      <div class="form-actions">
-        <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-        <small class="form-text text-muted danger">{{ formInfo.formError }}
-        </small>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- LinkModuleSaleHeaderGroupId Field -->
+    <app-core-modulesaleheadergroup-selector (optionChange)="onActionSelectHeaderGroup($event)"
+      [optionSelectForce]="this.dataModel.linkModuleSaleHeaderGroupId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Category')"
+      [optionDisabled]="!fieldsInfo['LinkModuleSaleHeaderGroupId']?.accessAddField">
+    </app-core-modulesaleheadergroup-selector>
+
+    <!-- Title Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.title = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Title.errors?.required">
+        {{fieldsInfo['Title']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- SalePrice Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SalePrice']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['SalePrice']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.salePrice" [disabled]="!fieldsInfo['SalePrice']?.accessAddField"
+        name="dataModel.salePrice" #SalePrice type="number" placeholder="0" required />
+      <mat-icon matSuffix *ngIf="dataModel.salePrice && fieldsInfo['SalePrice']?.accessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.salePrice = null">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['SalePrice']?.accessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-error *ngIf="SalePrice.errors?.required">
+        {{ fieldsInfo['SalePrice']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- AllowReuseDay Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AllowReuseDay']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['AllowReuseDay']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.allowReuseDay" [disabled]="!fieldsInfo['AllowReuseDay']?.accessAddField"
+        name="dataModel.allowReuseDay" #AllowReuseDay type="number" placeholder="0" required />
+      <mat-icon matSuffix *ngIf="dataModel.allowReuseDay && fieldsInfo['AllowReuseDay']?.accessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.allowReuseDay = null">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['AllowReuseDay']?.accessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-error *ngIf="AllowReuseDay.errors?.required">
+        {{ fieldsInfo['AllowReuseDay']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- HasDemo Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.hasDemo" *ngIf="fieldsInfo['HasDemo']?.accessWatchField"
+        [disabled]="!fieldsInfo['HasDemo']?.accessAddField" name="dataModel.hasDemo">
+        {{fieldsInfo['HasDemo']?.fieldTitle}}
+      </mat-slide-toggle>
     </div>
-    <div class="ntk-cms-html-card-footer">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      
-  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-    <button type="button" (click)="onFormCancel()" class="btn btn-light">
-      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-    </button>
-    <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
-      <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-    </button>
+    <!-- FromDate Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FromDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['FromDate']?.fieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate" required />
+      <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['FromDate']?.accessAddField" matSuffix mat-icon-button
+        aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
+      <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #FromDate></mat-datepicker>
+      <mat-error *ngIf="Title.errors?.required">
+        {{fieldsInfo['FromDate']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- ExpireDate Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate"
+        required />
+      <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessAddField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
+      <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #ExpireDate></mat-datepicker>
+      <mat-error *ngIf="Title.errors?.required">
+        {{fieldsInfo['ExpireDate']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- Description Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.description = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+      <mat-error *ngIf="Description.errors?.required">
+        {{fieldsInfo['Description']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- LinkMainImageId Field -->
+    <div class="mb-3">
+      <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
+        <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+          aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+      </a>
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <mat-label (click)="fileManagerOpenForm = true"> {{'TITLE.Icon_File' | translate}}
+        </mat-label>
+        <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
+          type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+          (click)="fileManagerOpenForm = true" />
+        <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkMainImageId = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
+        [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+        [openDirectUploadView]="true" [selectFileType]="selectFileTypeMainImage"
+        [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
     </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

@@ -99,7 +99,8 @@
         <!-- ToWebAddress Field -->
         <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['ToWebAddress']?.fieldTitle}}</mat-label>
-          <input style="direction: ltr; text-align: left !important;" matInput [(ngModel)]="dataModel.toWebAddress" name="dataModel.toWebAddress" #ToWebAddress type="text"
+          <input style="direction: ltr; text-align: left !important;" matInput [(ngModel)]="dataModel.toWebAddress"
+            name="dataModel.toWebAddress" #ToWebAddress type="text"
             placeholder="{{fieldsInfo['ToWebAddress']?.fieldTitle}}" minlength="3" maxlength="2000" />
           <mat-icon matSuffix *ngIf="dataModel.toWebAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.toWebAddress = ''">close</mat-icon>
@@ -112,8 +113,9 @@
         <!-- WebAddress Field -->
         <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['WebAddress']?.fieldTitle}}</mat-label>
-          <input style="direction: ltr; text-align: left !important;" matInput [(ngModel)]="dataModel.webAddress" name="dataModel.webAddress" #WebAddress type="text"
-            placeholder="{{fieldsInfo['WebAddress']?.fieldTitle}}" minlength="3" maxlength="100" />
+          <input style="direction: ltr; text-align: left !important;" matInput [(ngModel)]="dataModel.webAddress"
+            name="dataModel.webAddress" #WebAddress type="text" placeholder="{{fieldsInfo['WebAddress']?.fieldTitle}}"
+            minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.webAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.webAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -125,7 +127,7 @@
         <!-- SmallPreview Field -->
         <mat-form-field class="ntk-full-width" *ngIf="dataProfessional">
           <mat-label>{{fieldsInfo['SmallPreview']?.fieldTitle}}</mat-label>
-          <input  matInput [(ngModel)]="dataModel.smallPreview" name="dataModel.smallPreview" #SmallPreview type="text"
+          <input matInput [(ngModel)]="dataModel.smallPreview" name="dataModel.smallPreview" #SmallPreview type="text"
             placeholder="{{fieldsInfo['SmallPreview']?.fieldTitle}}" minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.smallPreview" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.smallPreview = ''">close</mat-icon>
@@ -216,8 +218,10 @@
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
         <div class="mb-3">
-          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
-            aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
+            <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+              aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          </a>
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">

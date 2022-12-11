@@ -16,6 +16,7 @@
         <!-- LinkPropertyTypeUsageId Field -->
         <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
           [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.accessAddField" [optionTypeView]="2"
+          [(loading)]="loading"
           [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
           [optionPlaceholder]="this.translate.instant('TITLE.User_Type')">
         </app-estate-property-type-usage-selector>
@@ -79,16 +80,17 @@
             minlength="3" maxlength="100" required />
           <mat-icon matSuffix class="pointer" *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
-          <mat-icon matSuffix class="pointer" *ngIf="dataModel.title" (click)="onActionbuttonQuickListSearchTitle()">find_replace</mat-icon>
-            <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
-            <mat-hint align="start">
-              <mat-icon matSuffix class=" info-field-icon">info</mat-icon>
-              <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong>
-            </mat-hint>
-            <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-            <mat-error *ngIf="Title.errors?.required">
-              {{fieldsInfo['Title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
-            </mat-error>
+          <mat-icon matSuffix class="pointer" *ngIf="dataModel.title"
+            (click)="onActionbuttonQuickListSearchTitle()">find_replace</mat-icon>
+          <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class=" info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['Title']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Title.errors?.required">
+            {{fieldsInfo['Title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
         </mat-form-field>
         <!-- CaseCode Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['CaseCode']?.accessWatchField">
@@ -261,9 +263,9 @@
             class="input-Mobile" #AboutCustomerMobile type="text"
             disabled="{{!fieldsInfo['AboutCustomerMobile']?.accessAddField}}"
             placeholder="{{fieldsInfo['AboutCustomerMobile']?.fieldTitle}}" minlength="0" maxlength="100" />
-          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerMobile" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.aboutCustomerMobile = ''">close</mat-icon>
-            <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerMobile"
+          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerMobile" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataModel.aboutCustomerMobile = ''">close</mat-icon>
+          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerMobile"
             (click)="onActionbuttonQuickListSearchCustomerMobile()">find_replace</mat-icon>
           <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
           <mat-hint align="start">
@@ -280,10 +282,11 @@
             class="input-Mobile" #AboutCustomerTel type="text"
             disabled="{{!fieldsInfo['AboutCustomerTel']?.accessAddField}}"
             placeholder="{{fieldsInfo['AboutCustomerTel']?.fieldTitle}}" minlength="0" maxlength="100" />
-          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.aboutCustomerTel = ''">close</mat-icon>
-            <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel" (click)="onActionbuttonQuickListSearchCustomerTel()">
-              find_replace</mat-icon>
+          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataModel.aboutCustomerTel = ''">close</mat-icon>
+          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel"
+            (click)="onActionbuttonQuickListSearchCustomerTel()">
+            find_replace</mat-icon>
           <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -395,9 +398,9 @@
           </button>
         </div>
       </mat-step>
-      
+
       <mat-step label="{{'TITLE.SECRET_INFORMATION' | translate}}" state="main">
-        
+
         <!-- DescriptionHidden Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
           <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
@@ -419,9 +422,9 @@
         <!-- AddressHidden Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AddressHidden']?.accessWatchField">
           <mat-label>{{'TITLE.Address_Hidden' | translate}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.addressHidden" name="dataModel.addressHidden"
-            #AddressHidden type="text" placeholder="{{fieldsInfo['AddressHidden']?.fieldTitle}}" minlength="1"
-            maxlength="2000" rows=5></textarea>
+          <textarea matInput [(ngModel)]="dataModel.addressHidden" name="dataModel.addressHidden" #AddressHidden
+            type="text" placeholder="{{fieldsInfo['AddressHidden']?.fieldTitle}}" minlength="1" maxlength="2000"
+            rows=5></textarea>
           <mat-icon matSuffix *ngIf="dataModel.addressHidden" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.addressHidden = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -710,8 +713,10 @@
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
         <div class="mb-3">
-          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
-            aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
+            <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+              aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          </a>
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">

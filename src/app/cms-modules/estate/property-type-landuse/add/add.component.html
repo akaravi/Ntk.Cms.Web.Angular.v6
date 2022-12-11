@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -40,7 +40,8 @@
 
     <div class="ntk-full-width">
       <!-- createdYearActive Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.createdYearActive" *ngIf="fieldsInfo['CreatedYearActive']?.accessWatchField"
+      <mat-slide-toggle [(ngModel)]="dataModel.createdYearActive"
+        *ngIf="fieldsInfo['CreatedYearActive']?.accessWatchField"
         [disabled]="!fieldsInfo['CreatedYearActive']?.accessEditField" name="dataModel.createdYearActive">
         {{fieldsInfo['CreatedYearActive']?.fieldTitle}}
       </mat-slide-toggle>
@@ -59,30 +60,30 @@
         TitleCreatedYaer is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-  <!-- TitleCreatedYaerML Field -->
-  <mat-form-field class="ntk-full-width">
-    <mat-label>TitleCreatedYaerML</mat-label>
-    <input matInput [(ngModel)]="dataModel.titleCreatedYaerML" name="dataModel.titleCreatedYaerML" type="text"
-      [disabled]="true" />
-  </mat-form-field>
+    <!-- TitleCreatedYaerML Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>TitleCreatedYaerML</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleCreatedYaerML" name="dataModel.titleCreatedYaerML" type="text"
+        [disabled]="true" />
+    </mat-form-field>
 
 
-  <!-- TitleCreatedYaerResourceLanguage Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleCreatedYaerResourceLanguage']?.accessWatchField">
-    <mat-label> {{fieldsInfo['TitleCreatedYaerResourceLanguage']?.fieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModel.titleCreatedYaerResourceLanguage"
-      name="dataModel.titleCreatedYaerResourceLanguage" #TitleCreatedYaerResourceLanguage type="text"
-      [disabled]="!fieldsInfo['TitleCreatedYaerResourceLanguage']?.accessEditField"
-      placeholder="{{fieldsInfo['TitleCreatedYaerResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100"
-      required />
-    <mat-icon matSuffix *ngIf="dataModel.titleCreatedYaerResourceLanguage" matSuffix mat-icon-button
-      aria-label="Clear" (click)="dataModel.titleCreatedYaerResourceLanguage = ''">close</mat-icon>
-    <mat-icon matSuffix>mode_edit</mat-icon>
-    <mat-hint align="end">{{ TitleCreatedYaerResourceLanguage.value.length }} / 100</mat-hint>
-    <mat-error *ngIf="TitleCreatedYaerResourceLanguage.errors?.required">
-      TitleCreatedYaerResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
-    </mat-error>
-  </mat-form-field>
+    <!-- TitleCreatedYaerResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleCreatedYaerResourceLanguage']?.accessWatchField">
+      <mat-label> {{fieldsInfo['TitleCreatedYaerResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titleCreatedYaerResourceLanguage"
+        name="dataModel.titleCreatedYaerResourceLanguage" #TitleCreatedYaerResourceLanguage type="text"
+        [disabled]="!fieldsInfo['TitleCreatedYaerResourceLanguage']?.accessEditField"
+        placeholder="{{fieldsInfo['TitleCreatedYaerResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100"
+        required />
+      <mat-icon matSuffix *ngIf="dataModel.titleCreatedYaerResourceLanguage" matSuffix mat-icon-button
+        aria-label="Clear" (click)="dataModel.titleCreatedYaerResourceLanguage = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitleCreatedYaerResourceLanguage.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitleCreatedYaerResourceLanguage.errors?.required">
+        TitleCreatedYaerResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
     <!-- TitlePartition Field -->
     <mat-form-field class="ntk-full-width">
@@ -97,31 +98,31 @@
         TitlePartition is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-<!-- TitlePartitionML Field -->
-<mat-form-field class="ntk-full-width">
-  <mat-label>TitlePartitionML</mat-label>
-  <input matInput [(ngModel)]="dataModel.titlePartitionML" name="dataModel.titlePartitionML" type="text"
-    [disabled]="true" />
-</mat-form-field>
+    <!-- TitlePartitionML Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>TitlePartitionML</mat-label>
+      <input matInput [(ngModel)]="dataModel.titlePartitionML" name="dataModel.titlePartitionML" type="text"
+        [disabled]="true" />
+    </mat-form-field>
 
 
-<!-- TitlePartitionResourceLanguage Field -->
-<mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitlePartitionResourceLanguage']?.accessWatchField">
-  <mat-label> {{fieldsInfo['TitlePartitionResourceLanguage']?.fieldTitle}}</mat-label>
-  <input matInput [(ngModel)]="dataModel.titlePartitionResourceLanguage"
-    name="dataModel.titlePartitionResourceLanguage" #TitlePartitionResourceLanguage type="text"
-    [disabled]="!fieldsInfo['TitlePartitionResourceLanguage']?.accessEditField"
-    placeholder="{{fieldsInfo['TitlePartitionResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100"
-    required />
-  <mat-icon matSuffix *ngIf="dataModel.titlePartitionResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
-    (click)="dataModel.titlePartitionResourceLanguage = ''">close</mat-icon>
-  <mat-icon matSuffix>mode_edit</mat-icon>
-  <mat-hint align="end">{{ TitlePartitionResourceLanguage.value.length }} / 100</mat-hint>
-  <mat-error *ngIf="TitlePartitionResourceLanguage.errors?.required">
-    TitlePartitionResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
-  </mat-error>
-</mat-form-field>
- 
+    <!-- TitlePartitionResourceLanguage Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitlePartitionResourceLanguage']?.accessWatchField">
+      <mat-label> {{fieldsInfo['TitlePartitionResourceLanguage']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.titlePartitionResourceLanguage"
+        name="dataModel.titlePartitionResourceLanguage" #TitlePartitionResourceLanguage type="text"
+        [disabled]="!fieldsInfo['TitlePartitionResourceLanguage']?.accessEditField"
+        placeholder="{{fieldsInfo['TitlePartitionResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100"
+        required />
+      <mat-icon matSuffix *ngIf="dataModel.titlePartitionResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.titlePartitionResourceLanguage = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ TitlePartitionResourceLanguage.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="TitlePartitionResourceLanguage.errors?.required">
+        TitlePartitionResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
@@ -135,41 +136,44 @@
         Description is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-       <!-- IconFont Field -->
-       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.accessWatchField">
-        <mat-label> {{fieldsInfo['IconFont']?.fieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.iconFont" name="dataModel.iconFont" #IconFont
-          [iconPicker]="dataModel.iconFont" [ipIconPack]="['fa']" [ipPosition]="'top'"
-          (iconPickerSelect)="onIconPickerSelect($event)" type="text" [disabled]="!fieldsInfo['IconFont']?.accessAddField"
-          placeholder="{{fieldsInfo['IconFont']?.fieldTitle}}" />
-        <span class="input-group-addon"><i [ngClass]="dataModel.iconFont"></i></span>
-        <mat-icon>{{dataModel.iconFont}}</mat-icon>
-        <mat-icon matSuffix *ngIf="dataModel.iconFont" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.iconFont = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-      </mat-form-field>
-      <!-- IconColor Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconColor']?.accessWatchField">
-        <mat-label> {{fieldsInfo['IconColor']?.fieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.iconColor" name="dataModel.iconColor" #IconColor
-          [value]="dataModel.iconColor" [style.background]="dataModel.iconColor" [(colorPicker)]="dataModel.iconColor"
-          type="text" [disabled]="!fieldsInfo['IconColor']?.accessAddField"
-          placeholder="{{fieldsInfo['IconColor']?.fieldTitle}}" />
-        <mat-icon matSuffix *ngIf="dataModel.iconColor" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.iconColor = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-      </mat-form-field>
+    <!-- IconFont Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.accessWatchField">
+      <mat-label> {{fieldsInfo['IconFont']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.iconFont" name="dataModel.iconFont" #IconFont
+        [iconPicker]="dataModel.iconFont" [ipIconPack]="['fa']" [ipPosition]="'top'"
+        (iconPickerSelect)="onIconPickerSelect($event)" type="text" [disabled]="!fieldsInfo['IconFont']?.accessAddField"
+        placeholder="{{fieldsInfo['IconFont']?.fieldTitle}}" />
+      <span class="input-group-addon"><i [ngClass]="dataModel.iconFont"></i></span>
+      <mat-icon>{{dataModel.iconFont}}</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.iconFont" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.iconFont = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <!-- IconColor Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconColor']?.accessWatchField">
+      <mat-label> {{fieldsInfo['IconColor']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.iconColor" name="dataModel.iconColor" #IconColor
+        [value]="dataModel.iconColor" [style.background]="dataModel.iconColor" [(colorPicker)]="dataModel.iconColor"
+        type="text" [disabled]="!fieldsInfo['IconColor']?.accessAddField"
+        placeholder="{{fieldsInfo['IconColor']?.fieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.iconColor" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.iconColor = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
     <!-- LinkMainImageId Field -->
     <div class="mb-3">
-      <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-        src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+      <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
+        <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+          aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+      </a>
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">
         <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.PICTURE' | translate}}
         </mat-label>
         <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-          type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
+          type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+          (click)="fileManagerOpenForm = true" />
         <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.linkMainImageId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
