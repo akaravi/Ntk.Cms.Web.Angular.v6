@@ -34,16 +34,11 @@
         {{fieldsInfo['Title']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-    <!-- TitleML Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label> {{'TITLE.TitleML' | translate}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.titleML" name="dataModel.titleML" type="text" [disabled]="true" />
-    </mat-form-field>
     <!-- TitleResourceLanguage Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleResourceLanguage" name="dataModel.titleResourceLanguage"
-        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
+        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}" minlength="3"
         maxlength="100" required [disabled]="!fieldsInfo['TitleResourceLanguage']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>

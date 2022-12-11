@@ -329,6 +329,10 @@ export class EstatePropertyListComponent
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
+            if (this.optionsSearch.data.show && this.optionsStatist.data.show) {
+              this.optionsStatist.data.show = !this.optionsStatist.data.show
+              this.onActionbuttonStatist();
+            }
 
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.access);
@@ -577,16 +581,16 @@ export class EstatePropertyListComponent
       return;
     }
     const statist = new Map<string, number>();
-    statist.set("Active", 0);
-    statist.set("All", 0);
-    const pName = this.constructor.name + '.ServiceExportFile';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
+    statist.set(this.translate.instant('MESSAGE.Active'), 0);
+    statist.set(this.translate.instant('MESSAGE.All'), 0);
+    const pName = this.constructor.name + '.ServiceStatist';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_statist'));
     this.contentService
       .ServiceGetCount(this.filteModelProperty)
       .subscribe({
         next: (ret) => {
           if (ret.isSuccess) {
-            statist.set("All", ret.totalRowCount);
+            statist.set(this.translate.instant('MESSAGE.All'), ret.totalRowCount);
             this.optionsStatist.childMethods.setStatistValue(statist);
           } else {
             this.cmsToastrService.typeErrorMessage(ret.errorMessage);
@@ -608,7 +612,7 @@ export class EstatePropertyListComponent
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          statist.set("Active", ret.totalRowCount);
+          statist.set(this.translate.instant('MESSAGE.Active'), ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
