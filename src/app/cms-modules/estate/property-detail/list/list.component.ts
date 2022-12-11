@@ -54,7 +54,7 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkPropertyTypeLanduseId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyTypeLanduseId');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -94,7 +94,7 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<EstatePropertyDetailModel> = new MatTableDataSource<EstatePropertyDetailModel>();
   categoryModelSelected: EstatePropertyDetailGroupModel;
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'IconFont',
     'Title',
@@ -395,7 +395,9 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.optionsExport.data.inProcess=true;
+    const pName = this.constructor.name + '.ServiceExportFile';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
+    this.optionsExport.data.inProcess = true;
     this.estatePropertyDetailService.ServiceExportFile(model).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -404,11 +406,13 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
-        this.optionsExport.data.inProcess=false;
+        this.optionsExport.data.inProcess = false;
+        this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
-        this.optionsExport.data.inProcess=false;
+        this.optionsExport.data.inProcess = false;
+        this.loading.Stop(pName);
       }
     }
     );

@@ -483,6 +483,8 @@ export class SmsLogInBoxListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
+    const pName = this.constructor.name + '.ServiceExportFile';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
     this.optionsExport.data.inProcess=true;
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
@@ -494,10 +496,12 @@ export class SmsLogInBoxListComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.optionsExport.data.inProcess=false;
+        this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
         this.optionsExport.data.inProcess=false;
+        this.loading.Stop(pName);
       }
     }
     );
