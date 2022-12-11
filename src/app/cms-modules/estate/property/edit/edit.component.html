@@ -338,11 +338,12 @@
             class="input-Mobile" #AboutCustomerTel type="text"
             disabled="{{!fieldsInfo['AboutCustomerTel']?.accessEditField}}"
             placeholder="{{fieldsInfo['AboutCustomerTel']?.fieldTitle}}" minlength="0" maxlength="100" />
-          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.aboutCustomerTel = ''">close</mat-icon>
-          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel" (click)="onActionbuttonQuickListSearchCustomerTel()">
+          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataModel.aboutCustomerTel = ''">close</mat-icon>
+          <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel"
+            (click)="onActionbuttonQuickListSearchCustomerTel()">
             find_replace</mat-icon>
-          <mat-icon  matSuffix class="pointer">mode_edit</mat-icon>
+          <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
 
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -362,7 +363,7 @@
       </mat-step>
 
       <mat-step label="{{'TITLE.SECRET_INFORMATION' | translate}}" state="main">
-        
+
         <!-- DescriptionHidden Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
           <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
@@ -384,9 +385,9 @@
         <!-- AddressHidden Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AddressHidden']?.accessWatchField">
           <mat-label>{{'TITLE.Address_Hidden' | translate}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.addressHidden" name="dataModel.addressHidden"
-            #AddressHidden type="text" placeholder="{{fieldsInfo['AddressHidden']?.fieldTitle}}" minlength="1"
-            maxlength="2000" rows=5></textarea>
+          <textarea matInput [(ngModel)]="dataModel.addressHidden" name="dataModel.addressHidden" #AddressHidden
+            type="text" placeholder="{{fieldsInfo['AddressHidden']?.fieldTitle}}" minlength="1" maxlength="2000"
+            rows=5></textarea>
           <mat-icon matSuffix *ngIf="dataModel.addressHidden" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.addressHidden = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -793,8 +794,11 @@
 
             <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
             <div class="mb-3">
-              <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
-                aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+              <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
+                <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                  class="ntk-hover-zoom" aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50"
+                  width="50" />
+              </a>
             </div>
             <div class="mb-9">
               <mat-form-field class="ntk-full-width">

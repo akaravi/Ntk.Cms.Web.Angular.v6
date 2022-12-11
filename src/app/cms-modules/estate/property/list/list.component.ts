@@ -215,7 +215,7 @@ export class EstatePropertyListComponent
         this.DataGetAll();
         this.tokenHelper.CheckIsAdmin();
       });
-      
+
     // this.SubjectTitle = this.CoreModuleLogMemoModel.SubjectTitle;
   }
 
@@ -325,7 +325,7 @@ export class EstatePropertyListComponent
       this.contentService.ServiceGetAllEditor(filterModel).subscribe({
         next: (ret) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-          
+
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
@@ -625,23 +625,23 @@ export class EstatePropertyListComponent
     this.loading.Start(pName, this.translate.instant('ACTION.ActionSendSmsToCustomerOrder'));
     // ** */
     this.contentService
-    .ServiceActionSendSmsToCustomerOrder(model.id)
-    .subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          this.cmsToastrService.typeSuccessMessage(ret.errorMessage);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+      .ServiceActionSendSmsToCustomerOrder(model.id)
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            this.cmsToastrService.typeSuccessMessage(ret.errorMessage);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
         }
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
       }
-    }
-    );
-  // ** */
+      );
+    // ** */
   }
   onActionbuttonViewOtherUserAdvertise(model: EstatePropertyModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
@@ -712,7 +712,9 @@ export class EstatePropertyListComponent
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set("Download", "loading ... ");
-    this.optionsExport.data.inProcess=true;
+    const pName = this.constructor.name + '.ServiceExportFile';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
+    this.optionsExport.data.inProcess = true;
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -721,11 +723,13 @@ export class EstatePropertyListComponent
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
-        this.optionsExport.data.inProcess=false;
+        this.optionsExport.data.inProcess = false;
+        this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
-        this.optionsExport.data.inProcess=false;
+        this.loading.Stop(pName);
+        this.optionsExport.data.inProcess = false;
       }
     }
     );

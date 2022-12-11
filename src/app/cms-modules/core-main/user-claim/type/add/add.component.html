@@ -53,8 +53,8 @@
     </mat-form-field>
     <!-- Kind Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.kind" name="dataModel.kind" #Kind="ngModel"
-        panelClass="Kind-{{ dataModel.kind }}" required>
+      <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.kind" name="dataModel.kind"
+        #Kind="ngModel" panelClass="Kind-{{ dataModel.kind }}" required>
         <mat-option *ngFor="
                 let item of dataModelEnumUserClaimKindsResult.listItems;
                 index as i
@@ -75,15 +75,18 @@
     </div>
     <!-- LinkMainImageId Field -->
     <div class="mb-3">
-      <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
-        aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+      <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
+        <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+          aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+      </a>
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">
         <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Sample_File' | translate}}
         </mat-label>
         <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-          type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
+          type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+          (click)="fileManagerOpenForm = true" />
         <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.linkMainImageId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

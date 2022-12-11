@@ -74,7 +74,7 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
@@ -106,7 +106,7 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-   this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
 
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApiTelegramReceivedFileModel();
@@ -263,7 +263,9 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
   onSubmitOptionExport(model: FilterModel): void {
     const exportlist = new Map<string, string>();
     exportlist.set('Download', 'loading ... ');
-    this.optionsExport.data.inProcess=true;
+    const pName = this.constructor.name + '.ServiceExportFile';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
+    this.optionsExport.data.inProcess = true;
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -273,11 +275,13 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
         else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
-        this.optionsExport.data.inProcess=false;
+        this.optionsExport.data.inProcess = false;
+        this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
-        this.optionsExport.data.inProcess=false;
+        this.optionsExport.data.inProcess = false;
+        this.loading.Stop(pName);
       }
     }
     );

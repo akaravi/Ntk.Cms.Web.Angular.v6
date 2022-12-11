@@ -39,13 +39,15 @@
         </mat-form-field>
         <!-- LinkManagementMemberId Field -->
         <app-linkmanagement-member-selector (optionChange)="onActionSelectorSelectLinkManagementMemberId($event)"
-          [optionSelectForce]="dataModel.linkManagementMemberId" [optionPlaceholder]="this.translate.instant('TITLE.User_Account')">
+          [optionSelectForce]="dataModel.linkManagementMemberId"
+          [optionPlaceholder]="this.translate.instant('TITLE.User_Account')">
         </app-linkmanagement-member-selector>
 
         <!-- LinkBillboardPatternId Field -->
         <app-linkmanagement-billboard-pattern-selector
           (optionChange)="onActionSelectorSelectLinkBillboardPatternId($event)"
-          [optionSelectForce]="dataModel.linkBillboardPatternId" [optionPlaceholder]="this.translate.instant('TITLE.Billboard_Pattern')">
+          [optionSelectForce]="dataModel.linkBillboardPatternId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Billboard_Pattern')">
         </app-linkmanagement-billboard-pattern-selector>
 
 
@@ -64,7 +66,8 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['CurrentClickCount']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.currentClickCount" name="dataModel.currentClickCount"
-            #CurrentClickCount type="number" placeholder="{{'TITLE.Number_of_click_so_far' | translate}}" min="0" required />
+            #CurrentClickCount type="number" placeholder="{{'TITLE.Number_of_click_so_far' | translate}}" min="0"
+            required />
           <mat-icon matSuffix *ngIf="dataModel.currentClickCount" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.currentClickCount = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -122,15 +125,18 @@
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
         <div class="mb-3">
-          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
+            <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+              aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          </a>
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
 
             <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Original_Photo' | translate}}</mat-label>
             <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-              type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
+              type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+              (click)="fileManagerOpenForm = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.linkMainImageId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

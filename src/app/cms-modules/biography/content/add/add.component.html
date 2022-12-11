@@ -1,10 +1,10 @@
-
-<app-cms-guide-notice [Key]="'biography.content.list.add'"  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+<app-cms-guide-notice [Key]="'biography.content.list.add'"
+  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
 
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -71,8 +71,8 @@
           <mat-datepicker touchUi #ExpireDate></mat-datepicker>
         </mat-form-field>
         <hr class="pb-5" />
-        <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="main"
-          [(ngModel)]="dataModel.body" name="dataModel.body"></angular-editor>
+        <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig"
+          id="main" [(ngModel)]="dataModel.body" name="dataModel.body"></angular-editor>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK' | translate}}
@@ -87,7 +87,8 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.Source_page_address' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.source" name="dataModel.source" #Source type="text" dir="ltr"
-            style="text-align: left;" placeholder="{{'TITLE.Content_reference_website_link' | translate}}" minlength="3" maxlength="500" />
+            style="text-align: left;" placeholder="{{'TITLE.Content_reference_website_link' | translate}}" minlength="3"
+            maxlength="500" />
           <mat-icon matSuffix *ngIf="dataModel.source" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.source = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -104,11 +105,9 @@
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-chip>
-            <input placeholder="{{'TITLE.key_word' | translate}}+"
-                   [matChipInputFor]="chipList"
-                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                   [matChipInputAddOnBlur]="addOnBlurTag"
-                   (matChipInputTokenEnd)="addTag($event)">
+            <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
+              (matChipInputTokenEnd)="addTag($event)">
           </mat-chip-list>
         </mat-form-field>
 
@@ -124,14 +123,17 @@
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
         <div class="mb-3">
-          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
+            <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+              aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          </a>
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
             <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Original_Photo' | translate}}</mat-label>
             <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-              type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
+              type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+              (click)="fileManagerOpenForm = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.linkMainImageId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
@@ -170,7 +172,8 @@
         <div class="mb-9">
           <mat-form-field class="ntk-full-width">
             <input matInput [(ngModel)]="dataModel.linkFileMovieId" name="dataModel.linkFileMovieId" #LinkFileMovieId
-              type="text" placeholder="{{'TITLE.Video_File_ID' | translate}}" (click)="fileManagerOpenFormMovie = true" />
+              type="text" placeholder="{{'TITLE.Video_File_ID' | translate}}"
+              (click)="fileManagerOpenFormMovie = true" />
             <mat-icon matSuffix *ngIf="dataModel.linkFileMovieId" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataModel.linkFileMovieId = null">close</mat-icon>
             <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>
@@ -204,7 +207,8 @@
         <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.Key' | translate}}</mat-label>
           <input matInput [(ngModel)]="contentOtherInfoSelected.typeId" name="contentOtherInfoSelected.typeId"
-            #contentOtherInfoSelected_TypeId type="number" placeholder="{{'TITLE.Agreement_number_to_display' | translate}}" />
+            #contentOtherInfoSelected_TypeId type="number"
+            placeholder="{{'TITLE.Agreement_number_to_display' | translate}}" />
           <mat-icon matSuffix *ngIf="contentOtherInfoSelected.typeId" matSuffix mat-icon-button aria-label="Clear"
             (click)="contentOtherInfoSelected.typeId = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -219,8 +223,9 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ contentOtherInfoSelected_Source.value.length }} / 500</mat-hint>
         </mat-form-field>
-        <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig" id="OtherInfo"
-          [(ngModel)]="contentOtherInfoSelected.htmlBody" name="contentOtherInfoSelected.htmlBody"></angular-editor>
+        <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig"
+          id="OtherInfo" [(ngModel)]="contentOtherInfoSelected.htmlBody"
+          name="contentOtherInfoSelected.htmlBody"></angular-editor>
         <button (click)="onActionContentOtherInfoAddToLIst()" type="button" mat-button
           class="btn btn-light-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
           {{'ACTION.Add_To_List' | translate}}
@@ -243,8 +248,10 @@
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
-                <small (click)="onActionContentOtherInfoEditFromLIst(i)"><mat-icon aria-hidden="false" style="color: blue;" >edit</mat-icon>{{'ACTION.EDIT' | translate}}</small>|
-                <small (click)="onActionContentOtherInfoRemoveFromLIst(i)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
+                <small (click)="onActionContentOtherInfoEditFromLIst(i)"><mat-icon aria-hidden="false"
+                    style="color: blue;">edit</mat-icon>{{'ACTION.EDIT' | translate}}</small>|
+                <small (click)="onActionContentOtherInfoRemoveFromLIst(i)"><mat-icon aria-hidden="false"
+                    style="color: red;">delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="otherInfoTabledisplayedColumns"></mat-header-row>
@@ -280,8 +287,8 @@
             <ng-container matColumnDef="LinkMainImageIdSrc">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row">
-                <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-                  src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+                <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+                  aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
               </mat-cell>
             </ng-container>
             <!-- Id Column -->
@@ -297,8 +304,8 @@
             <!-- RecordStatus Column -->
             <ng-container matColumnDef="RecordStatus">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.RecordStatus' | translate}} </mat-header-cell>
-              <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-        </mat-cell>
+              <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+              </mat-cell>
             </ng-container>
             <!-- Title Column -->
             <ng-container matColumnDef="Title">
@@ -309,7 +316,8 @@
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
-                <small (click)="onActionContentSimilarRemoveFromLIst(row)"><mat-icon aria-hidden="false" style="color: red;" >delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
+                <small (click)="onActionContentSimilarRemoveFromLIst(row)"><mat-icon aria-hidden="false"
+                    style="color: red;">delete</mat-icon>{{'ACTION.DELETE' | translate}}</small>
               </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="similarTabledisplayedColumns"></mat-header-row>
@@ -329,13 +337,14 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.Location' | translate}} " state="loaction">
-          <!-- LinkLocationId Field -->
-          <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
+        <!-- LinkLocationId Field -->
+        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
           [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessEditField"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
         <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>
-        <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)"  [optonCenter]="mapOptonCenter" id='main-map'></app-cms-map>
+        <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
+          id='main-map'></app-cms-map>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}

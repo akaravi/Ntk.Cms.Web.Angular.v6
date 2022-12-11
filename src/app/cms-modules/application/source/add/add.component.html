@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -10,12 +10,12 @@
     <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
         <div>
-      {{'TITLE.Copy_settings_from_content' | translate}}:
+          {{'TITLE.Copy_settings_from_content' | translate}}:
           <br>
           <app-application-source-selector (optionChange)="onActionSourceCopySelect($event)"
             [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"></app-application-source-selector>
           <br>
-            {{'TITLE.Using_this_option,_you_can_copy_other_source_settings_and_then_make_changes' | translate}}
+          {{'TITLE.Using_this_option,_you_can_copy_other_source_settings_and_then_make_changes' | translate}}
         </div>
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
@@ -110,7 +110,8 @@
           <mat-icon matSuffix *ngIf="dataModel.extension && fieldsInfo['Extension']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.extension = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['Extension']?.accessAddField" matSuffix>mode_edit</mat-icon>
-          <mat-hint *ngIf="fieldsInfo['Extension']?.accessAddField" style="text-align: left;">{{ Extension.value.length }} / 10
+          <mat-hint *ngIf="fieldsInfo['Extension']?.accessAddField" style="text-align: left;">{{ Extension.value.length
+            }} / 10
           </mat-hint>
           <mat-error *ngIf="Extension.errors?.required">
             Extension is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -145,7 +146,8 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DefaultAppId']?.accessWatchField">
           <mat-label>{{fieldsInfo['DefaultAppId']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.defaultAppId" [disabled]="!fieldsInfo['DefaultAppId']?.accessEditField"
-            name="dataModel.defaultAppId" #DefaultAppId type="number" placeholder="{{'TITLE.Assumption' | translate}}" />
+            name="dataModel.defaultAppId" #DefaultAppId type="number"
+            placeholder="{{'TITLE.Assumption' | translate}}" />
           <mat-icon matSuffix *ngIf="dataModel.defaultAppId && fieldsInfo['DefaultAppId']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.defaultAppId = null">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['DefaultAppId']?.accessEditField" matSuffix>mode_edit</mat-icon>
@@ -214,8 +216,10 @@
         <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
         <!-- LinkMainImageId Field -->
         <div class="mb-3">
-          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-            src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
+            <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+              aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          </a>
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkMainImageId']?.accessWatchField">
@@ -312,8 +316,8 @@
                   #BuildKey1Files type="text" placeholder="Files" minlength="0" />
                 <mat-hint align="end">{{ BuildKey1Files.value.length }}</mat-hint>
               </mat-form-field>
-            </td>          
-              <td>
+            </td>
+            <td>
               <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BuildKey1Value']?.accessWatchField">
                 <mat-label>{{fieldsInfo['BuildKey1Value']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey1Value"
@@ -329,7 +333,7 @@
                 <mat-label>{{fieldsInfo['BuildKey2String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey2String"
                   [disabled]="!fieldsInfo['BuildKey2String']?.accessAddField" name="dataModel.buildKey2String"
-                  #BuildKey2String type="text" placeholder="KEY" minlength="0"  />
+                  #BuildKey2String type="text" placeholder="KEY" minlength="0" />
                 <mat-hint align="end">{{ BuildKey2String.value.length }}</mat-hint>
               </mat-form-field>
             </td>
@@ -358,7 +362,7 @@
                 <mat-label>{{fieldsInfo['BuildKey3String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey3String"
                   [disabled]="!fieldsInfo['BuildKey3String']?.accessAddField" name="dataModel.buildKey3String"
-                  #BuildKey3String type="text" placeholder="KEY" minlength="0"  />
+                  #BuildKey3String type="text" placeholder="KEY" minlength="0" />
                 <mat-hint align="end">{{ BuildKey3String.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -387,7 +391,7 @@
                 <mat-label>{{fieldsInfo['BuildKey4String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey4String"
                   [disabled]="!fieldsInfo['BuildKey4String']?.accessAddField" name="dataModel.buildKey4String"
-                  #BuildKey4String type="text" placeholder="KEY" minlength="0"/>
+                  #BuildKey4String type="text" placeholder="KEY" minlength="0" />
                 <mat-hint align="end">{{ BuildKey4String.value.length }}</mat-hint>
               </mat-form-field>
             </td>
@@ -416,7 +420,7 @@
                 <mat-label>{{fieldsInfo['BuildKey5String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey5String"
                   [disabled]="!fieldsInfo['BuildKey5String']?.accessAddField" name="dataModel.buildKey5String"
-                  #BuildKey5String type="text" placeholder="KEY" minlength="0"  />
+                  #BuildKey5String type="text" placeholder="KEY" minlength="0" />
                 <mat-hint align="end">{{ BuildKey5String.value.length }} </mat-hint>
               </mat-form-field>
             </td>
