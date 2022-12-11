@@ -39,6 +39,7 @@ import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.compo
 import { TranslateService } from '@ngx-translate/core';
 import { CmsMemoComponent } from "src/app/shared/cms-memo/cms-memo.component";
 import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
+import { CmsPrintEntityComponent } from "src/app/shared/cms-print-entity/cms-print-entity.component";
 
 
 @Component({
@@ -483,7 +484,9 @@ export class EstatePropertyListComponent
       }
     });
   }
-  onActionbuttonPrint(model: EstatePropertyModel = this.tableRowSelected): void {
+  
+
+  onActionButtonPrintEntity(model: EstatePropertyModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -492,21 +495,24 @@ export class EstatePropertyListComponent
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessWatchRow
+      !this.dataModelResult.access.accessEditRow
     ) {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
-    const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
-      height: '90%',
-      data: { id: this.tableRowSelected.id }
+    //open popup
+    const dialogRef = this.dialog.open(CmsPrintEntityComponent, {
+      height: "70%",
+      width: "50%",
+      data: {
+        service: this.contentService
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-      }
-    });
+    //open popup
   }
-
   onActionbuttonAdsRow(
     mode: EstatePropertyModel = this.tableRowSelected, event?: MouseEvent
   ): void {
@@ -737,6 +743,7 @@ export class EstatePropertyListComponent
     //open popup
     this.loading.Stop(pName);
   }
+
 
 
   onActionbuttonExport(): void {

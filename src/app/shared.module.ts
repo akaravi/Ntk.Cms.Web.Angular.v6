@@ -150,6 +150,7 @@ import { CmsSiteInfoPipe } from './core/pipe/cms-site-info.pipe';
 import { CmsModuleInfoPipe } from './core/pipe/cms-module-info.pipe';
 import { SmsMainApiPathSelectorComponent } from './cms-modules/sms/main/api-path/selector/selector.component';
 import { SmsMainApiNumberSelectorComponent } from './cms-modules/sms/main/api-number/selector/selector.component';
+import { CmsPrintEntityComponent } from './shared/cms-print-entity/cms-print-entity.component';
 
 @NgModule({
   imports: [
@@ -242,6 +243,7 @@ import { SmsMainApiNumberSelectorComponent } from './cms-modules/sms/main/api-nu
     CmsUserGroupSelectorComponent,
     CmsMemberSelectorComponent,
     CmsModuleSelectorComponent,
+    CmsPrintEntityComponent,
     CmsQDocComponent,
     CmsViewComponent,
     CmsLinkToComponent,
@@ -372,6 +374,7 @@ import { SmsMainApiNumberSelectorComponent } from './cms-modules/sms/main/api-nu
     CmsUserGroupSelectorComponent,
     CmsMemberSelectorComponent,
     CmsModuleSelectorComponent,
+    CmsPrintEntityComponent,
     CmsMapComponent,
     CmsQDocComponent,
     CmsViewComponent,
