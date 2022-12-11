@@ -85,6 +85,14 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
     'Action',
     "LinkTo",
   ];
+  tabledisplayedColumnsMobileSource: string[] = [
+    'LinkMainImageIdSrc',
+    'Title',
+    'SpeedView',
+    'ReloadViewPerMin',
+    'Action',
+    "LinkTo",
+  ];
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
@@ -109,7 +117,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource,this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateBillboardModel();
     const pName = this.constructor.name + 'main';

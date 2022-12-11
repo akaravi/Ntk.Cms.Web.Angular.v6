@@ -125,9 +125,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-            // if (this.optionsSearch.data.show && this.optionsStatist.data.show) {
-            //   this.onActionbuttonStatist();
-            // }
+            
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.access);
             }

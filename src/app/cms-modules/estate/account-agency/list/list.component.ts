@@ -79,7 +79,6 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     'Title',
     'Description',
     'Action',
-
   ];
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();

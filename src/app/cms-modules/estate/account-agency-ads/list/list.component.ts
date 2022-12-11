@@ -94,6 +94,13 @@ export class EstateAccountAgencyAdsListComponent implements OnInit, OnDestroy {
     'ExpireDate',
     'Action'
   ];
+  tabledisplayedColumnsMobileSource: string[] = [
+    'Title',
+    'StationLevel',
+    'ViewLevel',
+    'Action'
+  ];
+  
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
@@ -118,7 +125,7 @@ export class EstateAccountAgencyAdsListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource,this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateAccountAgencyAdsModel();
     const pName = this.constructor.name + 'main';

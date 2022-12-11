@@ -246,6 +246,14 @@ export class EstatePropertyQuickListComponent
     "LinkTo",
     "QuickView",
   ];
+  tabledisplayedColumnsMobileSource: string[] = [
+    "LinkMainImageIdSrc",
+    "CaseCode",
+    "IsSoldIt",
+    'Action',
+    "LinkTo",
+    "QuickView",
+  ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<
     string,
     DataFieldInfoModel
@@ -281,7 +289,7 @@ export class EstatePropertyQuickListComponent
   }
 
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource,this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
     if (!this.optionloadComponent) {
       return;
     }

@@ -80,6 +80,13 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     'Action',
     "LinkTo",
   ];
+  tabledisplayedColumnsMobileSource: string[] = [
+    'LinkMainImageIdSrc',
+    'Title',
+    'ViewCount',
+    'Action',
+    "LinkTo",
+  ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   cmsApiStoreSubscribe: Subscription;
   GetAllWithHierarchyCategoryId = false;
@@ -97,7 +104,7 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource,this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new ArticleContentModel();
     const pName = this.constructor.name + 'main';
