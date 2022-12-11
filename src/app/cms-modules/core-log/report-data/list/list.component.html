@@ -83,12 +83,6 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkMemberId}} </mat-cell>
       </ng-container>
-      <!-- LinkMemberId Column -->
-      <ng-container matColumnDef="LinkMemberId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberId']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkMemberId}} </mat-cell>
-      </ng-container>
       <!-- LinkModuleEntityId Column -->
       <ng-container matColumnDef="LinkModuleEntityId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkModuleEntityId']?.fieldTitle}}
