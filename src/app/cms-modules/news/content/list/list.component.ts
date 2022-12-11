@@ -79,6 +79,13 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     'Action',
     "LinkTo",
   ];
+  tabledisplayedColumnsMobileSource: string[] = [
+    'LinkMainImageIdSrc',
+    'RecordStatus',
+    'Title',
+    'Action',
+    "LinkTo",
+  ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   cmsApiStoreSubscribe: Subscription;
   GetAllWithHierarchyCategoryId = false;
@@ -96,7 +103,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource,this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new NewsContentModel();
 
