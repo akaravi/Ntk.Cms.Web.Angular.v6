@@ -483,6 +483,29 @@ export class EstatePropertyListComponent
       }
     });
   }
+  onActionbuttonPrint(model: EstatePropertyModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
+      height: '90%',
+      data: { id: this.tableRowSelected.id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
+  }
 
   onActionbuttonAdsRow(
     mode: EstatePropertyModel = this.tableRowSelected, event?: MouseEvent
