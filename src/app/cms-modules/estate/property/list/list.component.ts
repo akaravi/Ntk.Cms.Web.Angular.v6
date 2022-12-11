@@ -579,6 +579,8 @@ export class EstatePropertyListComponent
     const statist = new Map<string, number>();
     statist.set("Active", 0);
     statist.set("All", 0);
+    const pName = this.constructor.name + '.ServiceExportFile';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
     this.contentService
       .ServiceGetCount(this.filteModelProperty)
       .subscribe({
@@ -589,9 +591,11 @@ export class EstatePropertyListComponent
           } else {
             this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
         }
       }
       );
@@ -609,9 +613,11 @@ export class EstatePropertyListComponent
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
+        this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
       }
     }
     );

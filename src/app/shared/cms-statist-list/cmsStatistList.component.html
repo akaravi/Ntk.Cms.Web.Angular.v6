@@ -1,6 +1,6 @@
 <div *ngIf="optionsData.data.show" class="alert alert-info" style="direction: ltr">
   <mat-list>
-    <div mat-subheader>{{'ACTION.STATIST' | translate}}</div>
+    <div mat-subheader style="font-size: 30px;">{{'ACTION.STATIST' | translate}}</div>
     <mat-list-item *ngFor="let folder of modelData| keyvalue">
       <mat-icon mat-list-icon>insights</mat-icon>
       <div mat-line>{{folder.key}}</div>
