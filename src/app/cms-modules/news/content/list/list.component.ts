@@ -68,7 +68,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<NewsContentModel> = [];
   tableRowSelected: NewsContentModel = new NewsContentModel();
   tableSource: MatTableDataSource<NewsContentModel> = new MatTableDataSource<NewsContentModel>();
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
@@ -96,10 +96,10 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new NewsContentModel();
-   
+
     this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -118,12 +118,14 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-     
+            if (this.optionsSearch.data.show && this.optionsStatist.data.show) {
+              this.onActionbuttonStatist();
+            }
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.access);
             }
           }
-          else{
+          else {
             this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
@@ -166,12 +168,12 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-     
+
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.access);
             }
           }
-          else{
+          else {
             this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
@@ -290,7 +292,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
-        else{
+        else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
@@ -311,7 +313,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
-        else{
+        else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
@@ -335,23 +337,23 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     exportlist.set('Download', 'loading ... ');
     const pName = this.constructor.name + '.ServiceExportFile';
     this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
-    this.optionsExport.data.inProcess=true;
+    this.optionsExport.data.inProcess = true;
     this.contentService.ServiceExportFile(model).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           exportlist.set('Download', ret.linkFile);
           this.optionsExport.childMethods.setExportLinkFile(exportlist);
         }
-        else{
+        else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
-        this.optionsExport.data.inProcess=false;
+        this.optionsExport.data.inProcess = false;
         this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-        this.optionsExport.data.inProcess=false;
+        this.optionsExport.data.inProcess = false;
       }
     });
   }
@@ -367,7 +369,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: NewsContentModel): void {
     this.tableRowSelected = row;
-  
+
     if (!row["expanded"])
       row["expanded"] = false;
     row["expanded"] = !row["expanded"]
