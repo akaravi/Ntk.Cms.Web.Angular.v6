@@ -45,8 +45,10 @@ export class PublicHelper {
     public dialog: MatDialog,
   ) {
     this.fileManagerTreeConfig = new TreeModel(this.treefileConfig);
-
+    this.innerWidth = + window.innerWidth;
   }
+  public innerWidth = 0;
+
   appClientVersion = environment.appVersion;
   appServerVersion = '';
 
@@ -470,26 +472,34 @@ export class PublicHelper {
       return false;
     return true;
   }
-  TabledisplayedColumnsCheckByAllDataAccess(cloumnSource: string[], cloumnCheck: string[], token: TokenInfoModel): string[] {
-    if (!cloumnCheck || cloumnCheck.length == 0) {
-      cloumnCheck = [];
+  TabledisplayedColumnsCheckByAllDataAccess(cloumnDesktopSource: string[], cloumnAdminAccessDispaly: string[], token: TokenInfoModel): string[] {
+    return this.TableDisplayedColumns(cloumnDesktopSource,[], cloumnAdminAccessDispaly,  token);
+  }
+  TableDisplayedColumns(cloumnDesktopSource: string[], cloumnMobileDispalySource: string[],cloumnAdminAccessDispaly: string[],  token: TokenInfoModel): string[] {
+    if (!cloumnAdminAccessDispaly || cloumnAdminAccessDispaly.length == 0) {
+      cloumnAdminAccessDispaly = [];
     }
     var cloumn: string[] = [];
-    if (cloumnSource && cloumnSource.length > 0)
-      cloumn = JSON.parse(JSON.stringify(cloumnSource));
+    if (this.innerWidth < 1000 && cloumnMobileDispalySource && cloumnMobileDispalySource.length > 0) {
+      cloumn = JSON.parse(JSON.stringify(cloumnMobileDispalySource));
+    } else if (cloumnDesktopSource && cloumnDesktopSource.length > 0) {
+      cloumn = JSON.parse(JSON.stringify(cloumnDesktopSource));
+    }
+
 
 
     if (cloumn.indexOf('Id') >= 0)
-      cloumnCheck.push('Id');
+    cloumnAdminAccessDispaly.push('Id');
     if (cloumn.indexOf('LinkSiteId') >= 0)
-      cloumnCheck.push('LinkSiteId');
+    cloumnAdminAccessDispaly.push('LinkSiteId');
+
     if (token.userAccessAdminAllowToAllData || token.userAccessAdminAllowToProfessionalData) {
       var i = 0;
-      cloumnCheck.forEach(element => {
+      cloumnAdminAccessDispaly.forEach(element => {
         cloumn = this.listAddIfNotExist(cloumn, element, ++i);
       });
     } else {
-      cloumnCheck.forEach(element => {
+      cloumnAdminAccessDispaly.forEach(element => {
         cloumn = this.listRemoveIfExist(cloumn, element);
       });
     }
