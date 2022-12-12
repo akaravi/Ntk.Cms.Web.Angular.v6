@@ -21,7 +21,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base/componentOptionExportModel';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
@@ -37,7 +37,7 @@ import { SmsLogOutBoxDetailViewComponent } from '../view/view.component';
 export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
   requestLinkOutBoxId = '';
   constructor(
-    private smsLogOutBoxDetailService: SmsLogOutBoxDetailService,
+    private contentService: SmsLogOutBoxDetailService,
     public publicHelper: PublicHelper,
     private activatedRoute: ActivatedRoute,
     private cmsToastrService: CmsToastrService,
@@ -54,9 +54,7 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    this.optionsExport.parentMethods = {
-      onSubmit: (model) => this.onSubmitOptionExport(model),
-    };
+    
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -83,7 +81,7 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
+  
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<SmsLogOutBoxDetailModel> = [];
@@ -141,7 +139,7 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.smsLogOutBoxDetailService.ServiceGetAllEditor(filterModel).subscribe({
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
@@ -220,7 +218,7 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.smsLogOutBoxDetailService.ServiceDelete(this.tableRowSelected.id).subscribe({
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
             next: (ret) => {
               if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -261,7 +259,7 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.smsLogOutBoxDetailService.ServiceGetCount(this.filteModelContent).subscribe({
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           statist.set('All', ret.totalRowCount);
@@ -281,7 +279,7 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
     fastfilter.propertyName = 'RecordStatus';
     fastfilter.value = EnumRecordStatus.Available;
     filterStatist1.filters.push(fastfilter);
-    this.smsLogOutBoxDetailService.ServiceGetCount(filterStatist1).subscribe({
+    this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           statist.set('Active', ret.totalRowCount);
@@ -299,35 +297,23 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonExport(): void {
-    this.optionsExport.data.show = !this.optionsExport.data.show;
-    this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
-  }
-  onSubmitOptionExport(model: FilterModel): void {
-    const exportlist = new Map<string, string>();
-    exportlist.set('Download', 'loading ... ');
-    const pName = this.constructor.name + '.ServiceExportFile';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
-    this.optionsExport.data.inProcess=true;
-    this.smsLogOutBoxDetailService.ServiceExportFile(model).subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          exportlist.set('Download', ret.linkFile);
-          this.optionsExport.childMethods.setExportLinkFile(exportlist);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+            //open popup
+        const dialogRef = this.dialog.open(CmsExportListComponent, {
+          height: "30%",
+          width: "50%",
+          data: {
+            service: this.contentService,
+            filteModel: this.filteModelContent,
+            title: ''
+          },
         }
-        this.optionsExport.data.inProcess=false;
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.optionsExport.data.inProcess=false;
-        this.loading.Stop(pName);
-      }
-    }
-    );
+        );
+        dialogRef.afterClosed().subscribe((result) => {
+        });
+        //open popup 
+        
   }
-
+  
   onActionbuttonViewRow(model: SmsLogOutBoxDetailModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();

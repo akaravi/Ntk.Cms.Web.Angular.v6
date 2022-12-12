@@ -19,7 +19,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base/componentOptionExportModel';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 
 import { Subscription } from 'rxjs';
@@ -64,7 +64,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
   dataModelResult: ErrorExceptionResult<CoreUserClaimCheckModel> = new ErrorExceptionResult<CoreUserClaimCheckModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
+  
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowSelected: CoreUserClaimCheckModel = new CoreUserClaimCheckModel();

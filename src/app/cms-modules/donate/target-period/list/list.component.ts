@@ -19,7 +19,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base/componentOptionExportModel';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -56,9 +56,7 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    this.optionsExport.parentMethods = {
-      onSubmit: (model) => this.onSubmitOptionExport(model),
-    };
+    
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -70,7 +68,7 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
+  
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<DonateTargetPeriodModel> = [];
@@ -324,35 +322,23 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
 
   }
   onActionbuttonExport(): void {
-    this.optionsExport.data.show = !this.optionsExport.data.show;
-    this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
-  }
-  onSubmitOptionExport(model: FilterModel): void {
-    const exportlist = new Map<string, string>();
-    exportlist.set('Download', 'loading ... ');
-    const pName = this.constructor.name + '.ServiceExportFile';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
-    this.optionsExport.data.inProcess=true;
-    this.contentService.ServiceExportFile(model).subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          exportlist.set('Download', ret.linkFile);
-          this.optionsExport.childMethods.setExportLinkFile(exportlist);
+            //open popup
+        const dialogRef = this.dialog.open(CmsExportListComponent, {
+          height: "30%",
+          width: "50%",
+          data: {
+            service: this.contentService,
+            filteModel: this.filteModelContent,
+            title: ''
+          },
         }
-        else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.optionsExport.data.inProcess=false;
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.optionsExport.data.inProcess=false;
-        this.loading.Stop(pName);
-      }
-    }
-    );
+        );
+        dialogRef.afterClosed().subscribe((result) => {
+        });
+        //open popup 
+        
   }
+  
 
   onActionbuttonDonateTargetPeriodAccountRow(model: DonateTargetPeriodModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0 || !model.linkSiteId || model.linkSiteId === 0) {

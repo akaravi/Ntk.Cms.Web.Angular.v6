@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -11,23 +10,29 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-cms-print-entity',
-  templateUrl: './cms-print-entity.component.html'
+  selector: 'app-cms-export-entity',
+  templateUrl: './cms-export-entity.component.html'
 })
-export class CmsPrintEntityComponent implements OnInit {
+export class CmsExportEntityComponent implements OnInit {
   static nextId = 0;
-  id = ++CmsPrintEntityComponent.nextId;
+  id = ++CmsExportEntityComponent.nextId;
+  requestId = '';
+  requestTitle = '';
+  requestService: IApiCmsServerBase;
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<CmsPrintEntityComponent>,
-    public http: HttpClient,
+    private dialogRef: MatDialogRef<CmsExportEntityComponent>,
     public translate: TranslateService,
   ) {
     if (data) {
-      this.optionService = data.service;
-      this.optionId = data.id;
-      this.optionTitle = data.title;
+      this.requestService = data.service;
+      this.requestId = data.id;
+      this.requestTitle = data.title;
     }
+    if (!this.requestId || this.requestId.length == 0)
+      this.dialogRef.close({ dialogChangedDate: true });
+    if (!this.requestService)
+      this.dialogRef.close({ dialogChangedDate: true });
     let eum = new EnumInfoModel();
     eum.value = 1;
     eum.key = 'Excel';
@@ -82,22 +87,20 @@ export class CmsPrintEntityComponent implements OnInit {
   @Input() set loading(value: ProgressSpinnerModel) {
     this._loading = value;
   }
-  optionId = '';
-  optionTitle = '';
-  optionService: IApiCmsServerBase;
-  optionPlaceholder = '';
+
+
   formControl = new FormControl();
   filteredOptions: Observable<CoreModuleEntityReportFileModel[]>;
   dataModelFileSelect: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
   dataModel: ExportFileModel = new ExportFileModel();
-  EnumExportFileTypeReport=EnumExportFileType.Report;
+  EnumExportFileTypeReport = EnumExportFileType.Report;
 
   formInfo: FormInfoModel = new FormInfoModel();
 
 
   ngOnInit(): void {
     this.DataGetAll();
-    this.formInfo.formTitle = this.translate.instant('TITLE.FILE_CREATION')+' : '+this.optionTitle;
+    this.formInfo.formTitle = this.translate.instant('TITLE.FILE_CREATION') + ' : ' + this.requestTitle;
   }
 
   ngOnDestroy(): void {
@@ -109,7 +112,7 @@ export class CmsPrintEntityComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.dataModelSubmitResult = new ErrorExceptionResultExportFile();
     this.formInfo.formSubmitAllow = false;
-    this.optionService.ServiceReportFileGetAll().subscribe({
+    this.requestService.ServiceReportFileGetAll().subscribe({
       next: (ret) => {
         this.dataModelReportFileResult = ret;
         if (ret.isSuccess) {
@@ -137,8 +140,8 @@ export class CmsPrintEntityComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.formInfo.formSubmitAllow = false;
-    
-    this.optionService.ServiceExportFileGetOne(this.optionId, this.dataModel).subscribe({
+
+    this.requestService.ServiceExportFileGetOne(this.requestId, this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelSubmitResult = ret;
         if (ret.isSuccess) {

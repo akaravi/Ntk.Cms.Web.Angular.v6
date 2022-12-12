@@ -39,7 +39,8 @@ import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.compo
 import { TranslateService } from '@ngx-translate/core';
 import { CmsMemoComponent } from "src/app/shared/cms-memo/cms-memo.component";
 import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
-import { CmsPrintEntityComponent } from "src/app/shared/cms-print-entity/cms-print-entity.component";
+import { CmsExportEntityComponent } from "src/app/shared/cms-export-entity/cms-export-entity.component";
+import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
 
 
 @Component({
@@ -96,12 +97,10 @@ export class EstatePropertyListComponent
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    this.optionsExport.parentMethods = {
-      onSubmit: (model) => this.onSubmitOptionExport(model),
-    };
+    
     /*filter Sort*/
-    this.filteModelProperty.sortColumn = "CreatedDate";
-    this.filteModelProperty.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = "CreatedDate";
+    this.filteModelContent.sortType = EnumSortType.Descending;
     if (
       this.requestLinkPropertyTypeLanduseId &&
       this.requestLinkPropertyTypeLanduseId.length > 0
@@ -109,7 +108,7 @@ export class EstatePropertyListComponent
       const filter = new FilterDataModel();
       filter.propertyName = "LinkPropertyTypeLanduseId";
       filter.value = this.requestLinkPropertyTypeLanduseId;
-      this.filteModelProperty.filters.push(filter);
+      this.filteModelContent.filters.push(filter);
     }
     if (
       this.requestLinkPropertyTypeUsageId &&
@@ -118,7 +117,7 @@ export class EstatePropertyListComponent
       const filter = new FilterDataModel();
       filter.propertyName = "LinkPropertyTypeUsageId";
       filter.value = this.requestLinkPropertyTypeUsageId;
-      this.filteModelProperty.filters.push(filter);
+      this.filteModelContent.filters.push(filter);
     }
     if (
       this.requestLinkContractTypeId &&
@@ -128,19 +127,19 @@ export class EstatePropertyListComponent
       filter.propertyName = "Contracts";
       filter.propertyAnyName = "LinkEstateContractTypeId";
       filter.value = this.requestLinkContractTypeId;
-      this.filteModelProperty.filters.push(filter);
+      this.filteModelContent.filters.push(filter);
     }
     if (this.requestLinkUserId && this.requestLinkUserId > 0) {
       const filter = new FilterDataModel();
       filter.propertyName = "linkCmsUserId";
       filter.value = this.requestLinkUserId;
-      this.filteModelProperty.filters.push(filter);
+      this.filteModelContent.filters.push(filter);
     }
     if (this.requestLinkProjectId && this.requestLinkProjectId.length > 0) {
       const filter = new FilterDataModel();
       filter.propertyName = "linkPropertyProjectId";
       filter.value = this.requestLinkProjectId;
-      this.filteModelProperty.filters.push(filter);
+      this.filteModelContent.filters.push(filter);
     }
   }
   @Input() optionloadComponent = true;
@@ -165,13 +164,13 @@ export class EstatePropertyListComponent
   tablePropertySelected = [];
   searchInChecking = false;
   searchInCheckingChecked = false;
-  filteModelProperty = new FilterModel();
+  filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyModel> =
     new ErrorExceptionResult<EstatePropertyModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel =
     new ComponentOptionStatistModel();
-  optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
+  
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstatePropertyModel> = [];
@@ -246,9 +245,9 @@ export class EstatePropertyListComponent
     this.tableRowSelected = new EstatePropertyModel();
     const pName = this.constructor.name + "main";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
-    this.filteModelProperty.accessLoad = true;
+    this.filteModelContent.accessLoad = true;
     /*filter CLone*/
-    const filterModel = JSON.parse(JSON.stringify(this.filteModelProperty));
+    const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     if (
       this.categoryModelSelected &&
@@ -369,25 +368,25 @@ export class EstatePropertyListComponent
     ) {
       if (this.tableSource.sort.start === "asc") {
         sort.start = "desc";
-        this.filteModelProperty.sortColumn = sort.active;
-        this.filteModelProperty.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortColumn = sort.active;
+        this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === "desc") {
-        this.filteModelProperty.sortColumn = "";
-        this.filteModelProperty.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortColumn = "";
+        this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         sort.start = "desc";
       }
     } else {
-      this.filteModelProperty.sortColumn = sort.active;
-      this.filteModelProperty.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortColumn = sort.active;
+      this.filteModelContent.sortType = EnumSortType.Ascending;
     }
     this.tableSource.sort = sort;
-    this.filteModelProperty.currentPageNumber = 0;
+    this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
   }
   onTablePageingData(event?: PageEvent): void {
-    this.filteModelProperty.currentPageNumber = event.pageIndex + 1;
-    this.filteModelProperty.rowPerPage = event.pageSize;
+    this.filteModelContent.currentPageNumber = event.pageIndex + 1;
+    this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
 
@@ -431,7 +430,7 @@ export class EstatePropertyListComponent
   }
 
   onActionSelectorSelect(model: EstatePropertyTypeLanduseModel | null): void {
-    this.filteModelProperty = new FilterModel();
+    this.filteModelContent = new FilterModel();
     this.categoryModelSelected = model;
 
     this.DataGetAll();
@@ -486,35 +485,7 @@ export class EstatePropertyListComponent
   }
   
 
-  onActionButtonPrintEntity(model: EstatePropertyModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    this.tableRowSelected = model;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessEditRow
-    ) {
-      this.cmsToastrService.typeErrorAccessWatch();
-      return;
-    }
-    //open popup
-    const dialogRef = this.dialog.open(CmsPrintEntityComponent, {
-      height: "70%",
-      width: "50%",
-      data: {
-        service: this.contentService,
-        id: this.tableRowSelected.id,
-        title: this.tableRowSelected.title
-      },
-    }
-    );
-    dialogRef.afterClosed().subscribe((result) => {
-    });
-    //open popup
-  }
+  
   onActionbuttonAdsRow(
     mode: EstatePropertyModel = this.tableRowSelected, event?: MouseEvent
   ): void {
@@ -625,7 +596,7 @@ export class EstatePropertyListComponent
     const pName = this.constructor.name + '.ServiceStatist';
     this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_statist'));
     this.contentService
-      .ServiceGetCount(this.filteModelProperty)
+      .ServiceGetCount(this.filteModelContent)
       .subscribe({
         next: (ret) => {
           if (ret.isSuccess) {
@@ -643,7 +614,7 @@ export class EstatePropertyListComponent
       }
       );
 
-    const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelProperty));
+    const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = "RecordStatus";
     fastfilter.value = EnumRecordStatus.Available;
@@ -702,11 +673,39 @@ export class EstatePropertyListComponent
       const filter = new FilterDataModel();
       filter.propertyName = "linkCmsUserId";
       filter.value = this.requestLinkUserId;
-      this.filteModelProperty.filters.push(filter);
+      this.filteModelContent.filters.push(filter);
     }
     this.DataGetAll();
   }
-
+  onActionButtonPrintEntity(model: EstatePropertyModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportEntityComponent, {
+      height: "30%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        id: this.tableRowSelected.id,
+        title: this.tableRowSelected.title
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup
+  }
   onActionbuttonMemo(model: EstatePropertyModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -721,19 +720,16 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
-    const pName = this.constructor.name + "ServiceGetOneById";
+    const pName = this.constructor.name + "memo";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
-
     //open popup
     const dialogRef = this.dialog.open(CmsMemoComponent, {
       height: "70%",
       width: "50%",
       data: {
-        moduleName: this.dataModelResult.access.moduleName,
-        moduleEntityName: this.dataModelResult.access.moduleEntityName,
-        moduleEntityId: model.id,
-        title: model.title
+        service: this.contentService,
+        id: this.tableRowSelected.id,
+        title: this.tableRowSelected.title
       },
     }
     );
@@ -749,41 +745,28 @@ export class EstatePropertyListComponent
 
 
   onActionbuttonExport(): void {
-    this.optionsExport.data.show = !this.optionsExport.data.show;
-    this.optionsExport.childMethods.setExportFilterModel(
-      this.filteModelProperty
-    );
+        //open popup
+        const dialogRef = this.dialog.open(CmsExportListComponent, {
+          height: "30%",
+          width: "50%",
+          data: {
+            service: this.contentService,
+            filteModel: this.filteModelContent,
+            title: ''
+          },
+        }
+        );
+        dialogRef.afterClosed().subscribe((result) => {
+        });
+        //open popup 
+        
   }
 
   onActionbuttonInChecking(model: boolean): void {
     this.searchInChecking = model;
     this.DataGetAll();
   }
-  onSubmitOptionExport(model: FilterModel): void {
-    const exportlist = new Map<string, string>();
-    exportlist.set("Download", "loading ... ");
-    const pName = this.constructor.name + '.ServiceExportFile';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
-    this.optionsExport.data.inProcess = true;
-    this.contentService.ServiceExportFile(model).subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          exportlist.set("Download", ret.linkFile);
-          this.optionsExport.childMethods.setExportLinkFile(exportlist);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.optionsExport.data.inProcess = false;
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
-        this.optionsExport.data.inProcess = false;
-      }
-    }
-    );
-  }
+  
 
   onActionbuttonReload(): void {
     this.optionloadComponent = true;
@@ -793,7 +776,7 @@ export class EstatePropertyListComponent
     this.cmsToastrService.typeSuccessCopedToClipboard();
   }
   onSubmitOptionsSearch(model: any): void {
-    this.filteModelProperty.filters = model;
+    this.filteModelContent.filters = model;
     this.DataGetAll();
   }
   onActionTableRowSelect(row: EstatePropertyModel): void {

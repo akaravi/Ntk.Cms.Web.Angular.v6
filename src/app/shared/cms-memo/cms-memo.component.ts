@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angula
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleLogMemoModel, CoreModuleLogMemoService, DataFieldInfoModel, EnumSortType, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel } from 'ntk-cms-api';
+import { CoreModuleLogMemoModel, CoreModuleLogMemoService, DataFieldInfoModel, EnumSortType, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -17,41 +17,34 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 export class CmsMemoComponent implements OnInit {
   static nextId = 0;
   id = ++CmsMemoComponent.nextId;
+  requestId = '';
+  requestTitle = '';
+  requestService: IApiCmsServerBase;
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CmsMemoComponent>,
     public http: HttpClient,
     public publicHelper: PublicHelper,
     public translate: TranslateService,
-    public coreModuleLogMemoService: CoreModuleLogMemoService,
     private cdr: ChangeDetectorRef,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestModuleName = data.moduleName;
-      this.requestModuleEntityName = data.moduleEntityName;
-      this.requestModuleEntityId = data.moduleEntityId;
+      this.requestService = data.service;
+      this.requestId = data.id;
       this.requestTitle = data.title;
     }
-    else {
+
+    if (!this.requestId || this.requestId.length==0)
       this.dialogRef.close({ dialogChangedDate: true });
-    }
-    if (!this.requestModuleEntityId || !this.requestModuleEntityName || !this.requestModuleName)
-      this.dialogRef.close({ dialogChangedDate: true });
-    this.dataModel.moduleEntityId = this.requestModuleEntityId;
-    this.dataModel.moduleName = this.requestModuleName;
-    this.dataModel.moduleEntityName = this.requestModuleEntityName;
 
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   showAdd: boolean = true;
 
   loading = new ProgressSpinnerModel();
-  requestModuleName: string;
-  requestModuleEntityName: string;
-  requestModuleEntityId: string;
-  requestTitle: string;
+
   dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
   dataModel: CoreModuleLogMemoModel = new CoreModuleLogMemoModel();
 
@@ -67,29 +60,7 @@ export class CmsMemoComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
 
     /*filter CLone*/
-    var filterModel = new FilterModel();
-    /*filter Sort*/
-    filterModel.sortColumn = 'CreatedDate';
-    filterModel.sortType = EnumSortType.Descending;
-
-    const filter1 = new FilterDataModel();
-    filter1.propertyName = 'ModuleName';
-    filter1.value = this.requestModuleName;
-    filterModel.filters.push(filter1);
-
-    const filter2 = new FilterDataModel();
-    filter2.propertyName = 'ModuleEntityName';
-    filter2.value = this.requestModuleEntityName;
-    filterModel.filters.push(filter2);
-
-    const filter3 = new FilterDataModel();
-    filter3.propertyName = 'ModuleEntityId';
-    filter3.value = this.requestModuleEntityId;
-    filterModel.filters.push(filter3);
-
-    filterModel.accessLoad = true;
-    /*filter CLone*/
-    this.coreModuleLogMemoService.ServiceGetAll(filterModel).subscribe({
+    this.requestService.ServiceMemoGetAll(this.requestId).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
         if (ret.isSuccess) {
@@ -114,7 +85,7 @@ export class CmsMemoComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.coreModuleLogMemoService.ServiceAdd(this.dataModel).subscribe({
+    this.requestService.ServiceMemoAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         // this.dataModelResult = ret;

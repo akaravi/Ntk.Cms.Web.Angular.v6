@@ -22,7 +22,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base/componentOptionExportModel';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
@@ -39,7 +39,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class MemberPropertyDetailGroupListComponent implements OnInit, OnDestroy {
   constructor(
-    private memberPropertyDetailGroupService: MemberPropertyDetailGroupService,
+    private contentService: MemberPropertyDetailGroupService,
     private memberPropertyTypeService: MemberPropertyTypeService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
@@ -53,9 +53,7 @@ export class MemberPropertyDetailGroupListComponent implements OnInit, OnDestroy
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    this.optionsExport.parentMethods = {
-      onSubmit: (model) => this.onSubmitOptionExport(model),
-    };
+    
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -72,7 +70,7 @@ export class MemberPropertyDetailGroupListComponent implements OnInit, OnDestroy
     new ErrorExceptionResult<MemberPropertyTypeModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
+  
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<MemberPropertyDetailGroupModel> = [];
@@ -129,7 +127,7 @@ export class MemberPropertyDetailGroupListComponent implements OnInit, OnDestroy
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.memberPropertyDetailGroupService.ServiceGetAllEditor(filterModel).subscribe({
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {
@@ -191,7 +189,7 @@ export class MemberPropertyDetailGroupListComponent implements OnInit, OnDestroy
   //   else {
   //     model.actionGo = EnumActionGoStep.GoDown;
   //   }
-  //   this.memberPropertyDetailGroupService.ServiceEditStep(model).subscribe({
+  //   this.contentService.ServiceEditStep(model).subscribe({
   //     next: (ret) => {
   //       if (ret.isSuccess) {
   //         moveItemInArray(this.tableSource.data, previousIndex, event.currentIndex);
@@ -277,7 +275,7 @@ export class MemberPropertyDetailGroupListComponent implements OnInit, OnDestroy
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.memberPropertyDetailGroupService.ServiceDelete(this.tableRowSelected.id).subscribe({
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
             next: (ret) => {
               if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -322,7 +320,7 @@ export class MemberPropertyDetailGroupListComponent implements OnInit, OnDestroy
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.memberPropertyDetailGroupService.ServiceGetCount(this.filteModelContent).subscribe({
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           statist.set('All', ret.totalRowCount);
@@ -342,7 +340,7 @@ export class MemberPropertyDetailGroupListComponent implements OnInit, OnDestroy
     fastfilter.propertyName = 'RecordStatus';
     fastfilter.value = EnumRecordStatus.Available;
     filterStatist1.filters.push(fastfilter);
-    this.memberPropertyDetailGroupService.ServiceGetCount(filterStatist1).subscribe({
+    this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           statist.set('Active', ret.totalRowCount);
@@ -359,34 +357,23 @@ export class MemberPropertyDetailGroupListComponent implements OnInit, OnDestroy
 
   }
   onActionbuttonExport(): void {
-    this.optionsExport.data.show = !this.optionsExport.data.show;
-    this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
-  }
-  onSubmitOptionExport(model: FilterModel): void {
-    const exportlist = new Map<string, string>();
-    exportlist.set('Download', 'loading ... ');
-    const pName = this.constructor.name + '.ServiceExportFile';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
-    this.optionsExport.data.inProcess=true;
-    this.memberPropertyDetailGroupService.ServiceExportFile(model).subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          exportlist.set('Download', ret.linkFile);
-          this.optionsExport.childMethods.setExportLinkFile(exportlist);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+            //open popup
+        const dialogRef = this.dialog.open(CmsExportListComponent, {
+          height: "30%",
+          width: "50%",
+          data: {
+            service: this.contentService,
+            filteModel: this.filteModelContent,
+            title: ''
+          },
         }
-        this.optionsExport.data.inProcess=false;
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.optionsExport.data.inProcess=false;
-        this.loading.Stop(pName);
-      }
-    }
-    );
+        );
+        dialogRef.afterClosed().subscribe((result) => {
+        });
+        //open popup 
+        
   }
+  
 
   onActionbuttonReload(): void {
     this.DataGetAll();

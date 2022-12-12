@@ -19,7 +19,7 @@ import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ComponentOptionExportModel } from 'src/app/core/cmsComponentModels/base/componentOptionExportModel';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
@@ -40,7 +40,7 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
   requestLinkUserId = 0;
   requestLinkDeviceId = 0;
   constructor(
-    private coreTokenUserLogService: CoreTokenUserLogService,
+    private contentService: CoreTokenUserLogService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -77,9 +77,7 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    this.optionsExport.parentMethods = {
-      onSubmit: (model) => this.onSubmitOptionExport(model),
-    };
+    
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -94,7 +92,7 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<CoreTokenUserLogModel> = new ErrorExceptionResult<CoreTokenUserLogModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  optionsExport: ComponentOptionExportModel = new ComponentOptionExportModel();
+  
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<CoreTokenUserLogModel> = [];
@@ -165,7 +163,7 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.coreTokenUserLogService.ServiceGetAllEditor(filterModel).subscribe({
+    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
@@ -298,7 +296,7 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
           const pName = this.constructor.name + 'ServiceDelete';
           this.loading.Start(pName);
 
-          this.coreTokenUserLogService.ServiceDelete(this.tableRowSelected.id).subscribe({
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
             next: (ret) => {
               if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -335,7 +333,7 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
-    this.coreTokenUserLogService.ServiceGetCount(this.filteModelContent).subscribe({
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           statist.set('All', ret.totalRowCount);
@@ -355,7 +353,7 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
     fastfilter.propertyName = 'RecordStatus';
     fastfilter.value = EnumRecordStatus.Available;
     filterStatist1.filters.push(fastfilter);
-    this.coreTokenUserLogService.ServiceGetCount(filterStatist1).subscribe({
+    this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           statist.set('Active', ret.totalRowCount);
@@ -427,35 +425,23 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/core/site/edit', this.tableRowSelected.linkDeviceId]);
   }
   onActionbuttonExport(): void {
-    this.optionsExport.data.show = !this.optionsExport.data.show;
-    this.optionsExport.childMethods.setExportFilterModel(this.filteModelContent);
-  }
-  onSubmitOptionExport(model: FilterModel): void {
-    const exportlist = new Map<string, string>();
-    exportlist.set('Download', 'loading ... ');
-    const pName = this.constructor.name + '.ServiceExportFile';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_output_file'));
-    this.optionsExport.data.inProcess=true;
-    this.coreTokenUserLogService.ServiceExportFile(model).subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          exportlist.set('Download', ret.linkFile);
-          this.optionsExport.childMethods.setExportLinkFile(exportlist);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+            //open popup
+        const dialogRef = this.dialog.open(CmsExportListComponent, {
+          height: "30%",
+          width: "50%",
+          data: {
+            service: this.contentService,
+            filteModel: this.filteModelContent,
+            title: ''
+          },
         }
-        this.optionsExport.data.inProcess=false;
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.optionsExport.data.inProcess=false;
-        this.loading.Stop(pName);
-      }
-    }
-    );
+        );
+        dialogRef.afterClosed().subscribe((result) => {
+        });
+        //open popup 
+        
   }
-
+  
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

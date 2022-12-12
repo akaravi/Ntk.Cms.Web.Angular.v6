@@ -38,7 +38,7 @@
         </mat-form-field>
         <!-- ReportFormatFileId Field -->
         <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.fileType==EnumExportFileTypeReport">
-            <mat-label>عنوان گزارش</mat-label>
+            <mat-label>{{'TITLE.Report_Format' | translate}}</mat-label>
             <mat-select placeholder="{{'TITLE.Report_Format' | translate}}" [(ngModel)]="dataModel.reportFormatFileId"
                 name="dataModel.reportFormatFileId" #RecordStatus="ngModel" required>
                 <mat-option *ngFor="
