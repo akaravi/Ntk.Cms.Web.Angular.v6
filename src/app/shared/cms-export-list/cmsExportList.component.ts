@@ -1,4 +1,4 @@
-import { CoreModuleEntityReportFileModel, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, FilterModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum } from 'ntk-cms-api';
+import { CoreModuleEntityReportFileModel, EnumExportFileType, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, FilterModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum } from 'ntk-cms-api';
 import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
@@ -78,7 +78,7 @@ export class CmsExportListComponent implements OnInit {
   dataModelReportFileResult: ErrorExceptionResult<CoreModuleEntityReportFileModel> = new ErrorExceptionResult<CoreModuleEntityReportFileModel>();
   dataModelSubmitResult: ErrorExceptionResultExportFile = new ErrorExceptionResultExportFile();
   dataModelFileSelect: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
-
+  EnumExportFileTypeReport=EnumExportFileType.Report;
 
   _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
   get loading(): ProgressSpinnerModel {
