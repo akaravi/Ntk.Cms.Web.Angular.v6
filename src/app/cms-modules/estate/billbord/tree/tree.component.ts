@@ -51,7 +51,7 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: EstateBillboardModel = new EstateBillboardModel();
   dataModelResult: ErrorExceptionResult<EstateBillboardModel> = new ErrorExceptionResult<EstateBillboardModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstateBillboardModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstateBillboardModel>();
@@ -72,13 +72,13 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

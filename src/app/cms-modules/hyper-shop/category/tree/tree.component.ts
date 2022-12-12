@@ -50,7 +50,7 @@ export class HyperShopCategoryTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: HyperShopCategoryModel = new HyperShopCategoryModel();
   dataModelResult: ErrorExceptionResult<HyperShopCategoryModel> = new ErrorExceptionResult<HyperShopCategoryModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<HyperShopCategoryModel>(node => null);
   dataSource = new MatTreeNestedDataSource<HyperShopCategoryModel>();
@@ -71,13 +71,13 @@ export class HyperShopCategoryTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

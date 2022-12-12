@@ -52,7 +52,7 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: CoreLocationModel = new CoreLocationModel();
   dataModelResult: ErrorExceptionResult<CoreLocationModel> = new ErrorExceptionResult<CoreLocationModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreLocationModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<CoreLocationModel>();
@@ -73,13 +73,13 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAllTree(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAllTree(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;
@@ -97,18 +97,18 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
     );
   }
   DataGetAllChild(parentModel: CoreLocationModel):void {
-    var filteModel = new FilterModel();
-    filteModel.rowPerPage = 200;
-    filteModel.accessLoad = true;
+    var filterModel = new FilterModel();
+    filterModel.rowPerPage = 200;
+    filterModel.accessLoad = true;
     var filter = new FilterDataModel();
     filter.propertyName = 'LinkParentId';
     filter.value = parentModel.id;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-     this.categoryService.ServiceGetAllTree(filteModel).subscribe({
+     this.categoryService.ServiceGetAllTree(filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           parentModel.children= ret.listItems;

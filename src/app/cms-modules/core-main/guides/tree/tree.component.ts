@@ -46,15 +46,15 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.filteModel.sortColumn = 'ShowInMenuOrder';
-    this.filteModel.sortType = EnumSortType.Ascending;
+    this.filterModel.sortColumn = 'ShowInMenuOrder';
+    this.filterModel.sortType = EnumSortType.Ascending;
   }
   @Input() set optionSelectForce(x: number | CoreGuideModel) {
     this.onActionSelectForce(x);
   }
   dataModelSelect: CoreGuideModel = new CoreGuideModel();
   dataModelResult: ErrorExceptionResult<CoreGuideModel> = new ErrorExceptionResult<CoreGuideModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   treeControl = new NestedTreeControl<CoreGuideModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<CoreGuideModel>();
   @Output() optionChange = new EventEmitter<CoreGuideModel>();
@@ -82,13 +82,13 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAllTree(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAllTree(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

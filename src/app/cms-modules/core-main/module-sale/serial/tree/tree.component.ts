@@ -51,7 +51,7 @@ export class CoreModuleSaleSerialTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: CoreModuleSaleSerialModel = new CoreModuleSaleSerialModel();
   dataModelResult: ErrorExceptionResult<CoreModuleSaleSerialModel> = new ErrorExceptionResult<CoreModuleSaleSerialModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreModuleSaleSerialModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreModuleSaleSerialModel>();
@@ -72,13 +72,13 @@ export class CoreModuleSaleSerialTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

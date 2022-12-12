@@ -53,7 +53,7 @@ export class CoreSiteResellerChartComponent implements OnInit, OnDestroy {
 
   dataModelSelect: RessellerChartModel = new RessellerChartModel();
   dataModelResult: ErrorExceptionResult<RessellerChartModel> = new ErrorExceptionResult<RessellerChartModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<RessellerChartModel>(node => node.siteChilds);
 
@@ -83,8 +83,8 @@ export class CoreSiteResellerChartComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

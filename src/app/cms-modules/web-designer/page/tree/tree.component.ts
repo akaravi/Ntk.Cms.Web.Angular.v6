@@ -49,7 +49,7 @@ export class WebDesignerMainPageTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: WebDesignerMainPageModel = new WebDesignerMainPageModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainPageModel> = new ErrorExceptionResult<WebDesignerMainPageModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<WebDesignerMainPageModel>(node => null);
   dataSource = new MatTreeNestedDataSource<WebDesignerMainPageModel>();
@@ -67,11 +67,11 @@ export class WebDesignerMainPageTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe(
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe(
       (next) => {
         if (next.isSuccess) {
           this.dataModelResult = next;

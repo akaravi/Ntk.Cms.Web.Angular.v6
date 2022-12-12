@@ -106,25 +106,25 @@ export class SmsActionSendMessageApiComponent implements OnInit {
     return model ? (model.numberChar) : undefined;
   }
   async DataPathGetAll(text: string | number | any): Promise<SmsMainApiPathModel[]> {
-    const filteModel = new FilterModel();
-    filteModel.rowPerPage = 20;
-    filteModel.accessLoad = true;
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 20;
+    filterModel.accessLoad = true;
     let filter = new FilterDataModel();
     filter.propertyName = 'Title';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
     if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
       filter.clauseType = EnumClauseType.Or;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
     }
     this.loading.Start('DataPathGetAll');
-    return await this.pathService.ServiceGetAll(filteModel)
+    return await this.pathService.ServiceGetAll(filterModel)
       .pipe(
         map(response => {
           this.dataPathModelResult = response;
@@ -143,25 +143,25 @@ export class SmsActionSendMessageApiComponent implements OnInit {
       ).toPromise();
   }
   async DataNumberGetAll(text: string | number | any): Promise<SmsMainApiNumberModel[]> {
-    const filteModel = new FilterModel();
-    filteModel.rowPerPage = 20;
-    filteModel.accessLoad = true;
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 20;
+    filterModel.accessLoad = true;
     let filter = new FilterDataModel();
     filter.propertyName = 'Title';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
     if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
       filter.clauseType = EnumClauseType.Or;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
     }
     this.loading.Start('DataNumberGetAll');
-    return await this.numberService.ServiceGetAll(filteModel)
+    return await this.numberService.ServiceGetAll(filterModel)
       .pipe(
         map(response => {
           this.dataNumberModelResult = response;

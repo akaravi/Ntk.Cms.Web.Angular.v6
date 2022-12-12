@@ -94,9 +94,9 @@ export class EstateActivityTypeSelectorComponent implements OnInit, OnDestroy {
     return model ? model.titleML : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstateActivityTypeModel[]> {
-    const filteModel = new FilterModel();
-    filteModel.rowPerPage = 20;
-    filteModel.accessLoad = true;
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 20;
+    filterModel.accessLoad = true;
     let filter = new FilterDataModel();
     const filterChild = new FilterDataModel();
     if (text && text.length > 0) {
@@ -112,7 +112,7 @@ export class EstateActivityTypeSelectorComponent implements OnInit, OnDestroy {
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
       filter.clauseType = EnumClauseType.Or;
       filterChild.filters.push(filter);
-      filteModel.filters.push(filterChild);
+      filterModel.filters.push(filterChild);
     }
 
     if (this.typeUsageId && this.typeUsageId.length > 0) {
@@ -122,7 +122,7 @@ export class EstateActivityTypeSelectorComponent implements OnInit, OnDestroy {
       filter.value = this.typeUsageId;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
       filter.clauseType = EnumClauseType.And;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
     }
 
 
@@ -131,7 +131,7 @@ export class EstateActivityTypeSelectorComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    return await this.categoryService.ServiceGetAll(filteModel)
+    return await this.categoryService.ServiceGetAll(filterModel)
       .pipe(
         map(response => {
           this.dataModelResult = response;

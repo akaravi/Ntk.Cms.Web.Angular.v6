@@ -49,7 +49,7 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: ApplicationAppModel = new ApplicationAppModel();
   dataModelResult: ErrorExceptionResult<ApplicationAppModel> = new ErrorExceptionResult<ApplicationAppModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<ApplicationAppModel>(node => null);
   dataSource = new MatTreeNestedDataSource<ApplicationAppModel>();
@@ -67,11 +67,11 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
     const pName = this.constructor.name + 'categoryService.ServiceGetAll';
     this.loading.Start(pName);
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

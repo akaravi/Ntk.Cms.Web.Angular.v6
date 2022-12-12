@@ -81,23 +81,23 @@ export class CoreModuleEntitySelectorComponent implements OnInit {
     return model ? (model.moduleNameML+'('+model.moduleName+')' +' # '+model.moduleEntityNameML+'('+model.moduleEntityNameML+')') : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreModuleEntityModel[]> {
-    const filteModel = new FilterModel();
-    filteModel.rowPerPage = 50;
-    filteModel.accessLoad = true;
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 50;
+    filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
     filter.propertyName = 'moduleName';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
 
     filter = new FilterDataModel();
     filter.propertyName = 'moduleEntityName';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
 
     if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
@@ -105,13 +105,13 @@ export class CoreModuleEntitySelectorComponent implements OnInit {
       filter.value = text;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
       filter.clauseType = EnumClauseType.Or;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
     }
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    return await this.categoryService.ServiceGetAll(filteModel)
+    return await this.categoryService.ServiceGetAll(filterModel)
       .pipe(
         map(response => {
           this.dataModelResult = response;

@@ -58,24 +58,24 @@ export class EstateActivityTypeCompleteComponent implements OnInit {
   // filter and return the values
   filter(text: string): Observable<chipModel[]> {
 
-    const filteModel = new FilterModel();
-    filteModel.rowPerPage = 20;
-    filteModel.accessLoad = true;
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 20;
+    filterModel.accessLoad = true;
     let filter = new FilterDataModel();
     filter.propertyName = 'Title';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
     if (text && typeof +text === 'string' && +text > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
       filter.clauseType = EnumClauseType.Or;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
     }
-    return this.service.ServiceGetAll(filteModel).pipe(
+    return this.service.ServiceGetAll(filterModel).pipe(
       map((data) => {
         this.tagLastDataModel = data.listItems.map(val => ({ display: val.titleML, value: val.id }));
         return this.tagLastDataModel;
@@ -148,18 +148,18 @@ export class EstateActivityTypeCompleteComponent implements OnInit {
       return;
     }
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     ids.forEach(item => {
       if (item.length > 0) {
         const filter = new FilterDataModel();
         filter.propertyName = 'Id';
         filter.value = item;
         filter.clauseType = EnumClauseType.Or;
-        filteModel.filters.push(filter);
+        filterModel.filters.push(filter);
       }
     });
 
-    this.service.ServiceGetAll(filteModel).pipe(
+    this.service.ServiceGetAll(filterModel).pipe(
       map((next) => {
         if (next.isSuccess) {
           next.listItems.forEach(val => {

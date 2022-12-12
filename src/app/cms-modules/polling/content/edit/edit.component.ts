@@ -192,14 +192,14 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
     this.loadingOption.Start('main');
 
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
 
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkPollingContentId';
     filter.value = this.requestId;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
     this.pollingOptionService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loadingOption.Stop('main');

@@ -207,15 +207,15 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server'));
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     const aaa3 = {
       PropertyName: 'LinkContentId',
       Value: this.requestId,
     };
-    filteModel.filters.push(aaa3 as unknown  as FilterDataModel);
+    filterModel.filters.push(aaa3 as unknown  as FilterDataModel);
     this.tagIdsData = [];
     this.contentTagService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -245,14 +245,14 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     const aaa3 = {
       PropertyName: 'LinkContentId',
       Value: this.requestId,
     };
-    filteModel.filters.push(aaa3 as unknown  as FilterDataModel);
+    filterModel.filters.push(aaa3 as unknown  as FilterDataModel);
     this.contentOtherInfoService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -279,7 +279,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     const aaa1 = {
       PropertyName: 'LinkSourceId',
       Value: this.requestId,
@@ -290,10 +290,10 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
       Value: this.requestId,
       ClauseType: 1
     };
-    filteModel.filters.push(aaa1 as unknown  as FilterDataModel);
-    filteModel.filters.push(aaa2 as unknown  as FilterDataModel);
+    filterModel.filters.push(aaa1 as unknown  as FilterDataModel);
+    filterModel.filters.push(aaa2 as unknown  as FilterDataModel);
     this.contentSimilarService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -330,17 +330,17 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     ids.forEach(item => {
       const aaa3 = {
         PropertyName: 'Id',
         Value: item + '',
         ClauseType: 1
       };
-      filteModel.filters.push(aaa3 as unknown as FilterDataModel);
+      filterModel.filters.push(aaa3 as unknown as FilterDataModel);
     });
     this.contentService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -504,15 +504,15 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkContentId';
     filter.value = this.requestId;
     filter.clauseType = EnumClauseType.And;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
     this.tagIdsData = [];
     this.contentCategoryService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);

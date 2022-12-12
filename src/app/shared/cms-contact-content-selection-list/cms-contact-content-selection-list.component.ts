@@ -47,16 +47,16 @@ export class CmsContactContentSelectionListComponent implements OnInit {
   }
 
   DataGetAll(): void {
-    const filteModel = new FilterModel();
-    filteModel.rowPerPage = 50;
-    filteModel.accessLoad = true;
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 50;
+    filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
 
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(filteModel).subscribe({
+    this.categoryService.ServiceGetAll(filterModel).subscribe({
       next: (ret) => {
         
         if (ret.isSuccess) {

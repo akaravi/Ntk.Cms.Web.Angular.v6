@@ -99,25 +99,25 @@ export class SmsMainApiNumberSelectorComponent implements OnInit {
     return model ? (model.numberChar) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<SmsMainApiNumberModel[]> {
-    const filteModel = new FilterModel();
-    filteModel.rowPerPage = 20;
-    filteModel.accessLoad = true;
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 20;
+    filterModel.accessLoad = true;
     let filter = new FilterDataModel();
     filter.propertyName = 'NumberChar';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
     if (this.privateLinkApiPathId && this.privateLinkApiPathId.length > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'ApiPathAndApiNumbers';
       filter.propertyAnyName = 'LinkApiPathId';
       filter.value = this.privateLinkApiPathId;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
     }
     this.loading.Start('DataGetAll');
-    return await this.categoryService.ServiceGetAll(filteModel)
+    return await this.categoryService.ServiceGetAll(filterModel)
       .pipe(
         map(response => {
           this.dataModelResult = response;

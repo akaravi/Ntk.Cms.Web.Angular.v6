@@ -44,15 +44,15 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.filteModel.sortColumn = 'ShowInMenuOrder';
-    this.filteModel.sortType = EnumSortType.Ascending;
+    this.filterModel.sortColumn = 'ShowInMenuOrder';
+    this.filterModel.sortType = EnumSortType.Ascending;
   }
   @Input() set optionSelectForce(x: number | WebDesignerMainMenuModel) {
     this.onActionSelectForce(x);
   }
   dataModelSelect: WebDesignerMainMenuModel = new WebDesignerMainMenuModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainMenuModel> = new ErrorExceptionResult<WebDesignerMainMenuModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<WebDesignerMainMenuModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<WebDesignerMainMenuModel>();
@@ -70,11 +70,11 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.categoryService.ServiceGetAllTree(this.filteModel).subscribe(
+    this.categoryService.ServiceGetAllTree(this.filterModel).subscribe(
       (next) => {
         if (next.isSuccess) {
           this.dataModelResult = next;

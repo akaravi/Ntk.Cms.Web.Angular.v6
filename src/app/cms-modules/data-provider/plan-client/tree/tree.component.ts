@@ -50,7 +50,7 @@ export class DataProviderPlanClientTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: DataProviderPlanClientModel = new DataProviderPlanClientModel();
   dataModelResult: ErrorExceptionResult<DataProviderPlanClientModel> = new ErrorExceptionResult<DataProviderPlanClientModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<DataProviderPlanClientModel>(node => null);
   dataSource = new MatTreeNestedDataSource<DataProviderPlanClientModel>();
@@ -71,13 +71,13 @@ export class DataProviderPlanClientTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

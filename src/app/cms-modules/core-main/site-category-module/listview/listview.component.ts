@@ -84,16 +84,16 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
     this.tableRowSelected = new CoreSiteCategoryCmsModuleModel();
     this.filteModelContent.accessLoad = true;
 
-    const filteModel = JSON.parse(JSON.stringify(this.filteModelContent));
+    const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     if (this.LinkSiteCategoryId && this.LinkSiteCategoryId > 0) {
       const fastfilter = new FilterDataModel();
       fastfilter.propertyName = 'LinkCmsSiteCategoryId';
       fastfilter.value = this.LinkSiteCategoryId;
-      filteModel.filters.push(fastfilter);
+      filterModel.filters.push(fastfilter);
     }
     const pName = this.constructor.name + '.ServiceGetAll';
     this.loading.Start(pName, this.translate.instant('MESSAGE.Receiving_List_Of_Modules'));
-    this.coreSiteCategoryCmsModuleService.ServiceGetAll(filteModel).subscribe({
+    this.coreSiteCategoryCmsModuleService.ServiceGetAll(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 

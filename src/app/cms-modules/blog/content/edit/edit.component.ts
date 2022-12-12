@@ -222,16 +222,16 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
 
 
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
 
     const aaa3 = {
       PropertyName: 'LinkContentId',
       Value: this.requestId,
     };
-    filteModel.filters.push(aaa3 as unknown as FilterDataModel);
+    filterModel.filters.push(aaa3 as unknown as FilterDataModel);
     this.tagIdsData = [];
     this.contentTagService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -264,15 +264,15 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
 
 
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
 
     const aaa3 = {
       PropertyName: 'LinkContentId',
       Value: this.requestId,
     };
-    filteModel.filters.push(aaa3 as unknown as FilterDataModel);
+    filterModel.filters.push(aaa3 as unknown as FilterDataModel);
     this.contentOtherInfoService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -302,7 +302,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
 
 
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
 
     const aaa1 = {
       PropertyName: 'LinkSourceId',
@@ -314,11 +314,11 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
       Value: this.requestId,
       ClauseType: 1
     };
-    filteModel.filters.push(aaa1 as unknown as FilterDataModel);
-    filteModel.filters.push(aaa2 as unknown as FilterDataModel);
+    filterModel.filters.push(aaa1 as unknown as FilterDataModel);
+    filterModel.filters.push(aaa2 as unknown as FilterDataModel);
 
     this.contentSimilarService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -359,17 +359,17 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
 
 
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     ids.forEach(item => {
       const aaa3 = {
         PropertyName: 'Id',
         Value: item + '',
         ClauseType: 1
       };
-      filteModel.filters.push(aaa3 as unknown as FilterDataModel);
+      filterModel.filters.push(aaa3 as unknown as FilterDataModel);
     });
     this.contentService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -546,17 +546,17 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     this.loading.Start(pName);
 
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkContentId';
     filter.value = this.requestId;
     filter.clauseType = EnumClauseType.And;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
 
 
     this.tagIdsData = [];
     this.contentCategoryService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);

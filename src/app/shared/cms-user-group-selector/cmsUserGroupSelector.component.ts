@@ -71,9 +71,9 @@ export class CmsUserGroupSelectorComponent implements OnInit {
     return model ? (model.title) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<CoreUserGroupModel[]> {
-    const filteModel = new FilterModel();
-    filteModel.rowPerPage = 20;
-    filteModel.accessLoad = true;
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 20;
+    filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
     if (text && text.length > 0) {
       let filter = new FilterDataModel();
@@ -83,7 +83,7 @@ export class CmsUserGroupSelectorComponent implements OnInit {
       filter.value = text;
       filter.searchType = EnumFilterDataModelSearchTypes.Contains;
       filter.clauseType = EnumClauseType.Or;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
       /*Filters */
       /*Filters */
       filter = new FilterDataModel();
@@ -91,21 +91,21 @@ export class CmsUserGroupSelectorComponent implements OnInit {
       filter.value = text;
       filter.searchType = EnumFilterDataModelSearchTypes.Contains;
       filter.clauseType = EnumClauseType.Or;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
       /*Filters */
       filter = new FilterDataModel();
       filter.propertyName = 'email';
       filter.value = text;
       filter.searchType = EnumFilterDataModelSearchTypes.Contains;
       filter.clauseType = EnumClauseType.Or;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
       /*Filters */
       filter = new FilterDataModel();
       filter.propertyName = 'lastname';
       filter.value = text;
       filter.searchType = EnumFilterDataModelSearchTypes.Contains;
       filter.clauseType = EnumClauseType.Or;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
 
       if (text && typeof +text === 'number' && +text > 0) {
         /*Filters */
@@ -114,7 +114,7 @@ export class CmsUserGroupSelectorComponent implements OnInit {
         filter.value = text;
         filter.searchType = EnumFilterDataModelSearchTypes.Equal;
         filter.clauseType = EnumClauseType.Or;
-        filteModel.filters.push(filter);
+        filterModel.filters.push(filter);
 
       }
     }
@@ -122,7 +122,7 @@ export class CmsUserGroupSelectorComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    return await this.categoryService.ServiceGetAll(filteModel)
+    return await this.categoryService.ServiceGetAll(filterModel)
       .pipe(
         map(response => {
           this.dataModelResult = response;

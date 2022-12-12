@@ -81,28 +81,28 @@ export class HyperShopCategorySelectorComponent implements OnInit {
     return model ? model.name + ' # ' + model.code : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<HyperShopCategoryModel[]> {
-    const filteModel = new FilterModel();
-    filteModel.rowPerPage = 20;
-    filteModel.accessLoad = true;
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 20;
+    filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
     filter.propertyName = 'Name';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
     /* */
     filter = new FilterDataModel();
     filter.propertyName = 'Code';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Equal;
     filter.clauseType = EnumClauseType.Or;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
 
     
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    return await this.categoryService.ServiceGetAll(filteModel)
+    return await this.categoryService.ServiceGetAll(filterModel)
       .pipe(
         map(response => {
           this.dataModelResult = response;

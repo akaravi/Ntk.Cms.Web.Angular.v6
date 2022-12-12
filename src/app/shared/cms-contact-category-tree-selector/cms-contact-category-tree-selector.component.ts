@@ -71,7 +71,7 @@ export class CmsContactCategoryTreeSelectorComponent implements OnInit, OnDestro
   }
   dataModelSelect: string[] = [];
   dataModelResult: ErrorExceptionResult<ContactCategoryModel> = new ErrorExceptionResult<ContactCategoryModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<ContactCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<ContactCategoryModel>();
@@ -108,11 +108,11 @@ export class CmsContactCategoryTreeSelectorComponent implements OnInit, OnDestro
     this.runComplate = true;
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next:(ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

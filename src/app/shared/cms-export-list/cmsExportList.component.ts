@@ -23,9 +23,12 @@ export class CmsExportListComponent implements OnInit {
     public translate: TranslateService,) {
 
     if (data) {
-      this.requestService = data.service;
-      this.filterModel = data.filterModel;
-      this.requestTitle = data.title;
+      if (data.service)
+        this.requestService = data.service;
+      if (data.filterModel)
+        this.filterModel = data.filterModel;
+      if (data.title)
+        this.requestTitle = data.title;
     }
     if (!this.filterModel)
       this.dialogRef.close({ dialogChangedDate: true });
@@ -78,7 +81,7 @@ export class CmsExportListComponent implements OnInit {
   dataModelReportFileResult: ErrorExceptionResult<CoreModuleEntityReportFileModel> = new ErrorExceptionResult<CoreModuleEntityReportFileModel>();
   dataModelSubmitResult: ErrorExceptionResultExportFile = new ErrorExceptionResultExportFile();
   dataModelFileSelect: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
-  EnumExportFileTypeReport=EnumExportFileType.Report;
+  EnumExportFileTypeReport = EnumExportFileType.Report;
 
   _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
   get loading(): ProgressSpinnerModel {
@@ -90,7 +93,7 @@ export class CmsExportListComponent implements OnInit {
 
   ngOnInit(): void {
     this.DataGetAll();
-    this.formInfo.formTitle = this.translate.instant('TITLE.FILE_CREATION') + ' : ' + this.requestTitle;
+    this.formInfo.formTitle = this.translate.instant('TITLE.EXPORTFILE') + ' : ' + this.requestTitle;
   }
 
   DataGetAll(): void {

@@ -46,15 +46,15 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    this.filteModel.sortColumn = 'ShowInMenuOrder';
-    this.filteModel.sortType = EnumSortType.Ascending;
+    this.filterModel.sortColumn = 'ShowInMenuOrder';
+    this.filterModel.sortType = EnumSortType.Ascending;
   }
   @Input() set optionSelectForce(x: number | CoreCpMainMenuModel) {
     this.onActionSelectForce(x);
   }
   dataModelSelect: CoreCpMainMenuModel = new CoreCpMainMenuModel();
   dataModelResult: ErrorExceptionResult<CoreCpMainMenuModel> = new ErrorExceptionResult<CoreCpMainMenuModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreCpMainMenuModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<CoreCpMainMenuModel>();
@@ -75,13 +75,13 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAllTree(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAllTree(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

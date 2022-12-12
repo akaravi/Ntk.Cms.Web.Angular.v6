@@ -51,7 +51,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: NewsCategoryModel = new NewsCategoryModel();
   dataModelResult: ErrorExceptionResult<NewsCategoryModel> = new ErrorExceptionResult<NewsCategoryModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<NewsCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<NewsCategoryModel>();
@@ -69,11 +69,11 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
     const pName = this.constructor.name + '.ServiceGetAll';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_categories'));
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe({
      next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

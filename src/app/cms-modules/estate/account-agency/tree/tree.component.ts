@@ -51,7 +51,7 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: EstateAccountAgencyModel = new EstateAccountAgencyModel();
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyModel> = new ErrorExceptionResult<EstateAccountAgencyModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstateAccountAgencyModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstateAccountAgencyModel>();
@@ -69,11 +69,11 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

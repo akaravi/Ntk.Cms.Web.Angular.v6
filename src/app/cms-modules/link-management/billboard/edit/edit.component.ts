@@ -228,17 +228,17 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
     this.loading.Start(pName);
 
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkManagementBillboardId';
     filter.value = this.requestId;
     filter.clauseType = EnumClauseType.And;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
 
 
     this.tagIdsData = [];
     this.contentCategoryService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
 

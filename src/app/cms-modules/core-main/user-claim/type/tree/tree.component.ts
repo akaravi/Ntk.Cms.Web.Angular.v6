@@ -52,7 +52,7 @@ export class CoreUserClaimTypeTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: CoreUserClaimTypeModel = new CoreUserClaimTypeModel();
   dataModelResult: ErrorExceptionResult<CoreUserClaimTypeModel> = new ErrorExceptionResult<CoreUserClaimTypeModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<CoreUserClaimTypeModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreUserClaimTypeModel>();
@@ -73,13 +73,13 @@ export class CoreUserClaimTypeTreeComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

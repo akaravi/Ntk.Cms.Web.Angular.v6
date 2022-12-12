@@ -52,7 +52,7 @@ export class MemberPropertyDetailGroupTreeComponent implements OnInit, OnDestroy
   }
   dataModelSelect: MemberPropertyDetailGroupModel = new MemberPropertyDetailGroupModel();
   dataModelResult: ErrorExceptionResult<MemberPropertyDetailGroupModel> = new ErrorExceptionResult<MemberPropertyDetailGroupModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<MemberPropertyDetailGroupModel>(node => null);
   dataSource = new MatTreeNestedDataSource<MemberPropertyDetailGroupModel>();
@@ -61,12 +61,12 @@ export class MemberPropertyDetailGroupTreeComponent implements OnInit, OnDestroy
 
   @Input() set optionLinkPropertyTypeId(id: number) {
     this.requestLinkPropertyTypeId = id;
-    this.filteModel = new FilterModel();
+    this.filterModel = new FilterModel();
     if (id && id > 0) {
       const filter = new FilterDataModel();
       filter.propertyName = 'LinkPropertyTypeId';
       filter.value = id;
-      this.filteModel.filters.push(filter);
+      this.filterModel.filters.push(filter);
     }
   }
   @Input() optionReload = () => this.onActionReload();
@@ -83,13 +83,13 @@ export class MemberPropertyDetailGroupTreeComponent implements OnInit, OnDestroy
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

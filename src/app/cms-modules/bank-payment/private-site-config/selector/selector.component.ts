@@ -81,23 +81,23 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
     return model ? model.title : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<BankPaymentPrivateSiteConfigModel[]> {
-    const filteModel = new FilterModel();
-    filteModel.rowPerPage = 20;
-    filteModel.accessLoad = true;
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 20;
+    filterModel.accessLoad = true;
     const filters = new Array<FilterDataModel>();
     let filter = new FilterDataModel();
     filter.propertyName = 'Title';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
     if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
       filter.clauseType = EnumClauseType.Or;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
     }
     if (this.parentId > 0) {
       const parent = {
@@ -106,21 +106,21 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
         ClauseType: 2,
         SearchType: 0
       };
-      filteModel.filters.push(parent  as unknown as FilterDataModel);
+      filterModel.filters.push(parent  as unknown as FilterDataModel);
       const tree = {
         Filters: filters,
       };
       if (filters && filters.length > 0) {
-        filteModel.filters.push(tree  as unknown as FilterDataModel);
+        filterModel.filters.push(tree  as unknown as FilterDataModel);
       }
     }
     else if (filters && filters.length > 0) {
-      filteModel.filters = filters as FilterDataModel[];
+      filterModel.filters = filters as FilterDataModel[];
     }
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    return await this.categoryService.ServiceGetAll(filteModel)
+    return await this.categoryService.ServiceGetAll(filterModel)
       .pipe(
         map(response => {
           this.dataModelResult = response;

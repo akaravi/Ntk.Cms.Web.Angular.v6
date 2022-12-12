@@ -69,7 +69,7 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: number[] = [];
   dataModelResult: ErrorExceptionResult<NewsCategoryModel> = new ErrorExceptionResult<NewsCategoryModel>();
-  filteModel = new FilterModel();
+  filterModel = new FilterModel();
   loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<NewsCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<NewsCategoryModel>();
@@ -106,11 +106,11 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     this.runComplate = true;
   }
   DataGetAll(): void {
-    this.filteModel.rowPerPage = 200;
-    this.filteModel.accessLoad = true;
+    this.filterModel.rowPerPage = 200;
+    this.filterModel.accessLoad = true;
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.categoryService.ServiceGetAll(this.filteModel).subscribe({
+    this.categoryService.ServiceGetAll(this.filterModel).subscribe({
       next:(ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;

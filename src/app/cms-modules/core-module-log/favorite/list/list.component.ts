@@ -417,11 +417,11 @@ export class CoreModuleLogFavoriteListComponent implements OnInit, OnDestroy {
   onActionbuttonExport(): void {
             //open popup
         const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "30%",
+          height: "50%",
           width: "50%",
           data: {
             service: this.contentService,
-            filteModel: this.filteModelContent,
+            filterModel: this.filteModelContent,
             title: ''
           },
         }

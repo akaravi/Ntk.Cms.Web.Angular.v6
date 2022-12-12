@@ -110,15 +110,15 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
 
     this.filteModelContent.accessLoad = true;
 
-    const filteModel = JSON.parse(JSON.stringify(this.filteModelContent));
+    const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     if (this.LinkHeaderId && this.LinkHeaderId > 0) {
       const fastfilter = new FilterDataModel();
       fastfilter.propertyName = 'LinkModuleSaleHeader';
       fastfilter.value = this.LinkHeaderId;
-      filteModel.filters.push(fastfilter);
+      filterModel.filters.push(fastfilter);
     }
-    filteModel.sortColumn = 'Id';
-    this.coreModuleSaleItemService.ServiceGetAll(filteModel).subscribe({
+    filterModel.sortColumn = 'Id';
+    this.coreModuleSaleItemService.ServiceGetAll(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 

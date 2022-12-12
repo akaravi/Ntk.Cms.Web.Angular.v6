@@ -25,9 +25,12 @@ export class CmsExportEntityComponent implements OnInit {
     public translate: TranslateService,
   ) {
     if (data) {
-      this.requestService = data.service;
-      this.requestId = data.id;
-      this.requestTitle = data.title;
+      if (data.service)
+        this.requestService = data.service;
+      if (data.id)
+        this.requestId = data.id;
+      if (data.title)
+        this.requestTitle = data.title;
     }
     if (!this.requestId || this.requestId.length == 0)
       this.dialogRef.close({ dialogChangedDate: true });
@@ -100,7 +103,7 @@ export class CmsExportEntityComponent implements OnInit {
 
   ngOnInit(): void {
     this.DataGetAll();
-    this.formInfo.formTitle = this.translate.instant('TITLE.FILE_CREATION') + ' : ' + this.requestTitle;
+    this.formInfo.formTitle = this.translate.instant('TITLE.EXPORTFILE') + ' : ' + this.requestTitle;
   }
 
   ngOnDestroy(): void {

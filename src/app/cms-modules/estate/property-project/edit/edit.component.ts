@@ -211,18 +211,18 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_other_information_from_the_server'));
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     ids.forEach(item => {
       if (item > 0) {
         const filter = new FilterDataModel();
         filter.propertyName = 'Id';
         filter.value = item;
         filter.clauseType = EnumClauseType.Or;
-        filteModel.filters.push(filter);
+        filterModel.filters.push(filter);
       }
     });
     this.contentService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.formInfo.formSubmitAllow = true;

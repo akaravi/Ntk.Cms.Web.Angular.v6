@@ -227,17 +227,17 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
 
 
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkContentId';
     filter.value = this.requestId;
     filter.clauseType = EnumClauseType.And;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
 
 
     this.tagIdsData = [];
     this.contentTagService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -274,15 +274,15 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
 
 
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkContentId';
     filter.value = this.requestId;
     filter.clauseType = EnumClauseType.And;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
 
     this.contentOtherInfoService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -313,21 +313,21 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
 
 
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkSourceId';
     filter.value = this.requestId;
     filter.clauseType = EnumClauseType.Or;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
 
     filter.propertyName = 'LinkDestinationId';
     filter.value = this.requestId;
     filter.clauseType = EnumClauseType.Or;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
 
 
     this.contentSimilarService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -367,18 +367,18 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     ids.forEach(item => {
       if (item > 0) {
         const filter = new FilterDataModel();
         filter.propertyName = 'Id';
         filter.value = item;
         filter.clauseType = EnumClauseType.Or;
-        filteModel.filters.push(filter);
+        filterModel.filters.push(filter);
       }
     });
     this.contentService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
@@ -565,17 +565,17 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     this.loading.Start(pName);
 
 
-    const filteModel = new FilterModel();
+    const filterModel = new FilterModel();
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkContentId';
     filter.value = this.requestId;
     filter.clauseType = EnumClauseType.And;
-    filteModel.filters.push(filter);
+    filterModel.filters.push(filter);
 
 
     this.tagIdsData = [];
     this.contentCategoryService
-      .ServiceGetAll(filteModel)
+      .ServiceGetAll(filterModel)
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);

@@ -79,9 +79,9 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
     return model ? (model.title) : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<WebDesignerMainPageModel[]> {
-    const filteModel = new FilterModel();
-    filteModel.rowPerPage = 20;
-    filteModel.accessLoad = true;
+    const filterModel = new FilterModel();
+    filterModel.rowPerPage = 20;
+    filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
     const filterChild = new FilterDataModel();
@@ -100,14 +100,14 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
       filter.clauseType = EnumClauseType.Or;
       filterChild.filters.push(filter);
     }
-    filteModel.filters.push(filterChild);
+    filterModel.filters.push(filterChild);
     if (this.optionMasterPage) {
       filter = new FilterDataModel();
       filter.propertyName = 'PageAbilityType';
       filter.value = EnumPageAbilityType.Master;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
       filter.clauseType = EnumClauseType.And;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
     }
     if (this.masterTemplateId && this.masterTemplateId.length > 0) {
       filter = new FilterDataModel();
@@ -115,11 +115,11 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
       filter.value = this.masterTemplateId;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
       filter.clauseType = EnumClauseType.And;
-      filteModel.filters.push(filter);
+      filterModel.filters.push(filter);
     }
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    return await this.categoryService.ServiceGetAll(filteModel)
+    return await this.categoryService.ServiceGetAll(filterModel)
       .pipe(
         map(response => {
           this.dataModelResult = response;
