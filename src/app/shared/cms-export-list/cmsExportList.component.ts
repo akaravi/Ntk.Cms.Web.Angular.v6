@@ -126,47 +126,14 @@ export class CmsExportListComponent implements OnInit {
   onActionFileSelect(model: CoreModuleEntityReportFileModel): void {
     this.dataModelFileSelect = model;
     this.filterModel.exportFile.reportFormatFileId = model.id;
+    this.dataModelSubmitResult = new ErrorExceptionResultExportFile();
   }
 
-  // public optionsData: ComponentOptionExportModel = new ComponentOptionExportModel();
-  // @Output() optionsChange: EventEmitter<ComponentOptionExportModel> = new EventEmitter<ComponentOptionExportModel>();
-  // @Input() set options(model: ComponentOptionExportModel) {
-  //   if (!model) {
-  //     model = new ComponentOptionExportModel();
-  //   }
-  //   this.optionsData = model;
-  //   this.optionsData.childMethods = {
-  //     setExportLinkFile: (x: Map<string, string>) => this.setExportLinkFile(x),
-  //     setExportFilterModel: (x: FilterModel) => this.setExportFilterModel(x),
-  //   };
-  //   this.optionsChange.emit(model);
-  // }
-  // get options(): ComponentOptionExportModel {
-  //   return this.optionsData;
-  // }
-  // exportFileModel: ExportFileModel = new ExportFileModel();
-  // // filterModel: FilterModel = new FilterModel();
-  // modelData: Map<string, string> = new Map<string, string>();
   fileTypeListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
   recieveMethodListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
 
-  // setExportLinkFile(model: Map<string, string>): void {
-  //   this.modelData = model;
-  // }
-  // setExportFilterModel(model: FilterModel): void {
-  //   // this.filterModel = JSON.parse(JSON.stringify(model));
-  //   // if (!this.filterModel.exportFile) {
-  //   //   this.filterModel.exportFile = new ExportFileModel();
-  //   // }
-  // }
-
-  // onSubmit(): void {
-  //   if (this.optionsData.parentMethods) {
-  //     this.modelData = new Map<string, string>();
-  //     // this.optionsData.parentMethods.onSubmit(this.filterModel);
-  //   }
-  // }
   onFormSubmit(): void {
+    this.dataModelSubmitResult = new ErrorExceptionResultExportFile();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.formInfo.formSubmitAllow = false;

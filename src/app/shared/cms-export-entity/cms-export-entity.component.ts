@@ -140,8 +140,10 @@ export class CmsExportEntityComponent implements OnInit {
   onActionFileSelect(model: CoreModuleEntityReportFileModel): void {
     this.dataModelFileSelect = model;
     this.dataModel.reportFormatFileId = model.id;
+    this.dataModelSubmitResult = new ErrorExceptionResultExportFile();
   }
   onFormSubmit(): void {
+    this.dataModelSubmitResult = new ErrorExceptionResultExportFile();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.formInfo.formSubmitAllow = false;
