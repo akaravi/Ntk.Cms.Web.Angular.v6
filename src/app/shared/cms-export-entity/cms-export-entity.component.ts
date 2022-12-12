@@ -27,15 +27,17 @@ export class CmsExportEntityComponent implements OnInit {
     if (data) {
       if (data.service)
         this.requestService = data.service;
+      else
+        this.dialogRef.close({ dialogChangedDate: true });
       if (data.id)
         this.requestId = data.id;
+      else
+        this.dialogRef.close({ dialogChangedDate: true });
       if (data.title)
         this.requestTitle = data.title;
+    } else {
+      this.dialogRef.close({ dialogChangedDate: true });
     }
-    if (!this.requestId || this.requestId.length == 0)
-      this.dialogRef.close({ dialogChangedDate: true });
-    if (!this.requestService)
-      this.dialogRef.close({ dialogChangedDate: true });
     let eum = new EnumInfoModel();
     eum.value = 1;
     eum.key = 'Excel';

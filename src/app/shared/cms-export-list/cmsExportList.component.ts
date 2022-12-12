@@ -1,4 +1,4 @@
-import { CoreModuleEntityReportFileModel, EnumExportFileType, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, FilterModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum } from 'ntk-cms-api';
+import { CoreModuleEntityReportFileModel, EnumExportFileType, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, ExportFileModel, FilterModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum } from 'ntk-cms-api';
 import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
@@ -25,16 +25,18 @@ export class CmsExportListComponent implements OnInit {
     if (data) {
       if (data.service)
         this.requestService = data.service;
+      else
+        this.dialogRef.close({ dialogChangedDate: true });
       if (data.filterModel)
         this.filterModel = data.filterModel;
+      else
+        this.dialogRef.close({ dialogChangedDate: true });
       if (data.title)
         this.requestTitle = data.title;
+    } else {
+      this.dialogRef.close({ dialogChangedDate: true });
     }
-    if (!this.filterModel)
-      this.dialogRef.close({ dialogChangedDate: true });
-    if (!this.requestService)
-      this.dialogRef.close({ dialogChangedDate: true });
-
+    this.filterModel.exportFile = new ExportFileModel();
     let eum = new EnumInfoModel();
     eum.value = 1;
     eum.key = 'Excel';
