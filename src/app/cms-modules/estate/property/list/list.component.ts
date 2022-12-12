@@ -505,7 +505,9 @@ export class EstatePropertyListComponent
       height: "70%",
       width: "50%",
       data: {
-        service: this.contentService
+        service: this.contentService,
+        id: this.tableRowSelected.id,
+        title: this.tableRowSelected.title
       },
     }
     );

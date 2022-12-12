@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleEntityReportFileModel, ErrorExceptionResult, FormInfoModel, IApiCmsServerBase, TokenInfoModel } from 'ntk-cms-api';
-import { debounceTime, distinctUntilChanged, map, Observable, startWith, Subscription, switchMap } from 'rxjs';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { EnumExportFileType, EnumInfoModel, ErrorExceptionResultExportFile, ReportFileTypeEnum } from 'ntk-cms-api';
+import { ExportFileModel } from 'ntk-cms-api';
+import { CoreModuleEntityReportFileModel, ErrorExceptionResult, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
+import { Observable } from 'rxjs';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
@@ -21,16 +21,60 @@ export class CmsPrintEntityComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CmsPrintEntityComponent>,
     public http: HttpClient,
-    private router: Router,
     public translate: TranslateService,
-    private tokenHelper: TokenHelper,
   ) {
     if (data) {
       this.optionService = data.service;
+      this.optionId = data.id;
+      this.optionTitle = data.title;
     }
+    let eum = new EnumInfoModel();
+    eum.value = 1;
+    eum.key = 'Excel';
+    eum.description = 'Excel';
+    this.fileTypeListItems.push(eum);
+
+    eum = new EnumInfoModel();
+    eum.value = 2;
+    eum.key = 'PDF';
+    eum.description = 'PDF';
+    this.fileTypeListItems.push(eum);
+
+    eum = new EnumInfoModel();
+    eum.value = 3;
+    eum.key = 'Json';
+    eum.description = 'Json';
+    this.fileTypeListItems.push(eum);
+
+    eum = new EnumInfoModel();
+    eum.value = 4;
+    eum.key = 'Report';
+    eum.description = 'Report';
+    this.fileTypeListItems.push(eum);
+
+    eum = new EnumInfoModel();
+    eum.value = 0;
+    eum.key = 'Now';
+    eum.description = 'Now';
+    this.recieveMethodListItems.push(eum);
+
+    eum = new EnumInfoModel();
+    eum.value = 1;
+    eum.key = 'Email';
+    eum.description = 'Email';
+    this.recieveMethodListItems.push(eum);
+
+    eum = new EnumInfoModel();
+    eum.value = 2;
+    eum.key = 'FileManager';
+    eum.description = 'FileManager';
+    this.recieveMethodListItems.push(eum);
   }
-  dataModelResult: ErrorExceptionResult<CoreModuleEntityReportFileModel> = new ErrorExceptionResult<CoreModuleEntityReportFileModel>();
-  
+  dataModelReportFileResult: ErrorExceptionResult<CoreModuleEntityReportFileModel> = new ErrorExceptionResult<CoreModuleEntityReportFileModel>();
+  dataModelSubmitResult: ErrorExceptionResultExportFile = new ErrorExceptionResultExportFile();
+  fileTypeListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
+  recieveMethodListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
+
   _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
   get loading(): ProgressSpinnerModel {
     return this._loading;
@@ -38,62 +82,89 @@ export class CmsPrintEntityComponent implements OnInit {
   @Input() set loading(value: ProgressSpinnerModel) {
     this._loading = value;
   }
-
-  optionService : IApiCmsServerBase;
+  optionId = '';
+  optionTitle = '';
+  optionService: IApiCmsServerBase;
   optionPlaceholder = '';
   formControl = new FormControl();
   filteredOptions: Observable<CoreModuleEntityReportFileModel[]>;
-  dataModelSelect: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
+  dataModelFileSelect: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
+  dataModel: ExportFileModel = new ExportFileModel();
+  EnumExportFileTypeReport=EnumExportFileType.Report;
 
-  cmsApiStoreSubscribe: Subscription;
+  formInfo: FormInfoModel = new FormInfoModel();
+
+
   ngOnInit(): void {
-    this.loadOptions();
+    this.DataGetAll();
+    this.formInfo.formTitle = this.translate.instant('TITLE.FILE_CREATION')+' : '+this.optionTitle;
   }
-  loadOptions(): void {
-    this.filteredOptions = this.formControl.valueChanges
-      .pipe(
-        startWith(''),
-        debounceTime(1500),
-        distinctUntilChanged(),
-        switchMap(val => {
-          return this.DataGetAll();
-        }),
-        // tap(() => this.myControl.setValue(this.options[0]))
-      );
-  }
-  ngOnDestroy(): void {
-    this.cmsApiStoreSubscribe.unsubscribe();
-  }
-  displayFn(model?: CoreModuleEntityReportFileModel): string | undefined {
-    return model ? (model.title ) : undefined;
-  }
-  displayOption(model?: CoreModuleEntityReportFileModel): string | undefined {
-    return model ? (model.title) : undefined;
-  }
-  async DataGetAll(): Promise<CoreModuleEntityReportFileModel[]> {
-    
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
 
-    return await this.optionService.ServiceGetAllReportFile()
-      .pipe(
-        map(response => {
-          this.dataModelResult = response;
-          this.loading.Stop(pName);
-          return response.listItems;
-        })
-      ).toPromise();
+  ngOnDestroy(): void {
+
   }
-  onActionSelect(model: CoreModuleEntityReportFileModel): void {
-    this.dataModelSelect = model;
+
+  DataGetAll(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+    this.dataModelSubmitResult = new ErrorExceptionResultExportFile();
+    this.formInfo.formSubmitAllow = false;
+    this.optionService.ServiceReportFileGetAll().subscribe({
+      next: (ret) => {
+        this.dataModelReportFileResult = ret;
+        if (ret.isSuccess) {
+          this.dataModelReportFileResult.listItems = this.dataModelReportFileResult.listItems.filter(x => x.reportFileType == ReportFileTypeEnum.Item);
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+        this.formInfo.formSubmitAllow = true;
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+
+        this.loading.Stop(pName);
+        this.formInfo.formSubmitAllow = true;
+      }
+    }
+    );
   }
-  onActionSelectClear(): void {
-    this.formControl.setValue(null);
+  onActionFileSelect(model: CoreModuleEntityReportFileModel): void {
+    this.dataModelFileSelect = model;
+    this.dataModel.reportFormatFileId = model.id;
   }
   onFormSubmit(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+    this.formInfo.formSubmitAllow = false;
     
+    this.optionService.ServiceExportFileGetOne(this.optionId, this.dataModel).subscribe({
+      next: (ret) => {
+        this.dataModelSubmitResult = ret;
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+        this.formInfo.formSubmitAllow = true;
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+
+        this.loading.Stop(pName);
+        this.formInfo.formSubmitAllow = true;
+      }
+    }
+    );
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
+  }
+  onOpenPage(): void {
+    if (this.dataModelSubmitResult && this.dataModelSubmitResult.isSuccess && this.dataModelSubmitResult.linkFile.length > 0)
+      window.open(this.dataModelSubmitResult.linkFile, "_blank");
   }
 }

@@ -1226,6 +1226,8 @@
 	"TITLE.Select_the_file_format": "انتخاب فرمت فایل",
 	"TITLE.Method_of_receipt": "روش دریافت",
 	"TITLE.Select_the_method_of_receiving_the_file": "انتخاب روش دریافت فایل",
+	"TITLE.Report_Format_Select": "فرمت کزارش را انتخاب کنید",
+	"TITLE.Report_Format": "فرمت کزارش",
 	"TITLE.from_page": "از صفحه",
 	"TITLE.page_number": "شماره صفحه",
 	"TITLE.number_of_output_file_rows": "تعداد ردیف خروجی فایل",
