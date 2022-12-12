@@ -43,6 +43,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CmsMemoComponent } from "src/app/shared/cms-memo/cms-memo.component";
 import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
 import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
+import { CmsExportEntityComponent } from "src/app/shared/cms-export-entity/cms-export-entity.component";
 
 
 @Component({
@@ -112,7 +113,7 @@ export class EstatePropertyQuickListComponent
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = "CreatedDate";
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -219,7 +220,7 @@ export class EstatePropertyQuickListComponent
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel =
     new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstatePropertyModel> = [];
@@ -288,7 +289,7 @@ export class EstatePropertyQuickListComponent
   }
 
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource,this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource, this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
     if (!this.optionloadComponent) {
       return;
     }
@@ -717,30 +718,58 @@ export class EstatePropertyQuickListComponent
     this.DataGetAll();
   }
 
-  
+
 
   onActionbuttonExport(): void {
-        //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
   }
-
+  onActionButtonPrintEntity(model: EstatePropertyModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportEntityComponent, {
+      height: "30%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        id: this.tableRowSelected.id,
+        title: this.tableRowSelected.title
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup
+  }
   onActionbuttonInChecking(model: boolean): void {
     this.searchInChecking = model;
     this.DataGetAll();
   }
-  
+
 
   onActionbuttonReload(): void {
     this.optionloadComponent = true;

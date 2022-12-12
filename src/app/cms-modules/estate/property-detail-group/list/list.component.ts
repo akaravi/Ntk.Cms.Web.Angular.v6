@@ -33,6 +33,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 @Component({
   selector: 'app-estate-property-detail-group-list',
   templateUrl: './list.component.html'
@@ -373,7 +374,35 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
     });
     //open popup 
    }
-  
+   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportEntityComponent, {
+      height: "30%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        id: this.tableRowSelected.id,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup
+  }
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

@@ -18,6 +18,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';

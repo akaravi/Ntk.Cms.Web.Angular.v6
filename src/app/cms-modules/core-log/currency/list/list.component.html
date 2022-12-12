@@ -28,6 +28,9 @@
     <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
+    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn btn-outline-secondary BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
+    </button>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>

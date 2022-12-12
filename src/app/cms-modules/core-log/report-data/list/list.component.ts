@@ -21,6 +21,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
@@ -90,7 +91,7 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -105,7 +106,7 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<CoreLogReportDataModel> = new ErrorExceptionResult<CoreLogReportDataModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<CoreLogReportDataModel> = [];
@@ -415,23 +416,53 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonExport(): void {
-        //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-  
+
+
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportEntityComponent, {
+      height: "30%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        id: this.tableRowSelected.id,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup
+  }
 
   onActionbuttonReload(): void {
     this.DataGetAll();

@@ -21,6 +21,7 @@ import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerMod
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -331,6 +332,35 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
         });
         //open popup 
         
+  }
+onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportEntityComponent, {
+      height: "30%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        id: this.tableRowSelected.id,
+        title: this.tableRowSelected.title
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup
   }
   
 
