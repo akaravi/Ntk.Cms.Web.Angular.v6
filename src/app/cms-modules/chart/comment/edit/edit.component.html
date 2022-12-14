@@ -22,7 +22,7 @@
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.AUTHOR' | translate}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.writer" name="dataModel.writer" #Writer type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
+          <input matInput [(ngModel)]="dataModel.writer" name="dataModel.writer" #Writer type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}"
             minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.writer" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.writer = ''">close</mat-icon>

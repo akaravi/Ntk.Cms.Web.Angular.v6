@@ -32,9 +32,9 @@
 
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+          <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" />
+            placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -98,10 +98,10 @@
         </div>
         <!-- ToWebAddress Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['ToWebAddress']?.fieldTitle}}</mat-label>
+          <mat-label>{{fieldsInfo['toWebAddress']?.fieldTitle}}</mat-label>
           <input style="direction: ltr; text-align: left !important;" matInput [(ngModel)]="dataModel.toWebAddress"
             name="dataModel.toWebAddress" #ToWebAddress type="text"
-            placeholder="{{fieldsInfo['ToWebAddress']?.fieldTitle}}" minlength="3" maxlength="2000" />
+            placeholder="{{fieldsInfo['toWebAddress']?.fieldTitle}}" minlength="3" maxlength="2000" />
           <mat-icon matSuffix *ngIf="dataModel.toWebAddress" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.toWebAddress = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

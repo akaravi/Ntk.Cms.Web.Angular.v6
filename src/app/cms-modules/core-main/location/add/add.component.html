@@ -43,9 +43,9 @@
     </app-core-location-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -57,16 +57,16 @@
 
     <!-- TitleResourceLanguage Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['titleResourceLanguage']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleResourceLanguage" name="dataModel.titleResourceLanguage"
-        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
-        maxlength="100" required [disabled]="!fieldsInfo['TitleResourceLanguage']?.accessAddField" />
+        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3"
+        maxlength="100" required [disabled]="!fieldsInfo['titleResourceLanguage']?.accessAddField" />
       <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleResourceLanguage.errors?.required">
-        {{fieldsInfo['TitleResourceLanguage']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['titleResourceLanguage']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- GeoLocationLatitude Field -->

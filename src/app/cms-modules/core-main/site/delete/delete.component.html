@@ -7,9 +7,9 @@
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+    <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
     <input matInput [(ngModel)]="dataModelResult.item.title" name="dataModelResult.item.title" #Title
-      type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"  readonly />
+      type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}"  readonly />
   </mat-form-field>
   <mat-form-field class="ntk-full-width">
     <mat-label>{{fieldsInfo['seoDescription']?.fieldTitle}}</mat-label>

@@ -32,9 +32,9 @@
           [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-chart-category-selector>
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+          <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+            placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -227,9 +227,9 @@
         <P>{{'TITLE.Add_other_information_related_to_this_content_in_this_section' | translate}}</P>
 
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+          <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="contentOtherInfoSelected.title" name="contentOtherInfoSelected.title"
-            #contentOtherInfoSelected_Title type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
+            #contentOtherInfoSelected_Title type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3"
             maxlength="100" />
           <mat-icon matSuffix *ngIf="contentOtherInfoSelected.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="contentOtherInfoSelected.title = ''">close</mat-icon>

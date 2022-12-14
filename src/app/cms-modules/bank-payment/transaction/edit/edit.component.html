@@ -38,9 +38,9 @@
           </mat-error>
         </mat-form-field>
         <!-- TransactionStatus Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TransactionStatus']?.accessWatchField">
-          <mat-select placeholder="{{fieldsInfo['TransactionStatus']?.fieldTitle}}"
-            [(ngModel)]="dataModel.transactionStatus" [disabled]="!fieldsInfo['TransactionStatus']?.accessEditField"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['transactionStatus']?.accessWatchField">
+          <mat-select placeholder="{{fieldsInfo['transactionStatus']?.fieldTitle}}"
+            [(ngModel)]="dataModel.transactionStatus" [disabled]="!fieldsInfo['transactionStatus']?.accessEditField"
             name="dataModel.recordStatus" #TransactionStatus="ngModel"
             panelClass="TransactionStatus-{{ dataModel.transactionStatus }}" required>
             <mat-option *ngFor="
@@ -50,7 +50,7 @@
           </mat-select>
           <mat-hint align="end">{{ 'Application.source.TransactionStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="TransactionStatus.errors?.required">
-            {{ fieldsInfo['TransactionStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{ fieldsInfo['transactionStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- LinkPrivateSiteConfigId Field -->

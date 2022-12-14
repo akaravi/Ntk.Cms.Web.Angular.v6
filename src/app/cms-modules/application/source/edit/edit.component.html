@@ -27,25 +27,25 @@
         </mat-form-field>
 
         <!-- Title Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['Title']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.title" [disabled]="!fieldsInfo['Title']?.accessEditField"
-            name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['title']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['title']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.title" [disabled]="!fieldsInfo['title']?.accessEditField"
+            name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3"
             maxlength="100" required />
-          <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessEditField" matSuffix mat-icon-button
+          <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['title']?.accessEditField" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['Title']?.accessEditField" matSuffix>mode_edit</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['title']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
-            {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{ fieldsInfo['title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- TitleResourceLanguage Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.accessWatchField">
-          <mat-label> {{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['titleResourceLanguage']?.accessWatchField">
+          <mat-label> {{fieldsInfo['titleResourceLanguage']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.titleResourceLanguage" name="dataModel.titleResourceLanguage"
-            #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.accessEditField"
-            placeholder="{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100" required />
+            #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['titleResourceLanguage']?.accessEditField"
+            placeholder="{{fieldsInfo['titleResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -72,7 +72,7 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['className']?.accessWatchField">
           <mat-label>{{fieldsInfo['className']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.className" [disabled]="!fieldsInfo['className']?.accessEditField"
-            name="dataModel.className" #ClassName type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
+            name="dataModel.className" #ClassName type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}"
             minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.className && fieldsInfo['className']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.className = ''">close</mat-icon>
@@ -86,7 +86,7 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['packageName']?.accessWatchField">
           <mat-label>{{fieldsInfo['packageName']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.packageName" [disabled]="!fieldsInfo['packageName']?.accessEditField"
-            name="dataModel.packageName" #PackageName type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
+            name="dataModel.packageName" #PackageName type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}"
             minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.packageName && fieldsInfo['packageName']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.packageName = ''">close</mat-icon>
@@ -188,7 +188,7 @@
           <mat-label>{{fieldsInfo['sourceNameGit']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.sourceNameGit"
             [disabled]="!fieldsInfo['sourceNameGit']?.accessEditField" name="dataModel.sourceNameGit" #SourceNameGit
-            type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="0" maxlength="100" />
+            type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.sourceNameGit && fieldsInfo['sourceNameGit']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.sourceNameGit = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['sourceNameGit']?.accessEditField" matSuffix>mode_edit</mat-icon>
@@ -200,7 +200,7 @@
           <mat-label>{{fieldsInfo['fireBaseServerKey']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.fireBaseServerKey"
             [disabled]="!fieldsInfo['fireBaseServerKey']?.accessEditField" name="dataModel.fireBaseServerKey"
-            #FireBaseServerKey type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            #FireBaseServerKey type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.fireBaseServerKey && fieldsInfo['fireBaseServerKey']?.accessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.fireBaseServerKey = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['fireBaseServerKey']?.accessEditField" matSuffix>mode_edit</mat-icon>
@@ -270,7 +270,7 @@
           <textarea matInput [(ngModel)]="dataModel.defaultConfigBuilderAdminJsonValues"
             [disabled]="!fieldsInfo['defaultConfigBuilderAdminJsonValues']?.accessEditField"
             name="dataModel.defaultConfigBuilderAdminJsonValues" #DefaultConfigBuilderAdminJsonValues type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.defaultConfigBuilderAdminJsonValues" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.defaultConfigBuilderAdminJsonValues = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -281,7 +281,7 @@
           <textarea matInput [(ngModel)]="dataModel.defaultConfigRuntimeAdminJsonValues"
             [disabled]="!fieldsInfo['defaultConfigRuntimeAdminJsonValues']?.accessEditField"
             name="dataModel.defaultConfigRuntimeAdminJsonValues" #DefaultConfigRuntimeAdminJsonValues type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.defaultConfigRuntimeAdminJsonValues" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.defaultConfigRuntimeAdminJsonValues = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -292,7 +292,7 @@
           <textarea matInput [(ngModel)]="dataModel.defaultConfigBuilderSiteJsonValues"
             [disabled]="!fieldsInfo['defaultConfigBuilderSiteJsonValues']?.accessEditField"
             name="dataModel.defaultConfigBuilderSiteJsonValues" #DefaultConfigBuilderSiteJsonValues type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.defaultConfigBuilderSiteJsonValues" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.defaultConfigBuilderSiteJsonValues = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -303,7 +303,7 @@
           <textarea matInput [(ngModel)]="dataModel.defaultConfigRuntimeSiteJsonValues"
             [disabled]="!fieldsInfo['defaultConfigRuntimeSiteJsonValues']?.accessEditField"
             name="dataModel.defaultConfigRuntimeSiteJsonValues" #DefaultConfigRuntimeSiteJsonValues type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.defaultConfigRuntimeSiteJsonValues" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.defaultConfigRuntimeSiteJsonValues = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -508,7 +508,7 @@
           <textarea matInput [(ngModel)]="dataModel.lastSuccessfullyBuildDate"
             [disabled]="!fieldsInfo['lastSuccessfullyBuildDate']?.accessEditField"
             name="dataModel.lastSuccessfullyBuildDate" #LastSuccessfullyBuildDate type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.lastSuccessfullyBuildDate" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.lastSuccessfullyBuildDate = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -519,7 +519,7 @@
           <mat-label>{{fieldsInfo['lastBuildCommandDate']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.lastBuildCommandDate"
             [disabled]="!fieldsInfo['lastBuildCommandDate']?.accessEditField" name="dataModel.lastBuildCommandDate"
-            #LastBuildCommandDate type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            #LastBuildCommandDate type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.lastBuildCommandDate" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.lastBuildCommandDate = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -529,7 +529,7 @@
           <mat-label>{{fieldsInfo['lastBuildCommandBy']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.lastBuildCommandBy"
             [disabled]="!fieldsInfo['lastBuildCommandBy']?.accessEditField" name="dataModel.lastBuildCommandBy"
-            #LastBuildCommandBy type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            #LastBuildCommandBy type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.lastBuildCommandBy" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.lastBuildCommandBy = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -541,7 +541,7 @@
           <mat-label>{{fieldsInfo['lastBuildCommandDate']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.lastBuildCommandDate"
             [disabled]="!fieldsInfo['lastBuildCommandDate']?.accessEditField" name="dataModel.lastBuildCommandDate"
-            #LastBuildCommandDate type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            #LastBuildCommandDate type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.lastBuildCommandDate" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.lastBuildCommandDate = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -552,7 +552,7 @@
           <mat-label>{{fieldsInfo['lastBuildCommandBy']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.lastBuildCommandBy"
             [disabled]="!fieldsInfo['lastBuildCommandBy']?.accessEditField" name="dataModel.lastBuildCommandBy"
-            #LastBuildCommandBy type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            #LastBuildCommandBy type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.lastBuildCommandBy" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.lastBuildCommandBy = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -564,7 +564,7 @@
           <textarea matInput [(ngModel)]="dataModel.lastUnsuccessfullyBuildErrorDate"
             [disabled]="!fieldsInfo['lastUnsuccessfullyBuildErrorDate']?.accessEditField"
             name="dataModel.lastUnsuccessfullyBuildErrorDate" #LastUnsuccessfullyBuildErrorDate type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.lastUnsuccessfullyBuildErrorDate" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.lastUnsuccessfullyBuildErrorDate = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -576,7 +576,7 @@
           <textarea matInput [(ngModel)]="dataModel.lastUnsuccessfullyBuildErrorMessage"
             [disabled]="!fieldsInfo['lastUnsuccessfullyBuildErrorMessage']?.accessEditField"
             name="dataModel.lastUnsuccessfullyBuildErrorMessage" #LastUnsuccessfullyBuildErrorMessage type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" rows="5"></textarea>
+            placeholder="{{fieldsInfo['title']?.fieldTitle}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.lastUnsuccessfullyBuildErrorMessage" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.lastUnsuccessfullyBuildErrorMessage = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

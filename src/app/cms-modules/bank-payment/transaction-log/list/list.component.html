@@ -54,7 +54,7 @@
       </ng-container>
       <!-- TransactionStatus Column -->
       <ng-container matColumnDef="TransactionStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['TransactionStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['transactionStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.transactionStatus | enums :
           dataModelEnumTransactionRecordStatusResult.listItems}} </mat-cell>

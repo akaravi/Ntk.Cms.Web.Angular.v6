@@ -28,16 +28,16 @@
         [optionSelectForce]="dataModel.linkPublicConfigId" [optionPlaceholder]="this.translate.instant('TITLE.Account_Type')">
       </app-bankpayment-publicconfig-selector>
       <!-- Title Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">
-        <mat-label>{{ fieldsInfo['Title']?.fieldTitle }}</mat-label>
-        <input matInput [(ngModel)]="dataModel.title" [disabled]="!fieldsInfo['Title']?.accessEditField"
-          name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
-        <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['Title']?.accessEditField" matSuffix mat-icon-button
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['title']?.accessWatchField">
+        <mat-label>{{ fieldsInfo['title']?.fieldTitle }}</mat-label>
+        <input matInput [(ngModel)]="dataModel.title" [disabled]="!fieldsInfo['title']?.accessEditField"
+          name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        <mat-icon matSuffix *ngIf="dataModel.title && fieldsInfo['title']?.accessEditField" matSuffix mat-icon-button
           aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
-        <mat-icon *ngIf="fieldsInfo['Title']?.accessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-icon *ngIf="fieldsInfo['title']?.accessEditField" matSuffix>mode_edit</mat-icon>
         <mat-hint align="start">{{ Title.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Title.errors?.required">
-          {{ fieldsInfo['Title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+          {{ fieldsInfo['title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <!-- CurrencyUnitRatioByShop Field -->

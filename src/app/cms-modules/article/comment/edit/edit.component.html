@@ -30,7 +30,7 @@
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['writer']?.accessWatchField">
         <mat-label>{{fieldsInfo['writer']?.fieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.writer" name="dataModel.writer" #Writer type="text"
-          placeholder="{{fieldsInfo['Title']?.fieldTitle}}" [disabled]="!fieldsInfo['writer']?.accessEditField"
+          placeholder="{{fieldsInfo['title']?.fieldTitle}}" [disabled]="!fieldsInfo['writer']?.accessEditField"
            minlength="3" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.writer" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.writer = ''">close</mat-icon>

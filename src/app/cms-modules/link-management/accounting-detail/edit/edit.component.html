@@ -111,9 +111,9 @@
     </mat-form-field>
     <!-- TokenNumber Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['TokenNumber']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['tokenNumber']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.tokenNumber" name="dataModel.tokenNumber" #TokenNumber type="text"
-        placeholder="{{fieldsInfo['TokenNumber']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['tokenNumber']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.tokenNumber" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.tokenNumber = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

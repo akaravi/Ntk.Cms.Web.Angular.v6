@@ -9,9 +9,9 @@
   <ng-container *ngIf="dataModelResultContent?.item">
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModelResultContent.item.title" name="dataModelResultContent.item.title" #Writer
-        type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" required readonly />
+        type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" required readonly />
     </mat-form-field>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">

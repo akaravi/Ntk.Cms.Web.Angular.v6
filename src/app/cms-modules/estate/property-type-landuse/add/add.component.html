@@ -10,9 +10,9 @@
 
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -24,11 +24,11 @@
 
 
     <!-- TitleResourceLanguage Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleResourceLanguage']?.accessWatchField">
-      <mat-label> {{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['titleResourceLanguage']?.accessWatchField">
+      <mat-label> {{fieldsInfo['titleResourceLanguage']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleResourceLanguage" name="dataModel.titleResourceLanguage"
-        #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['TitleResourceLanguage']?.accessEditField"
-        placeholder="{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        #TitleResourceLanguage type="text" [disabled]="!fieldsInfo['titleResourceLanguage']?.accessEditField"
+        placeholder="{{fieldsInfo['titleResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -48,9 +48,9 @@
     </div>
     <!-- TitleCreatedYaer Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['TitleCreatedYaer']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['titleCreatedYaer']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleCreatedYaer" name="dataModel.titleCreatedYaer" #TitleCreatedYaer
-        type="text" placeholder="{{fieldsInfo['TitleCreatedYaer']?.fieldTitle}}" minlength="3" maxlength="100"
+        type="text" placeholder="{{fieldsInfo['titleCreatedYaer']?.fieldTitle}}" minlength="3" maxlength="100"
         required />
       <mat-icon matSuffix *ngIf="dataModel.titleCreatedYaer" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleCreatedYaer = ''">close</mat-icon>
@@ -69,12 +69,12 @@
 
 
     <!-- TitleCreatedYaerResourceLanguage Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitleCreatedYaerResourceLanguage']?.accessWatchField">
-      <mat-label> {{fieldsInfo['TitleCreatedYaerResourceLanguage']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['titleCreatedYaerResourceLanguage']?.accessWatchField">
+      <mat-label> {{fieldsInfo['titleCreatedYaerResourceLanguage']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleCreatedYaerResourceLanguage"
         name="dataModel.titleCreatedYaerResourceLanguage" #TitleCreatedYaerResourceLanguage type="text"
-        [disabled]="!fieldsInfo['TitleCreatedYaerResourceLanguage']?.accessEditField"
-        placeholder="{{fieldsInfo['TitleCreatedYaerResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100"
+        [disabled]="!fieldsInfo['titleCreatedYaerResourceLanguage']?.accessEditField"
+        placeholder="{{fieldsInfo['titleCreatedYaerResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100"
         required />
       <mat-icon matSuffix *ngIf="dataModel.titleCreatedYaerResourceLanguage" matSuffix mat-icon-button
         aria-label="Clear" (click)="dataModel.titleCreatedYaerResourceLanguage = ''">close</mat-icon>
@@ -87,9 +87,9 @@
 
     <!-- TitlePartition Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['TitlePartition']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['titlePartition']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titlePartition" name="dataModel.titlePartition" #TitlePartition type="text"
-        placeholder="{{fieldsInfo['TitlePartition']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['titlePartition']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.titlePartition" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titlePartition = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -107,12 +107,12 @@
 
 
     <!-- TitlePartitionResourceLanguage Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['TitlePartitionResourceLanguage']?.accessWatchField">
-      <mat-label> {{fieldsInfo['TitlePartitionResourceLanguage']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['titlePartitionResourceLanguage']?.accessWatchField">
+      <mat-label> {{fieldsInfo['titlePartitionResourceLanguage']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titlePartitionResourceLanguage"
         name="dataModel.titlePartitionResourceLanguage" #TitlePartitionResourceLanguage type="text"
-        [disabled]="!fieldsInfo['TitlePartitionResourceLanguage']?.accessEditField"
-        placeholder="{{fieldsInfo['TitlePartitionResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100"
+        [disabled]="!fieldsInfo['titlePartitionResourceLanguage']?.accessEditField"
+        placeholder="{{fieldsInfo['titlePartitionResourceLanguage']?.fieldTitle}}" minlength="3" maxlength="100"
         required />
       <mat-icon matSuffix *ngIf="dataModel.titlePartitionResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titlePartitionResourceLanguage = ''">close</mat-icon>

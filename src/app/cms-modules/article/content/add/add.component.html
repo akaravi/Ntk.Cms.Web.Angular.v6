@@ -35,17 +35,17 @@
           [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-article-category-selector>
         <!-- Title Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Title']?.accessWatchField">
-          <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['title']?.accessWatchField">
+          <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-            disabled="{{!fieldsInfo['Title']?.accessAddField}}" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
+            disabled="{{!fieldsInfo['title']?.accessAddField}}" placeholder="{{fieldsInfo['title']?.fieldTitle}}"
             minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.title = ''">close</mat-icon>
-          <mat-icon matTooltip="{{fieldsInfo['Title']?.FieldDescription}}" matSuffix> info</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['title']?.FieldDescription}}" matSuffix> info</mat-icon>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
-            {{fieldsInfo['Title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- Description Field -->
@@ -226,9 +226,9 @@
         <p>{{'TITLE.Add_other_information_related_to_this_content_in_this_section' | translate}}</p>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+          <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="contentOtherInfoSelected.title" name="contentOtherInfoSelected.title"
-            #contentOtherInfoSelected_Title type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
+            #contentOtherInfoSelected_Title type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3"
             maxlength="100" />
           <mat-icon matSuffix *ngIf="contentOtherInfoSelected.title" matSuffix mat-icon-button aria-label="Clear"
             (click)="contentOtherInfoSelected.title = ''">close</mat-icon>
@@ -270,12 +270,12 @@
           <mat-table [dataSource]="otherInfoTabledataSource">
             <!-- Title Column -->
             <ng-container matColumnDef="Title">
-              <mat-header-cell *matHeaderCellDef> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{fieldsInfo['title']?.fieldTitle}} </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
             </ng-container>
             <!-- TypeId Column -->
             <ng-container matColumnDef="TypeId">
-              <mat-header-cell *matHeaderCellDef> {{fieldsInfo['TypeId']?.fieldTitle}} </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{fieldsInfo['typeId']?.fieldTitle}} </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.typeId}} </mat-cell>
             </ng-container>
             <!-- Action Column -->

@@ -29,9 +29,9 @@
           [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-file-category-selector>
         <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+          <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.fileName" name="dataModel.fileName" #fileName type="text"
-            placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+            placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
           <mat-icon matSuffix *ngIf="dataModel.fileName" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.fileName = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

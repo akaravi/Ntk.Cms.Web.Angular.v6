@@ -93,7 +93,7 @@
       </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Title']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['title']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
@@ -151,7 +151,7 @@
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['Title']?.fieldTitle}} : {{row.title}} </td>
+                <td>{{fieldsInfo['title']?.fieldTitle}} : {{row.title}} </td>
               </tr>
               <tr>
                 <td></td>

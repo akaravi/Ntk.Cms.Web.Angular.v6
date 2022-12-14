@@ -220,21 +220,21 @@
         </mat-form-field>
 
         <!-- Tell Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Tell']?.accessWatchField">
-          <mat-label> {{fieldsInfo['Tell']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['tell']?.accessWatchField">
+          <mat-label> {{fieldsInfo['tell']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.tell" name="dataModel.tell" #Tell type="text"
-            [disabled]="!fieldsInfo['Tell']?.accessEditField" placeholder="{{fieldsInfo['Tell']?.fieldTitle}}"
+            [disabled]="!fieldsInfo['tell']?.accessEditField" placeholder="{{fieldsInfo['tell']?.fieldTitle}}"
             minlength="3" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.tell" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.tell = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Tell']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['tell']?.FieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ Tell.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Tell.errors?.required">
-            {{fieldsInfo['Tell']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['tell']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- PostalCode Field -->

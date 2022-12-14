@@ -37,14 +37,14 @@
     </mat-form-field>
     
     <!-- ToNumbers Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ToNumbers']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['ToNumbers']?.fieldTitle }}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['toNumbers']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['toNumbers']?.fieldTitle }}</mat-label>
       <input matInput [(ngModel)]="dataModel.toNumbers"
-        [disabled]="!fieldsInfo['ToNumbers']?.accessEditField" name="dataModel.toNumbers" #ToNumbers
+        [disabled]="!fieldsInfo['toNumbers']?.accessEditField" name="dataModel.toNumbers" #ToNumbers
         type="text" placeholder="123" />
-      <mat-icon matSuffix *ngIf="dataModel.toNumbers && fieldsInfo['ToNumbers']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.toNumbers && fieldsInfo['toNumbers']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.toNumbers = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ToNumbers']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['toNumbers']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint  style="text-align: right;">{{ ToNumbers.value.length }} / 100</mat-hint>
     </mat-form-field>
 

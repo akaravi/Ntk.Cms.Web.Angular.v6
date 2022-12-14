@@ -29,9 +29,9 @@
     </app-donate-target-category-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -64,7 +64,7 @@
     </div>
     <!-- ToWebAddress Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['ToWebAddress']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['toWebAddress']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.toWebAddress" name="dataModel.toWebAddress" #ToWebAddress type="text"
         placeholder="https://...." minlength="0" maxlength="100" style="text-align: left;" dir="ltr" />
       <mat-icon matSuffix *ngIf="dataModel.toWebAddress" matSuffix mat-icon-button aria-label="Clear"

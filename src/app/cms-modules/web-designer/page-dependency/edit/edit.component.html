@@ -24,16 +24,16 @@
     </mat-form-field>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Title']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-        placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required
-        [disabled]="!fieldsInfo['Title']?.accessEditField" />
+        placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required
+        [disabled]="!fieldsInfo['title']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Title.errors?.required">
-        {{fieldsInfo['Title']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['title']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- TitleML Field -->
@@ -43,16 +43,16 @@
     </mat-form-field>
     <!-- TitleResourceLanguage Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['TitleResourceLanguage']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['titleResourceLanguage']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleResourceLanguage" name="dataModel.titleResourceLanguage"
-        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3"
-        maxlength="100" required [disabled]="!fieldsInfo['TitleResourceLanguage']?.accessEditField" />
+        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3"
+        maxlength="100" required [disabled]="!fieldsInfo['titleResourceLanguage']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ TitleResourceLanguage.value.length }} / 100</mat-hint>
       <mat-error *ngIf="TitleResourceLanguage.errors?.required">
-        {{fieldsInfo['TitleResourceLanguage']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['titleResourceLanguage']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- LinkModuleId Field -->
@@ -64,7 +64,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['cmsModuleClassName']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.cmsModuleClassName" name="dataModel.cmsModuleClassName" #CmsModuleClassName
-        type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required
+        type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required
         [disabled]="!fieldsInfo['cmsModuleClassName']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.cmsModuleClassName" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.cmsModuleClassName = ''">close</mat-icon>
@@ -78,7 +78,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['classActionName']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.classActionName" name="dataModel.classActionName" #ClassActionName
-        type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
+        type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}"
         [disabled]="!fieldsInfo['classActionName']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.classActionName" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.classActionName = ''">close</mat-icon>
