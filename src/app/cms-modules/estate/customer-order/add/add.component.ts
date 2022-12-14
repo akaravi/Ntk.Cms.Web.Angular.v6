@@ -90,7 +90,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   // ** Accardon */
   step = 0;
   hidden = true;
-
+  areaAddressView=false;
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();

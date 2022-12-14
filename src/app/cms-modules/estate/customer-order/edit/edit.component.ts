@@ -87,6 +87,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   optionloadComponent = false;
   LinkPropertyIdsInUse = false;
+  areaAddressView=false;
   // ** Accardon */
   step = 0;
   hidden = true;

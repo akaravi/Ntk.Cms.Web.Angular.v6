@@ -832,6 +832,8 @@
 	"TITLE.Please_Confirm": "Please Confirm...",
 	"TITLE.OTHER_INFO": "Other Info",
 	"TITLE.specific_property_list": "Specific property list",
+	"TITLE.ignored_property_list": "Specific property remove from list",
+	"TITLE.ignored_property_list_DESCRIPTION": "Specific property remove from list,  when you want to exit entity from list",
 	"TITLE.Property_registration": "Property registration",
 	"TITLE.Registered_Biography": "Registered Biography",
 	"TITLE.Registered_Chart": "Registered Chart",
