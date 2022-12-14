@@ -287,7 +287,10 @@ export class EstateCustomerOrderEditComponent implements OnInit {
       this.LinkPropertyIdsInUse = false;
     }
   }
-
+  onActionSelectorPropertyIgnored(model: string[] | null): void {
+    this.dataModel.linkPropertyIdsIgnored = model;
+    
+  }
   setStep(index: number): void {
     this.step = index;
   }
