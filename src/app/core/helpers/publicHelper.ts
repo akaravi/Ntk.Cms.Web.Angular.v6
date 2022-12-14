@@ -278,7 +278,7 @@ export class PublicHelper {
     if (!dataAccessModel || !dataAccessModel.fieldsInfo || dataAccessModel.fieldsInfo.length === 0) {
       return retOut;
     }
-    dataAccessModel.fieldsInfo.forEach((el) => retOut[el.fieldName] = el);
+    dataAccessModel.fieldsInfo.forEach((el) => retOut[this.toLowerCaseFirstChar(el.fieldName)] = el);
     if (environment.checkAccess || localStorage.getItem('KeyboardEventF9')) {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
@@ -293,6 +293,13 @@ export class PublicHelper {
       });
     }
     return retOut;
+  }
+  toLowerCaseFirstChar(str: string) {
+    if (!str || str.length == 0)
+      return '';
+    if (str.length == 1)
+      return str.toLowerCase();
+    return str[0].toLowerCase() + str.slice(1);
   }
   RowStyleExpireDate(row: Date): string {
     if (!row) {
