@@ -64,6 +64,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.linkParentId = this.activatedRoute.snapshot.paramMap.get('LinkParentId')
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -75,6 +76,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   enumInputDataType = EnumInputDataType;
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
+  linkParentId = '';
   loading = new ProgressSpinnerModel();
   // dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
   dataModel: EstateCustomerOrderModel = new EstateCustomerOrderModel();
@@ -90,7 +92,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   // ** Accardon */
   step = 0;
   hidden = true;
-  areaAddressView=false;
+  areaAddressView = false;
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
@@ -98,11 +100,14 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     if (this.requestId && this.requestId.length > 0) {
       this.DataGetOneContent();
     }
+    else if (this.linkParentId && this.linkParentId.length > 0) {
+      this.dataModel.linkEstateCustomerCategoryId = this.linkParentId;
+    }
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
+  dataFieldInfoModel: DataFieldInfoModel[];
   DataGetAccess(): void {
     this.estateCustomerOrderService
       .ServiceViewModel()
@@ -110,6 +115,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
         next: (ret) => {
           if (ret.isSuccess) {
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+            this.dataFieldInfoModel = ret.access.fieldsInfo;
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
@@ -119,6 +125,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
         }
       }
       );
+
   }
   DataAddContent(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
@@ -187,36 +194,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     }
     );
   }
-  // DataEditContent(): void {
-  //   this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-  //   this.formInfo.formError = '';
-  //   const pName = this.constructor.name + 'main';
-  //   this.loading.Start(pName);
 
-  //   this.estateCustomerOrderService.ServiceEdit(this.dataModel).subscribe({
-  //     next: (ret) => {
-  //       this.dataModelResult = ret;
-  //       if (ret.isSuccess) {
-  //         this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-  //         this.cmsToastrService.typeSuccessEdit();
-  //         this.optionReload();
-  //       } else {
-  //         this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-  //         this.formInfo.formError = ret.errorMessage;
-  //         this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-  //       }
-  //       this.loading.Stop(pName);
-
-  //       this.formInfo.formSubmitAllow = true;
-  //     },
-  //     error: (er) => {
-  //       this.formInfo.formSubmitAllow = true;
-  //       this.cmsToastrService.typeError(er);
-  //       this.loading.Stop(pName);
-  //     }
-  //   }
-  //   );
-  // }
   DataGetPropertyDetailGroup(id: string): void {
     const filteModelProperty = new FilterModel();
     const filter = new FilterDataModel();
@@ -312,7 +290,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   }
   onActionSelectorPropertyIgnored(model: string[] | null): void {
     this.dataModel.linkPropertyIdsIgnored = model;
-    
+
   }
   setStep(index: number): void {
     this.step = index;
@@ -343,20 +321,20 @@ export class EstateCustomerOrderAddComponent implements OnInit {
         });
       });
     // ** Save Value */
-    if (this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus == EnumRecordStatus.Available ){
-    const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
-      // height: '90%',
-      data: { model: this.dataModel }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-        this.dataModel = result.model;
-        this.DataAddContent();
-      } else {
-        this.formInfo.formSubmitAllow = true;
-      }
-    });
-  }
+    if (this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus == EnumRecordStatus.Available) {
+      const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
+        // height: '90%',
+        data: { model: this.dataModel }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.dialogChangedDate) {
+          this.dataModel = result.model;
+          this.DataAddContent();
+        } else {
+          this.formInfo.formSubmitAllow = true;
+        }
+      });
+    }
   }
 
   onActionSelectorSelect(model: EstateCustomerCategoryModel | null): void {

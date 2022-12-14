@@ -106,6 +106,8 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   }
 
   lastRecordStatus: EnumRecordStatus;
+  dataFieldInfoModel:DataFieldInfoModel[];
+
   DataGetOneContent(): void {
 
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
@@ -118,6 +120,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        this.dataFieldInfoModel=ret.access.fieldsInfo;
         this.lastRecordStatus = ret.item.recordStatus;
         this.dataModel = ret.item;  
         if (ret.isSuccess) {

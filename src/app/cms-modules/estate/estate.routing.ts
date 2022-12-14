@@ -199,6 +199,10 @@ const routes: Routes = [
         component: EstateCustomerOrderAddComponent
       },
       {
+        path: 'customer-order/add/LinkParentId/:LinkParentId',
+        component: EstateCustomerOrderAddComponent
+      },
+      {
         path: 'customer-order/edit/:id',
         component: EstateCustomerOrderEditComponent
       },

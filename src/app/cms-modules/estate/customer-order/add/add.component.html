@@ -417,7 +417,22 @@
         [optionSelectForce]="this.dataModel.linkPropertyIdsIgnored">
       </app-estate-property-autocomplete>
     </div>
-
+    <div>
+      جستجو:
+      <hr>
+      <!-- resultSortColumn Field -->
+      <mat-form-field class="ntk-full-width">
+        <mat-label>{{fieldsInfo['resultSortColumn']?.fieldTitle}}</mat-label>
+        <mat-select placeholder="{{'TITLE.Report_Format' | translate}}" [(ngModel)]="dataModel.resultSortColumn"
+          name="dataModel.resultSortColumn" #RecordStatus="ngModel" >
+          <mat-option *ngFor="
+              let item of dataFieldInfoModel;
+              index as i
+            " [value]="item.fieldName">{{ item.fieldTitle}}</mat-option>
+        </mat-select>
+        
+      </mat-form-field>
+    </div>
 
     <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
       <button type="button" (click)="onFormCancel()" class="btn btn-light BTN-text">
@@ -431,6 +446,7 @@
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
+
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
