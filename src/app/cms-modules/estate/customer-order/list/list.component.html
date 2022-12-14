@@ -72,18 +72,18 @@
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
@@ -101,14 +101,14 @@
 
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDateTime(row.updatedDate) }}
         </mat-cell>
@@ -178,9 +178,9 @@
               </tr>
               <tr *ngIf="row.description">
                 <td></td>
-                <td>{{fieldsInfo['Description']?.fieldTitle}} : {{row.description}} </td>
+                <td>{{fieldsInfo['description']?.fieldTitle}} : {{row.description}} </td>
               </tr>
-              <tr *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
+              <tr *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField">
                 <td></td>
                 <td>{{'TITLE.Description_Hidden' | translate}} : {{row.descriptionHidden}} </td>
               </tr>

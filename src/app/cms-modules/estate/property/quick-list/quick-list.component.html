@@ -115,18 +115,18 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
@@ -136,25 +136,25 @@
       </ng-container>
       <!-- MainAdminRecordStatus Column -->
       <ng-container matColumnDef="MainAdminRecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['MainAdminRecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.mainAdminRecordStatus|statusClass"></i> </mat-cell>
       </ng-container>
       <!-- IsSoldIt Column -->
       <ng-container matColumnDef="IsSoldIt">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsSoldIt']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['isSoldIt']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.isSoldIt | boolclass"></i></mat-cell>
       </ng-container>
       <!-- ViewConfigHiddenInList Column -->
       <ng-container matColumnDef="ViewConfigHiddenInList">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewConfigHiddenInList']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['viewConfigHiddenInList']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.viewConfigHiddenInList | boolclass"></i></mat-cell>
       </ng-container>
       <!-- ViewCount Column -->
       <ng-container matColumnDef="ViewCount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewCount']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['viewCount']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.viewCount}} </mat-cell>
       </ng-container>
@@ -167,20 +167,20 @@
       </ng-container>
       <!-- CaseCode Column -->
       <ng-container matColumnDef="CaseCode">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CaseCode']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['caseCode']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.caseCode}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> 
           {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.updatedDate)
           }}

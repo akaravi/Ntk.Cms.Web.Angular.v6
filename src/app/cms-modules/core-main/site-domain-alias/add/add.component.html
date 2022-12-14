@@ -8,7 +8,7 @@
 	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus"
+        <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
           <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
@@ -47,17 +47,17 @@
         </mat-error>
       </mat-form-field>
          <!-- ConfigNeshanMapApiKey Field -->
-         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ConfigNeshanMapApiKey']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['ConfigNeshanMapApiKey']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.configNeshanMapApiKey" [disabled]="!fieldsInfo['ConfigNeshanMapApiKey']?.accessAddField"
+         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['configNeshanMapApiKey']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['configNeshanMapApiKey']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.configNeshanMapApiKey" [disabled]="!fieldsInfo['configNeshanMapApiKey']?.accessAddField"
             name="dataModel.configNeshanMapApiKey" #ConfigNeshanMapApiKey type="text" placeholder="Key" minlength="3"
             maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.configNeshanMapApiKey && fieldsInfo['ConfigNeshanMapApiKey']?.accessAddField" matSuffix
+          <mat-icon matSuffix *ngIf="dataModel.configNeshanMapApiKey && fieldsInfo['configNeshanMapApiKey']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.configNeshanMapApiKey = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['ConfigNeshanMapApiKey']?.accessAddField" matSuffix>mode_edit</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['configNeshanMapApiKey']?.accessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['ConfigNeshanMapApiKey']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['configNeshanMapApiKey']?.FieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="start">{{ ConfigNeshanMapApiKey.value.length }} / 100</mat-hint>
         </mat-form-field>

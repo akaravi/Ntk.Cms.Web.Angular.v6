@@ -10,7 +10,7 @@
 
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -38,16 +38,16 @@
     </mat-form-field>
     <!-- isDefault Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.isDefault" *ngIf="fieldsInfo['IsDefault']?.accessWatchField"
-        [disabled]="!fieldsInfo['IsDefault']?.accessEditField" name="dataModel.isDefault">
-        {{fieldsInfo['IsDefault']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.isDefault" *ngIf="fieldsInfo['isDefault']?.accessWatchField"
+        [disabled]="!fieldsInfo['isDefault']?.accessEditField" name="dataModel.isDefault">
+        {{fieldsInfo['isDefault']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- Symbol Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Symbol']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['symbol']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.symbol" name="dataModel.symbol" #Symbol type="text"
-        placeholder="{{fieldsInfo['Symbol']?.fieldTitle}}" minlength="1" maxlength="20" required />
+        placeholder="{{fieldsInfo['symbol']?.fieldTitle}}" minlength="1" maxlength="20" required />
       <mat-icon matSuffix *ngIf="dataModel.symbol" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.symbol = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -58,9 +58,9 @@
     </mat-form-field>
     <!-- ExchangeBuyRatio Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['ExchangeBuyRatio']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['exchangeBuyRatio']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.exchangeBuyRatio" name="dataModel.exchangeBuyRatio" #ExchangeBuyRatio
-        type="number" placeholder="{{fieldsInfo['ExchangeBuyRatio']?.fieldTitle}}" required step="0.001" />
+        type="number" placeholder="{{fieldsInfo['exchangeBuyRatio']?.fieldTitle}}" required step="0.001" />
       <mat-icon matSuffix *ngIf="dataModel.exchangeBuyRatio" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.exchangeBuyRatio = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -70,9 +70,9 @@
     </mat-form-field>
     <!-- ExchangeSaleRatio Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['ExchangeSaleRatio']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['exchangeSaleRatio']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.exchangeSaleRatio" name="dataModel.exchangeSaleRatio" #ExchangeSaleRatio
-        type="number" placeholder="{{fieldsInfo['ExchangeSaleRatio']?.fieldTitle}}" required step="0.001" />
+        type="number" placeholder="{{fieldsInfo['exchangeSaleRatio']?.fieldTitle}}" required step="0.001" />
       <mat-icon matSuffix *ngIf="dataModel.exchangeSaleRatio" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.exchangeSaleRatio = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

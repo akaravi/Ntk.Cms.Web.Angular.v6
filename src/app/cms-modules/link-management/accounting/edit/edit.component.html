@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -27,16 +27,16 @@
     </app-linkmanagement-member-selector>
     <!-- IsCertainDocument Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.isCertainDocument" *ngIf="fieldsInfo['IsCertainDocument']?.accessWatchField"
-        [disabled]="!fieldsInfo['IsCertainDocument']?.accessEditField" name="dataModel.isCertainDocument">
-        {{fieldsInfo['IsCertainDocument']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.isCertainDocument" *ngIf="fieldsInfo['isCertainDocument']?.accessWatchField"
+        [disabled]="!fieldsInfo['isCertainDocument']?.accessEditField" name="dataModel.isCertainDocument">
+        {{fieldsInfo['isCertainDocument']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -47,7 +47,7 @@
     </mat-form-field>
      <!-- Debtor Field -->
      <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Debtor']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['debtor']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.debtor" name="dataModel.debtor" #Debtor type="number"
         placeholder="{{'TITLE.Debtor_Credit' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.debtor" matSuffix mat-icon-button aria-label="Clear"
@@ -59,7 +59,7 @@
     </mat-form-field>
     <!-- Creditor Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Creditor']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['creditor']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.creditor" name="dataModel.creditor" #Creditor
         type="number" placeholder="{{'TITLE.Creditor_Credit' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.creditor" matSuffix mat-icon-button aria-label="Clear"
@@ -71,19 +71,19 @@
     </mat-form-field>
     <!-- BeginDate Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['BeginDate']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['beginDate']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="BeginDate" [(ngModel)]="dataModel.beginDate" name="dataModel.beginDate" />
-      <mat-icon matSuffix *ngIf="dataModel.beginDate && fieldsInfo['BeginDate']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.beginDate && fieldsInfo['beginDate']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.beginDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="BeginDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #BeginDate></mat-datepicker>
     </mat-form-field>
 
     <!-- EndDate Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['EndDate']?.accessWatchField">
-      <mat-label>{{fieldsInfo['EndDate']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['endDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['endDate']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="EndDate" [(ngModel)]="dataModel.endDate" name="dataModel.endDate" />
-      <mat-icon matSuffix *ngIf="dataModel.endDate && fieldsInfo['EndDate']?.accessAddField" matSuffix mat-icon-button
+      <mat-icon matSuffix *ngIf="dataModel.endDate && fieldsInfo['endDate']?.accessAddField" matSuffix mat-icon-button
         aria-label="Clear" (click)="dataModel.endDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="EndDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #EndDate></mat-datepicker>

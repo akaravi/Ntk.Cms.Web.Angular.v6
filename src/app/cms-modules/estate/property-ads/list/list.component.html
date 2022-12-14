@@ -62,12 +62,12 @@
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkPropertyId Column -->
       <ng-container matColumnDef="LinkPropertyId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPropertyId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPropertyId}} </mat-cell>
       </ng-container>
@@ -79,25 +79,25 @@
       </ng-container>
       <!-- StationLevel Column -->
       <ng-container matColumnDef="StationLevel">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['StationLevel']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['stationLevel']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.stationLevel}} </mat-cell>
       </ng-container>
       <!-- ViewLevel Column -->
       <ng-container matColumnDef="ViewLevel">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewLevel']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['viewLevel']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.viewLevel}} </mat-cell>
       </ng-container>
       <!-- FromDate Column -->
       <ng-container matColumnDef="FromDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['FromDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['fromDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.fromDate|persianDate}} </mat-cell>
       </ng-container>
       <!-- ExpireDate Column -->
       <ng-container matColumnDef="ExpireDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExpireDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['expireDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.expireDate|persianDate}} </mat-cell>
       </ng-container>

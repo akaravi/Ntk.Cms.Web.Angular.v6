@@ -80,18 +80,18 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
@@ -108,13 +108,13 @@
 
       <!-- SpeedView Column -->
       <ng-container matColumnDef="SpeedView">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SpeedView']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['speedView']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.speedView }}</mat-cell>
       </ng-container>
       <!-- ReloadViewPerMin Column -->
       <ng-container matColumnDef="ReloadViewPerMin">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ReloadViewPerMin']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['reloadViewPerMin']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.reloadViewPerMin }}</mat-cell>
       </ng-container>
@@ -180,9 +180,9 @@
               </tr>
               <tr *ngIf="row.description">
                 <td></td>
-                <td>{{fieldsInfo['Description']?.fieldTitle}} : {{row.description}} </td>
+                <td>{{fieldsInfo['description']?.fieldTitle}} : {{row.description}} </td>
               </tr>
-              <tr *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
+              <tr *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField">
                 <td></td>
                 <td>{{'TITLE.Description_Hidden' | translate}} : {{row.descriptionHidden}} </td>
               </tr>

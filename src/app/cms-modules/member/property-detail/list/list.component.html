@@ -58,12 +58,12 @@
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- IconFont Column -->
       <ng-container matColumnDef="IconFont">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IconFont']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['iconFont']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"><i [ngClass]="row.iconFont" [style.color]="row.iconColor"
             aria-hidden="true"></i></mat-cell>
@@ -77,27 +77,27 @@
       </ng-container>
       <!-- Unit Column -->
       <ng-container matColumnDef="Unit">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Unit']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['unit']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.unit}} </mat-cell>
       </ng-container>
 
       <!-- ShowInFormOrder Column -->
       <ng-container matColumnDef="ShowInFormOrder">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShowInFormOrder']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['showInFormOrder']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.showInFormOrder}} </mat-cell>
       </ng-container>
       <!-- LinkPropertyTypeId Column -->
       <ng-container matColumnDef="LinkPropertyTypeId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyTypeId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPropertyTypeId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPropertyTypeId| cmstitle:
           dataModelMemberPropertyTypeResult.listItems}} </mat-cell>
       </ng-container>
       <!-- LinkPropertyDetailGroupId Column -->
       <ng-container matColumnDef="LinkPropertyDetailGroupId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyDetailGroupId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPropertyDetailGroupId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPropertyDetailGroupId| cmstitle:
           dataModelMemberPropertyDetailGroupResult.listItems}} </mat-cell>

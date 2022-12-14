@@ -14,9 +14,9 @@
     </app-hypershop-category-selector>
     <!-- Name Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Name']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['name']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.name" name="dataModel.name" #Name type="text"
-        placeholder="{{fieldsInfo['Name']?.fieldTitle}}" minlength="3" maxlength="500" required />
+        placeholder="{{fieldsInfo['name']?.fieldTitle}}" minlength="3" maxlength="500" required />
       <mat-icon matSuffix *ngIf="dataModel.name" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.name = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -28,9 +28,9 @@
 
     <!-- Price Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Price']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['price']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.price" name="dataModel.price" #Price type="number"
-        placeholder="{{fieldsInfo['Price']?.fieldTitle}}" minlength="3" maxlength="500" required />
+        placeholder="{{fieldsInfo['price']?.fieldTitle}}" minlength="3" maxlength="500" required />
       <mat-icon matSuffix *ngIf="dataModel.price" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.price = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -42,9 +42,9 @@
 
     <!-- Discount Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Discount']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['discount']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.discount" name="dataModel.discount" #Discount type="number"
-        placeholder="{{fieldsInfo['Discount']?.fieldTitle}}" minlength="3" maxlength="500" required />
+        placeholder="{{fieldsInfo['discount']?.fieldTitle}}" minlength="3" maxlength="500" required />
       <mat-icon matSuffix *ngIf="dataModel.discount" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.discount = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -56,9 +56,9 @@
 
     <!-- Memo Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Memo']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['memo']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.memo" name="dataModel.memo" #Memo type="text"
-        placeholder="{{fieldsInfo['Memo']?.fieldTitle}}" minlength="3" maxlength="500" required />
+        placeholder="{{fieldsInfo['memo']?.fieldTitle}}" minlength="3" maxlength="500" required />
       <mat-icon matSuffix *ngIf="dataModel.memo" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.memo = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

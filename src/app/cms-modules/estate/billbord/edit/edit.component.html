@@ -25,9 +25,9 @@
       </mat-form-field>
       <!-- Description Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-          placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+          placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.description = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -37,10 +37,10 @@
         </mat-error>
       </mat-form-field>
       <!-- DescriptionHidden Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField">
         <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
-          #DescriptionHidden type="text" placeholder="{{fieldsInfo['DescriptionHidden']?.fieldTitle}}" minlength="1"
+          #DescriptionHidden type="text" placeholder="{{fieldsInfo['descriptionHidden']?.fieldTitle}}" minlength="1"
           maxlength="500" rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.descriptionHidden = ''">close</mat-icon>
@@ -51,21 +51,21 @@
         </mat-error>
       </mat-form-field>
       <!-- SpeedView Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SpeedView']?.accessWatchField">
-        <mat-label> {{fieldsInfo['SpeedView']?.fieldTitle}}</mat-label>
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['speedView']?.accessWatchField">
+        <mat-label> {{fieldsInfo['speedView']?.fieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.speedView" name="dataModel.speedView" #SpeedView type="number"
-          [disabled]="!fieldsInfo['SpeedView']?.accessEditField"
-          placeholder="{{fieldsInfo['SpeedView']?.fieldTitle}}" />
+          [disabled]="!fieldsInfo['speedView']?.accessEditField"
+          placeholder="{{fieldsInfo['speedView']?.fieldTitle}}" />
         <mat-icon matSuffix *ngIf="dataModel.speedView" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.speedView = 1">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
       </mat-form-field>
       <!-- ReloadViewPerMin Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ReloadViewPerMin']?.accessWatchField">
-        <mat-label> {{fieldsInfo['ReloadViewPerMin']?.fieldTitle}}</mat-label>
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['reloadViewPerMin']?.accessWatchField">
+        <mat-label> {{fieldsInfo['reloadViewPerMin']?.fieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.reloadViewPerMin" name="dataModel.reloadViewPerMin" #ReloadViewPerMin
-          type="number" [disabled]="!fieldsInfo['ReloadViewPerMin']?.accessEditField"
-          placeholder="{{fieldsInfo['ReloadViewPerMin']?.fieldTitle}}" />
+          type="number" [disabled]="!fieldsInfo['reloadViewPerMin']?.accessEditField"
+          placeholder="{{fieldsInfo['reloadViewPerMin']?.fieldTitle}}" />
         <mat-icon matSuffix *ngIf="dataModel.reloadViewPerMin" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.reloadViewPerMin = 1">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -75,7 +75,7 @@
       </p>
       <!-- LinkPropertyIds Field -->
       <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
-        [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessEditField"
+        [optionDisabled]="!fieldsInfo['linkPropertyIds']?.accessEditField"
         [optionPlaceholder]="this.translate.instant('TITLE.Property')"
         [optionSelectForce]="this.dataModel.linkPropertyIds">
       </app-estate-property-autocomplete>
@@ -84,9 +84,9 @@
       <div class="ntk-full-width">
         <!-- IncludeAllSite Field -->
         <mat-slide-toggle [(ngModel)]="dataModel.includeAllSite"
-          *ngIf="fieldsInfo['IncludeAllSite']?.accessWatchField && !LinkPropertyIdsInUse"
-          [disabled]="!fieldsInfo['IncludeAllSite']?.accessEditField" name="dataModel.includeAllSite">
-          {{fieldsInfo['IncludeAllSite']?.fieldTitle}}
+          *ngIf="fieldsInfo['includeAllSite']?.accessWatchField && !LinkPropertyIdsInUse"
+          [disabled]="!fieldsInfo['includeAllSite']?.accessEditField" name="dataModel.includeAllSite">
+          {{fieldsInfo['includeAllSite']?.fieldTitle}}
         </mat-slide-toggle>
       </div>
       <p *ngIf="!LinkPropertyIdsInUse">{{'MESSAGE.Content_of_your_choice_to_display_On_this_billboard' | translate}}
@@ -96,14 +96,14 @@
 
       <!-- LinkPropertyTypeUsageIds Field -->
       <app-estate-property-type-usage-autocomplete (optionChange)="onActionSelectorSelectUsage($event)"
-        *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageIds']?.accessEditField"
+        *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['linkPropertyTypeUsageIds']?.accessEditField"
         [optionSelectForce]="dataModel.linkPropertyTypeUsageIds"
         [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
       </app-estate-property-type-usage-autocomplete>
 
       <!-- LinkPropertyTypeLanduseIds Field -->
       <app-estate-property-type-landuse-autocomplete (optionChange)="onActionSelectorSelectLanduse($event)"
-        *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseIds']?.accessEditField"
+        *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['linkPropertyTypeLanduseIds']?.accessEditField"
         [optionSelectForce]="dataModel.linkPropertyTypeLanduseIds"
         [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
@@ -112,7 +112,7 @@
       <br>
       <!-- LinkContractTypeIds Field -->
       <app-estate-contract-type-autocomplete (optionChange)="onActionSelectorContarctType($event)"
-        *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['LinkContractTypeIds']?.accessEditField"
+        *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['linkContractTypeIds']?.accessEditField"
         [optionSelectForce]="dataModel.linkContractTypeIds"
         [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
       </app-estate-contract-type-autocomplete>
@@ -123,7 +123,7 @@
       </app-cms-currency-selector>
       <!-- LinkLocationIds Field -->
       <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" *ngIf="!LinkPropertyIdsInUse"
-        [optionDisabled]="!fieldsInfo['LinkLocationIds']?.accessEditField"
+        [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField"
         [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
       </app-cms-location-autocomplete>
 

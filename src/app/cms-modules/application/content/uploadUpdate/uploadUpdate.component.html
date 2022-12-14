@@ -10,29 +10,29 @@
   </div>
   <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
     <mat-card-content>
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AppVersion']?.accessWatchField">
-        <mat-label>{{ fieldsInfo['AppVersion']?.FieldAppVersion }}</mat-label>
-        <input matInput [(ngModel)]="dataModel.appVersion" [disabled]="!fieldsInfo['AppVersion']?.accessEditField"
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['appVersion']?.accessWatchField">
+        <mat-label>{{ fieldsInfo['appVersion']?.FieldAppVersion }}</mat-label>
+        <input matInput [(ngModel)]="dataModel.appVersion" [disabled]="!fieldsInfo['appVersion']?.accessEditField"
           name="dataModel.appVersion" #AppVersion type="number" placeholder="{{'TITLE.version' | translate}}" min="0" max="1000" required />
-        <mat-icon matSuffix *ngIf="dataModel.appVersion && fieldsInfo['AppVersion']?.accessEditField" matSuffix
+        <mat-icon matSuffix *ngIf="dataModel.appVersion && fieldsInfo['appVersion']?.accessEditField" matSuffix
           mat-icon-button aria-label="Clear" (click)="dataModel.appVersion = 0">close</mat-icon>
-        <mat-icon *ngIf="fieldsInfo['AppVersion']?.accessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-icon *ngIf="fieldsInfo['appVersion']?.accessEditField" matSuffix>mode_edit</mat-icon>
         <mat-error *ngIf="AppVersion.errors?.required">
-          {{ fieldsInfo['AppVersion']?.FieldAppVersion }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+          {{ fieldsInfo['appVersion']?.FieldAppVersion }} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LastBuildAppKey']?.accessWatchField">
-        <mat-label>{{ fieldsInfo['LastBuildAppKey']?.FieldLastBuildAppKey }}</mat-label>
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['lastBuildAppKey']?.accessWatchField">
+        <mat-label>{{ fieldsInfo['lastBuildAppKey']?.FieldLastBuildAppKey }}</mat-label>
         <input matInput [(ngModel)]="dataModel.lastBuildAppKey"
-          [disabled]="!fieldsInfo['LastBuildAppKey']?.accessEditField" name="dataModel.lastBuildAppKey" #LastBuildAppKey
+          [disabled]="!fieldsInfo['lastBuildAppKey']?.accessEditField" name="dataModel.lastBuildAppKey" #LastBuildAppKey
           type="text" placeholder="{{'TITLE.Key_To_making_app' | translate}}" minlength="0" maxlength="100" required />
-        <mat-icon matSuffix *ngIf="dataModel.lastBuildAppKey && fieldsInfo['LastBuildAppKey']?.accessEditField"
+        <mat-icon matSuffix *ngIf="dataModel.lastBuildAppKey && fieldsInfo['lastBuildAppKey']?.accessEditField"
           matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.lastBuildAppKey = ''">close</mat-icon>
-        <mat-icon *ngIf="fieldsInfo['LastBuildAppKey']?.accessEditField" matSuffix>mode_edit</mat-icon>
+        <mat-icon *ngIf="fieldsInfo['lastBuildAppKey']?.accessEditField" matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ 'Application.source.LastBuildAppKey_hint' | translate }}</mat-hint>
         <mat-hint align="start">{{ LastBuildAppKey.value.length }} / 100</mat-hint>
         <mat-error *ngIf="LastBuildAppKey.errors?.required">
-          {{ fieldsInfo['LastBuildAppKey']?.FieldLastBuildAppKey }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+          {{ fieldsInfo['lastBuildAppKey']?.FieldLastBuildAppKey }} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
     </mat-card-content>

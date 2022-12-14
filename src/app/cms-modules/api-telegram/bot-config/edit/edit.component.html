@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -36,9 +36,9 @@
     </mat-form-field>
     <!-- Username Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Username']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['username']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.username" name="dataModel.username" #Username type="text"  class="input-ltr"
-        placeholder="{{fieldsInfo['Username']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['username']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.username" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.username = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -50,9 +50,9 @@
 
     <!-- BotToken Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['BotToken']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['botToken']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.botToken" name="dataModel.botToken" #BotToken type="text"  class="input-ltr"
-        placeholder="{{fieldsInfo['BotToken']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['botToken']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.botToken" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.botToken = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -64,9 +64,9 @@
 
     <!-- SecurityKey Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['SecurityKey']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['securityKey']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.securityKey" name="dataModel.securityKey" #SecurityKey type="text"  class="input-ltr"
-        placeholder="{{fieldsInfo['SecurityKey']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['securityKey']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.securityKey" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.securityKey = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -79,9 +79,9 @@
 
     <!-- UrlWebhook Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['UrlWebhook']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['urlWebhook']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.urlWebhook" name="dataModel.urlWebhook" #UrlWebhook type="text" class="input-ltr"
-        placeholder="{{fieldsInfo['UrlWebhook']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['urlWebhook']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.urlWebhook" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.urlWebhook = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -92,9 +92,9 @@
     </mat-form-field>
     <!-- StatusWebhook Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.statusWebhook" *ngIf="fieldsInfo['StatusWebhook']?.accessWatchField"
-        [disabled]="!fieldsInfo['StatusWebhook']?.accessEditField" name="dataModel.statusWebhook">
-        {{fieldsInfo['StatusWebhook']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.statusWebhook" *ngIf="fieldsInfo['statusWebhook']?.accessWatchField"
+        [disabled]="!fieldsInfo['statusWebhook']?.accessEditField" name="dataModel.statusWebhook">
+        {{fieldsInfo['statusWebhook']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 

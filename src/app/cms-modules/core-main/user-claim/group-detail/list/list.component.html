@@ -57,7 +57,7 @@
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
            <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
@@ -65,21 +65,21 @@
       </ng-container>
       <!-- LinkUserClaimGroupId Column -->
       <ng-container matColumnDef="LinkUserClaimGroupId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserClaimGroupId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkUserClaimGroupId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkUserClaimGroupId | cmstitle :
           dataModelCoreUserClaimGroupResult.listItems}} </mat-cell>
       </ng-container>
       <!-- LinkUserClaimTypeId Column -->
       <ng-container matColumnDef="LinkUserClaimTypeId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserClaimTypeId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkUserClaimTypeId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkUserClaimTypeId | cmstitle :
           dataModelCoreUserClaimTypeResult.listItems}} </mat-cell>
       </ng-container>
       <!-- IsRequired Column -->
       <ng-container matColumnDef="IsRequired">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsRequired']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['isRequired']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.isRequired | boolclass"></i></mat-cell>
       </ng-container>

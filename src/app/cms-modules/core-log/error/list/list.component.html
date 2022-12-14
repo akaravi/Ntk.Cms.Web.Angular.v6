@@ -52,44 +52,44 @@
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
         </mat-cell>
       </ng-container>
       <!-- LinkUserId Column -->
       <ng-container matColumnDef="LinkUserId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkUserId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkUserId}} </mat-cell>
       </ng-container>
       <!-- LinkMemberId Column -->
       <ng-container matColumnDef="LinkMemberId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkMemberId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkMemberId}} </mat-cell>
       </ng-container>
       <!-- ModuleName Column -->
       <ng-container matColumnDef="ModuleName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleName']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['moduleName']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.moduleName}} </mat-cell>
       </ng-container>
       <!-- ModuleEntityName Column -->
       <ng-container matColumnDef="ModuleEntityName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityName']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['moduleEntityName']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.moduleEntityName}} </mat-cell>
       </ng-container>
 
       <!-- ModuleEntityId Column -->
       <ng-container matColumnDef="ModuleEntityId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['moduleEntityId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.moduleEntityId}} </mat-cell>
       </ng-container>
@@ -98,7 +98,7 @@
 
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>

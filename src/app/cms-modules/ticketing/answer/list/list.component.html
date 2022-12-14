@@ -61,35 +61,35 @@
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkTaskId Column -->
       <ng-container matColumnDef="LinkTaskId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkTaskId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkTaskId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkTaskId}} </mat-cell>
       </ng-container>
       <!-- LinkMemberId Column -->
       <ng-container matColumnDef="LinkMemberId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkMemberId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkMemberId}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
       </ng-container>
       <!-- AnswerStatus Column -->
       <ng-container matColumnDef="AnswerStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AnswerStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['answerStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'background':publicHelper.RowStyleAnswerStatus(row.ticketStatus) }">
           {{row.answerStatus | enums : dataModelEnumAnswerStatusResult.listItems}}

@@ -57,17 +57,17 @@
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <i [ngClass]="row.recordStatus|statusClass"></i>
@@ -83,51 +83,51 @@
       </ng-container>
       <!-- Description Column -->
       <ng-container matColumnDef="Description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Description']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['description']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
       </ng-container>
       <!-- SupportRequiredPayment Column -->
       <ng-container matColumnDef="SupportRequiredPayment">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SupportRequiredPayment']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['supportRequiredPayment']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.supportRequiredPayment) }} </mat-cell>
       </ng-container>
       <!-- LinkTargeId Column -->
       <ng-container matColumnDef="LinkTargeId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkTargeId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkTargeId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkTargeId}} </mat-cell>
       </ng-container>
       <!-- ShareBeginDate Column -->
       <ng-container matColumnDef="ShareBeginDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShareBeginDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['shareBeginDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.shareBeginDate) }} </mat-cell>
       </ng-container>
       <!-- ShareExpireDate Column -->
       <ng-container matColumnDef="ShareExpireDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShareExpireDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['shareExpireDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.shareExpireDate) }} </mat-cell>
       </ng-container>
       <!-- CurrentClickCount Column -->
       <ng-container matColumnDef="CurrentClickCount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentClickCount']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['currentClickCount']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.currentClickCount}} </mat-cell>
       </ng-container>
       <!-- CurrentViewCount Column -->
       <ng-container matColumnDef="CurrentViewCount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentViewCount']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['currentViewCount']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.currentViewCount}} </mat-cell>
       </ng-container>
       <!-- CurrentPaymentCount Column -->
       <ng-container matColumnDef="CurrentPaymentCount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentPaymentCount']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['currentPaymentCount']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.currentPaymentCount}} </mat-cell>
       </ng-container>
       <!-- CurrentPaymentSum Column -->
       <ng-container matColumnDef="CurrentPaymentSum">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentPaymentSum']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['currentPaymentSum']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.currentPaymentSum}} </mat-cell>
       </ng-container>

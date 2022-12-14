@@ -5,19 +5,19 @@
   
     <!-- LinkModuleId Column -->
     <ng-container matColumnDef="LinkModuleId">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkModuleId']?.fieldTitle}}
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkModuleId']?.fieldTitle}}
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.linkModuleId | cmstitle : dataModelCoreModuleResult.listItems}} </mat-cell>
     </ng-container>
     <!-- MonthLength Column -->
     <ng-container matColumnDef="MonthLength">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['MonthLength']?.fieldTitle}}
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['monthLength']?.fieldTitle}}
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.monthLength}} </mat-cell>
     </ng-container>
     <!-- EnumCmsModuleSaleItemType Column -->
     <ng-container matColumnDef="EnumCmsModuleSaleItemType">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['EnumCmsModuleSaleItemType']?.fieldTitle}}
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['enumCmsModuleSaleItemType']?.fieldTitle}}
       </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.enumCmsModuleSaleItemType | enums :
         dataModelEnumCmsModuleSaleItemTypeResult.listItems}} </mat-cell>

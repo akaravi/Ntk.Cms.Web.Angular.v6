@@ -8,9 +8,9 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-        [disabled]="!fieldsInfo['RecordStatus']?.accessEditField" name="dataModel.recordStatus" #RecordStatus="ngModel"
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        [disabled]="!fieldsInfo['recordStatus']?.accessEditField" name="dataModel.recordStatus" #RecordStatus="ngModel"
         panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
         <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
@@ -19,25 +19,25 @@
       </mat-select>
       <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
-        {{ fieldsInfo['RecordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['recordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
     <app-ticketing-departemen-selector (optionChange)="onActionSelectSource($event)"
       [optionSelectForce]="this.dataModel.linkTicketingDepartemenId" [optionPlaceholder]="this.translate.instant('TITLE.Department')"
-      [optionDisabled]="!fieldsInfo['LinkTicketingDepartemenId']?.accessEditField">
+      [optionDisabled]="!fieldsInfo['linkTicketingDepartemenId']?.accessEditField">
     </app-ticketing-departemen-selector>
 
 
 
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['HtmlBody']?.accessWatchField">
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['htmlBody']?.accessWatchField">
       <mat-label>{{'TITLE.Answer_Text' | translate}}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.htmlBody" [disabled]="!fieldsInfo['HtmlBody']?.accessEditField"
+      <textarea matInput [(ngModel)]="dataModel.htmlBody" [disabled]="!fieldsInfo['htmlBody']?.accessEditField"
         name="dataModel.htmlBody" #HtmlBody type="text" placeholder="{{'TITLE.Answer_Text' | translate}}" row="5"
         minlength="0" maxlength="1000"></textarea>
-      <mat-icon matSuffix *ngIf="dataModel.htmlBody && fieldsInfo['HtmlBody']?.accessEditField" matSuffix mat-icon-button
+      <mat-icon matSuffix *ngIf="dataModel.htmlBody && fieldsInfo['htmlBody']?.accessEditField" matSuffix mat-icon-button
         aria-label="Clear" (click)="dataModel.htmlBody = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['HtmlBody']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['htmlBody']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ 'Application.source.htmlBody_hint' | translate }}</mat-hint>
       <mat-hint align="start">{{ HtmlBody.value.length }} / 1000</mat-hint>
 

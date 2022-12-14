@@ -54,13 +54,13 @@
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
 
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
@@ -70,7 +70,7 @@
 
       <!-- LinkModuleEntityId Column -->
       <ng-container matColumnDef="LinkModuleEntityId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkModuleEntityId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkModuleEntityId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkModuleEntityId}} </mat-cell>
       </ng-container>
@@ -81,12 +81,12 @@
       </ng-container>
       <!-- Description Column -->
       <ng-container matColumnDef="Description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Description']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['description']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
       </ng-container>
       <!-- ReportFileType Column -->
       <ng-container matColumnDef="ReportFileType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ReportFileType']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['reportFileType']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.reportFileType | enums :
           dataModelEnumReportFileTypeResult.listItems}} </mat-cell>

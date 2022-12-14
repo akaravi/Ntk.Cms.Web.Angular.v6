@@ -60,13 +60,13 @@
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
 
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
            <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
@@ -75,40 +75,40 @@
    
       <!-- Message Column -->
       <ng-container matColumnDef="Message">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Message']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['message']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.message}} </mat-cell>
       </ng-container>
 
       <!-- SenderNumber Column -->
       <ng-container matColumnDef="SenderNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>{{fieldsInfo['SenderNumber']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{fieldsInfo['senderNumber']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.senderNumber }}
         </mat-cell>
       </ng-container>
       <!-- ReceiverNumber Column -->
       <ng-container matColumnDef="ReceiverNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ReceiverNumber']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['receiverNumber']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.receiverNumber}} </mat-cell>
       </ng-container>
      
       <!-- LinkPrivateConfigId Column -->
       <ng-container matColumnDef="LinkPrivateConfigId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPrivateConfigId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPrivateConfigId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPrivateConfigId | cmstitle: dataModelPrivateResult.listItems}}
         </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.createdDate) }}
           {{ publicHelper.getTime(row.createdDate) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.updatedDate) }}
           {{ publicHelper.getTime(row.updatedDate) }} </mat-cell>
       </ng-container>

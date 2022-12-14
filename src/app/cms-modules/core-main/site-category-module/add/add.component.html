@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -31,14 +31,14 @@
       [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCmsModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
     </app-core-module-selector>
     <!-- ConfigValuesJson Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ConfigValuesJson']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['ConfigValuesJson']?.FieldConfigValuesJson }}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['configValuesJson']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['configValuesJson']?.FieldConfigValuesJson }}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.configValuesJson"
-        [disabled]="!fieldsInfo['ConfigValuesJson']?.accessAddField" name="dataModel.configValuesJson" #ConfigValuesJson
+        [disabled]="!fieldsInfo['configValuesJson']?.accessAddField" name="dataModel.configValuesJson" #ConfigValuesJson
         type="text" placeholder="ConfigValuesJson" row="6" minlength="0" maxlength="10000"></textarea>
-      <mat-icon matSuffix *ngIf="dataModel.configValuesJson && fieldsInfo['ConfigValuesJson']?.accessAddField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.configValuesJson && fieldsInfo['configValuesJson']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.configValuesJson = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ConfigValuesJson']?.accessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['configValuesJson']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">{{ ConfigValuesJson.value.length }} / 10000</mat-hint>
     </mat-form-field>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

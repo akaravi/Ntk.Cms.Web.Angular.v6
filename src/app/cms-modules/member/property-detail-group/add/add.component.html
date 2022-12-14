@@ -32,12 +32,12 @@
 
 
     <!-- IconFont Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.accessWatchField">
-      <mat-label> {{fieldsInfo['IconFont']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['iconFont']?.accessWatchField">
+      <mat-label> {{fieldsInfo['iconFont']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.iconFont" name="dataModel.iconFont" #IconFont
         [iconPicker]="dataModel.iconFont" [ipIconPack]="['fa']" [ipPosition]="'top'"
         (iconPickerSelect)="onIconPickerSelect($event)" type="text"
-        [disabled]="!fieldsInfo['IconFont']?.accessEditField" placeholder="{{fieldsInfo['IconFont']?.fieldTitle}}" />
+        [disabled]="!fieldsInfo['iconFont']?.accessEditField" placeholder="{{fieldsInfo['iconFont']?.fieldTitle}}" />
       <span class="input-group-addon"><i [ngClass]="dataModel.iconFont"></i></span>
       <mat-icon>{{dataModel.iconFont}}</mat-icon>
       <mat-icon matSuffix *ngIf="dataModel.iconFont" matSuffix mat-icon-button aria-label="Clear"
@@ -46,11 +46,11 @@
     </mat-form-field>
 
     <!-- ShowInFormOrder Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInFormOrder']?.accessWatchField">
-      <mat-label> {{fieldsInfo['ShowInFormOrder']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['showInFormOrder']?.accessWatchField">
+      <mat-label> {{fieldsInfo['showInFormOrder']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.showInFormOrder" name="dataModel.showInFormOrder" #ShowInFormOrder
-        type="number" [disabled]="!fieldsInfo['ShowInFormOrder']?.accessEditField"
-        placeholder="{{fieldsInfo['ShowInFormOrder']?.fieldTitle}}" />
+        type="number" [disabled]="!fieldsInfo['showInFormOrder']?.accessEditField"
+        placeholder="{{fieldsInfo['showInFormOrder']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.showInFormOrder" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.showInFormOrder = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

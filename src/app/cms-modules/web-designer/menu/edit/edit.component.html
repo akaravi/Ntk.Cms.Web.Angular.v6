@@ -11,7 +11,7 @@
       <mat-step label="{{'TITLE.Menu_Profile' | translate}}" state="main">
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+          <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
             name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
             required>
             <mat-option *ngFor="
@@ -21,7 +21,7 @@
           </mat-select>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            {{fieldsInfo['RecordStatus']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['recordStatus']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- Title Field -->
@@ -63,11 +63,11 @@
         </mat-form-field>
 
         <!-- RouteAddressLink Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RouteAddressLink']?.accessWatchField">
-          <mat-label> {{fieldsInfo['RouteAddressLink']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['routeAddressLink']?.accessWatchField">
+          <mat-label> {{fieldsInfo['routeAddressLink']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.routeAddressLink" name="dataModel.routeAddressLink" #RouteAddressLink
-            type="text" [disabled]="!fieldsInfo['RouteAddressLink']?.accessEditField"
-            placeholder="{{fieldsInfo['RouteAddressLink']?.fieldTitle}}" minlength="0" maxlength="500"
+            type="text" [disabled]="!fieldsInfo['routeAddressLink']?.accessEditField"
+            placeholder="{{fieldsInfo['routeAddressLink']?.fieldTitle}}" minlength="0" maxlength="500"
             style="direction: ltr;text-align: left;" />
           <mat-icon matSuffix *ngIf="dataModel.routeAddressLink" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.routeAddressLink = ''">close</mat-icon>
@@ -77,27 +77,27 @@
         <!-- RouteAddressBlankPage Field -->
         <div class="ntk-full-width">
           <mat-slide-toggle [(ngModel)]="dataModel.routeAddressBlankPage"
-            *ngIf="fieldsInfo['RouteAddressBlankPage']?.accessWatchField"
-            [disabled]="!fieldsInfo['RouteAddressBlankPage']?.accessEditField" name="dataModel.routeAddressBlankPage">
-            {{fieldsInfo['RouteAddressBlankPage']?.fieldTitle}}
+            *ngIf="fieldsInfo['routeAddressBlankPage']?.accessWatchField"
+            [disabled]="!fieldsInfo['routeAddressBlankPage']?.accessEditField" name="dataModel.routeAddressBlankPage">
+            {{fieldsInfo['routeAddressBlankPage']?.fieldTitle}}
           </mat-slide-toggle>
         </div>
         <!-- Color Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Color']?.accessWatchField">
-          <mat-label> {{fieldsInfo['Color']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['color']?.accessWatchField">
+          <mat-label> {{fieldsInfo['color']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.color" name="dataModel.color" #Color [value]="dataModel.color"
             [style.background]="dataModel.color" [(colorPicker)]="dataModel.color" type="text"
-            [disabled]="!fieldsInfo['Color']?.accessEditField" placeholder="{{fieldsInfo['Color']?.fieldTitle}}" />
+            [disabled]="!fieldsInfo['color']?.accessEditField" placeholder="{{fieldsInfo['color']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.color" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.color = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- Icon Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Icon']?.accessWatchField">
-          <mat-label> {{fieldsInfo['Icon']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['icon']?.accessWatchField">
+          <mat-label> {{fieldsInfo['icon']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.icon" name="dataModel.icon" #Icon [iconPicker]="dataModel.icon"
             [ipIconPack]="['fa']" [ipPosition]="'top'" (iconPickerSelect)="onIconPickerSelect($event)" type="text"
-            [disabled]="!fieldsInfo['Icon']?.accessEditField" placeholder="{{fieldsInfo['Icon']?.fieldTitle}}" />
+            [disabled]="!fieldsInfo['icon']?.accessEditField" placeholder="{{fieldsInfo['icon']?.fieldTitle}}" />
           <span class="input-group-addon"><i [ngClass]="dataModel.icon"></i></span>
           <mat-icon>{{dataModel.icon}}</mat-icon>
           <mat-icon matSuffix *ngIf="dataModel.icon" matSuffix mat-icon-button aria-label="Clear"
@@ -105,26 +105,26 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- ShowInMenuOrder Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInMenuOrder']?.accessWatchField">
-          <mat-label> {{fieldsInfo['ShowInMenuOrder']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['showInMenuOrder']?.accessWatchField">
+          <mat-label> {{fieldsInfo['showInMenuOrder']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.showInMenuOrder" name="dataModel.showInMenuOrder" #ShowInMenuOrder
-            type="number" [disabled]="!fieldsInfo['ShowInMenuOrder']?.accessEditField"
-            placeholder="{{fieldsInfo['ShowInMenuOrder']?.fieldTitle}}" />
+            type="number" [disabled]="!fieldsInfo['showInMenuOrder']?.accessEditField"
+            placeholder="{{fieldsInfo['showInMenuOrder']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.showInMenuOrder" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.showInMenuOrder = 1">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- Description Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Description']?.accessWatchField">
-          <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['description']?.accessWatchField">
+          <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-            placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows="1"></textarea>
+            placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows="1"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.description = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
-            {{fieldsInfo['Description']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{fieldsInfo['description']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">

@@ -50,17 +50,17 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <i [ngClass]="row.recordStatus|statusClass" ></i>
@@ -75,17 +75,17 @@
       </ng-container>
       <!-- DonateTargetId Column -->
       <ng-container matColumnDef="DonateTargetId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DonateTargetId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['donateTargetId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.donateTargetId) }} </mat-cell>
       </ng-container>
        <!-- DeviceId Column -->
        <ng-container matColumnDef="DeviceId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DeviceId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['deviceId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.deviceId}} </mat-cell>
       </ng-container>
       <!-- VisitDate Column -->
       <ng-container matColumnDef="VisitDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['VisitDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['visitDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.visitDate) }} </mat-cell>
       </ng-container>
       <!-- Action Column -->

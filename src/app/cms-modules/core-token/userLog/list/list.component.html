@@ -59,70 +59,70 @@
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- Description Column -->
       <ng-container matColumnDef="Description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Description']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['description']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- LinkUserId Column -->
       <ng-container matColumnDef="LinkUserId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkUserId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkUserId}} </mat-cell>
       </ng-container>
       <!-- LinkMemberUserId Column -->
       <ng-container matColumnDef="LinkMemberUserId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberUserId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkMemberUserId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkMemberUserId}} </mat-cell>
       </ng-container>
       <!-- UserAccessAreaType Column -->
       <ng-container matColumnDef="UserAccessAreaType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UserAccessAreaType']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['userAccessAreaType']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.userAccessAreaType | enums :
           dataModelEnumManageUserAccessAreaTypesResult.listItems}} </mat-cell>
       </ng-container>
       <!-- UserType Column -->
       <ng-container matColumnDef="UserType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UserType']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['userType']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.userType | enums :
           dataModelEnumManageUserAccessUserTypesResult.listItems}} </mat-cell>
       </ng-container>
       <!-- UserAccessAdminAllowToAllData Column -->
       <ng-container matColumnDef="UserAccessAdminAllowToAllData">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{fieldsInfo['UserAccessAdminAllowToAllData']?.fieldTitle}} </mat-header-cell>
+          {{fieldsInfo['userAccessAdminAllowToAllData']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.userAccessAdminAllowToAllData|boolclass"></i> </mat-cell>
       </ng-container>
 
       <!-- UserAccessAdminAllowToProfessionalData Column -->
       <ng-container matColumnDef="UserAccessAdminAllowToProfessionalData">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{fieldsInfo['UserAccessAdminAllowToProfessionalData']?.fieldTitle}} </mat-header-cell>
+          {{fieldsInfo['userAccessAdminAllowToProfessionalData']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.userAccessAdminAllowToProfessionalData|boolclass"></i>
         </mat-cell>
       </ng-container>
       <!-- RememberOnDevice Column -->
       <ng-container matColumnDef="RememberOnDevice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RememberOnDevice']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['rememberOnDevice']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.rememberOnDevice|boolclass"></i> </mat-cell>
       </ng-container>
 
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>

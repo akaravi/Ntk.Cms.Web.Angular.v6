@@ -63,19 +63,19 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- SerialNumber Column -->
       <ng-container matColumnDef="SerialNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SerialNumber']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['serialNumber']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.serialNumber}} </mat-cell>
       </ng-container>
 
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
            <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
@@ -84,7 +84,7 @@
       <!-- HasUsed Column -->
       <ng-container matColumnDef="HasUsed">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{fieldsInfo['HasUsed']?.fieldTitle}}</mat-header-cell>
+          {{fieldsInfo['hasUsed']?.fieldTitle}}</mat-header-cell>
         <mat-cell *matCellDef="let row">
           <i [ngClass]="row.hasUsed | boolclass"></i>
         </mat-cell>
@@ -92,38 +92,38 @@
       <!-- HasDemo Column -->
       <ng-container matColumnDef="HasDemo">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{fieldsInfo['HasDemo']?.fieldTitle}}</mat-header-cell>
+          {{fieldsInfo['hasDemo']?.fieldTitle}}</mat-header-cell>
         <mat-cell *matCellDef="let row">
           <i [ngClass]="row.hasDemo | boolclass"></i>
         </mat-cell>
       </ng-container>
       <!-- NumberOfMaxUse Column -->
       <ng-container matColumnDef="NumberOfMaxUse">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['NumberOfMaxUse']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['numberOfMaxUse']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.numberOfMaxUse}} </mat-cell>
       </ng-container>
       <!-- NumberOfRegistered Column -->
       <ng-container matColumnDef="NumberOfRegistered">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['NumberOfRegistered']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['numberOfRegistered']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.numberOfRegistered}} </mat-cell>
       </ng-container>
       <!-- DatePeriodStart Column -->
       <ng-container matColumnDef="DatePeriodStart">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DatePeriodStart']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['datePeriodStart']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.datePeriodStart) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
       </ng-container>
       <!-- DatePeriodEnd Column -->
       <ng-container matColumnDef="DatePeriodEnd">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DatePeriodEnd']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['datePeriodEnd']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.datePeriodEnd) }} </mat-cell>
       </ng-container>

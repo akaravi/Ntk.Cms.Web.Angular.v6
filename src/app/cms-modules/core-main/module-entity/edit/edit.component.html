@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -23,49 +23,49 @@
     </mat-form-field>
     
     <!-- moduleName Field -->
-    <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['ModuleName']?.accessWatchField">
-      <mat-label>{{fieldsInfo['ModuleName']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['moduleName']?.accessWatchField">
+      <mat-label>{{fieldsInfo['moduleName']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName type="text"
-        disabled="{{!fieldsInfo['ModuleName']?.accessEditField}}" placeholder="{{fieldsInfo['ModuleName']?.fieldTitle}}"
+        disabled="{{!fieldsInfo['moduleName']?.accessEditField}}" placeholder="{{fieldsInfo['moduleName']?.fieldTitle}}"
         minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.moduleName" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.moduleName = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">
         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['ModuleName']?.FieldDescription}}</strong>
+        <strong class="info-field-text">{{fieldsInfo['moduleName']?.FieldDescription}}</strong>
       </mat-hint>
       <mat-hint align="end">{{ ModuleName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ModuleName.errors?.required">
-        {{fieldsInfo['ModuleName']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['moduleName']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
 
 
     <!-- moduleEntityName Field -->
-    <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['ModuleEntityName']?.accessWatchField">
-      <mat-label>{{fieldsInfo['ModuleEntityName']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['moduleEntityName']?.accessWatchField">
+      <mat-label>{{fieldsInfo['moduleEntityName']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.moduleEntityName" name="dataModel.moduleEntityName" #ModuleEntityName
-        type="text" disabled="{{!fieldsInfo['ModuleEntityName']?.accessEditField}}"
-        placeholder="{{fieldsInfo['ModuleEntityName']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        type="text" disabled="{{!fieldsInfo['moduleEntityName']?.accessEditField}}"
+        placeholder="{{fieldsInfo['moduleEntityName']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.moduleEntityName" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.moduleEntityName = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">
         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['ModuleEntityName']?.FieldDescription}}</strong>
+        <strong class="info-field-text">{{fieldsInfo['moduleEntityName']?.FieldDescription}}</strong>
       </mat-hint>
       <mat-hint align="end">{{ ModuleEntityName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ModuleEntityName.errors?.required">
-        {{fieldsInfo['ModuleEntityName']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['moduleEntityName']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

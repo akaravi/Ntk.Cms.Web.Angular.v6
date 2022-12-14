@@ -55,13 +55,13 @@
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
 
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
@@ -70,19 +70,19 @@
       </ng-container>
       <!-- LinkModuleId Column -->
       <ng-container matColumnDef="LinkModuleId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkModuleId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkModuleId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkModuleId}} | {{row.linkModuleId | cmstitle :
           dataModelCoreModuleResult.listItems}} </mat-cell>
       </ng-container>
       <!-- ModuleName Column -->
       <ng-container matColumnDef="ModuleName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleName']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['moduleName']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.moduleName}} </mat-cell>
       </ng-container>
       <!-- ModuleEntityName Column -->
       <ng-container matColumnDef="ModuleEntityName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityName']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['moduleEntityName']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.moduleEntityName}} </mat-cell>
       </ng-container>

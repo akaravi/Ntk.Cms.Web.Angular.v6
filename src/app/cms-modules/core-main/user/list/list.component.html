@@ -79,18 +79,18 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
@@ -101,28 +101,28 @@
 
       <!-- Name Column -->
       <ng-container matColumnDef="Name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Name']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['name']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
       </ng-container>
       <!-- LastName Column -->
       <ng-container matColumnDef="LastName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LastName']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['lastName']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.lastName}} </mat-cell>
       </ng-container>
       <!-- CompanyName Column -->
       <ng-container matColumnDef="CompanyName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CompanyName']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['companyName']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.companyName}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
       </ng-container>
@@ -202,27 +202,27 @@
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['Username']?.fieldTitle}} : {{row.username}} </td>
+                <td>{{fieldsInfo['username']?.fieldTitle}} : {{row.username}} </td>
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['Name']?.fieldTitle}} : {{row.name}} </td>
+                <td>{{fieldsInfo['name']?.fieldTitle}} : {{row.name}} </td>
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['LastName']?.fieldTitle}} : {{row.lastName}} </td>
+                <td>{{fieldsInfo['lastName']?.fieldTitle}} : {{row.lastName}} </td>
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['Mobile']?.fieldTitle}} : {{row.mobile}} </td>
+                <td>{{fieldsInfo['mobile']?.fieldTitle}} : {{row.mobile}} </td>
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['Email']?.fieldTitle}} : {{row.email}} </td>
+                <td>{{fieldsInfo['email']?.fieldTitle}} : {{row.email}} </td>
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['CompanyName']?.fieldTitle}} : {{row.companyName}} </td>
+                <td>{{fieldsInfo['companyName']?.fieldTitle}} : {{row.companyName}} </td>
               </tr>
               <tr>
                 <td></td>

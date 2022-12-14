@@ -10,7 +10,7 @@
       
 
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus"
+        <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
           <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
@@ -35,10 +35,10 @@
       </app-core-usercategory-selector>
 
       <!-- ExpireDate Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
-        <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expireDate']?.accessWatchField">
+        <mat-label>{{fieldsInfo['expireDate']?.fieldTitle}}</mat-label>
         <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
-        <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessEditField" matSuffix
+        <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessEditField" matSuffix
           mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
         <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
         <mat-datepicker touchUi #ExpireDate></mat-datepicker>

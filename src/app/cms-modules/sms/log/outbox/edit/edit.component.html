@@ -10,7 +10,7 @@
 
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -28,38 +28,38 @@
       [optionSelectForce]="dataModel.linkApiNumberId" [optionPlaceholder]="'شماره'">
     </app-sms-api-number-selector> -->
     <!-- SendDate Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SendDate']?.accessWatchField">
-      <mat-label>{{fieldsInfo['SendDate']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['sendDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['sendDate']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="SendDate" [(ngModel)]="dataModel.sendDate" name="dataModel.sendDate"
-        disabled="{{!fieldsInfo['SendDate']?.accessEditField}}"
-        placeholder="{{fieldsInfo['SendDate']?.fieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.sendDate && fieldsInfo['SendDate']?.accessEditField" matSuffix
+        disabled="{{!fieldsInfo['sendDate']?.accessEditField}}"
+        placeholder="{{fieldsInfo['sendDate']?.fieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.sendDate && fieldsInfo['sendDate']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.sendDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="SendDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #SendDate></mat-datepicker>
     </mat-form-field>
 
     <!-- Message Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Message']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['Message']?.fieldTitle }}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['message']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['message']?.fieldTitle }}</mat-label>
       <input matInput [(ngModel)]="dataModel.message"
-        [disabled]="!fieldsInfo['Message']?.accessEditField" name="dataModel.message" #Message
+        [disabled]="!fieldsInfo['message']?.accessEditField" name="dataModel.message" #Message
         type="text" placeholder="123" />
-      <mat-icon matSuffix *ngIf="dataModel.message && fieldsInfo['Message']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.message && fieldsInfo['message']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.message = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['Message']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['message']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint  style="text-align: right;">{{ Message.value.length }} / 100</mat-hint>
     </mat-form-field>
 
     <!-- Memo Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Memo']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['Memo']?.fieldTitle }}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['memo']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['memo']?.fieldTitle }}</mat-label>
       <input matInput [(ngModel)]="dataModel.memo"
-        [disabled]="!fieldsInfo['Memo']?.accessEditField" name="dataModel.memo" #Memo
+        [disabled]="!fieldsInfo['memo']?.accessEditField" name="dataModel.memo" #Memo
         type="text" placeholder="123" />
-      <mat-icon matSuffix *ngIf="dataModel.memo && fieldsInfo['Memo']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.memo && fieldsInfo['memo']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.memo = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['Memo']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['memo']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint  style="text-align: right;">{{ Memo.value.length }} / 100</mat-hint>
     </mat-form-field>
 

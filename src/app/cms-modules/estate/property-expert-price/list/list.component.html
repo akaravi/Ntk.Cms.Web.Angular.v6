@@ -75,17 +75,17 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <i [ngClass]="row.recordStatus|statusClass"></i>
@@ -96,21 +96,21 @@
       </ng-container>
       <!-- ExpertPriceType Column -->
       <ng-container matColumnDef="ExpertPriceType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExpertPriceType']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['expertPriceType']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.expertPriceType | enums :
           dataModelEstatePropertyExpertPriceTypeEnumResult.listItems}} </mat-cell>
       </ng-container>
       <!-- CreatedYaer Column -->
       <ng-container matColumnDef="CreatedYaer">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedYaer']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdYaer']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.createdYaer}} </mat-cell>
       </ng-container>
 
 
       <!-- LinkLocationId Column -->
       <ng-container matColumnDef="LinkLocationId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkLocationId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkLocationId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkLocationIdTitle}} / {{row.linkLocationIdParentTitle}}</mat-cell>
       </ng-container>
@@ -118,7 +118,7 @@
 
       <!-- LinkPropertyTypeUsageId Column -->
       <ng-container matColumnDef="LinkPropertyTypeUsageId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyTypeUsageId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPropertyTypeUsageId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPropertyTypeUsageId
           |cmstitle:dataModelEstatePropertyTypeUsageResult.listItems}} </mat-cell>
@@ -126,21 +126,21 @@
 
       <!-- LinkPropertyTypeLanduseId Column -->
       <ng-container matColumnDef="LinkPropertyTypeLanduseId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPropertyTypeLanduseId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPropertyTypeLanduseId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           {{row.linkPropertyTypeLanduseId|cmstitle:dataModelEstatePropertyTypeLanduseResult.listItems}} </mat-cell>
       </ng-container>
       <!-- LinkContractTypeId Column -->
       <ng-container matColumnDef="LinkContractTypeId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkContractTypeId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkContractTypeId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkContractTypeId|cmstitle:dataModelEstateContractTypeResult.listItems}}
         </mat-cell>
       </ng-container>
       <!-- LinkCoreCurrencyId Column -->
       <ng-container matColumnDef="LinkCoreCurrencyId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkCoreCurrencyId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkCoreCurrencyId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkCoreCurrencyId|cmstitle:dataModelCoreCurrencyResult.listItems}}
         </mat-cell>
@@ -148,7 +148,7 @@
 
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
 

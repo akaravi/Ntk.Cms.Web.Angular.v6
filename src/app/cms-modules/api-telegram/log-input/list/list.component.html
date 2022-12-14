@@ -52,51 +52,51 @@
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
            </mat-cell>
       </ng-container>
       <!-- LinkBotConfigId Column -->
       <ng-container matColumnDef="LinkBotConfigId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkBotConfigId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkBotConfigId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkBotConfigId}} </mat-cell>
       </ng-container>
       <!-- Username Column -->
       <ng-container matColumnDef="Username">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Username']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['username']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
       </ng-container>
       <!-- ChatId Column -->
       <ng-container matColumnDef="ChatId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ChatId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['chatId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.chatId}} </mat-cell>
       </ng-container>
       <!-- StatusWebhook Column -->
       <ng-container matColumnDef="StatusWebhook">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['StatusWebhook']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['statusWebhook']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"><i [ngClass]="row.statusWebhook|boolclass"></i> </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"  [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.createdDate) }} {{ publicHelper.getTime(row.createdDate) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
       </ng-container>

@@ -8,7 +8,7 @@
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <!-- RecordStatus Field -->
   <mat-form-field class="ntk-full-width">
-    <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+    <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
       name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
       required>
       <mat-option *ngFor="
@@ -62,26 +62,26 @@
   <!-- UserAccessAdminAllowToAllData Field -->
   <div class="ntk-full-width">
     <mat-slide-toggle [(ngModel)]="dataModel.userAccessAdminAllowToAllData"
-      *ngIf="fieldsInfo['UserAccessAdminAllowToAllData']?.accessWatchField"
-      [disabled]="!fieldsInfo['UserAccessAdminAllowToAllData']?.accessEditField"
+      *ngIf="fieldsInfo['userAccessAdminAllowToAllData']?.accessWatchField"
+      [disabled]="!fieldsInfo['userAccessAdminAllowToAllData']?.accessEditField"
       name="dataModel.userAccessAdminAllowToAllData">
-      {{fieldsInfo['UserAccessAdminAllowToAllData']?.fieldTitle}}
+      {{fieldsInfo['userAccessAdminAllowToAllData']?.fieldTitle}}
     </mat-slide-toggle>
   </div>
   <!-- LinkUserId Field -->
   <div class="ntk-full-width">
     <mat-slide-toggle [(ngModel)]="dataModel.userAccessAdminAllowToProfessionalData"
-      *ngIf="fieldsInfo['UserAccessAdminAllowToProfessionalData']?.accessWatchField"
-      [disabled]="!fieldsInfo['UserAccessAdminAllowToProfessionalData']?.accessEditField"
+      *ngIf="fieldsInfo['userAccessAdminAllowToProfessionalData']?.accessWatchField"
+      [disabled]="!fieldsInfo['userAccessAdminAllowToProfessionalData']?.accessEditField"
       name="dataModel.userAccessAdminAllowToProfessionalData">
-      {{fieldsInfo['UserAccessAdminAllowToProfessionalData']?.fieldTitle}}
+      {{fieldsInfo['userAccessAdminAllowToProfessionalData']?.fieldTitle}}
     </mat-slide-toggle>
   </div>
   <!-- RememberOnDevice Field -->
   <div class="ntk-full-width">
-    <mat-slide-toggle [(ngModel)]="dataModel.rememberOnDevice" *ngIf="fieldsInfo['RememberOnDevice']?.accessWatchField"
-      [disabled]="!fieldsInfo['RememberOnDevice']?.accessEditField" name="dataModel.rememberOnDevice">
-      {{fieldsInfo['RememberOnDevice']?.fieldTitle}}
+    <mat-slide-toggle [(ngModel)]="dataModel.rememberOnDevice" *ngIf="fieldsInfo['rememberOnDevice']?.accessWatchField"
+      [disabled]="!fieldsInfo['rememberOnDevice']?.accessEditField" name="dataModel.rememberOnDevice">
+      {{fieldsInfo['rememberOnDevice']?.fieldTitle}}
     </mat-slide-toggle>
   </div>
 
@@ -141,10 +141,10 @@
   </mat-form-field>
 
   <!-- ExpireDate Field -->
-  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
-    <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expireDate']?.accessWatchField">
+    <mat-label>{{fieldsInfo['expireDate']?.fieldTitle}}</mat-label>
     <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
-    <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessEditField" matSuffix
+    <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessEditField" matSuffix
       mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
     <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
     <mat-datepicker touchUi #ExpireDate></mat-datepicker>

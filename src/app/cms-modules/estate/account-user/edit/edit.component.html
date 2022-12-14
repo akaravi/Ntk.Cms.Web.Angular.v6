@@ -47,19 +47,19 @@
     <!-- LinkCmsUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.linkCmsUserId"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')"
-      [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessEditField">
+      [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessEditField">
     </app-cms-user-selector>
     <!-- LinkLocationId Field -->
     <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
       [optionSelectForce]="dataModel.linkLocationId"
       [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
-      [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessEditField"></app-cms-location-selector>
+      [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"></app-cms-location-selector>
     <!-- JoinId Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['JoinId']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['joinId']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.joinId" name="dataModel.joinId" #JoinId type="text"
-        placeholder="{{fieldsInfo['JoinId']?.fieldTitle}}" minlength="0" maxlength="64"
-        [disabled]="!fieldsInfo['JoinId']?.accessEditField" />
+        placeholder="{{fieldsInfo['joinId']?.fieldTitle}}" minlength="0" maxlength="64"
+        [disabled]="!fieldsInfo['joinId']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.joinId" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.joinId = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -67,10 +67,10 @@
     </mat-form-field>
     <!-- SerialRfId Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['SerialRfId']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['serialRfId']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.serialRfId" name="dataModel.serialRfId" #SerialRfId type="text"
-        placeholder="{{fieldsInfo['SerialRfId']?.fieldTitle}}" minlength="0" maxlength="64"
-        [disabled]="!fieldsInfo['SerialRfId']?.accessEditField" />
+        placeholder="{{fieldsInfo['serialRfId']?.fieldTitle}}" minlength="0" maxlength="64"
+        [disabled]="!fieldsInfo['serialRfId']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.serialRfId" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.serialRfId = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -78,10 +78,10 @@
     </mat-form-field>
     <!-- SerialNumber Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['SerialNumber']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['serialNumber']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.serialNumber" name="dataModel.serialNumber" #SerialNumber type="text"
-        placeholder="{{fieldsInfo['SerialNumber']?.fieldTitle}}" minlength="0" maxlength="64"
-        [disabled]="!fieldsInfo['SerialNumber']?.accessEditField" />
+        placeholder="{{fieldsInfo['serialNumber']?.fieldTitle}}" minlength="0" maxlength="64"
+        [disabled]="!fieldsInfo['serialNumber']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.serialNumber" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.serialNumber = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -89,10 +89,10 @@
     </mat-form-field>
     <!-- PlaceProduction Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['PlaceProduction']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['placeProduction']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.placeProduction" name="dataModel.placeProduction" #PlaceProduction
-        type="text" placeholder="{{fieldsInfo['PlaceProduction']?.fieldTitle}}" minlength="0" maxlength="64"
-        [disabled]="!fieldsInfo['PlaceProduction']?.accessEditField" />
+        type="text" placeholder="{{fieldsInfo['placeProduction']?.fieldTitle}}" minlength="0" maxlength="64"
+        [disabled]="!fieldsInfo['placeProduction']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.placeProduction" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.placeProduction = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -100,10 +100,10 @@
     </mat-form-field>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5
-        [disabled]="!fieldsInfo['Description']?.accessEditField"></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5
+        [disabled]="!fieldsInfo['description']?.accessEditField"></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -114,10 +114,10 @@
     </mat-form-field>
     <!-- PhoneNumber Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['PhoneNumber']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['phoneNumber']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.phoneNumber" name="dataModel.phoneNumber" #PhoneNumber type="text"
-        placeholder="{{fieldsInfo['PhoneNumber']?.fieldTitle}}" minlength="0" maxlength="64"
-        [disabled]="!fieldsInfo['PhoneNumber']?.accessEditField" />
+        placeholder="{{fieldsInfo['phoneNumber']?.fieldTitle}}" minlength="0" maxlength="64"
+        [disabled]="!fieldsInfo['phoneNumber']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.phoneNumber" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.phoneNumber = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -125,10 +125,10 @@
     </mat-form-field>
     <!-- Address Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Address']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['address']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.address" name="dataModel.address" #Address type="text"
-        placeholder="{{fieldsInfo['Address']?.fieldTitle}}" minlength="1" maxlength="500" required rows=5
-        [disabled]="!fieldsInfo['Address']?.accessEditField"></textarea>
+        placeholder="{{fieldsInfo['address']?.fieldTitle}}" minlength="1" maxlength="500" required rows=5
+        [disabled]="!fieldsInfo['address']?.accessEditField"></textarea>
       <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.address = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

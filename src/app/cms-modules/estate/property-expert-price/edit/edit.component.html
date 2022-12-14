@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -23,9 +23,9 @@
       </mat-error>
     </mat-form-field>
      <!-- ExpertPriceType Field -->
-     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpertPriceType']?.accessWatchField">
-      <mat-select placeholder="{{fieldsInfo['ExpertPriceType']?.fieldTitle}}" [(ngModel)]="dataModel.expertPriceType"
-        [disabled]="!fieldsInfo['ExpertPriceType']?.accessEditField" name="dataModel.expertPriceType" #ExpertPriceType="ngModel"
+     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expertPriceType']?.accessWatchField">
+      <mat-select placeholder="{{fieldsInfo['expertPriceType']?.fieldTitle}}" [(ngModel)]="dataModel.expertPriceType"
+        [disabled]="!fieldsInfo['expertPriceType']?.accessEditField" name="dataModel.expertPriceType" #ExpertPriceType="ngModel"
         panelClass="ExpertPriceType-{{ dataModel.expertPriceType }}" required>
         <mat-option *ngFor="
                 let item of dataModelEstatePropertyExpertPriceTypeEnumResult.listItems;
@@ -33,14 +33,14 @@
               " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-error *ngIf="ExpertPriceType.errors?.required">
-        {{ fieldsInfo['ExpertPriceType']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['expertPriceType']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- LinkLocationId Field -->
     <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
       [optionSelectForce]="dataModel.linkLocationId"
       [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
-      [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessEditField">
+      [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField">
     </app-cms-location-selector>
     <br>
     <!-- createdYaer Field -->
@@ -60,7 +60,7 @@
     <br>
     <!-- LinkContractTypeIds Field -->
     <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
-      [optionDisabled]="!fieldsInfo['LinkContractTypeId']?.accessEditField"
+      [optionDisabled]="!fieldsInfo['linkContractTypeId']?.accessEditField"
       [optionSelectForce]="dataModel.linkContractTypeId"
       [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
       <mat-icon matSuffix *ngIf="dataModel.linkContractTypeId && dataModel.linkContractTypeId?.length>0" matSuffix
@@ -71,7 +71,7 @@
 
     <!-- LinkPropertyTypeUsageId Field -->
     <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
+      [optionDisabled]="!fieldsInfo['linkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
       [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
       [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
       <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0"
@@ -84,7 +84,7 @@
     <br>
     <!-- LinkPropertyTypeLanduseId Field -->
     <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
+      [optionDisabled]="!fieldsInfo['linkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
       [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
       [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
@@ -101,7 +101,7 @@
         <td>
           <!-- SalePriceMin Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['SalePriceMin']?.fieldTitle}}</mat-label>
+            <mat-label>{{fieldsInfo['salePriceMin']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.salePriceMin" name="dataModel.SalePriceMin" #SalePriceMin
               type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.salePriceMin" matSuffix mat-icon-button aria-label="Clear"
@@ -111,7 +111,7 @@
         <td>
           <!-- SalePriceMax Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['SalePriceMax']?.fieldTitle}}</mat-label>
+            <mat-label>{{fieldsInfo['salePriceMax']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.salePriceMax" name="dataModel.SalePriceMax" #SalePriceMax
               type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.salePriceMax" matSuffix mat-icon-button aria-label="Clear"
@@ -121,7 +121,7 @@
         <td>
           <!-- SalePriceAverage Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['SalePriceAverage']?.fieldTitle}}</mat-label>
+            <mat-label>{{fieldsInfo['salePriceAverage']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.salePriceAverage" name="dataModel.SalePriceAverage" #SalePriceAverage
               type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.salePriceAverage" matSuffix mat-icon-button aria-label="Clear"
@@ -133,7 +133,7 @@
         <td>
           <!-- RentPriceMin Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['RentPriceMin']?.fieldTitle}}</mat-label>
+            <mat-label>{{fieldsInfo['rentPriceMin']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.rentPriceMin" name="dataModel.RentPriceMin" #RentPriceMin
               type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.rentPriceMin" matSuffix mat-icon-button aria-label="Clear"
@@ -143,7 +143,7 @@
         <td>
           <!-- RentPriceMax Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['RentPriceMax']?.fieldTitle}}</mat-label>
+            <mat-label>{{fieldsInfo['rentPriceMax']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.rentPriceMax" name="dataModel.RentPriceMax" #RentPriceMax
               type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.rentPriceMax" matSuffix mat-icon-button aria-label="Clear"
@@ -153,7 +153,7 @@
         <td>
           <!-- RentPriceAverage Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['RentPriceAverage']?.fieldTitle}}</mat-label>
+            <mat-label>{{fieldsInfo['rentPriceAverage']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.rentPriceAverage" name="dataModel.RentPriceAverage" #RentPriceAverage
               type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.rentPriceAverage" matSuffix mat-icon-button aria-label="Clear"
@@ -165,7 +165,7 @@
         <td>
           <!-- DepositPriceMin Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['DepositPriceMin']?.fieldTitle}}</mat-label>
+            <mat-label>{{fieldsInfo['depositPriceMin']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.depositPriceMin" name="dataModel.DepositPriceMin" #DepositPriceMin
               type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.depositPriceMin" matSuffix mat-icon-button aria-label="Clear"
@@ -175,7 +175,7 @@
         <td>
           <!-- DepositPriceMax Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['DepositPriceMax']?.fieldTitle}}</mat-label>
+            <mat-label>{{fieldsInfo['depositPriceMax']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.depositPriceMax" name="dataModel.DepositPriceMax" #DepositPriceMax
               type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.depositPriceMax" matSuffix mat-icon-button aria-label="Clear"
@@ -185,7 +185,7 @@
         <td>
           <!-- DepositPriceAverage Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['DepositPriceAverage']?.fieldTitle}}</mat-label>
+            <mat-label>{{fieldsInfo['depositPriceAverage']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.depositPriceAverage" name="dataModel.DepositPriceAverage"
               #DepositPriceAverage type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.depositPriceAverage" matSuffix mat-icon-button aria-label="Clear"
@@ -197,7 +197,7 @@
         <td>
           <!-- PeriodPriceMin Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['PeriodPriceMin']?.fieldTitle}}</mat-label>
+            <mat-label>{{fieldsInfo['periodPriceMin']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.periodPriceMin" name="dataModel.PeriodPriceMin" #PeriodPriceMin
               type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.periodPriceMin" matSuffix mat-icon-button aria-label="Clear"
@@ -207,7 +207,7 @@
         <td>
           <!-- PeriodPriceMax Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>{{fieldsInfo['PeriodPriceMax']?.fieldTitle}}</mat-label>
+            <mat-label>{{fieldsInfo['periodPriceMax']?.fieldTitle}}</mat-label>
             <input matInput [(ngModel)]="dataModel.periodPriceMax" name="dataModel.PeriodPriceMax" #PeriodPriceMax
               type="number" placeholder="0" />
             <mat-icon matSuffix *ngIf="dataModel.periodPriceMax" matSuffix mat-icon-button aria-label="Clear"
@@ -232,9 +232,9 @@
 
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.Description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="1000" required
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="1000" required
         rows="5"></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>

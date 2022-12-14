@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -18,7 +18,7 @@
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="RecordStatus.errors?.required">
-        {{ fieldsInfo['RecordStatus']?.fieldTitle }}<strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['recordStatus']?.fieldTitle }}<strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- Title Field -->
@@ -36,65 +36,65 @@
     </mat-form-field>
     <!-- Username Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Username']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['username']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.username" name="dataModel.username" #Username type="text" class="input-ltr"
-        placeholder="{{fieldsInfo['Username']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['username']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.username" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.username = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
       <mat-error *ngIf="Username.errors?.required">
-        {{ fieldsInfo['Username']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['username']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
     <!-- BotToken Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['BotToken']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['botToken']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.botToken" name="dataModel.botToken" #BotToken type="text" class="input-ltr"
-        placeholder="{{fieldsInfo['BotToken']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['botToken']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.botToken" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.botToken = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ BotToken.value.length }} / 100</mat-hint>
       <mat-error *ngIf="BotToken.errors?.required">
-        {{ fieldsInfo['BotToken']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['botToken']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
     <!-- SecurityKey Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['SecurityKey']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['securityKey']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.securityKey" name="dataModel.securityKey" #SecurityKey type="text" class="input-ltr"
-        placeholder="{{fieldsInfo['SecurityKey']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['securityKey']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.securityKey" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.securityKey = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ SecurityKey.value.length }} / 100</mat-hint>
       <mat-error *ngIf="SecurityKey.errors?.required">
-        {{ fieldsInfo['SecurityKey']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['securityKey']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
 
     <!-- UrlWebhook Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['UrlWebhook']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['urlWebhook']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.urlWebhook" name="dataModel.urlWebhook" #UrlWebhook type="text" class="input-ltr"
-        placeholder="{{fieldsInfo['UrlWebhook']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['urlWebhook']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.urlWebhook" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.urlWebhook = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ UrlWebhook.value.length }} / 100</mat-hint>
       <mat-error *ngIf="UrlWebhook.errors?.required">
-        {{ fieldsInfo['UrlWebhook']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['urlWebhook']?.fieldTitle }} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- StatusWebhook Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.statusWebhook" *ngIf="fieldsInfo['StatusWebhook']?.accessWatchField"
-        [disabled]="!fieldsInfo['StatusWebhook']?.accessAddField" name="dataModel.statusWebhook">
-        {{fieldsInfo['StatusWebhook']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.statusWebhook" *ngIf="fieldsInfo['statusWebhook']?.accessWatchField"
+        [disabled]="!fieldsInfo['statusWebhook']?.accessAddField" name="dataModel.statusWebhook">
+        {{fieldsInfo['statusWebhook']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 

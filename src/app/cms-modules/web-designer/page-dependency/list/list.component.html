@@ -63,12 +63,12 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
            <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
@@ -86,20 +86,20 @@
       </ng-container>
       <!-- LinkModuleId Column -->
       <ng-container matColumnDef="LinkModuleId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkModuleId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkModuleId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkModuleId | cmstitle : dataModelCoreModuleResult.listItems}}
         </mat-cell>
       </ng-container>
       <!-- CmsModuleClassName Column -->
       <ng-container matColumnDef="CmsModuleClassName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CmsModuleClassName']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['cmsModuleClassName']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.cmsModuleClassName}} </mat-cell>
       </ng-container>
       <!-- ClassActionName Column -->
       <ng-container matColumnDef="ClassActionName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ClassActionName']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['classActionName']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.classActionName}} </mat-cell>
       </ng-container>

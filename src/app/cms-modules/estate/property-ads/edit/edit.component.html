@@ -24,23 +24,23 @@
 
     <!-- LinkAdsTypeId Field -->
     <app-estate-ads-type-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
-      [optionDisabled]="!fieldsInfo['LinkAdsTypeId']?.accessAddField"
+      [optionDisabled]="!fieldsInfo['linkAdsTypeId']?.accessAddField"
       [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Ad_type_ID')">
     </app-estate-ads-type-selector>
 
     <!-- LinkPropertyId Field -->
     <app-estate-property-selector (optionChange)="onActionSelectorSelectLinkPropertyId($event)"
-      [optionDisabled]="!fieldsInfo['LinkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkPropertyId"
+      [optionDisabled]="!fieldsInfo['linkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkPropertyId"
       [optionPlaceholder]="this.translate.instant('TITLE.Property_ID')">
     </app-estate-property-selector>
 
 
     <!-- StationLevel Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StationLevel']?.accessWatchField">
-      <mat-label> {{fieldsInfo['StationLevel']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['stationLevel']?.accessWatchField">
+      <mat-label> {{fieldsInfo['stationLevel']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.stationLevel" name="dataModel.stationLevel" #StationLevel type="number"
-        [disabled]="!fieldsInfo['StationLevel']?.accessEditField"
-        placeholder="{{fieldsInfo['StationLevel']?.fieldTitle}}" />
+        [disabled]="!fieldsInfo['stationLevel']?.accessEditField"
+        placeholder="{{fieldsInfo['stationLevel']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.stationLevel" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.stationLevel = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -48,10 +48,10 @@
 
 
     <!-- ViewLevel Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ViewLevel']?.accessWatchField">
-      <mat-label> {{fieldsInfo['ViewLevel']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['viewLevel']?.accessWatchField">
+      <mat-label> {{fieldsInfo['viewLevel']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.viewLevel" name="dataModel.viewLevel" #ViewLevel type="number"
-        [disabled]="!fieldsInfo['ViewLevel']?.accessEditField" placeholder="{{fieldsInfo['ViewLevel']?.fieldTitle}}" />
+        [disabled]="!fieldsInfo['viewLevel']?.accessEditField" placeholder="{{fieldsInfo['viewLevel']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.viewLevel" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.viewLevel = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -59,19 +59,19 @@
 
     <!-- FromDate Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['FromDate']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['fromDate']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate" />
-      <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['FromDate']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['fromDate']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #FromDate></mat-datepicker>
     </mat-form-field>
 
     <!-- ExpireDate Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
-      <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expireDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['expireDate']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
-      <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessAddField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #ExpireDate></mat-datepicker>
@@ -79,9 +79,9 @@
 
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

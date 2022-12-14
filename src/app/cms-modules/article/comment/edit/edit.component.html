@@ -8,10 +8,10 @@
 	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <!-- RecordStatus Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
-        <mat-label>{{fieldsInfo['RecordStatus']?.fieldTitle}}</mat-label>
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}"
-        [disabled]="!fieldsInfo['RecordStatus']?.accessEditField" [(ngModel)]="dataModel.recordStatus"
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
+        <mat-label>{{fieldsInfo['recordStatus']?.fieldTitle}}</mat-label>
+        <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}"
+        [disabled]="!fieldsInfo['recordStatus']?.accessEditField" [(ngModel)]="dataModel.recordStatus"
           name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
           required>
           <mat-option *ngFor="
@@ -20,42 +20,42 @@
                 " [value]="item.value">{{ item.description }}</mat-option>
         </mat-select>
         <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-          <strong class="info-field-text">{{fieldsInfo['RecordStatus']?.FieldDescription}}</strong> </mat-hint>
+          <strong class="info-field-text">{{fieldsInfo['recordStatus']?.FieldDescription}}</strong> </mat-hint>
         <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
         <mat-error *ngIf="RecordStatus.errors?.required">
-          {{fieldsInfo['RecordStatus']?.fieldTitle}}  <strong>{{'MESSAGE.required' | translate}}</strong>
+          {{fieldsInfo['recordStatus']?.fieldTitle}}  <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <!-- Writer Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Writer']?.accessWatchField">
-        <mat-label>{{fieldsInfo['Writer']?.fieldTitle}}</mat-label>
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['writer']?.accessWatchField">
+        <mat-label>{{fieldsInfo['writer']?.fieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.writer" name="dataModel.writer" #Writer type="text"
-          placeholder="{{fieldsInfo['Title']?.fieldTitle}}" [disabled]="!fieldsInfo['Writer']?.accessEditField"
+          placeholder="{{fieldsInfo['Title']?.fieldTitle}}" [disabled]="!fieldsInfo['writer']?.accessEditField"
            minlength="3" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.writer" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.writer = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-          <strong class="info-field-text">{{fieldsInfo['Writer']?.FieldDescription}}</strong> </mat-hint>
+          <strong class="info-field-text">{{fieldsInfo['writer']?.FieldDescription}}</strong> </mat-hint>
         <mat-hint align="end">{{ Writer.value.length }} / 100</mat-hint>
         <mat-error *ngIf="Writer.errors?.required">
-          {{fieldsInfo['Writer']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+          {{fieldsInfo['writer']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <!-- Comment Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Comment']?.accessWatchField">
-        <mat-label>{{fieldsInfo['Comment']?.fieldTitle}}</mat-label>
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['comment']?.accessWatchField">
+        <mat-label>{{fieldsInfo['comment']?.fieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.comment" name="dataModel.comment" #Comment type="text"
-          placeholder="{{fieldsInfo['Comment']?.fieldTitle}}" [disabled]="!fieldsInfo['Comment']?.accessEditField"
+          placeholder="{{fieldsInfo['comment']?.fieldTitle}}" [disabled]="!fieldsInfo['comment']?.accessEditField"
            minlength="1" maxlength="1000" required rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.comment" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.comment = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="start" ><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-          <strong class="info-field-text">{{fieldsInfo['Comment']?.FieldDescription}}</strong> </mat-hint>
+          <strong class="info-field-text">{{fieldsInfo['comment']?.FieldDescription}}</strong> </mat-hint>
         <mat-hint align="end">{{ Comment.value.length }} / 1000</mat-hint>
         <mat-error *ngIf="Comment.errors?.required">
-          {{fieldsInfo['Comment']?.fieldTitle}}  <strong>{{'MESSAGE.required' | translate}}</strong>
+          {{fieldsInfo['comment']?.fieldTitle}}  <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

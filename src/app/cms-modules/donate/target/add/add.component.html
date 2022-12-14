@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -42,9 +42,9 @@
     </mat-form-field>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="1000" required
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="1000" required
         rows="5"></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
@@ -57,9 +57,9 @@
 
     <!-- IsPublic Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.isPublic" *ngIf="fieldsInfo['IsPublic']?.accessWatchField"
-        [disabled]="!fieldsInfo['IsPublic']?.accessAddField" name="dataModel.isPublic">
-        {{fieldsInfo['IsPublic']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.isPublic" *ngIf="fieldsInfo['isPublic']?.accessWatchField"
+        [disabled]="!fieldsInfo['isPublic']?.accessAddField" name="dataModel.isPublic">
+        {{fieldsInfo['isPublic']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- ToWebAddress Field -->
@@ -75,7 +75,7 @@
     </mat-form-field>
     <!-- HashMd5 Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['HashMd5']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['hashMd5']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.hashMd5" name="dataModel.hashMd5" #HashMd5 type="text" placeholder="...."
         minlength="0" maxlength="100" />
       <mat-icon matSuffix *ngIf="dataModel.hashMd5" matSuffix mat-icon-button aria-label="Clear"
@@ -85,7 +85,7 @@
     </mat-form-field>
     <!-- KeyCode Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['KeyCode']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['keyCode']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.keyCode" name="dataModel.keyCode" #KeyCode type="text" placeholder="...."
         minlength="0" maxlength="100" />
       <mat-icon matSuffix *ngIf="dataModel.keyCode" matSuffix mat-icon-button aria-label="Clear"
@@ -96,7 +96,7 @@
 
     <!-- CurrentClickCount Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CurrentClickCount']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['currentClickCount']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.currentClickCount" name="dataModel.currentClickCount" #CurrentClickCount
         type="number" placeholder="0" />
       <mat-icon matSuffix *ngIf="dataModel.currentClickCount" matSuffix mat-icon-button aria-label="Clear"
@@ -105,7 +105,7 @@
     </mat-form-field>
     <!-- CurrentViewCount Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CurrentViewCount']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['currentViewCount']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.currentViewCount" name="dataModel.currentViewCount" #CurrentViewCount
         type="number" placeholder="0" />
       <mat-icon matSuffix *ngIf="dataModel.currentViewCount" matSuffix mat-icon-button aria-label="Clear"
@@ -115,7 +115,7 @@
 
     <!-- CurrentPaymentCount Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CurrentPaymentCount']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['currentPaymentCount']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.currentPaymentCount" name="dataModel.currentPaymentCount"
         #CurrentPaymentCount type="number" placeholder="0" />
       <mat-icon matSuffix *ngIf="dataModel.currentPaymentCount" matSuffix mat-icon-button aria-label="Clear"
@@ -125,7 +125,7 @@
 
     <!-- CurrentPaymentSum Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CurrentPaymentSum']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['currentPaymentSum']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.currentPaymentSum" name="dataModel.currentPaymentSum" #CurrentPaymentSum
         type="number" placeholder="0" />
       <mat-icon matSuffix *ngIf="dataModel.currentPaymentSum" matSuffix mat-icon-button aria-label="Clear"
@@ -134,7 +134,7 @@
     </mat-form-field>
     <!-- LinkCmsUserId Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['LinkCmsUserId']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['linkCmsUserId']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.linkCmsUserId" name="dataModel.linkCmsUserId" #LinkCmsUserId type="number"
         placeholder="0" />
       <mat-icon matSuffix *ngIf="dataModel.linkCmsUserId" matSuffix mat-icon-button aria-label="Clear"

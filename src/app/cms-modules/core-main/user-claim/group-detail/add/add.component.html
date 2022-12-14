@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -26,21 +26,21 @@
     <!-- LinkUserClaimGroupId Field -->
     <app-core-userclaimgroup-selector (optionChange)="onActionSelectClaimGroup($event)"
       [optionSelectForce]="this.dataModel.linkUserClaimGroupId" [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_GROUP')"
-      [optionDisabled]="!fieldsInfo['LinkUserClaimGroupId']?.accessEditField">
+      [optionDisabled]="!fieldsInfo['linkUserClaimGroupId']?.accessEditField">
     </app-core-userclaimgroup-selector>
 
     <!-- LinkUserClaimTypeId Field -->
     <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)"
       [optionSelectForce]="this.dataModel.linkUserClaimTypeId" [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_CATEGORY')"
-      [optionDisabled]="!fieldsInfo['LinkUserClaimTypeId']?.accessEditField">
+      [optionDisabled]="!fieldsInfo['linkUserClaimTypeId']?.accessEditField">
     </app-core-userclaimtype-selector>
 
 
     <!-- IsRequired Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.isRequired" *ngIf="fieldsInfo['IsRequired']?.accessWatchField"
-        [disabled]="!fieldsInfo['IsRequired']?.accessEditField" name="dataModel.isRequired">
-        {{fieldsInfo['IsRequired']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.isRequired" *ngIf="fieldsInfo['isRequired']?.accessWatchField"
+        [disabled]="!fieldsInfo['isRequired']?.accessEditField" name="dataModel.isRequired">
+        {{fieldsInfo['isRequired']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

@@ -61,18 +61,18 @@
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
            <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
@@ -80,44 +80,44 @@
       </ng-container>
       <!-- OSType Column -->
       <ng-container matColumnDef="OSType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['OSType']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['oSType']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.oSType | enums :dataModelEnumOperatingSystemTypeResult.listItems }}
         </mat-cell>
       </ng-container>
       <!-- DeviceType Column -->
       <ng-container matColumnDef="DeviceType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DeviceType']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['deviceType']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.deviceType| enums :dataModelEnumDeviceTypeResult.listItems}}
         </mat-cell>
       </ng-container>
       <!-- PackageName Column -->
       <ng-container matColumnDef="PackageName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['PackageName']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['packageName']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.packageName }} </mat-cell>
       </ng-container>
       <!-- LinkApplicationId Column -->
       <ng-container matColumnDef="LinkApplicationId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkApplicationId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkApplicationId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkApplicationId }} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
       </ng-container>
       <!-- ExpireDate Column -->
       <ng-container matColumnDef="ExpireDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExpireDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['expireDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'background':publicHelper.RowStyleExpireDate(row.expireDate) }">
           {{ publicHelper.LocaleDate(row.expireDate) }} </mat-cell>

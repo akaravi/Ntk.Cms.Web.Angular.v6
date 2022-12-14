@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -25,10 +25,10 @@
 
      <!-- Username Field -->
 
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Username']?.accessWatchField">
-      <mat-label> {{fieldsInfo['Username']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['username']?.accessWatchField">
+      <mat-label> {{fieldsInfo['username']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.username" name="dataModel.username" #Username type="text"
-        [disabled]="!fieldsInfo['Username']?.accessAddField" placeholder="{{fieldsInfo['Username']?.fieldTitle}}"
+        [disabled]="!fieldsInfo['username']?.accessAddField" placeholder="{{fieldsInfo['username']?.fieldTitle}}"
         minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.username" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.username = ''">close</mat-icon>
@@ -39,10 +39,10 @@
       </mat-error>
     </mat-form-field>
     <!-- Email Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.accessWatchField">
-      <mat-label> {{fieldsInfo['Email']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['email']?.accessWatchField">
+      <mat-label> {{fieldsInfo['email']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.email" name="dataModel.email" #Email type="text"
-        [disabled]="!fieldsInfo['Email']?.accessAddField" placeholder="{{fieldsInfo['Email']?.fieldTitle}}"
+        [disabled]="!fieldsInfo['email']?.accessAddField" placeholder="{{fieldsInfo['email']?.fieldTitle}}"
         minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.email = ''">close</mat-icon>
@@ -55,10 +55,10 @@
 
     <!-- Mobile Field -->
 
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Mobile']?.accessWatchField">
-      <mat-label> {{fieldsInfo['Mobile']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['mobile']?.accessWatchField">
+      <mat-label> {{fieldsInfo['mobile']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.mobile" name="dataModel.mobile" #Mobile type="text" class="input-Mobile"
-        [disabled]="!fieldsInfo['Mobile']?.accessAddField" placeholder="00989120000000" minlength="9" maxlength="20"
+        [disabled]="!fieldsInfo['mobile']?.accessAddField" placeholder="00989120000000" minlength="9" maxlength="20"
         required />
       <mat-icon matSuffix *ngIf="dataModel.mobile" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.mobile = ''">close</mat-icon>
@@ -71,10 +71,10 @@
 
     <!-- password Field -->
 
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Pwd']?.accessWatchField">
-      <mat-label> {{fieldsInfo['Pwd']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['pwd']?.accessWatchField">
+      <mat-label> {{fieldsInfo['pwd']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.pwd" name="dataModel.pwd" #Pwd type="password"
-        [disabled]="!fieldsInfo['Pwd']?.accessAddField" placeholder="{{fieldsInfo['Pwd']?.fieldTitle}}" minlength="3"
+        [disabled]="!fieldsInfo['pwd']?.accessAddField" placeholder="{{fieldsInfo['pwd']?.fieldTitle}}" minlength="3"
         maxlength="50" required />
       <mat-icon matSuffix *ngIf="dataModel.pwd" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.pwd = ''">close</mat-icon>

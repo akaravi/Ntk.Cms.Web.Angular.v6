@@ -15,7 +15,7 @@
   <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
   <!-- LinkLocationId Field -->
   <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
-    [optionDisabled]="!fieldsInfo['LinkLocationId']?.accessEditField" [optionSelectForce]="dataModel.linkLocationId"
+    [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField" [optionSelectForce]="dataModel.linkLocationId"
     [optionPlaceholder]="this.translate.instant('TITLE.Region')">
   </app-cms-location-selector>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

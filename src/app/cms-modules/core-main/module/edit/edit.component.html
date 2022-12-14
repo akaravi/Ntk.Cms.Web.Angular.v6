@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -36,26 +36,26 @@
     <!-- NeedSiteCreditAccount Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.needSiteCreditAccount"
-        *ngIf="fieldsInfo['NeedSiteCreditAccount']?.accessWatchField"
-        [disabled]="!fieldsInfo['NeedSiteCreditAccount']?.accessEditField" name="dataModel.needSiteCreditAccount">
-        {{fieldsInfo['NeedSiteCreditAccount']?.fieldTitle}}
+        *ngIf="fieldsInfo['needSiteCreditAccount']?.accessWatchField"
+        [disabled]="!fieldsInfo['needSiteCreditAccount']?.accessEditField" name="dataModel.needSiteCreditAccount">
+        {{fieldsInfo['needSiteCreditAccount']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- NeedSiteUserCreditAccount Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.needSiteUserCreditAccount"
-        *ngIf="fieldsInfo['NeedSiteUserCreditAccount']?.accessWatchField"
-        [disabled]="!fieldsInfo['NeedSiteUserCreditAccount']?.accessEditField"
+        *ngIf="fieldsInfo['needSiteUserCreditAccount']?.accessWatchField"
+        [disabled]="!fieldsInfo['needSiteUserCreditAccount']?.accessEditField"
         name="dataModel.needSiteUserCreditAccount">
-        {{fieldsInfo['NeedSiteUserCreditAccount']?.fieldTitle}}
+        {{fieldsInfo['needSiteUserCreditAccount']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- ShowInOrder Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInOrder']?.accessWatchField">
-      <mat-label> {{fieldsInfo['ShowInOrder']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['showInOrder']?.accessWatchField">
+      <mat-label> {{fieldsInfo['showInOrder']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.showInOrder" name="dataModel.showInOrder" #ShowInOrder type="number"
-        [disabled]="!fieldsInfo['ShowInOrder']?.accessEditField"
-        placeholder="{{fieldsInfo['ShowInOrder']?.fieldTitle}}" />
+        [disabled]="!fieldsInfo['showInOrder']?.accessEditField"
+        placeholder="{{fieldsInfo['showInOrder']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.showInOrder" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.showInOrder = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -86,9 +86,9 @@
     </div>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -70,7 +70,7 @@
     </mat-form-field>
     <!-- ClickPrice Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['ClickPrice']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['clickPrice']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.clickPrice" name="dataModel.clickPrice" #ClickPrice type="number"
         placeholder="{{'TITLE.Amount_Per_Click' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.clickPrice" matSuffix mat-icon-button aria-label="Clear"
@@ -82,7 +82,7 @@
     </mat-form-field>
     <!-- ViewPrice Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['ViewPrice']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['viewPrice']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.viewPrice" name="dataModel.viewPrice" #ViewPrice type="number"
         placeholder="{{'TITLE.Amount_Per_Show' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.viewPrice" matSuffix mat-icon-button aria-label="Clear"
@@ -94,7 +94,7 @@
     </mat-form-field>
     <!-- Width Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Width']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['width']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.width" name="dataModel.width" #Width type="number"
         placeholder="{{'TITLE.Width' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.width" matSuffix mat-icon-button aria-label="Clear"
@@ -106,7 +106,7 @@
     </mat-form-field>
     <!-- Height Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Height']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['height']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.height" name="dataModel.height" #Height type="number"
         placeholder="{{'TITLE.length' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.height" matSuffix mat-icon-button aria-label="Clear"
@@ -119,9 +119,9 @@
 
     <!-- PatternScript Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['PatternScript']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['patternScript']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.patternScript" name="dataModel.patternScript" #PatternScript type="text"
-        placeholder="{{fieldsInfo['PatternScript']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['patternScript']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.patternScript" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.patternScript = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

@@ -25,12 +25,12 @@
 
 
     <!-- IconFont Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.accessWatchField">
-      <mat-label> {{fieldsInfo['IconFont']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['iconFont']?.accessWatchField">
+      <mat-label> {{fieldsInfo['iconFont']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.iconFont" name="dataModel.iconFont" #IconFont
         [iconPicker]="dataModel.iconFont" [ipIconPack]="['fa']" [ipPosition]="'top'"
         (iconPickerSelect)="onIconPickerSelect($event)" type="text"
-        [disabled]="!fieldsInfo['IconFont']?.accessEditField" placeholder="{{fieldsInfo['IconFont']?.fieldTitle}}" />
+        [disabled]="!fieldsInfo['iconFont']?.accessEditField" placeholder="{{fieldsInfo['iconFont']?.fieldTitle}}" />
       <span class="input-group-addon"><i [ngClass]="dataModel.iconFont"></i></span>
       <mat-icon>{{dataModel.iconFont}}</mat-icon>
       <mat-icon matSuffix *ngIf="dataModel.iconFont" matSuffix mat-icon-button aria-label="Clear"
@@ -38,21 +38,21 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- IconColor Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconColor']?.accessWatchField">
-      <mat-label> {{fieldsInfo['IconColor']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['iconColor']?.accessWatchField">
+      <mat-label> {{fieldsInfo['iconColor']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.iconColor" name="dataModel.iconColor" #IconColor
         [value]="dataModel.iconColor" [style.background]="dataModel.iconColor" [(colorPicker)]="dataModel.iconColor"
-        type="text" [disabled]="!fieldsInfo['IconColor']?.accessEditField"
-        placeholder="{{fieldsInfo['IconColor']?.fieldTitle}}" />
+        type="text" [disabled]="!fieldsInfo['iconColor']?.accessEditField"
+        placeholder="{{fieldsInfo['iconColor']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.iconColor" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.iconColor = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

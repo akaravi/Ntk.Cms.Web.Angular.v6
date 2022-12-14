@@ -46,18 +46,18 @@
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
@@ -67,66 +67,66 @@
       </ng-container>
       <!-- LinkUserId Column -->
       <ng-container matColumnDef="LinkUserId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkUserId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkUserId}} </mat-cell>
       </ng-container>
       <!-- LinkMemberId Column -->
       <ng-container matColumnDef="LinkMemberId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkMemberId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkMemberId}} </mat-cell>
       </ng-container>
       <!-- LinkLocationIdTitle Column -->
       <ng-container matColumnDef="LinkLocationIdTitle">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkLocationIdTitle']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkLocationIdTitle']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkLocationIdTitle}} </mat-cell>
       </ng-container>
       <!-- LinkLocationIdParentTitle Column -->
       <ng-container matColumnDef="LinkLocationIdParentTitle">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkLocationIdParentTitle']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkLocationIdParentTitle']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkLocationIdParentTitle}} </mat-cell>
       </ng-container>
       <!-- DeviceStatus Column -->
       <ng-container matColumnDef="DeviceStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DeviceStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['deviceStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.deviceStatus}} </mat-cell>
       </ng-container>
       <!-- DeviceId Column -->
       <ng-container matColumnDef="DeviceId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DeviceId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['deviceId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.deviceId}} </mat-cell>
       </ng-container>
       <!-- DeviceBrand Column -->
       <ng-container matColumnDef="DeviceBrand">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['DeviceBrand']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['deviceBrand']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.deviceBrand}} </mat-cell>
       </ng-container>
       <!-- SimCard Column -->
       <ng-container matColumnDef="SimCard">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SimCard']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['simCard']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.simCard}} </mat-cell>
       </ng-container>
       <!-- AppBuildVer Column -->
       <ng-container matColumnDef="AppBuildVer">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AppBuildVer']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['appBuildVer']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.appBuildVer}} </mat-cell>
       </ng-container>
       <!-- AppSourceVer Column -->
       <ng-container matColumnDef="AppSourceVer">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AppSourceVer']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['appSourceVer']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.appSourceVer}} </mat-cell>
       </ng-container>
       <!-- ScorePercent Column -->
       <ng-container matColumnDef="ScorePercent">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ScorePercent']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scorePercent']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.scorePercent}} %</mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>

@@ -30,12 +30,12 @@
       [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-estate-property-detail-group-selector>
     <!-- IconFont Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconFont']?.accessWatchField">
-      <mat-label> {{fieldsInfo['IconFont']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['iconFont']?.accessWatchField">
+      <mat-label> {{fieldsInfo['iconFont']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.iconFont" name="dataModel.iconFont" #IconFont
         [iconPicker]="dataModel.iconFont" [ipIconPack]="['fa']" [ipPosition]="'top'"
-        (iconPickerSelect)="onIconPickerSelect($event)" type="text" [disabled]="!fieldsInfo['IconFont']?.accessAddField"
-        placeholder="{{fieldsInfo['IconFont']?.fieldTitle}}" />
+        (iconPickerSelect)="onIconPickerSelect($event)" type="text" [disabled]="!fieldsInfo['iconFont']?.accessAddField"
+        placeholder="{{fieldsInfo['iconFont']?.fieldTitle}}" />
       <span class="input-group-addon"><i [ngClass]="dataModel.iconFont"></i></span>
       <mat-icon>{{dataModel.iconFont}}</mat-icon>
       <mat-icon matSuffix *ngIf="dataModel.iconFont" matSuffix mat-icon-button aria-label="Clear"
@@ -43,23 +43,23 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- IconColor Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['IconColor']?.accessWatchField">
-      <mat-label> {{fieldsInfo['IconColor']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['iconColor']?.accessWatchField">
+      <mat-label> {{fieldsInfo['iconColor']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.iconColor" name="dataModel.iconColor" #IconColor
         [value]="dataModel.iconColor" [style.background]="dataModel.iconColor" [(colorPicker)]="dataModel.iconColor"
-        type="text" [disabled]="!fieldsInfo['IconColor']?.accessEditField"
-        placeholder="{{fieldsInfo['IconColor']?.fieldTitle}}" />
+        type="text" [disabled]="!fieldsInfo['iconColor']?.accessEditField"
+        placeholder="{{fieldsInfo['iconColor']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.iconColor" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.iconColor = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
     <!-- ShowInFormOrder Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ShowInFormOrder']?.accessWatchField">
-      <mat-label> {{fieldsInfo['ShowInFormOrder']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['showInFormOrder']?.accessWatchField">
+      <mat-label> {{fieldsInfo['showInFormOrder']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.showInFormOrder" name="dataModel.showInFormOrder" #ShowInFormOrder
-        type="number" [disabled]="!fieldsInfo['ShowInFormOrder']?.accessAddField"
-        placeholder="{{fieldsInfo['ShowInFormOrder']?.fieldTitle}}" />
+        type="number" [disabled]="!fieldsInfo['showInFormOrder']?.accessAddField"
+        placeholder="{{fieldsInfo['showInFormOrder']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.showInFormOrder" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.showInFormOrder = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -76,9 +76,9 @@
     </mat-form-field>
     <!-- Unit Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Unit']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['unit']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.unit" name="dataModel.unit" #Unit type="text"
-        placeholder="{{fieldsInfo['Unit']?.fieldTitle}}" minlength="1" maxlength="64" />
+        placeholder="{{fieldsInfo['unit']?.fieldTitle}}" minlength="1" maxlength="64" />
       <mat-icon matSuffix *ngIf="dataModel.unit" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.unit = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -88,18 +88,18 @@
 
     <!-- ConfigValueIntValueMin Field -->
     <mat-form-field class="ntk-full-width" *ngIf="dataModel.inputDataType==1 ||dataModel.inputDataType==3">
-      <mat-label>{{fieldsInfo['ConfigValueIntValueMin']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['configValueIntValueMin']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.configValueIntValueMin" name="dataModel.configValueIntValueMin"
-        #ConfigValueIntValueMin type="number" placeholder="{{fieldsInfo['ConfigValueIntValueMin']?.fieldTitle}}" />
+        #ConfigValueIntValueMin type="number" placeholder="{{fieldsInfo['configValueIntValueMin']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.configValueIntValueMin" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.configValueIntValueMin = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- ConfigValueIntValueMax Field -->
     <mat-form-field class="ntk-full-width" *ngIf="dataModel.inputDataType==1 ||dataModel.inputDataType==3">
-      <mat-label>{{fieldsInfo['ConfigValueIntValueMax']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['configValueIntValueMax']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.configValueIntValueMax" name="dataModel.configValueIntValueMax"
-        #ConfigValueIntValueMax type="number" placeholder="{{fieldsInfo['ConfigValueIntValueMax']?.fieldTitle}}" />
+        #ConfigValueIntValueMax type="number" placeholder="{{fieldsInfo['configValueIntValueMax']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.configValueIntValueMax" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.configValueIntValueMax = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -107,50 +107,50 @@
     <!-- InvisibleForEndUser Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.invisibleForEndUser"
-        *ngIf="fieldsInfo['InvisibleForEndUser']?.accessWatchField"
-        [disabled]="!fieldsInfo['InvisibleForEndUser']?.accessAddField" name="dataModel.invisibleForEndUser">
-        {{fieldsInfo['InvisibleForEndUser']?.fieldTitle}}
+        *ngIf="fieldsInfo['invisibleForEndUser']?.accessWatchField"
+        [disabled]="!fieldsInfo['invisibleForEndUser']?.accessAddField" name="dataModel.invisibleForEndUser">
+        {{fieldsInfo['invisibleForEndUser']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- InvisibleForSubmiter Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.invisibleForSubmiter"
-        *ngIf="fieldsInfo['InvisibleForSubmiter']?.accessWatchField"
-        [disabled]="!fieldsInfo['InvisibleForSubmiter']?.accessAddField" name="dataModel.invisibleForSubmiter">
-        {{fieldsInfo['InvisibleForSubmiter']?.fieldTitle}}
+        *ngIf="fieldsInfo['invisibleForSubmiter']?.accessWatchField"
+        [disabled]="!fieldsInfo['invisibleForSubmiter']?.accessAddField" name="dataModel.invisibleForSubmiter">
+        {{fieldsInfo['invisibleForSubmiter']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- Required Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.required" *ngIf="fieldsInfo['Required']?.accessWatchField"
-        [disabled]="!fieldsInfo['Required']?.accessAddField" name="dataModel.required">
-        {{fieldsInfo['Required']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.required" *ngIf="fieldsInfo['required']?.accessWatchField"
+        [disabled]="!fieldsInfo['required']?.accessAddField" name="dataModel.required">
+        {{fieldsInfo['required']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- IsHistoryable Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.isHistoryable" *ngIf="fieldsInfo['IsHistoryable']?.accessWatchField"
-        [disabled]="!fieldsInfo['IsHistoryable']?.accessAddField" name="dataModel.isHistoryable">
-        {{fieldsInfo['IsHistoryable']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.isHistoryable" *ngIf="fieldsInfo['isHistoryable']?.accessWatchField"
+        [disabled]="!fieldsInfo['isHistoryable']?.accessAddField" name="dataModel.isHistoryable">
+        {{fieldsInfo['isHistoryable']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 
     <!-- ConfigValueForceUseDefaultValue Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.configValueForceUseDefaultValue"
-        *ngIf="fieldsInfo['ConfigValueForceUseDefaultValue']?.accessWatchField"
-        [disabled]="!fieldsInfo['ConfigValueForceUseDefaultValue']?.accessAddField"
+        *ngIf="fieldsInfo['configValueForceUseDefaultValue']?.accessWatchField"
+        [disabled]="!fieldsInfo['configValueForceUseDefaultValue']?.accessAddField"
         name="dataModel.configValueForceUseDefaultValue">
-        {{fieldsInfo['ConfigValueForceUseDefaultValue']?.fieldTitle}}
+        {{fieldsInfo['configValueForceUseDefaultValue']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- ConfigValueMultipleChoice Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.configValueMultipleChoice"
-        *ngIf="dataModel.configValueForceUseDefaultValue && fieldsInfo['ConfigValueMultipleChoice']?.accessWatchField"
-        [disabled]="!fieldsInfo['ConfigValueMultipleChoice']?.accessAddField"
+        *ngIf="dataModel.configValueForceUseDefaultValue && fieldsInfo['configValueMultipleChoice']?.accessWatchField"
+        [disabled]="!fieldsInfo['configValueMultipleChoice']?.accessAddField"
         name="dataModel.configValueMultipleChoice">
-        {{fieldsInfo['ConfigValueMultipleChoice']?.fieldTitle}}
+        {{fieldsInfo['configValueMultipleChoice']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 
@@ -176,9 +176,9 @@
 
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

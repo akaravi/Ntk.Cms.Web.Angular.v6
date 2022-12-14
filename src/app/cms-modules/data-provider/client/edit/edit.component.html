@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -24,9 +24,9 @@
     </mat-form-field>
      <!-- Id Field -->
      <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Id']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['id']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.id" name="dataModel.id" #Id type="Id"
-        placeholder="{{fieldsInfo['Id']?.fieldTitle}}"  required />
+        placeholder="{{fieldsInfo['id']?.fieldTitle}}"  required />
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- Title Field -->

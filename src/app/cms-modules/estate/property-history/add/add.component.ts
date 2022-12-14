@@ -9,7 +9,8 @@ import {
   DataFieldInfoModel,
   EstateActivityTypeModel,
   EstateAccountUserModel,
-  EstatePropertyModel
+  EstatePropertyModel,
+  EstateCustomerOrderModel
 } from 'ntk-cms-api';
 import {
   Component,
@@ -141,6 +142,12 @@ export class EstatePropertyHistoryAddComponent implements OnInit {
     this.dataModel.linkPropertyId = null;
     if (model && model.id.length > 0) {
       this.dataModel.linkPropertyId = model.id;
+    }
+  }
+  onActionSelectorCustomerOrderId(model: EstateCustomerOrderModel | null): void {
+    this.dataModel.linkCustomerOrderId = null;
+    if (model && model.id.length > 0) {
+      this.dataModel.linkCustomerOrderId = model.id;
     }
   }
   onFormSubmit(): void {

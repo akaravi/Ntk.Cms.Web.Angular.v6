@@ -45,15 +45,15 @@
     </mat-form-field>
     <!-- LinkCmsUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.linkCmsUserId"
-      [optionPlaceholder]="this.translate.instant('TITLE.USER')" [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessAddField">
+      [optionPlaceholder]="this.translate.instant('TITLE.USER')" [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField">
     </app-cms-user-selector>
 
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5
-        [disabled]="!fieldsInfo['Description']?.accessAddField"></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5
+        [disabled]="!fieldsInfo['description']?.accessAddField"></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -64,10 +64,10 @@
     </mat-form-field>
     <!-- PhoneNumber Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['PhoneNumber']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['phoneNumber']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.phoneNumber" name="dataModel.phoneNumber" #PhoneNumber type="text"
-        placeholder="{{fieldsInfo['PhoneNumber']?.fieldTitle}}" minlength="0" maxlength="64"
-        [disabled]="!fieldsInfo['PhoneNumber']?.accessAddField" />
+        placeholder="{{fieldsInfo['phoneNumber']?.fieldTitle}}" minlength="0" maxlength="64"
+        [disabled]="!fieldsInfo['phoneNumber']?.accessAddField" />
       <mat-icon matSuffix *ngIf="dataModel.phoneNumber" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.phoneNumber = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -75,10 +75,10 @@
     </mat-form-field>
     <!-- Address Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Address']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['address']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.address" name="dataModel.address" #Address type="text"
-        placeholder="{{fieldsInfo['Address']?.fieldTitle}}" minlength="1" maxlength="500" required rows=5
-        [disabled]="!fieldsInfo['Address']?.accessAddField"></textarea>
+        placeholder="{{fieldsInfo['address']?.fieldTitle}}" minlength="1" maxlength="500" required rows=5
+        [disabled]="!fieldsInfo['address']?.accessAddField"></textarea>
       <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.address = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

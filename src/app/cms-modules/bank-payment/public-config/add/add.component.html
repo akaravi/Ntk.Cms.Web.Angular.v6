@@ -9,7 +9,7 @@
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <!-- RecordStatus Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
           name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
           required>
           <mat-option *ngFor="
@@ -37,7 +37,7 @@
       </mat-form-field>
       <!-- ClassName Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['ClassName']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['className']?.fieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.className" name="dataModel.className" #ClassName type="text"
           placeholder="ClassName" minlength="3" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.className" matSuffix mat-icon-button aria-label="Clear"
@@ -50,14 +50,14 @@
       </mat-form-field>
       <!-- LinkCurrencyId Field -->
       <app-cms-currency-selector (optionChange)="onActionSelectCurrency($event)"
-        [optionDisabled]="!fieldsInfo['LinkCurrencyId']?.accessEditField" [optionSelectForce]="dataModel.linkCurrencyId"
+        [optionDisabled]="!fieldsInfo['linkCurrencyId']?.accessEditField" [optionSelectForce]="dataModel.linkCurrencyId"
         [optionPlaceholder]="this.translate.instant('TITLE.Financial_Unit')">
       </app-cms-currency-selector>
       <!-- Memo Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.memo" name="dataModel.memo" #Memo type="text"
-          placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+          placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.memo" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.memo = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>

@@ -8,7 +8,7 @@
 	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus"
+        <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
           <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
@@ -21,8 +21,8 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Writer']?.fieldTitle}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.writer" name="dataModel.writer" #Writer type="text" placeholder="{{fieldsInfo['Writer']?.fieldTitle}}"
+        <mat-label>{{fieldsInfo['writer']?.fieldTitle}}</mat-label>
+        <input matInput [(ngModel)]="dataModel.writer" name="dataModel.writer" #Writer type="text" placeholder="{{fieldsInfo['writer']?.fieldTitle}}"
           minlength="3" maxlength="100" required />
         <mat-icon matSuffix *ngIf="dataModel.writer" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.writer = ''">close</mat-icon>
@@ -33,7 +33,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Comment']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['comment']?.fieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.comment" name="dataModel.comment" #Comment type="text"
           placeholder="{{'TITLE.COMMENT' | translate}}" minlength="1" maxlength="500" required rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.comment" matSuffix mat-icon-button aria-label="Clear"

@@ -52,48 +52,48 @@
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- StatusInfo Column -->
       <ng-container matColumnDef="StatusInfo">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['StatusInfo']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['statusInfo']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.statusInfo}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
           publicHelper.LocaleDateTime(row.createdDate)}}
         </mat-cell>
       </ng-container>
       <!-- StatusOutOfServiceActive Column -->
       <ng-container matColumnDef="StatusOutOfServiceActive">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['StatusOutOfServiceActive']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['statusOutOfServiceActive']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.statusOutOfServiceActive|statusClass"></i> </mat-cell>
       </ng-container>
       <!-- StatusOutOfServiceExpire Column -->
       <ng-container matColumnDef="StatusOutOfServiceExpire">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['StatusOutOfServiceExpire']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['statusOutOfServiceExpire']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
           publicHelper.LocaleDateTime(row.statusOutOfServiceExpire)}}
         </mat-cell>
       </ng-container>
       <!-- StatusNotStableActive Column -->
       <ng-container matColumnDef="StatusNotStableActive">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['StatusNotStableActive']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['statusNotStableActive']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.statusNotStableActive|statusClass"></i> </mat-cell>
       </ng-container>
       <!-- StatusNotStableExpire Column -->
       <ng-container matColumnDef="StatusNotStableExpire">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['StatusNotStableExpire']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['statusNotStableExpire']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.statusNotStableExpire) }} </mat-cell>
       </ng-container>
       <!-- StatusNotStableCount Column -->
       <ng-container matColumnDef="StatusNotStableCount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['StatusNotStableCount']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['statusNotStableCount']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.statusNotStableCount}} </mat-cell>
       </ng-container>
 
@@ -105,11 +105,11 @@
 
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['Credit']?.fieldTitle}} : {{row.credit}} </td>
+                <td>{{fieldsInfo['credit']?.fieldTitle}} : {{row.credit}} </td>
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['GiveBackCredit']?.fieldTitle}} : {{row.giveBackCredit}} </td>
+                <td>{{fieldsInfo['giveBackCredit']?.fieldTitle}} : {{row.giveBackCredit}} </td>
               </tr>
 
             </table>

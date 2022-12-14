@@ -13,15 +13,15 @@
       <!-- src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}"  height="50" width="50" /> -->
     </div>
     <div class="mb-9">
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['LinkMainImageId']?.accessWatchField">
-        <mat-label (click)="fileManagerOpenForm = true">{{fieldsInfo['LinkMainImageId']?.fieldTitle}}</mat-label>
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['linkMainImageId']?.accessWatchField">
+        <mat-label (click)="fileManagerOpenForm = true">{{fieldsInfo['linkMainImageId']?.fieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.linkMainImageId"
-          [disabled]="!fieldsInfo['LinkMainImageId']?.accessAddField" name="dataModel.linkMainImageId" #LinkMainImageId
+          [disabled]="!fieldsInfo['linkMainImageId']?.accessAddField" name="dataModel.linkMainImageId" #LinkMainImageId
           type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
           (click)="fileManagerOpenForm = true" />
-        <mat-icon matSuffix *ngIf="dataModel.linkMainImageId && fieldsInfo['LinkMainImageId']?.accessAddField" matSuffix
+        <mat-icon matSuffix *ngIf="dataModel.linkMainImageId && fieldsInfo['linkMainImageId']?.accessAddField" matSuffix
           mat-icon-button aria-label="Clear" (click)="dataModel.linkMainImageId = null">close</mat-icon>
-        <mat-icon *ngIf="fieldsInfo['LinkMainImageId']?.accessAddField" matSuffix (click)="fileManagerOpenForm = true">
+        <mat-icon *ngIf="fieldsInfo['linkMainImageId']?.accessAddField" matSuffix (click)="fileManagerOpenForm = true">
           mode_edit</mat-icon>
       </mat-form-field>
       <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
@@ -45,13 +45,13 @@
     <!-- LinkCmsUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.linkCmsUserId"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')"
-      [optionDisabled]="!fieldsInfo['LinkCmsUserId']?.accessEditField">
+      [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessEditField">
     </app-cms-user-selector>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -62,9 +62,9 @@
     </mat-form-field>
     <!-- Address Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Address']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['address']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.address" name="dataModel.address" #Address type="text"
-        placeholder="{{fieldsInfo['Address']?.fieldTitle}}" minlength="3" maxlength="100" required />
+        placeholder="{{fieldsInfo['address']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.address = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -75,7 +75,7 @@
     </mat-form-field>
     <!-- ViewCount Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['ViewCount']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['viewCount']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.viewCount" name="dataModel.viewCount" #ViewCount type="number"
         placeholder="0" />
       <mat-icon matSuffix *ngIf="dataModel.viewCount" matSuffix mat-icon-button aria-label="Clear"

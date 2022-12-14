@@ -8,9 +8,9 @@
 	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
         <!-- RecordStatus Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
-          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-            [disabled]="!fieldsInfo['RecordStatus']?.accessEditField" name="dataModel.recordStatus"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
+          <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+            [disabled]="!fieldsInfo['recordStatus']?.accessEditField" name="dataModel.recordStatus"
             #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
             <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
@@ -19,13 +19,13 @@
           </mat-select>
           <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            {{ fieldsInfo['RecordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{ fieldsInfo['recordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- BankStatus Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['BankStatus']?.accessWatchField">
-          <mat-select placeholder="{{fieldsInfo['BankStatus']?.fieldTitle}}" [(ngModel)]="dataModel.bankStatus"
-            [disabled]="!fieldsInfo['BankStatus']?.accessEditField" name="dataModel.bankStatus" #BankStatus="ngModel"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['bankStatus']?.accessWatchField">
+          <mat-select placeholder="{{fieldsInfo['bankStatus']?.fieldTitle}}" [(ngModel)]="dataModel.bankStatus"
+            [disabled]="!fieldsInfo['bankStatus']?.accessEditField" name="dataModel.bankStatus" #BankStatus="ngModel"
             panelClass="BankStatus-{{ dataModel.bankStatus }}" required>
             <mat-option *ngFor="
                     let item of dataModelEnumTransactionBankStatusResult.listItems;
@@ -34,7 +34,7 @@
           </mat-select>
           <mat-hint align="end">{{ 'Application.source.BankStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="BankStatus.errors?.required">
-            {{ fieldsInfo['BankStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{ fieldsInfo['bankStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- TransactionStatus Field -->

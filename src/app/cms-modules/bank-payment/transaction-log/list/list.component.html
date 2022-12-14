@@ -49,7 +49,7 @@
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- TransactionStatus Column -->
@@ -61,17 +61,17 @@
       </ng-container>
       <!-- LinkTransactionId Column -->
       <ng-container matColumnDef="LinkTransactionId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkTransactionId']?.fieldTitle}}</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkTransactionId']?.fieldTitle}}</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkTransactionId}} </mat-cell>
       </ng-container>
       <!-- Memo Column -->
       <ng-container matColumnDef="Memo">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Memo']?.fieldTitle}}</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['memo']?.fieldTitle}}</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.memo}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>

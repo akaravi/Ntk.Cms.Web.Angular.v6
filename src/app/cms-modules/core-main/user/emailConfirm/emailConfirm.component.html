@@ -8,10 +8,10 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- Email Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.accessWatchField">
-      <mat-label> {{fieldsInfo['Email']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['email']?.accessWatchField">
+      <mat-label> {{fieldsInfo['email']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.email" name="dataModel.email" #Email type="text"
-        [disabled]="!fieldsInfo['Email']?.accessAddField" placeholder="{{fieldsInfo['Email']?.fieldTitle}}"
+        [disabled]="!fieldsInfo['email']?.accessAddField" placeholder="{{fieldsInfo['email']?.fieldTitle}}"
         minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.email = ''">close</mat-icon>

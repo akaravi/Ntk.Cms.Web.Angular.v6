@@ -54,14 +54,14 @@
       cdkDropList [cdkDropListData]="tableSource" (cdkDropListDropped)="onTableDropRow($event)">
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <p [tooltipGuide]="row.id" Identity="row.id" placement="right" delay="500">{{row.id}}</p>
         </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <i [ngClass]="row.recordStatus|statusClass" ></i>
@@ -71,7 +71,7 @@
       </ng-container>
       <!-- Key Column -->
       <ng-container matColumnDef="Key">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Key']?.fieldTitle}}</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['key']?.fieldTitle}}</mat-header-cell>
         <mat-cell *matCellDef="let row">
           <p [tooltipGuide]="row.key" placement="right" delay="500" *ngIf="row.key?.length>0">{{row.key}}</p>
         </mat-cell>
@@ -83,7 +83,7 @@
       </ng-container>
       <!-- ShowInMenuOrder Column -->
       <ng-container matColumnDef="ShowInMenuOrder">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShowInMenuOrder']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['showInMenuOrder']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.showInMenuOrder}} </mat-cell>
       </ng-container>

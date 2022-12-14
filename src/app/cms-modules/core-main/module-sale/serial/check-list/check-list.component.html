@@ -45,7 +45,7 @@
 
         <!-- LinkModuleId Column -->
         <ng-container matColumnDef="LinkModuleId">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{fieldsInfo['LinkModuleId']?.fieldTitle}}
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{fieldsInfo['linkModuleId']?.fieldTitle}}
           </mat-header-cell>
           <mat-cell *matCellDef="let row"> {{row.linkModuleId | cmstitle : dataModelCoreModuleResult.listItems}}
           </mat-cell>
@@ -53,7 +53,7 @@
 
         <!-- EnumCmsModuleSaleItemType Column -->
         <ng-container matColumnDef="EnumCmsModuleSaleItemType">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['EnumCmsModuleSaleItemType']?.fieldTitle}}
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['enumCmsModuleSaleItemType']?.fieldTitle}}
           </mat-header-cell>
           <mat-cell *matCellDef="let row"> {{row.enumCmsModuleSaleItemType | enums : dataModelEnumCmsModuleSaleItemTypeResult.listItems}} </mat-cell>
         </ng-container>
@@ -61,13 +61,13 @@
 
         <!-- FromDate Column -->
         <ng-container matColumnDef="FromDate">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['FromDate']?.fieldTitle}}
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['fromDate']?.fieldTitle}}
           </mat-header-cell>
           <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.fromDate) }} </mat-cell>
         </ng-container>
         <!-- ExpireDate Column -->
         <ng-container matColumnDef="ExpireDate">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExpireDate']?.fieldTitle}}
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['expireDate']?.fieldTitle}}
           </mat-header-cell>
           <mat-cell *matCellDef="let row" [ngStyle]="{'background':publicHelper.RowStyleExpireDate(row.expireDate) }">
             {{ publicHelper.LocaleDate(row.expireDate) }} </mat-cell>

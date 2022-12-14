@@ -10,7 +10,7 @@
 
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -55,14 +55,14 @@
 
     <!-- LinkModuleId Field -->
     <app-core-module-entity-selector (optionChange)="onActionSelectorModuleEntitySelect($event)"
-      [optionDisabled]="!fieldsInfo['LinkModuleEntityId']?.accessEditField"
+      [optionDisabled]="!fieldsInfo['linkModuleEntityId']?.accessEditField"
       [optionSelectForce]="dataModel.linkModuleEntityId"
       [optionPlaceholder]="this.translate.instant('TITLE.MODULE_ENTITY')">
     </app-core-module-entity-selector>
     <!-- ReportFileType Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ReportFileType']?.accessWatchField">
-      <mat-select placeholder="{{fieldsInfo['ReportFileType']?.fieldTitle}}" [(ngModel)]="dataModel.reportFileType"
-        [disabled]="!fieldsInfo['ReportFileType']?.accessEditField" name="dataModel.reportFileType"
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['reportFileType']?.accessWatchField">
+      <mat-select placeholder="{{fieldsInfo['reportFileType']?.fieldTitle}}" [(ngModel)]="dataModel.reportFileType"
+        [disabled]="!fieldsInfo['reportFileType']?.accessEditField" name="dataModel.reportFileType"
         #ReportFileType="ngModel" panelClass="ReportFileType-{{ dataModel.reportFileType }}" required>
         <mat-option *ngFor="
                   let item of dataModelReportFileTypeEnumResult.listItems;
@@ -70,14 +70,14 @@
                 " [value]="item.value">{{ item.description }}</mat-option>
       </mat-select>
       <mat-error *ngIf="ReportFileType.errors?.required">
-        {{ fieldsInfo['ReportFileType']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['reportFileType']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

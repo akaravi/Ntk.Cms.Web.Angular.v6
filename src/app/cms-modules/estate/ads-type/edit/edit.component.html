@@ -25,9 +25,9 @@
 
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -37,11 +37,11 @@
       </mat-error>
     </mat-form-field>
     <!-- StationLevel Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['StationLevel']?.accessWatchField">
-      <mat-label> {{fieldsInfo['StationLevel']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['stationLevel']?.accessWatchField">
+      <mat-label> {{fieldsInfo['stationLevel']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.stationLevel" name="dataModel.stationLevel" #StationLevel type="number"
-        [disabled]="!fieldsInfo['StationLevel']?.accessEditField"
-        placeholder="{{fieldsInfo['StationLevel']?.fieldTitle}}" />
+        [disabled]="!fieldsInfo['stationLevel']?.accessEditField"
+        placeholder="{{fieldsInfo['stationLevel']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.stationLevel" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.stationLevel = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -52,10 +52,10 @@
     </mat-list>
 
     <!-- ViewLevel Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ViewLevel']?.accessWatchField">
-      <mat-label> {{fieldsInfo['ViewLevel']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['viewLevel']?.accessWatchField">
+      <mat-label> {{fieldsInfo['viewLevel']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.viewLevel" name="dataModel.viewLevel" #ViewLevel type="number"
-        [disabled]="!fieldsInfo['ViewLevel']?.accessEditField" placeholder="{{fieldsInfo['ViewLevel']?.fieldTitle}}" />
+        [disabled]="!fieldsInfo['viewLevel']?.accessEditField" placeholder="{{fieldsInfo['viewLevel']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.viewLevel" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.viewLevel = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -65,21 +65,21 @@
       <mat-list-item role="listitem" *ngFor="let item of dataModel.viewLevelDescription">{{item}}</mat-list-item>
     </mat-list>
     <!-- DayOfActivity Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DayOfActivity']?.accessWatchField">
-      <mat-label> {{fieldsInfo['DayOfActivity']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['dayOfActivity']?.accessWatchField">
+      <mat-label> {{fieldsInfo['dayOfActivity']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.dayOfActivity" name="dataModel.dayOfActivity" #DayOfActivity type="number"
-        [disabled]="!fieldsInfo['DayOfActivity']?.accessEditField"
-        placeholder="{{fieldsInfo['DayOfActivity']?.fieldTitle}}" />
+        [disabled]="!fieldsInfo['dayOfActivity']?.accessEditField"
+        placeholder="{{fieldsInfo['dayOfActivity']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.dayOfActivity" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.dayOfActivity = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
     <!-- SalePrice Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SalePrice']?.accessWatchField">
-      <mat-label> {{fieldsInfo['SalePrice']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['salePrice']?.accessWatchField">
+      <mat-label> {{fieldsInfo['salePrice']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.salePrice" name="dataModel.salePrice" #SalePrice type="number"
-        [disabled]="!fieldsInfo['SalePrice']?.accessEditField" placeholder="{{fieldsInfo['SalePrice']?.fieldTitle}}" />
+        [disabled]="!fieldsInfo['salePrice']?.accessEditField" placeholder="{{fieldsInfo['salePrice']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.salePrice" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.salePrice = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -87,7 +87,7 @@
     <!-- PaymentForMainSite Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.paymentForMainSite" name="dataModel.paymentForMainSite">
-        {{fieldsInfo['PaymentForMainSite']?.fieldTitle}}
+        {{fieldsInfo['paymentForMainSite']?.fieldTitle}}
       </mat-slide-toggle>
       {{'MESSAGE.By_activating_this_setting_the_income_of_this_ad_will_be_deposited_in_the_account_of_the_reference_website'
       | translate}}

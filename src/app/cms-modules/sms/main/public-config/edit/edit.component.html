@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -50,30 +50,30 @@
     <!-- abilityCreditCheck Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.abilityCreditCheck"
-        *ngIf="fieldsInfo['AbilityCreditCheck']?.accessWatchField"
-        [disabled]="!fieldsInfo['AbilityCreditCheck']?.accessEditField" name="dataModel.abilityCreditCheck">
-        {{fieldsInfo['AbilityCreditCheck']?.fieldTitle}}
+        *ngIf="fieldsInfo['abilityCreditCheck']?.accessWatchField"
+        [disabled]="!fieldsInfo['abilityCreditCheck']?.accessEditField" name="dataModel.abilityCreditCheck">
+        {{fieldsInfo['abilityCreditCheck']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- abilityDelivery Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.abilityDelivery" *ngIf="fieldsInfo['AbilityDelivery']?.accessWatchField"
-        [disabled]="!fieldsInfo['AbilityDelivery']?.accessEditField" name="dataModel.abilityDelivery">
-        {{fieldsInfo['AbilityDelivery']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.abilityDelivery" *ngIf="fieldsInfo['abilityDelivery']?.accessWatchField"
+        [disabled]="!fieldsInfo['abilityDelivery']?.accessEditField" name="dataModel.abilityDelivery">
+        {{fieldsInfo['abilityDelivery']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- abilityReceive Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.abilityReceive" *ngIf="fieldsInfo['AbilityReceive']?.accessWatchField"
-        [disabled]="!fieldsInfo['AbilityReceive']?.accessEditField" name="dataModel.abilityReceive">
-        {{fieldsInfo['AbilityReceive']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.abilityReceive" *ngIf="fieldsInfo['abilityReceive']?.accessWatchField"
+        [disabled]="!fieldsInfo['abilityReceive']?.accessEditField" name="dataModel.abilityReceive">
+        {{fieldsInfo['abilityReceive']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- Memo Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.memo" name="dataModel.memo" #Memo type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" required
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" required
         rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.memo" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.memo = ''">close</mat-icon>

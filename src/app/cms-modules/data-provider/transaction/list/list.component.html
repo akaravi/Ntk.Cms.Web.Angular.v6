@@ -54,17 +54,17 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <i [ngClass]="row.recordStatus|statusClass"></i>
@@ -76,52 +76,52 @@
      
       <!-- LinkClientId Column -->
       <ng-container matColumnDef="LinkClientId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkClientId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkClientId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkClientId}} </mat-cell>
       </ng-container>
       <!-- LinkPlanId Column -->
       <ng-container matColumnDef="LinkPlanId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPlanId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPlanId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPlanId}} </mat-cell>
       </ng-container>
       <!-- LinkPlanPriceId Column -->
       <ng-container matColumnDef="LinkPlanPriceId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPlanPriceId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPlanPriceId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPlanPriceId}} </mat-cell>
       </ng-container>
       <!-- SystemTransactionId Column -->
       <ng-container matColumnDef="SystemTransactionId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SystemTransactionId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['systemTransactionId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.systemTransactionId}} </mat-cell>
       </ng-container>
       <!-- SystemPaymentisSuccess Column -->
       <ng-container matColumnDef="SystemPaymentisSuccess">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SystemPaymentisSuccess']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['systemPaymentisSuccess']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.systemPaymentisSuccess}} </mat-cell>
       </ng-container>
       <!-- AmountPure Column -->
       <ng-container matColumnDef="AmountPure">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AmountPure']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['amountPure']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.amountPure}} </mat-cell>
       </ng-container>
       <!-- FeeTransport Column -->
       <ng-container matColumnDef="FeeTransport">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['FeeTransport']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['feeTransport']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.feeTransport}} </mat-cell>
       </ng-container>
       <!-- FeeTax Column -->
       <ng-container matColumnDef="FeeTax">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['FeeTax']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['feeTax']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.feeTax}} </mat-cell>
       </ng-container>
       <!-- Amount Column -->
       <ng-container matColumnDef="Amount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Amount']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['amount']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
       </ng-container>
 
@@ -129,7 +129,7 @@
 
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
       <!-- Action Column -->

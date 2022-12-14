@@ -66,7 +66,7 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- Title Column -->
@@ -77,14 +77,14 @@
       </ng-container>
       <!-- AppointmentDateFrom Column -->
       <ng-container matColumnDef="AppointmentDateFrom">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AppointmentDateFrom']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['appointmentDateFrom']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.appointmentDateFrom) }}
           {{ publicHelper.getTime(row.appointmentDateFrom) }}</mat-cell>
       </ng-container>
       <!-- AppointmentDateTo Column -->
       <ng-container matColumnDef="AppointmentDateTo">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AppointmentDateTo']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['appointmentDateTo']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.appointmentDateTo) }}
           {{ publicHelper.getTime(row.appointmentDateTo) }} </mat-cell>
@@ -132,7 +132,7 @@
               </tr>
               <tr>
                 <td></td>
-                <td> {{fieldsInfo['Description']?.fieldTitle}} : {{row.description}} </td>
+                <td> {{fieldsInfo['description']?.fieldTitle}} : {{row.description}} </td>
               </tr>
               <tr>
                 <td></td>

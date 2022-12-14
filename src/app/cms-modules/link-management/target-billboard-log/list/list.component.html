@@ -55,17 +55,17 @@
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <i [ngClass]="row.recordStatus|statusClass"></i>
@@ -76,29 +76,29 @@
       </ng-container>
       <!-- ClickPrice Column -->
       <ng-container matColumnDef="ClickPrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ClickPrice']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['clickPrice']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.clickPrice}} </mat-cell>
       </ng-container>
       <!-- ViewPrice Column -->
       <ng-container matColumnDef="ViewPrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ViewPrice']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['viewPrice']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.viewPrice}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
           publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
       <!-- LinkManagementBillboardId Column -->
       <ng-container matColumnDef="LinkManagementBillboardId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkManagementBillboardId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkManagementBillboardId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkManagementBillboardId}} </mat-cell>
       </ng-container>
       <!-- LinkManagementTargetId Column -->
       <ng-container matColumnDef="LinkManagementTargetId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkManagementTargetId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkManagementTargetId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkManagementTargetId}} </mat-cell>
       </ng-container>
@@ -140,19 +140,19 @@
                 <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
                     class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
                     width="80" /></th>
-                <th>{{fieldsInfo['Id']?.fieldTitle}} : {{row.id}}</th>
+                <th>{{fieldsInfo['id']?.fieldTitle}} : {{row.id}}</th>
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['IpAddress']?.fieldTitle}} : {{row.ipAddress}}</td>
+                <td>{{fieldsInfo['ipAddress']?.fieldTitle}} : {{row.ipAddress}}</td>
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['DeviceId']?.fieldTitle}} : {{row.deviceId}}</td>
+                <td>{{fieldsInfo['deviceId']?.fieldTitle}} : {{row.deviceId}}</td>
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['BrowserName']?.fieldTitle}} : {{row.browserName}}</td>
+                <td>{{fieldsInfo['browserName']?.fieldTitle}} : {{row.browserName}}</td>
               </tr>
               <tr>
                 <td></td>

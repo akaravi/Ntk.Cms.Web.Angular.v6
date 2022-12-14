@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -54,34 +54,34 @@
     <!-- LinkModuleId Field -->
     <app-cms-module-selector (optionChange)="onActionSelectModule($event)"
       [optionSelectForce]="this.dataModel.linkModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')"
-      [optionDisabled]="!fieldsInfo['LinkModuleId']?.accessAddField">
+      [optionDisabled]="!fieldsInfo['linkModuleId']?.accessAddField">
     </app-cms-module-selector>
     <!-- CmsModuleClassName Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CmsModuleClassName']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['cmsModuleClassName']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.cmsModuleClassName" name="dataModel.cmsModuleClassName" #CmsModuleClassName
         type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}" minlength="3" maxlength="100" required
-        [disabled]="!fieldsInfo['CmsModuleClassName']?.accessAddField" />
+        [disabled]="!fieldsInfo['cmsModuleClassName']?.accessAddField" />
       <mat-icon matSuffix *ngIf="dataModel.cmsModuleClassName" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.cmsModuleClassName = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ CmsModuleClassName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="CmsModuleClassName.errors?.required">
-        {{fieldsInfo['CmsModuleClassName']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['cmsModuleClassName']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- ClassActionName Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['ClassActionName']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['classActionName']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.classActionName" name="dataModel.classActionName" #ClassActionName
         type="text" placeholder="{{fieldsInfo['Title']?.fieldTitle}}"
-        [disabled]="!fieldsInfo['ClassActionName']?.accessAddField" />
+        [disabled]="!fieldsInfo['classActionName']?.accessAddField" />
       <mat-icon matSuffix *ngIf="dataModel.classActionName" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.classActionName = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ ClassActionName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ClassActionName.errors?.required">
-        {{fieldsInfo['ClassActionName']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['classActionName']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

@@ -64,13 +64,13 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
 
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
@@ -90,33 +90,33 @@
       </ng-container>
       <!-- Symbol Column -->
       <ng-container matColumnDef="Symbol">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Symbol']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['symbol']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class="grid-row-ltr">
           {{row.symbol}} / {{row.masterCurrency}}
         </mat-cell>
       </ng-container>
       <!-- IsDefault Column -->
       <ng-container matColumnDef="IsDefault">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsDefault']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['isDefault']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.isDefault | boolclass"></i> </mat-cell>
       </ng-container>
       <!-- ExchangeBuyRatio Column -->
       <ng-container matColumnDef="ExchangeBuyRatio">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExchangeBuyRatio']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['exchangeBuyRatio']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" class="grid-row-ltr"> {{row.exchangeBuyRatio | number }} </mat-cell>
       </ng-container>
       <!-- ExchangeSaleRatio Column -->
       <ng-container matColumnDef="ExchangeSaleRatio">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ExchangeSaleRatio']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['exchangeSaleRatio']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" class="grid-row-ltr"> {{row.exchangeSaleRatio | number }} </mat-cell>
       </ng-container>
 
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
       </ng-container>

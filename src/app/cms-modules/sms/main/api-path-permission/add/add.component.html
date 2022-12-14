@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -26,22 +26,22 @@
 
     <!-- LinkCoreUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
-      [optionDisabled]="!fieldsInfo['LinkCoreUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreUserId"
+      [optionDisabled]="!fieldsInfo['linkCoreUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreUserId"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-cms-user-selector>
     <!-- LinkCoreSiteId Field -->
     <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)"
-      [optionDisabled]="!fieldsInfo['LinkCoreSiteId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreSiteId"
+      [optionDisabled]="!fieldsInfo['linkCoreSiteId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreSiteId"
       [optionPlaceholder]="this.translate.instant('TITLE.SITE')">
     </app-cms-site-selector>
     <!-- LinkCoreUserGroupId Field -->
     <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)"
-      [optionDisabled]="!fieldsInfo['LinkCoreUserGroupId']?.accessAddField"
+      [optionDisabled]="!fieldsInfo['linkCoreUserGroupId']?.accessAddField"
       [optionSelectForce]="dataModel.linkCoreUserGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
     </app-cms-usergroup-selector>
     <!-- LinkCoreSiteCategoryId Field -->
     <app-cms-sitecategory-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
-      [optionDisabled]="!fieldsInfo['LinkCoreSiteCategoryId']?.accessAddField"
+      [optionDisabled]="!fieldsInfo['linkCoreSiteCategoryId']?.accessAddField"
       [optionSelectForce]="dataModel.linkCoreSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Site_Type')">
     </app-cms-sitecategory-selector>
 
@@ -52,9 +52,9 @@
 
     <!-- HasInherits Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.hasInherits" *ngIf="fieldsInfo['HasInherits']?.accessWatchField"
-        [disabled]="!fieldsInfo['HasInherits']?.accessEditField" name="dataModel.hasInherits">
-        {{fieldsInfo['HasInherits']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.hasInherits" *ngIf="fieldsInfo['hasInherits']?.accessWatchField"
+        [disabled]="!fieldsInfo['hasInherits']?.accessEditField" name="dataModel.hasInherits">
+        {{fieldsInfo['hasInherits']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- AccessStatus Field -->
@@ -90,19 +90,19 @@
 
     <!-- FromDate Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['FromDate']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['fromDate']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate" />
-      <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['FromDate']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['fromDate']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #FromDate></mat-datepicker>
     </mat-form-field>
 
     <!-- ExpireDate Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
-      <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expireDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['expireDate']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
-      <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessAddField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #ExpireDate></mat-datepicker>

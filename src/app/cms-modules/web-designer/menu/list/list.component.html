@@ -53,18 +53,18 @@
       cdkDropList [cdkDropListData]="tableSource" (cdkDropListDropped)="onTableDropRow($event)">
       <!-- Icon Column -->
       <ng-container matColumnDef="Icon">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Icon']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['icon']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"><i [ngClass]="row.icon" [style.color]="row.color" aria-hidden="true"></i>
         </mat-cell>
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <i [ngClass]="row.recordStatus|statusClass"></i>
@@ -95,7 +95,7 @@
       </ng-container>
       <!-- ShowInMenuOrder Column -->
       <ng-container matColumnDef="ShowInMenuOrder">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ShowInMenuOrder']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['showInMenuOrder']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.showInMenuOrder}} </mat-cell>
       </ng-container>

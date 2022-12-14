@@ -11,9 +11,9 @@
 
       <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['RecordStatus']?.accessWatchField">
-          <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-            [disabled]="!fieldsInfo['RecordStatus']?.accessAddField" name="dataModel.recordStatus"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
+          <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+            [disabled]="!fieldsInfo['recordStatus']?.accessAddField" name="dataModel.recordStatus"
             #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
             <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
@@ -22,27 +22,27 @@
           </mat-select>
           <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
-            {{ fieldsInfo['RecordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{ fieldsInfo['recordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
         <app-ticketing-departemen-selector (optionChange)="onActionSelectSource($event)"
           [optionSelectForce]="this.dataModel.linkTicketingDepartemenId" [optionPlaceholder]="this.translate.instant('TITLE.Department')"
-          [optionDisabled]="!fieldsInfo['LinkTicketingDepartemenId']?.accessAddField">
+          [optionDisabled]="!fieldsInfo['linkTicketingDepartemenId']?.accessAddField">
         </app-ticketing-departemen-selector>
 
 
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FullName']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['FullName']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.fullName" [disabled]="!fieldsInfo['FullName']?.accessAddField"
-            name="dataModel.fullName" #FullName type="text" placeholder="{{fieldsInfo['FullName']?.fieldTitle}}"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['fullName']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['fullName']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.fullName" [disabled]="!fieldsInfo['fullName']?.accessAddField"
+            name="dataModel.fullName" #FullName type="text" placeholder="{{fieldsInfo['fullName']?.fieldTitle}}"
             minlength="3" maxlength="100" required />
-          <mat-icon matSuffix *ngIf="dataModel.fullName && fieldsInfo['FullName']?.accessAddField" matSuffix
+          <mat-icon matSuffix *ngIf="dataModel.fullName && fieldsInfo['fullName']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.fullName = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['FullName']?.accessAddField" matSuffix>mode_edit</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['fullName']?.accessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ FullName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="FullName.errors?.required">
-            {{ fieldsInfo['FullName']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{ fieldsInfo['fullName']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
@@ -61,51 +61,51 @@
         </mat-form-field>
 
 
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['PhoneNo']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['PhoneNo']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.phoneNo" [disabled]="!fieldsInfo['PhoneNo']?.accessAddField"
-            name="dataModel.phoneNo" #PhoneNo type="text" placeholder="{{fieldsInfo['PhoneNo']?.fieldTitle}}"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['phoneNo']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['phoneNo']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.phoneNo" [disabled]="!fieldsInfo['phoneNo']?.accessAddField"
+            name="dataModel.phoneNo" #PhoneNo type="text" placeholder="{{fieldsInfo['phoneNo']?.fieldTitle}}"
             minlength="3" maxlength="100" required />
-          <mat-icon matSuffix *ngIf="dataModel.phoneNo && fieldsInfo['PhoneNo']?.accessAddField" matSuffix
+          <mat-icon matSuffix *ngIf="dataModel.phoneNo && fieldsInfo['phoneNo']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.phoneNo = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['PhoneNo']?.accessAddField" matSuffix>mode_edit</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['phoneNo']?.accessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ PhoneNo.value.length }} / 100</mat-hint>
           <mat-error *ngIf="PhoneNo.errors?.required">
-            {{ fieldsInfo['PhoneNo']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{ fieldsInfo['phoneNo']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Email']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['Email']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.email" [disabled]="!fieldsInfo['Email']?.accessAddField"
-            name="dataModel.email" #Email type="text" placeholder="{{fieldsInfo['Email']?.fieldTitle}}" minlength="3"
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['email']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['email']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.email" [disabled]="!fieldsInfo['email']?.accessAddField"
+            name="dataModel.email" #Email type="text" placeholder="{{fieldsInfo['email']?.fieldTitle}}" minlength="3"
             maxlength="100" required />
-          <mat-icon matSuffix *ngIf="dataModel.email && fieldsInfo['Email']?.accessAddField" matSuffix mat-icon-button
+          <mat-icon matSuffix *ngIf="dataModel.email && fieldsInfo['email']?.accessAddField" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.email = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['Email']?.accessAddField" matSuffix>mode_edit</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['email']?.accessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ Email.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Email.errors?.required">
-            {{ fieldsInfo['Email']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{ fieldsInfo['email']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['HtmlBody']?.accessWatchField">
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['htmlBody']?.accessWatchField">
           <mat-label>{{'TITLE.Description' | translate}}</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.htmlBody" [disabled]="!fieldsInfo['HtmlBody']?.accessAddField"
+          <textarea matInput [(ngModel)]="dataModel.htmlBody" [disabled]="!fieldsInfo['htmlBody']?.accessAddField"
             name="dataModel.htmlBody" #HtmlBody type="text" placeholder="{{'TITLE.Description' | translate}}" row="5"
             minlength="0" maxlength="1000"></textarea>
-          <mat-icon matSuffix *ngIf="dataModel.htmlBody && fieldsInfo['HtmlBody']?.accessAddField" matSuffix
+          <mat-icon matSuffix *ngIf="dataModel.htmlBody && fieldsInfo['htmlBody']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.htmlBody = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['HtmlBody']?.accessAddField" matSuffix>mode_edit</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['htmlBody']?.accessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ HtmlBody.value.length }} / 1000</mat-hint>
 
         </mat-form-field>
 
         <!-- ExpireDate Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
-          <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expireDate']?.accessWatchField">
+          <mat-label>{{fieldsInfo['expireDate']?.fieldTitle}}</mat-label>
           <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
-          <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessAddField" matSuffix
+          <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
           <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #ExpireDate></mat-datepicker>
@@ -128,27 +128,27 @@
       <mat-step label="{{'TITLE.REST_OF_THE_INFORMATION' | translate}}" state="seo">
         <p>{{'TITLE.Rest_of_Information' | translate}}</p>
 
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['UserIpAddress']?.accessWatchField">
-          <mat-label>{{fieldsInfo['UserIpAddress']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['userIpAddress']?.accessWatchField">
+          <mat-label>{{fieldsInfo['userIpAddress']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.userIpAddress"
-            [disabled]="!fieldsInfo['UserIpAddress']?.accessAddField" name="dataModel.userIpAddress" #UserIpAddress
-            type="text" placeholder="{{fieldsInfo['UserIpAddress']?.fieldTitle}}" minlength="0" maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.userIpAddress && fieldsInfo['UserIpAddress']?.accessAddField" matSuffix
+            [disabled]="!fieldsInfo['userIpAddress']?.accessAddField" name="dataModel.userIpAddress" #UserIpAddress
+            type="text" placeholder="{{fieldsInfo['userIpAddress']?.fieldTitle}}" minlength="0" maxlength="100" />
+          <mat-icon matSuffix *ngIf="dataModel.userIpAddress && fieldsInfo['userIpAddress']?.accessAddField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.userIpAddress = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['UserIpAddress']?.accessAddField" matSuffix>mode_edit</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['userIpAddress']?.accessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ UserIpAddress.value.length }} / 100</mat-hint>
 
         </mat-form-field>
 
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DeviceInformation']?.accessWatchField">
-          <mat-label>{{fieldsInfo['DeviceInformation']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['deviceInformation']?.accessWatchField">
+          <mat-label>{{fieldsInfo['deviceInformation']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.deviceInformation"
-            [disabled]="!fieldsInfo['DeviceInformation']?.accessAddField" name="dataModel.deviceInformation"
-            #DeviceInformation type="text" placeholder="{{fieldsInfo['DeviceInformation']?.fieldTitle}}" minlength="0"
+            [disabled]="!fieldsInfo['deviceInformation']?.accessAddField" name="dataModel.deviceInformation"
+            #DeviceInformation type="text" placeholder="{{fieldsInfo['deviceInformation']?.fieldTitle}}" minlength="0"
             maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.deviceInformation && fieldsInfo['DeviceInformation']?.accessAddField"
+          <mat-icon matSuffix *ngIf="dataModel.deviceInformation && fieldsInfo['deviceInformation']?.accessAddField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.deviceInformation = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['DeviceInformation']?.accessAddField" matSuffix>mode_edit</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['deviceInformation']?.accessAddField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">{{ DeviceInformation.value.length }} / 100</mat-hint>
 
         </mat-form-field>

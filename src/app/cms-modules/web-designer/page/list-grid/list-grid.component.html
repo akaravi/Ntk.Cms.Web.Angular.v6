@@ -60,12 +60,12 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
            <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
@@ -78,39 +78,39 @@
       </ng-container>
       <!-- LinkPageParentGuId Column -->
       <ng-container matColumnDef="LinkPageParentGuId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPageParentGuId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPageParentGuId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPageParentGuId}} </mat-cell>
       </ng-container>
       <!-- LinkPageDependencyGuId Column -->
       <ng-container matColumnDef="LinkPageDependencyGuId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPageDependencyGuId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPageDependencyGuId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPageDependencyGuId}} </mat-cell>
       </ng-container>
       <!-- LinkPageTemplateGuId Column -->
       <ng-container matColumnDef="LinkPageTemplateGuId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPageTemplateGuId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPageTemplateGuId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPageTemplateGuId | cmstitle : dataModelWebDesignerMainPageTemplateResult.listItems}} </mat-cell>
       </ng-container>
       <!-- PageDependencyIsDefaultPageLinkSiteCategoryId Column -->
       <ng-container matColumnDef="PageDependencyIsDefaultPageLinkSiteCategoryId">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          {{fieldsInfo['PageDependencyIsDefaultPageLinkSiteCategoryId']?.fieldTitle}}
+          {{fieldsInfo['pageDependencyIsDefaultPageLinkSiteCategoryId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.pageDependencyIsDefaultPageLinkSiteCategoryId | cmstitle : dataModelCoreSiteCategoryResult.listItems }}
         </mat-cell>
       </ng-container>
       <!-- PageDependencyIsDefaultPage Column -->
       <ng-container matColumnDef="PageDependencyIsDefaultPage">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['PageDependencyIsDefaultPage']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['pageDependencyIsDefaultPage']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.pageDependencyIsDefaultPage | boolclass"></i> </mat-cell>
       </ng-container>
       <!-- ClassActionName Column -->
       <ng-container matColumnDef="ClassActionName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ClassActionName']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['classActionName']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.classActionName}} </mat-cell>
       </ng-container>

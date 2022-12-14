@@ -55,13 +55,13 @@
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
 
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
@@ -71,31 +71,31 @@
       </ng-container>
       <!-- LinkApiPathId Column -->
       <ng-container matColumnDef="LinkApiPathId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkApiPathId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkApiPathId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">{{row.linkApiPathId | cmstitle: dataModelPrivateResult.listItems}}</mat-cell>
       </ng-container>
       <!-- RegulatorNumber Column -->
       <ng-container matColumnDef="RegulatorNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RegulatorNumber']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['regulatorNumber']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.regulatorNumber}} </mat-cell>
       </ng-container>
       <!-- ServicePrice Column -->
       <ng-container matColumnDef="ServicePrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ServicePrice']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['servicePrice']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.servicePrice}} </mat-cell>
       </ng-container>
       <!-- EndUserPrice Column -->
       <ng-container matColumnDef="EndUserPrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['EndUserPrice']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['endUserPrice']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.endUserPrice}} </mat-cell>
       </ng-container>
       <!-- MessageLength Column -->
       <ng-container matColumnDef="MessageLength">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['MessageLength']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['messageLength']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.messageLength}} </mat-cell>
       </ng-container>

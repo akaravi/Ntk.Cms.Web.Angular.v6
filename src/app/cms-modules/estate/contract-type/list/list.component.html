@@ -55,7 +55,7 @@
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- Title Column -->
@@ -67,25 +67,25 @@
 
       <!-- HasSalePrice Column -->
       <ng-container matColumnDef="HasSalePrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['HasSalePrice']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['hasSalePrice']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" > <i [ngClass]="row.hasSalePrice | boolclass"></i></mat-cell>
       </ng-container>
       <!-- HasDepositPrice Column -->
       <ng-container matColumnDef="HasDepositPrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['HasDepositPrice']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['hasDepositPrice']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.hasDepositPrice | boolclass"></i> </mat-cell>
       </ng-container>
       <!-- HasPeriodPrice Column -->
       <ng-container matColumnDef="HasPeriodPrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['HasPeriodPrice']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['hasPeriodPrice']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.hasPeriodPrice | boolclass"></i> </mat-cell>
       </ng-container>
       <!-- HasRentPrice Column -->
       <ng-container matColumnDef="HasRentPrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['HasRentPrice']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['hasRentPrice']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.hasRentPrice | boolclass"></i> </mat-cell>
       </ng-container>

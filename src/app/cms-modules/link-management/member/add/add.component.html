@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -24,21 +24,21 @@
     </mat-form-field>
     <!-- LinkExternalCmsUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
-      [optionDisabled]="!fieldsInfo['LinkExternalCmsUserId']?.accessAddField"
+      [optionDisabled]="!fieldsInfo['linkExternalCmsUserId']?.accessAddField"
       [optionSelectForce]="dataModel.linkExternalCmsUserId" [optionPlaceholder]="this.translate.instant('TITLE.Account')">
     </app-cms-user-selector>
     <!-- IsInBlackList Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.isInBlackList" *ngIf="fieldsInfo['IsInBlackList']?.accessWatchField"
-        [disabled]="!fieldsInfo['IsInBlackList']?.accessEditField" name="dataModel.isInBlackList">
-        {{fieldsInfo['IsInBlackList']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.isInBlackList" *ngIf="fieldsInfo['isInBlackList']?.accessWatchField"
+        [disabled]="!fieldsInfo['isInBlackList']?.accessEditField" name="dataModel.isInBlackList">
+        {{fieldsInfo['isInBlackList']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -50,7 +50,7 @@
 
     <!-- CurrentDebtor Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CurrentDebtor']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['currentDebtor']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.currentDebtor" name="dataModel.currentDebtor" #CurrentDebtor type="number"
         placeholder="{{'TITLE.Current_Credit_Of_Debtor' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.currentDebtor" matSuffix mat-icon-button aria-label="Clear"
@@ -62,7 +62,7 @@
     </mat-form-field>
     <!-- CurrentCreditor Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['CurrentCreditor']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['currentCreditor']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.currentCreditor" name="dataModel.currentCreditor" #CurrentCreditor
         type="number" placeholder="{{'TITLE.Current_Credit_Of_Creditor' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.currentCreditor" matSuffix mat-icon-button aria-label="Clear"

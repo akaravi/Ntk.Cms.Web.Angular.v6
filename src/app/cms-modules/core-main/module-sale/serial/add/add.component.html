@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -24,7 +24,7 @@
     </mat-form-field>
     <!-- SerialNumber Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['SerialNumber']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['serialNumber']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.serialNumber" name="dataModel.serialNumber" #SerialNumber type="text"
         placeholder="Serial Number" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.serialNumber" matSuffix mat-icon-button aria-label="Clear"
@@ -32,12 +32,12 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ SerialNumber.value.length }} / 100</mat-hint>
       <mat-error *ngIf="SerialNumber.errors?.required">
-        {{fieldsInfo['SerialNumber']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['serialNumber']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- PwdForUse Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['PwdForUse']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['pwdForUse']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.pwdForUse" name="dataModel.pwdForUse" #PwdForUse type="text"
         placeholder="Serial Number" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.pwdForUse" matSuffix mat-icon-button aria-label="Clear"
@@ -45,76 +45,76 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ PwdForUse.value.length }} / 100</mat-hint>
       <mat-error *ngIf="PwdForUse.errors?.required">
-        {{fieldsInfo['PwdForUse']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['pwdForUse']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
     <!-- LinkModuleSaleHeaderId Field -->
     <app-core-modulesaleheader-selector (optionChange)="onActionSelectHeader($event)"
       [optionSelectForce]="this.dataModel.linkModuleSaleHeaderId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
-      [optionDisabled]="!fieldsInfo['LinkModuleSaleHeaderId']?.accessEditField">
+      [optionDisabled]="!fieldsInfo['linkModuleSaleHeaderId']?.accessEditField">
     </app-core-modulesaleheader-selector>
     <!-- HasDemo Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.hasDemo" *ngIf="fieldsInfo['HasDemo']?.accessWatchField"
-        [disabled]="!fieldsInfo['HasDemo']?.accessEditField" name="dataModel.hasDemo">
-        {{fieldsInfo['HasDemo']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.hasDemo" *ngIf="fieldsInfo['hasDemo']?.accessWatchField"
+        [disabled]="!fieldsInfo['hasDemo']?.accessEditField" name="dataModel.hasDemo">
+        {{fieldsInfo['hasDemo']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- HasUsed Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.hasUsed" *ngIf="fieldsInfo['HasUsed']?.accessWatchField"
-        [disabled]="!fieldsInfo['HasUsed']?.accessEditField" name="dataModel.hasUsed">
-        {{fieldsInfo['HasUsed']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.hasUsed" *ngIf="fieldsInfo['hasUsed']?.accessWatchField"
+        [disabled]="!fieldsInfo['hasUsed']?.accessEditField" name="dataModel.hasUsed">
+        {{fieldsInfo['hasUsed']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
     <!-- NumberOfMaxUse Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['NumberOfMaxUse']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['NumberOfMaxUse']?.fieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.numberOfMaxUse" [disabled]="!fieldsInfo['NumberOfMaxUse']?.accessAddField"
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['numberOfMaxUse']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['numberOfMaxUse']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.numberOfMaxUse" [disabled]="!fieldsInfo['numberOfMaxUse']?.accessAddField"
         name="dataModel.numberOfMaxUse" #NumberOfMaxUse type="number" placeholder="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.numberOfMaxUse && fieldsInfo['NumberOfMaxUse']?.accessAddField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.numberOfMaxUse && fieldsInfo['numberOfMaxUse']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.numberOfMaxUse = null">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['NumberOfMaxUse']?.accessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['numberOfMaxUse']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="NumberOfMaxUse.errors?.required">
-        {{ fieldsInfo['NumberOfMaxUse']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['numberOfMaxUse']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
 
     <!-- MaxExpireToUse Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['MaxExpireToUse']?.accessWatchField">
-      <mat-label>{{fieldsInfo['MaxExpireToUse']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['maxExpireToUse']?.accessWatchField">
+      <mat-label>{{fieldsInfo['maxExpireToUse']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="MaxExpireToUse" [(ngModel)]="dataModel.maxExpireToUse"
         name="dataModel.maxExpireToUse" />
-      <mat-icon matSuffix *ngIf="dataModel.maxExpireToUse && fieldsInfo['MaxExpireToUse']?.accessAddField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.maxExpireToUse && fieldsInfo['maxExpireToUse']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.maxExpireToUse = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="MaxExpireToUse"></mat-datepicker-toggle>
       <mat-datepicker touchUi #MaxExpireToUse></mat-datepicker>
     </mat-form-field>
 
     <!-- NumberOfRegistered Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['NumberOfRegistered']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['NumberOfRegistered']?.fieldTitle }}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['numberOfRegistered']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['numberOfRegistered']?.fieldTitle }}</mat-label>
       <input matInput [(ngModel)]="dataModel.numberOfRegistered"
-        [disabled]="!fieldsInfo['NumberOfRegistered']?.accessAddField" name="dataModel.numberOfRegistered"
+        [disabled]="!fieldsInfo['numberOfRegistered']?.accessAddField" name="dataModel.numberOfRegistered"
         #NumberOfRegistered type="number" placeholder="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.numberOfRegistered && fieldsInfo['NumberOfRegistered']?.accessAddField"
+      <mat-icon matSuffix *ngIf="dataModel.numberOfRegistered && fieldsInfo['numberOfRegistered']?.accessAddField"
         matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.numberOfRegistered = null">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['NumberOfRegistered']?.accessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['numberOfRegistered']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="NumberOfRegistered.errors?.required">
-        {{ fieldsInfo['NumberOfRegistered']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['numberOfRegistered']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- AllowReuseDay Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AllowReuseDay']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['AllowReuseDay']?.fieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.allowReuseDay" [disabled]="!fieldsInfo['AllowReuseDay']?.accessAddField"
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['allowReuseDay']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['allowReuseDay']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.allowReuseDay" [disabled]="!fieldsInfo['allowReuseDay']?.accessAddField"
         name="dataModel.allowReuseDay" #AllowReuseDay type="number" placeholder="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.allowReuseDay && fieldsInfo['AllowReuseDay']?.accessAddField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.allowReuseDay && fieldsInfo['allowReuseDay']?.accessAddField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.allowReuseDay = null">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['AllowReuseDay']?.accessAddField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['allowReuseDay']?.accessAddField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="AllowReuseDay.errors?.required">
-        {{ fieldsInfo['AllowReuseDay']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['allowReuseDay']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

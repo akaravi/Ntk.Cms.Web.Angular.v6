@@ -54,24 +54,24 @@
       multiTemplateDataRows>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
       <!-- LinkApplicationId Column -->
       <ng-container matColumnDef="LinkApplicationId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkApplicationId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkApplicationId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkApplicationId}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
@@ -81,40 +81,40 @@
       </ng-container>
       <!-- LinkUserId Column -->
       <ng-container matColumnDef="LinkUserId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkUserId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkUserId}} </mat-cell>
       </ng-container>
       <!-- LinkMemberId Column -->
       <ng-container matColumnDef="LinkMemberId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkMemberId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkMemberId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkMemberId}} </mat-cell>
       </ng-container>
       <!-- SimCard Column -->
       <ng-container matColumnDef="SimCard">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SimCard']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['simCard']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.simCard}} </mat-cell>
       </ng-container>
       <!-- AppBuildVer Column -->
       <ng-container matColumnDef="AppBuildVer">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AppBuildVer']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['appBuildVer']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.appBuildVer}} </mat-cell>
       </ng-container>
       <!-- AppSourceVer Column -->
       <ng-container matColumnDef="AppSourceVer">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AppSourceVer']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['appSourceVer']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.appSourceVer}} </mat-cell>
       </ng-container>
       <!-- ScorePercent Column -->
       <ng-container matColumnDef="ScorePercent">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ScorePercent']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scorePercent']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.scorePercent}} %</mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
       </ng-container>
@@ -169,28 +169,28 @@
               </tr>
               <tr *ngIf="row.updatedDate">
                 <td></td>
-                <td> {{fieldsInfo['UpdatedDate']?.fieldTitle}} : {{ publicHelper.LocaleDate(row.updatedDate) }}</td>
+                <td> {{fieldsInfo['updatedDate']?.fieldTitle}} : {{ publicHelper.LocaleDate(row.updatedDate) }}</td>
               </tr>
               <tr>
                 <td></td>
-                <td> {{fieldsInfo['LinkLocationIdTitle']?.fieldTitle}}  {{row.linkLocationIdTitle}} </td>
+                <td> {{fieldsInfo['linkLocationIdTitle']?.fieldTitle}}  {{row.linkLocationIdTitle}} </td>
               </tr>
 
               <tr>
                 <td></td>
-                <td> {{fieldsInfo['LinkLocationIdParentTitle']?.fieldTitle}}  {{row.linkLocationIdParentTitle}} </td>
+                <td> {{fieldsInfo['linkLocationIdParentTitle']?.fieldTitle}}  {{row.linkLocationIdParentTitle}} </td>
               </tr>
               <tr>
                 <td></td>
-                <td> {{fieldsInfo['DeviceStatus']?.fieldTitle}} : {{row.deviceStatus}} </td>
+                <td> {{fieldsInfo['deviceStatus']?.fieldTitle}} : {{row.deviceStatus}} </td>
               </tr>
               <tr>
                 <td></td>
-                <td> {{fieldsInfo['DeviceId']?.fieldTitle}} : {{row.deviceId}} </td>
+                <td> {{fieldsInfo['deviceId']?.fieldTitle}} : {{row.deviceId}} </td>
               </tr>
               <tr>
                 <td></td>
-                <td> {{fieldsInfo['DeviceBrand']?.fieldTitle}} : {{row.deviceBrand}} </td>
+                <td> {{fieldsInfo['deviceBrand']?.fieldTitle}} : {{row.deviceBrand}} </td>
               </tr>
               <tr>
                 <td></td>

@@ -64,13 +64,13 @@
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
 
       <!-- LinkPrivateConfigId Column -->
       <ng-container matColumnDef="LinkPrivateConfigId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkPrivateConfigId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPrivateConfigId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkPrivateConfigId | cmstitle: dataModelPrivateResult.listItems}}
         </mat-cell>
@@ -84,25 +84,25 @@
       </ng-container>
       <!-- Message Column -->
       <ng-container matColumnDef="Message">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Message']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['message']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.message}} </mat-cell>
       </ng-container>
 
       <!-- SendDate Column -->
       <ng-container matColumnDef="SendDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['SendDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['sendDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.sendDate) }} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
           publicHelper.LocaleDateTime(row.createdDate)}}
         </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.updatedDate) }}
           {{ publicHelper.getTime(row.updatedDate) }} </mat-cell>
       </ng-container>

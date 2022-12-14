@@ -3,12 +3,12 @@
   <div class="tr">
     <div class="td">{{fieldsInfo['Title']?.fieldTitle}} : </div>
     <div class="td">{{dataModelResult?.item?.title}}</div>
-    <div class="td">{{fieldsInfo['Id']?.fieldTitle}} : </div>
+    <div class="td">{{fieldsInfo['id']?.fieldTitle}} : </div>
     <div class="td">{{dataModelResult?.item?.id}}</div>
     <div style="clear: both;"></div>
   </div>
   <div class="tr">
-    <div class="td">{{fieldsInfo['LinkMainImageId']?.fieldTitle}} : </div>
+    <div class="td">{{fieldsInfo['linkMainImageId']?.fieldTitle}} : </div>
     <div class="td">
       <img *ngIf="dataModelResult?.item?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
       src="{{dataModelResult?.item?.linkMainImageIdSrc }}" height="40" width="40" id="LinkMainImageIdSrc" />

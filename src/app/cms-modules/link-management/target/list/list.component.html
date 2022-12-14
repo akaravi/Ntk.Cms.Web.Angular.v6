@@ -65,18 +65,18 @@
       </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['Id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
       </ng-container>
 
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <i [ngClass]="row.recordStatus|statusClass"></i>
@@ -87,31 +87,31 @@
       </ng-container>
       <!-- IsPublic Column -->
       <ng-container matColumnDef="IsPublic">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['IsPublic']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['isPublic']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.isPublic | boolclass"></i> </mat-cell>
       </ng-container>
       <!-- CurrentViewCount Column -->
       <ng-container matColumnDef="CurrentViewCount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentViewCount']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['currentViewCount']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.currentViewCount}} </mat-cell>
       </ng-container>
       <!-- CurrentClickCount Column -->
       <ng-container matColumnDef="CurrentClickCount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CurrentClickCount']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['currentClickCount']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.currentClickCount}} </mat-cell>
       </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['CreatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{
           publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['UpdatedDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.updatedDate) }} </mat-cell>
       </ng-container>
       <!-- Action Column -->
@@ -157,7 +157,7 @@
                 <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
                     class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
                     width="80" /></th>
-                <th>{{fieldsInfo['Id']?.fieldTitle}} : {{row.id}}</th>
+                <th>{{fieldsInfo['id']?.fieldTitle}} : {{row.id}}</th>
               </tr>
               <tr>
                 <td></td>
@@ -170,7 +170,7 @@
               <tr *ngIf="row.toWebAddress">
                 <td></td>
                 <td>
-                  {{fieldsInfo['WebAddress']?.fieldTitle}} : <span class="navi-icon style cursor"
+                  {{fieldsInfo['webAddress']?.fieldTitle}} : <span class="navi-icon style cursor"
                     [cdkCopyToClipboard]="row.toWebAddress" (click)="onActionCopied()">
                     <i class="flaticon2-copy"></i></span>
                   <a class="short-link" href="{{row.toWebAddress}}" target="_blank">{{row.toWebAddress}}</a>
@@ -188,7 +188,7 @@
               </tr>
               <tr>
                 <td></td>
-                <td>{{fieldsInfo['CurrentClickCount']?.fieldTitle}} : {{row.currentClickCount}}</td>
+                <td>{{fieldsInfo['currentClickCount']?.fieldTitle}} : {{row.currentClickCount}}</td>
               </tr>
               <tr>
                 <td></td>

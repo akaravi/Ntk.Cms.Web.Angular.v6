@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -31,9 +31,9 @@
 
     <!-- Credit Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Credit']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['credit']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.credit" name="dataModel.credit" #Credit type="number"
-        placeholder="{{fieldsInfo['Credit']?.fieldTitle}}"  required />
+        placeholder="{{fieldsInfo['credit']?.fieldTitle}}"  required />
       <mat-icon matSuffix *ngIf="dataModel.credit" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.credit = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

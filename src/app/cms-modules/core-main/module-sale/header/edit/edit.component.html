@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -26,7 +26,7 @@
     <app-core-modulesaleheadergroup-selector (optionChange)="onActionSelectHeaderGroup($event)"
       [optionSelectForce]="this.dataModel.linkModuleSaleHeaderGroupId"
       [optionPlaceholder]="this.translate.instant('TITLE.Category')"
-      [optionDisabled]="!fieldsInfo['LinkModuleSaleHeaderGroupId']?.accessEditField">
+      [optionDisabled]="!fieldsInfo['linkModuleSaleHeaderGroupId']?.accessEditField">
     </app-core-modulesaleheadergroup-selector>
 
     <!-- Title Field -->
@@ -43,73 +43,73 @@
       </mat-error>
     </mat-form-field>
     <!-- SalePrice Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SalePrice']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['SalePrice']?.fieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.salePrice" [disabled]="!fieldsInfo['SalePrice']?.accessEditField"
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['salePrice']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['salePrice']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.salePrice" [disabled]="!fieldsInfo['salePrice']?.accessEditField"
         name="dataModel.salePrice" #SalePrice type="number" placeholder="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.salePrice && fieldsInfo['SalePrice']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.salePrice && fieldsInfo['salePrice']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.salePrice = null">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['SalePrice']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['salePrice']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="SalePrice.errors?.required">
-        {{ fieldsInfo['SalePrice']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['salePrice']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- AllowReuseDay Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['AllowReuseDay']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['AllowReuseDay']?.fieldTitle }}</mat-label>
-      <input matInput [(ngModel)]="dataModel.allowReuseDay" [disabled]="!fieldsInfo['AllowReuseDay']?.accessEditField"
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['allowReuseDay']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['allowReuseDay']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.allowReuseDay" [disabled]="!fieldsInfo['allowReuseDay']?.accessEditField"
         name="dataModel.allowReuseDay" #AllowReuseDay type="number" placeholder="0" required />
-      <mat-icon matSuffix *ngIf="dataModel.allowReuseDay && fieldsInfo['AllowReuseDay']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.allowReuseDay && fieldsInfo['allowReuseDay']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.allowReuseDay = null">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['AllowReuseDay']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['allowReuseDay']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="AllowReuseDay.errors?.required">
-        {{ fieldsInfo['AllowReuseDay']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{ fieldsInfo['allowReuseDay']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- HasDemo Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.hasDemo" *ngIf="fieldsInfo['HasDemo']?.accessWatchField"
-        [disabled]="!fieldsInfo['HasDemo']?.accessEditField" name="dataModel.hasDemo">
-        {{fieldsInfo['HasDemo']?.fieldTitle}}
+      <mat-slide-toggle [(ngModel)]="dataModel.hasDemo" *ngIf="fieldsInfo['hasDemo']?.accessWatchField"
+        [disabled]="!fieldsInfo['hasDemo']?.accessEditField" name="dataModel.hasDemo">
+        {{fieldsInfo['hasDemo']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
 
     <!-- FromDate Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['FromDate']?.accessWatchField">
-      <mat-label>{{fieldsInfo['FromDate']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['fromDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['fromDate']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate" required />
-      <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['FromDate']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['fromDate']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #FromDate></mat-datepicker>
       <mat-error *ngIf="Title.errors?.required">
-        {{fieldsInfo['FromDate']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['fromDate']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- ExpireDate Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
-      <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expireDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['expireDate']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate"
         required />
-      <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #ExpireDate></mat-datepicker>
       <mat-error *ngIf="Title.errors?.required">
-        {{fieldsInfo['ExpireDate']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['expireDate']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-        placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
       <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.description = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
       <mat-error *ngIf="Description.errors?.required">
-        {{fieldsInfo['Description']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{fieldsInfo['description']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
     <!-- LinkMainImageId Field -->

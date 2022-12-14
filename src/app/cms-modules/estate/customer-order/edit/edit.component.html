@@ -12,7 +12,7 @@
     <div class="col-md-6 col-sm-6 col-xs-9">
       <!-- RecordStatus Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
           name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
           required>
           <mat-option *ngFor="
@@ -45,19 +45,19 @@
       </mat-form-field>
       <!-- Description Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-          placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="0" maxlength="500" rows=5></textarea>
+          placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="0" maxlength="500" rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.description = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
       </mat-form-field>
       <!-- DescriptionHidden Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['DescriptionHidden']?.accessWatchField">
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField">
         <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
-          #DescriptionHidden type="text" placeholder="{{fieldsInfo['DescriptionHidden']?.fieldTitle}}" minlength="0"
+          #DescriptionHidden type="text" placeholder="{{fieldsInfo['descriptionHidden']?.fieldTitle}}" minlength="0"
           maxlength="500" rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.descriptionHidden = ''">close</mat-icon>
@@ -67,15 +67,15 @@
 
       <div class="ntk-full-width">
         <!-- IncludeAllSite Field -->
-        <mat-slide-toggle [(ngModel)]="dataModel.includeAllSite" *ngIf="fieldsInfo['IncludeAllSite']?.accessWatchField"
-          [disabled]="!fieldsInfo['IncludeAllSite']?.accessEditField" name="dataModel.includeAllSite">
-          {{fieldsInfo['IncludeAllSite']?.fieldTitle}}
+        <mat-slide-toggle [(ngModel)]="dataModel.includeAllSite" *ngIf="fieldsInfo['includeAllSite']?.accessWatchField"
+          [disabled]="!fieldsInfo['includeAllSite']?.accessEditField" name="dataModel.includeAllSite">
+          {{fieldsInfo['includeAllSite']?.fieldTitle}}
         </mat-slide-toggle>
       </div>
       <hr>
       <!-- LinkEstateUserId Field -->
       <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)"
-        [optionDisabled]="!fieldsInfo['LinkEstateUserId']?.accessEditField"
+        [optionDisabled]="!fieldsInfo['linkEstateUserId']?.accessEditField"
         [optionSelectForce]="dataModel.linkEstateUserId"
         [optionPlaceholder]="this.translate.instant('TITLE.Real_estate_customer_personnel')">
       </app-estate-account-user-selector>
@@ -96,9 +96,9 @@
       </mat-form-field>
       <!-- AreaAddress Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['AreaAddress']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['areaAddress']?.fieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.areaAddress" name="dataModel.areaAddress" #AreaAddress type="text"
-          placeholder="{{fieldsInfo['AreaAddress']?.fieldTitle}}" minlength="0" maxlength="500" rows=5></textarea>
+          placeholder="{{fieldsInfo['areaAddress']?.fieldTitle}}" minlength="0" maxlength="500" rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.areaAddress" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.areaAddress = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -111,7 +111,7 @@
       </p>
       <!-- LinkPropertyIds Field -->
       <app-estate-property-autocomplete (optionChange)="onActionSelectorProperty($event)"
-        [optionDisabled]="!fieldsInfo['LinkPropertyIds']?.accessEditField"
+        [optionDisabled]="!fieldsInfo['linkPropertyIds']?.accessEditField"
         [optionPlaceholder]="this.translate.instant('TITLE.Property')"
         [optionSelectForce]="this.dataModel.linkPropertyIds">
       </app-estate-property-autocomplete>
@@ -201,13 +201,13 @@
         <P>{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
         <!-- LinkLocationIds Field -->
         <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
-          [optionDisabled]="!fieldsInfo['LinkLocationIds']?.accessEditField"
+          [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField"
           [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-autocomplete>
         <hr>
         <!-- LinkPropertyTypeUsageId Field -->
         <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
-          [optionDisabled]="!fieldsInfo['LinkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
+          [optionDisabled]="!fieldsInfo['linkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
           [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
           <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0"
@@ -219,7 +219,7 @@
         <hr>
         <!-- LinkPropertyTypeLanduseId Field -->
         <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
-          [optionDisabled]="!fieldsInfo['LinkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
+          [optionDisabled]="!fieldsInfo['linkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
           <mat-icon matSuffix
@@ -232,7 +232,7 @@
         <hr>
         <!-- LinkContractTypeIds Field -->
         <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
-          [optionDisabled]="!fieldsInfo['LinkContractTypeId']?.accessEditField"
+          [optionDisabled]="!fieldsInfo['linkContractTypeId']?.accessEditField"
           [optionSelectForce]="dataModel.linkContractTypeId"
           [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
           <mat-icon matSuffix *ngIf="dataModel.linkContractTypeId && dataModel.linkContractTypeId?.length>0" matSuffix
@@ -247,7 +247,7 @@
           *ngIf="this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected?.titleCreatedYaer?.length>1">
           <mat-label>{{PropertyTypeSelected.titleCreatedYaer}}</mat-label>
           <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.createdYaer" #CreatedYaer type="number"
-            placeholder="{{fieldsInfo['CreatedYaer']?.fieldTitle}}" />
+            placeholder="{{fieldsInfo['createdYaer']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.createdYaer" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.createdYaer = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -264,16 +264,16 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- Area Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Area']?.accessWatchField">
-          <mat-label>{{fieldsInfo['Area']?.fieldTitle}}</mat-label>
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['area']?.accessWatchField">
+          <mat-label>{{fieldsInfo['area']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.area" name="dataModel.area" #Area type="number"
-            disabled="{{!fieldsInfo['Area']?.accessEditField}}" placeholder="{{fieldsInfo['Area']?.fieldTitle}}" />
+            disabled="{{!fieldsInfo['area']?.accessEditField}}" placeholder="{{fieldsInfo['area']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.area" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.area = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['Area']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['area']?.FieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
 
@@ -285,88 +285,88 @@
         </app-cms-currency-selector>
         <!-- SalePriceMin Field -->
         <mat-form-field class="ntk-full-width"
-          *ngIf="fieldsInfo['SalePriceMin']?.accessWatchField && contractTypeSelected?.hasSalePrice">
-          <mat-label> {{fieldsInfo['SalePriceMin']?.fieldTitle}}</mat-label>
+          *ngIf="fieldsInfo['salePriceMin']?.accessWatchField && contractTypeSelected?.hasSalePrice">
+          <mat-label> {{fieldsInfo['salePriceMin']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.salePriceMin" name="dataModel.salePriceMin" #SalePriceMin type="number"
-            [disabled]="!fieldsInfo['SalePriceMin']?.accessEditField"
-            placeholder="{{fieldsInfo['SalePriceMin']?.fieldTitle}}" />
+            [disabled]="!fieldsInfo['salePriceMin']?.accessEditField"
+            placeholder="{{fieldsInfo['salePriceMin']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.salePriceMin" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.salePriceMin = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- SalePriceMax Field -->
         <mat-form-field class="ntk-full-width"
-          *ngIf="fieldsInfo['SalePriceMax']?.accessWatchField && contractTypeSelected?.hasSalePrice">
-          <mat-label> {{fieldsInfo['SalePriceMax']?.fieldTitle}}</mat-label>
+          *ngIf="fieldsInfo['salePriceMax']?.accessWatchField && contractTypeSelected?.hasSalePrice">
+          <mat-label> {{fieldsInfo['salePriceMax']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.salePriceMax" name="dataModel.salePriceMax" #SalePriceMax type="number"
-            [disabled]="!fieldsInfo['SalePriceMax']?.accessEditField"
-            placeholder="{{fieldsInfo['SalePriceMax']?.fieldTitle}}" />
+            [disabled]="!fieldsInfo['salePriceMax']?.accessEditField"
+            placeholder="{{fieldsInfo['salePriceMax']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.salePriceMax" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.salePriceMax = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- RentPriceMin Field -->
         <mat-form-field class="ntk-full-width"
-          *ngIf="fieldsInfo['RentPriceMin']?.accessWatchField && contractTypeSelected?.hasRentPrice">
-          <mat-label> {{fieldsInfo['RentPriceMin']?.fieldTitle}}</mat-label>
+          *ngIf="fieldsInfo['rentPriceMin']?.accessWatchField && contractTypeSelected?.hasRentPrice">
+          <mat-label> {{fieldsInfo['rentPriceMin']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.rentPriceMin" name="dataModel.rentPriceMin" #RentPriceMin type="number"
-            [disabled]="!fieldsInfo['RentPriceMin']?.accessEditField"
-            placeholder="{{fieldsInfo['RentPriceMin']?.fieldTitle}}" />
+            [disabled]="!fieldsInfo['rentPriceMin']?.accessEditField"
+            placeholder="{{fieldsInfo['rentPriceMin']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.rentPriceMin" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.rentPriceMin = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- RentPriceMax Field -->
         <mat-form-field class="ntk-full-width"
-          *ngIf="fieldsInfo['RentPriceMax']?.accessWatchField && contractTypeSelected?.hasRentPrice">
-          <mat-label> {{fieldsInfo['RentPriceMax']?.fieldTitle}}</mat-label>
+          *ngIf="fieldsInfo['rentPriceMax']?.accessWatchField && contractTypeSelected?.hasRentPrice">
+          <mat-label> {{fieldsInfo['rentPriceMax']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.rentPriceMax" name="dataModel.rentPriceMax" #RentPriceMax type="number"
-            [disabled]="!fieldsInfo['RentPriceMax']?.accessEditField"
-            placeholder="{{fieldsInfo['RentPriceMax']?.fieldTitle}}" />
+            [disabled]="!fieldsInfo['rentPriceMax']?.accessEditField"
+            placeholder="{{fieldsInfo['rentPriceMax']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.rentPriceMax" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.rentPriceMax = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- DepositPriceMin Field -->
         <mat-form-field class="ntk-full-width"
-          *ngIf="fieldsInfo['DepositPriceMin']?.accessWatchField && contractTypeSelected?.hasDepositPrice">
-          <mat-label> {{fieldsInfo['DepositPriceMin']?.fieldTitle}}</mat-label>
+          *ngIf="fieldsInfo['depositPriceMin']?.accessWatchField && contractTypeSelected?.hasDepositPrice">
+          <mat-label> {{fieldsInfo['depositPriceMin']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.depositPriceMin" name="dataModel.depositPriceMin" #DepositPriceMin
-            type="number" [disabled]="!fieldsInfo['DepositPriceMin']?.accessEditField"
-            placeholder="{{fieldsInfo['DepositPriceMin']?.fieldTitle}}" />
+            type="number" [disabled]="!fieldsInfo['depositPriceMin']?.accessEditField"
+            placeholder="{{fieldsInfo['depositPriceMin']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.depositPriceMin" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.depositPriceMin = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- DepositPriceMax Field -->
         <mat-form-field class="ntk-full-width"
-          *ngIf="fieldsInfo['DepositPriceMax']?.accessWatchField && contractTypeSelected?.hasDepositPrice">
-          <mat-label> {{fieldsInfo['DepositPriceMax']?.fieldTitle}}</mat-label>
+          *ngIf="fieldsInfo['depositPriceMax']?.accessWatchField && contractTypeSelected?.hasDepositPrice">
+          <mat-label> {{fieldsInfo['depositPriceMax']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.depositPriceMax" name="dataModel.depositPriceMax" #DepositPriceMax
-            type="number" [disabled]="!fieldsInfo['DepositPriceMax']?.accessEditField"
-            placeholder="{{fieldsInfo['DepositPriceMax']?.fieldTitle}}" />
+            type="number" [disabled]="!fieldsInfo['depositPriceMax']?.accessEditField"
+            placeholder="{{fieldsInfo['depositPriceMax']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.depositPriceMax" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.depositPriceMax = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- PeriodPriceMin Field -->
         <mat-form-field class="ntk-full-width"
-          *ngIf="fieldsInfo['PeriodPriceMin']?.accessWatchField && contractTypeSelected?.hasDepositPrice">
-          <mat-label> {{fieldsInfo['PeriodPriceMin']?.fieldTitle}}</mat-label>
+          *ngIf="fieldsInfo['periodPriceMin']?.accessWatchField && contractTypeSelected?.hasDepositPrice">
+          <mat-label> {{fieldsInfo['periodPriceMin']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.periodPriceMin" name="dataModel.periodPriceMin" #PeriodPriceMin
-            type="number" [disabled]="!fieldsInfo['PeriodPriceMin']?.accessEditField"
-            placeholder="{{fieldsInfo['PeriodPriceMin']?.fieldTitle}}" />
+            type="number" [disabled]="!fieldsInfo['periodPriceMin']?.accessEditField"
+            placeholder="{{fieldsInfo['periodPriceMin']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.periodPriceMin" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.periodPriceMin = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- PeriodPriceMax Field -->
         <mat-form-field class="ntk-full-width"
-          *ngIf="fieldsInfo['PeriodPriceMax']?.accessWatchField && contractTypeSelected?.hasDepositPrice">
-          <mat-label> {{fieldsInfo['PeriodPriceMax']?.fieldTitle}}</mat-label>
+          *ngIf="fieldsInfo['periodPriceMax']?.accessWatchField && contractTypeSelected?.hasDepositPrice">
+          <mat-label> {{fieldsInfo['periodPriceMax']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.periodPriceMax" name="dataModel.periodPriceMax" #PeriodPriceMax
-            type="number" [disabled]="!fieldsInfo['PeriodPriceMax']?.accessEditField"
-            placeholder="{{fieldsInfo['PeriodPriceMax']?.fieldTitle}}" />
+            type="number" [disabled]="!fieldsInfo['periodPriceMax']?.accessEditField"
+            placeholder="{{fieldsInfo['periodPriceMax']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.periodPriceMax" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.periodPriceMax = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>

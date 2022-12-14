@@ -8,7 +8,7 @@
 	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus"
+        <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus"
           #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
           <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
@@ -22,7 +22,7 @@
       </mat-form-field>
       <!-- SecurityKey Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['SecurityKey']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['securityKey']?.fieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.securityKey" name="dataModel.securityKey" #SecurityKey type="text"
           placeholder="NTK.CMS.APP.1" minlength="3" maxlength="100" />
         <mat-icon matSuffix *ngIf="dataModel.securityKey" matSuffix mat-icon-button aria-label="Clear"
@@ -35,7 +35,7 @@
       </mat-form-field>
       <!-- PackageName Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['PackageName']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['packageName']?.fieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.packageName" name="dataModel.packageName" #PackageName type="text"
           placeholder="8.8.8.8" minlength="0" maxlength="500" />
         <mat-icon matSuffix *ngIf="dataModel.packageName" matSuffix mat-icon-button aria-label="Clear"
@@ -45,7 +45,7 @@
       </mat-form-field>
       <!-- DeviceIPsAllow Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['DeviceIPsAllow']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['deviceIPsAllow']?.fieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.deviceIPsAllow" name="dataModel.deviceIPsAllow" #DeviceIPsAllow
           type="text" placeholder="8.8.8.8" minlength="0" maxlength="500" />
         <mat-icon matSuffix *ngIf="dataModel.deviceIPsAllow" matSuffix mat-icon-button aria-label="Clear"
@@ -59,7 +59,7 @@
 
       <!-- LinkApplicationId Field -->
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['LinkApplicationId']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['linkApplicationId']?.fieldTitle}}</mat-label>
         <input matInput [(ngModel)]="dataModel.linkApplicationId" name="dataModel.linkApplicationId"
           #LinkApplicationId type="number" placeholder="number " />
         <mat-icon matSuffix *ngIf="dataModel.linkApplicationId" matSuffix mat-icon-button aria-label="Clear"
@@ -91,9 +91,9 @@
       <!-- Description Field -->
 
       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['Description']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
-          placeholder="{{fieldsInfo['Description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+          placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
         <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.description = ''">close</mat-icon>
         <mat-icon matSuffix>mode_edit</mat-icon>
@@ -104,10 +104,10 @@
       </mat-form-field>
 
       <!-- ExpireDate Field -->
-      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ExpireDate']?.accessWatchField">
-        <mat-label>{{fieldsInfo['ExpireDate']?.fieldTitle}}</mat-label>
+      <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expireDate']?.accessWatchField">
+        <mat-label>{{fieldsInfo['expireDate']?.fieldTitle}}</mat-label>
         <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
-        <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['ExpireDate']?.accessAddField" matSuffix
+        <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessAddField" matSuffix
           mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
         <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
         <mat-datepicker touchUi #ExpireDate></mat-datepicker>

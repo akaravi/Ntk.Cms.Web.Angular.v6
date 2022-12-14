@@ -10,7 +10,7 @@
 
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['RecordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
         required>
         <mat-option *ngFor="
@@ -28,50 +28,50 @@
       [optionSelectForce]="dataModel.linkApiNumberId" [optionPlaceholder]="'شماره'">
     </app-sms-api-number-selector> -->
     <!-- ReceiverDate Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ReceiverDate']?.accessWatchField">
-      <mat-label>{{fieldsInfo['ReceiverDate']?.fieldTitle}}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['receiverDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['receiverDate']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="ReceiverDate" [(ngModel)]="dataModel.receiverDate" name="dataModel.receiverDate"
-        disabled="{{!fieldsInfo['ReceiverDate']?.accessEditField}}"
-        placeholder="{{fieldsInfo['ReceiverDate']?.fieldTitle}}" />
-      <mat-icon matSuffix *ngIf="dataModel.receiverDate && fieldsInfo['ReceiverDate']?.accessEditField" matSuffix
+        disabled="{{!fieldsInfo['receiverDate']?.accessEditField}}"
+        placeholder="{{fieldsInfo['receiverDate']?.fieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.receiverDate && fieldsInfo['receiverDate']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.receiverDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="ReceiverDate"></mat-datepicker-toggle>
       <mat-datepicker touchUi #ReceiverDate></mat-datepicker>
     </mat-form-field>
     
     <!-- SenderNumber Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['SenderNumber']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['SenderNumber']?.fieldTitle }}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['senderNumber']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['senderNumber']?.fieldTitle }}</mat-label>
       <input matInput [(ngModel)]="dataModel.senderNumber"
-        [disabled]="!fieldsInfo['SenderNumber']?.accessEditField" name="dataModel.senderNumber" #SenderNumber
+        [disabled]="!fieldsInfo['senderNumber']?.accessEditField" name="dataModel.senderNumber" #SenderNumber
         type="text" placeholder="123" />
-      <mat-icon matSuffix *ngIf="dataModel.senderNumber && fieldsInfo['SenderNumber']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.senderNumber && fieldsInfo['senderNumber']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.senderNumber = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['SenderNumber']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['senderNumber']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint  style="text-align: right;">{{ SenderNumber.value.length }} / 100</mat-hint>
     </mat-form-field>
 
     <!-- ReceiverNumber Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['ReceiverNumber']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['ReceiverNumber']?.fieldTitle }}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['receiverNumber']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['receiverNumber']?.fieldTitle }}</mat-label>
       <input matInput [(ngModel)]="dataModel.receiverNumber"
-        [disabled]="!fieldsInfo['ReceiverNumber']?.accessEditField" name="dataModel.receiverNumber" #ReceiverNumber
+        [disabled]="!fieldsInfo['receiverNumber']?.accessEditField" name="dataModel.receiverNumber" #ReceiverNumber
         type="text" placeholder="123" />
-      <mat-icon matSuffix *ngIf="dataModel.receiverNumber && fieldsInfo['ReceiverNumber']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.receiverNumber && fieldsInfo['receiverNumber']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.receiverNumber = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['ReceiverNumber']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['receiverNumber']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint  style="text-align: right;">{{ ReceiverNumber.value.length }} / 100</mat-hint>
     </mat-form-field>
 
     <!-- Message Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['Message']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['Message']?.fieldTitle }}</mat-label>
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['message']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['message']?.fieldTitle }}</mat-label>
       <input matInput [(ngModel)]="dataModel.message"
-        [disabled]="!fieldsInfo['Message']?.accessEditField" name="dataModel.message" #Message
+        [disabled]="!fieldsInfo['message']?.accessEditField" name="dataModel.message" #Message
         type="text" placeholder="123" />
-      <mat-icon matSuffix *ngIf="dataModel.message && fieldsInfo['Message']?.accessEditField" matSuffix
+      <mat-icon matSuffix *ngIf="dataModel.message && fieldsInfo['message']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.message = ''">close</mat-icon>
-      <mat-icon *ngIf="fieldsInfo['Message']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['message']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint  style="text-align: right;">{{ Message.value.length }} / 100</mat-hint>
     </mat-form-field>
 

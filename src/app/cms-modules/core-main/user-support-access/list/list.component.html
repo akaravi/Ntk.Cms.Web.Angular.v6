@@ -57,7 +57,7 @@
 
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['RecordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
@@ -67,24 +67,24 @@
       </ng-container>
       <!-- linkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkSiteId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId| cmssiteinfo |async}} </mat-cell>
       </ng-container>
       <!-- linkUserId Column -->
       <ng-container matColumnDef="LinkUserId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['LinkUserId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkUserId']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkUserId| cmsuserinfo |async}} </mat-cell>
       </ng-container>
       <!-- moduleName Column -->
       <ng-container matColumnDef="ModuleName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleName']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['moduleName']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.moduleName}} </mat-cell>
       </ng-container>
 
       <!-- moduleEntityName Column -->
       <ng-container matColumnDef="ModuleEntityName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['ModuleEntityName']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['moduleEntityName']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.moduleEntityName}} </mat-cell>
       </ng-container>
@@ -96,7 +96,7 @@
       </ng-container>
       <!-- accessWatchRow Column -->
       <ng-container matColumnDef="AccessWatchRow">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['AccessWatchRow']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['accessWatchRow']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"><i [ngClass]="row.accessWatchRow | boolclass"></i> </mat-cell>
       </ng-container>
