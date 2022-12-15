@@ -49,7 +49,7 @@ export class CoreSiteCategoryListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -64,7 +64,7 @@ export class CoreSiteCategoryListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<CoreSiteCategoryModel> = new ErrorExceptionResult<CoreSiteCategoryModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<CoreSiteCategoryModel> = [];
@@ -73,7 +73,7 @@ export class CoreSiteCategoryListComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'MainImageSrc',
     'Id',
@@ -330,57 +330,37 @@ export class CoreSiteCategoryListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
 
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessDeleteRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
     this.router.navigate(['/core/sitecategorymodule/LinkCmsSiteCategoryId', this.tableRowSelected.id]);
 
 
   }
   onActionbuttonSiteList(model: CoreSiteCategoryModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
-
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.tableRowSelected = model;
-
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessDeleteRow
-    ) {
-      this.cmsToastrService.typeErrorSelected();
-      return;
-    }
     this.router.navigate(['/core/site/list/LinkSiteCategoryId', this.tableRowSelected.id]);
-
-
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -409,7 +389,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
 
   onActionbuttonReload(): void {
     this.DataGetAll();

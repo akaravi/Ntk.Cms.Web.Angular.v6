@@ -13,7 +13,7 @@ import { FooterComponent } from './layout/components/footer/footer.component';
 import { HeaderComponent } from './layout/components/header/header.component';
 import { TopbarComponent } from './layout/components/topbar/topbar.component';
 
-import { SubheaderModule } from '../_metronic/partials/layout/subheader/subheader.module';
+
 import { AsideDynamicComponent } from './layout/components/aside-dynamic/aside-dynamic.component';
 import { HeaderMenuDynamicComponent } from './layout/components/header/header-menu-dynamic/header-menu-dynamic.component';
 import { CoreSiteModule } from '../cms-modules/core-main/site/coreSite.module';
@@ -45,7 +45,7 @@ import { DynamicAsideMenuService } from '../core/services/dynamic-aside-menu.ser
     NgbDropdownModule,
     NgbProgressbarModule,
     // CoreModule,
-    SubheaderModule,
+    //SubheaderModule,
     CoreSiteModule,
     SharedModule.forRoot(),
   ],

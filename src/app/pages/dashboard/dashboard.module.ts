@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import { DashboardsModule } from '../../_metronic/partials/content/dashboards/dashboards.module';
+
 import { NewsContentWidgetComponent } from 'src/app/cms-modules/news/content/widget/widget.component';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ApplicationAppWidgetComponent } from 'src/app/cms-modules/application/content/widget/widget.component';
@@ -107,7 +107,7 @@ import { CoreModuleSiteUserCreditWidgetPriceComponent } from 'src/app/cms-module
         component: DashboardComponent,
       },
     ]),
-    DashboardsModule,
+    //DashboardsModule,
     InlineSVGModule,
     NgApexchartsModule,
     SharedModule.forRoot(),
