@@ -218,12 +218,12 @@
         </app-cms-user-selector>
 
               <!-- linkEstateAgencyId Field -->
-              <app-estate-account-agency-selecto *ngIf="this.tokenHelper.isAdminSite"
+              <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite"
               (optionChange)="onActionSelectorEstateAgency($event)"
               [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField"
               [optionSelectForce]="dataModel.linkEstateAgencyId"
               [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
-            </app-estate-account-agency-selecto>
+            </app-estate-account-agency-selector>
 
         <!-- LinkEstateUserId Field -->
         <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite"

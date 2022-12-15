@@ -214,7 +214,7 @@
           (click)="dataModel.area = 0"> close</mat-icon>
         <mat-icon matSuffix> mode_edit</mat-icon>
         <mat-hint align="start">
-          <mat-icon matSuffix class="info-field-icon">"this.translate.instant('TITLE.info')"</mat-icon>
+          <mat-icon matSuffix class="info-field-icon">{{'TITLE.info' | translate}}</mat-icon>
           <strong class="info-field-text">{{fieldsInfo['area']?.FieldDescription}}</strong>
         </mat-hint>
       </mat-form-field>
