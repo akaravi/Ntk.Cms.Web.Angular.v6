@@ -29,7 +29,9 @@
     </app-estate-property-type-landuse-selector>
     <!-- LinkPropertyDetailGroupId Field -->
     <app-estate-property-detail-group-selector (optionChange)="onActionSelectorDetailGroup($event)"
-      [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
+      [optionSelectForce]="dataModel.linkPropertyDetailGroupId"
+      [optionSelectParentForce]="dataModel.linkPropertyTypeLanduseId"
+       [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['linkPropertyDetailGroupId']?.accessEditField">
     </app-estate-property-detail-group-selector>
     <!-- IconFont Field -->

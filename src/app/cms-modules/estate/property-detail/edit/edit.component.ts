@@ -41,7 +41,6 @@ export class EstatePropertyDetailEditComponent implements OnInit {
     private dialogRef: MatDialogRef<EstatePropertyDetailEditComponent>,
     public coreEnumService: CoreEnumService,
     public estatePropertyDetailService: EstatePropertyDetailService,
-    private estateEnumService: EstateEnumService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,

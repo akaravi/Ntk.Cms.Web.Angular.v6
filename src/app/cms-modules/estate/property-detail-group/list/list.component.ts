@@ -56,8 +56,8 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
     };
     
     /*filter Sort*/
-    this.filteModelContent.sortColumn = 'Id';
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'ShowInFormOrder';
+    this.filteModelContent.sortType = EnumSortType.Ascending;
   }
   comment: string;
   author: string;
@@ -96,7 +96,7 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.sortColumn = 'Title';
+    this.filteModelContent.sortColumn = 'ShowInFormOrder';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();

@@ -8,7 +8,8 @@ import {
   FilterDataModel,
   FilterModel,
   EstatePropertyDetailGroupModel,
-  EstatePropertyDetailGroupService
+  EstatePropertyDetailGroupService,
+  EstatePropertyTypeLanduseModel
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -31,7 +32,7 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public categoryService: EstatePropertyDetailGroupService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyDetailGroupModel> = new ErrorExceptionResult<EstatePropertyDetailGroupModel>();
@@ -47,6 +48,11 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: string | EstatePropertyDetailGroupModel) {
     this.onActionSelectForce(x);
   }
+  @Input() set optionSelectParentForce(x: string) {
+    this.linkPropertyTypeLanduseId = x;
+    this.loadOptions();
+  }
+  linkPropertyTypeLanduseId = '';
 
   _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
   get loading(): ProgressSpinnerModel {
@@ -94,14 +100,15 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
       filter.searchType = EnumFilterDataModelSearchTypes.Contains;
       filterModel.filters.push(filter);
       /* */
-      filter = new FilterDataModel();
-      filter.propertyName = 'Id';
-      filter.value = text;
+
+    }
+    if (this.linkPropertyTypeLanduseId && this.linkPropertyTypeLanduseId.length > 0) {
+      var filter = new FilterDataModel();
+      filter.propertyName = 'linkPropertyTypeLanduseId';
+      filter.value = this.linkPropertyTypeLanduseId;
       filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.Or;
       filterModel.filters.push(filter);
     }
-
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 

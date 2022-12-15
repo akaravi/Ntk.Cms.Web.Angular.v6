@@ -216,6 +216,15 @@
           [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCmsUserId"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_Owner')">
         </app-cms-user-selector>
+
+              <!-- linkEstateAgencyId Field -->
+              <app-estate-account-agency-selecto *ngIf="this.tokenHelper.isAdminSite"
+              (optionChange)="onActionSelectorEstateAgency($event)"
+              [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField"
+              [optionSelectForce]="dataModel.linkEstateAgencyId"
+              [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
+            </app-estate-account-agency-selecto>
+
         <!-- LinkEstateUserId Field -->
         <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateUser($event)"

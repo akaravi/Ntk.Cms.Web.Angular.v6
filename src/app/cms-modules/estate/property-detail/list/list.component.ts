@@ -62,8 +62,8 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
     };
     
     /*filter Sort*/
-    this.filteModelContent.sortColumn = 'Id';
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortColumn = 'ShowInFormOrder';
+    this.filteModelContent.sortType = EnumSortType.Ascending;
     const filter = new FilterDataModel();
     if (this.requestLinkPropertyTypeLanduseId && this.requestLinkPropertyTypeLanduseId.length > 0) {
       filter.propertyName = 'LinkPropertyTypeLanduseId';
@@ -112,7 +112,7 @@ export class EstatePropertyDetailListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.sortColumn = 'Title';
+    this.filteModelContent.sortColumn = 'ShowInFormOrder';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();

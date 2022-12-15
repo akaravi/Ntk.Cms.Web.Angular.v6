@@ -28,6 +28,7 @@ import {
   TokenInfoModel,
   CoreCurrencyModel,
   EstatePropertyProjectModel,
+  EstateAccountAgencyModel,
 } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -382,6 +383,13 @@ export class EstatePropertyAddComponent implements OnInit {
       return;
     }
     this.dataModel.linkEstateUserId = model.id;
+  }
+  onActionSelectorEstateAgency(model: EstateAccountAgencyModel | null): void {
+    this.dataModel.linkEstateAgencyId = null;
+    if (!model || !model.id || model.id.length <= 0) {
+      return;
+    }
+    this.dataModel.linkEstateAgencyId = model.id;
   }
 
 
