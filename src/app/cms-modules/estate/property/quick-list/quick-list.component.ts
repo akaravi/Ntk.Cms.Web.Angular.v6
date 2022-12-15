@@ -752,7 +752,7 @@ export class EstatePropertyQuickListComponent
     }
     //open popup
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
-      height: "30%",
+      height: "50%",
       width: "50%",
       data: {
         service: this.contentService,

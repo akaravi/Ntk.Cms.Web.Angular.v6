@@ -17,7 +17,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 export class CmsMemoComponent implements OnInit {
   static nextId = 0;
   id = ++CmsMemoComponent.nextId;
-  requestId = '';
+  
   requestTitle = '';
   requestService: IApiCmsServerBase;
   constructor(private cmsToastrService: CmsToastrService,
@@ -32,11 +32,11 @@ export class CmsMemoComponent implements OnInit {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestService = data.service;
-      this.requestId = data.id;
+      this.dataModel.id = data.id;
       this.requestTitle = data.title;
     }
 
-    if (!this.requestId || this.requestId.length==0)
+    if (!this.dataModel.id || this.dataModel.id.length==0)
       this.dialogRef.close({ dialogChangedDate: true });
 
   }
@@ -60,7 +60,7 @@ export class CmsMemoComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
 
     /*filter CLone*/
-    this.requestService.ServiceMemoGetAll(this.requestId).subscribe({
+    this.requestService.ServiceMemoGetAll(this.dataModel.id).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
         if (ret.isSuccess) {
@@ -84,7 +84,7 @@ export class CmsMemoComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
+    
     this.requestService.ServiceMemoAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;

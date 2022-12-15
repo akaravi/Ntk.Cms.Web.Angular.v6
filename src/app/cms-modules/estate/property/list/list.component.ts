@@ -69,7 +69,6 @@ export class EstatePropertyListComponent
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
     public translate: TranslateService,
-    // private CoreModuleLogMemoModel : CoreModuleLogMemoModel,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -693,7 +692,7 @@ export class EstatePropertyListComponent
     }
     //open popup
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
-      height: "30%",
+      height: "50%",
       width: "50%",
       data: {
         service: this.contentService,
@@ -742,7 +741,7 @@ export class EstatePropertyListComponent
     this.loading.Stop(pName);
   }
 
-  filterModel
+  
 
   onActionbuttonExport(): void {
         //open popup
