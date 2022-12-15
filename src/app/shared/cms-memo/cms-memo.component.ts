@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angula
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleLogMemoModel, CoreModuleLogMemoService, DataFieldInfoModel, EnumSortType, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
+import { CoreModuleLogMemoModel, CoreModuleLogMemoService, DataFieldInfoModel, EnumSortType, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -46,6 +46,7 @@ export class CmsMemoComponent implements OnInit {
   loading = new ProgressSpinnerModel();
 
   dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
+  dataModelResultBase: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreModuleLogMemoModel = new CoreModuleLogMemoModel();
 
 
@@ -88,7 +89,7 @@ export class CmsMemoComponent implements OnInit {
     this.requestService.ServiceMemoAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
-        // this.dataModelResult = ret;
+        // this.dataModelResultBase = ret;
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();

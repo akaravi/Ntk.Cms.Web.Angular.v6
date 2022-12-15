@@ -37,9 +37,10 @@ export class StringComponent implements OnInit {
   }
   itemSelected: Map<string, boolean> = new Map<string, boolean>();
 
+  colors = ['primary','accent','warn','primary','accent','warn','primary','accent','warn'];
+
   ngOnInit(): void {
   }
-
   onActionSelect(value: string): void {
     const retOut = [];
     this.optionDefaultValue.forEach(element => {

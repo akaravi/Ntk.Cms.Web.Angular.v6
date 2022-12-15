@@ -11,6 +11,12 @@
   <table class="table table-striped">
     <tbody>
       <tr>
+        <td><b> {{'TITLE.Sharing_Key' | translate}}:</b>
+        <!-- <p>تست</p> -->
+        </td>
+        <td><b>{{dataModel.sharingKey}}</b></td>
+      </tr>
+      <tr>
         <td>{{'TITLE.Property_type' | translate}}:</td>
         <td>{{propertyTypeLanduse}}</td>
       </tr>
@@ -25,10 +31,6 @@
       <tr>
         <td>{{fieldsInfo['caseCode']?.fieldTitle}}:</td>
         <td>{{dataModel.caseCode}}</td>
-      </tr>
-      <tr>
-        <td>{{fieldsInfo['sharingKey']?.fieldTitle}}:</td>
-        <td>{{dataModel.sharingKey}}</td>
       </tr>
       <tr>
         <td>{{'TITLE.CreatedYaer' | translate}}:</td>

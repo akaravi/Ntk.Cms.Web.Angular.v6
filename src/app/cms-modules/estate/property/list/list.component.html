@@ -62,10 +62,16 @@
     </a>
 
     <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -1px;"
+        title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
-    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn btn-outline-secondary BTN-icon">
+    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+      class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
+    </button>
+    <button (click)="onActionbuttonMemo()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+      class="btn btn-outline-secondary BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.MEMO' | translate}}">description</mat-icon>
     </button>
 
     <a class="btn btn-outline-info btn-sm BTN-text">
@@ -169,7 +175,7 @@
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> 
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}">
           {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
@@ -202,10 +208,6 @@
             <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonMemo(row)">
-              <mat-icon>description</mat-icon>
-              <span>{{'ACTION.MEMO' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonHistoryRow(row,$event)">
               <mat-icon>history</mat-icon>
@@ -306,8 +308,6 @@
                       {{'ACTION.VIEW_SITE' | translate}} </a>
                     |
                   </ng-container>
-
-                  <a (click)="onActionbuttonMemo(row)" class="link-primary pointer"> {{'ACTION.MEMO' | translate}} </a>
                 </td>
               </tr>
 

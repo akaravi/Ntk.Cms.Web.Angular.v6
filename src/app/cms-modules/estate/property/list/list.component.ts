@@ -734,7 +734,7 @@ export class EstatePropertyListComponent
     );
     dialogRef.afterClosed().subscribe((result) => {
       if (result && result.dialogChangedDate) {
-        this.DataGetAll();
+        // this.DataGetAll();
       }
     });
     //open popup

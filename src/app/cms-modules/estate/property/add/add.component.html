@@ -354,6 +354,7 @@
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
                   <app-input-boolean [(model)]="propertyDetails[itemDetail.id]">{{itemDetail.title}}
+                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>
                   </app-input-boolean>
                 </div>
                 <!-- ngSwitchCase-->

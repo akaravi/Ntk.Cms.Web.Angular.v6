@@ -18,8 +18,8 @@
   </ng-container>
   <ng-container *ngIf="optionMultipleChoice">
     <mat-checkbox *ngFor="let item of optionDefaultValue,index as i " (change)="onActionSelect(item)" [disabled]="optionDisabled"
-      class="example-radio-button" [(ngModel)]="itemSelected[item]">
-      {{item}}
+      class="example-radio-button checkbox" style="margin-left: 10px;" [(ngModel)]="itemSelected[item]" [color]="colors[i]">
+      {{item}}&nbsp;|
     </mat-checkbox>
   </ng-container>
 </ng-container>
