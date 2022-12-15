@@ -17,6 +17,10 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
   @Input() title: string;
   description: string;
   body: string;
+  podcast: number;
+  podcastSrc: string;
+  movie: number;
+  movieSrc: string;
   @Input() classes: string;
   @Input() icon: string;
   @Input() svg: string;
@@ -59,30 +63,50 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
                   this.title = next.item.titleFa;
                   this.description = next.item.descriptionFa;
                   this.body = next.item.bodyFa;
+                  this.podcast = next.item.linkFilePodcastIdFa;
+                  this.movie = next.item.linkFileMovieIdFa;
+                  this.podcastSrc = next.item.linkFilePodcastIdFaSrc;
+                  this.movieSrc = next.item.linkFileMovieIdFaSrc;
                   break;
                 }
                 case 'en': {
                   this.title = next.item.titleEn;
                   this.description = next.item.descriptionEn;
                   this.body = next.item.bodyEn;
+                  this.podcast = next.item.linkFilePodcastIdEn;
+                  this.movie = next.item.linkFileMovieIdEn;
+                  this.podcastSrc = next.item.linkFilePodcastIdEnSrc;
+                  this.movieSrc = next.item.linkFileMovieIdEnSrc;
                   break;
                 }
                 case 'ar': {
                   this.title = next.item.titleAr;
                   this.description = next.item.descriptionAr;
                   this.body = next.item.bodyAr;
+                  this.podcast = next.item.linkFilePodcastIdAr;
+                  this.movie = next.item.linkFileMovieIdAr;
+                  this.podcastSrc = next.item.linkFilePodcastIdArSrc;
+                  this.movieSrc = next.item.linkFileMovieIdArSrc;
                   break;
                 }
                 case 'de': {
                   this.title = next.item.titleDe;
                   this.description = next.item.descriptionDe;
                   this.body = next.item.bodyDe;
+                  this.podcast = next.item.linkFilePodcastIdDe;
+                  this.movie = next.item.linkFileMovieIdDe;
+                  this.podcastSrc = next.item.linkFilePodcastIdDeSrc;
+                  this.movieSrc = next.item.linkFileMovieIdDeSrc;
                   break;
                 }
                 default: {
                   this.title = next.item.titleFa;
                   this.description = next.item.descriptionFa;
                   this.body = next.item.bodyFa;
+                  this.podcast = next.item.linkFilePodcastIdFa;
+                  this.movie = next.item.linkFileMovieIdFa;
+                  this.podcastSrc = next.item.linkFilePodcastIdFaSrc;
+                  this.movieSrc = next.item.linkFileMovieIdFaSrc;
                   break;
                 }
               }
@@ -106,30 +130,50 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
                   this.title = next.item.titleFa;
                   this.description = next.item.descriptionFa;
                   this.body = next.item.bodyFa;
+                  this.podcast = next.item.linkFilePodcastIdFa;
+                  this.movie = next.item.linkFileMovieIdFa;
+                  this.podcastSrc = next.item.linkFilePodcastIdFaSrc;
+                  this.movieSrc = next.item.linkFileMovieIdFaSrc;
                   break;
                 }
                 case 'en': {
                   this.title = next.item.titleEn;
                   this.description = next.item.descriptionEn;
                   this.body = next.item.bodyEn;
+                  this.podcast = next.item.linkFilePodcastIdEn;
+                  this.movie = next.item.linkFileMovieIdEn;
+                  this.podcastSrc = next.item.linkFilePodcastIdEnSrc;
+                  this.movieSrc = next.item.linkFileMovieIdEnSrc;
                   break;
                 }
                 case 'ar': {
                   this.title = next.item.titleAr;
                   this.description = next.item.descriptionAr;
                   this.body = next.item.bodyAr;
+                  this.podcast = next.item.linkFilePodcastIdAr;
+                  this.movie = next.item.linkFileMovieIdAr;
+                  this.podcastSrc = next.item.linkFilePodcastIdArSrc;
+                  this.movieSrc = next.item.linkFileMovieIdArSrc;
                   break;
                 }
                 case 'de': {
                   this.title = next.item.titleDe;
                   this.description = next.item.descriptionDe;
                   this.body = next.item.bodyDe;
+                  this.podcast = next.item.linkFilePodcastIdDe;
+                  this.movie = next.item.linkFileMovieIdDe;
+                  this.podcastSrc = next.item.linkFilePodcastIdDeSrc;
+                  this.movieSrc = next.item.linkFileMovieIdDeSrc;
                   break;
                 }
                 default: {
                   this.title = next.item.titleFa;
                   this.description = next.item.descriptionFa;
                   this.body = next.item.bodyFa;
+                  this.podcast = next.item.linkFilePodcastIdFa;
+                  this.movie = next.item.linkFileMovieIdFa;
+                  this.podcastSrc = next.item.linkFilePodcastIdFaSrc;
+                  this.movieSrc = next.item.linkFileMovieIdFaSrc;
                   break;
                 }
               }
