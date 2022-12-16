@@ -28,7 +28,7 @@
         <mat-option *ngFor="
                 let item of dataModelEnumManageUserAccessUserTypesResult.listItems;
                 index as i
-              " [value]="item.value">{{ item.description }}</mat-option>
+              " [value]="item.value">{{ item.description }} ({{item.key}})</mat-option>
       </mat-select>
       <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
       <mat-error *ngIf="UserType.errors?.required">
