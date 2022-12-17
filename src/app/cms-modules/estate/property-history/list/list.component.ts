@@ -63,24 +63,6 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
     
-    if (this.requestLinkPropertyId && this.requestLinkPropertyId.length > 0) {
-      const filter = new FilterDataModel();
-      filter.propertyName = 'LinkPropertyId';
-      filter.value = this.requestLinkPropertyId;
-      this.filteModelContent.filters.push(filter);
-    }
-    if (this.requestLinkAgentId && this.requestLinkAgentId.length > 0) {
-      const filter = new FilterDataModel();
-      filter.propertyName = 'linkAgentId';
-      filter.value = this.requestLinkAgentId;
-      this.filteModelContent.filters.push(filter);
-    }
-    if (this.requestLinkCustomerOrderId && this.requestLinkCustomerOrderId.length > 0) {
-      const filter = new FilterDataModel();
-      filter.propertyName = 'linkCustomerOrderId';
-      filter.value = this.requestLinkCustomerOrderId;
-      this.filteModelContent.filters.push(filter);
-    }
   }
   comment: string;
   author: string;
@@ -135,6 +117,29 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+
+
+    
+    if (this.requestLinkPropertyId && this.requestLinkPropertyId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'LinkPropertyId';
+      filter.value = this.requestLinkPropertyId;
+      this.filteModelContent.filters.push(filter);
+    }
+    if (this.requestLinkAgentId && this.requestLinkAgentId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'linkAgentId';
+      filter.value = this.requestLinkAgentId;
+      this.filteModelContent.filters.push(filter);
+    }
+    if (this.requestLinkCustomerOrderId && this.requestLinkCustomerOrderId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'linkCustomerOrderId';
+      filter.value = this.requestLinkCustomerOrderId;
+      this.filteModelContent.filters.push(filter);
+    }
+
+    
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstatePropertyHistoryModel();
     const pName = this.constructor.name + 'main';

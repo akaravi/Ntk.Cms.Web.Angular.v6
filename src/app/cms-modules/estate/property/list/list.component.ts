@@ -163,7 +163,7 @@ export class EstatePropertyListComponent
   }
   @Input() optionloadComponent = true;
   @Input() optionloadByRoute = true;
-  @Input() optionsortType = 'asc';
+  @Input() optionsortType = '';
 
 
   @Input() set optionLinkCustomerOrderId(id: string) {
@@ -262,6 +262,7 @@ export class EstatePropertyListComponent
     if (!this.optionloadComponent) {
       return;
     }
+    
     if (this.optionsortType && this.optionsortType.length > 0) {
       if (this.optionsortType == 'asc') {
         this.filteModelContent.sortType = EnumSortType.Ascending;
