@@ -8,7 +8,7 @@ import {
   Input,
   Renderer2
 } from '@angular/core';
-import { EnumRecordStatus } from 'ntk-cms-api';
+import { EnumManageUserAccessDataTypes, EnumRecordStatus } from 'ntk-cms-api';
 import { PublicHelper } from '../helpers/publicHelper';
 import { CmsToastrService } from '../services/cmsToastr.service';
 
@@ -60,6 +60,7 @@ export class CmsRecordStatusSelfSaveDirective {
     const element: HTMLElement = this.elRef.nativeElement;
     const recordStatus = element['value'] as EnumRecordStatus;
     this.addLoader(element);
+    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.contentService.ServiceSetStatus(this.row.id, recordStatus).subscribe(
       (next) => {
         if (next.isSuccess) {
