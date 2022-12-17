@@ -95,7 +95,7 @@
         </mat-error>
       </mat-form-field>
       <!-- AreaAddress Field -->
-      <mat-form-field class="ntk-full-width"  *ngIf="areaAddressView" >
+      <mat-form-field class="ntk-full-width" *ngIf="areaAddressView">
         <mat-label>{{fieldsInfo['areaAddress']?.fieldTitle}}</mat-label>
         <textarea matInput [(ngModel)]="dataModel.areaAddress" name="dataModel.areaAddress" #AreaAddress type="text"
           placeholder="{{fieldsInfo['areaAddress']?.fieldTitle}}" minlength="0" maxlength="500" rows=5></textarea>
@@ -125,7 +125,7 @@
 
 
       <div *ngIf="!LinkPropertyIdsInUse">
-        
+
         <p>{{'MESSAGE.Content_of_your_choice_to_display' | translate}}</p>
         <P>{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
         <!-- LinkLocationIds Field -->
@@ -397,18 +397,26 @@
       <div>
         جستجو:
         <hr>
-        <!-- resultSortColumn Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['resultSortColumn']?.fieldTitle}}</mat-label>
-          <mat-select placeholder="{{'TITLE.Report_Format' | translate}}" [(ngModel)]="dataModel.resultSortColumn"
-            name="dataModel.resultSortColumn" #RecordStatus="ngModel" >
-            <mat-option *ngFor="
+        <div class="row">
+          <div class="col-md-10 col-sm-10 col-xs-16">
+            <!-- resultSortColumn Field -->
+            <mat-form-field class="ntk-full-width">
+              <mat-label>{{fieldsInfo['resultSortColumn']?.fieldTitle}}</mat-label>
+              <mat-select placeholder="{{'TITLE.Report_Format' | translate}}" [(ngModel)]="dataModel.resultSortColumn"
+                name="dataModel.resultSortColumn" #RecordStatus="ngModel">
+                <mat-option *ngFor="
                 let item of dataFieldInfoModel;
                 index as i
-              " [value]="item.fieldName" >{{ item.fieldTitle }}</mat-option>
-          </mat-select>
-         
-        </mat-form-field>
+              " [value]="item.fieldName">{{ item.fieldTitle }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div *ngIf="dataModel?.resultSortColumn?.length>0" class="col-md-2 col-sm-2 col-xs-2 resultSortIcon">
+            <a (click)="resultSortArrowIcon = !resultSortArrowIcon">
+              <i [class]="resultSortArrowIcon ? 'fa fa-arrow-down' : 'fa fa-arrow-up'" style="color: black;"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-9" style="text-align: center;"
@@ -474,6 +482,6 @@
 <div class="row alert alert-custom alert-white alert-shadow gutter-b">
   <div class="col-md-12 col-sm-12 col-xs-18">
     <app-estate-property-list [optionLinkCustomerOrderId]="dataModel.id" [optionloadComponent]="optionloadComponent"
-      [optionloadByRoute]="false" #optionReloadList></app-estate-property-list>
+      [optionsortType]="resultSortArrowIcon ? 'asc' : 'desc'" [optionloadByRoute]="false" #optionReloadList></app-estate-property-list>
   </div>
 </div>

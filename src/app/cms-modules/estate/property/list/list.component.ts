@@ -96,7 +96,7 @@ export class EstatePropertyListComponent
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = "CreatedDate";
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -143,6 +143,8 @@ export class EstatePropertyListComponent
   }
   @Input() optionloadComponent = true;
   @Input() optionloadByRoute = true;
+  @Input() optionsortType = 'asc';
+
 
   @Input() set optionLinkCustomerOrderId(id: string) {
     if (id && id.length > 0) {
@@ -169,7 +171,7 @@ export class EstatePropertyListComponent
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel =
     new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstatePropertyModel> = [];
@@ -240,6 +242,14 @@ export class EstatePropertyListComponent
     if (!this.optionloadComponent) {
       return;
     }
+    if (this.optionsortType && this.optionsortType.length > 0) {
+      if (this.optionsortType == 'asc'){
+        this.filteModelContent.sortType = EnumSortType.Ascending;
+      } else {
+        this.filteModelContent.sortType = EnumSortType.Descending;
+      }
+    }
+
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstatePropertyModel();
     const pName = this.constructor.name + "main";
@@ -482,9 +492,9 @@ export class EstatePropertyListComponent
       }
     });
   }
-  
 
-  
+
+
   onActionbuttonAdsRow(
     mode: EstatePropertyModel = this.tableRowSelected, event?: MouseEvent
   ): void {
@@ -741,31 +751,31 @@ export class EstatePropertyListComponent
     this.loading.Stop(pName);
   }
 
-  
+
 
   onActionbuttonExport(): void {
-        //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
 
   onActionbuttonInChecking(model: boolean): void {
     this.searchInChecking = model;
     this.DataGetAll();
   }
-  
+
 
   onActionbuttonReload(): void {
     this.optionloadComponent = true;

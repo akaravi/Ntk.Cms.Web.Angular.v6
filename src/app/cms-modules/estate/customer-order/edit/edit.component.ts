@@ -91,6 +91,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   // ** Accardon */
   step = 0;
   hidden = true;
+  resultSortArrowIcon=true;
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
     if (!this.requestId || this.requestId.length === 0) {
