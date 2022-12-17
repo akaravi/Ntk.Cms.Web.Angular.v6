@@ -366,6 +366,7 @@ export class EstatePropertyListComponent
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
+            
             if (this.optionsSearch.data.show && this.optionsStatist.data.show) {
               this.optionsStatist.data.show = !this.optionsStatist.data.show
               this.onActionbuttonStatist();

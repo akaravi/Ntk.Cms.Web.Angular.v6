@@ -15,21 +15,25 @@
       </ng-container>
       <div class="alert-text">
         <h4> {{ title }}</h4>
-        <h4> {{ podcastSrc }}</h4>
         <div [innerHTML]="description"></div>
-        <div *ngIf="bodyShow" [innerHTML]="body"></div>
-        <div *ngIf="podcastSrc" [innerHTML]="podcast">
-          <audio controls>
-            <source src="{{podcastSrc | cmsthumbnail}}" type="audio/mp3">
-            Your browser does not support the audio tag.
-          </audio>
-        </div>
-
-        <div *ngIf="movieSrc" [innerHTML]="movie">
-          <video  controls>
-            <source src="{{movieSrc }}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-9">
+            <div *ngIf="bodyShow" [innerHTML]="body"></div>
+            <div *ngIf="podcastSrc && podcastSrc?.length>0">
+              <audio controls>
+                <source src="{{podcastSrc | cmsthumbnail}}" type="audio/mp3">
+                Your browser does not support the audio tag.
+              </audio>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-9">
+            <div *ngIf="movieSrc && movieSrc?.length>0">
+              <video controls>
+                <source src="{{movieSrc }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
         </div>
       </div>
       <div style="align-self: end;">

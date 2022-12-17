@@ -52,7 +52,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Ascending;
@@ -66,14 +66,14 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<ApiTelegramBotConfigModel> = new ErrorExceptionResult<ApiTelegramBotConfigModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<ApiTelegramBotConfigModel> = [];
   tableRowSelected: ApiTelegramBotConfigModel = new ApiTelegramBotConfigModel();
   tableSource: MatTableDataSource<ApiTelegramBotConfigModel> = new MatTableDataSource<ApiTelegramBotConfigModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
@@ -88,7 +88,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
   expandedElement: ApiTelegramBotConfigModel | null;
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
-    
+
     this.filteModelContent.sortColumn = 'ShowInMenuOrder';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -103,7 +103,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-   this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new ApiTelegramBotConfigModel();
     const pName = this.constructor.name + 'main';
@@ -267,6 +267,8 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     const statist = new Map<string, number>();
     statist.set('Active', 0);
     statist.set('All', 0);
+    const pName = this.constructor.name + '.ServiceStatist';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_statist'));
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -276,9 +278,11 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
         else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
+        this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
       }
     }
     );
@@ -296,9 +300,11 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
         else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
+        this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
       }
     }
     );
@@ -447,23 +453,23 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     );
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -492,7 +498,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

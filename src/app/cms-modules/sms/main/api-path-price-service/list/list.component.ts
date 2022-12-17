@@ -326,7 +326,9 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
     }
     const statist = new Map<string, number>();
     statist.set('Active', 0);
-    statist.set('All', 0);
+    statist.set(this.translate.instant('MESSAGE.All'), 0);
+    const pName = this.constructor.name + '.ServiceStatist';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_statist'));
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -335,9 +337,11 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
+        this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
       }
     }
     );
@@ -355,9 +359,11 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
+        this.loading.Stop(pName);
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
       }
     }
     );

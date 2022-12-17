@@ -172,6 +172,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
+            
 
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.access);
@@ -288,12 +289,12 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       return;
     }
     const statist = new Map<string, number>();
-    statist.set('Active', 0);
-    statist.set('All', 0);
+    statist.set(this.translate.instant('MESSAGE.Active'), 0);
+    statist.set(this.translate.instant('MESSAGE.All'), 0);
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          statist.set('All', ret.totalRowCount);
+          statist.set(this.translate.instant('MESSAGE.All'), ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         else {
@@ -314,7 +315,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          statist.set('Active', ret.totalRowCount);
+          statist.set(this.translate.instant('MESSAGE.Active'), ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         else {
