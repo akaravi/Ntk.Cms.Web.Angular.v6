@@ -48,7 +48,7 @@ export class EstateBillboardEditComponent implements OnInit {
     public translate: TranslateService,
     public http: HttpClient,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -67,6 +67,7 @@ export class EstateBillboardEditComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
   optionloadComponent = false;
+  resultSortArrowIcon = true;
 
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
@@ -82,6 +83,8 @@ export class EstateBillboardEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
+  dataFieldInfoModel: DataFieldInfoModel[];
+
   DataGetOneContent(): void {
 
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
@@ -94,7 +97,7 @@ export class EstateBillboardEditComponent implements OnInit {
     this.estateBillboardService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
+        this.dataFieldInfoModel = ret.access.fieldsInfo;
         this.dataModel = ret.item;
         if (ret.isSuccess) {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;

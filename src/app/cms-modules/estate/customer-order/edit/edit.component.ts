@@ -87,11 +87,11 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   optionloadComponent = false;
   LinkPropertyIdsInUse = false;
-  areaAddressView=false;
+  areaAddressView = false;
   // ** Accardon */
   step = 0;
   hidden = true;
-  resultSortArrowIcon=true;
+  resultSortArrowIcon = true;
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
     if (!this.requestId || this.requestId.length === 0) {
@@ -107,7 +107,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   }
 
   lastRecordStatus: EnumRecordStatus;
-  dataFieldInfoModel:DataFieldInfoModel[];
+  dataFieldInfoModel: DataFieldInfoModel[];
 
   DataGetOneContent(): void {
 
@@ -121,9 +121,9 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        this.dataFieldInfoModel=ret.access.fieldsInfo;
+        this.dataFieldInfoModel = ret.access.fieldsInfo;
         this.lastRecordStatus = ret.item.recordStatus;
-        this.dataModel = ret.item;  
+        this.dataModel = ret.item;
         if (ret.isSuccess) {
           this.cdr.detectChanges();
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
@@ -294,7 +294,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   }
   onActionSelectorPropertyIgnored(model: string[] | null): void {
     this.dataModel.linkPropertyIdsIgnored = model;
-    
+
   }
   setStep(index: number): void {
     this.step = index;
@@ -325,7 +325,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
         });
       });
     // ** Save Value */
-    if (this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus == EnumRecordStatus.Available ) {
+    if (this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus == EnumRecordStatus.Available) {
       const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
         // height: '90%',
         data: { model: this.dataModel }
@@ -341,9 +341,9 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     } else {
       this.DataEditContent();
     }
-    
+
   }
-  
+
   onActionSelectorSelect(model: EstateCustomerCategoryModel | null): void {
     if (!model || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
