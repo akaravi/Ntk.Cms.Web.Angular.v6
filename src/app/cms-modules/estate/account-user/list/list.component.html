@@ -107,6 +107,10 @@
               <mat-icon>history</mat-icon>
               <span>{{'ACTION.HISTORY' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonPropertyRow(row,$event)">
+              <mat-icon>home</mat-icon>
+              <span>{{'ACTION.CONNECT_TO_PROPERTY' | translate}}</span>
+            </button>
           </mat-menu>
         </mat-cell>
       </ng-container>

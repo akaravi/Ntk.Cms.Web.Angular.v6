@@ -56,6 +56,8 @@ export class EstatePropertyListComponent
   requestLinkBillboardId = "";
   requestLinkCustomerOrderId = "";
   requestLinkProjectId = "";
+  requestLinkEstateUserId = "";
+  requestLinkEstateAgencyId = "";
   requestLinkUserId = 0;
   requestInChecking = false;
   constructor(
@@ -85,6 +87,12 @@ export class EstatePropertyListComponent
     );
     this.requestLinkProjectId = this.activatedRoute.snapshot.paramMap.get(
       "LinkProjectId"
+    );
+    this.requestLinkEstateUserId = this.activatedRoute.snapshot.paramMap.get(
+      "LinkEstateUserId"
+    );
+    this.requestLinkEstateAgencyId = this.activatedRoute.snapshot.paramMap.get(
+      "LinkEstateAgencyId"
     );
     this.requestLinkUserId = +this.activatedRoute.snapshot.paramMap.get(
       "LinkUserId"
@@ -138,6 +146,18 @@ export class EstatePropertyListComponent
       const filter = new FilterDataModel();
       filter.propertyName = "linkPropertyProjectId";
       filter.value = this.requestLinkProjectId;
+      this.filteModelContent.filters.push(filter);
+    }
+    if (this.requestLinkEstateUserId && this.requestLinkEstateUserId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = "linkEstateUserId";
+      filter.value = this.requestLinkEstateUserId;
+      this.filteModelContent.filters.push(filter);
+    }
+    if (this.requestLinkEstateAgencyId && this.requestLinkEstateAgencyId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = "linkEstateAgencyId";
+      filter.value = this.requestLinkEstateAgencyId;
       this.filteModelContent.filters.push(filter);
     }
   }
@@ -243,7 +263,7 @@ export class EstatePropertyListComponent
       return;
     }
     if (this.optionsortType && this.optionsortType.length > 0) {
-      if (this.optionsortType == 'asc'){
+      if (this.optionsortType == 'asc') {
         this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
         this.filteModelContent.sortType = EnumSortType.Descending;

@@ -285,6 +285,30 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
       this.router.navigate(["/estate/property-history/LinkAgentId", this.tableRowSelected.id]);
     }
   }
+  onActionbuttonPropertyRow(
+    mode: EstateAccountUserModel = this.tableRowSelected, event?: MouseEvent
+  ): void {
+    if (!mode || !mode.id || mode.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = mode;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/property/LinkEstateUserId/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(["/estate/property/LinkEstateUserId", this.tableRowSelected.id]);
+    }
+  }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
