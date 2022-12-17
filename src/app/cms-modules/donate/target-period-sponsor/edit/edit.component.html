@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -23,24 +23,25 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkTargetPeriodId Field -->
-    <app-donate-target-category-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-donate-target-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkTargetPeriodId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-donate-target-category-selector>
-       <!-- LinkSponsorId Field -->
-       <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['linkSponsorId']?.fieldTitle}}</mat-label>
-        <input matInput [matDatepicker]="LinkSponsorId" [(ngModel)]="dataModel.linkSponsorId" name="dataModel.linkSponsorId" />
-        <mat-icon matSuffix *ngIf="dataModel.linkSponsorId && fieldsInfo['linkSponsorId']?.accessEditField" matSuffix
-          mat-icon-button aria-label="Clear" (click)="dataModel.linkSponsorId = null">close</mat-icon>
-        <mat-datepicker-toggle matSuffix [for]="LinkSponsorId"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #LinkSponsorId></mat-datepicker>
-      </mat-form-field>
-         <!-- payment Field -->
+    <!-- LinkSponsorId Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['linkSponsorId']?.fieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="LinkSponsorId" [(ngModel)]="dataModel.linkSponsorId"
+        name="dataModel.linkSponsorId" />
+      <mat-icon matSuffix *ngIf="dataModel.linkSponsorId && fieldsInfo['linkSponsorId']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.linkSponsorId = null">close</mat-icon>
+      <mat-datepicker-toggle matSuffix [for]="LinkSponsorId"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #LinkSponsorId></mat-datepicker>
+    </mat-form-field>
+    <!-- payment Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['payment']?.fieldTitle}}</mat-label>
       <input matInput [matDatepicker]="payment" [(ngModel)]="dataModel.payment" name="dataModel.payment" />
-      <mat-icon matSuffix *ngIf="dataModel.payment && fieldsInfo['payment']?.payment" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.payment = null">close</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.payment && fieldsInfo['payment']?.payment" matSuffix mat-icon-button
+        aria-label="Clear" (click)="dataModel.payment = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="payment"></mat-datepicker-toggle>
       <mat-datepicker touchUi #payment></mat-datepicker>
     </mat-form-field>

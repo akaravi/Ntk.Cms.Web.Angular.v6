@@ -38,8 +38,8 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['titleResourceLanguage']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleResourceLanguage" name="dataModel.titleResourceLanguage"
-        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['titleResourceLanguage']?.fieldTitle}}" minlength="3"
-        maxlength="100" required [disabled]="!fieldsInfo['titleResourceLanguage']?.accessEditField" />
+        #TitleResourceLanguage type="text" placeholder="{{fieldsInfo['titleResourceLanguage']?.fieldTitle}}"
+        minlength="3" maxlength="100" required [disabled]="!fieldsInfo['titleResourceLanguage']?.accessEditField" />
       <mat-icon matSuffix *ngIf="dataModel.titleResourceLanguage" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.titleResourceLanguage = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -50,19 +50,20 @@
     </mat-form-field>
     <!-- LinkUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectUser($event)" [optionSelectForce]="this.dataModel.linkUserId"
-      *ngIf="ProfessionalData" [optionPlaceholder]="this.translate.instant('TITLE.USER')"
+      *ngIf="ProfessionalData" [optionPlaceholder]="this.translate.instant('TITLE.USER')" [loading]="loading"
       [optionDisabled]="!fieldsInfo['linkUserId']?.accessEditField">
     </app-cms-user-selector>
 
     <!-- LinkSiteId Field -->
     <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [optionSelectForce]="this.dataModel.linkSiteId"
-      *ngIf="ProfessionalData" [optionPlaceholder]="this.translate.instant('TITLE.SITE')"
+      *ngIf="ProfessionalData" [optionPlaceholder]="this.translate.instant('TITLE.SITE')" [loading]="loading"
       [optionDisabled]="!fieldsInfo['linkSiteId']?.accessEditField">
     </app-cms-site-selector>
 
     <!-- LinkUserClaimTypeId Field -->
     <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)" *ngIf="ProfessionalData"
-      [optionSelectForce]="this.dataModel.linkUserClaimTypeId" [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_CATEGORY')"
+      [optionSelectForce]="this.dataModel.linkUserClaimTypeId" [loading]="loading"
+      [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_CATEGORY')"
       [optionDisabled]="!fieldsInfo['linkUserClaimTypeId']?.accessEditField">
     </app-core-userclaimtype-selector>
     <!-- LinkFileContentId Field -->
@@ -75,7 +76,8 @@
         <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Document_File' | translate}}
         </mat-label>
         <input matInput [(ngModel)]="dataModel.linkFileContentId" name=" dataModel.linkFileContentId" #LinkFileContentId
-          type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
+          type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+          (click)="fileManagerOpenForm = true" />
         <mat-icon matSuffix *ngIf="dataModel.linkFileContentId " matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.linkFileContentId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>

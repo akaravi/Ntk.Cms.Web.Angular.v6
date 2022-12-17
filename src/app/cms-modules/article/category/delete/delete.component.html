@@ -1,6 +1,6 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.formTitle }}
+  {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
@@ -8,22 +8,24 @@
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <ng-container *ngIf="dataModelResultCategory?.item">
     <!-- Title Field -->
-  <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
-    <input matInput [(ngModel)]="dataModelResultCategory.item.title" name="dataModelResultCategory.item.title" #Title
-      type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="50" required readonly />
-  </mat-form-field>
-  <!-- Description Field -->
-  <mat-form-field class="ntk-full-width">
-    <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
-    <textarea matInput [(ngModel)]="dataModelResultCategory.item.description"
-      name="dataModelResultCategory.item.description" #Description type="text"
-      placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="100" readonly required
-      rows=5></textarea>
-  </mat-form-field>
-  <app-article-category-selector [optionPlaceholder]="this.translate.instant('TITLE.Alternative_classification_to_move_information_to_this_branch')">
-  </app-article-category-selector>
-</ng-container>
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModelResultCategory.item.title" name="dataModelResultCategory.item.title" #Title
+        type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="50" required readonly />
+    </mat-form-field>
+    <!-- Description Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModelResultCategory.item.description"
+        name="dataModelResultCategory.item.description" #Description type="text"
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="100" readonly required
+        rows=5></textarea>
+    </mat-form-field>
+    <app-article-category-selector
+      [optionPlaceholder]="this.translate.instant('TITLE.Alternative_classification_to_move_information_to_this_branch')"
+      [loading]="loading">
+    </app-article-category-selector>
+  </ng-container>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 <div class="ntk-cms-html-card-message">

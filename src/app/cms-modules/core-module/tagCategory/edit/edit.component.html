@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -36,7 +36,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkParentId Field -->
-    <app-tag-category-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-tag-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-tag-category-selector>
     <!-- Description Field -->

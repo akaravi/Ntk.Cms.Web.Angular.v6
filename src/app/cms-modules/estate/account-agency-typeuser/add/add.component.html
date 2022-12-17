@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -24,17 +24,17 @@
     </mat-form-field>
 
     <!-- LinkAccountUserId Field -->
-    <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)"
+    <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkAccountUserId" [optionPlaceholder]="'user'">
     </app-estate-account-user-selector>
 
     <!-- LinkAccountAgencyId Field -->
-    <app-estate-account-agency-selector (optionChange)="onActionSelectorAccountAgency($event)"
+    <app-estate-account-agency-selector (optionChange)="onActionSelectorAccountAgency($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkAccountAgencyId" [optionPlaceholder]="'Agency'">
     </app-estate-account-agency-selector>
 
     <!-- LinkPropertyId Field -->
-    <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)"
+    <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkPropertyId" [optionPlaceholder]="'Property'"></app-estate-property-selector>
 
 

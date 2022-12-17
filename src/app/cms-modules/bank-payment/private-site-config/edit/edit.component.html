@@ -23,7 +23,7 @@
         </mat-error>
       </mat-form-field>
       <!-- LinkPublicConfigId Field -->
-      <app-bankpayment-publicconfig-selector (optionChange)="onActionSelectSource($event)"
+      <app-bankpayment-publicconfig-selector (optionChange)="onActionSelectSource($event)" [loading]="loading"
         [optionDisabled]="!fieldsInfo['linkPublicConfigId']?.accessEditField"
         [optionSelectForce]="dataModel.linkPublicConfigId" [optionPlaceholder]="this.translate.instant('TITLE.Account_Type')">
       </app-bankpayment-publicconfig-selector>

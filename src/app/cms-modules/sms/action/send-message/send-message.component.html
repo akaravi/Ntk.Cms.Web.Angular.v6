@@ -18,22 +18,24 @@
               </mat-panel-title>
               <mat-panel-description>
                 {{'TITLE.Select_the_path_to_send_the_message' | translate}}
-               <mat-icon>account_circle</mat-icon>
+                <mat-icon>account_circle</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
 
             <!-- LinkPrivateSiteConfigId Field -->
             <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [loading]="loading"
-              [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="this.translate.instant('TITLE.Direction')"
-              [optionSelectFirstItem]="true" >
+              [optionSelectForce]="dataModel.linkApiPathId"
+              [optionPlaceholder]="this.translate.instant('TITLE.Direction')" [optionSelectFirstItem]="true">
             </app-sms-apipath-selector>
             <app-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [loading]="loading"
-              (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]="" 
-              [optionLinkApiPathId]="dataModel.linkApiPathId" [optionPlaceholder]="this.translate.instant('TITLE.sender_number')"
-              [optionSelectFirstItem]="true" [optionSelectFirstItemOnChangeApi]="true" >
+              (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]=""
+              [optionLinkApiPathId]="dataModel.linkApiPathId"
+              [optionPlaceholder]="this.translate.instant('TITLE.sender_number')" [optionSelectFirstItem]="true"
+              [optionSelectFirstItemOnChangeApi]="true">
             </app-sms-api-number-selector>
             <mat-action-row>
-              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' |
+                translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
 
@@ -48,9 +50,11 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <app-sms-main-message-category-selector (optionChange)="onActionSelectMessageCategory($event)">
+            <app-sms-main-message-category-selector [loading]="loading"
+              (optionChange)="onActionSelectMessageCategory($event)">
             </app-sms-main-message-category-selector>
-            <app-sms-main-message-content-selector (optionChange)="onActionSelectMessageContent($event)"
+            <app-sms-main-message-content-selector [loading]="loading"
+              (optionChange)="onActionSelectMessageContent($event)"
               [optionLinkCategryId]="dataMessageCategoryModel.id"></app-sms-main-message-content-selector>
 
             <textarea matInput [(ngModel)]="dataMessageContentModel.messageBody"
@@ -66,7 +70,8 @@
             </button>
             <mat-action-row>
               <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
-              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' |
+                translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
 
@@ -86,7 +91,8 @@
             </app-cms-contact-category-tree-selector>
             <mat-action-row>
               <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
-              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' |
+                translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
 
@@ -156,14 +162,15 @@
             {{this.dataModel.scheduleSendStart}} >>> {{this.dataModel.scheduleSendExpire}}
             <mat-action-row>
               <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
-              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' |
+                translate}}</button>
             </mat-action-row>
 
           </mat-expansion-panel>
           <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title>
-              {{'TITLE.Timing' | translate}}
+                {{'TITLE.Timing' | translate}}
               </mat-panel-title>
               <mat-panel-description>
                 {{'TITLE.Retry_schedule' | translate}}
@@ -180,7 +187,8 @@
 
             <mat-action-row>
               <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
-              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' |
+                translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
           <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
@@ -209,7 +217,8 @@
 
             <mat-action-row>
               <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
-              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.END' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.END' |
+                translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
@@ -247,7 +256,9 @@
                 (click)="dataModel.toNumbers = ''">close</mat-icon>
               <mat-hint align="start">
                 <mat-icon class="info-field-icon">info</mat-icon>
-                <strong class="info-field-text">{{'TITLE.You_can_separate_the_number_of_the_recipient_of_the_message_with_an_inter' | translate}}</strong>
+                <strong
+                  class="info-field-text">{{'TITLE.You_can_separate_the_number_of_the_recipient_of_the_message_with_an_inter'
+                  | translate}}</strong>
               </mat-hint>
               <mat-hint align="end">{{ ToNumbers.value.length }} / 500</mat-hint>
             </mat-form-field>

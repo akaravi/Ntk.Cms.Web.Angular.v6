@@ -20,7 +20,7 @@
           RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
-      <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
+      <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false" [loading]="loading"
         [optionSelectForce]="dataModel.linkCmsSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-core-site-selector>
       <mat-form-field class="ntk-full-width">
         <mat-label>Domain</mat-label>

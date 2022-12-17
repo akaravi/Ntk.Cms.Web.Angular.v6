@@ -23,7 +23,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkCategoryId Field -->
-    <app-tag-category-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-tag-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-tag-category-selector>
     <!-- Title Field -->

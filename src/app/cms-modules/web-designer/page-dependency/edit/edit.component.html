@@ -56,7 +56,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkModuleId Field -->
-    <app-cms-module-selector (optionChange)="onActionSelectModule($event)"
+    <app-cms-module-selector (optionChange)="onActionSelectModule($event)" [loading]="loading"
       [optionSelectForce]="this.dataModel.linkModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')"
       [optionDisabled]="!fieldsInfo['linkModuleId']?.accessEditField">
     </app-cms-module-selector>

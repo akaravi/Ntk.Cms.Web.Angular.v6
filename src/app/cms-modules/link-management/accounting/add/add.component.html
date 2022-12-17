@@ -24,7 +24,8 @@
     </mat-form-field>
     <!-- LinkManagementMemberId Field -->
     <app-linkmanagement-member-selector (optionChange)="onActionSelectorSelectLinkManagementMemberId($event)"
-      [optionSelectForce]="dataModel.linkManagementMemberId" [optionPlaceholder]="this.translate.instant('TITLE.User_Account')">
+      [loading]="loading" [optionSelectForce]="dataModel.linkManagementMemberId"
+      [optionPlaceholder]="this.translate.instant('TITLE.User_Account')">
     </app-linkmanagement-member-selector>
     <!-- IsCertainDocument Field -->
     <div class="ntk-full-width">

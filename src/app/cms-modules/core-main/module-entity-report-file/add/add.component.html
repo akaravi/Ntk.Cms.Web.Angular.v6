@@ -54,7 +54,7 @@
 
 
     <!-- LinkModuleId Field -->
-    <app-core-module-entity-selector (optionChange)="onActionSelectorModuleEntitySelect($event)"
+    <app-core-module-entity-selector (optionChange)="onActionSelectorModuleEntitySelect($event)" [loading]="loading"
       [optionDisabled]="!fieldsInfo['linkModuleEntityId']?.accessEditField"
       [optionSelectForce]="dataModel.linkModuleEntityId"
       [optionPlaceholder]="this.translate.instant('TITLE.MODULE_ENTITY')">

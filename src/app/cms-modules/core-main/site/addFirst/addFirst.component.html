@@ -23,23 +23,24 @@
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.Latin_title' | translate}}</mat-label>
-          
+
           <input matInput [(ngModel)]="dataModel.subDomain" name="dataModel.subDomain" #SubDomain2 type="text"
-            (ngModelChange)="checkValidateDomain()" placeholder="{{'TITLE.Latin_title' | translate}}" minlength="3" maxlength="20" required />
-            <mat-icon matSuffix *ngIf="dataModel.subDomain" matSuffix mat-icon-button aria-label="Clear"
-              (click)="dataModel.subDomain = 'myname'">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-            <mat-hint align="end">{{ SubDomain2.value.length }} / 20</mat-hint>
-            <mat-error *ngIf="SubDomain2.errors?.required">
-              {{'TITLE.Latin_title_is_required' | translate}}
-            </mat-error>
-            <mat-error *ngIf="!validateDomain">
-              {{'TITLE.You_are_allowed_to_enter_only_Latin_characters' | translate}}
-            </mat-error>
+            (ngModelChange)="checkValidateDomain()" placeholder="{{'TITLE.Latin_title' | translate}}" minlength="3"
+            maxlength="20" required />
+          <mat-icon matSuffix *ngIf="dataModel.subDomain" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.subDomain = 'myname'">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ SubDomain2.value.length }} / 20</mat-hint>
+          <mat-error *ngIf="SubDomain2.errors?.required">
+            {{'TITLE.Latin_title_is_required' | translate}}
+          </mat-error>
+          <mat-error *ngIf="!validateDomain">
+            {{'TITLE.You_are_allowed_to_enter_only_Latin_characters' | translate}}
+          </mat-error>
         </mat-form-field>
         <!-- sitecategory Field -->
-        <app-core-sitecategory-selector (optionChange)="onActionSelectorSelect($event)" [optionSelectFirstItem]="true"
-          [optionSelectForce]="this.dataModel.linkSiteCategoryId"
+        <app-core-sitecategory-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
+          [optionSelectFirstItem]="true" [optionSelectForce]="this.dataModel.linkSiteCategoryId"
           [optionPlaceholder]="this.translate.instant('TITLE.System_Type')" [optionDisabled]="siteTypeId>0">
         </app-core-sitecategory-selector>
 
@@ -49,7 +50,7 @@
           </button>
         </div>
       </mat-step>
-	  
+
       <mat-step label="{{'TITLE.System_features' | translate}}" state="seo">
         <p>{{'TITLE.Depending_on_the_type_of_system_you_choose_these_facilities_are _provided_to_this_system' |
           translate}}</p>
@@ -102,7 +103,8 @@
         <div class="row input-group mb-3 set-select" style="margin: 2px 17px 0 0; padding-left: 34px;">
           <div class="input-group-prepend col-4 ">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-              aria-haspopup="false" aria-expanded="false">{{ dataModel.domain === undefined ? this.translate.instant('TITLE.Domain') : dataModel.domain }}</button>
+              aria-haspopup="false" aria-expanded="false">{{ dataModel.domain === undefined ?
+              this.translate.instant('TITLE.Domain') : dataModel.domain }}</button>
             <div class="dropdown-menu">
               <option (click)="domain(item)" class="cursor-pointer"
                 *ngFor="let item of dataModelResultDomains.listItems;let i = index" value="{{item}}">{{item}}</option>
@@ -118,7 +120,8 @@
         {{'TITLE.Your_system_address' | translate}}:
         <div class="text-left text-wrap"
           style="direction: ltr;font-size: xx-large; color: black;text-align-last:center">
-          http://{{dataModel.subDomain === undefined ?'' : dataModel.subDomain + '.'}}{{ dataModel.domain ===  undefined ? '' : dataModel.domain }}</div>
+          http://{{dataModel.subDomain === undefined ?'' : dataModel.subDomain + '.'}}{{ dataModel.domain === undefined
+          ? '' : dataModel.domain }}</div>
 
         <div class="form-actions">
           <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
@@ -134,9 +137,9 @@
           </button>
         </div>
       </mat-step>
-	  
-	  
-	  
+
+
+
     </mat-horizontal-stepper>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>

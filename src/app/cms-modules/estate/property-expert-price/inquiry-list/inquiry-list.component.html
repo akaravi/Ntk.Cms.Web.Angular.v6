@@ -20,13 +20,13 @@
     <br>
     <!-- LinkLocationId Field -->
     <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
-      [optionSelectForce]="dataModel.linkLocationId"
+      [optionSelectForce]="dataModel.linkLocationId" [loading]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')" [optionDisabled]="false">
       <br>
     </app-cms-location-selector>
     <!-- linkCoreCurrencyId Field -->
     <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
-      (optionChange)="onActionSelectCurrency($event)"
+      (optionChange)="onActionSelectCurrency($event)" [loading]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
     </app-cms-currency-selector>
     <br>
@@ -34,7 +34,7 @@
     <!-- LinkContractTypeIds Field -->
     <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="1"
       *ngIf="dataModel.linkCoreCurrencyId && dataModel.linkCoreCurrencyId>0" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkContractTypeId"
+      [optionSelectForce]="dataModel.linkContractTypeId" [loading]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
       <mat-icon class="margin-top" matSuffix
         *ngIf="dataModel.linkContractTypeId && dataModel.linkContractTypeId?.length>0" matSuffix mat-icon-button
@@ -46,7 +46,7 @@
     <!-- LinkPropertyTypeUsageId Field -->
     <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
       *ngIf="dataModel.linkCoreCurrencyId && dataModel.linkCoreCurrencyId>0" [optionDisabled]="false"
-      [optionTypeView]="1" [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
+      [optionTypeView]="1" [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [loading]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
       <mat-icon class="margin-top" matSuffix
         *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0" matSuffix
@@ -56,7 +56,8 @@
     <br>
     <!-- LinkPropertyTypeLanduseId Field -->
     <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
-      [optionDisabled]="false" [optionTypeView]="1" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
+      [loading]="loading" [optionDisabled]="false" [optionTypeView]="1"
+      [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
       [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
       <mat-icon class="margin-top" matSuffix

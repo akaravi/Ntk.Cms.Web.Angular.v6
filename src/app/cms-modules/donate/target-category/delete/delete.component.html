@@ -22,7 +22,8 @@
         rows=5></textarea>
 
     </mat-form-field>
-    <app-donate-target-category-selector [optionPlaceholder]="this.translate.instant('TITLE.Alternative_classification_to_move_information_to_this_branch')">
+    <app-donate-target-category-selector [loading]="loading"
+      [optionPlaceholder]="this.translate.instant('TITLE.Alternative_classification_to_move_information_to_this_branch')">
     </app-donate-target-category-selector>
   </ng-container>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

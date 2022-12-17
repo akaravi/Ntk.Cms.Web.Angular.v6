@@ -56,12 +56,12 @@
           </mat-select>
         </mat-form-field>
         <!-- LinkSiteCategoryId Field -->
-        <app-core-sitecategory-selector (optionChange)="onActionSelectCategory($event)"
+        <app-core-sitecategory-selector (optionChange)="onActionSelectCategory($event)" [loading]="loading"
           [optionSelectForce]="this.dataModel.linkSiteCategoryId"
           [optionPlaceholder]="this.translate.instant('TITLE.Website_Type')"
           [optionDisabled]="!fieldsInfo['linkSiteCategoryId']?.accessEditField"></app-core-sitecategory-selector>
         <!-- linkCreatedBySiteId Field -->
-        <app-core-site-selector (optionChange)="onActionSelectCategory($event)"
+        <app-core-site-selector (optionChange)="onActionSelectCategory($event)" [loading]="loading"
           [optionSelectForce]="this.dataModel.linkCreatedBySiteId"
           [optionPlaceholder]="this.translate.instant('TITLE.Parent_Site')"
           [optionDisabled]="!fieldsInfo['linkCreatedBySiteId']?.accessEditField"></app-core-site-selector>
@@ -201,12 +201,11 @@
           <mat-hint align="start">{{ PwaDisplay.value.length }} / 100</mat-hint>
         </mat-form-field>
 
-      
+
         <!-- PwaIconSize72x72Id Field -->
         <div class="mb-3">
-          <img *ngIf="dataModel?.pwaIconSize72x72IdSrc?.length>0" style="vertical-align:middle;"
-            class="ntk-hover-zoom" aria-hidden src="{{dataModel.pwaIconSize72x72IdSrc | cmsthumbnail}}" height="50"
-            width="50" />
+          <img *ngIf="dataModel?.pwaIconSize72x72IdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+            aria-hidden src="{{dataModel.pwaIconSize72x72IdSrc | cmsthumbnail}}" height="50" width="50" />
         </div>
         <div class="mb-9">
           <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['pwaIconSize72x72Id']?.accessWatchField">
@@ -243,8 +242,8 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.pwaIconSize192x192Id"
               [disabled]="!fieldsInfo['pwaIconSize192x192Id']?.accessEditField" name="dataModel.pwaIconSize192x192Id"
-              #PwaIconSize192x192Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
-              (click)="fileManagerOpenFormPwaIconSize192x192Id = true" />
+              #PwaIconSize192x192Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
+              autocomplete="off" (click)="fileManagerOpenFormPwaIconSize192x192Id = true" />
             <mat-icon matSuffix
               *ngIf="dataModel.pwaIconSize192x192Id && fieldsInfo['pwaIconSize192x192Id']?.accessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.pwaIconSize192x192Id = null">close</mat-icon>
@@ -257,7 +256,7 @@
             [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
-        
+
         <!-- PwaIconSize384x384Id Field -->
         <div class="mb-3">
           <img *ngIf="dataModel?.pwaIconSize384x384IdSrc?.length>0" style="vertical-align:middle;"
@@ -271,8 +270,8 @@
             </mat-label>
             <input matInput [(ngModel)]="dataModel.pwaIconSize384x384Id"
               [disabled]="!fieldsInfo['pwaIconSize384x384Id']?.accessEditField" name="dataModel.pwaIconSize384x384Id"
-              #PwaIconSize384x384Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
-              (click)="fileManagerOpenFormPwaIconSize384x384Id = true" />
+              #PwaIconSize384x384Id type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
+              autocomplete="off" (click)="fileManagerOpenFormPwaIconSize384x384Id = true" />
             <mat-icon matSuffix
               *ngIf="dataModel.pwaIconSize384x384Id && fieldsInfo['pwaIconSize384x384Id']?.accessEditField" matSuffix
               mat-icon-button aria-label="Clear" (click)="dataModel.pwaIconSize384x384Id = null">close</mat-icon>
@@ -1104,13 +1103,13 @@
         <p>{{'TITLE.Financial_Status_And_Sccounting_Transactions' | translate}}</p>
         <!-- LinkResellerUserId Field -->
         <app-cms-user-selector [optionDisabled]="!fieldsInfo['linkResellerUserId']?.accessEditField"
-          [optionSelectForce]="dataModel.linkResellerUserId"
+          [optionSelectForce]="dataModel.linkResellerUserId" [loading]="loading"
           (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)"
           [optionPlaceholder]="this.translate.instant('TITLE.Representative_User')">
         </app-cms-user-selector>
         <!-- LinkResellerSiteId Field -->
         <app-cms-site-selector [optionDisabled]="!fieldsInfo['linkResellerSiteId']?.accessEditField"
-          [optionSelectForce]="dataModel.linkResellerSiteId"
+          [optionSelectForce]="dataModel.linkResellerSiteId" [loading]="loading"
           (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)"
           [optionPlaceholder]="this.translate.instant('TITLE.Representative_Site')">
         </app-cms-site-selector>

@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -32,8 +32,9 @@
 
 
     <!-- LinkPropertyDetailGroupId Field -->
-    <app-member-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)"
-      [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
+    <app-member-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)" [loading]="loading"
+      [optionSelectForce]="dataModel.linkPropertyDetailGroupId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['linkPropertyDetailGroupId']?.accessEditField">
     </app-member-propertydetailgroup-selector>
     <!-- IconFont Field -->
@@ -62,8 +63,9 @@
     </mat-form-field>
     <!-- InputDataType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{'TITLE.TypeId' | translate}}" [(ngModel)]="dataModel.inputDataType" name="dataModel.inputDataType"
-        #InputDataType="ngModel" panelClass="InputDataType-{{ dataModel.inputDataType }}">
+      <mat-select placeholder="{{'TITLE.TypeId' | translate}}" [(ngModel)]="dataModel.inputDataType"
+        name="dataModel.inputDataType" #InputDataType="ngModel"
+        panelClass="InputDataType-{{ dataModel.inputDataType }}">
         <mat-option *ngFor="
                       let item of dataModelEnumInputDataTypeResult.listItems;
                       index as i
@@ -129,11 +131,9 @@
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip>
-        <input placeholder="{{'TITLE.key_word' | translate}}+"
-               [matChipInputFor]="chipList"
-               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               [matChipInputAddOnBlur]="addOnBlurTag"
-               (matChipInputTokenEnd)="addTag($event)">
+        <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
+          (matChipInputTokenEnd)="addTag($event)">
       </mat-chip-list>
     </mat-form-field>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

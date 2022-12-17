@@ -25,7 +25,7 @@
     </mat-form-field>
 
     <!-- LinkCategoryId Field -->
-    <app-contact-category-selector (optionChange)="onActionSelectCategory($event)"
+    <app-contact-category-selector (optionChange)="onActionSelectCategory($event)" [loading]="loading"
       [optionSelectForce]="this.dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
     >
     </app-contact-category-selector>

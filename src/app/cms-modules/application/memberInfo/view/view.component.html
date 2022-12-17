@@ -7,16 +7,16 @@
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <!-- linkSiteId Field -->
-  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkSiteId"
+  <app-cms-site-selector [optionDisabled]="true" [loading]="loading" [optionSelectForce]=" this.dataModel.linkSiteId"
     [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
   <!-- LinkUserId Field -->
-  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId"
+  <app-cms-user-selector [optionDisabled]="true" [loading]="loading" [optionSelectForce]=" this.dataModel.linkUserId"
     [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
-    <!-- LinkLocationId Field -->
-    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
-      [optionDisabled]="true" [optionSelectForce]="dataModel.linkLocationId"
-      [optionPlaceholder]="this.translate.instant('TITLE.Region')">
-    </app-cms-location-selector>
+  <!-- LinkLocationId Field -->
+  <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [loading]="loading"
+    [optionDisabled]="true" [optionSelectForce]="dataModel.linkLocationId"
+    [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+  </app-cms-location-selector>
   <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>

@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
     <!-- LinkCategoryId Field -->
-    <app-hypershop-category-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-hypershop-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
       [optionSelectForce]="this.dataModel.categoryCode" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-hypershop-category-selector>
     <!-- Name Field -->

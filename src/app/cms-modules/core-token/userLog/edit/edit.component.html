@@ -1,6 +1,6 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.formTitle }}
+  {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
@@ -23,8 +23,9 @@
   </mat-form-field>
   <!-- LinkMemberId Field -->
   <mat-form-field class="ntk-full-width">
-    <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.linkMemberId" name="dataModel.linkMemberId"
-      #LinkMemberId="ngModel" panelClass="LinkMemberId-{{ dataModel.linkMemberId }}" required>
+    <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.linkMemberId"
+      name="dataModel.linkMemberId" #LinkMemberId="ngModel" panelClass="LinkMemberId-{{ dataModel.linkMemberId }}"
+      required>
       <mat-option *ngFor="
                   let item of dataModelEnumManageUserAccessUserTypesResult.listItems;
                   index as i
@@ -37,8 +38,9 @@
   </mat-form-field>
   <!-- UserAccessAreaType Field -->
   <mat-form-field class="ntk-full-width">
-    <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.userAccessAreaType" name="dataModel.userAccessAreaType"
-      #UserAccessAreaType="ngModel" panelClass="UserAccessAreaType-{{ dataModel.userAccessAreaType }}" required>
+    <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.userAccessAreaType"
+      name="dataModel.userAccessAreaType" #UserAccessAreaType="ngModel"
+      panelClass="UserAccessAreaType-{{ dataModel.userAccessAreaType }}" required>
       <mat-option *ngFor="
                     let item of dataModelEnumManageUserAccessAreaTypesResult.listItems;
                     index as i
@@ -50,14 +52,14 @@
     </mat-error>
   </mat-form-field>
   <!-- LinkSiteId Field -->
-  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId"
+  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId" [loading]="loading"
     [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
 
   <!-- LinkUserId Field -->
-  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkUserId"
+  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkUserId" [loading]="loading"
     [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
   <!-- linkMemberId Field -->
-  <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkMemberId"
+  <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkMemberId" [loading]="loading"
     [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
   <!-- UserAccessAdminAllowToAllData Field -->
   <div class="ntk-full-width">

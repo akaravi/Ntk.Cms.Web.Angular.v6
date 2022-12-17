@@ -22,14 +22,14 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkPropertyTypeLanduseId Field -->
-    <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="this.translate.instant('TITLE.user')"
       [optionDisabled]="!fieldsInfo['linkPropertyTypeLanduseId']?.accessEditField">
       <br>
     </app-estate-property-type-landuse-selector>
     <!-- LinkPropertyDetailGroupId Field -->
     <app-estate-property-detail-group-selector (optionChange)="onActionSelectorDetailGroup($event)"
-      [optionSelectForce]="dataModel.linkPropertyDetailGroupId"
+      [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [loading]="loading"
       [optionSelectParentForce]="dataModel.linkPropertyTypeLanduseId"
        [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['linkPropertyDetailGroupId']?.accessEditField">

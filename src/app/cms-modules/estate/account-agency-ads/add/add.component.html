@@ -24,13 +24,14 @@
 
     <!-- LinkPropertyId Field -->
     <app-estate-account-agency-selector (optionChange)="onActionSelectorSelectLinkAccountAgencyId($event)"
-      [optionDisabled]="!fieldsInfo['linkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkAccountAgencyId"
+      [loading]="loading" [optionDisabled]="!fieldsInfo['linkPropertyId']?.accessAddField"
+      [optionSelectForce]="dataModel.linkAccountAgencyId"
       [optionPlaceholder]="this.translate.instant('TITLE.Agency_ID')">
     </app-estate-account-agency-selector>
     <!-- LinkAdsTypeId Field -->
-    <app-estate-ads-type-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
-      [optionDisabled]="!fieldsInfo['linkAdsTypeId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Ad_type_ID')">
+    <app-estate-ads-type-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)" [loading]="loading"
+      [optionDisabled]="!fieldsInfo['linkAdsTypeId']?.accessAddField" [optionSelectForce]="dataModel.linkAdsTypeId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Ad_type_ID')">
     </app-estate-ads-type-selector>
     <!-- StationLevel Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['stationLevel']?.accessWatchField">

@@ -24,7 +24,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkCategoryId Field -->
-    <app-tag-category-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-tag-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-tag-category-selector>
     <!-- Title Field -->
@@ -44,8 +44,10 @@
     </mat-form-field>
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-18">
-      <div style="float: right;"><mat-icon matSuffix>info</mat-icon></div>
-      <div> <p>{{'TITLE.Separate_Words_By_Press_Enter' | translate}}</p></div>
+        <div style="float: right;"><mat-icon matSuffix>info</mat-icon></div>
+        <div>
+          <p>{{'TITLE.Separate_Words_By_Press_Enter' | translate}}</p>
+        </div>
       </div>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

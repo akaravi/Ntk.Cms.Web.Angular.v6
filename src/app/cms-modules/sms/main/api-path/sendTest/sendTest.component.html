@@ -9,7 +9,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <div *ngIf="!this.loading.display">
       <!-- LinkPrivateSiteConfigId Field -->
-      <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)"
+      <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [loading]="loading"
         [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="this.translate.instant('TITLE.Direction')">
       </app-sms-apipath-selector>
       <!-- FromNumber Field -->
@@ -22,7 +22,8 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="start">
           <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-          <strong class="info-field-text">{{'TITLE.The_number-of_the_sender_that_is_active_in_this_route' | translate}}</strong>
+          <strong class="info-field-text">{{'TITLE.The_number-of_the_sender_that_is_active_in_this_route' |
+            translate}}</strong>
         </mat-hint>
         <mat-hint align="end">{{ FromNumber.value.length }} / 50</mat-hint>
       </mat-form-field>
@@ -36,7 +37,8 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="start">
           <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-          <strong class="info-field-text">{{'TITLE.You_can_separate_the_recipient_number_of_the_message_with_a_comma' | translate}}</strong>
+          <strong class="info-field-text">{{'TITLE.You_can_separate_the_recipient_number_of_the_message_with_a_comma' |
+            translate}}</strong>
         </mat-hint>
         <mat-hint align="end">{{ ToNumber.value.length }} / 100</mat-hint>
       </mat-form-field>
@@ -55,22 +57,22 @@
       </mat-form-field>
       <!-- IsFlash Field -->
       <div class="ntk-full-width">
-        <mat-slide-toggle [(ngModel)]="dataModel.isFlash"    name="dataModel.isFlash">
+        <mat-slide-toggle [(ngModel)]="dataModel.isFlash" name="dataModel.isFlash">
           {{'TITLE.Send_as_flash' | translate}}
         </mat-slide-toggle>
       </div>
-           <!-- SendByQeue Field -->
-           <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataModel.sendByQeue"    name="dataModel.sendByQeue">
-              {{'TITLE.Send_in_queue' | translate}}
-            </mat-slide-toggle>
-          </div>
+      <!-- SendByQeue Field -->
+      <div class="ntk-full-width">
+        <mat-slide-toggle [(ngModel)]="dataModel.sendByQeue" name="dataModel.sendByQeue">
+          {{'TITLE.Send_in_queue' | translate}}
+        </mat-slide-toggle>
+      </div>
     </div>
-   
-  <app-cms-json-list [dataModel]="dataModelResult.item" [optionMethod]="1" *ngIf="dataModelResult?.item">
-  </app-cms-json-list>
 
-  <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <app-cms-json-list [dataModel]="dataModelResult.item" [optionMethod]="1" *ngIf="dataModelResult?.item">
+    </app-cms-json-list>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->

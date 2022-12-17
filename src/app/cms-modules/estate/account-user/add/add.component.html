@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -10,8 +10,8 @@
     <!-- LinkMainImageId Field -->
     <div class="mb-3">
       <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
-      <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-        src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+        <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+          aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
       </a>
     </div>
     <div class="mb-9">
@@ -19,7 +19,8 @@
         <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Profile_Picture'|translate}}
         </mat-label>
         <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
-          type="text" placeholder="{{'TITLE.Profile_Photo_File_ID'|translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
+          type="text" placeholder="{{'TITLE.Profile_Photo_File_ID'|translate}}" autocomplete="off"
+          (click)="fileManagerOpenForm = true" />
         <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.linkMainImageId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
@@ -45,11 +46,13 @@
     </mat-form-field>
     <!-- LinkCmsUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.linkCmsUserId"
-      [optionPlaceholder]="this.translate.instant('TITLE.USER')" [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField">
+      [loading]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"
+      [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField">
     </app-cms-user-selector>
     <!-- LinkLocationId Field -->
-    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
-      [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
+    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [loading]="loading"
+      [optionSelectForce]="dataModel.linkLocationId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
       [optionDisabled]="!fieldsInfo['linkLocationId']?.accessAddField"></app-cms-location-selector>
     <!-- JoinId Field -->
     <mat-form-field class="ntk-full-width">
@@ -135,7 +138,8 @@
       </mat-error>
     </mat-form-field>
     <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>
-    <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)"  [optonCenter]="mapOptonCenter"  id='main-map'></app-cms-map>
+    <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
+      id='main-map'></app-cms-map>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>

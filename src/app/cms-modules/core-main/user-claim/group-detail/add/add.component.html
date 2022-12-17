@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -24,14 +24,16 @@
     </mat-form-field>
 
     <!-- LinkUserClaimGroupId Field -->
-    <app-core-userclaimgroup-selector (optionChange)="onActionSelectClaimGroup($event)"
-      [optionSelectForce]="this.dataModel.linkUserClaimGroupId" [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_GROUP')"
+    <app-core-userclaimgroup-selector (optionChange)="onActionSelectClaimGroup($event)" [loading]="loading"
+      [optionSelectForce]="this.dataModel.linkUserClaimGroupId"
+      [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_GROUP')"
       [optionDisabled]="!fieldsInfo['linkUserClaimGroupId']?.accessEditField">
     </app-core-userclaimgroup-selector>
 
     <!-- LinkUserClaimTypeId Field -->
-    <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)"
-      [optionSelectForce]="this.dataModel.linkUserClaimTypeId" [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_CATEGORY')"
+    <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)" [loading]="loading"
+      [optionSelectForce]="this.dataModel.linkUserClaimTypeId"
+      [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_CATEGORY')"
       [optionDisabled]="!fieldsInfo['linkUserClaimTypeId']?.accessEditField">
     </app-core-userclaimtype-selector>
 

@@ -25,9 +25,9 @@
     </mat-form-field>
 
     <!-- LinkCategoryId Field -->
-    <app-sms-main-message-category-selector (optionChange)="onActionSelectCategory($event)"
-      [optionSelectForce]="this.dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
-    >
+    <app-sms-main-message-category-selector (optionChange)="onActionSelectCategory($event)" [loading]="loading"
+      [optionSelectForce]="this.dataModel.linkCategoryId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-sms-main-message-category-selector>
 
     <!-- Title Field -->
@@ -43,19 +43,19 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-      <!-- messageBody Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['messageBody']?.fieldTitle}}</mat-label>
-        <textarea matInput [(ngModel)]="dataModel.messageBody" name="dataModel.messageBody" #messageBody type="text"
-          placeholder="{{fieldsInfo['messageBody']?.fieldTitle}}" minlength="1" maxlength="5000" rows=5></textarea>
-        <mat-icon matSuffix *ngIf="dataModel.messageBody" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.messageBody = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ messageBody.value.length }} / 5000</mat-hint>
-        <mat-error *ngIf="messageBody.errors?.required">
-          messageBody is <strong>{{'MESSAGE.required' | translate}}</strong>
-        </mat-error>
-      </mat-form-field>
+    <!-- messageBody Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['messageBody']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.messageBody" name="dataModel.messageBody" #messageBody type="text"
+        placeholder="{{fieldsInfo['messageBody']?.fieldTitle}}" minlength="1" maxlength="5000" rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.messageBody" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.messageBody = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ messageBody.value.length }} / 5000</mat-hint>
+      <mat-error *ngIf="messageBody.errors?.required">
+        messageBody is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>

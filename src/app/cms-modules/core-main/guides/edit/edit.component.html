@@ -23,7 +23,7 @@
       </mat-error>
     </mat-form-field>
     <!-- Title Field -->
-    <app-core-guide-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
+    <app-core-guide-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading" [optionDisabled]="false"
       [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
     </app-core-guide-selector>
     <!-- Key Field -->

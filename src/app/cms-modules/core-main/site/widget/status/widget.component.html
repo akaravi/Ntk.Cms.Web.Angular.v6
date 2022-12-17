@@ -19,8 +19,9 @@
   <!-- Body -->
   <div class="card-body pt-8">
     <!-- LinkCmsSiteId Field -->
-    <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]=" this.tokenInfoModel.siteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
+    <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false" [loading]="loading"
+      [optionSelectForce]=" this.tokenInfoModel.siteId"
+      [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
 
     <!--begin::Item-->
     <div *ngFor="let item of modelData| keyvalue ; index as i" class="d-flex align-items-center mb-10">

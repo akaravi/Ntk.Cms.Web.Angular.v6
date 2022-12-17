@@ -23,30 +23,32 @@
       </mat-error>
     </mat-form-field>
 
- 
+
     <!-- LinkCoreUserId Field -->
-    <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)"
+    <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)" [loading]="loading"
       [optionDisabled]="!fieldsInfo['linkCoreUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreUserId"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-cms-user-selector>
- <!-- LinkCoreSiteId Field -->
- <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)"
- [optionDisabled]="!fieldsInfo['linkCoreSiteId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreSiteId"
- [optionPlaceholder]="this.translate.instant('TITLE.SITE')">
-</app-cms-site-selector>
- <!-- LinkCoreUserGroupId Field -->
- <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)"
- [optionDisabled]="!fieldsInfo['linkCoreUserGroupId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreUserGroupId"
- [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
-</app-cms-usergroup-selector>
- <!-- LinkCoreSiteCategoryId Field -->
- <app-cms-sitecategory-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
- [optionDisabled]="!fieldsInfo['linkCoreSiteCategoryId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreSiteCategoryId"
- [optionPlaceholder]="this.translate.instant('TITLE.Site_Type')">
-</app-cms-sitecategory-selector>
+    <!-- LinkCoreSiteId Field -->
+    <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)" [loading]="loading"
+      [optionDisabled]="!fieldsInfo['linkCoreSiteId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreSiteId"
+      [optionPlaceholder]="this.translate.instant('TITLE.SITE')">
+    </app-cms-site-selector>
+    <!-- LinkCoreUserGroupId Field -->
+    <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)"
+      [optionDisabled]="!fieldsInfo['linkCoreUserGroupId']?.accessAddField"
+      [optionSelectForce]="dataModel.linkCoreUserGroupId" [loading]="loading"
+      [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+    </app-cms-usergroup-selector>
+    <!-- LinkCoreSiteCategoryId Field -->
+    <app-cms-sitecategory-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
+      [optionDisabled]="!fieldsInfo['linkCoreSiteCategoryId']?.accessAddField"
+      [optionSelectForce]="dataModel.linkCoreSiteCategoryId" [loading]="loading"
+      [optionPlaceholder]="this.translate.instant('TITLE.Site_Type')">
+    </app-cms-sitecategory-selector>
 
     <!-- LinkApiPathId Field -->
-    <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)"
+    <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="this.translate.instant('TITLE.Direction')">
     </app-sms-apipath-selector>
     <!-- HasInherits Field -->
@@ -58,8 +60,9 @@
     </div>
     <!-- AccessStatus Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{'TITLE.Status_Type' | translate}}" [(ngModel)]="dataModel.accessStatus" name="dataModel.accessStatus"
-        #AccessStatus="ngModel" panelClass="recordStatus-{{ dataModel.accessStatus }}" required>
+      <mat-select placeholder="{{'TITLE.Status_Type' | translate}}" [(ngModel)]="dataModel.accessStatus"
+        name="dataModel.accessStatus" #AccessStatus="ngModel" panelClass="recordStatus-{{ dataModel.accessStatus }}"
+        required>
         <mat-option *ngFor="
                           let item of dataModelEnumApiPathPermissionAccessStatusResult.listItems;
                           index as i
@@ -73,8 +76,8 @@
 
     <!-- Action Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{'TITLE.Type_of_Activity' | translate}}" [(ngModel)]="dataModel.action" name="dataModel.action" #Action="ngModel"
-        panelClass="recordStatus-{{ dataModel.action }}" required>
+      <mat-select placeholder="{{'TITLE.Type_of_Activity' | translate}}" [(ngModel)]="dataModel.action"
+        name="dataModel.action" #Action="ngModel" panelClass="recordStatus-{{ dataModel.action }}" required>
         <mat-option *ngFor="
                               let item of dataModelEnumApiPathPermissionActionResult.listItems;
                               index as i

@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -23,17 +23,19 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkSiteId Field -->
-    <app-cms-site-selector [optionSelectForce]="dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
+    <app-cms-site-selector [optionSelectForce]="dataModel.linkSiteId" [loading]="loading"
+      [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
     </app-cms-site-selector>
     <!-- LinkModuleId Field -->
-    <app-cms-module-selector [optionSelectForce]="dataModel.linkModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
+    <app-cms-module-selector [optionSelectForce]="dataModel.linkModuleId" [loading]="loading"
+      [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
     </app-cms-module-selector>
 
     <!-- Credit Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['credit']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.credit" name="dataModel.credit" #Credit type="number"
-        placeholder="{{fieldsInfo['credit']?.fieldTitle}}"  required />
+        placeholder="{{fieldsInfo['credit']?.fieldTitle}}" required />
       <mat-icon matSuffix *ngIf="dataModel.credit" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.credit = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

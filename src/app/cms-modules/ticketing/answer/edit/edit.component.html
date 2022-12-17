@@ -23,8 +23,9 @@
       </mat-error>
     </mat-form-field>
 
-    <app-ticketing-departemen-selector (optionChange)="onActionSelectSource($event)"
-      [optionSelectForce]="this.dataModel.linkTicketingDepartemenId" [optionPlaceholder]="this.translate.instant('TITLE.Department')"
+    <app-ticketing-departemen-selector (optionChange)="onActionSelectSource($event)" [loading]="loading"
+      [optionSelectForce]="this.dataModel.linkTicketingDepartemenId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Department')"
       [optionDisabled]="!fieldsInfo['linkTicketingDepartemenId']?.accessEditField">
     </app-ticketing-departemen-selector>
 
@@ -35,8 +36,8 @@
       <textarea matInput [(ngModel)]="dataModel.htmlBody" [disabled]="!fieldsInfo['htmlBody']?.accessEditField"
         name="dataModel.htmlBody" #HtmlBody type="text" placeholder="{{'TITLE.Answer_Text' | translate}}" row="5"
         minlength="0" maxlength="1000"></textarea>
-      <mat-icon matSuffix *ngIf="dataModel.htmlBody && fieldsInfo['htmlBody']?.accessEditField" matSuffix mat-icon-button
-        aria-label="Clear" (click)="dataModel.htmlBody = ''">close</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.htmlBody && fieldsInfo['htmlBody']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.htmlBody = ''">close</mat-icon>
       <mat-icon *ngIf="fieldsInfo['htmlBody']?.accessEditField" matSuffix>mode_edit</mat-icon>
       <mat-hint align="end">{{ 'Application.source.htmlBody_hint' | translate }}</mat-hint>
       <mat-hint align="start">{{ HtmlBody.value.length }} / 1000</mat-hint>

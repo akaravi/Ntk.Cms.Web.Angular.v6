@@ -32,7 +32,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkCategoryId Field -->
-        <app-blog-category-selector (optionChange)="onActionSelectorSelect($event)"
+        <app-blog-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
           [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-blog-category-selector>
         <!-- Title Field -->
@@ -333,7 +333,7 @@
       </mat-step>
       <mat-step label="{{'TITLE.Similar_Content' | translate}} " state="loaction">
         <p>{{'TITLE.Specify_relevant_content' | translate}}</p>
-        <app-blog-content-selector (optionChange)="onActionContentSimilarSelect($event)"
+        <app-blog-content-selector (optionChange)="onActionContentSimilarSelect($event)" [loading]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Similar_Content')">
 
 
@@ -406,7 +406,7 @@
       </mat-step>
       <mat-step label="{{'TITLE.Location' | translate}} " state="loaction">
         <!-- LinkLocationId Field -->
-        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
+        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [loading]="loading"
           [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>

@@ -124,7 +124,6 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
         map(
           (next) => {
             if (next.isSuccess) {
-              console.log(next.item);
 
               switch (this.lang) {
                 case 'fa': {

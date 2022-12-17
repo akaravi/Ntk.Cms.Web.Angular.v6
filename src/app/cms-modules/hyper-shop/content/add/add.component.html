@@ -1,14 +1,14 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- LinkCategoryId Field -->
-    <app-hypershop-category-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-hypershop-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
       [optionSelectForce]="dataModel.categoryCode" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-hypershop-category-selector>
     <!-- Name Field -->

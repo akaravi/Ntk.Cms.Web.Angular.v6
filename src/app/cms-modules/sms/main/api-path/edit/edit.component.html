@@ -38,14 +38,14 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkPublicConfigId Field -->
-        <app-sms-publicconfig-selector (optionChange)="onActionSelectSource($event)"
+        <app-sms-publicconfig-selector (optionChange)="onActionSelectSource($event)" [loading]="loading"
           [optionDisabled]="!fieldsInfo['linkPublicConfigId']?.accessEditField"
           [optionSelectForce]="dataModel.linkPublicConfigId"
           [optionPlaceholder]="this.translate.instant('TITLE.Route_Type')">
         </app-sms-publicconfig-selector>
         <!-- LinkApiPathCompanyId Field -->
         <app-sms-apipathcompany-selector (optionChange)="onActionSelectorSelectLinkApiPathCompanyId($event)"
-          [optionSelectForce]="dataModel.linkApiPathCompanyId"
+          [optionSelectForce]="dataModel.linkApiPathCompanyId" [loading]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Service_Company')">
         </app-sms-apipathcompany-selector>
 
@@ -329,12 +329,15 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['statusOutOfServiceMonitorApiChar']?.accessWatchField">
           <mat-label>{{ fieldsInfo['statusOutOfServiceMonitorApiChar']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.statusOutOfServiceMonitorApiChar"
-            [disabled]="!fieldsInfo['statusOutOfServiceMonitorApiChar']?.accessEditField" name="dataModel.statusOutOfServiceMonitorApiChar"
-            #StatusOutOfServiceMonitorApiChar type="number" placeholder="" />
+            [disabled]="!fieldsInfo['statusOutOfServiceMonitorApiChar']?.accessEditField"
+            name="dataModel.statusOutOfServiceMonitorApiChar" #StatusOutOfServiceMonitorApiChar type="number"
+            placeholder="" />
           <mat-icon matSuffix
-            *ngIf="dataModel.statusOutOfServiceMonitorApiChar && fieldsInfo['statusOutOfServiceMonitorApiChar']?.accessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.statusOutOfServiceMonitorApiChar = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['statusOutOfServiceMonitorApiChar']?.accessEditField" matSuffix>mode_edit</mat-icon>
+            *ngIf="dataModel.statusOutOfServiceMonitorApiChar && fieldsInfo['statusOutOfServiceMonitorApiChar']?.accessEditField"
+            matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.statusOutOfServiceMonitorApiChar = ''">close</mat-icon>
+          <mat-icon *ngIf="fieldsInfo['statusOutOfServiceMonitorApiChar']?.accessEditField"
+            matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- StatusOutOfServiceActive Field -->
         <div class="ntk-full-width">
@@ -361,11 +364,13 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['statusNotStableMonitorApiChar']?.accessWatchField">
           <mat-label>{{ fieldsInfo['statusNotStableMonitorApiChar']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.statusNotStableMonitorApiChar"
-            [disabled]="!fieldsInfo['statusNotStableMonitorApiChar']?.accessEditField" name="dataModel.statusNotStableMonitorApiChar"
-            #StatusNotStableMonitorApiChar type="number" placeholder="" />
+            [disabled]="!fieldsInfo['statusNotStableMonitorApiChar']?.accessEditField"
+            name="dataModel.statusNotStableMonitorApiChar" #StatusNotStableMonitorApiChar type="number"
+            placeholder="" />
           <mat-icon matSuffix
-            *ngIf="dataModel.statusNotStableMonitorApiChar && fieldsInfo['statusNotStableMonitorApiChar']?.accessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.statusNotStableMonitorApiChar = ''">close</mat-icon>
+            *ngIf="dataModel.statusNotStableMonitorApiChar && fieldsInfo['statusNotStableMonitorApiChar']?.accessEditField"
+            matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.statusNotStableMonitorApiChar = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['statusNotStableMonitorApiChar']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- StatusNotStableActive Field -->

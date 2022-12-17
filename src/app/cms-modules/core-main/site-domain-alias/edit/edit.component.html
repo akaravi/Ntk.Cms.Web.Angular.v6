@@ -1,90 +1,93 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-    <div class="ntk-cms-html-card-header">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.formTitle }}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </div>
-    <div class="ntk-cms-html-card-body">
-	<app-progress-spinner [options]="loading"> </app-progress-spinner>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <mat-form-field class="ntk-full-width">
-        <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus"
-          #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
-          <mat-option *ngFor="
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
+        required>
+        <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
               index as i
             " [value]="item.value">{{ item.description }}</mat-option>
-        </mat-select>
-        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-        <mat-error *ngIf="RecordStatus.errors?.required">
-          RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
-        </mat-error>
-      </mat-form-field>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
-      <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
-        [optionSelectForce]="dataModel.linkCmsSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-core-site-selector>
+    <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false" [loading]="loading"
+      [optionSelectForce]="dataModel.linkCmsSiteId"
+      [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-core-site-selector>
 
 
-      <mat-form-field class="ntk-full-width">
-        <mat-label>Domain</mat-label>
-        <input matInput [(ngModel)]="dataModel.domain" name="dataModel.domain" #Domain type="text"
-          placeholder="Domain" minlength="3" maxlength="50" required />
-        <mat-icon matSuffix *ngIf="dataModel.domain" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.domain = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ Domain.value.length }} / 100</mat-hint>
-        <mat-error *ngIf="Domain.errors?.required">
-          Domain is <strong>{{'MESSAGE.required' | translate}}</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="ntk-full-width">
-        <mat-label>SubDomain</mat-label>
-        <input matInput [(ngModel)]="dataModel.subDomain" name="dataModel.subDomain" #SubDomain type="text"
-          placeholder="SubDomain" minlength="0" maxlength="50" required />
-        <mat-icon matSuffix *ngIf="dataModel.subDomain" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.subDomain = ''">close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-        <mat-hint align="end">{{ SubDomain.value.length }} / 100</mat-hint>
-        <mat-error *ngIf="SubDomain.errors?.required">
-          SubDomain is <strong>{{'MESSAGE.required' | translate}}</strong>
-        </mat-error>
-      </mat-form-field>
-         <!-- ConfigNeshanMapApiKey Field -->
-         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['configNeshanMapApiKey']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['configNeshanMapApiKey']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.configNeshanMapApiKey" [disabled]="!fieldsInfo['configNeshanMapApiKey']?.accessEditField"
-            name="dataModel.configNeshanMapApiKey" #ConfigNeshanMapApiKey type="text" placeholder="Api Key ..." minlength="3"
-            maxlength="100" />
-          <mat-icon matSuffix *ngIf="dataModel.configNeshanMapApiKey && fieldsInfo['configNeshanMapApiKey']?.accessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.configNeshanMapApiKey = ''">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['configNeshanMapApiKey']?.accessEditField" matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
-            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['configNeshanMapApiKey']?.FieldDescription}}</strong>
-          </mat-hint>
-          <mat-hint align="start">{{ ConfigNeshanMapApiKey.value.length }} / 100</mat-hint>
-        </mat-form-field>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-     </div>
-	 <div class="ntk-cms-html-card-message">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      <div class="form-actions">
-        <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-        <small class="form-text text-muted danger">{{ formInfo.formError }}
-        </small>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>Domain</mat-label>
+      <input matInput [(ngModel)]="dataModel.domain" name="dataModel.domain" #Domain type="text" placeholder="Domain"
+        minlength="3" maxlength="50" required />
+      <mat-icon matSuffix *ngIf="dataModel.domain" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.domain = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Domain.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Domain.errors?.required">
+        Domain is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="ntk-full-width">
+      <mat-label>SubDomain</mat-label>
+      <input matInput [(ngModel)]="dataModel.subDomain" name="dataModel.subDomain" #SubDomain type="text"
+        placeholder="SubDomain" minlength="0" maxlength="50" required />
+      <mat-icon matSuffix *ngIf="dataModel.subDomain" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.subDomain = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ SubDomain.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="SubDomain.errors?.required">
+        SubDomain is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- ConfigNeshanMapApiKey Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['configNeshanMapApiKey']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['configNeshanMapApiKey']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.configNeshanMapApiKey"
+        [disabled]="!fieldsInfo['configNeshanMapApiKey']?.accessEditField" name="dataModel.configNeshanMapApiKey"
+        #ConfigNeshanMapApiKey type="text" placeholder="Api Key ..." minlength="3" maxlength="100" />
+      <mat-icon matSuffix
+        *ngIf="dataModel.configNeshanMapApiKey && fieldsInfo['configNeshanMapApiKey']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.configNeshanMapApiKey = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['configNeshanMapApiKey']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-hint align="start">
+        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+        <strong class="info-field-text">{{fieldsInfo['configNeshanMapApiKey']?.FieldDescription}}</strong>
+      </mat-hint>
+      <mat-hint align="start">{{ ConfigNeshanMapApiKey.value.length }} / 100</mat-hint>
+    </mat-form-field>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
     </div>
-    <div class="ntk-cms-html-card-footer">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-        <button type="button" (click)="onFormCancel()" class="btn btn-light">
-          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-        </button>
-            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
-          <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-        </button>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
     </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

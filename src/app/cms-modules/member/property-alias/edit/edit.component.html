@@ -44,7 +44,7 @@
     </mat-form-field>
     <!-- LinkCmsUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.linkCmsUserId"
-      [optionPlaceholder]="this.translate.instant('TITLE.USER')"
+      [optionPlaceholder]="this.translate.instant('TITLE.USER')" [loading]="loading"
       [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessEditField">
     </app-cms-user-selector>
     <!-- Description Field -->

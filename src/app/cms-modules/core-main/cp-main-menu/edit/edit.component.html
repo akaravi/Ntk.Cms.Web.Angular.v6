@@ -26,7 +26,8 @@
         </mat-form-field>
         <!-- Title Field -->
         <app-core-cpmainmenu-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
-          [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
+          [loading]="loading" [optionSelectForce]="dataModel.linkParentId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
         </app-core-cpmainmenu-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['title']?.accessWatchField">
@@ -42,11 +43,11 @@
             {{fieldsInfo['title']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-       <!-- TitleML Field -->
-       <mat-form-field class="ntk-full-width" >
-        <mat-label> {{'TITLE.TitleML' | translate}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.titleML" name="dataModel.titleML" type="text" [disabled]="true" />
-      </mat-form-field>
+        <!-- TitleML Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label> {{'TITLE.TitleML' | translate}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.titleML" name="dataModel.titleML" type="text" [disabled]="true" />
+        </mat-form-field>
         <!-- TitleResourceLanguage Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['titleResourceLanguage']?.accessWatchField">
           <mat-label> {{fieldsInfo['titleResourceLanguage']?.fieldTitle}}</mat-label>
@@ -64,8 +65,9 @@
 
         <!-- MenuPlaceType Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="{{'TITLE.Menu_place' | translate}}" [(ngModel)]="dataModel.menuPlaceType" name="dataModel.menuPlaceType"
-            #MenuPlaceType="ngModel" panelClass="MenuPlaceType-{{ dataModel.menuPlaceType }}">
+          <mat-select placeholder="{{'TITLE.Menu_place' | translate}}" [(ngModel)]="dataModel.menuPlaceType"
+            name="dataModel.menuPlaceType" #MenuPlaceType="ngModel"
+            panelClass="MenuPlaceType-{{ dataModel.menuPlaceType }}">
             <mat-option *ngFor="
                   let item of dataModelEnumMenuPlaceTypeResult.listItems;
                   index as i
@@ -170,7 +172,8 @@
         </div>
         <!-- LinkModuleId Field -->
         <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [optionDisabled]="false"
-          [optionSelectForce]="dataModel.linkModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
+          [loading]="loading" [optionSelectForce]="dataModel.linkModuleId"
+          [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
         </app-core-module-selector>
 
         <app-core-usergroup-selectionlist [optionSelectForce]="dataCoreCpMainMenuIds" [optionDisabled]="false"

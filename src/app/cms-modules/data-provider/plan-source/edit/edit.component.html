@@ -23,11 +23,11 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkPlanId Field -->
-    <app-data-provider-plan-category-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-data-provider-plan-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkPlanId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-data-provider-plan-category-selector>
     <!-- LinkSourceId Field -->
-    <app-data-provider-plan-category-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-data-provider-plan-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkSourceId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-data-provider-plan-category-selector>
 

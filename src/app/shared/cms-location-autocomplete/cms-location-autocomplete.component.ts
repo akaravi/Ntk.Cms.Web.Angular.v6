@@ -48,6 +48,8 @@ export class CmsLocationCompleteComponent implements OnInit {
   @Input() set optionSelectForce(x: number[]) {
     this.onActionSelectForce(x);
   }
+
+  
   tagDataModel: chipModel[] = [];
   tagLastDataModel: chipModel[] = [];
   selectForceStatus = true;

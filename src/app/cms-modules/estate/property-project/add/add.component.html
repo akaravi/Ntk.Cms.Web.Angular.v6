@@ -59,7 +59,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkLocationId Field -->
-        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
+        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [loading]="loading"
           [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>

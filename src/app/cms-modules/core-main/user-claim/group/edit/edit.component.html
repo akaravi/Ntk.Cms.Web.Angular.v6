@@ -72,33 +72,33 @@
         </mat-form-field>
         <hr>
         <!-- LinkModuleId Field -->
-        <app-cms-module-selector (optionChange)="onActionSelectModuleId($event)"
+        <app-cms-module-selector (optionChange)="onActionSelectModuleId($event)" [loading]="loading"
           [optionSelectForce]="this.dataModel.linkModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')"
           [optionDisabled]="!fieldsInfo['linkModuleId']?.accessEditField">
         </app-cms-module-selector>
 
 
         <!-- LinkSiteCategoryId Field -->
-        <app-cms-sitecategory-selector (optionChange)="onActionSelectSiteCategory($event)"
+        <app-cms-sitecategory-selector (optionChange)="onActionSelectSiteCategory($event)" [loading]="loading"
           [optionSelectForce]="this.dataModel.linkSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.SITE_CATEGORY')"
           [optionDisabled]="!fieldsInfo['linkSiteCategoryId']?.accessEditField">
         </app-cms-sitecategory-selector>
 
         <!-- LinkUserGroupId Field -->
-        <app-cms-usergroup-selector (optionChange)="onActionSelectUserGroup($event)"
+        <app-cms-usergroup-selector (optionChange)="onActionSelectUserGroup($event)" [loading]="loading"
           [optionSelectForce]="this.dataModel.linkUserGroupId" [optionPlaceholder]="this.translate.instant('TITLE.User_Group')"
           [optionDisabled]="!fieldsInfo['linkUserGroupId']?.accessEditField">
         </app-cms-usergroup-selector>
 
         <!-- LinkApplicationId Field -->
-        <app-cms-application-selector (optionChange)="onActionSelectApplication($event)"
+        <app-cms-application-selector (optionChange)="onActionSelectApplication($event)" [loading]="loading"
           [optionSelectForce]="this.dataModel.linkApplicationId" [optionPlaceholder]="this.translate.instant('TITLE.Application')"
           [optionDisabled]="!fieldsInfo['linkApplicationId']?.accessEditField">
         </app-cms-application-selector>
 
 
         <!-- LinkApplicationSourceId Field -->
-        <app-cms-application-selector (optionChange)="onActionSelectApplicationSource($event)"
+        <app-cms-application-selector (optionChange)="onActionSelectApplicationSource($event)" [loading]="loading"
           [optionSelectForce]="this.dataModel.linkApplicationSourceId" [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"
           [optionDisabled]="!fieldsInfo['linkApplicationSourceId']?.accessEditField">
         </app-cms-application-selector>

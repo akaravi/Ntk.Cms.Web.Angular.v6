@@ -31,7 +31,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkCategoryId Field -->
-        <app-article-category-selector (optionChange)="onActionSelectorSelect($event)"
+        <app-article-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
           [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-article-category-selector>
         <!-- Title Field -->
@@ -306,7 +306,7 @@
       </mat-step>
       <mat-step label="{{'TITLE.Similar_Content' | translate}} " state="loaction">
         <p>{{'TITLE.Specify_relevant_content' | translate}}</p>
-        <app-article-content-selector (optionChange)="onActionContentSimilarSelect($event)"
+        <app-article-content-selector (optionChange)="onActionContentSimilarSelect($event)" [loading]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Similar_Content')">
           <button *ngIf="contentSimilarSelected && contentSimilarSelected.id"
             (click)="onActionContentSimilarAddToLIst()" type="button" mat-button
@@ -372,7 +372,7 @@
       </mat-step>
       <mat-step label="{{'TITLE.Location' | translate}} " state="loaction">
         <!-- LinkLocationId Field -->
-        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
+        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [loading]="loading"
           [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>

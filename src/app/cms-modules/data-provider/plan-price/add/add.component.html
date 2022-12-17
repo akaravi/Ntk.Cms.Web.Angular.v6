@@ -23,7 +23,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkPlanId Field -->
-    <app-data-provider-plan-selector (optionChange)="onActionSelectorSelect($event)"
+    <app-data-provider-plan-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkPlanId" [optionPlaceholder]="this.translate.instant('TITLE.Information_Plan')">
     </app-data-provider-plan-selector>
     <!-- Title Field -->

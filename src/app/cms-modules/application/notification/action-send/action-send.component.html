@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -9,10 +9,12 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- AppId Field -->
     <app-application-app-selector (optionChange)="onActionSelectApp($event)" *ngIf="LinkMemberId.length===0"
-      [optionSelectForce]="this.dataModel.appId" [optionPlaceholder]="this.translate.instant('TITLE.Application')"></app-application-app-selector>
+      [loading]="loading" [optionSelectForce]="this.dataModel.appId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Application')"></app-application-app-selector>
     <!-- AppId Field -->
-    <app-application-memberinfo-selector (optionChange)="onActionSelectMemberInfo($event)"
-      [optionSelectForce]="LinkMemberId" [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-application-memberinfo-selector>
+    <app-application-memberinfo-selector (optionChange)="onActionSelectMemberInfo($event)" [loading]="loading"
+      [optionSelectForce]="LinkMemberId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-application-memberinfo-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>Title</mat-label>
@@ -28,8 +30,9 @@
     </mat-form-field>
     <!-- ContentType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{'TITLE.Message_Type' | translate}}" [(ngModel)]="dataModel.contentType" name="dataModel.contentType"
-        #ContentType="ngModel" panelClass="recordStatus-{{ dataModel.contentType }}" required>
+      <mat-select placeholder="{{'TITLE.Message_Type' | translate}}" [(ngModel)]="dataModel.contentType"
+        name="dataModel.contentType" #ContentType="ngModel" panelClass="recordStatus-{{ dataModel.contentType }}"
+        required>
         <mat-option *ngFor="
                         let item of dataModelEnumContentTypeResult.listItems;
                         index as i
@@ -43,8 +46,8 @@
     <!-- Content Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{'TITLE.Text' | translate}}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.content" name="dataModel.content" #Content type="text" placeholder="{{'TITLE.Text' | translate}}"
-        minlength="3" maxlength="500" required></textarea>
+      <textarea matInput [(ngModel)]="dataModel.content" name="dataModel.content" #Content type="text"
+        placeholder="{{'TITLE.Text' | translate}}" minlength="3" maxlength="500" required></textarea>
       <mat-icon matSuffix *ngIf="dataModel.content" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.content = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -68,15 +71,16 @@
     </mat-form-field>
     <!-- SmallImageId Field -->
     <div class="mb-3">
-      <img *ngIf="SmallImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{SmallImageIdSrc | cmsthumbnail}}"
-        height="50" width="50" />
+      <img *ngIf="SmallImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+        src="{{SmallImageIdSrc | cmsthumbnail}}" height="50" width="50" />
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">
         <mat-label (click)="fileManagerOpenFormSmallFile = true">{{'TITLE.Small_Photo_File' | translate}}
         </mat-label>
         <input matInput [(ngModel)]="dataModel.smallImageId" name="dataModel.smallImageId" #SmallImageId type="text"
-        placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenFormSmallFile = true" />
+          placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+          (click)="fileManagerOpenFormSmallFile = true" />
         <mat-icon matSuffix *ngIf="dataModel.smallImageId " matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.smallImageId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenFormSmallFile = true">mode_edit</mat-icon>
@@ -88,15 +92,16 @@
     </div>
     <!-- BigImageId Field -->
     <div class="mb-3">
-      <img *ngIf="BigImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{BigImageIdSrc | cmsthumbnail}}"
-        height="50" width="50" />
+      <img *ngIf="BigImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+        src="{{BigImageIdSrc | cmsthumbnail}}" height="50" width="50" />
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">
         <mat-label (click)="fileManagerOpenFormBigFile = true">{{'TITLE.Original_Photo_File' | translate}}
         </mat-label>
         <input matInput [(ngModel)]="dataModel.bigImageId" name="dataModel.bigImageId" #BigImageId type="text"
-        placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenFormBigFile = true" />
+          placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+          (click)="fileManagerOpenFormBigFile = true" />
         <mat-icon matSuffix *ngIf="dataModel.bigImageId " matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.bigImageId = null">close</mat-icon>
         <mat-icon matSuffix (click)="fileManagerOpenFormBigFile = true">mode_edit</mat-icon>

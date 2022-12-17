@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -23,12 +23,13 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkCmsSiteId Field -->
-    <app-core-sitecategory-selector (optionChange)="onActionSiteCategorySelect($event)"
+    <app-core-sitecategory-selector (optionChange)="onActionSiteCategorySelect($event)" [loading]="loading"
       [optionDisabled]="!fieldsInfo['linkCmsSiteCategoryId']?.accessEditField"
-      [optionSelectForce]="dataModel.linkCmsSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.SITE_CATEGORY')">
+      [optionSelectForce]="dataModel.linkCmsSiteCategoryId"
+      [optionPlaceholder]="this.translate.instant('TITLE.SITE_CATEGORY')">
     </app-core-sitecategory-selector>
     <!-- LinkModuleId Field -->
-    <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)"
+    <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [loading]="loading"
       [optionDisabled]="!fieldsInfo['linkCmsModuleId']?.accessEditField" [optionSelectForce]="dataModel.linkCmsModuleId"
       [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
     </app-core-module-selector>

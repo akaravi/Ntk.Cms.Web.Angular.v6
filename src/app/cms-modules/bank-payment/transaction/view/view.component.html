@@ -7,11 +7,11 @@
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <!-- LinkPrivateSiteConfigId Field -->
-  <app-bankpayment-privatesiteconfig-selector [optionDisabled]="true"
+  <app-bankpayment-privatesiteconfig-selector [optionDisabled]="true" [loading]="loading"
     [optionSelectForce]=" this.dataModel.linkPrivateSiteConfigId" [optionPlaceholder]="this.translate.instant('TITLE.Account')">
   </app-bankpayment-privatesiteconfig-selector>
-  <!-- LinkUserId Field -->
-  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId"
+  <!-- LinkUserId Field --> 
+  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId" [loading]="loading"
     [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
   <!-- LinkUserId Field -->
   <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>

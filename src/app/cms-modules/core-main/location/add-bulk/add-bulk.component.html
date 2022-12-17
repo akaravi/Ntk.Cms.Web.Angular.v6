@@ -38,7 +38,7 @@
       </mat-form-field>
 
       <!-- LinkParentId Field -->
-      <app-core-location-selector (optionChange)="onActionParentSelect($event)" [optionDisabled]="false"
+      <app-core-location-selector (optionChange)="onActionParentSelect($event)" [loading]="loading" [optionDisabled]="false"
         [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Area')">
       </app-core-location-selector>
       <!-- Title Field -->

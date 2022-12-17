@@ -55,11 +55,11 @@
         </mat-form-field>
         <!-- LinkSourceId Field -->
         <app-application-source-selector (optionChange)="onActionSelectSource($event)"
-          [optionSelectForce]="this.dataModel.linkSourceId" [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"
+          [optionSelectForce]="this.dataModel.linkSourceId" [loading]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"
           [optionDisabled]="!fieldsInfo['linkSourceId']?.accessEditField"></app-application-source-selector>
         <!-- LinkThemeConfigId Field -->
         <app-application-themeconfig-selector (optionChange)="onActionSelectTheme($event)"
-          [optionSelectForce]="this.dataModel.linkThemeConfigId" [optionSelectParentForce]="this.dataModel.linkSourceId"
+          [optionSelectForce]="this.dataModel.linkThemeConfigId" [loading]="loading" [optionSelectParentForce]="this.dataModel.linkSourceId"
           [optionPlaceholder]="this.translate.instant('TITLE.Application_Template')" [optionDisabled]="!fieldsInfo['linkThemeConfigId']?.accessEditField">
         </app-application-themeconfig-selector>
         <!-- Title Field -->

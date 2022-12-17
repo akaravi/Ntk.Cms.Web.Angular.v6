@@ -1,88 +1,89 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-    <div class="ntk-cms-html-card-header">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.formTitle }}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </div>
-    <div class="ntk-cms-html-card-body">
-	<app-progress-spinner [options]="loading"> </app-progress-spinner>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <!-- RecordStatus Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
-          <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-            [disabled]="!fieldsInfo['recordStatus']?.accessEditField" name="dataModel.recordStatus"
-            #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
-            <mat-option *ngFor="
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        [disabled]="!fieldsInfo['recordStatus']?.accessEditField" name="dataModel.recordStatus" #RecordStatus="ngModel"
+        panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
+        <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
               index as i
             " [value]="item.value">{{ item.description }}</mat-option>
-          </mat-select>
-          <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
-          <mat-error *ngIf="RecordStatus.errors?.required">
-            {{ fieldsInfo['recordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- BankStatus Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['bankStatus']?.accessWatchField">
-          <mat-select placeholder="{{fieldsInfo['bankStatus']?.fieldTitle}}" [(ngModel)]="dataModel.bankStatus"
-            [disabled]="!fieldsInfo['bankStatus']?.accessEditField" name="dataModel.bankStatus" #BankStatus="ngModel"
-            panelClass="BankStatus-{{ dataModel.bankStatus }}" required>
-            <mat-option *ngFor="
+      </mat-select>
+      <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        {{ fieldsInfo['recordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- BankStatus Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['bankStatus']?.accessWatchField">
+      <mat-select placeholder="{{fieldsInfo['bankStatus']?.fieldTitle}}" [(ngModel)]="dataModel.bankStatus"
+        [disabled]="!fieldsInfo['bankStatus']?.accessEditField" name="dataModel.bankStatus" #BankStatus="ngModel"
+        panelClass="BankStatus-{{ dataModel.bankStatus }}" required>
+        <mat-option *ngFor="
                     let item of dataModelEnumTransactionBankStatusResult.listItems;
                     index as i
                   " [value]="item.value">{{ item.description }}</mat-option>
-          </mat-select>
-          <mat-hint align="end">{{ 'Application.source.BankStatus_hint' | translate }}</mat-hint>
-          <mat-error *ngIf="BankStatus.errors?.required">
-            {{ fieldsInfo['bankStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- TransactionStatus Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['transactionStatus']?.accessWatchField">
-          <mat-select placeholder="{{fieldsInfo['transactionStatus']?.fieldTitle}}"
-            [(ngModel)]="dataModel.transactionStatus" [disabled]="!fieldsInfo['transactionStatus']?.accessEditField"
-            name="dataModel.recordStatus" #TransactionStatus="ngModel"
-            panelClass="TransactionStatus-{{ dataModel.transactionStatus }}" required>
-            <mat-option *ngFor="
+      </mat-select>
+      <mat-hint align="end">{{ 'Application.source.BankStatus_hint' | translate }}</mat-hint>
+      <mat-error *ngIf="BankStatus.errors?.required">
+        {{ fieldsInfo['bankStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- TransactionStatus Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['transactionStatus']?.accessWatchField">
+      <mat-select placeholder="{{fieldsInfo['transactionStatus']?.fieldTitle}}"
+        [(ngModel)]="dataModel.transactionStatus" [disabled]="!fieldsInfo['transactionStatus']?.accessEditField"
+        name="dataModel.recordStatus" #TransactionStatus="ngModel"
+        panelClass="TransactionStatus-{{ dataModel.transactionStatus }}" required>
+        <mat-option *ngFor="
               let item of dataModelEnumTransactionRecordStatusResult.listItems;
               index as i
             " [value]="item.value">{{ item.description }}</mat-option>
-          </mat-select>
-          <mat-hint align="end">{{ 'Application.source.TransactionStatus_hint' | translate }}</mat-hint>
-          <mat-error *ngIf="TransactionStatus.errors?.required">
-            {{ fieldsInfo['transactionStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- LinkPrivateSiteConfigId Field -->
-        <app-bankpayment-privatesiteconfig-selector [optionDisabled]="true"
-          [optionSelectForce]=" this.dataModel.linkPrivateSiteConfigId" [optionPlaceholder]="this.translate.instant('TITLE.Account')">
-        </app-bankpayment-privatesiteconfig-selector>
-        <!-- LinkUserId Field -->
-        <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId"
-          [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
-        <!-- LinkUserId Field -->
-        <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      </mat-select>
+      <mat-hint align="end">{{ 'Application.source.TransactionStatus_hint' | translate }}</mat-hint>
+      <mat-error *ngIf="TransactionStatus.errors?.required">
+        {{ fieldsInfo['transactionStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- LinkPrivateSiteConfigId Field -->
+    <app-bankpayment-privatesiteconfig-selector [optionDisabled]="true" [loading]="loading"
+      [optionSelectForce]=" this.dataModel.linkPrivateSiteConfigId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Account')">
+    </app-bankpayment-privatesiteconfig-selector>
+    <!-- LinkUserId Field -->
+    <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId" [loading]="loading"
+      [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
+    <!-- LinkUserId Field -->
+    <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
     </div>
-    <div class="ntk-cms-html-card-message">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      <div class="form-actions">
-        <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-        <small class="form-text text-muted danger">{{ formInfo.formError }}
-        </small>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
     </div>
-    <div class="ntk-cms-html-card-footer">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-        <button type="button" (click)="onFormCancel()" class="btn btn-light">
-          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-        </button>
-        <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
-          <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-        </button>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

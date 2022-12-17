@@ -24,8 +24,8 @@
     </mat-form-field>
     <!-- LocationType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{'TITLE.Area_Type' | translate}}" [(ngModel)]="dataModel.locationType" name="dataModel.locationType"
-        #LocationType="ngModel" panelClass="LocationType-{{ dataModel.locationType }}">
+      <mat-select placeholder="{{'TITLE.Area_Type' | translate}}" [(ngModel)]="dataModel.locationType"
+        name="dataModel.locationType" #LocationType="ngModel" panelClass="LocationType-{{ dataModel.locationType }}">
         <mat-option *ngFor="
                   let item of dataModelEnumLocationTypeResult.listItems;
                   index as i
@@ -38,8 +38,9 @@
     </mat-form-field>
 
     <!-- LinkParentId Field -->
-    <app-core-location-selector (optionChange)="onActionParentSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Area')">
+    <app-core-location-selector (optionChange)="onActionParentSelect($event)" [loading]="loading"
+      [optionDisabled]="false" [optionSelectForce]="dataModel.linkParentId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Parent_Area')">
     </app-core-location-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">

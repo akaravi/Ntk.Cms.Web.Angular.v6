@@ -23,11 +23,13 @@
     </mat-form-field>
     <!-- LinkManagementMemberId Field -->
     <app-linkmanagement-member-selector (optionChange)="onActionSelectorSelectLinkManagementMemberId($event)"
-      [optionSelectForce]="dataModel.linkManagementMemberId" [optionPlaceholder]="this.translate.instant('TITLE.User_Account')">
+      [loading]="loading" [optionSelectForce]="dataModel.linkManagementMemberId"
+      [optionPlaceholder]="this.translate.instant('TITLE.User_Account')">
     </app-linkmanagement-member-selector>
     <!-- IsCertainDocument Field -->
     <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.isCertainDocument" *ngIf="fieldsInfo['isCertainDocument']?.accessWatchField"
+      <mat-slide-toggle [(ngModel)]="dataModel.isCertainDocument"
+        *ngIf="fieldsInfo['isCertainDocument']?.accessWatchField"
         [disabled]="!fieldsInfo['isCertainDocument']?.accessEditField" name="dataModel.isCertainDocument">
         {{fieldsInfo['isCertainDocument']?.fieldTitle}}
       </mat-slide-toggle>
@@ -45,8 +47,8 @@
         Description is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-     <!-- Debtor Field -->
-     <mat-form-field class="ntk-full-width">
+    <!-- Debtor Field -->
+    <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['debtor']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.debtor" name="dataModel.debtor" #Debtor type="number"
         placeholder="{{'TITLE.Debtor_Credit' | translate}}" min="0" required />
@@ -60,8 +62,8 @@
     <!-- Creditor Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['creditor']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.creditor" name="dataModel.creditor" #Creditor
-        type="number" placeholder="{{'TITLE.Creditor_Credit' | translate}}" min="0" required />
+      <input matInput [(ngModel)]="dataModel.creditor" name="dataModel.creditor" #Creditor type="number"
+        placeholder="{{'TITLE.Creditor_Credit' | translate}}" min="0" required />
       <mat-icon matSuffix *ngIf="dataModel.creditor" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.creditor = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

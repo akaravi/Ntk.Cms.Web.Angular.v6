@@ -23,11 +23,11 @@
     </mat-form-field>
 
     <!-- LinkCmsSiteId Field -->
-    <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
+    <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false" [loading]="loading"
       [optionSelectForce]="dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
     </app-core-site-selector>
     <!-- LinkModuleId Field -->
-    <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [optionDisabled]="false"
+    <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [optionDisabled]="false" [loading]="loading"
       [optionSelectForce]="dataModel.linkModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
     </app-core-module-selector>
     <!-- ExpireDate Field -->

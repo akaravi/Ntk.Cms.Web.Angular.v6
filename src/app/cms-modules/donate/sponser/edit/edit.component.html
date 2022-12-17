@@ -22,8 +22,8 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-    <!-- LinkTargetCategoryId Field -->
-    <app-donate-target-category-selector (optionChange)="onActionSelectorSelect($event)"
+    <!-- LinkTargetCategoryId Field --> 
+    <app-donate-target-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
       [optionSelectForce]="dataModel.linkTargetCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-donate-target-category-selector>
     <!-- Title Field -->

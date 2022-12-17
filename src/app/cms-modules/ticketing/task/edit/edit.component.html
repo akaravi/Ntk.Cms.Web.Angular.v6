@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -26,8 +26,9 @@
           </mat-error>
         </mat-form-field>
 
-        <app-ticketing-departemen-selector (optionChange)="onActionSelectSource($event)"
-          [optionSelectForce]="this.dataModel.linkTicketingDepartemenId" [optionPlaceholder]="this.translate.instant('TITLE.Department')"
+        <app-ticketing-departemen-selector (optionChange)="onActionSelectSource($event)" [loading]="loading"
+          [optionSelectForce]="this.dataModel.linkTicketingDepartemenId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Department')"
           [optionDisabled]="!fieldsInfo['linkTicketingDepartemenId']?.accessEditField">
         </app-ticketing-departemen-selector>
 

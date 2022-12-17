@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -25,7 +25,8 @@
     </mat-form-field>
     <!-- LinkParentId Field -->
     <app-core-cpmainmenu-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
+      [loading]="loading" [optionSelectForce]="dataModel.linkParentId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
     </app-core-cpmainmenu-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
