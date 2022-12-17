@@ -68,7 +68,7 @@
       <br>
       <!-- LinkFilePodcastIdFa Field -->
       <div class="mb-3">
-        <audio *ngIf="dataModel?.linkFilePodcastIdFaSrc?.length>0" controls>
+        <audio class="audio" class="audio" *ngIf="dataModel?.linkFilePodcastIdFaSrc?.length>0" controls>
           <source src="{{dataModel.linkFilePodcastIdFaSrc | cmsthumbnail}}" type="audio/mp3">
           Your browser does not support the audio tag.
         </audio>
@@ -89,7 +89,7 @@
       </div>
       <!-- LinkFileMovieIdFa Field -->
       <div class="mb-3">
-        <video *ngIf="dataModel?.linkFileMovieIdEnSrc?.length>0" controls>
+        <video class="header-video" *ngIf="dataModel?.linkFileMovieIdEnSrc?.length>0" controls>
           <source src="{{dataModel.linkFileMovieIdEnSrc }}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -135,7 +135,7 @@
     <br>
     <!-- LinkFilePodcastIdEn Field -->
     <div class="mb-3">
-      <audio *ngIf="dataModel?.linkFilePodcastIdEnSrc?.length>0" controls>
+      <audio class="audio" *ngIf="dataModel?.linkFilePodcastIdEnSrc?.length>0" controls>
         <source src="{{dataModel.linkFilePodcastIdEnSrc | cmsthumbnail}}" type="audio/mp3">
         Your browser does not support the audio tag.
       </audio>
@@ -156,7 +156,7 @@
     </div>
     <!-- LinkFileMovieIdEn Field -->
     <div class="mb-3">
-      <video *ngIf="dataModel?.linkFileMovieIdEnSrc?.length>0" controls>
+      <video class="header-video" *ngIf="dataModel?.linkFileMovieIdEnSrc?.length>0" controls>
         <source src="{{dataModel.linkFileMovieIdEnSrc }}" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -223,7 +223,7 @@
       </div>
       <!-- LinkFileMovieIdAr Field -->
       <div class="mb-3">
-        <video *ngIf="dataModel?.linkFileMovieIdArSrc?.length>0" controls>
+        <video class="header-video" *ngIf="dataModel?.linkFileMovieIdArSrc?.length>0" controls>
           <source src="{{dataModel.linkFileMovieIdArSrc }}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -269,7 +269,7 @@
     <br>
     <!-- LinkFilePodcastIdDe Field -->
     <div class="mb-3">
-      <audio *ngIf="dataModel?.linkFilePodcastIdDeSrc?.length>0" controls>
+      <audio class="audio" *ngIf="dataModel?.linkFilePodcastIdDeSrc?.length>0" controls>
         <source src="{{dataModel.linkFilePodcastIdDeSrc | cmsthumbnail}}" type="audio/mp3">
         Your browser does not support the audio tag.
       </audio>
@@ -290,7 +290,7 @@
     </div>
     <!-- LinkFileMovieIdDe Field -->
     <div class="mb-3">
-      <video *ngIf="dataModel?.linkFileMovieIdDeSrc?.length>0" controls>
+      <video class="header-video" *ngIf="dataModel?.linkFileMovieIdDeSrc?.length>0" controls>
         <source src="{{dataModel.linkFileMovieIdDeSrc }}" type="video/mp4">
         Your browser does not support the video tag.
       </video>

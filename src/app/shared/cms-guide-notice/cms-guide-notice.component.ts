@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-cms-guide-notice',
   templateUrl: './cms-guide-notice.component.html',
+  styleUrls: ["./cms-guide-notice.component.scss"],
 })
 export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
   static nextId = 0;

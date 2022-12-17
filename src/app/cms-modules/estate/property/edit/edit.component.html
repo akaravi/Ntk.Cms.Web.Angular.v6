@@ -370,10 +370,11 @@
 
       </mat-step>
 
-      <mat-step label="{{'TITLE.SECRET_INFORMATION' | translate}}" state="main">
+      <mat-step label="{{'TITLE.SECRET_INFORMATION' | translate}}" state="main"
+        *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField && fieldsInfo['addressHidden']?.accessWatchField">
 
         <!-- DescriptionHidden Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField">
+        <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.Description_Hidden' | translate}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
             #DescriptionHidden type="text" placeholder="{{fieldsInfo['descriptionHidden']?.fieldTitle}}" minlength="1"
@@ -391,7 +392,7 @@
           </mat-error>
         </mat-form-field>
         <!-- AddressHidden Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['addressHidden']?.accessWatchField">
+        <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.Address_Hidden' | translate}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.addressHidden" name="dataModel.addressHidden" #AddressHidden
             type="text" placeholder="{{fieldsInfo['addressHidden']?.fieldTitle}}" minlength="1" maxlength="2000"
@@ -466,8 +467,8 @@
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;
                   <app-input-boolean [(model)]="propertyDetails[itemDetail.id]">{{itemDetail.title}}
-                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>
                   </app-input-boolean>
                 </div>
                 <!-- ngSwitchCase-->

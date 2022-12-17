@@ -89,6 +89,51 @@
         Address is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <hr>
+    <!-- AccessWatchRowSite Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRowSite"
+        *ngIf="fieldsInfo['accessWatchRowSite']?.accessWatchField"
+        [disabled]="!fieldsInfo['accessWatchRowSite']?.accessEditField" name="dataModel.accessWatchRowSite">
+        {{fieldsInfo['accessWatchRowSite']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- accessWatchRowOtherAgency Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRowOtherAgency"
+        *ngIf="fieldsInfo['accessWatchRowOtherAgency']?.accessWatchField"
+        [disabled]="!fieldsInfo['accessWatchRowOtherAgency']?.accessEditField"
+        name="dataModel.accessWatchRowOtherAgency">
+        {{fieldsInfo['accessWatchRowOtherAgency']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- accessWatchRowOtherAgent Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRowOtherAgent"
+        *ngIf="fieldsInfo['accessWatchRowOtherAgent']?.accessWatchField"
+        [disabled]="!fieldsInfo['accessWatchRowOtherAgent']?.accessEditField" name="dataModel.accessWatchRowOtherAgent">
+        {{fieldsInfo['accessWatchRowOtherAgent']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- accessAllowShareRowWatchOtherAgency Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.accessAllowShareRowWatchOtherAgency"
+        *ngIf="fieldsInfo['accessAllowShareRowWatchOtherAgency']?.accessWatchField"
+        [disabled]="!fieldsInfo['accessAllowShareRowWatchOtherAgency']?.accessEditField"
+        name="dataModel.accessAllowShareRowWatchOtherAgency">
+        {{fieldsInfo['accessAllowShareRowWatchOtherAgency']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- accessAllowShareRowWatchOtherAgent Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.accessAllowShareRowWatchOtherAgent"
+        *ngIf="fieldsInfo['accessAllowShareRowWatchOtherAgent']?.accessWatchField"
+        [disabled]="!fieldsInfo['accessAllowShareRowWatchOtherAgent']?.accessEditField"
+        name="dataModel.accessAllowShareRowWatchOtherAgent">
+        {{fieldsInfo['accessAllowShareRowWatchOtherAgent']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <hr>
     <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>
     <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
       id='main-map'></app-cms-map>

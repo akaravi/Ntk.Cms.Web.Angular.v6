@@ -16,27 +16,32 @@
       <div class="alert-text">
         <h4> {{ title }}</h4>
         <div [innerHTML]="description"></div>
+        <br>
+        <div *ngIf="bodyShow" [innerHTML]="body"></div>
         <div class="row">
-          <div class="col-md-6 col-sm-6 col-xs-9">
-            <div *ngIf="bodyShow" [innerHTML]="body"></div>
-            <div *ngIf="podcastSrc && podcastSrc?.length>0">
-              <audio controls>
-                <source src="{{podcastSrc | cmsthumbnail}}" type="audio/mp3">
-                Your browser does not support the audio tag.
-              </audio>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-6 col-xs-9">
-            <div *ngIf="movieSrc && movieSrc?.length>0">
-              <video controls>
+          <div class="col-md-12 col-sm-12 col-xs-18">
+            <div class="header" *ngIf="movieSrc && movieSrc?.length>0 && bodyShow">
+              <video class="header-video" controls>
                 <source src="{{movieSrc }}" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
         </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-112">
+            <div *ngIf="podcastSrc && podcastSrc?.length>0 && bodyShow">
+              <audio class="audio" controls>
+                <source src="{{podcastSrc | cmsthumbnail}}" type="audio/mp3">
+                Your browser does not support the audio tag.
+              </audio>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div style="align-self: end;">
+      <div >
         <button type="button" *ngIf="!bodyShow&& (body?.length>0 || podcast>0 || movie>0)"
           class="btn btn-outline-primary" (click)="onActionBottunClick()">
           {{'TITLE.More' | translate}}
