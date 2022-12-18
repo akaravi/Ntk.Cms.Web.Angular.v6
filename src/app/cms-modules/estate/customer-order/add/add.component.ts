@@ -335,6 +335,8 @@ export class EstateCustomerOrderAddComponent implements OnInit {
           this.formInfo.formSubmitAllow = true;
         }
       });
+    }else{
+      this.DataAddContent();
     }
   }
 

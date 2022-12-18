@@ -436,7 +436,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.formInfo.formSubmitAllow = true;
       return;
     }
-    if ((this.tokenHelper.CheckIsAdmin()|| this.tokenHelper.CheckIsSupport()|| this.tokenHelper.tokenInfo.userAccessUserType==EnumManageUserAccessUserTypes.ResellerCpSite|| this.tokenHelper.tokenInfo.userAccessUserType==EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available && this.dataModel.recordStatus != this.lastRecordStatus) {
+    if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available && this.dataModel.recordStatus != this.lastRecordStatus) {
       const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
         height: '90%',
         data: { model: this.dataModel }
