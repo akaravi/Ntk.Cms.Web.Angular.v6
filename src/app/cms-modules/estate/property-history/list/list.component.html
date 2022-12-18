@@ -1,5 +1,11 @@
 <app-cms-guide-notice [Key]="'estate.propertyhistory.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
 </app-cms-guide-notice>
+<app-estate-property-header *ngIf="this.requestLinkPropertyId?.length>0" [optionId]="this.requestLinkPropertyId">
+</app-estate-property-header>
+<app-estate-customer-order-header *ngIf="this.requestLinkCustomerOrderId?.length>0" [optionId]="this.requestLinkCustomerOrderId">
+</app-estate-customer-order-header>
+<app-estate-account-user-header *ngIf="this.requestLinkAgentId?.length>0" [optionId]="this.requestLinkAgentId">
+</app-estate-account-user-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->

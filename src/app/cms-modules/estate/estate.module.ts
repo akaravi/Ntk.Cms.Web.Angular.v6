@@ -165,6 +165,8 @@ import { EstateCustomerCategoryAddComponent } from './customer-category/add/add.
 import { EstateCustomerCategoryEditComponent } from './customer-category/edit/edit.component';
 import { EstateCustomerCategorySelectorComponent } from './customer-category/selector/selector.component';
 import { EstateCustomerCategoryTreeComponent } from './customer-category/tree/tree.component';
+import { EstateAccountUserHeaderComponent } from './account-user/header/header.component';
+import { EstateAccountAgencyHeaderComponent } from './account-agency/header/header.component';
 
 @NgModule({
   declarations: [
@@ -178,15 +180,15 @@ import { EstateCustomerCategoryTreeComponent } from './customer-category/tree/tr
     EstatePropertyTypeLanduseCompleteComponent,
     EstatePropertyTypeLanduseSelectionlistComponent,
     EstatePropertyTypeLanduseHeaderComponent,
-     /* */
-     EstateActivityTypeAddComponent,
-     EstateActivityTypeEditComponent,
-     EstateActivityTypeListComponent,
-     EstateActivityTypeSelectorComponent,
-     EstateActivityTypeTreeComponent,
-     EstateActivityTypeCompleteComponent,
-     EstateActivityTypeSelectionlistComponent,
-     EstateActivityTypeHeaderComponent,
+    /* */
+    EstateActivityTypeAddComponent,
+    EstateActivityTypeEditComponent,
+    EstateActivityTypeListComponent,
+    EstateActivityTypeSelectorComponent,
+    EstateActivityTypeTreeComponent,
+    EstateActivityTypeCompleteComponent,
+    EstateActivityTypeSelectionlistComponent,
+    EstateActivityTypeHeaderComponent,
     /* */
     EstatePropertyProjectAddComponent,
     EstatePropertyProjectEditComponent,
@@ -280,15 +282,17 @@ import { EstateCustomerCategoryTreeComponent } from './customer-category/tree/tr
     EstateAccountUserListComponent,
     EstateAccountUserSelectorComponent,
     EstateAccountUserTreeComponent,
+    EstateAccountUserHeaderComponent,
     /* */
     EstateAccountAgencyAddComponent,
     EstateAccountAgencyEditComponent,
     EstateAccountAgencyListComponent,
     EstateAccountAgencySelectorComponent,
     EstateAccountAgencyTreeComponent,
+    EstateAccountAgencyHeaderComponent,
     /* */
     EstateAccountAgencyUserAddComponent,
-        EstateAccountAgencyUserListComponent,
+    EstateAccountAgencyUserListComponent,
     EstateAccountAgencyUserSelectorComponent,
     /* */
     EstateAccountAgencyAdsAddComponent,
@@ -311,7 +315,7 @@ import { EstateCustomerCategoryTreeComponent } from './customer-category/tree/tr
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
 
     MatIconModule,
     MatFormFieldModule,
