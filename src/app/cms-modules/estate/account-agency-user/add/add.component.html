@@ -23,19 +23,17 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- LinkAccountUserId Field -->
+    <!-- linkEstateAccountUserId Field -->
     <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)" [loading]="loading"
-      [optionSelectForce]="dataModel.linkAccountUserId" [optionPlaceholder]="'user'">
+      [optionSelectForce]="dataModel.linkEstateAccountUserId" [optionPlaceholder]="'user'">
     </app-estate-account-user-selector>
 
-    <!-- LinkAccountAgencyId Field -->
+    <!-- linkEstateAccountAgencyId Field -->
     <app-estate-account-agency-selector (optionChange)="onActionSelectorAccountAgency($event)" [loading]="loading"
-      [optionSelectForce]="dataModel.linkAccountAgencyId" [optionPlaceholder]="'Agency'">
+      [optionSelectForce]="dataModel.linkEstateAccountAgencyId" [optionPlaceholder]="'Agency'">
     </app-estate-account-agency-selector>
 
-    <!-- LinkPropertyId Field -->
-    <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)" [loading]="loading"
-      [optionSelectForce]="dataModel.linkPropertyId" [optionPlaceholder]="'Property'"></app-estate-property-selector>
+
 
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

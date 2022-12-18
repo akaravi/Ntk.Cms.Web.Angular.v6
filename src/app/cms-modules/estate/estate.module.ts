@@ -19,7 +19,7 @@ import {
   EstateContractTypeService,
   EstatePropertyDetailGroupService,
   EstateAccountAgencyService,
-  EstateAccountAgencyTypeUserService,
+  EstateAccountAgencyUserService,
   EstateAccountUserService,
   EstateEnumService,
   EstatePropertyAccountTypeUserService,
@@ -67,10 +67,9 @@ import { EstateAccountAgencyEditComponent } from './account-agency/edit/edit.com
 import { EstateAccountAgencyListComponent } from './account-agency/list/list.component';
 import { EstateAccountAgencySelectorComponent } from './account-agency/selector/selector.component';
 import { EstateAccountAgencyTreeComponent } from './account-agency/tree/tree.component';
-import { EstateAccountAgencyTypeUserAddComponent } from './account-agency-typeuser/add/add.component';
-import { EstateAccountAgencyTypeUserEditComponent } from './account-agency-typeuser/edit/edit.component';
-import { EstateAccountAgencyTypeUserListComponent } from './account-agency-typeuser/list/list.component';
-import { EstateAccountAgencyTypeUserSelectorComponent } from './account-agency-typeuser/selector/selector.component';
+import { EstateAccountAgencyUserAddComponent } from './account-agency-user/add/add.component';
+import { EstateAccountAgencyUserListComponent } from './account-agency-user/list/list.component';
+import { EstateAccountAgencyUserSelectorComponent } from './account-agency-user/selector/selector.component';
 import { EstatePropertySelectorComponent } from './property/selector/selector.component';
 import { EstateAccountUserAddComponent } from './account-user/add/add.component';
 import { EstateAccountUserEditComponent } from './account-user/edit/edit.component';
@@ -288,10 +287,9 @@ import { EstateCustomerCategoryTreeComponent } from './customer-category/tree/tr
     EstateAccountAgencySelectorComponent,
     EstateAccountAgencyTreeComponent,
     /* */
-    EstateAccountAgencyTypeUserAddComponent,
-    EstateAccountAgencyTypeUserEditComponent,
-    EstateAccountAgencyTypeUserListComponent,
-    EstateAccountAgencyTypeUserSelectorComponent,
+    EstateAccountAgencyUserAddComponent,
+        EstateAccountAgencyUserListComponent,
+    EstateAccountAgencyUserSelectorComponent,
     /* */
     EstateAccountAgencyAdsAddComponent,
     EstateAccountAgencyAdsEditComponent,
@@ -333,7 +331,7 @@ import { EstateCustomerCategoryTreeComponent } from './customer-category/tree/tr
     /*Config*/
     /** */
     EstateAccountAgencyService,
-    EstateAccountAgencyTypeUserService,
+    EstateAccountAgencyUserService,
     EstateAccountUserService,
     EstateContractService,
     EstateContractTypeService,

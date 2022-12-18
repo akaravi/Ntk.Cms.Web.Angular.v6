@@ -7,8 +7,8 @@ import {
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  EstateAccountAgencyTypeUserModel,
-  EstateAccountAgencyTypeUserService
+  EstateAccountAgencyUserModel,
+  EstateAccountAgencyUserService
 } from 'ntk-cms-api';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -24,27 +24,27 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
-export class EstateAccountAgencyTypeUserSelectorComponent implements OnInit {
+export class EstateAccountAgencyUserSelectorComponent implements OnInit {
 
   constructor(
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
-    public categoryService: EstateAccountAgencyTypeUserService) {
+    public categoryService: EstateAccountAgencyUserService) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
-  dataModelResult: ErrorExceptionResult<EstateAccountAgencyTypeUserModel> = new ErrorExceptionResult<EstateAccountAgencyTypeUserModel>();
-  dataModelSelect: EstateAccountAgencyTypeUserModel = new EstateAccountAgencyTypeUserModel();
+  dataModelResult: ErrorExceptionResult<EstateAccountAgencyUserModel> = new ErrorExceptionResult<EstateAccountAgencyUserModel>();
+  dataModelSelect: EstateAccountAgencyUserModel = new EstateAccountAgencyUserModel();
   formControl = new FormControl();
-  filteredOptions: Observable<EstateAccountAgencyTypeUserModel[]>;
+  filteredOptions: Observable<EstateAccountAgencyUserModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
   @Input() optionPlaceholder = '';
-  @Output() optionChange = new EventEmitter<EstateAccountAgencyTypeUserModel>();
+  @Output() optionChange = new EventEmitter<EstateAccountAgencyUserModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: string | EstateAccountAgencyTypeUserModel) {
+  @Input() set optionSelectForce(x: string | EstateAccountAgencyUserModel) {
     this.onActionSelectForce(x);
   }
 
@@ -75,13 +75,13 @@ export class EstateAccountAgencyTypeUserSelectorComponent implements OnInit {
       );
   }
 
-  displayFn(model?: EstateAccountAgencyTypeUserModel): string | undefined {
+  displayFn(model?: EstateAccountAgencyUserModel): string | undefined {
     return model ? model.id : undefined;
   }
-  displayOption(model?: EstateAccountAgencyTypeUserModel): string | undefined {
+  displayOption(model?: EstateAccountAgencyUserModel): string | undefined {
     return model ? model.id : undefined;
   }
-  async DataGetAll(text: string | number | any): Promise<EstateAccountAgencyTypeUserModel[]> {
+  async DataGetAll(text: string | number | any): Promise<EstateAccountAgencyUserModel[]> {
     const filterModel = new FilterModel();
     filterModel.rowPerPage = 20;
     filterModel.accessLoad = true;
@@ -122,7 +122,7 @@ export class EstateAccountAgencyTypeUserSelectorComponent implements OnInit {
         })
       ).toPromise();
   }
-  onActionSelect(model: EstateAccountAgencyTypeUserModel): void {
+  onActionSelect(model: EstateAccountAgencyUserModel): void {
     if (this.optionDisabled) {
       return;
     }
@@ -137,7 +137,7 @@ export class EstateAccountAgencyTypeUserSelectorComponent implements OnInit {
     this.optionChange.emit(null);
   }
 
-  push(newvalue: EstateAccountAgencyTypeUserModel): Observable<EstateAccountAgencyTypeUserModel[]> {
+  push(newvalue: EstateAccountAgencyUserModel): Observable<EstateAccountAgencyUserModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.id === newvalue.id)) {
         return items;
@@ -147,7 +147,7 @@ export class EstateAccountAgencyTypeUserSelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: string | EstateAccountAgencyTypeUserModel): void {
+  onActionSelectForce(id: string | EstateAccountAgencyUserModel): void {
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
@@ -172,9 +172,9 @@ export class EstateAccountAgencyTypeUserSelectorComponent implements OnInit {
       });
       return;
     }
-    if (typeof id === typeof EstateAccountAgencyTypeUserModel) {
-      this.filteredOptions = this.push((id as EstateAccountAgencyTypeUserModel));
-      this.dataModelSelect = (id as EstateAccountAgencyTypeUserModel);
+    if (typeof id === typeof EstateAccountAgencyUserModel) {
+      this.filteredOptions = this.push((id as EstateAccountAgencyUserModel));
+      this.dataModelSelect = (id as EstateAccountAgencyUserModel);
       this.formControl.setValue(id);
       return;
     }
@@ -182,7 +182,7 @@ export class EstateAccountAgencyTypeUserSelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    this.dataModelSelect = new EstateAccountAgencyTypeUserModel();
+    this.dataModelSelect = new EstateAccountAgencyUserModel();
     this.loadOptions();
   }
 }

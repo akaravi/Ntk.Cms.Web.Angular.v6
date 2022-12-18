@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
-  EstateAccountAgencyTypeUserModel,
-  EstateAccountAgencyTypeUserService,
+  EstateAccountAgencyUserModel,
+  EstateAccountAgencyUserService,
   EnumSortType,
   ErrorExceptionResult,
   FilterModel,
@@ -24,8 +24,7 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/bas
 import { MatSort } from '@angular/material/sort';
 import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
-import { EstateAccountAgencyTypeUserEditComponent } from '../edit/edit.component';
-import { EstateAccountAgencyTypeUserAddComponent } from '../add/add.component';
+import { EstateAccountAgencyUserAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
@@ -34,9 +33,9 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestroy {
+export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
   constructor(
-    private contentService: EstateAccountAgencyTypeUserService,
+    private contentService: EstateAccountAgencyUserService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -61,22 +60,21 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<EstateAccountAgencyTypeUserModel> = new ErrorExceptionResult<EstateAccountAgencyTypeUserModel>();
+  dataModelResult: ErrorExceptionResult<EstateAccountAgencyUserModel> = new ErrorExceptionResult<EstateAccountAgencyUserModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<EstateAccountAgencyTypeUserModel> = [];
-  tableRowSelected: EstateAccountAgencyTypeUserModel = new EstateAccountAgencyTypeUserModel();
-  tableSource: MatTableDataSource<EstateAccountAgencyTypeUserModel> = new MatTableDataSource<EstateAccountAgencyTypeUserModel>();
+  tableRowsSelected: Array<EstateAccountAgencyUserModel> = [];
+  tableRowSelected: EstateAccountAgencyUserModel = new EstateAccountAgencyUserModel();
+  tableSource: MatTableDataSource<EstateAccountAgencyUserModel> = new MatTableDataSource<EstateAccountAgencyUserModel>();
 
 
   tabledisplayedColumns: string[]=[];
   tabledisplayedColumnsSource: string[] = [
-    'LinkMainImageIdSrc',
-    'Title',
-    'Description',
+    'linkEstateAccountAgencyId',
+    'linkEstateAccountUserId',
     'Action'
   ];
 
@@ -84,7 +82,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
 
 
 
-  expandedElement: EstateAccountAgencyTypeUserModel | null;
+  expandedElement: EstateAccountAgencyUserModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
@@ -105,7 +103,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new EstateAccountAgencyTypeUserModel();
+    this.tableRowSelected = new EstateAccountAgencyUserModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -174,7 +172,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    const dialogRef = this.dialog.open(EstateAccountAgencyTypeUserAddComponent, {
+    const dialogRef = this.dialog.open(EstateAccountAgencyUserAddComponent, {
       height: '90%',
       data: {}
     });
@@ -185,33 +183,10 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
     });
   }
 
-  onActionbuttonEditRow(model: EstateAccountAgencyTypeUserModel = this.tableRowSelected): void {
 
-    if (!model || !model.id || model.id.length === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    this.tableRowSelected = model;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessEditRow
-    ) {
-      this.cmsToastrService.typeErrorAccessEdit();
-      return;
-    }
-    const dialogRef = this.dialog.open(EstateAccountAgencyTypeUserEditComponent, {
-      height: '90%',
-      data: { id: this.tableRowSelected.id }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
-  }
-  onActionbuttonDeleteRow(model: EstateAccountAgencyTypeUserModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
+  onActionbuttonDeleteRow(model: EstateAccountAgencyUserModel = this.tableRowSelected): void {
+    if (!model || !model.linkEstateAccountAgencyId || model.linkEstateAccountAgencyId.length === 0
+      || !model.linkEstateAccountUserId || model.linkEstateAccountUserId.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -228,14 +203,15 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
     }
 
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.id + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' ;
+
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
-          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
+          this.contentService.ServiceDeleteEntity(model).subscribe({
             next: (ret) => {
               if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
@@ -260,15 +236,15 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
       );
 
   }
-  onActionbuttonContentList(model: EstateAccountAgencyTypeUserModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
+  onActionbuttonContentList(model: EstateAccountAgencyUserModel = this.tableRowSelected): void {
+    if (!model || !model.linkEstateAccountUserId || model.linkEstateAccountUserId.length === 0) {
       const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/hypershop/content/PareintId/', this.tableRowSelected.id]);
+    this.router.navigate(['/hypershop/content/PareintId/', this.tableRowSelected.linkEstateAccountUserId]);
   }
 
   onActionbuttonStatist(): void {
@@ -338,36 +314,7 @@ export class EstateAccountAgencyTypeUserListComponent implements OnInit, OnDestr
         //open popup 
         
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    this.tableRowSelected = model;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessEditRow
-    ) {
-      this.cmsToastrService.typeErrorAccessWatch();
-      return;
-    }
-    //open popup
-    const dialogRef = this.dialog.open(CmsExportEntityComponent, {
-      height: "50%",
-      width: "50%",
-      data: {
-        service: this.contentService,
-        id: this.tableRowSelected.id,
-        title: ''
-      },
-    }
-    );
-    dialogRef.afterClosed().subscribe((result) => {
-    });
-    //open popup
-  }
-  
+
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -375,7 +322,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: EstateAccountAgencyTypeUserModel): void {
+  onActionTableRowSelect(row: EstateAccountAgencyUserModel): void {
     this.tableRowSelected = row;
   }
 

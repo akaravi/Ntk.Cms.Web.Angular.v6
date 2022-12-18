@@ -14,10 +14,7 @@
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
       class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
-    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
-      (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
-      data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
-    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
+    <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.linkEstateAccountUserId &&  tableRowSelected?.linkEstateAccountUserId?.length>0"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
       translate}}</button>
 
@@ -32,9 +29,7 @@
     <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
-    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
-    </button>
+  
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
@@ -61,26 +56,18 @@
 
         </mat-cell>
       </ng-container>
-      <!-- ID Column -->
-      <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      <!-- linkEstateAccountAgencyId Column -->
+      <ng-container matColumnDef="linkEstateAccountAgencyId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkEstateAccountAgencyId']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkEstateAccountAgencyId}} </mat-cell>
       </ng-container>
-      <!-- Title Column -->
-      <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['title']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+      
+      <!-- linkEstateAccountUserId Column -->
+      <ng-container matColumnDef="linkEstateAccountUserId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkEstateAccountUserId']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkEstateAccountUserId}} </mat-cell>
       </ng-container>
-
-      <!-- Description Column -->
-      <ng-container matColumnDef="Description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['description']?.fieldTitle}}
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
-      </ng-container>
-
-
+      
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
@@ -91,10 +78,7 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
-            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
-              <mat-icon>mode_edit</mat-icon>
-              <span>{{'ACTION.EDIT' | translate}}</span>
-            </button>
+
             <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
@@ -108,7 +92,7 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
-        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
+        [ngStyle]="{'background': row.linkEstateAccountUserId === tableRowSelected.linkEstateAccountUserId &&  row.linkEstateAccountAgencyId === tableRowSelected.linkEstateAccountAgencyId ? '#d3d3da' : '' }">
       </mat-row>
     </mat-table>
 

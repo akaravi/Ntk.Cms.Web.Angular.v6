@@ -4,14 +4,13 @@ import {
   EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel,
-  EstateAccountAgencyTypeUserService,
-  EstateAccountAgencyTypeUserModel,
+  EstateAccountAgencyUserService,
+  EstateAccountAgencyUserModel,
   DataFieldInfoModel,
   EstateEnumService,
-  EstateAccountUserModel,
   EstateAccountAgencyModel,
+  EstateAccountUserModel,
   EstatePropertyModel,
-  EnumManageUserAccessDataTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -29,27 +28,23 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-estate-account-agency-type-user-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss'],
+  selector: 'app-estate-account-agency-type-user-add',
+  templateUrl: './add.component.html',
+  styleUrls: ['./add.component.scss'],
 })
-export class EstateAccountAgencyTypeUserEditComponent implements OnInit {
-  requestId = '';
+export class EstateAccountAgencyUserAddComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<EstateAccountAgencyTypeUserEditComponent>,
+    private dialogRef: MatDialogRef<EstateAccountAgencyUserAddComponent>,
     public coreEnumService: CoreEnumService,
     public estateEnumService: EstateEnumService,
-    public estateAccountAgencyTypeUserService: EstateAccountAgencyTypeUserService,
+    public estateAccountAgencyUserService: EstateAccountAgencyUserService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    if (data) {
-      this.requestId = data.id;
-    }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -59,8 +54,8 @@ export class EstateAccountAgencyTypeUserEditComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstateAccountAgencyTypeUserModel> = new ErrorExceptionResult<EstateAccountAgencyTypeUserModel>();
-  dataModel: EstateAccountAgencyTypeUserModel = new EstateAccountAgencyTypeUserModel();
+  dataModelResult: ErrorExceptionResult<EstateAccountAgencyUserModel> = new ErrorExceptionResult<EstateAccountAgencyUserModel>();
+  dataModel: EstateAccountAgencyUserModel = new EstateAccountAgencyUserModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumEstateUserTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
@@ -68,14 +63,10 @@ export class EstateAccountAgencyTypeUserEditComponent implements OnInit {
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
-    if (!this.requestId || this.requestId.length === 0) {
-      this.cmsToastrService.typeErrorComponentAction();
-      this.dialogRef.close({ dialogChangedDate: false });
-      return;
-    }
-    this.DataGetOneContent();
+
+    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
+    this.DataGetAccess();
     this.getEnumEstateUserType();
 
   }
@@ -88,50 +79,36 @@ export class EstateAccountAgencyTypeUserEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
 
-  DataGetOneContent(): void {
-
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+  DataGetAccess(): void {
+    this.estateAccountAgencyUserService
+      .ServiceViewModel()
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            // this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+          }
+        },
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
+        }
+      }
+      );
+  }
+  DataAddContent(): void {
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.estateAccountAgencyTypeUserService.setAccessLoad();
-    this.estateAccountAgencyTypeUserService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
-    this.estateAccountAgencyTypeUserService.ServiceGetOneById(this.requestId).subscribe({
-      next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
-        this.dataModel = ret.item;
-        if (ret.isSuccess) {
-          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.id;
-          this.formInfo.formAlert = '';
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
-
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
-      }
-    }
-    );
-  }
-  DataEditContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.formError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
-
-    this.estateAccountAgencyTypeUserService.ServiceEdit(this.dataModel).subscribe({
+    this.estateAccountAgencyUserService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessEdit();
+          this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
@@ -150,30 +127,26 @@ export class EstateAccountAgencyTypeUserEditComponent implements OnInit {
     }
     );
   }
+
   onActionSelectorAccountUser(model: EstateAccountUserModel | null): void {
-    this.dataModel.linkAccountUserId = null;
+    this.dataModel.linkEstateAccountUserId = null;
     if (model && model.id.length > 0) {
-      this.dataModel.linkAccountUserId = model.id;
+      this.dataModel.linkEstateAccountUserId = model.id;
     }
   }
   onActionSelectorAccountAgency(model: EstateAccountAgencyModel | null): void {
-    this.dataModel.linkAccountAgencyId = null;
+    this.dataModel.linkEstateAccountAgencyId = null;
     if (model && model.id.length > 0) {
-      this.dataModel.linkAccountAgencyId = model.id;
+      this.dataModel.linkEstateAccountAgencyId = model.id;
     }
   }
-  onActionSelectorProperty(model: EstatePropertyModel | null): void {
-    this.dataModel.linkPropertyId = null;
-    if (model && model.id.length > 0) {
-      this.dataModel.linkPropertyId = model.id;
-    }
-  }
+
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;
     }
     this.formInfo.formSubmitAllow = false;
-    this.DataEditContent();
+    this.DataAddContent();
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

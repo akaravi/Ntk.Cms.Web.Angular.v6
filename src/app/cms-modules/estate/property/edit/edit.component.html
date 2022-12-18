@@ -147,8 +147,6 @@
           <input matInput [(ngModel)]="dataModel.sharingKey" name="dataModel.sharingKey" #SharingKey type="text"
             disabled="{{!fieldsInfo['sharingKey']?.accessEditField}}"
             placeholder="{{fieldsInfo['sharingKey']?.fieldTitle}}" />
-          <mat-icon matSuffix *ngIf="dataModel.sharingKey" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.sharingKey = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
