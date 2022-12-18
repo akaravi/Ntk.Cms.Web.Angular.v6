@@ -20,6 +20,7 @@ import {
   EnumManageUserAccessDataTypes,
   EnumRecordStatus,
   EstateCustomerCategoryModel,
+  EnumManageUserAccessUserTypes,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -325,7 +326,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
         });
       });
     // ** Save Value */
-    if (this.tokenHelper.CheckIsAdmin() && this.dataModel.recordStatus == EnumRecordStatus.Available) {
+    if ((this.tokenHelper.CheckIsAdmin()|| this.tokenHelper.CheckIsSupport()|| this.tokenHelper.tokenInfo.userAccessUserType==EnumManageUserAccessUserTypes.ResellerCpSite|| this.tokenHelper.tokenInfo.userAccessUserType==EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available)  {
       const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
         // height: '90%',
         data: { model: this.dataModel }

@@ -69,10 +69,10 @@ export class TokenHelper implements OnDestroy {
   CheckIsAdmin(): boolean {
     if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
       || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
-      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
+      
       || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
       || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
-      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms)
+      )
     {
       this.isAdminSite=true;
       return true;
@@ -83,7 +83,7 @@ export class TokenHelper implements OnDestroy {
   CheckIsSupport(): boolean {
     if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
       || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
-      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms)
+      )
     {
       this.isSupportSite=true;
       return true;
