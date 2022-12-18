@@ -99,11 +99,7 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
       </ng-container>
-      <!-- createdBy Column -->
-      <ng-container matColumnDef="createdBy">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdBy']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.createdBy}} </mat-cell>
-      </ng-container>
+
 
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
@@ -189,6 +185,10 @@
               <tr *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField">
                 <td></td>
                 <td>{{'TITLE.Description_Hidden' | translate}} : {{row.descriptionHidden}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td> {{row.createdBy | cmsuserinfo |async}} </td>
               </tr>
               <tr>
                 <td></td>
