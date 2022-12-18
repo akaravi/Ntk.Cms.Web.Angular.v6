@@ -80,7 +80,10 @@
         <td>{{'TITLE.Description_Hidden' | translate}}:</td>
         <td>{{dataModel.descriptionHidden}}</td>
       </tr>
-
+      <tr *ngIf="fieldsInfo['addressHidden']?.accessWatchField">
+        <td>{{fieldsInfo['addressHidden']?.fieldTitle}}:</td>
+        <td>{{dataModel.addressHidden}}</td>
+      </tr>
     </tbody>
   </table>
 
