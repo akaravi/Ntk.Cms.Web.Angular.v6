@@ -7,21 +7,7 @@
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <!-- AccountUserType Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['accountUserType']?.fieldTitle}}" [(ngModel)]="dataModel.accountUserType"
-        name="dataModel.accountUserType" #AccountUserType="ngModel"
-        panelClass="AccountUserType-{{ dataModel.accountUserType }}" required>
-        <mat-option *ngFor="
-                  let item of dataModelEnumEstateUserTypeResult.listItems;
-                  index as i
-                " [value]="item.value">{{ item.description }}</mat-option>
-      </mat-select>
-      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-      <mat-error *ngIf="AccountUserType.errors?.required">
-        AccountUserType is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
+
 
     <!-- linkEstateAccountUserId Field -->
     <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)" [loading]="loading"
