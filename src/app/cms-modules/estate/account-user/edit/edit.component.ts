@@ -10,6 +10,11 @@ import {
   CoreLocationModel,
   CoreUserModel,
   EnumManageUserAccessDataTypes,
+  EstateAccountAgencyUserService,
+  EstateAccountAgencyUserModel,
+  EstateAccountAgencyModel,
+  FilterDataModel,
+  FilterModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -28,6 +33,8 @@ import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { TranslateService } from '@ngx-translate/core';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-estate-account-user-edit',
@@ -41,8 +48,10 @@ export class EstateAccountUserEditComponent implements OnInit {
     private dialogRef: MatDialogRef<EstateAccountUserEditComponent>,
     public coreEnumService: CoreEnumService,
     public estateAccountUserService: EstateAccountUserService,
+    private estateAccountAgencyUserService:EstateAccountAgencyUserService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
+    public tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
@@ -51,6 +60,7 @@ export class EstateAccountUserEditComponent implements OnInit {
       this.requestId = data.id;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -64,7 +74,7 @@ export class EstateAccountUserEditComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
-
+  dataAccountIds: string[] = [];
 
   /** map */
   viewMap = false;
@@ -82,6 +92,7 @@ export class EstateAccountUserEditComponent implements OnInit {
     }
     this.DataGetOneContent();
     this.getEnumRecordStatus();
+    this.DataGetAllGroup();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
@@ -202,6 +213,109 @@ export class EstateAccountUserEditComponent implements OnInit {
     if (model && model.id > 0) {
       this.dataModel.linkLocationId = model.id;
     }
+  }
+  onStepClick(event: StepperSelectionEvent, stepper: any): void {
+    if (event.previouslySelectedIndex < event.selectedIndex) {
+      // if (!this.formGroup.valid) {
+      //   this.cmsToastrService.typeErrorFormInvalid();
+      //   setTimeout(() => {
+      //     stepper.selectedIndex = event.previouslySelectedIndex;
+      //     // stepper.previous();
+      //   }, 10);
+      // }
+    }
+  }
+  dataEstateAccountUserModel:EstateAccountAgencyUserModel[]=[];
+  DataGetAllGroup(): void {
+
+    if (this.requestId.length <= 0) {
+      this.cmsToastrService.typeErrorEditRowIsNull();
+      return;
+    }
+
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Getting_access_category_from_the_server');
+    this.formInfo.formError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+    const filteModelContent = new FilterModel();
+    const filter = new FilterDataModel();
+    filter.propertyName = 'linkEstateAccountUserId';
+    filter.value = this.requestId;
+    filteModelContent.filters.push(filter);
+
+    this.estateAccountAgencyUserService.ServiceGetAll(filteModelContent).subscribe({
+      next: (ret) => {
+        this.dataEstateAccountUserModel = ret.listItems;
+        const listG: string[] = [];
+        this.dataEstateAccountUserModel.forEach(element => {
+          listG.push(element.linkEstateAccountAgencyId);
+        });
+        this.dataAccountIds = listG;
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = '';
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    }
+    );
+  }
+  onActionSelectorUserCategorySelect(model: EstateAccountAgencyUserModel[]): void {
+    this.dataEstateAccountUserModel = model;
+  }
+  onActionSelectorUserCategorySelectAdded(model: EstateAccountAgencyModel): void {
+    const entity = new EstateAccountAgencyUserModel();
+    entity.linkEstateAccountUserId = model.id;
+    entity.linkEstateAccountAgencyId = this.dataModel.id;
+
+    this.estateAccountAgencyUserService .ServiceAdd(entity).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
+          this.cmsToastrService.typeSuccessEdit();
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+      },
+      error: (er) => {
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeError(er);
+      }
+    }
+    );
+  }
+  onActionSelectorUserCategorySelectRemoved(model: EstateAccountAgencyModel): void {
+    const entity = new EstateAccountAgencyUserModel();
+    entity.linkEstateAccountUserId = model.id;
+    entity.linkEstateAccountAgencyId = this.dataModel.id;
+
+    this.estateAccountAgencyUserService.ServiceDeleteEntity(entity).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_from_this_group_Was_Successful');
+          this.cmsToastrService.typeSuccessEdit();
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+      },
+      error: (er) => {
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeError(er);
+      }
+    }
+    );
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

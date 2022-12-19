@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let item of dataModelResult.listItems,index as i ">
+    <mat-checkbox (change)="onActionSelect(item)" [checked]="fieldsStatus.get(item.id)" [disabled]="optionDisabled">
+      <img *ngIf="item.linkMainImageIdSrc" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{item.linkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" />
+      {{item.title}}-{{item.description}}
+    </mat-checkbox>
+  </li>
+</ul>

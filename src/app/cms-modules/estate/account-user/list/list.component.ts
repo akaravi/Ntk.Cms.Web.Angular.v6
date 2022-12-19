@@ -1,5 +1,5 @@
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -35,6 +35,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./list.component.scss']
 })
 export class EstateAccountUserListComponent implements OnInit, OnDestroy {
+  requestLinkAccountAgencyId='';
   constructor(
     private contentService: EstateAccountUserService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -44,11 +45,13 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
+    private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
+    this.requestLinkAccountAgencyId = this.activatedRoute.snapshot.paramMap.get('LinkAccountAgencyId');
     
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
@@ -110,6 +113,13 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
+    if (this.requestLinkAccountAgencyId && this.requestLinkAccountAgencyId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyAnyName = 'AccountAgencyUser';
+      filter.propertyName = 'LinkEstateAccountUserId';
+      filter.value = this.requestLinkAccountAgencyId;
+      this.filteModelContent.filters.push(filter);
+    }
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/

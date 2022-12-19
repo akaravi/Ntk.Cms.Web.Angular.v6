@@ -69,7 +69,6 @@ import { EstateAccountAgencySelectorComponent } from './account-agency/selector/
 import { EstateAccountAgencyTreeComponent } from './account-agency/tree/tree.component';
 import { EstateAccountAgencyUserAddComponent } from './account-agency-user/add/add.component';
 import { EstateAccountAgencyUserListComponent } from './account-agency-user/list/list.component';
-import { EstateAccountAgencyUserSelectorComponent } from './account-agency-user/selector/selector.component';
 import { EstatePropertySelectorComponent } from './property/selector/selector.component';
 import { EstateAccountUserAddComponent } from './account-user/add/add.component';
 import { EstateAccountUserEditComponent } from './account-user/edit/edit.component';
@@ -167,6 +166,8 @@ import { EstateCustomerCategorySelectorComponent } from './customer-category/sel
 import { EstateCustomerCategoryTreeComponent } from './customer-category/tree/tree.component';
 import { EstateAccountUserHeaderComponent } from './account-user/header/header.component';
 import { EstateAccountAgencyHeaderComponent } from './account-agency/header/header.component';
+import { EstateAccountUserSelectionlistComponent } from './account-user/selectionlist/selectionlist.component';
+import { EstateAccountAgencySelectionlistComponent } from './account-agency/selectionlist/selectionlist.component';
 
 @NgModule({
   declarations: [
@@ -283,6 +284,7 @@ import { EstateAccountAgencyHeaderComponent } from './account-agency/header/head
     EstateAccountUserSelectorComponent,
     EstateAccountUserTreeComponent,
     EstateAccountUserHeaderComponent,
+    EstateAccountUserSelectionlistComponent,
     /* */
     EstateAccountAgencyAddComponent,
     EstateAccountAgencyEditComponent,
@@ -290,10 +292,10 @@ import { EstateAccountAgencyHeaderComponent } from './account-agency/header/head
     EstateAccountAgencySelectorComponent,
     EstateAccountAgencyTreeComponent,
     EstateAccountAgencyHeaderComponent,
+    EstateAccountAgencySelectionlistComponent,
     /* */
     EstateAccountAgencyUserAddComponent,
     EstateAccountAgencyUserListComponent,
-    EstateAccountAgencyUserSelectorComponent,
     /* */
     EstateAccountAgencyAdsAddComponent,
     EstateAccountAgencyAdsEditComponent,

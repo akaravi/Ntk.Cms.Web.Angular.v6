@@ -1,5 +1,5 @@
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {
@@ -35,6 +35,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./list.component.scss']
 })
 export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
+  requestLinkAccountUserId='';
   constructor(
     private contentService: EstateAccountAgencyService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -44,11 +45,13 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
+    private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
+    this.requestLinkAccountUserId = this.activatedRoute.snapshot.paramMap.get('LinkAccountUserId');
     
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
@@ -107,6 +110,18 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateAccountAgencyModel();
+
+
+
+    if (this.requestLinkAccountUserId && this.requestLinkAccountUserId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyAnyName = 'AccountAgencyUser';
+      filter.propertyName = 'LinkEstateAccountAgencyId';
+      filter.value = this.requestLinkAccountUserId;
+      this.filteModelContent.filters.push(filter);
+    }
+
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

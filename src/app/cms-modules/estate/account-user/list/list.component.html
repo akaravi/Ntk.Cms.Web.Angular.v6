@@ -1,6 +1,7 @@
 <app-cms-guide-notice [Key]="'accountuser.content.list'"
   [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
-
+  <app-estate-account-agency-header *ngIf="this.requestLinkAccountAgencyId?.length>0" [optionId]="this.requestLinkAccountAgencyId">
+  </app-estate-account-agency-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
