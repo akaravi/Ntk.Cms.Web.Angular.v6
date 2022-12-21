@@ -304,6 +304,7 @@ export class EstatePropertyListComponent
 
     if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
       // ** */
+      this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
       this.contentService
         .ServiceGetAllWithBillboardId(this.requestLinkBillboardId, filterModel)
         .subscribe({
@@ -332,6 +333,7 @@ export class EstatePropertyListComponent
       this.requestLinkCustomerOrderId.length > 0
     ) {
       // ** */
+      this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
       this.contentService
         .ServiceGetAllWithCustomerOrderId(
           this.requestLinkCustomerOrderId,
@@ -650,6 +652,7 @@ export class EstatePropertyListComponent
     fastfilter.propertyName = "RecordStatus";
     fastfilter.value = EnumRecordStatus.Available;
     filterStatist1.filters.push(fastfilter);
+
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -675,6 +678,7 @@ export class EstatePropertyListComponent
     const pName = this.constructor.name + "main";
     this.loading.Start(pName, this.translate.instant('ACTION.ActionSendSmsToCustomerOrder'));
     // ** */
+    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.contentService
       .ServiceActionSendSmsToCustomerOrder(model.id)
       .subscribe({
