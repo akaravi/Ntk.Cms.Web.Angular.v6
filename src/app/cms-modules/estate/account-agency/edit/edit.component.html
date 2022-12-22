@@ -146,8 +146,15 @@
       </mat-step>
 
       <mat-step label="{{'TITLE.Property_personnel' | translate}}" state="file">
-
-        <app-estate-account-user-selectionlist [optionSelectForce]="dataAccountIds" [optionDisabled]="!this.tokenHelper.CheckIsAdmin()"
+        <!-- accessShareAgencyToUser Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataEstateAccountAgencyUserModel.accessShareAgencyToUser"
+            name="dataEstateAccountAgencyUserModel.accessShareAgencyToUser">
+            {{'TITLE.Access_Share_Agency_To_User' | translate}}
+          </mat-slide-toggle>
+        </div>
+        <app-estate-account-user-selectionlist *ngIf="dataEstateAccountAgencyUserModel.accessShareAgencyToUser"
+          [optionSelectForce]="dataAccountIds" [optionDisabled]="!this.tokenHelper.CheckIsAdmin()"
           (optionChange)="onActionSelectorUserCategorySelect($event)"
           (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"
           (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)">

@@ -50,18 +50,18 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public estateAccountAgencyService: EstateAccountAgencyService,
     private cmsToastrService: CmsToastrService,
-    private estateAccountAgencyUserService:EstateAccountAgencyUserService,
+    private estateAccountAgencyUserService: EstateAccountAgencyUserService,
     public publicHelper: PublicHelper,
     public tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-    
+
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -72,6 +72,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyModel> = new ErrorExceptionResult<EstateAccountAgencyModel>();
   dataModel: EstateAccountAgencyModel = new EstateAccountAgencyModel();
+  dataEstateAccountAgencyUserModel: EstateAccountAgencyUserModel = new EstateAccountAgencyUserModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
@@ -228,7 +229,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
       // }
     }
   }
-  dataEstateAccountUserModel:EstateAccountAgencyUserModel[]=[];
+  dataEstateAccountUserModel: EstateAccountAgencyUserModel[] = [];
   DataGetAllGroup(): void {
 
     if (this.requestId.length <= 0) {
@@ -249,6 +250,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
 
     this.estateAccountAgencyUserService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
+        this.dataEstateAccountAgencyUserModel = ret.item
         this.dataEstateAccountUserModel = ret.listItems;
         const listG: string[] = [];
         this.dataEstateAccountUserModel.forEach(element => {
@@ -271,7 +273,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     }
     );
   }
-  
+
   onActionSelectorUserCategorySelect(model: EstateAccountAgencyUserModel[]): void {
     this.dataEstateAccountUserModel = model;
   }
@@ -280,7 +282,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     entity.linkEstateAccountUserId = this.dataModel.id;
     entity.linkEstateAccountAgencyId = model.id;
 
-    this.estateAccountAgencyUserService .ServiceAdd(entity).subscribe({
+    this.estateAccountAgencyUserService.ServiceAdd(entity).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
@@ -300,8 +302,8 @@ export class EstateAccountAgencyEditComponent implements OnInit {
   }
   onActionSelectorUserCategorySelectRemoved(model: EstateAccountUserModel): void {
     const entity = new EstateAccountAgencyUserModel();
-    entity.linkEstateAccountUserId =  this.dataModel.id;
-    entity.linkEstateAccountAgencyId =model.id;
+    entity.linkEstateAccountUserId = this.dataModel.id;
+    entity.linkEstateAccountAgencyId = model.id;
 
     this.estateAccountAgencyUserService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {
