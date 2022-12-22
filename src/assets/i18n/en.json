@@ -135,6 +135,7 @@
 	"ACTION.LOGS": "Logs",
 	"ACTION.LOGIN": "LOG IN",
 	"ACTION.HISTORY": "History",
+	"ACTION.CONNECTED_AGENCY": "Connected Agencies",
 	"ACTION.MEMBER_SITES": "Member sites",
 	"ACTION.EDIT_SITES": "Edit site",
 	"ACTION.USER_EDITING": "User editing",
