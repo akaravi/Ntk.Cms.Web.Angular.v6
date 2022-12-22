@@ -306,7 +306,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          statist.set('All', ret.totalRowCount);
+          statist.set(this.translate.instant('MESSAGE.All'), ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         else {
@@ -328,7 +328,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          statist.set('Active', ret.totalRowCount);
+          statist.set(this.translate.instant('MESSAGE.Active'), ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
