@@ -10,7 +10,6 @@ import {
   CoreUserModel,
   EnumManageUserAccessDataTypes,
   EstateAccountUserModel,
-  EstateAccountUserService,
   EstateAccountAgencyUserModel,
   EstateAccountAgencyUserService,
   FilterModel,

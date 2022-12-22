@@ -372,6 +372,30 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     //open popup
   }
   
+  onActionbuttonAgentRow(
+    mode: EstateAccountAgencyModel = this.tableRowSelected, event?: MouseEvent
+  ): void {
+    if (!mode || !mode.id || mode.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = mode;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/account-user/LinkAccountAgencyId/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(["/estate/account-user/LinkAccountAgencyId", this.tableRowSelected.id]);
+    }
+  }
   onActionbuttonPropertyRow(
     mode: EstateAccountAgencyModel = this.tableRowSelected, event?: MouseEvent
   ): void {

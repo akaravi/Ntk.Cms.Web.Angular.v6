@@ -159,6 +159,10 @@ const routes: Routes = [
         path: 'account-user',
         component: EstateAccountUserListComponent
       },
+      {
+        path: 'account-user/LinkAccountAgencyId/:LinkAccountAgencyId',
+        component: EstateAccountUserListComponent
+      },
       /**/
       {
         path: 'contract-type',
