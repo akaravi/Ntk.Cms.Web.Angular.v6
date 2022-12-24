@@ -153,7 +153,7 @@
             {{'TITLE.Access_Share_Agency_To_User' | translate}}
           </mat-slide-toggle>
         </div>
-        <app-estate-account-user-selectionlist *ngIf="dataEstateAccountAgencyUserModel.accessShareAgencyToUser"
+        <app-estate-account-user-selectionlist
           [optionSelectForce]="dataAccountIds" [optionDisabled]="!this.tokenHelper.CheckIsAdmin()"
           (optionChange)="onActionSelectorUserCategorySelect($event)"
           (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"

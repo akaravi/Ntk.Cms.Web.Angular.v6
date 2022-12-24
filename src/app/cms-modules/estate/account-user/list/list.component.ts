@@ -114,7 +114,6 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
     if (this.requestLinkAccountAgencyId && this.requestLinkAccountAgencyId.length > 0) {
-      console.log(this.requestLinkAccountAgencyId);
       const filter = new FilterDataModel();
       filter.propertyAnyName = 'AccountAgencyUser';
       filter.propertyName = 'linkEstateAccountAgencyId';
