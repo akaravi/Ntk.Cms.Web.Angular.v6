@@ -45,7 +45,7 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id;
     }
@@ -60,6 +60,7 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyHistoryModel> = new ErrorExceptionResult<EstatePropertyHistoryModel>();
   dataModel: EstatePropertyHistoryModel = new EstatePropertyHistoryModel();
+  dataFileModelFiles = new Map<number, string>();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
@@ -96,6 +97,19 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
         if (ret.isSuccess) {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           this.formInfo.formAlert = '';
+
+          /*
+          * check file attach list
+          */
+          // if (this.dataModel.linkFileIds && this.dataModel.linkFileIds.length > 0) {
+          //   this.dataModel.linkFileIds.split(',').forEach((element, index) => {
+          //     let link = '';
+          //     if (this.dataModel.linkFileIdsSrc.length >= this.dataModel.linkFileIdsSrc.length) {
+          //       link = this.dataModel.linkFileIdsSrc[index];
+          //     }
+          //     this.dataFileModelFiles.set(+element, link);
+          //   });
+          // }
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -114,6 +128,13 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
   DataEditContent(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
+
+    if (this.dataFileModelFiles) {
+      const keys = Array.from(this.dataFileModelFiles.keys());
+      if (keys && keys.length > 0) {
+        this.dataModel.linkFileIds = keys.join(',');
+      }
+    }
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 

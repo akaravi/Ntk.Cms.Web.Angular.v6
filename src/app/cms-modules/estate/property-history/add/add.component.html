@@ -29,9 +29,6 @@
       *ngIf="fieldsInfo['linkCustomerOrderId']?.accessAddField" [optionSelectForce]="dataModel.linkCustomerOrderId"
       [optionPlaceholder]="this.translate.instant('TITLE.Customer')"></app-estate-customer-order-selector>
 
-
-
-
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
@@ -45,6 +42,7 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
@@ -97,6 +95,10 @@
           <mat-datepicker touchUi #AppointmentDateTo></mat-datepicker>
         </mat-form-field>
       </div>
+      <!-- LinkFileIds Field -->
+      <p>{{'TITLE.List_of_attached_files' | translate}}</p>
+      <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles" [openDirectUploadView]="true">
+      </app-cms-files-selector>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
