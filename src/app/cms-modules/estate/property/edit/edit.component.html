@@ -124,12 +124,16 @@
         </mat-form-field>
         <!-- Priority Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['priority']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['priority']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.priority" [disabled]="!fieldsInfo['priority']?.accessEditField"
-            name="dataModel.priority" #Priority type="number" placeholder="1" min="0" max="10" />
-          <mat-icon matSuffix *ngIf="dataModel.priority && fieldsInfo['priority']?.accessEditField" matSuffix
+          <mat-label>{{ fieldsInfo['priority']?.fieldTitle }} (1-10)</mat-label>
+          <input matInput [(ngModel)]="dataModel.priority" name="dataModel.priority" #Priority type="number"
+            disabled="{{!fieldsInfo['priority']?.accessEditField}}" placeholder="1" min="0" max="10" />
+          <mat-icon matSuffix *ngIf="dataModel.priority" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.priority = 1">close</mat-icon>
-          <mat-icon *ngIf="fieldsInfo['priority']?.accessEditField" matSuffix>mode_edit</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">شما میتوانید برای ملک خود اولویت از 1 تا 10 بدهید</strong>
+          </mat-hint>
         </mat-form-field>
         <!-- CaseCode Field -->
         <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['caseCode']?.accessWatchField">
