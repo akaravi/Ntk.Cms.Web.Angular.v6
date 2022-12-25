@@ -171,6 +171,12 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.caseCode}} </mat-cell>
       </ng-container>
+      <!-- Priority Column -->
+      <ng-container matColumnDef="Priority">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['priority']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.priority}} </mat-cell>
+      </ng-container>
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}

@@ -92,6 +92,15 @@
             {{fieldsInfo['title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
+        <!-- Priority Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['priority']?.accessWatchField">
+          <mat-label>{{ fieldsInfo['priority']?.fieldTitle }}</mat-label>
+          <input matInput [(ngModel)]="dataModel.priority" [disabled]="!fieldsInfo['priority']?.accessAddField"
+            name="dataModel.priority" #Priority type="number" placeholder="1" min="0" max="10" />
+          <mat-icon matSuffix *ngIf="dataModel.priority && fieldsInfo['priority']?.accessAddField" matSuffix
+            mat-icon-button aria-label="Clear" (click)="dataModel.priority = 1">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
         <!-- CaseCode Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['caseCode']?.accessWatchField">
           <mat-label>{{fieldsInfo['caseCode']?.fieldTitle}}</mat-label>

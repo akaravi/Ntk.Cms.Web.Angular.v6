@@ -211,6 +211,7 @@ export class EstatePropertyListComponent
     "AdsActive",
     "ViewCount",
     "CaseCode",
+    "Priority",
     "CreatedDate",
     "UpdatedDate",
     "Action",
@@ -262,7 +263,7 @@ export class EstatePropertyListComponent
     if (!this.optionloadComponent) {
       return;
     }
-    
+
     if (this.optionsortType && this.optionsortType.length > 0) {
       if (this.optionsortType == 'asc') {
         this.filteModelContent.sortType = EnumSortType.Ascending;
@@ -369,7 +370,7 @@ export class EstatePropertyListComponent
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-            
+
             if (this.optionsSearch.data.show && this.optionsStatist.data.show) {
               this.optionsStatist.data.show = !this.optionsStatist.data.show
               this.onActionbuttonStatist();
