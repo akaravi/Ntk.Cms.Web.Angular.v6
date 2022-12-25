@@ -23,7 +23,7 @@
     </mat-form-field>
     <!-- LinkManagementMemberId Field -->
     <app-linkmanagement-member-selector (optionChange)="onActionSelectorSelectLinkManagementMemberId($event)"
-      [loading]="loading" [optionSelectForce]="dataModel.linkManagementMemberId"
+      [(loading)]="loading" [optionSelectForce]="dataModel.linkManagementMemberId"
       [optionPlaceholder]="this.translate.instant('TITLE.User_Account')">
     </app-linkmanagement-member-selector>
     <!-- IsCertainDocument Field -->

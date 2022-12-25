@@ -24,12 +24,12 @@
 
     <!-- LinkCmsSiteId Field -->
     <app-core-sitecategory-selector (optionChange)="onActionSiteCategorySelect($event)" [optionDisabled]="false"
-      [loading]="loading" [optionSelectForce]="dataModel.linkCmsSiteCategoryId"
+      [(loading)]="loading" [optionSelectForce]="dataModel.linkCmsSiteCategoryId"
       [optionPlaceholder]="this.translate.instant('TITLE.SITE_CATEGORY')">
     </app-core-sitecategory-selector>
     <!-- LinkModuleId Field -->
     <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [optionDisabled]="false"
-      [loading]="loading" [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCmsModuleId"
+      [(loading)]="loading" [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCmsModuleId"
       [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
     </app-core-module-selector>
     <!-- ConfigValuesJson Field -->

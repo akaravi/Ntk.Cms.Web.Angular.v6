@@ -23,18 +23,18 @@
     </mat-form-field>
 
     <!-- LinkSiteId Field -->
-    <app-cms-site-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [loading]="loading"
+    <app-cms-site-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [(loading)]="loading"
       [optionSelectForce]="this.dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
     </app-cms-site-selector>
 
     <!-- LinkUserId Field -->
-    <app-cms-user-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [loading]="loading"
+    <app-cms-user-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [(loading)]="loading"
       [optionSelectForce]="this.dataModel.linkUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-cms-user-selector>
 
     <!-- module-entity Field -->
     <app-core-module-entity-selector (optionChange)="onActionSelectorModuleEntitySelect($event)"
-      [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [loading]="loading"
+      [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [(loading)]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
     </app-core-module-entity-selector>
 

@@ -24,7 +24,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkParentId Field -->
-    <app-core-guide-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading" [optionDisabled]="false"
+    <app-core-guide-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading" [optionDisabled]="false"
       [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
     </app-core-guide-selector>
 

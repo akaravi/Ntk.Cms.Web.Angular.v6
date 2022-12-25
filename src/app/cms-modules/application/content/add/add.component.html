@@ -58,11 +58,11 @@
         </mat-form-field>
         <!-- LinkSourceId Field -->
         <app-application-source-selector (optionChange)="onActionSelectSource($event)" [optionSelectFirstItem]="true"
-          [optionSelectForce]="this.dataModel.linkSourceId" [loading]="loading" [optionPlaceholder]="fieldsInfo['linkSourceId']?.fieldTitle"
+          [optionSelectForce]="this.dataModel.linkSourceId" [(loading)]="loading" [optionPlaceholder]="fieldsInfo['linkSourceId']?.fieldTitle"
           [optionDisabled]="!fieldsInfo['linkSourceId']?.accessAddField"></app-application-source-selector>
         <!-- LinkThemeConfigId Field -->
         <app-application-themeconfig-selector (optionChange)="onActionSelectTheme($event)"
-          *ngIf="this.dataModel?.linkSourceId>0" [loading]="loading" [optionSelectForce]="this.dataModel.linkThemeConfigId"
+          *ngIf="this.dataModel?.linkSourceId>0" [(loading)]="loading" [optionSelectForce]="this.dataModel.linkThemeConfigId"
           [optionSelectParentForce]="this.dataModel.linkSourceId"
           [optionPlaceholder]="fieldsInfo['linkThemeConfigId']?.fieldTitle" [optionSelectFirstItem]="true"
           [optionDisabled]="!fieldsInfo['linkThemeConfigId']?.accessAddField">

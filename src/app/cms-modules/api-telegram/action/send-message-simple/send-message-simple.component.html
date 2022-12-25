@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <app-api-telegram-bot-config-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.botId" [loading]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Telegram_Bot')">
+      [optionSelectForce]="dataModel.botId" [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Telegram_Bot')">
     </app-api-telegram-bot-config-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">

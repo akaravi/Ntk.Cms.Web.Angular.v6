@@ -23,7 +23,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkTargeId Field -->
-    <app-donate-target-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
+    <app-donate-target-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkTargeId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-donate-target-selector>
     <!-- Title Field -->

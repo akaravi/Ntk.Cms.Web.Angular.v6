@@ -52,18 +52,18 @@
       </mat-error>
     </mat-form-field>
     <app-webdesigner-pagedependency-selector (optionChange)="onActionSelectDependency($event)"
-      [optionDisabled]="!fieldsInfo['linkPageDependencyGuId']?.accessEditField" [loading]="loading"
+      [optionDisabled]="!fieldsInfo['linkPageDependencyGuId']?.accessEditField" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkPageDependencyGuId"
       [optionPlaceholder]="this.translate.instant('TITLE.Show_place')">
     </app-webdesigner-pagedependency-selector>
     <app-webdesigner-pagetemplate-selector (optionChange)="onActionSelectTemplate($event)"
-      [optionDisabled]="!fieldsInfo['linkPageTemplateGuId']?.accessEditField" [loading]="loading"
+      [optionDisabled]="!fieldsInfo['linkPageTemplateGuId']?.accessEditField" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkPageTemplateGuId"
       [optionPlaceholder]="this.translate.instant('TITLE.Page_template')">
     </app-webdesigner-pagetemplate-selector>
     <app-webdesigner-page-selector (optionChange)="onActionSelectParent($event)"
       *ngIf="dataModel.linkPageTemplateGuId && dataModel.linkPageTemplateGuId.length>0"
-      [optionDisabled]="!fieldsInfo['linkPageParentGuId']?.accessEditField" [loading]="loading"
+      [optionDisabled]="!fieldsInfo['linkPageParentGuId']?.accessEditField" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkPageParentGuId" [optionMasterPage]="true"
       [optionMasterTemplateId]="dataModel.linkPageTemplateGuId"
       [optionPlaceholder]="this.translate.instant('TITLE.parent_page')">
@@ -80,7 +80,7 @@
     <!-- LinkSiteCategoryId Field -->
     <app-cms-sitecategory-selector
       *ngIf="dataModel.pageDependencyIsDefaultPage && fieldsInfo['pageDependencyIsDefaultPageLinkSiteCategoryId']?.accessWatchField"
-      (optionChange)="onActionSelectCategory($event)" [loading]="loading"
+      (optionChange)="onActionSelectCategory($event)" [(loading)]="loading"
       [optionSelectForce]="this.dataModel.pageDependencyIsDefaultPageLinkSiteCategoryId"
       [optionPlaceholder]="this.translate.instant('TITLE.Website_Type')"
       [optionDisabled]="!fieldsInfo['pageDependencyIsDefaultPageLinkSiteCategoryId']?.accessEditField">

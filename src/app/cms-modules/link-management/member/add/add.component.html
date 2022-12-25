@@ -23,7 +23,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkExternalCmsUserId Field -->
-    <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)" [loading]="loading"
+    <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)" [(loading)]="loading"
       [optionDisabled]="!fieldsInfo['linkExternalCmsUserId']?.accessAddField"
       [optionSelectForce]="dataModel.linkExternalCmsUserId"
       [optionPlaceholder]="this.translate.instant('TITLE.Account')">

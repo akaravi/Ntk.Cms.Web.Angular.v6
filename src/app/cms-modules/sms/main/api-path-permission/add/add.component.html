@@ -25,30 +25,30 @@
 
 
     <!-- LinkCoreUserId Field -->
-    <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)" [loading]="loading"
+    <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)" [(loading)]="loading"
       [optionDisabled]="!fieldsInfo['linkCoreUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreUserId"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-cms-user-selector>
     <!-- LinkCoreSiteId Field -->
-    <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)" [loading]="loading"
+    <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)" [(loading)]="loading"
       [optionDisabled]="!fieldsInfo['linkCoreSiteId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreSiteId"
       [optionPlaceholder]="this.translate.instant('TITLE.SITE')">
     </app-cms-site-selector>
     <!-- LinkCoreUserGroupId Field -->
     <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)"
-      [optionDisabled]="!fieldsInfo['linkCoreUserGroupId']?.accessAddField" [loading]="loading"
+      [optionDisabled]="!fieldsInfo['linkCoreUserGroupId']?.accessAddField" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkCoreUserGroupId"
       [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
     </app-cms-usergroup-selector>
     <!-- LinkCoreSiteCategoryId Field -->
     <app-cms-sitecategory-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
-      [optionDisabled]="!fieldsInfo['linkCoreSiteCategoryId']?.accessAddField" [loading]="loading"
+      [optionDisabled]="!fieldsInfo['linkCoreSiteCategoryId']?.accessAddField" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkCoreSiteCategoryId"
       [optionPlaceholder]="this.translate.instant('TITLE.Site_Type')">
     </app-cms-sitecategory-selector>
 
     <!-- LinkApiPathId Field -->
-    <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)" [loading]="loading"
+    <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="this.translate.instant('TITLE.Direction')">
     </app-sms-apipath-selector>
 

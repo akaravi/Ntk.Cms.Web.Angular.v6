@@ -25,7 +25,7 @@
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <app-file-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
+        <app-file-category-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
           [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-file-category-selector>
         <mat-form-field class="ntk-full-width">

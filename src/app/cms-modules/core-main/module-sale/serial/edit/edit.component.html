@@ -50,7 +50,7 @@
     </mat-form-field>
 
     <!-- LinkModuleSaleHeaderId Field -->
-    <app-core-modulesaleheader-selector (optionChange)="onActionSelectHeader($event)" [loading]="loading"
+    <app-core-modulesaleheader-selector (optionChange)="onActionSelectHeader($event)" [(loading)]="loading"
       [optionSelectForce]="this.dataModel.linkModuleSaleHeaderId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['linkModuleSaleHeaderId']?.accessEditField">
     </app-core-modulesaleheader-selector>

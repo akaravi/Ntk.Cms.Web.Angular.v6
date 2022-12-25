@@ -8,10 +8,10 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- LinkUserId Field -->
-    <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId" [loading]="loading"
+    <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId" [(loading)]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
     <!-- LinkMemberId Field -->
-    <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkMemberId" [loading]="loading"
+    <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkMemberId" [(loading)]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
 
     <!-- ModuleName Field -->

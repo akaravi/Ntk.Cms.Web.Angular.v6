@@ -39,7 +39,7 @@
           </mat-error>
         </mat-form-field>
         <!-- sitecategory Field -->
-        <app-core-sitecategory-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
+        <app-core-sitecategory-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
           [optionSelectFirstItem]="true" [optionSelectForce]="this.dataModel.linkSiteCategoryId"
           [optionPlaceholder]="this.translate.instant('TITLE.System_Type')" [optionDisabled]="siteTypeId>0">
         </app-core-sitecategory-selector>

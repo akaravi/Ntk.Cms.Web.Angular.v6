@@ -36,7 +36,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkCategoryId Field -->
-        <app-news-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
+        <app-news-category-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
           [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-news-category-selector>
         <!-- Title Field -->
@@ -67,7 +67,7 @@
         </mat-form-field>
         <!-- LinkLocationId Field -->
         <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
-          [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField" [loading]="loading"
+          [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField" [(loading)]="loading"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
         <!-- FromDate Field -->
@@ -353,7 +353,7 @@
       </mat-step>
       <mat-step label="{{'TITLE.Similar_Content' | translate}} " state="info">
         <p>{{'TITLE.Specify_relevant_content' | translate}}</p>
-        <app-news-content-selector (optionChange)="onActionContentSimilarSelect($event)" [loading]="loading"
+        <app-news-content-selector (optionChange)="onActionContentSimilarSelect($event)" [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Similar_Content')">
 
 

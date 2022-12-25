@@ -31,7 +31,7 @@
 
 
     <!-- LinkPropertyDetailGroupId Field -->
-    <app-member-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)" [loading]="loading"
+    <app-member-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkPropertyDetailGroupId"
       [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-member-propertydetailgroup-selector>

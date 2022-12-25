@@ -46,11 +46,11 @@
     </mat-form-field>
     <!-- LinkCmsUserId Field -->
     <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.linkCmsUserId"
-      [loading]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"
+      [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"
       [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField">
     </app-cms-user-selector>
     <!-- LinkLocationId Field -->
-    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [loading]="loading"
+    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkLocationId"
       [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
       [optionDisabled]="!fieldsInfo['linkLocationId']?.accessAddField"></app-cms-location-selector>

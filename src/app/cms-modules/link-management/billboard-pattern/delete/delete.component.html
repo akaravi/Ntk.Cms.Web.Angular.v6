@@ -14,7 +14,7 @@
         type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="50" required readonly />
     </mat-form-field>
 
-    <app-linkmanagement-billboard-pattern-selector [loading]="loading"
+    <app-linkmanagement-billboard-pattern-selector [(loading)]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.Alternative_classification_to_move_information_to_this_branch')">
     </app-linkmanagement-billboard-pattern-selector>
   </ng-container>

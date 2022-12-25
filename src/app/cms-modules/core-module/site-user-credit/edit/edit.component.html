@@ -23,15 +23,15 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkSiteId Field -->
-    <app-cms-site-selector [optionSelectForce]="dataModel.linkSiteId" [loading]="loading"
+    <app-cms-site-selector [optionSelectForce]="dataModel.linkSiteId" [(loading)]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
     </app-cms-site-selector>
     <!-- LinkUserId Field -->
-    <app-cms-user-selector [optionSelectForce]="dataModel.linkUserId" [loading]="loading"
+    <app-cms-user-selector [optionSelectForce]="dataModel.linkUserId" [(loading)]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-cms-user-selector>
     <!-- LinkModuleId Field -->
-    <app-cms-module-selector [optionSelectForce]="dataModel.linkModuleId" [loading]="loading"
+    <app-cms-module-selector [optionSelectForce]="dataModel.linkModuleId" [(loading)]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
     </app-cms-module-selector>
 

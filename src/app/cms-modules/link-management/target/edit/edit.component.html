@@ -25,7 +25,7 @@
           </mat-error>
         </mat-form-field>
         <!-- linkSiteId Field -->
-        <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [loading]="loading"
+        <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [(loading)]="loading"
           [optionDisabled]="!fieldsInfo['linkSiteId']?.accessEditField" [optionSelectForce]=" this.dataModel.linkSiteId"
           *ngIf="fieldsInfo['linkSiteId']?.accessWatchField" [optionPlaceholder]="this.translate.instant('TITLE.SITE')">
         </app-cms-site-selector>
@@ -45,14 +45,14 @@
         </mat-form-field>
         <!-- LinkTargetCategoryId Field -->
         <app-linkmanagement-target-category-selector (optionChange)="onActionSelectorSelect($event)"
-          [optionSelectForce]="dataModel.linkTargetCategoryId" [loading]="loading"
+          [optionSelectForce]="dataModel.linkTargetCategoryId" [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-linkmanagement-target-category-selector>
 
         <!-- LinkBillboardPatternId Field -->
         <app-linkmanagement-billboard-pattern-selector
           (optionChange)="onActionSelectorSelectLinkBillboardPatternId($event)"
-          [optionSelectForce]="dataModel.linkBillboardPatternId" [loading]="loading"
+          [optionSelectForce]="dataModel.linkBillboardPatternId" [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Billboard_Pattern')">
         </app-linkmanagement-billboard-pattern-selector>
 

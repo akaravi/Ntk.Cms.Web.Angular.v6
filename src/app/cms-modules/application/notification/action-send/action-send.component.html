@@ -9,10 +9,10 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- AppId Field -->
     <app-application-app-selector (optionChange)="onActionSelectApp($event)" *ngIf="LinkMemberId.length===0"
-      [loading]="loading" [optionSelectForce]="this.dataModel.appId"
+      [(loading)]="loading" [optionSelectForce]="this.dataModel.appId"
       [optionPlaceholder]="this.translate.instant('TITLE.Application')"></app-application-app-selector>
     <!-- AppId Field -->
-    <app-application-memberinfo-selector (optionChange)="onActionSelectMemberInfo($event)" [loading]="loading"
+    <app-application-memberinfo-selector (optionChange)="onActionSelectMemberInfo($event)" [(loading)]="loading"
       [optionSelectForce]="LinkMemberId"
       [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-application-memberinfo-selector>
     <!-- Title Field -->

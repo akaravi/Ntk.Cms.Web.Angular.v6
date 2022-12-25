@@ -26,7 +26,7 @@
         </mat-form-field>
         <!-- Title Field -->
         <app-webdesigner-menu-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
-          [loading]="loading" [optionSelectForce]="dataModel.linkParentId"
+          [(loading)]="loading" [optionSelectForce]="dataModel.linkParentId"
           [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
         </app-webdesigner-menu-selector>
         <!-- Title Field -->

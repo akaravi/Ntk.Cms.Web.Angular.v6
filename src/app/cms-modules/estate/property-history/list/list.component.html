@@ -9,7 +9,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-estate-activity-type-tree [loading]="loading" (optionChange)="onActionSelectorSelect($event)">
+    <app-estate-activity-type-tree [(loading)]="loading" (optionChange)="onActionSelectorSelect($event)">
     </app-estate-activity-type-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>

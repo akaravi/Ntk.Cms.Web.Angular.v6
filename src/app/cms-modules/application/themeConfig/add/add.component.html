@@ -53,7 +53,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkSourceId Field -->
-    <app-application-source-selector (optionChange)="onActionSelectSource($event)" [loading]="loading"
+    <app-application-source-selector (optionChange)="onActionSelectSource($event)" [(loading)]="loading"
       [optionDisabled]="!fieldsInfo['linkSourceId']?.accessAddField" [optionSelectForce]="dataModel.linkSourceId"
       [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')">
     </app-application-source-selector>

@@ -21,7 +21,7 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-    <app-linkmanagement-accounting-selector (optionChange)="onActionSelectorAccount($event)" [loading]="loading"
+    <app-linkmanagement-accounting-selector (optionChange)="onActionSelectorAccount($event)" [(loading)]="loading"
       [optionDisabled]="!fieldsInfo['linkManagementAccountingId']?.accessAddField"
       [optionSelectForce]="dataModel.linkManagementAccountingId"
       [optionPlaceholder]="this.translate.instant('TITLE.Account')">

@@ -35,7 +35,7 @@
         <!-- LinkApplicationId Field -->
         <app-application-app-selector (optionChange)="onActionSelectApplication($event)"
           [optionSelectForce]="this.dataModel.linkApplicationId"
-          [loading]="loading"
+          [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Application')"
           [optionDisabled]="!fieldsInfo['linkApplicationId']?.accessEditField"></app-application-app-selector>
         <!-- Title Field -->

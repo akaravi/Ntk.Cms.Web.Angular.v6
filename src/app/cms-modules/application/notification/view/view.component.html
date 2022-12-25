@@ -7,13 +7,13 @@
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <!-- LinkSiteId Field -->
-  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkSiteId" [loading]="loading"
+  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkSiteId" [(loading)]="loading"
     [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
   <!-- LinkUserId Field -->
   <app-application-app-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkApplicationId"
-    [loading]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-application-app-selector>
+    [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-application-app-selector>
   <!-- LinkUserId Field -->
-  <app-application-memberinfo-selector [optionDisabled]="true" [loading]="loading"
+  <app-application-memberinfo-selector [optionDisabled]="true" [(loading)]="loading"
     [optionSelectForce]=" this.dataModel.linkApplicationMemberId"
     [optionPlaceholder]="this.translate.instant('TITLE.USER')">
   </app-application-memberinfo-selector>

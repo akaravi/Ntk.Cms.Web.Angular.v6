@@ -45,14 +45,14 @@
         </mat-form-field>
         <!-- LinkTargetCategoryId Field -->
         <app-linkmanagement-target-category-selector (optionChange)="onActionSelectorSelect($event)"
-          [optionSelectForce]="dataModel.linkTargetCategoryId" [loading]="loading"
+          [optionSelectForce]="dataModel.linkTargetCategoryId" [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-linkmanagement-target-category-selector>
 
         <!-- LinkBillboardPatternId Field -->
         <app-linkmanagement-billboard-pattern-selector *ngIf="dataProfessional"
           (optionChange)="onActionSelectorSelectLinkBillboardPatternId($event)"
-          [optionSelectForce]="dataModel.linkBillboardPatternId" [loading]="loading"
+          [optionSelectForce]="dataModel.linkBillboardPatternId" [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Billboard_Pattern')">
         </app-linkmanagement-billboard-pattern-selector>
 

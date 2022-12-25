@@ -24,14 +24,14 @@
     </mat-form-field>
 
     <!-- LinkUserClaimGroupId Field -->
-    <app-core-userclaimgroup-selector (optionChange)="onActionSelectClaimGroup($event)" [loading]="loading"
+    <app-core-userclaimgroup-selector (optionChange)="onActionSelectClaimGroup($event)" [(loading)]="loading"
       [optionSelectForce]="this.dataModel.linkUserClaimGroupId"
       [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_GROUP')"
       [optionDisabled]="!fieldsInfo['linkUserClaimGroupId']?.accessEditField">
     </app-core-userclaimgroup-selector>
 
     <!-- LinkUserClaimTypeId Field -->
-    <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)" [loading]="loading"
+    <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)" [(loading)]="loading"
       [optionSelectForce]="this.dataModel.linkUserClaimTypeId"
       [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_CATEGORY')"
       [optionDisabled]="!fieldsInfo['linkUserClaimTypeId']?.accessEditField">

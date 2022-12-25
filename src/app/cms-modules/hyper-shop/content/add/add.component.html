@@ -8,7 +8,7 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- LinkCategoryId Field -->
-    <app-hypershop-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
+    <app-hypershop-category-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
       [optionSelectForce]="dataModel.categoryCode" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-hypershop-category-selector>
     <!-- Name Field -->

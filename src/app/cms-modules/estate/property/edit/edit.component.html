@@ -30,7 +30,7 @@
         <!-- LinkPropertyTypeUsageId Field -->
         <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
           [optionDisabled]="!fieldsInfo['linkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [loading]="loading"
+          [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
         </app-estate-property-type-usage-selector>
         <br>
@@ -38,7 +38,7 @@
         <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
           *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0"
           [optionDisabled]="!fieldsInfo['linkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [loading]="loading"
+          [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_type')"
           [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId">
         </app-estate-property-type-landuse-selector>
@@ -209,7 +209,7 @@
 
         <!-- LinkLocationId Field -->
         <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
-          [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField" [loading]="loading"
+          [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField" [(loading)]="loading"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
 
@@ -265,20 +265,20 @@
       <mat-step label="{{'TITLE.Personal_Information' | translate}}" state="main">
         <!-- LinkCmsUserId Field -->
         <app-cms-user-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorCmsUser($event)"
-          [loading]="loading" [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessEditField"
+          [(loading)]="loading" [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessEditField"
           [optionSelectForce]="dataModel.linkCmsUserId"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_Owner')">
         </app-cms-user-selector>
         <!-- linkEstateAgencyId Field -->
         <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite"
-          (optionChange)="onActionSelectorEstateAgency($event)" [loading]="loading"
+          (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading"
           [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessEditField"
           [optionSelectForce]="dataModel.linkEstateAgencyId"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
         </app-estate-account-agency-selector>
         <!-- LinkEstateUserId Field -->
         <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite"
-          (optionChange)="onActionSelectorEstateUser($event)" [loading]="loading"
+          (optionChange)="onActionSelectorEstateUser($event)" [(loading)]="loading"
           [optionDisabled]="!fieldsInfo['linkEstateUserId']?.accessEditField"
           [optionSelectForce]="dataModel.linkEstateUserId"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
@@ -425,7 +425,7 @@
         <p>{{'TITLE.Property_details_according_to_the_type_of_property' | translate}}</p>
 
         <!-- LinkPropertyProjectId Field -->
-        <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite" [loading]="loading"
+        <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite" [(loading)]="loading"
           (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
           [optionPlaceholder]="this.translate.instant('TITLE.Project')">
         </app-estate-property-project-selector>
@@ -550,7 +550,7 @@
         <hr>
         <p>{{'TITLE.Specify_the_type_of_transaction_for_this_property' | translate}}</p>
         <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)"
-          [optionDisabled]="false" [optionTypeView]="2" [loading]="loading"
+          [optionDisabled]="false" [optionTypeView]="2" [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Type_Of_Transaction')"
           [optionSelectForce]="contractDataModel.linkEstateContractTypeId">
         </app-estate-contract-type-selector>
@@ -558,7 +558,7 @@
           <br>
 
           <br>
-          <app-cms-currency-selector [optionSelectFirstItem]="currencyOptionSelectFirstItem" [loading]="loading"
+          <app-cms-currency-selector [optionSelectFirstItem]="currencyOptionSelectFirstItem" [(loading)]="loading"
             [optionSelectForce]="contractDataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)"
             [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
           </app-cms-currency-selector>

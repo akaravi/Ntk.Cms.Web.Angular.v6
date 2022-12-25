@@ -23,11 +23,11 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkTargetPeriodId Field -->
-    <app-donate-target-period-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
+    <app-donate-target-period-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkTargetPeriodId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-donate-target-period-selector>
     <!-- LinkSponsorId Field -->
-    <app-donate-sponser-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
+    <app-donate-sponser-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkSponsorId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-donate-sponser-selector>
     <!-- payment Field -->

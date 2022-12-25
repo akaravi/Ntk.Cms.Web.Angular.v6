@@ -50,14 +50,14 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkUserId Field -->
-    <app-cms-user-selector (optionChange)="onActionSelectUser($event)" [loading]="loading"
+    <app-cms-user-selector (optionChange)="onActionSelectUser($event)" [(loading)]="loading"
       [optionSelectForce]="this.dataModel.linkUserId" *ngIf="ProfessionalData"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')"
       [optionDisabled]="!fieldsInfo['linkUserId']?.accessAddField">
     </app-cms-user-selector>
 
     <!-- LinkSiteId Field -->
-    <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [loading]="loading"
+    <app-cms-site-selector (optionChange)="onActionSelectSite($event)" [(loading)]="loading"
       [optionSelectForce]="this.dataModel.linkSiteId" *ngIf="ProfessionalData"
       [optionPlaceholder]="this.translate.instant('TITLE.SITE')"
       [optionDisabled]="!fieldsInfo['linkSiteId']?.accessAddField">
@@ -65,7 +65,7 @@
 
     <!-- LinkUserClaimTypeId Field -->
     <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)"
-      [optionSelectForce]="this.dataModel.linkUserClaimTypeId" [loading]="loading"
+      [optionSelectForce]="this.dataModel.linkUserClaimTypeId" [(loading)]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_CATEGORY')"
       [optionDisabled]="!fieldsInfo['linkUserClaimTypeId']?.accessAddField || (requestLinkUserClaimTypeId && requestLinkUserClaimTypeId>0)">
     </app-core-userclaimtype-selector>

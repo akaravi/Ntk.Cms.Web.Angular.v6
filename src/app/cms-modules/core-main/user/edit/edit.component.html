@@ -285,13 +285,13 @@
 
         <!-- LinkResellerUserId Field -->
         <app-cms-user-selector [optionDisabled]="!fieldsInfo['linkResellerUserId']?.accessEditField"
-          [optionSelectForce]="dataModel.linkResellerUserId" [loading]="loading"
+          [optionSelectForce]="dataModel.linkResellerUserId" [(loading)]="loading"
           (optionChange)="onActionSelectorLinkResellerUserIdSelect($event)"
           [optionPlaceholder]="this.translate.instant('TITLE.Representative_User')">
         </app-cms-user-selector>
         <!-- LinkResellerSiteId Field -->
         <app-cms-site-selector [optionDisabled]="!fieldsInfo['linkResellerSiteId']?.accessEditField"
-          [optionSelectForce]="dataModel.linkResellerSiteId" [loading]="loading"
+          [optionSelectForce]="dataModel.linkResellerSiteId" [(loading)]="loading"
           (optionChange)="onActionSelectorLinkResellerSiteIdSelect($event)"
           [optionPlaceholder]="this.translate.instant('TITLE.Representative_Site')">
         </app-cms-site-selector>

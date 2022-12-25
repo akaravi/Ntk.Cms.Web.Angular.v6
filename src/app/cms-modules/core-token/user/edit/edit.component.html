@@ -54,16 +54,16 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkSiteId Field -->
-    <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false" [loading]="loading"
+    <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false" [(loading)]="loading"
       [optionSelectForce]="this.dataModel.linkSiteId"
       [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
 
     <!-- LinkUserId Field -->
-    <app-cms-user-selector (optionChange)="onActionUserSelect($event)" [optionDisabled]="false" [loading]="loading"
+    <app-cms-user-selector (optionChange)="onActionUserSelect($event)" [optionDisabled]="false" [(loading)]="loading"
       [optionSelectForce]="this.dataModel.linkUserId"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
     <!-- LinkMemberId Field -->
-    <app-cms-member-selector (optionChange)="onActionMemberSelect($event)" [optionDisabled]="false" [loading]="loading"
+    <app-cms-member-selector (optionChange)="onActionMemberSelect($event)" [optionDisabled]="false" [(loading)]="loading"
       [optionSelectForce]="this.dataModel.linkMemberId"
       [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
     <!-- UserAccessAdminAllowToAllData Field -->

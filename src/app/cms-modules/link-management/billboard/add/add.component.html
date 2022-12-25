@@ -39,14 +39,14 @@
         </mat-form-field>
         <!-- LinkManagementMemberId Field -->
         <app-linkmanagement-member-selector (optionChange)="onActionSelectorSelectLinkManagementMemberId($event)"
-          [optionSelectForce]="dataModel.linkManagementMemberId" [loading]="loading"
+          [optionSelectForce]="dataModel.linkManagementMemberId" [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.User_Account')">
         </app-linkmanagement-member-selector>
 
         <!-- LinkBillboardPatternId Field -->
         <app-linkmanagement-billboard-pattern-selector
           (optionChange)="onActionSelectorSelectLinkBillboardPatternId($event)"
-          [optionSelectForce]="dataModel.linkBillboardPatternId" [loading]="loading"
+          [optionSelectForce]="dataModel.linkBillboardPatternId" [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Billboard_Pattern')">
         </app-linkmanagement-billboard-pattern-selector>
 

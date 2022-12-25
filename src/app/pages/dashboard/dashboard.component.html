@@ -2,33 +2,33 @@
   <div class="col-xl-4">
     <div class="row">
       <div class="col-xl-12">
-        <app-core-userclaimcontent-widget-status [loading]="loading" cssClass="gutter-b card-stretch">
+        <app-core-userclaimcontent-widget-status [(loading)]="loading" cssClass="gutter-b card-stretch">
         </app-core-userclaimcontent-widget-status>
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col-xl-12">
-        <app-coremodule-site-user-credit-widget-price style="cursor: pointer;" [routerLink]="'/coremodule/site-user-credit'" [loading]="loading" cssClass="gutter-b card-stretch">
+        <app-coremodule-site-user-credit-widget-price style="cursor: pointer;" [routerLink]="'/coremodule/site-user-credit'" [(loading)]="loading" cssClass="gutter-b card-stretch">
         </app-coremodule-site-user-credit-widget-price>
       </div>
     </div>
     <div class="row">
       <div class="col-xl-12">
-        <app-coremodule-site-credit-widget-price style="cursor: pointer;" [routerLink]="'/coremodule/site-credit'" [loading]="loading" *ngIf="this.tokenHelper.isAdminSite" cssClass="gutter-b card-stretch" [baseColor]="'primary'">
+        <app-coremodule-site-credit-widget-price style="cursor: pointer;" [routerLink]="'/coremodule/site-credit'" [(loading)]="loading" *ngIf="this.tokenHelper.isAdminSite" cssClass="gutter-b card-stretch" [baseColor]="'primary'">
         </app-coremodule-site-credit-widget-price>
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col-xl-12">
-        <app-core-site-widget-count2 [loading]="loading"></app-core-site-widget-count2>
+        <app-core-site-widget-count2 [(loading)]="loading"></app-core-site-widget-count2>
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col-xl-12" *ngIf="checkModuleExist['application']">
-        <app-application-memberinfo-widget2 [loading]="loading">
+        <app-application-memberinfo-widget2 [(loading)]="loading">
         </app-application-memberinfo-widget2>
       </div>
     </div>
@@ -36,49 +36,49 @@
   <div class="col-xl-8">
     <div class="row">
       <div class="col-xl-4" *ngIf="checkModuleExist['core']">
-        <app-ReportAbuse-widget2 [loading]="loading" *ngIf="this.tokenHelper.isAdminSite"
+        <app-ReportAbuse-widget2 [(loading)]="loading" *ngIf="this.tokenHelper.isAdminSite"
           cssClass="gutter-b" [widgetHeight]="'200px'" [baseColor]="'success'">
         </app-ReportAbuse-widget2>
       </div>
       <div class="col-xl-4" *ngIf="checkModuleExist['chart']">
-        <app-chart-content-widget2 [loading]="loading" cssClass="gutter-b"
+        <app-chart-content-widget2 [(loading)]="loading" cssClass="gutter-b"
           [widgetHeight]="'200px'" [baseColor]="'primary'"></app-chart-content-widget2>
       </div>
       <div class="col-xl-4" *ngIf="checkModuleExist['article']">
-        <app-article-content-widget2 [loading]="loading" cssClass="gutter-b"
+        <app-article-content-widget2 [(loading)]="loading" cssClass="gutter-b"
           [widgetHeight]="'200px'" [iconColor]="'success'"></app-article-content-widget2>
       </div>
       <div class="col-xl-4" *ngIf="checkModuleExist['blog']">
-        <app-blog-content-widget2 [loading]="loading" cssClass="gutter-b"
+        <app-blog-content-widget2 [(loading)]="loading" cssClass="gutter-b"
           [widgetHeight]="'200px'" [baseColor]="'primary'"></app-blog-content-widget2>
       </div>
     </div>
     <div class="row">
       <div class="col-xl-6" *ngIf="checkModuleExist['biography']">
-        <app-biography-content-widget2 [loading]="loading" cssClass="gutter-b"
+        <app-biography-content-widget2 [(loading)]="loading" cssClass="gutter-b"
           [widgetHeight]="'200px'" [baseColor]="'primary'"></app-biography-content-widget2>
         <div class="row">
           <div class="col-xl-6" *ngIf="checkModuleExist['news']">
-            <app-news-content-widget2 [loading]="loading" cssClass="gutter-b"
+            <app-news-content-widget2 [(loading)]="loading" cssClass="gutter-b"
               [widgetHeight]="'200px'" [iconColor]="'success'"></app-news-content-widget2>
           </div>
           <div class="col-xl-6" *ngIf="checkModuleExist['application']">
-            <app-application-app-widget2 [loading]="loading" cssClass="gutter-b"
+            <app-application-app-widget2 [(loading)]="loading" cssClass="gutter-b"
               [widgetHeight]="'200px'" [baseColor]="'success'">
             </app-application-app-widget2>
           </div>
         </div>
       </div>
       <div class="col-xl-6" *ngIf="checkModuleExist['estate']">
-        <app-estate-property-widget-add [loading]="loading" cssClass="gutter-b card-stretch">
+        <app-estate-property-widget-add [(loading)]="loading" cssClass="gutter-b card-stretch">
         </app-estate-property-widget-add>
       </div>
       <div class="col-xl-6" *ngIf="checkModuleExist['ticketing']">
-        <app-ticketing-task-widget2 [loading]="loading" cssClass="gutter-b card-stretch">
+        <app-ticketing-task-widget2 [(loading)]="loading" cssClass="gutter-b card-stretch">
         </app-ticketing-task-widget2>
       </div>
       <div class="col-xl-12" *ngIf="checkModuleExist['application']">
-        <app-application-app-widget-create [loading]="loading" cssClass="gutter-b card-stretch">
+        <app-application-app-widget-create [(loading)]="loading" cssClass="gutter-b card-stretch">
         </app-application-app-widget-create>
       </div>
 

@@ -101,15 +101,15 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
           /*
           * check file attach list
           */
-          // if (this.dataModel.linkFileIds && this.dataModel.linkFileIds.length > 0) {
-          //   this.dataModel.linkFileIds.split(',').forEach((element, index) => {
-          //     let link = '';
-          //     if (this.dataModel.linkFileIdsSrc.length >= this.dataModel.linkFileIdsSrc.length) {
-          //       link = this.dataModel.linkFileIdsSrc[index];
-          //     }
-          //     this.dataFileModelFiles.set(+element, link);
-          //   });
-          // }
+          if (this.dataModel.linkFileIds && this.dataModel.linkFileIds.length > 0) {
+            this.dataModel.linkFileIds.split(',').forEach((element, index) => {
+              let link = '';
+              if (this.dataModel.linkFileIdsSrc.length >= this.dataModel.linkFileIdsSrc.length) {
+                link = this.dataModel.linkFileIdsSrc[index];
+              }
+              this.dataFileModelFiles.set(+element, link);
+            });
+          }
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;

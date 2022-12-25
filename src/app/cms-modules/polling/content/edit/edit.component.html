@@ -27,7 +27,7 @@
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <app-polling-category-selector (optionChange)="onActionSelectorSelect($event)" [loading]="loading"
+        <app-polling-category-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
           [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-polling-category-selector>
         <mat-form-field class="ntk-full-width">
@@ -312,7 +312,7 @@
       <mat-step label="{{'TITLE.Location' | translate}} " state="loaction">
         <!-- LinkLocationId Field -->
         <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
-          [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField" [loading]="loading"
+          [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField" [(loading)]="loading"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
         <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>

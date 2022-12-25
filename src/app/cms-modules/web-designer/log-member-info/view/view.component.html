@@ -7,14 +7,14 @@
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   <!-- LinkUserId Field -->
-  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkSiteId" [loading]="loading"
+  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkSiteId" [(loading)]="loading"
     [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
   <!-- LinkUserId Field -->
-  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId" [loading]="loading"
+  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId" [(loading)]="loading"
     [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
   <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
   <!-- LinkLocationId Field -->
-  <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [loading]="loading"
+  <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [(loading)]="loading"
     [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField" [optionSelectForce]="dataModel.linkLocationId"
     [optionPlaceholder]="this.translate.instant('TITLE.Region')">
   </app-cms-location-selector>

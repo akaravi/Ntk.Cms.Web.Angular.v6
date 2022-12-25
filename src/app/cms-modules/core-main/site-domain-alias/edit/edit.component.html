@@ -22,7 +22,7 @@
       </mat-error>
     </mat-form-field>
 
-    <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false" [loading]="loading"
+    <app-core-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false" [(loading)]="loading"
       [optionSelectForce]="dataModel.linkCmsSiteId"
       [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-core-site-selector>
 

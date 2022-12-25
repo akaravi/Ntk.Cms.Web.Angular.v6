@@ -25,7 +25,7 @@
     </mat-form-field>
     <!-- LinkParentId Field -->
     <app-core-cpmainmenu-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
-      [loading]="loading" [optionSelectForce]="dataModel.linkParentId"
+      [(loading)]="loading" [optionSelectForce]="dataModel.linkParentId"
       [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
     </app-core-cpmainmenu-selector>
     <!-- Title Field -->

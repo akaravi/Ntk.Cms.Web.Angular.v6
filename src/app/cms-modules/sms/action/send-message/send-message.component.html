@@ -23,11 +23,11 @@
             </mat-expansion-panel-header>
 
             <!-- LinkPrivateSiteConfigId Field -->
-            <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [loading]="loading"
+            <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [(loading)]="loading"
               [optionSelectForce]="dataModel.linkApiPathId"
               [optionPlaceholder]="this.translate.instant('TITLE.Direction')" [optionSelectFirstItem]="true">
             </app-sms-apipath-selector>
-            <app-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [loading]="loading"
+            <app-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [(loading)]="loading"
               (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]=""
               [optionLinkApiPathId]="dataModel.linkApiPathId"
               [optionPlaceholder]="this.translate.instant('TITLE.sender_number')" [optionSelectFirstItem]="true"
@@ -50,10 +50,10 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <app-sms-main-message-category-selector [loading]="loading"
+            <app-sms-main-message-category-selector [(loading)]="loading"
               (optionChange)="onActionSelectMessageCategory($event)">
             </app-sms-main-message-category-selector>
-            <app-sms-main-message-content-selector [loading]="loading"
+            <app-sms-main-message-content-selector [(loading)]="loading"
               (optionChange)="onActionSelectMessageContent($event)"
               [optionLinkCategryId]="dataMessageCategoryModel.id"></app-sms-main-message-content-selector>
 

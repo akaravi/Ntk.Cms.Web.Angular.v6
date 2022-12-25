@@ -19,7 +19,7 @@
   <!-- Body -->
   <div class="card-body pt-8">
     <!-- LinkCmsSiteId Field -->
-    <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false" [loading]="loading"
+    <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false" [(loading)]="loading"
       [optionSelectForce]=" this.tokenInfoModel.siteId"
       [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
 

@@ -3,7 +3,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-news-category-tree [loading]="loading" (optionChange)="onActionSelectorSelect($event)">
+    <app-news-category-tree [(loading)]="loading" (optionChange)="onActionSelectorSelect($event)">
     </app-news-category-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>

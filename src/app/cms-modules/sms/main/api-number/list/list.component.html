@@ -2,7 +2,7 @@
   [optionTreeDisplay]="!requestLinkApiPathId || requestLinkApiPathId.length==0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-sms-apipath-tree [loading]="loading" (optionChange)="onActionSelectorSelect($event)"></app-sms-apipath-tree>
+    <app-sms-apipath-tree [(loading)]="loading" (optionChange)="onActionSelectorSelect($event)"></app-sms-apipath-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>

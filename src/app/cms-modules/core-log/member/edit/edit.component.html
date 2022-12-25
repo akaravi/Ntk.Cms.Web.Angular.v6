@@ -9,7 +9,7 @@
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
   
         <!-- LinkCoreUserId Field -->
-        <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkCoreUserId" [loading]="loading"
+        <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkCoreUserId" [(loading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
           
         <!-- Description Field -->

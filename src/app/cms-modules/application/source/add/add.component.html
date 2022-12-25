@@ -12,7 +12,7 @@
         <div>
           {{'TITLE.Copy_settings_from_content' | translate}}:
           <br>
-          <app-application-source-selector (optionChange)="onActionSourceCopySelect($event)" [loading]="loading"
+          <app-application-source-selector (optionChange)="onActionSourceCopySelect($event)" [(loading)]="loading"
             [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"></app-application-source-selector>
           <br>
           {{'TITLE.Using_this_option,_you_can_copy_other_source_settings_and_then_make_changes' | translate}}
