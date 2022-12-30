@@ -21,6 +21,8 @@ import {
   EnumRecordStatus,
   EstateCustomerCategoryModel,
   EnumManageUserAccessUserTypes,
+  EstatePropertyService,
+  EstateAccountAgencyModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -52,6 +54,8 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     private router: Router,
     public coreEnumService: CoreEnumService,
     public estateCustomerOrderService: EstateCustomerOrderService,
+    private estatePropertyService:EstatePropertyService,
+
     public estatePropertyDetailGroupService: EstatePropertyDetailGroupService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
@@ -101,6 +105,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
       return;
     }
     this.DataGetOneContent();
+    this.DataGetAccessEstate();
     this.getEnumRecordStatus();
   }
   async getEnumRecordStatus(): Promise<void> {
@@ -109,7 +114,24 @@ export class EstateCustomerOrderEditComponent implements OnInit {
 
   lastRecordStatus: EnumRecordStatus;
   dataFieldInfoModel: DataFieldInfoModel[];
+  DataGetAccessEstate(): void {
+    this.estatePropertyService
+      .ServiceViewModel()
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            this.dataFieldInfoModel = ret.access.fieldsInfo;
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+          }
+        },
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
+        }
+      }
+      );
 
+  }
   DataGetOneContent(): void {
 
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
@@ -122,7 +144,6 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        this.dataFieldInfoModel = ret.access.fieldsInfo;
         this.lastRecordStatus = ret.item.recordStatus;
         this.dataModel = ret.item;
         if (ret.isSuccess) {
@@ -280,7 +301,13 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.dataModel.linkEstateUserId = model.id;
   }
 
-
+  onActionSelectorEstateAgency(model: EstateAccountAgencyModel | null): void {
+    this.dataModel.linkEstateAgencyId = null;
+    if (!model || !model.id || model.id.length <= 0) {
+      return;
+    }
+    this.dataModel.linkEstateAgencyId = model.id;
+  }
   onActionSelectorLocation(model: number[] | null): void {
 
     this.dataModel.linkLocationIds = model;

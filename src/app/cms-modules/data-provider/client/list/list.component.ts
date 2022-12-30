@@ -167,7 +167,13 @@ export class DataProviderClientListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionSelectorSelect(model: DataProviderPlanModel | null): void {
-    this.filteModelContent = new FilterModel();
+     /*filter */
+    var sortColumn = this.filteModelContent.sortColumn;
+    var sortType = this.filteModelContent.sortType;
+    this.filteModelContent =  new FilterModel();
+    this.filteModelContent.sortColumn = sortColumn;
+    this.filteModelContent.sortType = sortType;
+    /*filter */
     this.categoryModelSelected = model;
 
     this.DataGetAll();

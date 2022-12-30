@@ -211,7 +211,13 @@ export class CoreGuideListComponent implements OnInit, OnDestroy {
     );
   }
   onActionSelectorSelect(model: CoreGuideModel | null): void {
-    this.filteModelContent = new FilterModel();
+     /*filter */
+    var sortColumn = this.filteModelContent.sortColumn;
+    var sortType = this.filteModelContent.sortType;
+    this.filteModelContent =  new FilterModel();
+    this.filteModelContent.sortColumn = sortColumn;
+    this.filteModelContent.sortType = sortType;
+    /*filter */
     this.categoryModelSelected = model;
     this.DataGetAll();
   }

@@ -49,7 +49,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -64,7 +64,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstateCustomerOrderModel> = [];
@@ -106,7 +106,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource,this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource, this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateCustomerOrderModel();
     const pName = this.constructor.name + 'main';
@@ -179,13 +179,12 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-if(this.categoryModelSelected && this.categoryModelSelected.id && this.categoryModelSelected.id.length>0)
-{
-  this.router.navigate(['/estate/customer-order/add/LinkParentId',this.categoryModelSelected.id]);
-}
-else{
-    this.router.navigate(['/estate/customer-order/add']);
-}
+    if (this.categoryModelSelected && this.categoryModelSelected.id && this.categoryModelSelected.id.length > 0) {
+      this.router.navigate(['/estate/customer-order/add/LinkParentId', this.categoryModelSelected.id]);
+    }
+    else {
+      this.router.navigate(['/estate/customer-order/add']);
+    }
   }
   onActionbuttonCopyNewRow(model: EstateCustomerOrderModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
@@ -353,23 +352,23 @@ else{
 
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -398,9 +397,21 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
   onActionSelectorSelect(model: EstateCustomerOrderModel | null): void {
-    this.filteModelContent = new FilterModel();
+    /*filter */
+    var sortColumn = this.filteModelContent.sortColumn;
+    var sortType = this.filteModelContent.sortType;
+     /*filter */
+    var sortColumn = this.filteModelContent.sortColumn;
+    var sortType = this.filteModelContent.sortType;
+    this.filteModelContent =  new FilterModel();
+    this.filteModelContent.sortColumn = sortColumn;
+    this.filteModelContent.sortType = sortType;
+    /*filter */
+    this.filteModelContent.sortColumn = sortColumn;
+    this.filteModelContent.sortType = sortType;
+    /*filter */
     this.categoryModelSelected = model;
     this.DataGetAll();
   }
