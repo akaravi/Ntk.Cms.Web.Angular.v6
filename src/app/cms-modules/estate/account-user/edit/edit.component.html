@@ -194,13 +194,7 @@
       </mat-step>
 
       <mat-step label="{{'TITLE.Property_agency' | translate}}" state="file">
-        <!-- accessShareUserToAgency Field -->
-        <!-- <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataEstateAccountAgencyUserModel.accessShareUserToAgency"
-            name="dataEstateAccountAgencyUserModel.accessShareUserToAgency">
-            {{'TITLE.Access_Share_User_To_Agency' | translate}}
-          </mat-slide-toggle>
-        </div> -->
+
         <app-estate-account-agency-selectionlist *ngIf="dataEstateAccountAgencyUserModel.accessShareUserToAgency"
           [optionSelectForce]="dataAccountIds" [optionDisabled]="!this.tokenHelper.CheckIsAdmin()"
           (optionChange)="onActionSelectorUserCategorySelect($event)"

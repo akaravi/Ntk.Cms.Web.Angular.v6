@@ -34,6 +34,7 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 import { TranslateService } from '@ngx-translate/core';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -76,7 +77,9 @@ export class EstateAccountAgencyEditComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
   dataAccountIds: string[] = [];
-
+  loadingOption = new ProgressSpinnerModel();
+  optionTabledataSource = new MatTableDataSource<EstateAccountAgencyUserModel>();
+  optionTabledisplayedColumns = ['LinkEstateAccountUserId'];
 
   /** map */
   viewMap = false;
@@ -273,6 +276,33 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     );
   }
 
+  onActionOptionAddToList(): void {
+    // const listUser: string[] = [];
+    // this.dataEstateAccountUserModel.forEach()
+    // if (!this.dataEstateAccountUserModel || this.dataEstateAccountUserModel.length == 0) {
+    //   const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
+    //   this.cmsToastrService.typeErrorSelected(message);
+    //   return;
+    // }
+    if (!this.dataEstateAccountUserModel) {
+      this.dataEstateAccountUserModel = [];
+    }
+
+    this.dataEstateAccountUserModel.push(this.dataEstateAccountAgencyUserModel);
+    this.dataEstateAccountAgencyUserModel = new EstateAccountAgencyUserModel();
+    this.optionTabledataSource.data = this.dataEstateAccountUserModel;
+
+  }
+
+
+
+
+  onActionSelectorAccountUser(model: EstateAccountAgencyUserModel | null): void {
+    this.dataEstateAccountAgencyUserModel.linkEstateAccountUserId = null;
+    if (model && model.id.length > 0) {
+      this.dataEstateAccountAgencyUserModel.linkEstateAccountUserId = model.id;
+    }
+  }
   onActionSelectorUserCategorySelect(model: EstateAccountAgencyUserModel[]): void {
     this.dataEstateAccountUserModel = model;
   }

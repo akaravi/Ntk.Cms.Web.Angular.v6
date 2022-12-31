@@ -146,19 +146,59 @@
       </mat-step>
 
       <mat-step label="{{'TITLE.Property_personnel' | translate}}" state="file">
-        <!-- accessShareAgencyToUser Field -->
-        <!-- <div class="ntk-full-width">
-          <mat-slide-toggle [(ngModel)]="dataEstateAccountAgencyUserModel.accessShareAgencyToUser"
-            name="dataEstateAccountAgencyUserModel.accessShareAgencyToUser">
-            {{'TITLE.Access_Share_Agency_To_User' | translate}}
-          </mat-slide-toggle>
-        </div> -->
-        <app-estate-account-user-selectionlist [optionSelectForce]="dataAccountIds"
+        <!-- <app-estate-account-user-selectionlist [optionSelectForce]="dataAccountIds"
           [optionDisabled]="!this.tokenHelper.CheckIsAdmin()"
           (optionChange)="onActionSelectorUserCategorySelect($event)"
           (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"
           (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)">
-        </app-estate-account-user-selectionlist>
+        </app-estate-account-user-selectionlist> -->
+        <div class="row">
+          <div class="col-11">
+            <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)"
+              [(loading)]="loading" [optionDisabled]="!this.tokenHelper.CheckIsAdmin()"
+              [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
+            </app-estate-account-user-selector>
+          </div>
+          <div class="col-1">
+            <button (click)="onActionOptionAddToList()" *ngIf="dataEstateAccountUserModel" type="button"
+              class="btn btn-success">&#x2b;</button>
+          </div>
+        </div>
+        <app-progress-spinner [options]="loadingOption">
+        </app-progress-spinner>
+        <!-- TABLE  -->
+        <div class="example-container mat-elevation-z8" *ngIf="!loadingOption.display">
+          <mat-table [dataSource]="optionTabledataSource" multiTemplateDataRows>
+            <!-- LinkEstateAccountUserId Column -->
+            <ng-container matColumnDef="LinkEstateAccountUserId">
+              <mat-header-cell *matHeaderCellDef> {{fieldsInfo['linkEstateAccountUserId']?.fieldTitle}} </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.linkEstateAccountUserId>0">
+                  {{row.linkEstateAccountUserId | number}}
+                </ng-container>
+
+              </mat-cell>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="Action">
+              <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let row; let i = index" class='Action'>
+                <!-- <button mat-icon-button>
+                  <small (click)="onActionOptionRemoveFromList(i)">
+                    <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before"
+                      aria-hidden="false" style="color: red;">delete</mat-icon>
+                  </small>
+                </button> -->
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="optionTabledisplayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: optionTabledisplayedColumns;">
+            </mat-row>
+          </mat-table>
+        </div>
+        <!-- TABLE  -->
       </mat-step>
       <!-- icon overrides. -->
       <ng-template matStepperIcon="main">
