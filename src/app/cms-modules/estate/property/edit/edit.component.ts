@@ -106,6 +106,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'DepositPrice', 'RentPrice', 'PeriodPrice', 'Action'];
 
   propertyDetails: Map<string, string> = new Map<string, string>();
+  numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   /** map */
   viewMap = false;
   private mapModel: leafletMap;

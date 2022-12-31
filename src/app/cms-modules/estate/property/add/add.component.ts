@@ -126,6 +126,7 @@ export class EstatePropertyAddComponent implements OnInit {
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'RentPrice', 'DepositPrice', 'PeriodPrice', 'Action'];
   propertyDetails: Map<string, string> = new Map<string, string>();
   step = 0;
+  numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   /** map */
   viewMap = false;
   private mapModel: leafletMap;
@@ -434,23 +435,23 @@ export class EstatePropertyAddComponent implements OnInit {
       this.formInfo.formSubmitAllow = true;
       return;
     }
-    if ((this.tokenHelper.CheckIsAdmin()|| this.tokenHelper.CheckIsSupport()|| this.tokenHelper.tokenInfo.userAccessUserType==EnumManageUserAccessUserTypes.ResellerCpSite|| this.tokenHelper.tokenInfo.userAccessUserType==EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available ){
-    const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
-      height: '90%',
-      data: { model: this.dataModel }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-        this.dataModel = result.model;
-        this.DataAdd();
-      } else {
-        this.formInfo.formSubmitAllow = true;
-      }
-    });
-  }
-  else {
-    this.DataAdd();
-  }
+    if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available) {
+      const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
+        height: '90%',
+        data: { model: this.dataModel }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.dialogChangedDate) {
+          this.dataModel = result.model;
+          this.DataAdd();
+        } else {
+          this.formInfo.formSubmitAllow = true;
+        }
+      });
+    }
+    else {
+      this.DataAdd();
+    }
 
 
   }
@@ -647,7 +648,7 @@ export class EstatePropertyAddComponent implements OnInit {
     this.contractDataModel.linkCoreCurrencyId = model.id;
 
     //
-    if (this.tokenHelper.CheckIsAdmin() && this.contractTypeSelected.allowPriceInquiryCalculate){
+    if (this.tokenHelper.CheckIsAdmin() && this.contractTypeSelected.allowPriceInquiryCalculate) {
       this.onActionPriceInquiryList()
     }
   }
