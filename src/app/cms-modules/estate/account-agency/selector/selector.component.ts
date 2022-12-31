@@ -32,12 +32,13 @@ export class EstateAccountAgencySelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public categoryService: EstateAccountAgencyService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyModel> = new ErrorExceptionResult<EstateAccountAgencyModel>();
   dataModelSelect: EstateAccountAgencyModel = new EstateAccountAgencyModel();
   formControl = new FormControl();
+  forceSelect: any;
   filteredOptions: Observable<EstateAccountAgencyModel[]>;
   @Input() optionDisabled = false;
   @Input() optionSelectFirstItem = false;
@@ -45,7 +46,13 @@ export class EstateAccountAgencySelectorComponent implements OnInit {
   @Output() optionChange = new EventEmitter<EstateAccountAgencyModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | EstateAccountAgencyModel) {
+    this.forceSelect = x
     this.onActionSelectForce(x);
+  }
+
+  @Input() set optionSelectUserId(x: number) {
+    if (!this.forceSelect || this.forceSelect !== null)
+      this.DataGetAll(x);
   }
 
   _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
@@ -94,6 +101,13 @@ export class EstateAccountAgencySelectorComponent implements OnInit {
     /* */
     filter = new FilterDataModel();
     filter.propertyName = 'Id';
+    filter.value = text;
+    filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+    filter.clauseType = EnumClauseType.Or;
+    filterModel.filters.push(filter);
+    /* */
+    filter = new FilterDataModel();
+    filter.propertyName = 'LinkCmsUserId';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Equal;
     filter.clauseType = EnumClauseType.Or;
@@ -147,6 +161,7 @@ export class EstateAccountAgencySelectorComponent implements OnInit {
     }));
 
   }
+
   onActionSelectForce(id: string | EstateAccountAgencyModel): void {
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.id === id) {

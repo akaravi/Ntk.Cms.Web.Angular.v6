@@ -90,7 +90,7 @@ export class EstatePropertyAddComponent implements OnInit {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-
+      
     });
   }
 

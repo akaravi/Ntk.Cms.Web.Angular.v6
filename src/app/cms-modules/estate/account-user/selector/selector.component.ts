@@ -99,6 +99,13 @@ export class EstateAccountUserSelectorComponent implements OnInit {
     filter.searchType = EnumFilterDataModelSearchTypes.Equal;
     filter.clauseType = EnumClauseType.Or;
     filterModel.filters.push(filter);
+    /* */
+    filter = new FilterDataModel();
+    filter.propertyName = 'LinkCmsUserId';
+    filter.value = text;
+    filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+    filter.clauseType = EnumClauseType.Or;
+    filterModel.filters.push(filter);
 
 
     const pName = this.constructor.name + 'main';

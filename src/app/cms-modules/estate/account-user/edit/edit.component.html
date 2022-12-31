@@ -195,8 +195,8 @@
 
       <mat-step label="{{'TITLE.Property_agency' | translate}}" state="file">
 
-        <app-estate-account-agency-selectionlist *ngIf="dataEstateAccountAgencyUserModel.accessShareUserToAgency"
-          [optionSelectForce]="dataAccountIds" [optionDisabled]="!this.tokenHelper.CheckIsAdmin()"
+        <app-estate-account-agency-selectionlist [optionSelectForce]="dataAccountIds"
+          [optionDisabled]="!this.tokenHelper.CheckIsAdmin()"
           (optionChange)="onActionSelectorUserCategorySelect($event)"
           (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"
           (optionSelectRemoved)="onActionSelectorUserCategorySelectRemoved($event)">
