@@ -722,6 +722,6 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       }
     });
   }
-  
+
 }
 

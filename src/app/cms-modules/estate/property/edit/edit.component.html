@@ -132,7 +132,7 @@
               " [value]="number">{{ number }}</mat-option>
           </mat-select>
           <mat-icon matSuffix *ngIf="dataModel.priority && fieldsInfo['priority']?.accessAddField" matSuffix
-          mat-icon-button aria-label="Clear" (click)="dataModel.priority = null">close</mat-icon>
+            mat-icon-button aria-label="Clear" (click)="dataModel.priority = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -466,7 +466,8 @@
               <ng-container [ngSwitch]="itemDetail.inputDataType">
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
-                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
                   <app-input-string [(model)]="propertyDetails[itemDetail.id]"
                     [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
                     [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
@@ -476,41 +477,47 @@
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Int" class="ntk-full-width">
-                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
                   <app-input-int [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
                     [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
                   </app-input-int>
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
-                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
                   <app-input-boolean [(model)]="propertyDetails[itemDetail.id]">{{itemDetail.title}}
                   </app-input-boolean>
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
-                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
                   <app-input-float [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
                     [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
                   </app-input-float>
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.Date" class="ntk-full-width">
-                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
                   <label style="color:'{{itemDetail.iconColor}}';">{{itemDetail.title}}</label>
                   <app-input-date [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required">
                   </app-input-date>
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchCase="enumInputDataType.TextArea" class="ntk-full-width">
-                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
                   <app-input-textarea [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
                     [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
                   </app-input-textarea>
                 </div>
                 <!-- ngSwitchCase-->
                 <div *ngSwitchDefault class="ntk-full-width">
-                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
                   <app-input-string [(model)]="propertyDetails[itemDetail.id]"
                     [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
                     [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
