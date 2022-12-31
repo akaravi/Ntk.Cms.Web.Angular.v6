@@ -909,6 +909,16 @@
 	"TITLE.REQUIRED_INFORMATION": "Required information",
 	"TITLE.SECRET_INFORMATION": "Secret information",
 	"TITLE.Required_Documents": "Required Documents",
+	"TITLE.SalePriceMin": "Sale Price Min",
+	"TITLE.RentPriceMin": "Rent Price Min",
+	"TITLE.DepositPriceMin": "Deposit Price Min",
+	"TITLE.PeriodPriceMin": "Period Price Min",
+	"TITLE.SalePriceMax": "Sale Price Max",
+	"TITLE.RentPriceMax": "Rent Price Max",
+	"TITLE.DepositPriceMax": "Deposit Price Max",
+	"TITLE.PeriodPriceMax": "Period Price Max",
+
+
 	"TITLE.RentPrice": "Rent Price",
 	"TITLE.PeriodPrice":"Period Price",
 	"TITLE.SELECT_STATUS": "Select Status Data",

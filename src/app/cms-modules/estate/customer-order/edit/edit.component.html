@@ -73,6 +73,13 @@
         </mat-slide-toggle>
       </div>
       <hr>
+              <!-- linkEstateAgencyId Field -->
+              <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite"
+              (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading"
+              [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField"
+              [optionSelectForce]="dataModel.linkEstateAgencyId"
+              [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
+            </app-estate-account-agency-selector>
       <!-- LinkEstateUserId Field -->
       <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)"
         [optionDisabled]="!fieldsInfo['linkEstateUserId']?.accessEditField"

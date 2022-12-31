@@ -313,7 +313,13 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
     this.router.navigate(['corelog/report-data/LinkModuleEntityId/', model.id]);
   }
   onActionSelectorSelect(model: CoreModuleModel | null): void {
-    this.filteModelContent = new FilterModel();
+     /*filter */
+    var sortColumn = this.filteModelContent.sortColumn;
+    var sortType = this.filteModelContent.sortType;
+    this.filteModelContent =  new FilterModel();
+    this.filteModelContent.sortColumn = sortColumn;
+    this.filteModelContent.sortType = sortType;
+    /*filter */
     this.categoryModelSelected = model;
     this.DataGetAll();
   }

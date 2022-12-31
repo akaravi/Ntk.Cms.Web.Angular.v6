@@ -21,6 +21,8 @@ import {
   EnumRecordStatus,
   EstateCustomerCategoryModel,
   EnumManageUserAccessUserTypes,
+  EstatePropertyService,
+  EstateAccountAgencyModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -52,6 +54,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     private router: Router,
     public coreEnumService: CoreEnumService,
     public estateCustomerOrderService: EstateCustomerOrderService,
+    private estatePropertyService:EstatePropertyService,
     private cmsToastrService: CmsToastrService,
     public estatePropertyDetailGroupService: EstatePropertyDetailGroupService,
     public publicHelper: PublicHelper,
@@ -98,6 +101,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
+    this.DataGetAccessEstate();
     if (this.requestId && this.requestId.length > 0) {
       this.DataGetOneContent();
     }
@@ -116,6 +120,23 @@ export class EstateCustomerOrderAddComponent implements OnInit {
         next: (ret) => {
           if (ret.isSuccess) {
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+          }
+        },
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
+        }
+      }
+      );
+
+  }
+  DataGetAccessEstate(): void {
+    this.estatePropertyService
+      .ServiceViewModel()
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
             this.dataFieldInfoModel = ret.access.fieldsInfo;
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
@@ -244,6 +265,13 @@ export class EstateCustomerOrderAddComponent implements OnInit {
       return;
     }
     this.dataModel.linkPropertyTypeUsageId = model.id;
+  }
+  onActionSelectorEstateAgency(model: EstateAccountAgencyModel | null): void {
+    this.dataModel.linkEstateAgencyId = null;
+    if (!model || !model.id || model.id.length <= 0) {
+      return;
+    }
+    this.dataModel.linkEstateAgencyId = model.id;
   }
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
     this.PropertyTypeSelected = null;

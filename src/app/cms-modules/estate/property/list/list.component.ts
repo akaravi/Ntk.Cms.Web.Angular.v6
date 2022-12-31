@@ -22,6 +22,10 @@ import {
   DataFieldInfoModel,
   EnumFilterDataModelSearchTypes,
   EnumManageUserAccessDataTypes,
+  EstatePropertySerachDtoModel,
+  EstatePropertyTypeUsageModel,
+  EstateContractTypeModel,
+  CoreCurrencyModel,
 } from "ntk-cms-api";
 import { ComponentOptionSearchModel } from "src/app/core/cmsComponentModels/base/componentOptionSearchModel";
 import { PublicHelper } from "src/app/core/helpers/publicHelper";
@@ -185,7 +189,7 @@ export class EstatePropertyListComponent
   tablePropertySelected = [];
   searchInChecking = false;
   searchInCheckingChecked = false;
-  filteModelContent = new FilterModel();
+  filteModelContent = new EstatePropertySerachDtoModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyModel> =
     new ErrorExceptionResult<EstatePropertyModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -305,6 +309,7 @@ export class EstatePropertyListComponent
 
     if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
       // ** */
+      this.actionbuttonExportOn=false;
       this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
       this.contentService
         .ServiceGetAllWithBillboardId(this.requestLinkBillboardId, filterModel)
@@ -334,6 +339,7 @@ export class EstatePropertyListComponent
       this.requestLinkCustomerOrderId.length > 0
     ) {
       // ** */
+      this.actionbuttonExportOn=false;
       this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
       this.contentService
         .ServiceGetAllWithCustomerOrderId(
@@ -363,8 +369,10 @@ export class EstatePropertyListComponent
       // ** */
     } else {
       // ** */
-      this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+      this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+      this.contentService.ServiceGetAllWithFilter(filterModel).subscribe({
         next: (ret) => {
+          this.actionbuttonExportOn=true;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
           if (ret.isSuccess) {
@@ -464,7 +472,13 @@ export class EstatePropertyListComponent
   }
 
   onActionSelectorSelect(model: EstatePropertyTypeLanduseModel | null): void {
-    this.filteModelContent = new FilterModel();
+     /*filter */
+    var sortColumn = this.filteModelContent.sortColumn;
+    var sortType = this.filteModelContent.sortType;
+    this.filteModelContent =  new EstatePropertySerachDtoModel();
+    this.filteModelContent.sortColumn = sortColumn;
+    this.filteModelContent.sortType = sortType;
+    /*filter */
     this.categoryModelSelected = model;
 
     this.DataGetAll();
@@ -779,7 +793,7 @@ export class EstatePropertyListComponent
   }
 
 
-
+  actionbuttonExportOn=false;
   onActionbuttonExport(): void {
     //open popup
     const dialogRef = this.dialog.open(CmsExportListComponent, {
@@ -884,6 +898,55 @@ export class EstatePropertyListComponent
         }
       }
       );
+  }
+  onActionSelectorLocation(model: number[] | null): void {
+
+    this.filteModelContent.linkLocationIds = model;
+  }
+  onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
+    if (!model || !model.id || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeWarningSelected(message);
+      return;
+    }
+    this.filteModelContent.linkPropertyTypeUsageId = model.id;
+  }
+  PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
+  contractTypeSelected: EstateContractTypeModel;
+  dataModelCorCurrencySelector = new CoreCurrencyModel();
+
+  onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
+    this.PropertyTypeSelected = null;
+    this.filteModelContent.linkPropertyTypeLanduseId = null;
+    if (!model || !model.id || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeWarningSelected(message);
+      return;
+    }
+    this.PropertyTypeSelected = model;
+    this.filteModelContent.linkPropertyTypeLanduseId = model.id;
+  }
+  onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
+    this.contractTypeSelected = null;
+    this.filteModelContent.linkContractTypeId = null;
+    if (!model || !model.id || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
+      this.cmsToastrService.typeWarningSelected(message);
+      return;
+    }
+    this.contractTypeSelected = model;
+    this.filteModelContent.linkContractTypeId = model.id;
+
+  }
+  onActionSelectCurrency(model: CoreCurrencyModel): void {
+    if (!model || model.id <= 0) {
+      // this.cmsToastrService.typeErrorSelected();
+      this.dataModelCorCurrencySelector = null;
+      this.filteModelContent.linkCoreCurrencyId = null;
+      return;
+    }
+    this.dataModelCorCurrencySelector = model;
+    this.filteModelContent.linkCoreCurrencyId = model.id;
   }
   expandedElement: any;
 
