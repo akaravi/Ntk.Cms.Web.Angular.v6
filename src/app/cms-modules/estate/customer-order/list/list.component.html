@@ -115,7 +115,12 @@
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDateTime(row.updatedDate) }}
         </mat-cell>
       </ng-container>
-
+      <!-- CaseCode Column -->
+      <ng-container matColumnDef="CaseCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['caseCode']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.caseCode}} </mat-cell>
+      </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>

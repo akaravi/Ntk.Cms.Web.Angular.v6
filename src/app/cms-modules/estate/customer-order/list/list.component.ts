@@ -80,12 +80,14 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     'Title',
     'CreatedDate',
     'UpdatedDate',
+    "CaseCode",
     'Action',
     "LinkTo",
   ];
   tabledisplayedColumnsMobileSource: string[] = [
     'Title',
     'RecordStatus',
+    "CaseCode",
     'Action',
     "LinkTo",
   ];

@@ -49,6 +49,24 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- CaseCode Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['caseCode']?.accessWatchField">
+      <mat-label>{{fieldsInfo['caseCode']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.caseCode" name="dataModel.caseCode" #CaseCode type="text"
+        disabled="{{!fieldsInfo['caseCode']?.accessAddField}}" placeholder="{{fieldsInfo['caseCode']?.fieldTitle}}"
+        minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.caseCode" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.caseCode = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="start">
+        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+        <strong class="info-field-text">{{fieldsInfo['caseCode']?.FieldDescription}}</strong>
+      </mat-hint>
+      <mat-hint align="end">{{ CaseCode.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="CaseCode.errors?.required">
+        {{fieldsInfo['caseCode']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
@@ -83,14 +101,14 @@
       </mat-slide-toggle>
     </div>
     <hr>
-            <!-- linkEstateAgencyId Field -->
-            <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite"
-            (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading"
-            [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField"
-            [optionSelectForce]="dataModel.linkEstateAgencyId"
-            [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
-          </app-estate-account-agency-selector>
-          
+    <!-- linkEstateAgencyId Field -->
+    <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite"
+      (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading"
+      [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField"
+      [optionSelectForce]="dataModel.linkEstateAgencyId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
+    </app-estate-account-agency-selector>
+
     <!-- LinkEstateUserId Field -->
     <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)"
       [optionDisabled]="!fieldsInfo['linkEstateUserId']?.accessAddField"
@@ -439,13 +457,13 @@
       <mat-form-field class="ntk-full-width">
         <mat-label>{{fieldsInfo['resultSortColumn']?.fieldTitle}}</mat-label>
         <mat-select placeholder="{{'TITLE.Report_Format' | translate}}" [(ngModel)]="dataModel.resultSortColumn"
-          name="dataModel.resultSortColumn" #RecordStatus="ngModel" >
+          name="dataModel.resultSortColumn" #RecordStatus="ngModel">
           <mat-option *ngFor="
               let item of dataFieldInfoModel;
               index as i
             " [value]="item.fieldName">{{ item.fieldTitle}}</mat-option>
         </mat-select>
-        
+
       </mat-form-field>
     </div>
 

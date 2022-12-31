@@ -102,6 +102,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.getEnumRecordStatus();
     this.DataGetAccess();
     this.DataGetAccessEstate();
+    this.dataModel.caseCode = this.publicHelper.StringRandomGenerator(5, true);
     if (this.requestId && this.requestId.length > 0) {
       this.DataGetOneContent();
     }
