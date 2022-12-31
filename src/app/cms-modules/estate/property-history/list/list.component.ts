@@ -226,7 +226,12 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
       height: '90%',
-      data: { linkActivityTypeId: this.categoryModelSelected.id }
+      data: { 
+        linkActivityTypeId: this.categoryModelSelected.id,
+        linkPropertyId: this.requestLinkPropertyId,
+        linkAgentId: this.requestLinkAgentId,
+        linkCustomerOrderId: this.requestLinkCustomerOrderId,
+       }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

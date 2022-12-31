@@ -48,6 +48,9 @@ export class EstatePropertyHistoryAddComponent implements OnInit {
 
     if (data) {
       this.dataModel.linkActivityTypeId = data.linkActivityTypeId;
+      this.dataModel.linkPropertyId = data.linkPropertyId;
+      this.dataModel.linkAgentId = data.linkAgentId;
+      this.dataModel.linkCustomerOrderId = data.linkCustomerOrderId;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
