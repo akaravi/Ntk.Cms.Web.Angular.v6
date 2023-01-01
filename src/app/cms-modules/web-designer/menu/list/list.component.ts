@@ -54,7 +54,7 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'ShowInMenuOrder';
     this.filteModelContent.sortType = EnumSortType.Ascending;
@@ -68,7 +68,7 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<WebDesignerMainMenuModel> = new ErrorExceptionResult<WebDesignerMainMenuModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<WebDesignerMainMenuModel> = [];
@@ -180,23 +180,24 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     else {
       model.actionGo = EnumActionGoStep.GoDown;
     }
-    this.contentService.ServiceEditStep(model).subscribe(
-      (next) => {
-        if (next.isSuccess) {
+    this.contentService.ServiceEditStep(model).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
           moveItemInArray(this.tableSource.data, previousIndex, event.currentIndex);
           this.tableSource.data = this.tableSource.data.slice();
         }
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
       }
+    }
     );
   }
   onActionSelectorSelect(model: WebDesignerMainMenuModel | null): void {
-     /*filter */
+    /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent =  new FilterModel();
+    this.filteModelContent = new FilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -267,9 +268,9 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
         if (confirmed) {
           const pName = this.constructor.name + 'contentService.ServiceDelete';
           this.loading.Start(pName);
-          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe(
-            (next) => {
-              if (next.isSuccess) {
+          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
+            next: (ret) => {
+              if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
                 this.DataGetAll();
               } else {
@@ -277,10 +278,11 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
               }
               this.loading.Stop(pName);
             },
-            (error) => {
-              this.cmsToastrService.typeError(error);
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
               this.loading.Stop(pName);
             }
+          }
           );
         }
       }
@@ -300,58 +302,60 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
     statist.set(this.translate.instant('MESSAGE.All'), 0);
     const pName = this.constructor.name + '.ServiceStatist';
     this.loading.Start(pName, this.translate.instant('MESSAGE.Get_the_statist'));
-    this.contentService.ServiceGetCount(this.filteModelContent).subscribe(
-      (next) => {
-        if (next.isSuccess) {
-          statist.set('All', next.totalRowCount);
+    this.contentService.ServiceGetCount(this.filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          statist.set('All', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
     fastfilter.value = EnumRecordStatus.Available;
     filterStatist1.filters.push(fastfilter);
-    this.contentService.ServiceGetCount(filterStatist1).subscribe(
-      (next) => {
-        if (next.isSuccess) {
-          statist.set('Active', next.totalRowCount);
+    this.contentService.ServiceGetCount(filterStatist1).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          statist.set('Active', ret.totalRowCount);
           this.optionsStatist.childMethods.setStatistValue(statist);
         }
         this.loading.Stop(pName);
       }
       ,
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
 
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -380,7 +384,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
   onActionbuttonReload(): void {
     this.filteModelContent.sortColumn = 'ShowInMenuOrder';
     this.filteModelContent.sortType = EnumSortType.Ascending;

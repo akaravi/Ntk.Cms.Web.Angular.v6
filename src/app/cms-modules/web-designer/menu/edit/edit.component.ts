@@ -8,7 +8,8 @@ import {
   AccessModel,
   DataFieldInfoModel,
   CoreUserGroupModel,
-  EnumManageUserAccessDataTypes} from 'ntk-cms-api';
+  EnumManageUserAccessDataTypes
+} from 'ntk-cms-api';
 import {
   Component,
   OnInit,
@@ -41,7 +42,7 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id + '';
     }
@@ -87,53 +88,55 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     /*َAccess Field*/
     this.webDesignerMainMenuService.setAccessLoad();
     this.webDesignerMainMenuService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
-    this.webDesignerMainMenuService.ServiceGetOneById(this.requestId).subscribe(
-      (next) => {
+    this.webDesignerMainMenuService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
         /*َAccess Field*/
-        this.dataAccessModel = next.access;
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
-        this.dataModel = next.item;
-        if (next.isSuccess) {
-          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + next.item.title;
+        this.dataAccessModel = ret.access;
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           this.formInfo.formAlert = '';
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeErrorMessage(next.errorMessage);
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeError(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
   DataEditContent(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
-    this.webDesignerMainMenuService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.webDesignerMainMenuService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.formSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.isSuccess) {
+        this.dataModelResult = ret;
+        if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeErrorMessage(next.errorMessage);
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.formSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
   onFormSubmit(): void {

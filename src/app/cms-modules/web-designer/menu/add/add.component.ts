@@ -74,18 +74,19 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
   DataGetAccess(): void {
     this.webDesignerMainMenuService
       .ServiceViewModel()
-      .subscribe(
-        async (next) => {
-          if (next.isSuccess) {
-            // this.dataAccessModel = next.access;
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            // this.dataAccessModel = ret.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           } else {
-            this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
-        (error) => {
-          this.cmsToastrService.typeErrorGetAccess(error);
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
+      }
       );
   }
   DataAddContent(): void {
@@ -93,26 +94,27 @@ export class WebDesignerMainMenuAddComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.webDesignerMainMenuService.ServiceAdd(this.dataModel).subscribe(
-      (next) => {
+    this.webDesignerMainMenuService.ServiceAdd(this.dataModel).subscribe({
+      next: (ret) => {
         this.formInfo.formSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.isSuccess) {
+        this.dataModelResult = ret;
+        if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeErrorMessage(next.errorMessage);
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
-      (error) => {
+      error: (er) => {
         this.formInfo.formSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
   onActionSelectorSelect(model: WebDesignerMainMenuModel): void {

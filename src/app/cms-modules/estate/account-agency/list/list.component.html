@@ -74,6 +74,11 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
+      <!-- ID Column -->
+      <ng-container matColumnDef="LinkCmsUserId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkCmsUserId']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkCmsUserId}} </mat-cell>
+      </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['title']?.fieldTitle}}
