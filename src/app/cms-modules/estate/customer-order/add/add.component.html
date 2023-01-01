@@ -106,6 +106,7 @@
       (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading"
       [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField"
       [optionSelectForce]="dataModel.linkEstateAgencyId"
+      [optionSelectUserId]="this.tokenInfo.userId"
       [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
     </app-estate-account-agency-selector>
 

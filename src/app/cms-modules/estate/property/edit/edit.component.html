@@ -267,7 +267,7 @@
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
-            {{'ACTION.BACK' | translate}}
+            {{'ACTION.BACK_TO_PROPERTY_LIST' | translate}}
           </button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
@@ -290,6 +290,7 @@
           (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading"
           [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessEditField"
           [optionSelectForce]="dataModel.linkEstateAgencyId"
+          [optionSelectUserId]="this.tokenInfo.userId"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
         </app-estate-account-agency-selector>
         <!-- LinkEstateUserId Field -->
@@ -426,8 +427,8 @@
 
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-          <button type="button" mat-raised-button (click)="onActionBackToParent()">
-            {{'ACTION.BACK' | translate}}
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
           </button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext
             *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0">

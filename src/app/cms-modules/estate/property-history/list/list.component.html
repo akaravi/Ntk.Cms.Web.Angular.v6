@@ -4,7 +4,7 @@
 </app-estate-property-header>
 <app-estate-customer-order-header *ngIf="this.requestLinkCustomerOrderId?.length>0" [optionId]="this.requestLinkCustomerOrderId">
 </app-estate-customer-order-header>
-<app-estate-account-user-header *ngIf="this.requestLinkAgentId?.length>0" [optionId]="this.requestLinkAgentId">
+<app-estate-account-user-header *ngIf="this.requestLinkEstateUserId?.length>0" [optionId]="this.requestLinkEstateUserId">
 </app-estate-account-user-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>

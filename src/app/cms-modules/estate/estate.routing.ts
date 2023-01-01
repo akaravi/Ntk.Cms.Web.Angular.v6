@@ -133,11 +133,15 @@ const routes: Routes = [
         component: EstatePropertyHistoryListComponent
       },
       {
-        path: 'property-history/LinkAgentId/:LinkAgentId',
+        path: 'property-history/LinkEstateUserId/:LinkEstateUserId',
         component: EstatePropertyHistoryListComponent
       },
       {
         path: 'property-history/LinkCustomerOrderId/:LinkCustomerOrderId',
+        component: EstatePropertyHistoryListComponent
+      },
+      {
+        path: 'property-history/LinkEstateAgencyId/:LinkEstateAgencyId',
         component: EstatePropertyHistoryListComponent
       },
       /**/

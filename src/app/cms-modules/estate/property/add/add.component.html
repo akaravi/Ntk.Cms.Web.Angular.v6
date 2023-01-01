@@ -216,7 +216,7 @@
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
-            {{'ACTION.BACK' | translate}}
+            {{'ACTION.CANCEL' | translate}}
           </button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext
             *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0">
@@ -324,8 +324,8 @@
 
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-          <button type="button" mat-raised-button (click)="onActionBackToParent()">
-            {{'ACTION.BACK' | translate}}
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
           </button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext
             *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0">
@@ -481,8 +481,8 @@
 
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-          <button type="button" mat-raised-button (click)="onActionBackToParent()">
-            {{'ACTION.BACK' | translate}}
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
           </button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext
             *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0">

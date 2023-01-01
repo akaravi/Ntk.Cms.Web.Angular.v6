@@ -8,6 +8,7 @@ import {
   EstateAccountAgencyAdsModel,
   DataFieldInfoModel,
   EstateAccountAgencyModel,
+  TokenInfoModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -23,6 +24,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-estate-account-agency-ads-add',
@@ -40,6 +42,7 @@ export class EstateAccountAgencyAdsAddComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    public tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -50,6 +53,9 @@ export class EstateAccountAgencyAdsAddComponent implements OnInit {
       this.dataModel.linkAccountAgencyId = this.requestLinkAccountAgencyId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -57,6 +63,7 @@ export class EstateAccountAgencyAdsAddComponent implements OnInit {
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
+  tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyAdsModel> = new ErrorExceptionResult<EstateAccountAgencyAdsModel>();
   dataModel: EstateAccountAgencyAdsModel = new EstateAccountAgencyAdsModel();

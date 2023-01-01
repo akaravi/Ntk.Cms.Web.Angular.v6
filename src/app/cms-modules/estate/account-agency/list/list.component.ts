@@ -35,7 +35,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./list.component.scss']
 })
 export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
-  requestLinkAccountUserId='';
+  requestLinkAccountUserId = '';
   constructor(
     private contentService: EstateAccountAgencyService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -47,12 +47,12 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
     this.requestLinkAccountUserId = this.activatedRoute.snapshot.paramMap.get('LinkAccountUserId');
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -68,7 +68,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyModel> = new ErrorExceptionResult<EstateAccountAgencyModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstateAccountAgencyModel> = [];
@@ -76,7 +76,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<EstateAccountAgencyModel> = new MatTableDataSource<EstateAccountAgencyModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Title',
@@ -326,23 +326,23 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
 
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -371,7 +371,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
   onActionbuttonAgentRow(
     mode: EstateAccountAgencyModel = this.tableRowSelected, event?: MouseEvent
   ): void {
@@ -394,6 +394,30 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
       window.open(this.link, "_blank");
     } else {
       this.router.navigate(["/estate/account-user/LinkAccountAgencyId", this.tableRowSelected.id]);
+    }
+  }
+  onActionbuttonHistoryRow(
+    mode: EstateAccountAgencyModel = this.tableRowSelected, event?: MouseEvent
+  ): void {
+    if (!mode || !mode.id || mode.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = mode;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/property-history/LinkEstateAgencyId/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(["/estate/property-history/LinkEstateAgencyId", this.tableRowSelected.id]);
     }
   }
   onActionbuttonPropertyRow(

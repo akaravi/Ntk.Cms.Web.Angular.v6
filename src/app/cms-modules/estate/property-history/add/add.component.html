@@ -13,11 +13,18 @@
       [optionSelectForce]="dataModel.linkActivityTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-estate-activity-type-selector>
 
-    <!-- LinkAgentId Field -->
-    <app-estate-account-user-selector (optionChange)="onActionSelectorAgent($event)" [(loading)]="loading"
-      *ngIf="fieldsInfo['linkAgentId']?.accessAddField" [optionSelectForce]="dataModel.linkAgentId"
+    <!-- linkEstateUserId Field -->
+    <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)" [(loading)]="loading"
+      *ngIf="fieldsInfo['linkEstateUserId']?.accessAddField" [optionSelectForce]="dataModel.linkEstateUserId"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-estate-account-user-selector>
+
+    <!-- linkEstateAgencyId Field -->
+    <app-estate-account-agency-selector *ngIf="fieldsInfo['linkEstateAgencyId']?.accessWatchField"
+      (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading"
+      [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
+    </app-estate-account-agency-selector>
 
     <!-- LinkPropertyId Field -->
     <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)" [(loading)]="loading"

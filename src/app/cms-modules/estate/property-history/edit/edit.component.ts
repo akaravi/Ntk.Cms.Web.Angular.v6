@@ -11,7 +11,9 @@ import {
   EstateActivityTypeModel,
   EstateAccountUserModel,
   EstatePropertyModel,
-  EstateCustomerOrderModel
+  EstateCustomerOrderModel,
+  TokenInfoModel,
+  EstateAccountAgencyModel
 } from 'ntk-cms-api';
 import {
   Component,
@@ -27,6 +29,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-estate-property-history-edit',
@@ -43,6 +46,7 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    public tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -50,6 +54,9 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
       this.requestId = data.id;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -57,6 +64,7 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
+  tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyHistoryModel> = new ErrorExceptionResult<EstatePropertyHistoryModel>();
   dataModel: EstatePropertyHistoryModel = new EstatePropertyHistoryModel();
@@ -162,10 +170,10 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
     }
     );
   }
-  onActionSelectorAgent(model: EstateAccountUserModel | null): void {
-    this.dataModel.linkAgentId = null;
+  onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
+    this.dataModel.linkEstateUserId = null;
     if (model && model.id.length > 0) {
-      this.dataModel.linkAgentId = model.id;
+      this.dataModel.linkEstateUserId = model.id;
     }
   }
   onActionSelectorProperty(model: EstatePropertyModel | null): void {
@@ -179,6 +187,13 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
     if (model && model.id.length > 0) {
       this.dataModel.linkCustomerOrderId = model.id;
     }
+  }
+  onActionSelectorEstateAgency(model: EstateAccountAgencyModel | null): void {
+    this.dataModel.linkEstateAgencyId = null;
+    if (!model || !model.id || model.id.length <= 0) {
+      return;
+    }
+    this.dataModel.linkEstateAgencyId = model.id;
   }
   onActionSelectorSelect(model: EstateActivityTypeModel | null): void {
     if (!model || model.id.length <= 0) {

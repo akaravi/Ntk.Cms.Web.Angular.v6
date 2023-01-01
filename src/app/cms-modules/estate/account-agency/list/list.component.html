@@ -1,7 +1,8 @@
 <app-cms-guide-notice [Key]="'accountagency.content.list'"
   [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
-  <app-estate-account-user-header *ngIf="this.requestLinkAccountUserId?.length>0" [optionId]="this.requestLinkAccountUserId">
-  </app-estate-account-user-header>
+<app-estate-account-user-header *ngIf="this.requestLinkAccountUserId?.length>0"
+  [optionId]="this.requestLinkAccountUserId">
+</app-estate-account-user-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
@@ -109,6 +110,10 @@
             <button mat-menu-item (click)="onActionbuttonAgentRow(row,$event)">
               <mat-icon>person</mat-icon>
               <span>{{'ACTION.PERSONNEL' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonHistoryRow(row,$event)">
+              <mat-icon>history</mat-icon>
+              <span>{{'ACTION.HISTORY' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonPropertyRow(row,$event)">
               <mat-icon>home</mat-icon>

@@ -289,10 +289,10 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     }
 
     if (event?.ctrlKey) {
-      this.link = "/#/estate/property-history/LinkAgentId/" + this.tableRowSelected.id;
+      this.link = "/#/estate/property-history/LinkEstateUserId/" + this.tableRowSelected.id;
       window.open(this.link, "_blank");
     } else {
-      this.router.navigate(["/estate/property-history/LinkAgentId", this.tableRowSelected.id]);
+      this.router.navigate(["/estate/property-history/LinkEstateUserId", this.tableRowSelected.id]);
     }
   }
   onActionbuttonPropertyRow(

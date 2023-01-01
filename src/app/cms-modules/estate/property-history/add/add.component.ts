@@ -10,7 +10,8 @@ import {
   EstateActivityTypeModel,
   EstateAccountUserModel,
   EstatePropertyModel,
-  EstateCustomerOrderModel
+  EstateCustomerOrderModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
 import {
   Component,
@@ -26,6 +27,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-estate-property-history-add',
@@ -41,16 +43,21 @@ export class EstatePropertyHistoryAddComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
+    public tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
 
     if (data) {
       this.dataModel.linkActivityTypeId = data.linkActivityTypeId;
       this.dataModel.linkPropertyId = data.linkPropertyId;
-      this.dataModel.linkAgentId = data.linkAgentId;
+      this.dataModel.linkEstateUserId = data.linkEstateUserId;
       this.dataModel.linkCustomerOrderId = data.linkCustomerOrderId;
+      this.dataModel.linkEstateAgencyId = data.linkEstateAgencyId;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -59,6 +66,7 @@ export class EstatePropertyHistoryAddComponent implements OnInit {
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
+  tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyHistoryModel> = new ErrorExceptionResult<EstatePropertyHistoryModel>();
   dataModel: EstatePropertyHistoryModel = new EstatePropertyHistoryModel();
@@ -144,11 +152,18 @@ export class EstatePropertyHistoryAddComponent implements OnInit {
     this.dataModel.linkActivityTypeId = model.id;
   }
 
-  onActionSelectorAgent(model: EstateAccountUserModel | null): void {
-    this.dataModel.linkAgentId = null;
+  onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
+    this.dataModel.linkEstateUserId = null;
     if (model && model.id.length > 0) {
-      this.dataModel.linkAgentId = model.id;
+      this.dataModel.linkEstateUserId = model.id;
     }
+  }
+  onActionSelectorEstateAgency(model: EstateAccountUserModel | null): void {
+    this.dataModel.linkEstateAgencyId = null;
+    if (!model || !model.id || model.id.length <= 0) {
+      return;
+    }
+    this.dataModel.linkEstateAgencyId = model.id;
   }
   onActionSelectorProperty(model: EstatePropertyModel | null): void {
     this.dataModel.linkPropertyId = null;

@@ -36,8 +36,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   requestLinkPropertyId = '';
-  requestLinkAgentId = '';
+  requestLinkEstateUserId = '';
   requestLinkCustomerOrderId = '';
+  requestLinkEstateAgencyId = '';
 
   constructor(
     private contentService: EstatePropertyHistoryService,
@@ -52,8 +53,9 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkPropertyId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyId');
-    this.requestLinkAgentId = this.activatedRoute.snapshot.paramMap.get('LinkAgentId');
+    this.requestLinkEstateUserId = this.activatedRoute.snapshot.paramMap.get('LinkEstateUserId');
     this.requestLinkCustomerOrderId = this.activatedRoute.snapshot.paramMap.get('LinkCustomerOrderId');
+    this.requestLinkEstateAgencyId = this.activatedRoute.snapshot.paramMap.get('LinkEstateAgencyId');
 
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -126,16 +128,22 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       filter.value = this.requestLinkPropertyId;
       this.filteModelContent.filters.push(filter);
     }
-    if (this.requestLinkAgentId && this.requestLinkAgentId.length > 0) {
+    if (this.requestLinkEstateUserId && this.requestLinkEstateUserId.length > 0) {
       const filter = new FilterDataModel();
-      filter.propertyName = 'linkAgentId';
-      filter.value = this.requestLinkAgentId;
+      filter.propertyName = 'linkEstateUserId';
+      filter.value = this.requestLinkEstateUserId;
       this.filteModelContent.filters.push(filter);
     }
     if (this.requestLinkCustomerOrderId && this.requestLinkCustomerOrderId.length > 0) {
       const filter = new FilterDataModel();
       filter.propertyName = 'linkCustomerOrderId';
       filter.value = this.requestLinkCustomerOrderId;
+      this.filteModelContent.filters.push(filter);
+    }
+    if (this.requestLinkEstateAgencyId && this.requestLinkEstateAgencyId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'linkEstateAgencyId';
+      filter.value = this.requestLinkEstateAgencyId;
       this.filteModelContent.filters.push(filter);
     }
 
@@ -229,8 +237,9 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       data: { 
         linkActivityTypeId: this.categoryModelSelected.id,
         linkPropertyId: this.requestLinkPropertyId,
-        linkAgentId: this.requestLinkAgentId,
+        linkEstateUserId: this.requestLinkEstateUserId,
         linkCustomerOrderId: this.requestLinkCustomerOrderId,
+        linkEstateAgencyId: this.requestLinkEstateAgencyId,
        }
     });
     dialogRef.afterClosed().subscribe(result => {

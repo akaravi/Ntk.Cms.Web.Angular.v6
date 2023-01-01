@@ -23,6 +23,7 @@ import {
   EnumManageUserAccessUserTypes,
   EstatePropertyService,
   EstateAccountAgencyModel,
+  TokenInfoModel,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -68,7 +69,10 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.linkParentId = this.activatedRoute.snapshot.paramMap.get('LinkParentId')
+    this.linkParentId = this.activatedRoute.snapshot.paramMap.get('LinkParentId');
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -80,6 +84,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   enumInputDataType = EnumInputDataType;
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
+  tokenInfo = new TokenInfoModel();
   linkParentId = '';
   loading = new ProgressSpinnerModel();
   // dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
