@@ -16,6 +16,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 class chipModel {
   display: string;
   value: number;
@@ -49,7 +50,14 @@ export class CmsLocationCompleteComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-  
+  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get loading(): ProgressSpinnerModel {
+    return this._loading;
+  }
+  @Input() set loading(value: ProgressSpinnerModel) {
+    this._loading = value;
+  }
+
   tagDataModel: chipModel[] = [];
   tagLastDataModel: chipModel[] = [];
   selectForceStatus = true;
@@ -59,7 +67,7 @@ export class CmsLocationCompleteComponent implements OnInit {
   addOnBlur = true;
   ngOnInit(): void {
   }
- 
+
   displayOption(model?: CoreLocationModel): string | undefined {
     if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0
       && model.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.title.length > 0
@@ -94,12 +102,18 @@ export class CmsLocationCompleteComponent implements OnInit {
       filter.clauseType = EnumClauseType.Or;
       filterModel.filters.push(filter);
     }
+
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+
     return this.service.ServiceGetAll(filterModel).pipe(
       map((data) => {
         this.tagLastDataModel = data.listItems.map(val => ({
           display: this.displayOption(val)//val.titleML
           , value: val.id
         }));
+        this.loading.Stop(pName);
         return this.tagLastDataModel;
       })
     );

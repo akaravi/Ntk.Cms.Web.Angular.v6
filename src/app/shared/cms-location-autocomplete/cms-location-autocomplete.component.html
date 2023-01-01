@@ -1,5 +1,6 @@
 
 <mat-form-field style="width:100%" appearance="fill">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <mat-label>{{optionLabel}}</mat-label>
   <mat-chip-list #chipList aria-label="tag selection"  [disabled]="optionDisabled">
     <mat-chip

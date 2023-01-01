@@ -35,7 +35,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./list.component.scss']
 })
 export class EstateAccountUserListComponent implements OnInit, OnDestroy {
-  requestLinkAccountAgencyId='';
+  requestLinkAccountAgencyId = '';
   constructor(
     private contentService: EstateAccountUserService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -47,12 +47,12 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
     this.requestLinkAccountAgencyId = this.activatedRoute.snapshot.paramMap.get('LinkAccountAgencyId');
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -68,7 +68,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<EstateAccountUserModel> = new ErrorExceptionResult<EstateAccountUserModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstateAccountUserModel> = [];
@@ -76,7 +76,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<EstateAccountUserModel> = new MatTableDataSource<EstateAccountUserModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Title',
@@ -271,6 +271,29 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
       );
 
   }
+  onActionbuttonAgencyRow(
+    mode: EstateAccountUserModel = this.tableRowSelected, event?: MouseEvent
+  ): void {
+    if (!mode || !mode.id || mode.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = mode;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessEditRow
+    ) {
+      this.cmsToastrService.typeErrorAccessEdit();
+      return;
+    }
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/account-agency/LinkAccountUserId/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(["/estate/account-agency/LinkAccountUserId", this.tableRowSelected.id]);
+    }
+  }
   onActionbuttonHistoryRow(
     mode: EstateAccountUserModel = this.tableRowSelected, event?: MouseEvent
   ): void {
@@ -370,23 +393,23 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
 
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -415,7 +438,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

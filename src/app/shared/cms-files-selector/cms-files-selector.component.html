@@ -3,52 +3,58 @@
   <mat-form-field class="ntk-full-width">
     <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.File' | translate}}
     </mat-label>
-    <input matInput name="dataModel.linkMainImageId" #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}"
-      (click)="fileManagerOpenForm = true" />
+    <input matInput name="dataModel.linkMainImageId" #LinkMainImageId type="text"
+      placeholder="{{'TITLE.Original_File_ID' | translate}}" (click)="fileManagerOpenForm = true" />
     <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
   </mat-form-field>
   <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage"
     [selectFileType]="selectFileTypeMainImage" [isPopup]="true" [(openForm)]="fileManagerOpenForm"
-    [openDirectUploadView]="openDirectUploadView"
-    [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'" [openFilemanagerButtonView]="false">
+    [openDirectUploadView]="openDirectUploadView" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+    [openFilemanagerButtonView]="false">
   </cms-file-manager>
 </div>
 <!-- TABLE  -->
-<table>
-  <tr>
-    <td>{{'TITLE.File_ID' | translate}}</td>
-    <td></td>
-    <td>{{'TITLE.link' | translate}} </td>
-    <td></td>
-  </tr>
-  <tr *ngFor="let item of dataFileModel | keyvalue ">
-    <td>{{item.key}}</td>
-    <td>
-      <img *ngIf="item['value']?.toLowerCase().indexOf('.png')>0 || item['value']?.toLowerCase().indexOf('.jpg')>0 || item['value']?.toLowerCase().indexOf('.jpeg')>0|| item['value']?.toLowerCase().indexOf('.gif')>0"
-        style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{item.value | cmsthumbnail}}" height="50" width="50" />
+<div *ngIf="showAttachFile">
+  <table>
+    <tr>
+      <td>{{'TITLE.File_ID' | translate}}</td>
+      <td></td>
+      <td>{{'TITLE.link' | translate}} </td>
+      <td></td>
+    </tr>
+    <tr *ngFor="let item of dataFileModel | keyvalue ">
+      <td>{{item.key}}</td>
+      <td>
+        <img
+          *ngIf="item['value']?.toLowerCase().indexOf('.png')>0 || item['value']?.toLowerCase().indexOf('.jpg')>0 || item['value']?.toLowerCase().indexOf('.jpeg')>0|| item['value']?.toLowerCase().indexOf('.gif')>0"
+          style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{item.value | cmsthumbnail}}"
+          height="50" width="50" />
 
-      <audio *ngIf="item['value']?.toLowerCase().indexOf('.mp3')>0 || item['value']?.toLowerCase().indexOf('.wave')>0 || item['value']?.toLowerCase().indexOf('.acc')>0"
-        controls>
-        <source src="{{item.value}}" type="audio/mp3">
-        Your browser does not support the audio tag.
-      </audio>
+        <audio
+          *ngIf="item['value']?.toLowerCase().indexOf('.mp3')>0 || item['value']?.toLowerCase().indexOf('.wave')>0 || item['value']?.toLowerCase().indexOf('.acc')>0"
+          controls>
+          <source src="{{item.value}}" type="audio/mp3">
+          Your browser does not support the audio tag.
+        </audio>
 
-      <video *ngIf="item['value']?.toLowerCase().indexOf('mp4')>0" controls>
-        <source src="{{item.value}}" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </td>
-    <td>
-      <button class="btn btn-secondary btn-sm" type="button"  [cdkCopyToClipboard]="item.value"
-        (click)="onActionCopied()">
-        <mat-icon style="font-size: 20px;margin: -1px;">content_copy</mat-icon>
-        Copy
-      </button>
-    
-    <button (click)="onActionFileSelectedRemove(item.key)" type="button" 
-      class="btn btn-danger btn-sm"><mat-icon style="font-size: 20px;margin: -1px;" aria-hidden="false"  >delete</mat-icon>{{'ACTION.DELETE' | translate}}</button>
-    </td>
-  </tr>
+        <video *ngIf="item['value']?.toLowerCase().indexOf('mp4')>0" controls>
+          <source src="{{item.value}}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </td>
+      <td>
+        <button class="btn btn-secondary btn-sm" type="button" [cdkCopyToClipboard]="item.value"
+          (click)="onActionCopied()">
+          <mat-icon style="font-size: 20px;margin: -1px;">content_copy</mat-icon>
+          Copy
+        </button>
 
-</table>
+        <button (click)="onActionFileSelectedRemove(item.key)" type="button" class="btn btn-danger btn-sm"><mat-icon
+            style="font-size: 20px;margin: -1px;" aria-hidden="false">delete</mat-icon>{{'ACTION.DELETE' |
+          translate}}</button>
+      </td>
+    </tr>
+
+  </table>
+</div>
 <!-- TABLE  -->

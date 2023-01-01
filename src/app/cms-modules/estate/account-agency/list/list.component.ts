@@ -117,7 +117,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     if (this.requestLinkAccountUserId && this.requestLinkAccountUserId.length > 0) {
       const filter = new FilterDataModel();
       filter.propertyAnyName = 'AccountAgencyUser';
-      filter.propertyName = 'LinkEstateAccountAgencyId';
+      filter.propertyName = 'linkEstateAccountUserId';
       filter.value = this.requestLinkAccountUserId;
       this.filteModelContent.filters.push(filter);
     }

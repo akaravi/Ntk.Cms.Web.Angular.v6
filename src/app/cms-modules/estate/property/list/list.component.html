@@ -103,7 +103,7 @@
       <p>{{'MESSAGE.Content_of_your_choice_to_display' | translate}}</p>
       <P>{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
       <!-- LinkLocationIds Field -->
-      <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
+      <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(loading)]="loading"
         [optionPlaceholder]="this.translate.instant('TITLE.Region')">
       </app-cms-location-autocomplete>
       <hr>

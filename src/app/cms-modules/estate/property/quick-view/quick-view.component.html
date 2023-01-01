@@ -11,10 +11,12 @@
   <table class="table table-striped">
     <tbody>
       <tr>
-        <td><b> {{'TITLE.Sharing_Key' | translate}}:</b>
-        <!-- <p>تست</p> -->
-        </td>
+        <td><b> {{'TITLE.Sharing_Key' | translate}}:</b></td>
         <td><b>{{dataModel.sharingKey}}</b></td>
+      </tr>
+      <tr>
+        <td><b>{{fieldsInfo['caseCode']?.fieldTitle}}:</b></td>
+        <td><b>{{dataModel.caseCode}}</b></td>
       </tr>
       <tr>
         <td>{{'TITLE.Property_type' | translate}}:</td>
@@ -24,14 +26,19 @@
         <td>{{fieldsInfo['title']?.fieldTitle}}:</td>
         <td>{{dataModel.title}}</td>
       </tr>
+      <tr>
+        <td>{{fieldsInfo['createdDate']?.fieldTitle}}:</td>
+        <td>{{ publicHelper.LocaleDateTime(dataModel.createdDate)}}</td>
+      </tr>
+      <tr *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField">
+        <td>{{fieldsInfo['createdDate']?.fieldTitle}}:</td>
+        <td>{{ publicHelper.LocaleDateTime(dataModel.updatedDate)}}</td>
+      </tr>
       <!-- <tr>
         <td>{{'TITLE.Transaction_type' | translate}}:</td>
         <td>{{contractType}}</td>
       </tr> -->
-      <tr>
-        <td>{{fieldsInfo['caseCode']?.fieldTitle}}:</td>
-        <td>{{dataModel.caseCode}}</td>
-      </tr>
+
       <tr>
         <td>{{'TITLE.CreatedYaer' | translate}}:</td>
         <td>{{dataModel.createdYaer}}</td>
@@ -111,14 +118,14 @@
             <ng-container *ngIf="dataModel.area>0">
               (مترمربع :{{row.salePrice/dataModel.area | number: '1.0-0'}})
             </ng-container>
-            
+
           </ng-container>
           <ng-container *ngIf="row.salePriceByAgreement">
             {{'TITLE.SalePrice' | translate}}:
             {{'TITLE.PriceByAgreement' | translate}}
           </ng-container>
           <br>
-          
+
           <ng-container *ngIf="row.depositPrice>0">
             {{'TITLE.DepositPrice' | translate}}:
             {{row.depositPrice | number}}<br> ( {{row.currencyTitle}} {{row.currencySymbol}} )
@@ -128,7 +135,7 @@
             {{'TITLE.PriceByAgreement' | translate}}
           </ng-container>
           <br>
-          
+
           <ng-container *ngIf="row.rentPrice>0">
             {{'TITLE.RentPrice' | translate}}
             {{row.rentPrice | number}}<br> ( {{row.currencyTitle}} {{row.currencySymbol}} )
@@ -138,7 +145,7 @@
             {{'TITLE.PriceByAgreement' | translate}}
           </ng-container>
           <br>
-          
+
           <ng-container *ngIf="row.periodPrice>0">
             {{'TITLE.PeriodPrice' | translate}}:
             {{row.periodPrice | number}}
@@ -215,8 +222,8 @@
   <hr>
 
   <mat-accordion class="example-headers-align">
-    <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i"
-      [expanded]="step === i" (opened)="setStep(i)">
+    <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i" [expanded]="step === i"
+      (opened)="setStep(i)">
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{itemGroup.title}}
@@ -229,7 +236,8 @@
 
       <!-- value-->
       <ng-container *ngFor="let itemDetail of itemGroup.propertyDetails">
-        <ng-container [ngSwitch]="itemDetail.inputDataType" *ngIf="propertyDetails[itemDetail.id] && propertyDetails[itemDetail.id].length >0" >
+        <ng-container [ngSwitch]="itemDetail.inputDataType"
+          *ngIf="propertyDetails[itemDetail.id] && propertyDetails[itemDetail.id].length >0">
           <!-- ngSwitchCase-->
           <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
             <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;
@@ -250,13 +258,13 @@
           <!-- ngSwitchCase-->
           <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
             <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;
-            <app-input-boolean [(model)]="propertyDetails[itemDetail.id]"  [optionDisabled]="true">{{itemDetail.title}}
+            <app-input-boolean [(model)]="propertyDetails[itemDetail.id]" [optionDisabled]="true">{{itemDetail.title}}
             </app-input-boolean>
           </div>
           <!-- ngSwitchCase-->
           <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
             <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;
-            <app-input-float [(model)]="propertyDetails[itemDetail.id]"  [optionDisabled]="true"
+            <app-input-float [(model)]="propertyDetails[itemDetail.id]" [optionDisabled]="true"
               [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
             </app-input-float>
           </div>

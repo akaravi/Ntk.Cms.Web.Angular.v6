@@ -104,12 +104,16 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonAgencyRow(row,$event)">
+              <mat-icon>home</mat-icon>
+              <span>{{'ACTION.AGENCY' | translate}}</span>
+            </button>
             <button mat-menu-item (click)="onActionbuttonHistoryRow(row,$event)">
               <mat-icon>history</mat-icon>
               <span>{{'ACTION.HISTORY' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonPropertyRow(row,$event)">
-              <mat-icon>home</mat-icon>
+              <mat-icon>maps_home_work</mat-icon>
               <span>{{'ACTION.CONNECT_TO_PROPERTY' | translate}}</span>
             </button>
           </mat-menu>
