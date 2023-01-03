@@ -5,6 +5,7 @@ import {
   DataProviderPlanPriceModel,
   DataProviderPlanPriceService,
   DataFieldInfoModel,
+  EnumRecordStatus,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -87,6 +88,10 @@ export class DataProviderPlanPriceHeaderComponent implements OnInit, OnDestroy {
   onActionbuttonLinkTo(model: DataProviderPlanPriceModel = this.dataModelResult.item): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    if (model.recordStatus !=EnumRecordStatus.Available) {
+      this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
     //open popup

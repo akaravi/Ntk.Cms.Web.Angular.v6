@@ -5,6 +5,7 @@ import {
   NewsContentModel,
   NewsContentService,
   DataFieldInfoModel,
+  EnumRecordStatus,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -88,6 +89,10 @@ export class NewsContentHeaderComponent implements OnInit ,OnDestroy {
   onActionbuttonLinkTo(model: NewsContentModel=this.dataModelResult.item): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    if (model.recordStatus !=EnumRecordStatus.Available) {
+      this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
     //open popup

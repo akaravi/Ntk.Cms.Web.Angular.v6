@@ -514,15 +514,12 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessEditRow
-    ) {
-      this.cmsToastrService.typeErrorAccessEdit();
+    if (model.recordStatus !=EnumRecordStatus.Available) {
+      this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
+    this.tableRowSelected = model;
+
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
     this.contentService.ServiceGetOneById(this.tableRowSelected.id)

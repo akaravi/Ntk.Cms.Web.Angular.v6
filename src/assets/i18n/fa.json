@@ -359,6 +359,7 @@
 	"ERRORMESSAGE.MESSAGE.typeErrorRemoveSimilar": "خطا در حذف کردن اطلاعات مشابه",
 	"ERRORMESSAGE.MESSAGE.typeErrorRemoveTag": "خطا در حذف کردن تگها",
 	"ERRORMESSAGE.MESSAGE.typeErrorSelected": "بروز خطا در انتخاب",
+	"ERRORMESSAGE.MESSAGE.typeWarningRecordStatusNoAvailable": "وضعیت محتوا فعال نمی باشد",
 	"ERRORMESSAGE.MESSAGE.typeErrorSelectedRow": "ردیفی انتخاب نشده است",
 	"ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected": "دسته بندی انتخاب نشده است",
 	"ERRORMESSAGE.MESSAGE.The_Delete_Category_ID_Is_The_Same_As_The_Alternate_Category": "شناسه دسته بندی در حال حذف با دسته بندی جایگزین یکسان است",

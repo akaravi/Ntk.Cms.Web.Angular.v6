@@ -5,6 +5,7 @@ import {
   EstatePropertyModel,
   EstatePropertyService,
   DataFieldInfoModel,
+  EnumRecordStatus,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -86,6 +87,10 @@ export class EstatePropertyHeaderComponent implements OnInit, OnDestroy {
   onActionbuttonLinkTo(model: EstatePropertyModel = this.dataModelResult.item): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    if (model.recordStatus !=EnumRecordStatus.Available) {
+      this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
     //open popup

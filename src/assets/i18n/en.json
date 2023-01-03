@@ -360,6 +360,7 @@
 	"ERRORMESSAGE.MESSAGE.typeErrorRemoveTag": "Error deleting tags",
 	"ERRORMESSAGE.MESSAGE.typeErrorSelected": "Error in selection",
 	"ERRORMESSAGE.MESSAGE.typeErrorSelectedRow": "No row selected",
+	"ERRORMESSAGE.MESSAGE.typeWarningRecordStatusNoAvailable": "Data status Not Available",
 	"ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected": "Category not selected",
 	"ERRORMESSAGE.MESSAGE.The_Delete_Category_ID_Is_The_Same_As_The_Alternate_Category": "The delete category ID is the same as the alternate category",
 	"ERRORMESSAGE.MESSAGE.typeErrorUserToken": "Your account has not been verified. Please log in again",

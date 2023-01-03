@@ -499,6 +499,16 @@ export class CmsToastrService {
     }
     this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorForNotComplete'));
   }
+  
+  typeWarningRecordStatusNoAvailable(str: string = ''): void {
+
+    let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeWarningRecordStatusNoAvailable');
+
+    if (str && str.length > 0) {
+      message = message + ' ' + this.translate.instant('ERRORMESSAGE.TITLE.Error') + ': ' + str;
+    }
+    this.toastr.warning(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorSelected'));
+  }
   typeWarningMessage(message: string, title: string = 'Warning!'): void {
 
     this.toastr.warning(message, this.now() + title);

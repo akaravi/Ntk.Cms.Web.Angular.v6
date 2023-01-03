@@ -51,7 +51,7 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -61,13 +61,13 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<BiographyContentModel> = new ErrorExceptionResult<BiographyContentModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<BiographyContentModel> = [];
   tableRowSelected: BiographyContentModel = new BiographyContentModel();
   tableSource: MatTableDataSource<BiographyContentModel> = new MatTableDataSource<BiographyContentModel>();
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
@@ -96,7 +96,7 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new BiographyContentModel();
     const pName = this.constructor.name + 'main';
@@ -117,7 +117,7 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-        
+
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.access);
             }
@@ -159,7 +159,7 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-            
+
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.access);
             }
@@ -203,10 +203,10 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionSelectorSelect(model: BiographyCategoryModel | null): void {
-     /*filter */
+    /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent =  new FilterModel();
+    this.filteModelContent = new FilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -320,23 +320,23 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     );
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -369,7 +369,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     this.GetAllWithHierarchyCategoryId = !this.GetAllWithHierarchyCategoryId;
     this.DataGetAll();
   }
-  
+
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -384,16 +384,16 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     this.tableRowSelected = row;
 
     if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: BiographyContentModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: BiographyContentModel): void {
     row["expanded"] = false;
-  row["expanded"] = !row["expanded"]
-}
-onActionTableRowMouseEnter(row: BiographyContentModel): void {
-  this.tableRowSelected = row;
-  row["expanded"] = true;
-}
-onActionTableRowMouseLeave(row: BiographyContentModel): void {
-  row["expanded"] = false;
-}
+  }
   onActionbuttonComment(model: BiographyContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -408,15 +408,12 @@ onActionTableRowMouseLeave(row: BiographyContentModel): void {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessEditRow
-    ) {
-      this.cmsToastrService.typeErrorAccessEdit();
+    if (model.recordStatus != EnumRecordStatus.Available) {
+      this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
+    this.tableRowSelected = model;
+
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.Get_biographical_information'));
     this.contentService

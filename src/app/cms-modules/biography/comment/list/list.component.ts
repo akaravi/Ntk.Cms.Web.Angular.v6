@@ -475,15 +475,12 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessEditRow
-    ) {
-      this.cmsToastrService.typeErrorAccessEdit();
+    if (model.recordStatus !=EnumRecordStatus.Available) {
+      this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
+    this.tableRowSelected = model;
+
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.Get_biographical_information'));
     this.biographyContentService
