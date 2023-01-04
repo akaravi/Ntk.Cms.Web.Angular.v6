@@ -58,9 +58,10 @@ export class AuthSingInBySmsComponent implements OnInit {
   prorocess: processModel;
   buttonnResendSmsDisable = true;
   onActionSubmitOrderCodeBySms(): void {
+    debugger
     if (this.forgetState == 'entrycode') {
       if (!this.dataModelAuthUserSignInBySms.captchaText || this.dataModelAuthUserSignInBySms.captchaText.length == 0) {
-        this.cmsToastrService.typeErrorMessage(this.translate.instant('MESSAGE.Receiving_information'));
+        this.cmsToastrService.typeErrorMessage(this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSetCpatcha'));
         return;
       }
     }

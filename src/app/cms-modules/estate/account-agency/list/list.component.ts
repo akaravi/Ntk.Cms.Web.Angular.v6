@@ -79,8 +79,8 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
-    'LinkCmsUserId',
     'Title',
+    'LinkCmsUserId',
     'Description',
     'Action',
   ];

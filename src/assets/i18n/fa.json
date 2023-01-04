@@ -346,6 +346,7 @@
 	"ERRORMESSAGE.MESSAGE.typeErrorGetAll": "خطا در دریافت لیست",
 	"ERRORMESSAGE.MESSAGE.typeErrorReceivingInformation": " خطا در دریافت اطلاعات",
 	"ERRORMESSAGE.MESSAGE.typeErrorGetCpatcha": "خطا در ساخت عکس کپچا",
+	"ERRORMESSAGE.MESSAGE.typeErrorSetCpatcha": "محتوای عکس کپچا را وارد کنید",
 	"ERRORMESSAGE.MESSAGE.typeErrorGetOne": "خطا در دریافت ردیف",
 	"ERRORMESSAGE.MESSAGE.typeErrorGetPosition": "موقعیت جغرافیایی یافت شد .جی پی اس خود را روشن کنید",
 	"ERRORMESSAGE.MESSAGE.typeErrorInternetConnection": "خطا در اتصال به اینترنت.لطفا اتصال به اینترنت را بررسی کنید",

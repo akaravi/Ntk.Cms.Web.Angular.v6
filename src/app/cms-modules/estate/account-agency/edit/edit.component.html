@@ -80,6 +80,17 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ PhoneNumber.value.length }} / 64</mat-hint>
         </mat-form-field>
+        <!-- MobileNumber Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['mobileNumber']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.mobileNumber" name="dataModel.mobileNumber" #mobileNumber type="text"
+            placeholder="{{fieldsInfo['mobileNumber']?.fieldTitle}}" minlength="0" maxlength="64"
+            [disabled]="!fieldsInfo['mobileNumber']?.accessAddField" />
+          <mat-icon matSuffix *ngIf="dataModel.mobileNumber" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.mobileNumber = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ mobileNumber.value.length }} / 64</mat-hint>
+        </mat-form-field>
         <!-- Address Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['address']?.fieldTitle}}</mat-label>
@@ -154,8 +165,8 @@
         </app-estate-account-user-selectionlist> -->
         <div class="row">
           <div class="col-11">
-            <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)"
-              [(loading)]="loading" [optionDisabled]="!this.tokenHelper.CheckIsAdmin()"
+            <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)" [(loading)]="loading"
+              [optionDisabled]="!this.tokenHelper.CheckIsAdmin()"
               [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
             </app-estate-account-user-selector>
           </div>
@@ -171,7 +182,8 @@
           <mat-table [dataSource]="optionTabledataSource" multiTemplateDataRows>
             <!-- LinkEstateAccountUserId Column -->
             <ng-container matColumnDef="LinkEstateAccountUserId">
-              <mat-header-cell *matHeaderCellDef> {{fieldsInfo['linkEstateAccountUserId']?.fieldTitle}} </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> {{fieldsInfo['linkEstateAccountUserId']?.fieldTitle}}
+              </mat-header-cell>
               <mat-cell *matCellDef="let row">
                 <ng-container *ngIf="row.linkEstateAccountUserId>0">
                   {{row.linkEstateAccountUserId | number}}

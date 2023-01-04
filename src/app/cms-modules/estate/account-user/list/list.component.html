@@ -77,7 +77,11 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
       </ng-container>
-
+      <!-- linkCmsUserId Column -->
+      <ng-container matColumnDef="LinkCmsUserId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkCmsUserId']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkCmsUserId| cmsuserinfo |async}} </mat-cell>
+      </ng-container>
       <!-- Description Column -->
       <ng-container matColumnDef="Description">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['description']?.fieldTitle}}

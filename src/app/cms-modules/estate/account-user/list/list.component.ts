@@ -80,6 +80,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Title',
+    'LinkCmsUserId',
     'Description',
     'Action'
   ];

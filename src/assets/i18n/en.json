@@ -347,6 +347,7 @@
 	"ERRORMESSAGE.MESSAGE.typeErrorGetAll": "Error getting list",
 	"ERRORMESSAGE.MESSAGE.typeErrorReceivingInformation": "Error receiving information",
 	"ERRORMESSAGE.MESSAGE.typeErrorGetCpatcha": "Error making captcha photo",
+	"ERRORMESSAGE.MESSAGE.typeErrorSetCpatcha": "Entry captcha photo",
 	"ERRORMESSAGE.MESSAGE.typeErrorGetOne": "Error receiving row",
 	"ERRORMESSAGE.MESSAGE.typeErrorGetPosition": "",
 	"ERRORMESSAGE.MESSAGE.typeErrorInternetConnection": "Internet connection error. Please check your internet connection",

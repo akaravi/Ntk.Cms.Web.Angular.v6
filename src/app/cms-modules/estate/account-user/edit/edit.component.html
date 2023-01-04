@@ -128,6 +128,17 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ PhoneNumber.value.length }} / 64</mat-hint>
         </mat-form-field>
+        <!-- MobileNumber Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{fieldsInfo['mobileNumber']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.mobileNumber" name="dataModel.mobileNumber" #mobileNumber type="text"
+            placeholder="{{fieldsInfo['mobileNumber']?.fieldTitle}}" minlength="0" maxlength="64"
+            [disabled]="!fieldsInfo['mobileNumber']?.accessAddField" />
+          <mat-icon matSuffix *ngIf="dataModel.mobileNumber" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.mobileNumber = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="end">{{ mobileNumber.value.length }} / 64</mat-hint>
+        </mat-form-field>
         <!-- Address Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['address']?.fieldTitle}}</mat-label>
