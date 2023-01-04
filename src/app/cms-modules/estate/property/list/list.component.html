@@ -184,7 +184,7 @@
         [optionSelectForce]="filteModelContent.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)"
         [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
       </app-cms-currency-selector>
-      <div class="row">
+      <div class="row" style="direction: rtl;">
         <div class="col-md-6 col-sm-6 col-xs-9">
           <!-- SalePriceMin Field -->
           <mat-form-field class="ntk-full-width" *ngIf=" contractTypeSelected?.hasSalePrice">
