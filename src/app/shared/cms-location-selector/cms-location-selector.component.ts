@@ -191,7 +191,7 @@ export class CmsLocationSelectorComponent implements OnInit {
         this.formControl.setValue(item);
         return;
       }
-      this.categoryService.ServiceGetOneById(id).subscribe((next) => {
+      this.categoryService.ServiceGetOneIncludeParent(id).subscribe((next) => {
         if (next.isSuccess) {
           this.filteredOptions = this.push(next.item);
           this.dataModelSelect = next.item;

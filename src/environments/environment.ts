@@ -9,7 +9,7 @@ export const environment = {
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,
-    //   configApiServerPath: 'https://apicms.ir/api/v2/', //Server
+       //configApiServerPath: 'https://apicms.ir/api/v2/', //Server
     configApiServerPath: 'https://localhost:2390/api/v2/', // Test Api
     //configApiServerPath: 'https://localhost:49155/api/v2/', // Test Api Docer
     configMvcServerPath: 'https://ntkcms.ir/',
