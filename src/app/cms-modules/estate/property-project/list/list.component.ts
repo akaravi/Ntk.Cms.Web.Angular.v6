@@ -48,7 +48,7 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -58,13 +58,14 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstatePropertyProjectModel> = [];
   tableRowSelected: EstatePropertyProjectModel = new EstatePropertyProjectModel();
   tableSource: MatTableDataSource<EstatePropertyProjectModel> = new MatTableDataSource<EstatePropertyProjectModel>();
-  tabledisplayedColumns: string[]=[];
+  categoryModelSelected: EstatePropertyProjectModel;
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
@@ -100,6 +101,14 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
+    /** filter Category */
+    if (this.categoryModelSelected && this.categoryModelSelected.id.length > 0) {
+      const filterChild = new FilterDataModel();
+      filterChild.propertyName = 'linkEstateProjectCategoryId';
+      filterChild.value = this.categoryModelSelected.id;
+      filterModel.filters.push(filterChild);
+    }
+    /** filter Category */
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
@@ -266,23 +275,23 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
 
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -315,7 +324,18 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     this.GetAllWithHierarchyCategoryId = !this.GetAllWithHierarchyCategoryId;
     this.DataGetAll();
   }
-  
+  onActionSelectorSelect(model: EstatePropertyProjectModel | null): void {
+    /*filter */
+    var sortColumn = this.filteModelContent.sortColumn;
+    var sortType = this.filteModelContent.sortType;
+    this.filteModelContent = new FilterModel();
+    this.filteModelContent.sortColumn = sortColumn;
+    this.filteModelContent.sortType = sortType;
+    /*filter */
+    this.categoryModelSelected = model;
+    this.DataGetAll();
+  }
+
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

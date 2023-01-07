@@ -147,7 +147,7 @@ import { EstatePropertyProjectDeleteComponent } from './property-project/delete/
 import { EstatePropertyProjectEditComponent } from './property-project/edit/edit.component';
 import { EstatePropertyProjectListComponent } from './property-project/list/list.component';
 import { EstatePropertyProjectSelectorComponent } from './property-project/selector/selector.component';
-import { EstatePropertyProjectComponent } from './property-project/header/header.component';
+import { EstatePropertyProjectHeaderComponent } from './property-project/header/header.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
 import { EstatePropertyExpertPriceAddComponent } from './property-expert-price/add/add.component';
@@ -168,6 +168,7 @@ import { EstateAccountUserHeaderComponent } from './account-user/header/header.c
 import { EstateAccountAgencyHeaderComponent } from './account-agency/header/header.component';
 import { EstateAccountUserSelectionlistComponent } from './account-user/selectionlist/selectionlist.component';
 import { EstateAccountAgencySelectionlistComponent } from './account-agency/selectionlist/selectionlist.component';
+import { EstatePropertyProjectTreeComponent } from './property-project/tree/tree.component';
 
 @NgModule({
   declarations: [
@@ -196,7 +197,8 @@ import { EstateAccountAgencySelectionlistComponent } from './account-agency/sele
     EstatePropertyProjectListComponent,
     EstatePropertyProjectSelectorComponent,
     EstatePropertyProjectDeleteComponent,
-    EstatePropertyProjectComponent,
+    EstatePropertyProjectTreeComponent,
+    EstatePropertyProjectHeaderComponent,
     /* */
     EstatePropertyTypeUsageAddComponent,
     EstatePropertyTypeUsageEditComponent,

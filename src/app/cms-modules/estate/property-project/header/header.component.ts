@@ -28,7 +28,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class EstatePropertyProjectComponent implements OnInit, OnDestroy {
+export class EstatePropertyProjectHeaderComponent implements OnInit, OnDestroy {
   constructor(
     private headerService: EstatePropertyProjectService,
     public publicHelper: PublicHelper,
