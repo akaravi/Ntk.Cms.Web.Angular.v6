@@ -148,7 +148,7 @@
       [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
     </app-cms-currency-selector>
     <!-- LinkLocationIds Field -->
-    <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
+    <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(loading)]="loading"
       *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessAddField"
       [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
     </app-cms-location-autocomplete>

@@ -156,7 +156,7 @@
         <P>{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
         <!-- LinkLocationIds Field -->
         <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
-          [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField"
+          [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField" [(loading)]="loading"
           [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-autocomplete>
         <hr>

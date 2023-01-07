@@ -123,7 +123,7 @@
       </app-cms-currency-selector>
       <!-- LinkLocationIds Field -->
       <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" *ngIf="!LinkPropertyIdsInUse"
-        [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField"
+        [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField" [(loading)]="loading"
         [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
       </app-cms-location-autocomplete>
       <br>

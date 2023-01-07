@@ -105,8 +105,7 @@
     <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite"
       (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading"
       [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkEstateAgencyId"
-      [optionSelectUserId]="this.tokenInfo.userId"
+      [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId"
       [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
     </app-estate-account-agency-selector>
 
@@ -167,7 +166,7 @@
       <P>{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
       <!-- LinkLocationIds Field -->
       <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
-        [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessAddField"
+        [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessAddField" [(loading)]="loading"
         [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
       </app-cms-location-autocomplete>
       <hr>
