@@ -14,7 +14,7 @@
   </cms-file-manager>
 </div>
 <!-- TABLE  -->
-<div *ngIf="showAttachFile">
+<div *ngIf="this.dataFileModel.size && this.dataFileModel.size > 0">
   <table>
     <tr>
       <td>{{'TITLE.File_ID' | translate}}</td>

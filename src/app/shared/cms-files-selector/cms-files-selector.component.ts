@@ -16,7 +16,6 @@ export class CmsFilesSelectorComponent implements OnInit {
   appLanguage = 'fa';
   selectFileTypeMainImage = [];
   fileManagerTree: TreeModel;
-  showAttachFile = false;
 
 
   constructor(private publicHelper: PublicHelper, public cmsToastrService: CmsToastrService) {
@@ -43,13 +42,11 @@ export class CmsFilesSelectorComponent implements OnInit {
 
   }
   onActionFileSelected(model: NodeInterface): void {
-    this.showAttachFile = true;
     this.dataFileModel.set(model.id, model.downloadLinksrc);
   }
   onActionFileSelectedRemove(key: number): void {
     if (this.dataFileModel.has(key)) {
       this.dataFileModel.delete(key);
-      this.showAttachFile = false;
     }
   }
   onActionCopied(): void {
