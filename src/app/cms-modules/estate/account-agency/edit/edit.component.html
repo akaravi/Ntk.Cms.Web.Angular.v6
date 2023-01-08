@@ -165,15 +165,34 @@
         </app-estate-account-user-selectionlist> -->
         <div class="row">
           <div class="col-11">
-            <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)" [(loading)]="loading"
-              [optionDisabled]="!this.tokenHelper.CheckIsAdmin()"
-              [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
-            </app-estate-account-user-selector>
+            <div class="ntk-full-width">
+              <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)"
+                [(loading)]="loading" [optionDisabled]="!this.tokenHelper.isAdminSite"
+                [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
+              </app-estate-account-user-selector>
+            </div>
+            <!-- accessShareAgencyToUser Field -->
+            <div class="ntk-full-width">
+              <mat-slide-toggle [(ngModel)]="dataEstateAccountAgencyUserModel.accessShareAgencyToUser"
+                
+                name="dataEstateAccountAgencyUserModel.accessShareAgencyToUser">
+                accessShareAgencyToUser
+              </mat-slide-toggle>
+            </div>
+            <!-- accessShareUserToAgency Field -->
+            <div class="ntk-full-width">
+              <mat-slide-toggle [(ngModel)]="dataEstateAccountAgencyUserModel.accessShareUserToAgency"
+                
+                 name="dataEstateAccountAgencyUserModel.accessShareUserToAgency">
+                accessShareUserToAgency
+              </mat-slide-toggle>
+            </div>
           </div>
           <div class="col-1">
             <button (click)="onActionOptionAddToList()" *ngIf="dataEstateAccountUserModel" type="button"
               class="btn btn-success">&#x2b;</button>
           </div>
+          {{dataEstateAccountAgencyUserModel |json}}
         </div>
         <app-progress-spinner [options]="loadingOption">
         </app-progress-spinner>
@@ -182,7 +201,7 @@
           <mat-table [dataSource]="optionTabledataSource" multiTemplateDataRows>
             <!-- LinkEstateAccountUserId Column -->
             <ng-container matColumnDef="LinkEstateAccountUserId">
-              <mat-header-cell *matHeaderCellDef> {{fieldsInfo['linkEstateAccountUserId']?.fieldTitle}}
+              <mat-header-cell *matHeaderCellDef> {{fieldsInfoUser['linkEstateAccountUserId']?.fieldTitle}}
               </mat-header-cell>
               <mat-cell *matCellDef="let row">
                 <ng-container *ngIf="row.linkEstateAccountUserId>0">
