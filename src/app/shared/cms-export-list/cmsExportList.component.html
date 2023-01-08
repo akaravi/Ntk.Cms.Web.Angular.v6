@@ -59,7 +59,7 @@
       <input matInput [(ngModel)]="filterModel.currentPageNumber" name="filterModel.currentPageNumber"
         #CurrentPageNumber type="number" placeholder="{{'TITLE.page_number' | translate}}" required />
       <mat-icon matSuffix *ngIf="filterModel.currentPageNumber" matSuffix mat-icon-button aria-label="Clear"
-        (click)="filterModel.currentPageNumber =0">close</mat-icon>
+        (click)="filterModel.currentPageNumber = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="CurrentPageNumber.errors?.required">
         Current Page Number is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -72,7 +72,7 @@
       <input matInput [(ngModel)]="filterModel.rowPerPage" name="filterModel.rowPerPage" #RowPerPage type="number"
         placeholder="{{'TITLE.number_of_output_file_rows' | translate}}" required />
       <mat-icon matSuffix *ngIf="filterModel.rowPerPage" matSuffix mat-icon-button aria-label="Clear"
-        (click)="filterModel.rowPerPage = 100">close</mat-icon>
+        (click)="filterModel.rowPerPage = 0">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="RowPerPage.errors?.required">
         Row Per Page is <strong>{{'MESSAGE.required' | translate}}</strong>

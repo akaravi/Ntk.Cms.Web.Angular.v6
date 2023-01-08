@@ -1,4 +1,4 @@
-import { CoreModuleEntityReportFileModel, EnumExportFileType, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, ExportFileModel, FilterModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum } from 'ntk-cms-api';
+import { CoreModuleEntityReportFileModel, EnumExportFileType, EnumExportReceiveMethod, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, ExportFileModel, FilterModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum } from 'ntk-cms-api';
 import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
@@ -44,12 +44,6 @@ export class CmsExportListComponent implements OnInit {
     this.fileTypeListItems.push(eum);
 
     eum = new EnumInfoModel();
-    eum.value = 2;
-    eum.key = 'PDF';
-    eum.description = 'PDF';
-    this.fileTypeListItems.push(eum);
-
-    eum = new EnumInfoModel();
     eum.value = 3;
     eum.key = 'Json';
     eum.description = 'Json';
@@ -84,6 +78,7 @@ export class CmsExportListComponent implements OnInit {
   dataModelSubmitResult: ErrorExceptionResultExportFile = new ErrorExceptionResultExportFile();
   dataModelFileSelect: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
   EnumExportFileTypeReport = EnumExportFileType.Report;
+  EnumExportReceiveMethodNow = EnumExportReceiveMethod.Now;
 
   _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
   get loading(): ProgressSpinnerModel {
@@ -96,6 +91,8 @@ export class CmsExportListComponent implements OnInit {
   ngOnInit(): void {
     this.DataGetAll();
     this.formInfo.formTitle = this.translate.instant('TITLE.EXPORTFILE') + ' : ' + this.requestTitle;
+    this.filterModel.exportFile.fileType = this.EnumExportFileTypeReport;
+    this.filterModel.exportFile.recieveMethod = this.EnumExportReceiveMethodNow;
   }
 
   DataGetAll(): void {

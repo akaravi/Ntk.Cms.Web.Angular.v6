@@ -2,7 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { EnumExportFileType, EnumInfoModel, ErrorExceptionResultExportFile, ReportFileTypeEnum } from 'ntk-cms-api';
+import { EnumExportFileType, EnumExportReceiveMethod, EnumInfoModel, ErrorExceptionResultExportFile, ReportFileTypeEnum } from 'ntk-cms-api';
 import { ExportFileModel } from 'ntk-cms-api';
 import { CoreModuleEntityReportFileModel, ErrorExceptionResult, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
 import { Observable } from 'rxjs';
@@ -42,12 +42,6 @@ export class CmsExportEntityComponent implements OnInit {
     eum.value = 1;
     eum.key = 'Excel';
     eum.description = 'Excel';
-    this.fileTypeListItems.push(eum);
-
-    eum = new EnumInfoModel();
-    eum.value = 2;
-    eum.key = 'PDF';
-    eum.description = 'PDF';
     this.fileTypeListItems.push(eum);
 
     eum = new EnumInfoModel();
@@ -99,6 +93,7 @@ export class CmsExportEntityComponent implements OnInit {
   dataModelFileSelect: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
   dataModel: ExportFileModel = new ExportFileModel();
   EnumExportFileTypeReport = EnumExportFileType.Report;
+  EnumExportReceiveMethodNow = EnumExportReceiveMethod.Now;
 
   formInfo: FormInfoModel = new FormInfoModel();
 
@@ -106,6 +101,8 @@ export class CmsExportEntityComponent implements OnInit {
   ngOnInit(): void {
     this.DataGetAll();
     this.formInfo.formTitle = this.translate.instant('TITLE.EXPORTFILE') + ' : ' + this.requestTitle;
+    this.dataModel.fileType = this.EnumExportFileTypeReport;
+    this.dataModel.recieveMethod = this.EnumExportReceiveMethodNow;
   }
 
   ngOnDestroy(): void {
