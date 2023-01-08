@@ -309,7 +309,7 @@ export class EstatePropertyListComponent
 
     if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
       // ** */
-      this.actionbuttonExportOn=false;
+      this.actionbuttonExportOn = false;
       this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
       this.contentService
         .ServiceGetAllWithBillboardId(this.requestLinkBillboardId, filterModel)
@@ -339,7 +339,7 @@ export class EstatePropertyListComponent
       this.requestLinkCustomerOrderId.length > 0
     ) {
       // ** */
-      this.actionbuttonExportOn=false;
+      this.actionbuttonExportOn = false;
       this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
       this.contentService
         .ServiceGetAllWithCustomerOrderId(
@@ -372,7 +372,7 @@ export class EstatePropertyListComponent
       this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
       this.contentService.ServiceGetAllWithFilter(filterModel).subscribe({
         next: (ret) => {
-          this.actionbuttonExportOn=true;
+          this.actionbuttonExportOn = true;
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
           if (ret.isSuccess) {
@@ -423,6 +423,8 @@ export class EstatePropertyListComponent
       this.filteModelContent.sortColumn = sort.active;
       this.filteModelContent.sortType = EnumSortType.Ascending;
     }
+    if (this.filteModelContent.sortColumn == "AdsActive")
+      this.filteModelContent.sortColumn = "AdsExpireDate";
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
@@ -473,10 +475,10 @@ export class EstatePropertyListComponent
   }
 
   onActionSelectorSelect(model: EstatePropertyTypeLanduseModel | null): void {
-     /*filter */
+    /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent =  new EstatePropertySerachDtoModel();
+    this.filteModelContent = new EstatePropertySerachDtoModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -794,7 +796,7 @@ export class EstatePropertyListComponent
   }
 
 
-  actionbuttonExportOn=false;
+  actionbuttonExportOn = false;
   onActionbuttonExport(): void {
     //open popup
     const dialogRef = this.dialog.open(CmsExportListComponent, {
@@ -854,7 +856,7 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus !=EnumRecordStatus.Available) {
+    if (model.recordStatus != EnumRecordStatus.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }

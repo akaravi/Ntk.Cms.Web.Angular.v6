@@ -14,6 +14,7 @@ import {
   EstateAccountAgencyUserService,
   FilterModel,
   FilterDataModel,
+  EstateAccountUserService,
 } from 'ntk-cms-api';
 import {
   Component,
@@ -49,6 +50,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     private dialogRef: MatDialogRef<EstateAccountAgencyEditComponent>,
     public coreEnumService: CoreEnumService,
     public estateAccountAgencyService: EstateAccountAgencyService,
+    private estateAccountUserService:EstateAccountUserService,
     private cmsToastrService: CmsToastrService,
     private estateAccountAgencyUserService: EstateAccountAgencyUserService,
     public publicHelper: PublicHelper,
@@ -61,11 +63,13 @@ export class EstateAccountAgencyEditComponent implements OnInit {
       this.requestId = data.id;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-
+    this.tokenHelper.CheckIsAdmin();
+    this.DataGetAccess();
+    
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
+  fieldsInfoUser: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
@@ -103,7 +107,23 @@ export class EstateAccountAgencyEditComponent implements OnInit {
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
+  DataGetAccess(): void {
+    this.estateAccountUserService
+      .ServiceViewModel()
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            this.fieldsInfoUser = this.publicHelper.fieldInfoConvertor(ret.access);
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+          }
+        },
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
+        }
+      }
+      );
+  }
   DataGetOneContent(): void {
 
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
@@ -297,11 +317,13 @@ export class EstateAccountAgencyEditComponent implements OnInit {
 
 
 
-  onActionSelectorAccountUser(model: EstateAccountAgencyUserModel | null): void {
+  onActionSelectorAccountUser(model: EstateAccountUserModel | null): void {
     this.dataEstateAccountAgencyUserModel.linkEstateAccountUserId = null;
+    this.dataEstateAccountAgencyUserModel.linkEstateAccountAgencyId = this.requestId;
     if (model && model.id.length > 0) {
       this.dataEstateAccountAgencyUserModel.linkEstateAccountUserId = model.id;
     }
+
   }
   onActionSelectorUserCategorySelect(model: EstateAccountAgencyUserModel[]): void {
     this.dataEstateAccountUserModel = model;
