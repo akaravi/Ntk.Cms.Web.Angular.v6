@@ -35,6 +35,7 @@ import { PoinModel } from 'src/app/core/models/pointModel';
 import { TranslateService } from '@ngx-translate/core';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-estate-account-user-edit',
@@ -60,10 +61,12 @@ export class EstateAccountUserEditComponent implements OnInit {
       this.requestId = data.id;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-
+    this.tokenHelper.CheckIsAdmin();
+    this.DataGetAccess();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  fieldsInfoAgencyUser: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
@@ -76,7 +79,9 @@ export class EstateAccountUserEditComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
-  dataAccountIds: string[] = [];
+  loadingOption = new ProgressSpinnerModel();
+  optionTabledataSource = new MatTableDataSource<EstateAccountAgencyUserModel>();
+  optionTabledisplayedColumns = ['LinkEstateAccountUserId', 'LinkEstateAccountAgencyId', 'AccessShareUserToAgency', 'AccessShareAgencyToUser'];
 
   /** map */
   viewMap = false;
@@ -98,6 +103,23 @@ export class EstateAccountUserEditComponent implements OnInit {
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
+  }
+  DataGetAccess(): void {
+    this.estateAccountAgencyUserService
+      .ServiceViewModel()
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            this.fieldsInfoAgencyUser = this.publicHelper.fieldInfoConvertor(ret.access);
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+          }
+        },
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
+        }
+      }
+      );
   }
 
   DataGetOneContent(): void {
@@ -227,7 +249,9 @@ export class EstateAccountUserEditComponent implements OnInit {
       // }
     }
   }
-  dataEstateAccountUserModel: EstateAccountAgencyUserModel[] = [];
+  dataEstateAccountAgencyModel: EstateAccountAgencyUserModel[] = [];
+
+
   DataGetAllGroup(): void {
 
     if (this.requestId.length <= 0) {
@@ -242,19 +266,14 @@ export class EstateAccountUserEditComponent implements OnInit {
 
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
-    filter.propertyName = 'linkEstateAccountUserId';
+    filter.propertyName = 'linkEstateAccountAgencyId';
     filter.value = this.requestId;
     filteModelContent.filters.push(filter);
 
     this.estateAccountAgencyUserService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
-        this.dataEstateAccountAgencyUserModel = ret.item
-        this.dataEstateAccountUserModel = ret.listItems;
-        const listG: string[] = [];
-        this.dataEstateAccountUserModel.forEach(element => {
-          listG.push(element.linkEstateAccountAgencyId);
-        });
-        this.dataAccountIds = listG;
+        this.dataEstateAccountAgencyModel = ret.listItems;
+        this.optionTabledataSource.data = this.dataEstateAccountAgencyModel;
         if (ret.isSuccess) {
           this.formInfo.formAlert = '';
         } else {
@@ -271,55 +290,41 @@ export class EstateAccountUserEditComponent implements OnInit {
     }
     );
   }
-  onActionSelectorUserCategorySelect(model: EstateAccountAgencyUserModel[]): void {
-    this.dataEstateAccountUserModel = model;
-  }
-  onActionSelectorUserCategorySelectAdded(model: EstateAccountAgencyModel): void {
-    const entity = new EstateAccountAgencyUserModel();
-    entity.linkEstateAccountUserId = model.id;
-    entity.linkEstateAccountAgencyId = this.dataModel.id;
-
-    this.estateAccountAgencyUserService.ServiceAdd(entity).subscribe({
+  onActionDataGetAddGroup(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+    this.estateAccountAgencyUserService.ServiceAdd(this.dataEstateAccountAgencyUserModel).subscribe({
       next: (ret) => {
+
         if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
-          this.cmsToastrService.typeSuccessEdit();
+          this.formInfo.formAlert = '';
+          this.optionTabledataSource.data = ret.listItems;
+          this.DataGetAllGroup();
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
+        this.loading.Stop(pName);
       },
       error: (er) => {
-        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
       }
-    }
-    );
-  }
-  onActionSelectorUserCategorySelectRemoved(model: EstateAccountAgencyModel): void {
-    const entity = new EstateAccountAgencyUserModel();
-    entity.linkEstateAccountUserId = model.id;
-    entity.linkEstateAccountAgencyId = this.dataModel.id;
+    });
 
-    this.estateAccountAgencyUserService.ServiceDeleteEntity(entity).subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.Deletion_from_this_group_Was_Successful');
-          this.cmsToastrService.typeSuccessEdit();
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-      },
-      error: (er) => {
-        this.formInfo.formSubmitAllow = true;
-        this.cmsToastrService.typeError(er);
-      }
-    }
-    );
   }
+
+  onActionSelectorEstateAgency(model: EstateAccountAgencyModel | null): void {
+    this.dataEstateAccountAgencyUserModel.linkEstateAccountAgencyId = null;
+    this.dataEstateAccountAgencyUserModel.linkEstateAccountUserId = this.requestId;
+    if (model && model.id.length > 0) {
+      this.dataEstateAccountAgencyUserModel.linkEstateAccountAgencyId = model.id;
+    }
+
+  }
+
+
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;

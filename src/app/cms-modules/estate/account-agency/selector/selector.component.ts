@@ -94,7 +94,8 @@ export class EstateAccountAgencySelectorComponent implements OnInit {
     filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
-    filter.propertyName = 'Name';
+    if (typeof text === 'string' && text.length > 0) {
+    filter.propertyName = 'Title';
     filter.value = text;
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filterModel.filters.push(filter);
@@ -105,13 +106,16 @@ export class EstateAccountAgencySelectorComponent implements OnInit {
     filter.searchType = EnumFilterDataModelSearchTypes.Equal;
     filter.clauseType = EnumClauseType.Or;
     filterModel.filters.push(filter);
+    }
     /* */
-    filter = new FilterDataModel();
-    filter.propertyName = 'LinkCmsUserId';
-    filter.value = text;
-    filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-    filter.clauseType = EnumClauseType.Or;
-    filterModel.filters.push(filter);
+    if (typeof text === 'number' && text > 0) {
+      filter = new FilterDataModel();
+      filter.propertyName = 'LinkCmsUserId';
+      filter.value = text;
+      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+      filter.clauseType = EnumClauseType.Or;
+      filterModel.filters.push(filter);
+    }
 
 
     const pName = this.constructor.name + 'main';
