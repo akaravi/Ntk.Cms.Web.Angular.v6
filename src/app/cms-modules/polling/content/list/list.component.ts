@@ -45,12 +45,12 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -62,13 +62,13 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<PollingContentModel> = [];
   tableRowSelected: PollingContentModel = new PollingContentModel();
   tableSource: MatTableDataSource<PollingContentModel> = new MatTableDataSource<PollingContentModel>();
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
@@ -97,7 +97,7 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new PollingContentModel();
     const pName = this.constructor.name + 'main';
@@ -145,6 +145,7 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
         this.filteModelContent.sortColumn = sort.active;
         this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
+        sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
         this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
@@ -165,10 +166,10 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
   }
 
   onActionSelectorSelect(model: PollingCategoryModel | null): void {
-     /*filter */
+    /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent =  new FilterModel();
+    this.filteModelContent = new FilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -285,23 +286,23 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
     );
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -330,7 +331,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
 
   onActionbuttonReload(): void {
     this.DataGetAll();
@@ -346,16 +347,16 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     this.tableRowSelected = row;
 
     if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: PollingContentModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: PollingContentModel): void {
     row["expanded"] = false;
-  row["expanded"] = !row["expanded"]
-}
-onActionTableRowMouseEnter(row: PollingContentModel): void {
-  this.tableRowSelected = row;
-  row["expanded"] = true;
-}
-onActionTableRowMouseLeave(row: PollingContentModel): void {
-  row["expanded"] = false;
-}
+  }
 
 
   onActionbuttonResults(model: PollingContentModel = this.tableRowSelected): void {

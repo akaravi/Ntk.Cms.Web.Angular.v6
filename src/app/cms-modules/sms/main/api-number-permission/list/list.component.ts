@@ -11,7 +11,8 @@ import {
   TokenInfoModel,
   FilterDataModel,
   EnumRecordStatus,
-  DataFieldInfoModel} from 'ntk-cms-api';
+  DataFieldInfoModel
+} from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -45,11 +46,11 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -64,7 +65,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
   dataModelResult: ErrorExceptionResult<SmsMainApiNumberPermissionModel> = new ErrorExceptionResult<SmsMainApiNumberPermissionModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<SmsMainApiNumberPermissionModel> = [];
@@ -72,7 +73,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
   tableSource: MatTableDataSource<SmsMainApiNumberPermissionModel> = new MatTableDataSource<SmsMainApiNumberPermissionModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
@@ -151,6 +152,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
         this.filteModelContent.sortColumn = sort.active;
         this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
+        sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
         this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
@@ -341,23 +343,23 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
 
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -386,7 +388,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
 
   onActionbuttonReload(): void {
     this.DataGetAll();

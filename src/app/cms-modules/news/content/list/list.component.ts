@@ -51,7 +51,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -61,7 +61,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<NewsContentModel> = new ErrorExceptionResult<NewsContentModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<NewsContentModel> = [];
@@ -102,7 +102,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource,this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource, this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new NewsContentModel();
 
@@ -124,7 +124,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-            
+
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.access);
             }
@@ -172,7 +172,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-            
+
 
             if (this.optionsSearch.childMethods) {
               this.optionsSearch.childMethods.setAccess(ret.access);
@@ -202,6 +202,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
         this.filteModelContent.sortColumn = sort.active;
         this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
+        sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
         this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
@@ -222,10 +223,10 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionSelectorSelect(model: NewsCategoryModel | null): void {
-     /*filter */
+    /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent =  new FilterModel();
+    this.filteModelContent = new FilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -336,23 +337,23 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -385,7 +386,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     this.GetAllWithHierarchyCategoryId = !this.GetAllWithHierarchyCategoryId;
     this.DataGetAll();
   }
-  
+
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -422,12 +423,12 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus !=EnumRecordStatus.Available) {
+    if (model.recordStatus != EnumRecordStatus.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
     this.tableRowSelected = model;
- 
+
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_news_information'));
     this.contentService

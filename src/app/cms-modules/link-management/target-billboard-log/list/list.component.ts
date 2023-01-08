@@ -180,6 +180,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
         this.filteModelContent.sortColumn = sort.active;
         this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
+        sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
         this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {

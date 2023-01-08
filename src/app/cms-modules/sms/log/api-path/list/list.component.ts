@@ -54,7 +54,7 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -81,7 +81,7 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<SmsLogApiPathModel> = [];
@@ -175,6 +175,7 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
         this.filteModelContent.sortColumn = sort.active;
         this.filteModelContent.sortType = EnumSortType.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
+        sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
         this.filteModelContent.sortType = EnumSortType.Ascending;
       } else {
@@ -248,10 +249,10 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
   }
 
   onActionSelectorSelect(model: SmsMainApiPathModel | null): void {
-     /*filter */
+    /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent =  new FilterModel();
+    this.filteModelContent = new FilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -312,23 +313,23 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -357,7 +358,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
 
   onActionbuttonReload(): void {
     this.DataGetAll();
