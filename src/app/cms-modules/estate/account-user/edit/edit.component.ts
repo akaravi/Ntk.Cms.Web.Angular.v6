@@ -81,7 +81,7 @@ export class EstateAccountUserEditComponent implements OnInit {
   fileManagerOpenForm = false;
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateAccountAgencyUserModel>();
-  optionTabledisplayedColumns = ['LinkEstateAccountUserId', 'LinkEstateAccountAgencyId', 'AccessShareUserToAgency', 'AccessShareAgencyToUser'];
+  optionTabledisplayedColumns = ['LinkEstateAccountUserId', 'LinkEstateAccountAgencyId', 'AccessShareUserToAgency', 'AccessShareAgencyToUser','Action'];
 
   /** map */
   viewMap = false;
@@ -266,7 +266,7 @@ export class EstateAccountUserEditComponent implements OnInit {
 
     const filteModelContent = new FilterModel();
     const filter = new FilterDataModel();
-    filter.propertyName = 'linkEstateAccountAgencyId';
+    filter.propertyName = 'linkEstateAccountUserId';
     filter.value = this.requestId;
     filteModelContent.filters.push(filter);
 
@@ -314,6 +314,27 @@ export class EstateAccountUserEditComponent implements OnInit {
     });
 
   }
+  onActionDataGetDeleteGroup(model: EstateAccountUserModel): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+    this.estateAccountAgencyUserService.ServiceDelete(model.id).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.cmsToastrService.typeSuccessRemove();
+          this.DataGetAllGroup();
+        } else {
+          this.cmsToastrService.typeErrorRemove();
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    }
+    );
+  }
+
 
   onActionSelectorEstateAgency(model: EstateAccountAgencyModel | null): void {
     this.dataEstateAccountAgencyUserModel.linkEstateAccountAgencyId = null;
