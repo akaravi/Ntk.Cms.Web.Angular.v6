@@ -1,5 +1,4 @@
 import { PipeTransform, Pipe } from '@angular/core';
-import { EnumInfoModel } from 'ntk-cms-api';
 
 @Pipe({ name: 'cmstitle' })
 export class CmsTitlePipe implements PipeTransform {

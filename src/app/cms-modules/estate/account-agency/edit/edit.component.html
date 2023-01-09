@@ -185,7 +185,7 @@
               *ngIf="this.dataEstateAccountAgencyUserModel.linkEstateAccountUserId && this.dataEstateAccountAgencyUserModel.linkEstateAccountUserId.length>0"
               type="button" class="btn btn-success">&#x2b;</button>
           </div>
-          {{dataEstateAccountAgencyUserModel |json}}
+          
         </div>
         <app-progress-spinner [options]="loadingOption">
         </app-progress-spinner>
@@ -198,7 +198,7 @@
               </mat-header-cell>
               <mat-cell *matCellDef="let row">
                 <ng-container *ngIf="row.linkEstateAccountUserId">
-                  {{ row.linkEstateAccountUserId }}
+                  {{ row.linkEstateAccountUserId |estateAccountUserInfo |async }}
                 </ng-container>
               </mat-cell>
             </ng-container>
@@ -208,7 +208,7 @@
               </mat-header-cell>
               <mat-cell *matCellDef="let row">
                 <ng-container *ngIf="row.linkEstateAccountAgencyId">
-                  {{ row.linkEstateAccountAgencyId }}
+                  {{ row.linkEstateAccountAgencyId |estateAccountAgencyInfo |async}}
                 </ng-container>
               </mat-cell>
             </ng-container>
@@ -236,9 +236,9 @@
             <!-- Action Column -->
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
-              <mat-cell *matCellDef="let row; let i = index" class='Action'>
+              <mat-cell *matCellDef="let row" class='Action'>
                 <button mat-icon-button>
-                  <small (click)="onActionDataGetDeleteGroup(i)">
+                  <small (click)="onActionDataGetDeleteGroup(row)">
                     <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before"
                       aria-hidden="false" style="color: red;">delete</mat-icon>
                   </small>

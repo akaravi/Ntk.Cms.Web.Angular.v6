@@ -1,6 +1,6 @@
 import { PipeTransform, Pipe } from '@angular/core';
-import { CoreUserService, EnumInfoModel } from 'ntk-cms-api';
-import { map, Observable, Subscriber } from 'rxjs';
+import { CoreUserService } from 'ntk-cms-api';
+import { map, Observable } from 'rxjs';
 
 @Pipe({ name: 'cmsuserinfo' })
 export class CmsUserInfoPipe implements PipeTransform {
@@ -50,38 +50,6 @@ export class CmsUserInfoPipe implements PipeTransform {
         })  // needed only if you need projection
       );
 
-    // return this.service.ServiceGetOneById(value).subscribe({
-    //   next: (ret) => {
-    //     var retOut = '';
-    //     if (ret.isSuccess) {
-    //       if (ret.item.username && ret.item.username.length > 0)
-    //         retOut = ret.item.username
-    //       ///** */
-    //       if (ret.item.name && ret.item.name.length > 0) {
-    //         if (retOut.length > 0)
-    //           retOut = retOut + " | ";
-    //         retOut = retOut + ret.item.name
-    //       }
-    //       ///** */
-    //       if (ret.item.lastName && ret.item.lastName.length > 0) {
-    //         if (retOut.length > 0)
-    //           retOut = retOut + " | ";
-    //         retOut = retOut + ret.item.lastName
-    //       }
-    //       ///** */
-    //       if (ret.item.mobile && ret.item.mobile.length > 0) {
-    //         if (retOut.length > 0)
-    //           retOut = retOut + " | ";
-    //         retOut = retOut + ret.item.mobile
-    //       }
-    //     }
-    //     return retOut;
-    //   },
-    //   error: (er) => {
-    //     return '';
-    //   }
-    // }
-    // );
   }
 
 }

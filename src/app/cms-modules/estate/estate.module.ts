@@ -169,10 +169,15 @@ import { EstateAccountAgencyHeaderComponent } from './account-agency/header/head
 import { EstateAccountUserSelectionlistComponent } from './account-user/selectionlist/selectionlist.component';
 import { EstateAccountAgencySelectionlistComponent } from './account-agency/selectionlist/selectionlist.component';
 import { EstatePropertyProjectTreeComponent } from './property-project/tree/tree.component';
+import { estateAccountAgencyInfoPipe } from 'src/app/core/pipe/esate/estate-account-agency-info.pipe';
+import { estateAccountUserInfoPipe } from 'src/app/core/pipe/esate/estate-account-user-info.pipe';
 
 @NgModule({
   declarations: [
     EstateComponent,
+    /* */
+    estateAccountAgencyInfoPipe,
+    estateAccountUserInfoPipe,
     /* */
     EstatePropertyTypeLanduseAddComponent,
     EstatePropertyTypeLanduseEditComponent,
@@ -370,6 +375,10 @@ import { EstatePropertyProjectTreeComponent } from './property-project/tree/tree
     CmsConfirmationDialogService,
     CoreModuleTagService,
     BankPaymentTransactionService,
+  ]
+  , exports: [
+    estateAccountAgencyInfoPipe,
+    estateAccountUserInfoPipe,
   ]
 })
 export class EstateModule { }

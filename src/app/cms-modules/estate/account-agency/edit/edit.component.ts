@@ -317,10 +317,10 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     });
   
   }
-  onActionDataGetDeleteGroup(model: EstateAccountAgencyModel): void {
-    const pName = this.constructor.name + 'main';
+  onActionDataGetDeleteGroup(model: EstateAccountAgencyUserModel): void {
+    const pName = this.constructor.name + 'onActionDataGetDeleteGroup';
     this.loading.Start(pName);
-    this.estateAccountAgencyUserService.ServiceDelete(model.id).subscribe({
+    this.estateAccountAgencyUserService.ServiceDeleteEntity(model).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.cmsToastrService.typeSuccessRemove();
