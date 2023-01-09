@@ -134,50 +134,50 @@
           <div>
             <table>
               <tr>
-                <td></td>
-                <td> {{row.id}} :شناسه
+                <td>:شناسه</td>
+                <td> {{row.id}}
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
                     <i class="flaticon2-copy"></i></span>
                 </td>
               </tr>
               <tr *ngIf="row.linkPropertyId && row.linkPropertyId.length>0">
-                <td></td>
-                <td>{{row.linkPropertyId}}: شناسه ملک
+                <td>: شناسه ملک</td>
+                <td>{{row.linkPropertyId}}
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkPropertyId" (click)="onActionCopied()">
                     <i class="flaticon2-copy"></i></span>
                 </td>
               </tr>
               <tr *ngIf="row.linkCustomerOrderId && row.linkCustomerOrderId.length>0">
-                <td></td>
-                <td> {{row.linkCustomerOrderId}}: شناسه سفارش مشتری
+                <td>: شناسه سفارش مشتری</td>
+                <td> {{row.linkCustomerOrderId}}
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
                     (click)="onActionCopied()">
                     <i class="flaticon2-copy"></i></span>
                 </td>
               </tr>
               <tr *ngIf="row.linkEstateUserId && row.linkEstateUserId.length>0">
-                <td></td>
-                <td> {{row.linkEstateUserId}}: شناسه کارشناس
+                <td>: شناسه کارشناس</td>
+                <td> {{row.linkEstateUserId}}
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
                     (click)="onActionCopied()">
                     <i class="flaticon2-copy"></i></span>
                 </td>
               </tr>
               <tr *ngIf="row.linkEstateAgencyId && row.linkEstateAgencyId.length>0">
-                <td></td>
-                <td> {{row.linkEstateAgencyId}}: شناسه آژانس
+                <td>: شناسه آژانس</td>
+                <td> {{row.linkEstateAgencyId}}
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
                     (click)="onActionCopied()">
                     <i class="flaticon2-copy"></i></span>
                 </td>
               </tr>
               <tr>
-                <td></td>
-                <td> {{fieldsInfo['title']?.fieldTitle}} : {{row.title}} </td>
+                <td>{{fieldsInfo['title']?.fieldTitle}} :</td>
+                <td> {{row.title}} </td>
               </tr>
               <tr>
-                <td></td>
-                <td> {{fieldsInfo['description']?.fieldTitle}} : {{row.description}} </td>
+                <td>{{fieldsInfo['description']?.fieldTitle}} : </td>
+                <td> {{row.description}} </td>
               </tr>
               <tr>
                 <td></td>
