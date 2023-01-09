@@ -12,7 +12,10 @@ import {
   EnumRecordStatus,
   FilterDataModel,
   DataFieldInfoModel,
-  EstateActivityTypeModel
+  EstateActivityTypeModel,
+  EstateEnumService,
+  EnumInfoModel,
+  EstateActivityTypeService
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -45,7 +48,8 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
-    private router: Router,
+    private estateActivityTypeService: EstateActivityTypeService,
+    public estateEnumService: EstateEnumService,
     private tokenHelper: TokenHelper,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
@@ -74,6 +78,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
 
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyHistoryModel> = new ErrorExceptionResult<EstatePropertyHistoryModel>();
+  dataModelActivityTypeResult: ErrorExceptionResult<EstateActivityTypeModel> = new ErrorExceptionResult<EstateActivityTypeModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   
@@ -87,17 +92,18 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
 
   tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
-    'LinkMainImageIdSrc',
     'Id',
     'Title',
     'AppointmentDateFrom',
     'AppointmentDateTo',
+    'LinkActivityTypeId',
+    'ActivityStatus',
     'Action'
   ];
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-
+  dataModelEstateActivityStatusEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
 
   expandedElement: EstatePropertyHistoryModel | null;
   cmsApiStoreSubscribe: Subscription;
@@ -113,10 +119,25 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       this.tokenInfo = next;
       this.DataGetAll();
     });
+    this.getEstateActivityStatusEnum();
+    this.getActivityTypeList();
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
+  getEstateActivityStatusEnum(): void {
+    this.estateEnumService.ServiceEstateActivityStatusEnum().subscribe((next) => {
+      this.dataModelEstateActivityStatusEnumResult = next;
+    });
+  }
+  getActivityTypeList(): void {
+    const filter = new FilterModel();
+    filter.rowPerPage = 100;
+    this.estateActivityTypeService.ServiceGetAllEditor(filter).subscribe((next) => {
+      this.dataModelActivityTypeResult = next;
+    });
+  }
+  
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
 
@@ -164,7 +185,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       filterModel.filters.push(filterChild);
     }
     /** filter Category */
-    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+    this.contentService.ServiceGetAll(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {

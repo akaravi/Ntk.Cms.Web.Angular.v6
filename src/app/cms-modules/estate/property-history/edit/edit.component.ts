@@ -13,7 +13,8 @@ import {
   EstatePropertyModel,
   EstateCustomerOrderModel,
   TokenInfoModel,
-  EstateAccountAgencyModel
+  EstateAccountAgencyModel,
+  EstateEnumService
 } from 'ntk-cms-api';
 import {
   Component,
@@ -44,6 +45,7 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     public estatePropertyHistoryService: EstatePropertyHistoryService,
     private cmsToastrService: CmsToastrService,
+    public estateEnumService: EstateEnumService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     public tokenHelper: TokenHelper,
@@ -73,7 +75,7 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
   date = new FormControl(new Date());
-
+  dataModelEstateActivityStatusEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
     if (!this.requestId || this.requestId.length === 0) {
@@ -83,11 +85,16 @@ export class EstatePropertyHistoryEditComponent implements OnInit {
     }
     this.DataGetOneContent();
     this.getEnumRecordStatus();
+    this.getEstateActivityStatusEnum();
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
-
+  getEstateActivityStatusEnum(): void {
+    this.estateEnumService.ServiceEstateActivityStatusEnum().subscribe((next) => {
+      this.dataModelEstateActivityStatusEnumResult = next;
+    });
+  }
   DataGetOneContent(): void {
 
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');

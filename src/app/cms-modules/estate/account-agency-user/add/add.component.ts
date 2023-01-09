@@ -74,11 +74,11 @@ export class EstateAccountAgencyUserAddComponent implements OnInit {
     this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
-    this.getEnumEstateUserType();
+    this.getEstateUserTypeEnum();
 
   }
-  getEnumEstateUserType(): void {
-    this.estateEnumService.ServiceEnumEstateUserType().subscribe((next) => {
+  getEstateUserTypeEnum(): void {
+    this.estateEnumService.ServiceEstateUserTypeEnum().subscribe((next) => {
       this.dataModelEnumEstateUserTypeResult = next;
     });
   }

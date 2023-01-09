@@ -63,6 +63,16 @@
         Description is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- activityStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{'TITLE.TypeId' | translate}}" [(ngModel)]="dataModel.activityStatus"
+        name="dataModel.activityStatus" #activityStatus="ngModel">
+        <mat-option *ngFor="
+                          let item of dataModelEstateActivityStatusEnumResult.listItems;
+                          index as i
+                        " [value]="item.value">{{ item.description }}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <!-- DescriptionHidden Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['descriptionHidden']?.accessAddField">
       <mat-label>{{fieldsInfo['descriptionHidden']?.fieldTitle}}</mat-label>
@@ -77,6 +87,7 @@
         DescriptionHidden is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+
     <div class="row">
       <div class="col-6">
         <!-- AppointmentDateFrom Field -->

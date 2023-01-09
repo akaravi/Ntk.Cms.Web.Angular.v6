@@ -2,9 +2,11 @@
 </app-cms-guide-notice>
 <app-estate-property-header *ngIf="this.requestLinkPropertyId?.length>0" [optionId]="this.requestLinkPropertyId">
 </app-estate-property-header>
-<app-estate-customer-order-header *ngIf="this.requestLinkCustomerOrderId?.length>0" [optionId]="this.requestLinkCustomerOrderId">
+<app-estate-customer-order-header *ngIf="this.requestLinkCustomerOrderId?.length>0"
+  [optionId]="this.requestLinkCustomerOrderId">
 </app-estate-customer-order-header>
-<app-estate-account-user-header *ngIf="this.requestLinkEstateUserId?.length>0" [optionId]="this.requestLinkEstateUserId">
+<app-estate-account-user-header *ngIf="this.requestLinkEstateUserId?.length>0"
+  [optionId]="this.requestLinkEstateUserId">
 </app-estate-account-user-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
@@ -40,9 +42,11 @@
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -1px;"
+        title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
-    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn btn-outline-secondary BTN-icon">
+    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+      class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
     </button>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
@@ -54,7 +58,7 @@
   <ng-container cms-action-area>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-    
+
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
@@ -63,15 +67,7 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
       multiTemplateDataRows>
-      <!-- LinkMainImageIdSrc Column -->
-      <ng-container matColumnDef="LinkMainImageIdSrc">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
-            aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
 
-        </mat-cell>
-      </ng-container>
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
@@ -97,7 +93,20 @@
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.appointmentDateTo) }}
           {{ publicHelper.getTime(row.appointmentDateTo) }} </mat-cell>
       </ng-container>
-
+      <!-- LinkActivityTypeId Column -->
+      <ng-container matColumnDef="LinkActivityTypeId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkActivityTypeId']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkActivityTypeId | cmstitle : dataModelActivityTypeResult.listItems}}
+        </mat-cell>
+      </ng-container>
+      <!-- ActivityStatus Column -->
+      <ng-container matColumnDef="ActivityStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['activityStatus']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.activityStatus | enums :
+          dataModelEstateActivityStatusEnumResult.listItems}} </mat-cell>
+      </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
@@ -125,14 +134,42 @@
           <div>
             <table>
               <tr>
-                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
-                    class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
-                    width="80" /></th>
-                <th>
-                  {{row.id}}
+                <td></td>
+                <td> {{row.id}} :شناسه
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
                     <i class="flaticon2-copy"></i></span>
-                </th>
+                </td>
+              </tr>
+              <tr *ngIf="row.linkPropertyId && row.linkPropertyId.length>0">
+                <td></td>
+                <td>{{row.linkPropertyId}}: شناسه ملک
+                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkPropertyId" (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span>
+                </td>
+              </tr>
+              <tr *ngIf="row.linkCustomerOrderId && row.linkCustomerOrderId.length>0">
+                <td></td>
+                <td> {{row.linkCustomerOrderId}}: شناسه سفارش مشتری
+                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
+                    (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span>
+                </td>
+              </tr>
+              <tr *ngIf="row.linkEstateUserId && row.linkEstateUserId.length>0">
+                <td></td>
+                <td> {{row.linkEstateUserId}}: شناسه کارشناس
+                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
+                    (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span>
+                </td>
+              </tr>
+              <tr *ngIf="row.linkEstateAgencyId && row.linkEstateAgencyId.length>0">
+                <td></td>
+                <td> {{row.linkEstateAgencyId}}: شناسه آژانس
+                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
+                    (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span>
+                </td>
               </tr>
               <tr>
                 <td></td>
