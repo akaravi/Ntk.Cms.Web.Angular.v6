@@ -93,13 +93,7 @@
       <mat-hint align="end">{{ DescriptionHidden.value.length }} / 500</mat-hint>
     </mat-form-field>
 
-    <div class="ntk-full-width">
-      <!-- IncludeAllSite Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.includeAllSite" *ngIf="fieldsInfo['includeAllSite']?.accessWatchField"
-        [disabled]="!fieldsInfo['includeAllSite']?.accessAddField" name="dataModel.includeAllSite">
-        {{fieldsInfo['includeAllSite']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
+
     <hr>
     <!-- linkEstateAgencyId Field -->
     <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite"
@@ -117,9 +111,9 @@
     </app-estate-account-user-selector>
     <!-- ContactMobiles Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-label>{{'TITLE.Mobile_staff_or_customer' | translate}}</mat-label>
+      <mat-label>{{'TITLE.Mobile_customer' | translate}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" #ContactMobiles
-        type="text" rows="10" placeholder="{{'TITLE.Mobile_staff_or_customer' | translate}}" minlength="3"
+        type="text" rows="10" placeholder="{{'TITLE.Mobile_customer' | translate}}" minlength="3"
         maxlength="100">
       </textarea>
       <mat-icon matSuffix *ngIf="dataModel.contactMobiles" matSuffix mat-icon-button aria-label="Clear"
@@ -164,12 +158,10 @@
 
       <p>{{'MESSAGE.Content_of_your_choice_to_display' | translate}}</p>
       <P>{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
-      <!-- LinkLocationIds Field -->
-      <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
-        [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessAddField" [(loading)]="loading"
-        [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
-      </app-cms-location-autocomplete>
       <hr>
+
+      نوع کاربری:
+      <br>
       <!-- LinkPropertyTypeUsageId Field -->
       <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
         [optionDisabled]="!fieldsInfo['linkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
@@ -182,6 +174,8 @@
 
       <br>
       <br>
+      <br>
+      نوع ملک :
       <br>
       <!-- LinkPropertyTypeLanduseId Field -->
       <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
@@ -197,6 +191,8 @@
       <br>
       <br>
       <br>
+      نوع معامله:
+      <br>
       <!-- LinkContractTypeIds Field -->
       <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
         [optionDisabled]="!fieldsInfo['linkContractTypeId']?.accessAddField"
@@ -210,6 +206,12 @@
       <br>
       <br>
       <br>
+      مناطق جغرافیایی :
+      <!-- LinkLocationIds Field -->
+      <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
+        [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessAddField" [(loading)]="loading"
+        [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+      </app-cms-location-autocomplete>
       <!-- CreatedYaer Field -->
       <mat-form-field class="ntk-full-width"
         *ngIf="this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected?.titleCreatedYaer?.length>1">
@@ -453,18 +455,34 @@
     <div>
       جستجو:
       <hr>
-      <!-- resultSortColumn Field -->
-      <mat-form-field class="ntk-full-width">
-        <mat-label>{{fieldsInfo['resultSortColumn']?.fieldTitle}}</mat-label>
-        <mat-select placeholder="{{'TITLE.Report_Format' | translate}}" [(ngModel)]="dataModel.resultSortColumn"
-          name="dataModel.resultSortColumn" #RecordStatus="ngModel">
-          <mat-option *ngFor="
+      <div class="ntk-full-width">
+        <!-- IncludeAllSite Field -->
+        <mat-slide-toggle [(ngModel)]="dataModel.includeAllSite" *ngIf="fieldsInfo['includeAllSite']?.accessWatchField"
+          [disabled]="!fieldsInfo['includeAllSite']?.accessAddField" name="dataModel.includeAllSite">
+          {{fieldsInfo['includeAllSite']?.fieldTitle}}
+        </mat-slide-toggle>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-sm-10 col-xs-16">
+          <!-- resultSortColumn Field -->
+          <mat-form-field class="ntk-full-width">
+            <mat-label>{{fieldsInfo['resultSortColumn']?.fieldTitle}}</mat-label>
+            <mat-select placeholder="{{'TITLE.Report_Format' | translate}}" [(ngModel)]="dataModel.resultSortColumn"
+              name="dataModel.resultSortColumn" #RecordStatus="ngModel">
+              <mat-option *ngFor="
               let item of dataFieldInfoModel;
               index as i
-            " [value]="item.fieldName">{{ item.fieldTitle}}</mat-option>
-        </mat-select>
+            " [value]="item.fieldName">{{ item.fieldTitle }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="dataModel?.resultSortColumn?.length>0" class="col-md-2 col-sm-2 col-xs-2 resultSortIcon">
+          <a (click)="resultSortArrowIcon = !resultSortArrowIcon">
+            <i [class]="resultSortArrowIcon ? 'fa fa-arrow-down' : 'fa fa-arrow-up'" style="color: black;"></i>
+          </a>
+        </div>
+      </div>
 
-      </mat-form-field>
     </div>
 
     <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
