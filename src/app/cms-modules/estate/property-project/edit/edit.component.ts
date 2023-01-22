@@ -10,9 +10,11 @@ import {
   EstatePropertyProjectModel,
   EstatePropertyProjectService,
   FilterDataModel,
+  TokenInfoModel,
   AccessModel,
   DataFieldInfoModel,
   EnumClauseType,
+  EstatePropertyCompanyModel,
   EnumManageUserAccessDataTypes
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,6 +24,7 @@ import { Map as leafletMap } from 'leaflet';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { MatTableDataSource } from '@angular/material/table';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -44,12 +47,16 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private cdr: ChangeDetectorRef,
+    public tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -77,6 +84,7 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
   keywordDataModel = [];
   tagIdsData: number[];
   appLanguage = 'fa';
+  tokenInfo = new TokenInfoModel();
   /** map */
   viewMap = false;
   private mapModel: leafletMap;
@@ -373,6 +381,15 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
   receiveZoom(mode: leafletMap): void {
   }
 
+  onActionSelectorCompany(model: EstatePropertyCompanyModel | null): void {
+    if (!model || !model.id || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.information_area_is_not_clear');
+      this.cmsToastrService.typeWarningSelected(message);
+      this.dataModel.linkPropertyCompanyId = null;
+      return;
+    }
+    this.dataModel.linkPropertyCompanyId = model.id;
+  }
   onActionSelectorLocation(model: CoreLocationModel | null): void {
     if (!model || !model.id || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.Information_area_deleted');

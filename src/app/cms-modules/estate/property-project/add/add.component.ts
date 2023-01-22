@@ -8,7 +8,9 @@ import {
   ErrorExceptionResult,
   FormInfoModel,
   EstatePropertyProjectModel,
+  TokenInfoModel,
   EstatePropertyProjectService,
+  EstatePropertyCompanyModel,
   DataFieldInfoModel,
 } from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,6 +24,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreLocationModel } from 'ntk-cms-api';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
@@ -32,11 +35,11 @@ import { MatChipInputEvent } from '@angular/material/chips';
 })
 export class EstatePropertyProjectAddComponent implements OnInit, AfterViewInit {
   constructor(
-    private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
     public publicHelper: PublicHelper,
     public contentService: EstatePropertyProjectService,
     private cmsToastrService: CmsToastrService,
+    public tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
@@ -44,6 +47,9 @@ export class EstatePropertyProjectAddComponent implements OnInit, AfterViewInit 
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   dataModel = new EstatePropertyProjectModel();
@@ -69,6 +75,7 @@ export class EstatePropertyProjectAddComponent implements OnInit, AfterViewInit 
   similarTabledisplayedColumns = ['LinkMainImageIdSrc', 'Id', 'RecordStatus', 'Title', 'Action'];
   similarTabledataSource = new MatTableDataSource<EstatePropertyProjectModel>();
   appLanguage = 'fa';
+  tokenInfo = new TokenInfoModel();
   /** map */
   viewMap = false;
   private mapModel: leafletMap;
@@ -223,6 +230,15 @@ export class EstatePropertyProjectAddComponent implements OnInit, AfterViewInit 
   //   this.dataModel.linkCategoryId = model.id;
   // }
 
+  onActionSelectorCompany(model: EstatePropertyCompanyModel | null): void {
+    if (!model || !model.id || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.information_area_is_not_clear');
+      this.cmsToastrService.typeWarningSelected(message);
+      this.dataModel.linkPropertyCompanyId = null;
+      return;
+    }
+    this.dataModel.linkPropertyCompanyId = model.id;
+  }
 
   onActionContentSimilarRemoveFromLIst(model: EstatePropertyProjectModel | null): void {
     if (!model || model.id.length <= 0) {
