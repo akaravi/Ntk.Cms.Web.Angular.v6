@@ -343,7 +343,7 @@
         <app-estate-property-company-selector *ngIf="this.tokenHelper.isAdminSite" [(loading)]="loading"
           (optionChange)="onActionSelectorCompany($event)" [optionSelectForce]="dataModel.linkPropertyCompanyId"
           [optionPlaceholder]="this.translate.instant('TITLE.Company')">
-        </app-estate-property-project-selector>
+        </app-estate-property-company-selector>
         <!-- LinkPropertyProjectId Field -->
         <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite" [(loading)]="loading"
           (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
