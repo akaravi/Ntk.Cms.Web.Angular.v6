@@ -42,7 +42,8 @@ import {
   EstatePropertyProjectService,
   EstatePropertyExpertPriceService,
   EstateCustomerOrderResultService,
-  EstateCustomerCategoryService
+  EstateCustomerCategoryService,
+  EstatePropertyCompanyService
 } from 'ntk-cms-api';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -171,6 +172,17 @@ import { EstateAccountAgencySelectionlistComponent } from './account-agency/sele
 import { EstatePropertyProjectTreeComponent } from './property-project/tree/tree.component';
 import { estateAccountAgencyInfoPipe } from 'src/app/core/pipe/esate/estate-account-agency-info.pipe';
 import { estateAccountUserInfoPipe } from 'src/app/core/pipe/esate/estate-account-user-info.pipe';
+import { estateCustomerOrderInfoPipe } from 'src/app/core/pipe/esate/estate-customer-order-info.pipe';
+import { estatePropertyInfoPipe } from 'src/app/core/pipe/esate/estate-property-info.pipe';
+import { estatePropertyProjectInfoPipe } from 'src/app/core/pipe/esate/estate-property-Project-info.pipe';
+import { estatePropertyCompanyInfoPipe } from 'src/app/core/pipe/esate/estate-property-company-info.pipe';
+import { EstatePropertyCompanyAddComponent } from './property-company/add/add.component';
+import { EstatePropertyCompanyEditComponent } from './property-company/edit/edit.component';
+import { EstatePropertyCompanyListComponent } from './property-company/list/list.component';
+import { EstatePropertyCompanySelectorComponent } from './property-company/selector/selector.component';
+import { EstatePropertyCompanyDeleteComponent } from './property-company/delete/delete.component';
+import { EstatePropertyCompanyTreeComponent } from './property-company/tree/tree.component';
+import { EstatePropertyCompanyHeaderComponent } from './property-company/header/header.component';
 
 @NgModule({
   declarations: [
@@ -178,6 +190,10 @@ import { estateAccountUserInfoPipe } from 'src/app/core/pipe/esate/estate-accoun
     /* */
     estateAccountAgencyInfoPipe,
     estateAccountUserInfoPipe,
+    estateCustomerOrderInfoPipe,
+    estatePropertyInfoPipe,
+    estatePropertyProjectInfoPipe,
+    estatePropertyCompanyInfoPipe,
     /* */
     EstatePropertyTypeLanduseAddComponent,
     EstatePropertyTypeLanduseEditComponent,
@@ -204,6 +220,14 @@ import { estateAccountUserInfoPipe } from 'src/app/core/pipe/esate/estate-accoun
     EstatePropertyProjectDeleteComponent,
     EstatePropertyProjectTreeComponent,
     EstatePropertyProjectHeaderComponent,
+    /* */
+    EstatePropertyCompanyAddComponent,
+    EstatePropertyCompanyEditComponent,
+    EstatePropertyCompanyListComponent,
+    EstatePropertyCompanySelectorComponent,
+    EstatePropertyCompanyDeleteComponent,
+    EstatePropertyCompanyTreeComponent,
+    EstatePropertyCompanyHeaderComponent,
     /* */
     EstatePropertyTypeUsageAddComponent,
     EstatePropertyTypeUsageEditComponent,
@@ -363,6 +387,7 @@ import { estateAccountUserInfoPipe } from 'src/app/core/pipe/esate/estate-accoun
     EstatePropertyShareAgentService,
     EstatePropertyShareSiteService,
     EstatePropertyProjectService,
+    EstatePropertyCompanyService,
     EstatePropertyTypeLanduseService,
     EstateActivityTypeService,
     EstatePropertyTypeUsageService,
@@ -379,6 +404,10 @@ import { estateAccountUserInfoPipe } from 'src/app/core/pipe/esate/estate-accoun
   , exports: [
     estateAccountAgencyInfoPipe,
     estateAccountUserInfoPipe,
+    estateCustomerOrderInfoPipe,
+    estatePropertyInfoPipe,
+    estatePropertyProjectInfoPipe,
+    estatePropertyCompanyInfoPipe,
   ]
 })
 export class EstateModule { }

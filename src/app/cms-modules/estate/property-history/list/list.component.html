@@ -134,43 +134,46 @@
           <div>
             <table>
               <tr>
-                <td>:شناسه</td>
-                <td> {{row.id}}
-                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
-                    <i class="flaticon2-copy"></i></span>
+                <td>شناسه:</td>
+                <td> <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span>{{row.id}}
+
                 </td>
               </tr>
               <tr *ngIf="row.linkPropertyId && row.linkPropertyId.length>0">
-                <td>: شناسه ملک</td>
-                <td>{{row.linkPropertyId}}
+                <td>شناسه ملک:</td>
+                <td  >
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkPropertyId" (click)="onActionCopied()">
                     <i class="flaticon2-copy"></i></span>
+                  {{row.linkPropertyId|estatePropertyInfo |async}}
+
                 </td>
               </tr>
               <tr *ngIf="row.linkCustomerOrderId && row.linkCustomerOrderId.length>0">
-                <td>: شناسه سفارش مشتری</td>
-                <td> {{row.linkCustomerOrderId}}
-                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
+                <td> شناسه سفارش مشتری:</td>
+                <td  > <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
                     (click)="onActionCopied()">
-                    <i class="flaticon2-copy"></i></span>
+                    <i class="flaticon2-copy"></i></span> {{row.linkCustomerOrderId |estateCustomerOrderInfo |async}}
+
                 </td>
               </tr>
               <tr *ngIf="row.linkEstateUserId && row.linkEstateUserId.length>0">
-                <td>: شناسه کارشناس</td>
-                <td> {{row.linkEstateUserId}}
-                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
+                <td>شناسه کارشناس:</td>
+                <td  > <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
                     (click)="onActionCopied()">
-                    <i class="flaticon2-copy"></i></span>
+                    <i class="flaticon2-copy"></i></span>{{row.linkEstateUserId |estateAccountUserInfo |async}}
+
                 </td>
               </tr>
               <tr *ngIf="row.linkEstateAgencyId && row.linkEstateAgencyId.length>0">
-                <td>: شناسه آژانس</td>
-                <td> {{row.linkEstateAgencyId}}
-                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
+                <td>شناسه آژانس:</td>
+                <td  > <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkCustomerOrderId"
                     (click)="onActionCopied()">
-                    <i class="flaticon2-copy"></i></span>
+                    <i class="flaticon2-copy"></i></span>{{row.linkEstateAgencyId |estateAccountAgencyInfo |async}}
+
                 </td>
               </tr>
+
               <tr>
                 <td>{{fieldsInfo['title']?.fieldTitle}} :</td>
                 <td> {{row.title}} </td>

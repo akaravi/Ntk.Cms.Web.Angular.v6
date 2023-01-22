@@ -339,12 +339,16 @@
         *ngIf="dataModel.propertyDetailGroups && dataModel.propertyDetailGroups.length>0">
         <p>{{'TITLE.Property_details_according_to_the_type_of_property' | translate}}</p>
 
+        <!-- LinkPropertyCompanyId Field -->
+        <app-estate-property-company-selector *ngIf="this.tokenHelper.isAdminSite" [(loading)]="loading"
+          (optionChange)="onActionSelectorCompany($event)" [optionSelectForce]="dataModel.linkPropertyCompanyId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Company')">
+        </app-estate-property-project-selector>
         <!-- LinkPropertyProjectId Field -->
         <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite" [(loading)]="loading"
           (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
           [optionPlaceholder]="this.translate.instant('TITLE.Project')">
         </app-estate-property-project-selector>
-
         <hr>
 
         <mat-accordion class="example-headers-align">

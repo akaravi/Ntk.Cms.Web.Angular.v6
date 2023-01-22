@@ -221,6 +221,10 @@ export class PublicHelper {
   LocaleDate(model): string {
     if (model) {
       const d = new Date(model);
+      var duration = (new Date()).valueOf() - d.valueOf();
+      console.log(duration);
+      if (duration < 100000)
+        return '';
       return d.toLocaleDateString('fa-Ir');
     }
     return '';
@@ -480,9 +484,9 @@ export class PublicHelper {
     return true;
   }
   TabledisplayedColumnsCheckByAllDataAccess(cloumnDesktopSource: string[], cloumnAdminAccessDispaly: string[], token: TokenInfoModel): string[] {
-    return this.TableDisplayedColumns(cloumnDesktopSource,[], cloumnAdminAccessDispaly,  token);
+    return this.TableDisplayedColumns(cloumnDesktopSource, [], cloumnAdminAccessDispaly, token);
   }
-  TableDisplayedColumns(cloumnDesktopSource: string[], cloumnMobileDispalySource: string[],cloumnAdminAccessDispaly: string[],  token: TokenInfoModel): string[] {
+  TableDisplayedColumns(cloumnDesktopSource: string[], cloumnMobileDispalySource: string[], cloumnAdminAccessDispaly: string[], token: TokenInfoModel): string[] {
     if (!cloumnAdminAccessDispaly || cloumnAdminAccessDispaly.length == 0) {
       cloumnAdminAccessDispaly = [];
     }
@@ -496,9 +500,9 @@ export class PublicHelper {
 
 
     if (cloumn.indexOf('Id') >= 0)
-    cloumnAdminAccessDispaly.push('Id');
+      cloumnAdminAccessDispaly.push('Id');
     if (cloumn.indexOf('LinkSiteId') >= 0)
-    cloumnAdminAccessDispaly.push('LinkSiteId');
+      cloumnAdminAccessDispaly.push('LinkSiteId');
 
     if (token.userAccessAdminAllowToAllData || token.userAccessAdminAllowToProfessionalData) {
       var i = 0;

@@ -3,7 +3,7 @@ import { EnumDeviceType, EnumOperatingSystemType } from 'ntk-cms-api';
 export const environment = {
   production: true,
   checkAccess:false,
-  appVersion: '14.1.1101.1',
+  appVersion: '14.1.1102.1',
   authKey: 'authf649fc9a5f55',
   loadDemoDashboard: false,
   ProgressConsoleLog: false,
@@ -18,7 +18,6 @@ export const environment = {
     configCompanyWebSite: 'https://ntk.ir',
     modules:['']
   },
-
   cmsTokenConfig: {
     SecurityKey: '123456789',
     ClientMACAddress: '',
