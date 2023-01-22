@@ -63,35 +63,7 @@
           [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
-        <!-- FromDate Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['fromDate']?.accessWatchField">
-          <mat-label>{{fieldsInfo['fromDate']?.fieldTitle}}</mat-label>
-          <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate"
-            disabled="{{!fieldsInfo['fromDate']?.accessAddField}}"
-            placeholder="{{fieldsInfo['fromDate']?.fieldTitle}}" />
-          <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['fromDate']?.accessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
-          <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['fromDate']?.accessEditField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
-          <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
-          <mat-datepicker touchUi #FromDate></mat-datepicker>
-          <mat-icon matTooltip="{{fieldsInfo['fromDate']?.FieldDescription}}" matSuffix>info</mat-icon>
-        </mat-form-field>
-        <!-- ExpireDate Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expireDate']?.accessWatchField">
-          <mat-label>{{fieldsInfo['expireDate']?.fieldTitle}}</mat-label>
-          <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate"
-            disabled="{{!fieldsInfo['expireDate']?.accessAddField}}"
-            placeholder="{{fieldsInfo['expireDate']?.fieldTitle}}" />
-          <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessAddField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
-          <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
-          <mat-datepicker touchUi #ExpireDate></mat-datepicker>
-          <mat-hint align="start">
-            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['expireDate']?.FieldDescription}}</strong>
-          </mat-hint>
-        </mat-form-field>
+        
         <hr class="pb-5" />
         <!-- editorConfig Field -->
         <label> {{fieldsInfo['body']?.fieldTitle}} </label>

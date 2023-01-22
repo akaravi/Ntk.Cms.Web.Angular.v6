@@ -44,6 +44,12 @@
             {{fieldsInfo['title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
+        
+        <!-- LinkPropertyCompanyId Field -->
+        <app-estate-property-company-selector *ngIf="this.tokenHelper.isAdminSite" [(loading)]="loading"
+          (optionChange)="onActionSelectorCompany($event)" [optionSelectForce]="dataModel.linkPropertyCompanyId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Company')">
+        </app-estate-property-project-selector>
         <!-- Description Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['description']?.accessWatchField">
           <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
