@@ -28,6 +28,7 @@ import {
   TokenInfoModel,
   CoreCurrencyModel,
   EstatePropertyProjectModel,
+  EstatePropertyCompanyModel,
   EstateAccountAgencyModel,
   EnumRecordStatus,
   EnumManageUserAccessUserTypes,
@@ -379,6 +380,15 @@ export class EstatePropertyAddComponent implements OnInit {
       return;
     }
     this.dataModel.linkPropertyProjectId = model.id;
+  }
+  onActionSelectorCompany(model: EstatePropertyCompanyModel | null): void {
+    if (!model || !model.id || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.information_area_is_not_clear');
+      this.cmsToastrService.typeWarningSelected(message);
+      this.dataModel.linkPropertyCompanyId = null;
+      return;
+    }
+    this.dataModel.linkPropertyCompanyId = model.id;
   }
   onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
     this.dataModel.linkEstateUserId = null;
