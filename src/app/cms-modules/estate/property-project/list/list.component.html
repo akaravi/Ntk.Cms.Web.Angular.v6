@@ -119,9 +119,13 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonProperty(row)" *ngIf="dataModelResult.access.accessDeleteRow">
+            <button mat-menu-item (click)="onActionbuttonProperty(row)">
               <mat-icon>apartment</mat-icon>
               <span>{{'ACTION.PROPERTY' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonPropertyCompany(row)">
+              <mat-icon>business</mat-icon>
+              <span>{{'ACTION.COMPANY' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>
@@ -163,6 +167,12 @@
 
                   <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
                     class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>
+
+                  <a (click)="onActionbuttonProperty(row)"
+                    class="link-primary pointer"> {{'ACTION.PROPERTY' | translate}} </a>
+
+                  <a (click)="onActionbuttonPropertyCompany(row)"
+                    class="link-primary pointer"> {{'ACTION.COMPANY' | translate}} </a>
                 </td>
               </tr>
 

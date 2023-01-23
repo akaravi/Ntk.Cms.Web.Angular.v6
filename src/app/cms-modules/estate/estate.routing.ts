@@ -27,6 +27,7 @@ import { EstateActivityTypeListComponent } from './activity-type/list/list.compo
 import { EstatePropertyHistoryListComponent } from './property-history/list/list.component';
 import { EstatePropertyExpertPriceListComponent } from './property-expert-price/list/list.component';
 import { EstateCustomerOrderResultListComponent } from './customer-order-result/list/list.component';
+import { EstatePropertyCompanyListComponent } from './property-company/list/list.component';
 
 const routes: Routes = [
   {
@@ -122,6 +123,16 @@ const routes: Routes = [
       {
         path: 'activity-type',
         component: EstateActivityTypeListComponent
+      },
+      /**/
+      /**/
+      {
+        path: 'property-company',
+        component: EstatePropertyCompanyListComponent
+      },
+      {
+        path: 'property-company/LinkProjectId/:LinkProjectId',
+        component: EstatePropertyCompanyListComponent
       },
       /**/
       {
