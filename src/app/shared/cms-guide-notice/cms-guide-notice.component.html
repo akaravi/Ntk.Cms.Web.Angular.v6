@@ -14,7 +14,7 @@
         </div>
       </ng-container>
       <div class="alert-text">
-        <h4> {{ title }}</h4>
+        <h4 (click)="onActionCopyHeaderKey(keyTemplate,$event)"> {{ title }}</h4>
         <div [innerHTML]="description"></div>
         <br>
         <div *ngIf="bodyShow" [innerHTML]="body"></div>
@@ -41,7 +41,7 @@
         </div>
 
       </div>
-      <div >
+      <div>
         <button type="button" *ngIf="!bodyShow&& (body?.length>0 || podcast>0 || movie>0)"
           class="btn btn-outline-primary" (click)="onActionBottunClick()">
           {{'TITLE.More' | translate}}
@@ -53,5 +53,10 @@
     </div>
   </div>
 </div>
-
+<ng-template #keyTemplate>
+  <div style="text-align-last: center;">
+    <p>{{this.Key}}</p>
+    <button mat-button (click)="onActionCopied()" [cdkCopyToClipboard]="this.Key">Copy</button>
+  </div>
+</ng-template>
 <!--end::Notice-->

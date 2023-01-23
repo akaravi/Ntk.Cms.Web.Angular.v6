@@ -1,4 +1,6 @@
-<app-cms-guide-notice [Key]="'estate.property.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
+<app-cms-guide-notice [Key]="'estate.property.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'"
+  >
+
 </app-cms-guide-notice>
 
 <app-estate-billboard-header *ngIf="this.requestLinkBillboardId?.length>0" [optionId]="this.requestLinkBillboardId">
@@ -149,7 +151,7 @@
         *ngIf="this.filteModelContent.linkPropertyTypeLanduseId && PropertyTypeSelected?.titleCreatedYaer?.length>1">
         <mat-label class="text-white">{{PropertyTypeSelected.titleCreatedYaer}}</mat-label>
         <input matInput [(ngModel)]="filteModelContent.createdYaer" name="filteModelContent.createdYaer" #CreatedYaer
-        type="number" placeholder="{{fieldsInfo['createdYaer']?.fieldTitle}}" />
+          type="number" placeholder="{{fieldsInfo['createdYaer']?.fieldTitle}}" />
         <mat-icon matPrefix *ngIf="filteModelContent.createdYaer" matPrefix mat-icon-button aria-label="Clear"
           (click)="filteModelContent.createdYaer = null"> close</mat-icon>
         <mat-icon matPrefix> mode_edit</mat-icon>
@@ -422,8 +424,8 @@
                     width="80" /></th>
                 <th>
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
-                    <i class="flaticon2-copy"></i></span>  {{row.id}}
-              
+                    <i class="flaticon2-copy"></i></span> {{row.id}}
+
                 </th>
               </tr>
               <tr>

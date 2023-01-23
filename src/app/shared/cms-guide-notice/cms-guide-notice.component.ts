@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CoreGuideService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -32,6 +33,7 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private coreGuideService: CoreGuideService,
     private cmsToastrService: CmsToastrService,
+    public dialog: MatDialog,
   ) { }
   closeResult = '';
   cmsApiStoreSubscribe: Subscription;
@@ -191,7 +193,20 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
 
     }
   }
-
+  onActionCopyHeaderKey(keyTemplate: any, event?: MouseEvent): void {
+    if (event?.ctrlKey && event?.altKey) {
+      const dialogRef = this.dialog.open(keyTemplate, {
+        width: '15%',
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.dialogChangedDate) {
+        }
+      });
+    }
+  }
+  onActionCopied(): void {
+    this.cmsToastrService.typeSuccessCopedToClipboard();
+  }
   onActionBottunClick() {
     this.bodyShow = true;
     this.cdr.detectChanges();

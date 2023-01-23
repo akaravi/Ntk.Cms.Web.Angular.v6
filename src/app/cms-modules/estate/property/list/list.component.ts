@@ -7,6 +7,7 @@ import {
   ChangeDetectorRef,
   AfterViewInit,
   Input,
+  TemplateRef,
 } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
 import {
@@ -585,6 +586,8 @@ export class EstatePropertyListComponent
       this.router.navigate(["/estate/property-history/LinkPropertyId", this.tableRowSelected.id]);
     }
   }
+
+
 
   onActionbuttonDeleteRow(
     mode: EstatePropertyModel = this.tableRowSelected
