@@ -28,6 +28,8 @@ import { EstatePropertyHistoryListComponent } from './property-history/list/list
 import { EstatePropertyExpertPriceListComponent } from './property-expert-price/list/list.component';
 import { EstateCustomerOrderResultListComponent } from './customer-order-result/list/list.component';
 import { EstatePropertyCompanyListComponent } from './property-company/list/list.component';
+import { EstatePropertyCompanyAddComponent } from './property-company/add/add.component';
+import { EstatePropertyCompanyEditComponent } from './property-company/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -133,6 +135,14 @@ const routes: Routes = [
       {
         path: 'property-company/LinkProjectId/:LinkProjectId',
         component: EstatePropertyCompanyListComponent
+      },
+      {
+        path: 'property-company/add',
+        component: EstatePropertyCompanyAddComponent
+      },
+      {
+        path: 'property-company/edit/:id',
+        component: EstatePropertyCompanyEditComponent
       },
       /**/
       {
