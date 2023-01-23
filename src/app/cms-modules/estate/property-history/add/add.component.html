@@ -7,6 +7,19 @@
   <div class="ntk-cms-html-card-body">
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- Title Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+        placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.title = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Title.errors?.required">
+        Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
     <!-- linkActivityTypeId Field -->
     <app-estate-activity-type-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
@@ -35,20 +48,6 @@
     <app-estate-customer-order-selector (optionChange)="onActionSelectorCustomerOrderId($event)" [(loading)]="loading"
       *ngIf="fieldsInfo['linkCustomerOrderId']?.accessAddField" [optionSelectForce]="dataModel.linkCustomerOrderId"
       [optionPlaceholder]="this.translate.instant('TITLE.Customer')"></app-estate-customer-order-selector>
-
-    <!-- Title Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-        placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.title = ''">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="Title.errors?.required">
-        Title is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
 
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">

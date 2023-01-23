@@ -176,7 +176,7 @@
                 <th>
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
                     <i class="flaticon2-copy"></i></span> {{row.id}}
-                
+
                 </th>
               </tr>
               <tr>
@@ -204,6 +204,9 @@
 
                   <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
                     class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
+
+                  <a (click)="onActionbuttonHistoryRow(row,$event)" class="link-primary pointer"> {{'ACTION.HISTORY' |
+                    translate}} </a>|
 
                   <a (click)="onActionbuttonContentList(row)" class="link-primary pointer">
                     {{'ACTION.THEPROPERTY_INCLUDESVIEWS' |
