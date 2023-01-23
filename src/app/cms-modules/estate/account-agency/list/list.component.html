@@ -59,7 +59,8 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)">
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
+      multiTemplateDataRows>
       <!-- LinkMainImageIdSrc Column -->
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
@@ -82,10 +83,11 @@
       </ng-container>
       <!-- linkCmsUserId Column -->
       <ng-container matColumnDef="LinkCmsUserId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkCmsUserId']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkCmsUserId']?.fieldTitle}}
+        </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkCmsUserId| cmsuserinfo |async}} </mat-cell>
       </ng-container>
-      
+
 
       <!-- Description Column -->
       <ng-container matColumnDef="Description">
@@ -129,9 +131,76 @@
         </mat-cell>
       </ng-container>
 
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
+                    width="80" /></th>
+                <th>
+                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span> {{row.id}}
+
+                </th>
+              </tr>
+              <tr>
+                <td></td>
+                <td>{{fieldsInfo['title']?.fieldTitle}} : {{row.title}} </td>
+              </tr>
+              <tr *ngIf="row.description">
+                <td></td>
+                <td>{{fieldsInfo['description']?.fieldTitle}} : {{row.description}} </td>
+              </tr>
+              <tr *ngIf="row.address">
+                <td></td>
+                <td>{{'TITLE.Address' | translate}} : {{row.address}} </td>
+              </tr>
+              <tr *ngIf="row.phoneNumber">
+                <td></td>
+                <td>{{fieldsInfo['phoneNumber']?.fieldTitle}} : {{row.phoneNumber}} </td>
+              </tr>
+              <tr *ngIf="row.mobileNumber">
+                <td></td>
+                <td>{{fieldsInfo['mobileNumber']?.fieldTitle}} : {{row.mobileNumber}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+
+                  <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow"
+                    class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
+
+                  <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
+                    class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
+
+                  <a (click)="onActionbuttonAgentRow(row,$event)" class="link-primary pointer"> {{'ACTION.PERSONNEL' |
+                    translate}} </a>|
+
+                  <a (click)="onActionbuttonHistoryRow(row,$event)" class="link-primary pointer">
+                    {{'ACTION.HISTORY' | translate}} </a>|
+
+                  <a (click)="onActionbuttonPropertyRow(row,$event)" class="link-primary pointer">
+                    {{'ACTION.CONNECT_TO_PROPERTY' | translate}} </a>
+
+                </td>
+              </tr>
+
+            </table>
+          </div>
+        </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
+      </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
       </mat-row>
     </mat-table>
 

@@ -441,6 +441,10 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     //open popup
   }
 
+  onActionCopied(): void {
+    this.cmsToastrService.typeSuccessCopedToClipboard();
+  }
+
   onActionbuttonReload(): void {
     this.DataGetAll();
   }
@@ -450,6 +454,17 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: EstateAccountUserModel): void {
     this.tableRowSelected = row;
+
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: EstateAccountUserModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: EstateAccountUserModel): void {
+    row["expanded"] = false;
   }
 
 }

@@ -446,6 +446,9 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
       this.router.navigate(["/estate/property/LinkEstateAgencyId", this.tableRowSelected.id]);
     }
   }
+  onActionCopied(): void {
+    this.cmsToastrService.typeSuccessCopedToClipboard();
+  }
 
   onActionbuttonReload(): void {
     this.DataGetAll();
@@ -456,6 +459,17 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: EstateAccountAgencyModel): void {
     this.tableRowSelected = row;
+
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"]
+  }
+  onActionTableRowMouseEnter(row: EstateAccountAgencyModel): void {
+    this.tableRowSelected = row;
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseLeave(row: EstateAccountAgencyModel): void {
+    row["expanded"] = false;
   }
 
 }
