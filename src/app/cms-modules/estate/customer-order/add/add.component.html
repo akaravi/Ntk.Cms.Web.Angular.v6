@@ -113,8 +113,7 @@
     <mat-form-field class="ntk-full-width">
       <mat-label>{{'TITLE.Mobile_customer' | translate}}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" #ContactMobiles
-        type="text" rows="10" placeholder="{{'TITLE.Mobile_customer' | translate}}" minlength="3"
-        maxlength="100">
+        type="text" rows="10" placeholder="{{'TITLE.Mobile_customer' | translate}}" minlength="3" maxlength="100">
       </textarea>
       <mat-icon matSuffix *ngIf="dataModel.contactMobiles" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.contactMobiles = ''"> close</mat-icon>
@@ -160,7 +159,7 @@
       <P>{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
       <hr>
 
-      نوع کاربری:
+      {{'TITLE.Type_Usage' | translate}} :
       <br>
       <!-- LinkPropertyTypeUsageId Field -->
       <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
@@ -175,7 +174,7 @@
       <br>
       <br>
       <br>
-      نوع ملک :
+      {{'TITLE.Type_Property' | translate}} :
       <br>
       <!-- LinkPropertyTypeLanduseId Field -->
       <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
@@ -206,7 +205,7 @@
       <br>
       <br>
       <br>
-      مناطق جغرافیایی :
+      {{'TITLE.Geographical_Areas' | translate}} :
       <!-- LinkLocationIds Field -->
       <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
         [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessAddField" [(loading)]="loading"

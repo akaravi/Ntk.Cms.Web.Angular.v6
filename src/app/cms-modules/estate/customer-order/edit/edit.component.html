@@ -148,7 +148,7 @@
         <P>{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
         <hr>
 
-        نوع کاربری:
+        {{'TITLE.Type_Usage' | translate}} :
         <br>
         <!-- LinkPropertyTypeUsageId Field -->
         <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
@@ -163,7 +163,7 @@
         <br>
         <br>
         <br>
-        نوع ملک :
+        {{'TITLE.Type_Property' | translate}} :
         <br>
         <!-- LinkPropertyTypeLanduseId Field -->
         <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
@@ -180,7 +180,7 @@
         <br>
         <br>
         <br>
-        نوع معامله:
+        {{'TITLE.Type_Transaction' | translate}} :
         <br>
         <!-- LinkContractTypeIds Field -->
         <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
@@ -195,7 +195,7 @@
         <br>
         <br>
         <br>
-        مناطق جغرافیایی :
+        {{'TITLE.Geographical_Areas' | translate}} :
         <!-- LinkLocationIds Field -->
         <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
           [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessAddField" [(loading)]="loading"
