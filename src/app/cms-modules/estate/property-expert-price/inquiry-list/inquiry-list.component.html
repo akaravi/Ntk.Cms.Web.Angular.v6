@@ -69,11 +69,11 @@
     <hr>
     <table>
       <tr>
-        <td>نوع کارشناسی</td>
-        <td>سال ساخت</td>
-        <td>حداقل</td>
-        <td>میانگین</td>
-        <td>حداکثر</td>
+        <td>{{'TITLE.Expert_Type'|translate}}</td>
+        <td>{{'TITLE.CreatedYaer'|translate}}</td>
+        <td>{{'TITLE.Minimum'|translate}}</td>
+        <td>{{'TITLE.Average'|translate}}</td>
+        <td>{{'TITLE.Maximum'|translate}}</td>
       </tr>
       <tr *ngFor="let item of dataModelResult.listItems">
         <td>{{item.expertPriceType| enums : dataModelEstatePropertyExpertPriceTypeEnumResult.listItems}}</td>

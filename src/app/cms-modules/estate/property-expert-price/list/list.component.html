@@ -1,4 +1,5 @@
-<app-cms-guide-notice [Key]="'estate.propertyexpertprice.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
+<app-cms-guide-notice [Key]="'estate.propertyexpertprice.list'"
+  [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
 </app-cms-guide-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
@@ -35,9 +36,11 @@
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -1px;"
+        title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
-    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn btn-outline-secondary BTN-icon">
+    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+      class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
     </button>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
@@ -56,7 +59,7 @@
   <ng-container cms-action-area>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-    
+
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
@@ -182,9 +185,9 @@
           <div>
             <table id="table1" style="border-collapse: collapse;">
               <tr>
-                <td>حداقل</td>
-                <td>میانگین</td>
-                <td>حداکثر</td>
+                <td>{{'TITLE.Minimum'|translate}}</td>
+                <td>{{'TITLE.Average'|translate}}</td>
+                <td>{{'TITLE.Maximum'|translate}}</td>
               </tr>
               <tr>
                 <td>
@@ -226,8 +229,8 @@
                     width="80" /></th>
                 <th>
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
-                    <i class="flaticon2-copy"></i></span>  {{row.id}}
-                
+                    <i class="flaticon2-copy"></i></span> {{row.id}}
+
                 </th>
               </tr>
               <tr>
