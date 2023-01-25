@@ -61,6 +61,7 @@ export class EstatePropertyListComponent
   requestLinkBillboardId = "";
   requestLinkCustomerOrderId = "";
   requestLinkProjectId = "";
+  requestLinkCompanyId = "";
   requestLinkEstateUserId = "";
   requestLinkEstateAgencyId = "";
   requestLinkUserId = 0;
@@ -92,6 +93,9 @@ export class EstatePropertyListComponent
     );
     this.requestLinkProjectId = this.activatedRoute.snapshot.paramMap.get(
       "LinkProjectId"
+    );
+    this.requestLinkCompanyId = this.activatedRoute.snapshot.paramMap.get(
+      "LinkCompanyId"
     );
     this.requestLinkEstateUserId = this.activatedRoute.snapshot.paramMap.get(
       "LinkEstateUserId"
@@ -151,6 +155,12 @@ export class EstatePropertyListComponent
       const filter = new FilterDataModel();
       filter.propertyName = "linkPropertyProjectId";
       filter.value = this.requestLinkProjectId;
+      this.filteModelContent.filters.push(filter);
+    }
+    if (this.requestLinkCompanyId && this.requestLinkCompanyId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = "linkPropertyCompanyId";
+      filter.value = this.requestLinkCompanyId;
       this.filteModelContent.filters.push(filter);
     }
     if (this.requestLinkEstateUserId && this.requestLinkEstateUserId.length > 0) {

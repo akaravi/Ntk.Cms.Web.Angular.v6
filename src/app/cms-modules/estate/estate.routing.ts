@@ -76,6 +76,10 @@ const routes: Routes = [
         component: EstatePropertyListComponent
       },
       {
+        path: 'property/LinkCompanyId/:LinkCompanyId',
+        component: EstatePropertyListComponent
+      },
+      {
         path: 'property/LinkEstateUserId/:LinkEstateUserId',
         component: EstatePropertyListComponent
       },

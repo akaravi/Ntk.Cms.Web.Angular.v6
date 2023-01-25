@@ -22,9 +22,13 @@
   [optionId]="this.requestLinkPropertyTypeUsageId">
 
 </app-estate-property-type-usage-header>
-<app-estate-property-project-header *ngIf="this.requestLinkProjectId?.length>0" [optionId]="this.requestLinkProjectId">
 
+<app-estate-property-project-header *ngIf="this.requestLinkProjectId?.length>0" [optionId]="this.requestLinkProjectId">
 </app-estate-property-project-header>
+
+<app-estate-property-company-header *ngIf="this.requestLinkCompanyId?.length>0" [optionId]="this.requestLinkCompanyId">
+</app-estate-property-company-header>
+
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="requestLinkPropertyTypeLanduseId?.length===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
