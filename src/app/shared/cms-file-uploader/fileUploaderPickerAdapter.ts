@@ -34,7 +34,7 @@ export class FileUploaderPickerAdapter extends FilePickerAdapter {
         };
       }),
       catchError(er => {
-        console.log(er);
+        //console.log(er);
         return of({ status: UploadStatus.ERROR, body: er });
       })
     );

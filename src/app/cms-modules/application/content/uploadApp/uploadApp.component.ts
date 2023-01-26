@@ -103,7 +103,7 @@ export class ApplicationAppUploadAppComponent implements OnInit {
     this.isHovering = true;
   }
   onUpload(e): void {
-    console.log(e);
+    //console.log(e);
   }
   OnActionUploadSuccess(model: FilePreviewModel): void {
     if (model.uploadResponse && model.uploadResponse.item && model.uploadResponse.item.fileKey) {

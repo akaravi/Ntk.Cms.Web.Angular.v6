@@ -1,5 +1,5 @@
 /*/ Tables */
-.mat-table-wrapper {
+.mat-mdc-table-wrapper {
     width: 100%;
     overflow-x: auto;
 
@@ -8,22 +8,22 @@
 		min-height: 100%;
 	}
 
-    .mat-table {
+    .mat-mdc-table {
         min-width: 1000px;
 
-        .mat-cell, 
-        .mat-footer-cell, 
-        .mat-header-cell {
+        .mat-mdc-cell, 
+        .mat-mdc-footer-cell, 
+        .mat-mdc-header-cell {
             padding-right: 10px;
         }
         
-        .mat-cell:last-child, 
-        .mat-footer-cell:last-child, 
-        .mat-header-cell:last-child {
+        .mat-mdc-cell:last-child, 
+        .mat-mdc-footer-cell:last-child, 
+        .mat-mdc-header-cell:last-child {
             padding-right: 0;
         }
             
-        .mat-row {
+        .mat-mdc-row {
             transition: padding 0.3s ease;
         }
 
@@ -42,13 +42,13 @@
             display: flex;
             align-items: center;
         }
-        .mat-spinner {
+        .mat-mdc-progress-spinner {
             margin-left: 12px;
             margin-right: 8px;
         }
     }
 
-    .mat-table-message {
+    .mat-mdc-table-message {
         padding: 30px !important;
         text-align: center;
         font-weight: 500;
@@ -57,7 +57,8 @@
     .mat-column-checkbox {
          padding-left: 20px;
 
-        .mat-checkbox {
+        .mat-mdc-checkbox {
+            /*TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
             .mat-checkbox-layout {
                 margin-top: 0.25rem;
                 margin-bottom: 0.25rem;
@@ -70,38 +71,38 @@
     }
 }
 
-.mat-table-wrapper .mat-table {
+.mat-mdc-table-wrapper .mat-table {
 	min-width: 1000px;
 	width: 100%;
 }
 
-.mat-table-wrapper-dashboard .mat-table {
+.mat-mdc-table-wrapper-dashboard .mat-table {
 	min-width: 600px !important;
 }
 
-.mat-table-wrapper .mat-table .email-cell {
+.mat-mdc-table-wrapper .mat-table .email-cell {
 	word-wrap: normal;
 	width: 180px;
 	flex: auto;
 }
 
-.mat-table-wrapper-sub .mat-table {
+.mat-mdc-table-wrapper-sub .mat-table {
 	min-width: 400px;
 
-	.mat-cell:last-child {
+	.mat-mdc-cell:last-child {
 		flex: 0 0 100px;
 	}
 
-	.mat-header-cell:last-child {
+	.mat-mdc-header-cell:last-child {
 		flex: 0 0 100px;
 	}
 }
 
-.mat-table-sticky {
+.mat-mdc-table-sticky {
     z-index: 97 !important;
 }
 
-.mat-table__bottom {
+.mat-mdc-table__bottom {
     display: flex;
     align-items: center;
     justify-content:  flex-end;
@@ -123,7 +124,7 @@
 	flex: 0 0 160px;
 }
 
-.mat-table-bottom {
+.mat-mdc-table-bottom {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
@@ -133,7 +134,7 @@
 	flex: 0 0 170px;
 }
 
-.mat-table-wrapper .mat-table .mat-row-editing.mat-row-inactive {
+.mat-mdc-table-wrapper .mat-table .mat-row-editing.mat-row-inactive {
 	height: 0;
 	min-height: 0;
 	padding: 0 !important;

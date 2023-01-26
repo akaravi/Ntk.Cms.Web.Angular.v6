@@ -241,7 +241,7 @@ export class CmsSearchListComponent implements OnInit {
           this.allowSaveSearch=true;
           return true;
         } catch (error) {
-          console.log(error);
+          //console.log(error);
           this.allowLoadSearch = false;
         }
       }

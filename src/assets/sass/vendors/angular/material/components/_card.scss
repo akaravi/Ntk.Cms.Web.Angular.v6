@@ -129,13 +129,13 @@
 	padding-left: 13px !important;
 }
 
-.mat-table-bottom-padding {
+.mat-mdc-table-bottom-padding {
 	padding-right: 8px;
 }
 
-.mat-table-empty {
+.mat-mdc-table-empty {
 	position: relative;
-	.mat-table-message-loading {
+	.mat-mdc-table-message-loading {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -191,6 +191,7 @@
 
 button.close { height: 100%; }
 
+/*TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
 .mat-button-mt-4 {
 	.mat-icon {margin-top: 4px;}
 }

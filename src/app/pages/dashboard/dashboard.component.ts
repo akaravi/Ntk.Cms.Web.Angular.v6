@@ -44,8 +44,8 @@ export class DashboardComponent implements OnInit {
     this.dataCoreModuleModelResult = await this.publicHelper.getCurrentSiteModule();
 
     this.checkModuleExist = new Map<string, CoreModuleModel>();
-
-    this.dataCoreModuleModelResult.listItems.forEach((el) => this.checkModuleExist[el.className.toLowerCase()] = el);
+    if (this.dataCoreModuleModelResult && this.dataCoreModuleModelResult.listItems)
+      this.dataCoreModuleModelResult.listItems.forEach((el) => this.checkModuleExist[el.className.toLowerCase()] = el);
   }
 
 

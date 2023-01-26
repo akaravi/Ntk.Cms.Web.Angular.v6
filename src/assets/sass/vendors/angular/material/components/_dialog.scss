@@ -1,6 +1,8 @@
 /*/ Dialog */
+/*TODO(mdc-migration): The following rule targets internal classes of dialog that may no longer apply for the MDC version. */
+/*TODO(mdc-migration): The following rule targets internal classes of dialog that may no longer apply for the MDC version. */
 .mat-dialog-container-wrapper {
-	.mat-dialog-container {
+	.mat-mdc-dialog-container {
 	   	padding: 0;
 	   	overflow-x: hidden;
 
@@ -15,7 +17,7 @@
 	}
 }
 
-.mat-dialog-container-wrapper .mat-dialog-container {
+.mat-mdc-dialog-container-wrapper .mat-dialog-container {
 	padding: 0;
 	overflow-x: hidden;
 
@@ -29,7 +31,7 @@
 	}
 }
 
-.mat-dialog-actions {
+.mat-mdc-dialog-actions {
 	margin-bottom: 0 !important;
 }
 /*

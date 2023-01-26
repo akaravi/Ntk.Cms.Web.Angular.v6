@@ -30,12 +30,14 @@
 
 /* Panels */
 .example-panel-Suspended {
+    /* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version. */
     .mat-select-content {
         background: rgba(255, 0, 0, 0.5);
     }
 }
   
 .example-panel-Active {
+    /* TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version. */
     .mat-select-content {
         background:  rgba(0, 255, 0, 0.5);
     }
@@ -51,15 +53,18 @@
 }
 
 /* Tabs */
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
 .mat-tab-body-content {
     overflow: visible !important;
     padding-top: 20px !important;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
 .mat-tab-label-icon {
 	margin-right: 5px;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
 .mat-form-field-infix {
 	    input:-webkit-autofill,
 	    input:-webkit-autofill:hover,

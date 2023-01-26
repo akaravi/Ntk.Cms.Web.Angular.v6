@@ -265,7 +265,7 @@ export class BlogContentAddComponent implements OnInit, AfterViewInit {
         } else {
           this.cmsToastrService.typeErrorAddTag();
         }
-        console.log(response.listItems);
+        //console.log(response.listItems);
         return of(response);
       })).toPromise();
   }

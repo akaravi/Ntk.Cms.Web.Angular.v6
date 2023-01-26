@@ -1,19 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 // @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700");
 // Global vendors
-@import "bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
 //@import '~bootstrap/scss/bootstrap.scss';
-@import 'font-awesome/scss/font-awesome.scss';
+@import '../node_modules/font-awesome/scss/font-awesome.scss';
 // => Material
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 
 @import "perfect-scrollbar/css/perfect-scrollbar.css";
 
 // Global fonts
-@import "socicon/css/socicon.css";
-@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "../node_modules/socicon/css/socicon.css";
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 @import "./assets/plugins/flaticon/flaticon.css";
 @import "./assets/plugins/flaticon2/flaticon.css";
 @import "./assets/plugins/keenthemes-icons/font/ki.css";
@@ -29,10 +29,10 @@
 /*
  karavi import
 */
-@import "leaflet/dist/leaflet.css";
-@import "ngx-ntk-smart-module/src/assets/ngx-ntk-smart-modal.scss";
-@import "ntk-cms-filemanager/src/assets/file-manager.styles.scss";
-@import "ngx-toastr/toastr.css";
+@import "../node_modules/leaflet/dist/leaflet.css";
+@import "../node_modules/ngx-ntk-smart-module/src/assets/ngx-ntk-smart-modal.scss";
+@import "../node_modules/ntk-cms-filemanager/src/assets/file-manager.styles.scss";
+@import "../node_modules/ngx-toastr/toastr.css";
 /*
  karavi import
 */

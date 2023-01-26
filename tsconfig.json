@@ -6,29 +6,36 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strictPropertyInitialization": false,
-    "strict": false,
-    "noImplicitReturns": false,
+    "strict": false,//default is true
+    "noImplicitOverride": false,//default is true
+    "noPropertyAccessFromIndexSignature": false,//default is true
+    "noImplicitReturns": false,//default is true
     "noFallthroughCasesInSwitch": true,
-    "sourceMap": false,
+    "sourceMap": false,//default is true
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    /*karavi add*/
     "allowJs": true,
     "checkJs": false,
     "strictFunctionTypes": true,
-    "target": "es2017",
-    "module": "es2020",
-    "lib": ["es2018", "dom"],
-    "paths": {
-      
-    }
+    /*karavi add*/
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
-    "strictTemplates": true,
     "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    /*karavi add*/
     "fullTemplateTypeCheck": true,
     "strictAttributeTypes": false,
     "strictSafeNavigationTypes": false,
@@ -37,8 +44,10 @@
     "strictDomEventTypes": false,
     "strictLiteralTypes": false,
     "strictNullChecks":false
-  },
-  "include": ["**/*.js", "**/*.ts", "node_modules/@open-wc/**/*.js"],
+    /*karavi add*/
+  }
+  /*karavi add*/
+  ,"include": ["**/*.js", "**/*.ts", "node_modules/@open-wc/**/*.js"],
   "exclude": [
     ".git",
     ".app-cache",
@@ -52,4 +61,5 @@
     "**/dist/*",
     "**/node_modules/*"
   ]
+  /*karavi add*/
 }

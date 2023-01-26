@@ -82,7 +82,7 @@ export class FileComponent {
   }
   isHovering = false;
   ngOnChange(): void {
-    console.log(this.field.value);
+    //console.log(this.field.value);
     // this.field.value.
   }
   toggleHover(model: any): void {

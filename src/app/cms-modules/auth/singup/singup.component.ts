@@ -174,7 +174,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       this.Roulaccespt = result;
-      console.log(result);
+      //console.log(result);
     });
   }
   passwordValid(event): void {

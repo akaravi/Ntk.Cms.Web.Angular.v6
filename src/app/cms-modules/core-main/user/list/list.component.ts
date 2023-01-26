@@ -264,7 +264,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
       return;
     }
     this.tableRowSelected = model;
-    console.log(this.tableRowSelected.id);
+    //console.log(this.tableRowSelected.id);
     if (this.tokenInfo.userId != model.id &&
       (
         this.dataModelResult == null ||

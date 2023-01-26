@@ -222,7 +222,6 @@ export class PublicHelper {
     if (model) {
       const d = new Date(model);
       var duration = (new Date()).valueOf() - d.valueOf();
-      console.log(duration);
       if (duration < 100000)
         return '';
       return d.toLocaleDateString('fa-Ir');

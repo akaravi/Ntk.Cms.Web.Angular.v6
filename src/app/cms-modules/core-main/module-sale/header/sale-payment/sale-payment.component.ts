@@ -75,14 +75,14 @@ export class CoreModuleSaleHeaderSalePaymentComponent implements OnInit {
 
   DataCalculate(): void {
     // this.viewCalculate = true;
-    console.log('r');
+    //console.log('r');
     const pName = this.constructor.name + 'ServiceOrderCalculate';
     this.loading.Start(pName);
     this.coreModuleSaleHeaderService.ServiceOrderCalculate(this.dataModelCalculate).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelCalculateResult = ret;
-          console.log('a');
+          //console.log('a');
           this.viewCalculate = !this.viewCalculate;
         }
         else {

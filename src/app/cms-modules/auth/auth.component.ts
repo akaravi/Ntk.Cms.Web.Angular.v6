@@ -26,7 +26,7 @@ export class AuthComponent implements OnInit {
   showSplashModel = true;
   ngOnInit(): void {
     this.innerWidth = + window.innerWidth;
-    console.log('windows size:',this.innerWidth);
+    //console.log('windows size:',this.innerWidth);
     if (this.innerWidth < 1000) {
       setTimeout(() => {
         this.showSplashModel = false;

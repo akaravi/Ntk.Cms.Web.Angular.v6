@@ -212,11 +212,11 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
   onActionbuttonDeparteman(id: number): void {
     this.DataDepartemanLinkSelect = id;
     this.DataFaqLinkSelect = 0;
-    console.log('ID:' + id);
+    //console.log('ID:' + id);
   }
   onActionbuttonFaqTitle(id: number): void {
     this.DataFaqLinkSelect = id;
-    console.log('ID:' + id);
+    //console.log('ID:' + id);
   }
 
 }
