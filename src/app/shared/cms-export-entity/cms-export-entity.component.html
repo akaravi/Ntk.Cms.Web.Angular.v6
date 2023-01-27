@@ -1,83 +1,82 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-    <div class="ntk-cms-html-card-header">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.formTitle }}
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </div>
-    <div class="ntk-cms-html-card-body">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <!-- FileType Field -->
-        <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{'TITLE.Output_file_format' | translate}}" [(ngModel)]="dataModel.fileType"
-                name="dataModel.FileType" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.fileType }}"
-                required>
-                <mat-option *ngFor="
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- FileType Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{'TITLE.Output_file_format' | translate}}" [(ngModel)]="dataModel.fileType"
+        name="dataModel.FileType" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.fileType }}" required>
+        <mat-option *ngFor="
                   let item of fileTypeListItems;
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
-            </mat-select>
-            <mat-hint align="end">{{'TITLE.Select_the_file_format' | translate}}</mat-hint>
-            <mat-error *ngIf="RecordStatus.errors?.required">
-                RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
-            </mat-error>
-        </mat-form-field>
-        <!-- RecieveMethod Field -->
-        <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{'TITLE.Method_of_receipt' | translate}}" [(ngModel)]="dataModel.recieveMethod"
-                name="dataModel.recieveMethod" #RecordStatus="ngModel"
-                panelClass="recordStatus-{{ dataModel.recieveMethod }}" required>
-                <mat-option *ngFor="
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.Select_the_file_format' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- RecieveMethod Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{'TITLE.Method_of_receipt' | translate}}" [(ngModel)]="dataModel.recieveMethod"
+        name="dataModel.recieveMethod" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recieveMethod }}"
+        required>
+        <mat-option *ngFor="
                     let item of recieveMethodListItems;
                     index as i
                   " [value]="item.value">{{ item.description }}</mat-option>
-            </mat-select>
-            <mat-hint align="end">{{'TITLE.Select_the_method_of_receiving_the_file' | translate}}</mat-hint>
-            <mat-error *ngIf="RecordStatus.errors?.required">
-                RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
-            </mat-error>
-        </mat-form-field>
-        <!-- ReportFormatFileId Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.fileType==EnumExportFileTypeReport">
-            <mat-label>{{'TITLE.Report_Format' | translate}}</mat-label>
-            <mat-select placeholder="{{'TITLE.Report_Format' | translate}}" [(ngModel)]="dataModel.reportFormatFileId"
-                name="dataModel.reportFormatFileId" #RecordStatus="ngModel" required>
-                <mat-option *ngFor="
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.Select_the_method_of_receiving_the_file' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- ReportFormatFileId Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.fileType===EnumExportFileTypeReport">
+      <mat-label>{{'TITLE.Report_Format' | translate}}</mat-label>
+      <mat-select placeholder="{{'TITLE.Report_Format' | translate}}" [(ngModel)]="dataModel.reportFormatFileId"
+        name="dataModel.reportFormatFileId" #RecordStatus="ngModel" required>
+        <mat-option *ngFor="
                     let item of dataModelReportFileResult.listItems;
                     index as i
                   " [value]="item.id" (onSelectionChange)="onActionFileSelect(item)">{{ item.title }}</mat-option>
-            </mat-select>
-            <mat-hint align="end">{{'TITLE.Report_Format_Select' | translate}}</mat-hint>
-            <mat-error *ngIf="RecordStatus.errors?.required">
-                RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
-            </mat-error>
-        </mat-form-field>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.Report_Format_Select' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
 
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
     </div>
-    <div class="ntk-cms-html-card-message">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-        <div class="form-actions">
-            <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-            <small class="form-text text-muted danger">{{ formInfo.formError }}
-            </small>
-        </div>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light" style="margin: 1px;">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" style="margin: 1px;"
+        [disabled]="!vform.form.valid || !formInfo.formSubmitAllow">
+        <i class="fa-solid fa-print"></i> {{'ACTION.FILE_CREATION' | translate}}
+      </button>
+      <button type="button" (click)="onOpenPage()" class="btn btn-success" style="margin: 1px;"
+        *ngIf="dataModelSubmitResult && dataModelSubmitResult.isSuccess && dataModelSubmitResult.linkFile?.length >0">
+        <i class="fa-solid fa-download"></i> {{'TITLE.download_link' | translate}}
+      </button>
     </div>
-    <div class="ntk-cms-html-card-footer">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-        <div class="form-actions">
-            <button type="button" (click)="onFormCancel()" class="btn btn-light" style="margin: 1px;">
-                <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-            </button>
-            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" style="margin: 1px;"
-                [disabled]="!vform.form.valid || !formInfo.formSubmitAllow">
-                <i class="fa-solid fa-print"></i> {{'ACTION.FILE_CREATION' | translate}}
-            </button>
-            <button type="button" (click)="onOpenPage()" class="btn btn-success" style="margin: 1px;"
-                *ngIf="dataModelSubmitResult && dataModelSubmitResult.isSuccess && dataModelSubmitResult.linkFile?.length >0">
-                <i class="fa-solid fa-download"></i> {{'TITLE.download_link' | translate}}
-            </button>
-        </div>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

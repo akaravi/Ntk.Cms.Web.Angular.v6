@@ -8,11 +8,11 @@ import {
   FilterModel
 } from 'ntk-cms-api';
 import { Output } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
 
 class chipModel {
@@ -85,8 +85,8 @@ export class CmsTagAutocompleteComponent implements OnInit {
     );
   }
   checkIndex(val: number): number {
-    var index = 0;
-    var ret=-1;
+    let index = 0;
+    let ret=-1;
     this.tagDataModel.forEach(element => {
       if (element.value == val) {
         ret= index;
@@ -98,7 +98,7 @@ export class CmsTagAutocompleteComponent implements OnInit {
 
   add(event: MatChipInputEvent): void {
     // Add our item
-    var val:chipModel;
+    let val:chipModel;
     if (event.value) {
       this.tagLastDataModel.forEach(element => {
         if ((element.display == event.value || element.value + "" == event.value)) {

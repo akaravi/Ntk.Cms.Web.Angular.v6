@@ -40,8 +40,8 @@ export class CmsLinkToComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   loadingAction = new ProgressSpinnerModel();
   tokenInfo = new TokenInfoModel();
-  
-  
+
+
   @ViewChild('Message') message: ElementRef;
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   @Input() optionTitle = '';
@@ -100,9 +100,9 @@ export class CmsLinkToComponent implements OnInit {
         map((ret: any) => {
           this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_order_was_sent_to_the_website'));
         })
-        // 
+        //
         //   this.cmsToastrService.typeErrorMessage('برروز خطا در ارسال دستور');
-        // 
+        //
       ).toPromise();
   }
 

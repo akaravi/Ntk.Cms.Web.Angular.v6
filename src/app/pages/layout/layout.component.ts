@@ -9,7 +9,7 @@ import {
 
 import KTLayoutContent from '../../../assets/js/layout/base/content';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/core/services/layout.service';
 import { LayoutInitService } from 'src/app/core/services/layout-init.service';

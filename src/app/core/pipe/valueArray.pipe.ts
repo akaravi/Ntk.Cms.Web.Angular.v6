@@ -1,5 +1,4 @@
-import { PipeTransform, Pipe } from '@angular/core';
-import { EnumInfoModel } from 'ntk-cms-api';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'valueArray' })
 export class ValueArrayPipe implements PipeTransform {

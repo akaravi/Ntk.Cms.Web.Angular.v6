@@ -1,8 +1,8 @@
-<ng-container *ngIf="!optionDefaultValue || optionDefaultValue.length==0">
+<ng-container *ngIf="!optionDefaultValue || optionDefaultValue.length===0">
   <mat-form-field class="ntk-full-width">
     <mat-label>{{optionTitle}}</mat-label>
-    <input matInput [(ngModel)]="modelDate" name="string" #string type="text" placeholder="{{optionPlaceholder}}" [disabled]="optionDisabled"
-      [ngModelOptions]="{standalone: true}" [required]="optionRequired" />
+    <input matInput [(ngModel)]="modelDate" name="string" #string type="text" placeholder="{{optionPlaceholder}}"
+      [disabled]="optionDisabled" [ngModelOptions]="{standalone: true}" [required]="optionRequired" />
     <mat-icon matSuffix>mode_edit</mat-icon>
   </mat-form-field>
 </ng-container>
@@ -11,14 +11,16 @@
   <br>
   <ng-container *ngIf="!optionMultipleChoice">
     <mat-radio-group [(ngModel)]="modelDate">
-      <mat-radio-button class="example-radio-button" *ngFor="let item of optionDefaultValue" [value]="item" [disabled]="optionDisabled">
+      <mat-radio-button class="example-radio-button" *ngFor="let item of optionDefaultValue" [value]="item"
+        [disabled]="optionDisabled">
         {{item}}
       </mat-radio-button>
     </mat-radio-group>
   </ng-container>
   <ng-container *ngIf="optionMultipleChoice">
-    <mat-checkbox *ngFor="let item of optionDefaultValue,index as i " (change)="onActionSelect(item)" [disabled]="optionDisabled"
-      class="example-radio-button checkbox" style="margin-left: 10px;" [(ngModel)]="itemSelected[item]" [color]="colors[i]">
+    <mat-checkbox *ngFor="let item of optionDefaultValue,index as i " (change)="onActionSelect(item)"
+      [disabled]="optionDisabled" class="example-radio-button checkbox" style="margin-left: 10px;"
+      [(ngModel)]="itemSelected[item]" [color]="colors[i]">
       {{item}}&nbsp;|
     </mat-checkbox>
   </ng-container>

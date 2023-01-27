@@ -21,6 +21,7 @@ export class PasswordStrengthComponent implements OnChanges {
 
   private static checkStrength(p: string): any {
     let force = 0;
+    // eslint-disable-next-line no-useless-escape
     const regex = /[$-/:-?{-~!"^_@`\[\]]/g;
 
     const lowerLetters = /[a-z]+/.test(p);

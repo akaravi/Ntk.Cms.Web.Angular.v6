@@ -1,53 +1,51 @@
 <div class="ntk-cms-html-card-header">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-   {{'TITLE.Transaction_status' | translate}}:{{requestId}}
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  {{'TITLE.Transaction_status' | translate}}:{{requestId}}
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <div class="table" *ngIf="dataModelResult.item&& dataModelResult.item.id>0">
-        <div class="tr">
-            <div class="td">{{'TITLE.Transaction_ID' | translate}}</div>
-            <div class="td">{{dataModelResult.item.id}}</div>
-            <div style="clear: both;"></div>
-        </div>
-        <div class="tr">
-            <div class="td">{{'TITLE.Transaction_status' | translate}}:{{requestId}}</div>
-            <div class="td">
-                <div *ngIf="this.dataModelResult.item.transactionStatus==TransactionSuccessful">
-                    <span
-                    class="svg-icon svg-icon-3x svg-icon-primary"
-                    [inlineSVG]="'assets/media/svg/icons/General/Shield-check.svg'"
-                  ></span>
-                  <br>
-                </div>
-                {{dataModelResult.item.transactionStatus | enums : dataModelEnumTransactionRecordStatusResult.listItems}}
-            </div>
-            <div style="clear: both;"></div>
-        </div>
-
-        <div class="tr">
-            <div class="td"> {{'TITLE.Amount' | translate}} </div>
-            <div class="td">{{dataModelResult.item.amount}} {{dataModelResult.item.currencyUnit}}</div>
-            <div style="clear: both;"></div>
-        </div>
-        <div class="tr">
-            <div class="td">{{'TITLE.Message' | translate}} </div>
-            <div class="td">{{dataModelResult.item.lastStatusMessage}}</div>
-            <div style="clear: both;"></div>
-        </div>
-
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  <div class="table" *ngIf="dataModelResult.item&& dataModelResult.item.id>0">
+    <div class="tr">
+      <div class="td">{{'TITLE.Transaction_ID' | translate}}</div>
+      <div class="td">{{dataModelResult.item.id}}</div>
+      <div style="clear: both;"></div>
     </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <div class="tr">
+      <div class="td">{{'TITLE.Transaction_status' | translate}}:{{requestId}}</div>
+      <div class="td">
+        <div *ngIf="this.dataModelResult.item.transactionStatus===TransactionSuccessful">
+          <span class="svg-icon svg-icon-3x svg-icon-primary"
+            [inlineSVG]="'assets/media/svg/icons/General/Shield-check.svg'"></span>
+          <br>
+        </div>
+        {{dataModelResult.item.transactionStatus | enums : dataModelEnumTransactionRecordStatusResult.listItems}}
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+
+    <div class="tr">
+      <div class="td"> {{'TITLE.Amount' | translate}} </div>
+      <div class="td">{{dataModelResult.item.amount}} {{dataModelResult.item.currencyUnit}}</div>
+      <div style="clear: both;"></div>
+    </div>
+    <div class="tr">
+      <div class="td">{{'TITLE.Message' | translate}} </div>
+      <div class="td">{{dataModelResult.item.lastStatusMessage}}</div>
+      <div style="clear: both;"></div>
+    </div>
+
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
 </div>
 
 <div class="ntk-cms-html-card-footer">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions">
-        <button type="button" (click)="onFormCancel()" class="btn btn-light">
-            <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
-        </button>
-    </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  <div class="form-actions">
+    <button type="button" (click)="onFormCancel()" class="btn btn-light">
+      <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
+    </button>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 </div>

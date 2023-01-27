@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angula
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleLogMemoModel, CoreModuleLogMemoService, DataFieldInfoModel, EnumSortType, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
+import { CoreModuleLogMemoModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -17,7 +17,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 export class CmsMemoComponent implements OnInit {
   static nextId = 0;
   id = ++CmsMemoComponent.nextId;
-  
+
   requestTitle = '';
   requestService: IApiCmsServerBase;
   constructor(private cmsToastrService: CmsToastrService,
@@ -41,7 +41,7 @@ export class CmsMemoComponent implements OnInit {
 
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
-  showAdd: boolean = true;
+  showAdd = true;
 
   loading = new ProgressSpinnerModel();
 
@@ -85,7 +85,7 @@ export class CmsMemoComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    
+
     this.requestService.ServiceMemoAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;

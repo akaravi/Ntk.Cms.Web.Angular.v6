@@ -37,8 +37,8 @@ export class CmsSearchListComponent implements OnInit {
   }
   allowLoadSearch = false;
   allowSaveSearch=false;
-  submited: boolean = false;
-  showLabel: boolean = false;
+  submited = false;
+  showLabel = false;
   filters: Array<FilterDataModel>;
   lang: string;
   model: any;
@@ -230,7 +230,7 @@ export class CmsSearchListComponent implements OnInit {
   }
   checkLoadSearch(loadInfield: boolean): boolean {
     if (this.optionsData && this.optionsData.data && this.optionsData.data.access) {
-      var storeVal = localStorage.getItem(this.optionsData.data.access.moduleName + "_" + this.optionsData.data.access.moduleEntityName);
+      const storeVal = localStorage.getItem(this.optionsData.data.access.moduleName + "_" + this.optionsData.data.access.moduleEntityName);
       if (storeVal) {
         try {
           if (loadInfield) {

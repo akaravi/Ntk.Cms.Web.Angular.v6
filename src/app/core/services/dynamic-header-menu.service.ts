@@ -3,7 +3,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { CoreAuthService, CoreCpMainMenuModel, CoreCpMainMenuService, TokenInfoModel } from 'ntk-cms-api';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { environment } from 'src/environments/environment';
 
 const emptyMenuConfig = {
   items: []

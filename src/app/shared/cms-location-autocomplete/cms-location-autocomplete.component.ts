@@ -9,11 +9,11 @@ import {
   FilterModel
 } from 'ntk-cms-api';
 import { Output } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
