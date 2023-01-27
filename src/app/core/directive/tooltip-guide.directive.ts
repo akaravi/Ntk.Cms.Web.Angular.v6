@@ -7,15 +7,15 @@ import { TokenHelper } from '../helpers/tokenHelper';
 import { CmsToastrService } from '../services/cmsToastr.service';
 
 @Directive({
-  selector: '[tooltipGuide]'
+  selector: '[cmsTooltipGuide]'
 })
 export class TooltipGuideDirective {
   @Input() tooltipGuide: string;
-  @Input() Identity: number;
+  @Input() cmsTooltipGuide: number;
   @Input() placement: string;
   @Input() delay: number;
   tooltip: HTMLElement;
-  
+
   // 호스트 요소와 tooltip 요소 간의 거리
   offset = 10;
   constructor(
@@ -47,14 +47,14 @@ export class TooltipGuideDirective {
 
   @HostListener('mouseleave') onMouseLeave(): void {
     this.statusIsRun=false;
-    
+
     if (this.tooltip) { this.hide(); }
   }
 
   show(): void {
-    if (this.Identity && this.Identity > 0) {
+    if (this.cmsTooltipGuide && this.cmsTooltipGuide > 0) {
       this.statusIsRun = true;
-      this.coreGuideService.ServiceGetOneById(this.Identity).pipe(
+      this.coreGuideService.ServiceGetOneById(this.cmsTooltipGuide).pipe(
         map(
           (next) => {
             if(this.statusIsRun==false){
@@ -92,10 +92,10 @@ export class TooltipGuideDirective {
             } else {
               if (!environment.production) {
                 //console.log('tooltip',next.errorMessage);
-                this.cmsToastrService.typeErrorMessage(next.errorMessage);
+                this.cmsToastrService.typeErrorMessage("kay:"+this.cmsTooltipGuide+"-"+next.errorMessage);
               }
               /*run */
-              this.create('Identity :' + this.Identity);
+              this.create('Identity :' + this.cmsTooltipGuide);
               this.setPosition();
               this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
               /*run */
@@ -103,7 +103,7 @@ export class TooltipGuideDirective {
           },
           (error) => {
             if (!environment.production) {
-              this.cmsToastrService.typeError(error);
+              this.cmsToastrService.typeError("kay:"+this.cmsTooltipGuide+"-"+error);
             }
           })
       ).toPromise();
@@ -146,7 +146,7 @@ export class TooltipGuideDirective {
             } else {
               if (!environment.production) {
                 // console.log('tooltip',next.errorMessage);
-                this.cmsToastrService.typeErrorMessage(next.errorMessage);
+                this.cmsToastrService.typeErrorMessage("kay:"+this.cmsTooltipGuide+"-"+next.errorMessage);
               }
               /*run */
               this.create('Key :' + this.tooltipGuide);
@@ -157,7 +157,7 @@ export class TooltipGuideDirective {
           },
           (error) => {
             if (!environment.production) {
-              this.cmsToastrService.typeError(error);
+              this.cmsToastrService.typeError("kay:"+this.cmsTooltipGuide+"-"+error);
             }
           })
       ).toPromise();
@@ -172,7 +172,7 @@ export class TooltipGuideDirective {
       this.tooltip = null;
     }, this.delay);
   }
-   
+
   create(text: string): void {
     this.tooltip = this.renderer.createElement('span');
     text = text + '';
@@ -185,7 +185,7 @@ export class TooltipGuideDirective {
       );
     }
 
-    
+
 
     this.renderer.appendChild(document.body, this.tooltip);
     // this.renderer.appendChild(this.el.nativeElement, this.tooltip);

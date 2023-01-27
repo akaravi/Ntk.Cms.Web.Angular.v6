@@ -18,8 +18,8 @@
         "@angular-eslint/directive-selector": [
           "error",
           {
-            "type": "attribute",
-            "prefix": "app",
+            "type": ["attribute", "element"],
+            "prefix": ["app","cms","input"],
             "style": "camelCase"
           }
         ],
@@ -30,7 +30,11 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "no-empty-function": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@angular-eslint/no-empty-lifecycle-method": "off",
+        "@angular-eslint/no-input-rename": "off"
       }
     },
     {

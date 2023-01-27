@@ -134,7 +134,6 @@ import { DirDirective } from './core/directive/dir.directive';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CmsGuideNoticeComponent } from './shared/cms-guide-notice/cms-guide-notice.component';
 import { CodePreviewComponent } from './shared/code-preview/code-preview.component';
-//import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { CmsSiteCreditViewComponent } from './shared/cms-site-credit-view/cms-site-credit-view.component';
 import { CmsSiteUserCreditViewComponent } from './shared/cms-site-user-credit-view/cms-site-user-credit-view.component';
 import { SelfSaveDirective } from './core/directive/self-save.directive';
@@ -308,7 +307,7 @@ import { CmsExportEntityComponent } from './shared/cms-export-entity/cms-export-
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,
-    
+
     MatDialogModule,
     MatExpansionModule,
     MatFormFieldModule,
@@ -456,7 +455,7 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
-        /* All of your services here. It will hold the services needed by `itself`. */
+        /* All of your services here. It will hold the services needed by itself`. */
       ],
     };
   }

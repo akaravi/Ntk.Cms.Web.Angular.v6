@@ -95,7 +95,7 @@
   <ng-container cms-action-area>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-    
+
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
 
 
@@ -175,7 +175,7 @@
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> 
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}">
           {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
@@ -222,8 +222,8 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-icon-button>
-            <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+          <button mat-icon-button  (click)="onActionbuttonLinkTo(row)">
+            <mat-icon>&#8599;</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
@@ -232,8 +232,8 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.QUICK_VIEW' | translate}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-icon-button>
-            <mat-icon (click)="onActionbuttonQuickViewRow(row)">visibility</mat-icon>
+          <button mat-icon-button  (click)="onActionbuttonQuickViewRow(row)">
+            <mat-icon>visibility</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
@@ -310,7 +310,7 @@
                     |
                   </ng-container>
 
-                  
+
                 </td>
               </tr>
 

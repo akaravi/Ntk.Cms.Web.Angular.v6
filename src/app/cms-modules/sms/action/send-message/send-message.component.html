@@ -248,7 +248,7 @@
           <div class="row" style="height:83px">
             <!-- ToNumbers Field -->
             <mat-form-field class="ntk-full-width"
-              *ngIf="(!this.dataModel.toContactCategories ||this.dataModel.toContactCategories?.length == 0) && (!this.dataModel.toContactContents||this.dataModel.toContactContents?.length == 0)">
+              *ngIf="(!this.dataModel.toContactCategories ||this.dataModel.toContactCategories?.length === 0) && (!this.dataModel.toContactContents||this.dataModel.toContactContents?.length === 0)">
               <mat-label>{{'TITLE.Receiver_number' | translate}}</mat-label>
               <textarea matInput [(ngModel)]="dataModel.toNumbers" name="dataModel.toNumbers" #ToNumbers type="text"
                 placeholder="0912" rows="5"></textarea>

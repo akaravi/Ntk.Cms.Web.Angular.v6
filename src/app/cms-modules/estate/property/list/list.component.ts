@@ -824,7 +824,7 @@ export class EstatePropertyListComponent
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
 

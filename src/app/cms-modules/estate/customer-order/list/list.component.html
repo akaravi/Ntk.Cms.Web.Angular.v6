@@ -159,8 +159,8 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-icon-button>
-            <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+          <button mat-icon-button  (click)="onActionbuttonLinkTo(row)">
+            <mat-icon>&#8599;</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
@@ -176,7 +176,7 @@
                 <th>
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
                     <i class="flaticon2-copy"></i></span> {{row.id}}
-                
+
                 </th>
               </tr>
               <tr>

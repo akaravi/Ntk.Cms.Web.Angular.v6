@@ -104,6 +104,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (this.ktHeaderMenu) {
       for (const key in this.headerMenuHTMLAttributes) {
+
         if (this.headerMenuHTMLAttributes.hasOwnProperty(key)) {
           this.ktHeaderMenu.nativeElement.attributes[
             key

@@ -1,6 +1,4 @@
 import {
-    NgModule,
-    ModuleWithProviders,
     Directive,
     HostBinding,
     Output,
@@ -17,7 +15,7 @@ export type LayoutDirection = 'ltr' | 'rtl';
  * components can listen on changes of direction.
  */
 @Directive({
-  selector: '[dir]',
+  selector: '[cmsDir]',
   // TODO(hansl): maybe `$implicit` isn't the best option here, but for now that's the best we got.
   exportAs: '$implicit'
 })
@@ -31,7 +29,7 @@ export class DirDirective {
     return this._dir;
   }
   set dir(v: LayoutDirection) {
-    let old = this._dir;
+    const old = this._dir;
     this._dir = v;
     if (old != this._dir) {
       this.dirChange.emit(null);

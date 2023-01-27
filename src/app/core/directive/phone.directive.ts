@@ -2,7 +2,7 @@ import { Directive, HostListener } from '@angular/core';
 import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 @Directive({
-    selector: '[phone]',
+    selector: '[cmsPhone]',
     providers: [
         { provide: NG_VALIDATORS, useExisting: PhoneDirective, multi: true }
     ]

@@ -1,19 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 // @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700");
 // Global vendors
-@import "../node_modules/bootstrap/dist/css/bootstrap.css";
-//@import '~bootstrap/scss/bootstrap.scss';
-@import '../node_modules/font-awesome/scss/font-awesome.scss';
+//@import "bootstrap/dist/css/bootstrap.css";
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'font-awesome/scss/font-awesome.scss';
 // => Material
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 
 @import "perfect-scrollbar/css/perfect-scrollbar.css";
 
 // Global fonts
-@import "../node_modules/socicon/css/socicon.css";
-@import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@import "socicon/css/socicon.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "./assets/plugins/flaticon/flaticon.css";
 @import "./assets/plugins/flaticon2/flaticon.css";
 @import "./assets/plugins/keenthemes-icons/font/ki.css";
@@ -22,17 +22,18 @@
 @import url("./assets/fonts/fontiran.css");
 
 // Metronic styles (replace these path when using RTL css below)
-// @import "./assets/sass/style.angular.scss";
+//@import "./assets/sass/style.angular.scss";
 // For RTL,
 @import "./assets/sass/style.angular.rtl.css";
 
 /*
  karavi import
 */
-@import "../node_modules/leaflet/dist/leaflet.css";
-@import "../node_modules/ngx-ntk-smart-module/src/assets/ngx-ntk-smart-modal.scss";
-@import "../node_modules/ntk-cms-filemanager/src/assets/file-manager.styles.scss";
-@import "../node_modules/ngx-toastr/toastr.css";
+@import "leaflet/dist/leaflet.css";
+@import "ngx-ntk-smart-module/src/assets/ngx-ntk-smart-modal.scss";
+@import "ntk-cms-filemanager/src/assets/file-manager.styles.scss";
+// boostrap 5
+@import 'ngx-toastr/toastr-bs5-alert';
 /*
  karavi import
 */
@@ -184,7 +185,7 @@ mat-paginator {
 
 .BTN-text {
     margin-right: 5px !important;
-    
+
 }
 .BTN-icon {
     margin-right: 5px !important;
@@ -512,7 +513,7 @@ karavi tooltip guid
     padding: 0 50px;
 }
 
-.tooltip-example [tooltip] {
+.tooltip-example [cmsTooltip] {
     display: inline-block;
     margin: 50px 20px;
     width: 180px;
@@ -585,7 +586,7 @@ karavi tooltip guid
     display: inline-block;
     cursor: pointer;
   }
-  
+
   /* The actual popup (appears on top) */
   .popup .popuptext {
     visibility: hidden;
@@ -601,7 +602,7 @@ karavi tooltip guid
     left: 110%;
     margin-left: -80px;
   }
-  
+
   /* Popup arrow */
   .popup .popuptext::after {
     content: "";
@@ -613,20 +614,20 @@ karavi tooltip guid
     border-style: solid;
     border-color: #555 transparent transparent transparent;
   }
-  
+
   /* Toggle this class when clicking on the popup container (hide and show the popup) */
   .popup .show {
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s
   }
-  
+
   /* Add animation (fade in the popup) */
   @-webkit-keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 1;}
   }
-  
+
   @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity:1 ;}

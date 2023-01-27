@@ -52,7 +52,7 @@
   <ng-container cms-action-area>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-    
+
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
@@ -131,12 +131,12 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-icon-button>
-          <mat-icon (click)="onActionbuttonLinkTo(row)">&#8599;</mat-icon>
+          <button mat-icon-button (click)="onActionbuttonLinkTo(row)">
+          <mat-icon>&#8599;</mat-icon>
         </button>
         </mat-cell>
       </ng-container>
-      
+
       <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
         [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">

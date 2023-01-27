@@ -94,7 +94,7 @@ export class ArticletHeaderComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus !=EnumRecordStatus.Available) {
+    if (model.recordStatus != EnumRecordStatus.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
@@ -110,6 +110,7 @@ export class ArticletHeaderComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result && result.dialogChangedDate) {
+
       }
     });
     //open popup

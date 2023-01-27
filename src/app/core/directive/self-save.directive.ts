@@ -19,7 +19,7 @@ const LOADING_ICON = 'https://replit.com/public/images/loading_dots.gif';
  * Ideally to be used with the Select element(not limitted to)
  */
 @Directive({
-  selector: '[selfSave]'
+  selector: '[cmsSelfSave]'
 })
 export class SelfSaveDirective {
   @Input('observableFn')

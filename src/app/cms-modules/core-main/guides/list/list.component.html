@@ -43,7 +43,7 @@
   <ng-container cms-action-area>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-    
+
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
@@ -56,7 +56,7 @@
       <ng-container matColumnDef="Id">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <p [tooltipGuide]="row.id" Identity="row.id" placement="right" delay="500">{{row.id}}</p>
+          <p [cmsTooltipGuide]="row.id" Identity="row.id" placement="right" delay="500">{{row.id}}</p>
         </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
@@ -73,7 +73,7 @@
       <ng-container matColumnDef="Key">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['key']?.fieldTitle}}</mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <p [tooltipGuide]="row.key" placement="right" delay="500" *ngIf="row.key?.length>0">{{row.key}}</p>
+          <p [cmsTooltipGuide]="row.key" placement="right" delay="500" *ngIf="row.key?.length>0">{{row.key}}</p>
         </mat-cell>
       </ng-container>
       <!-- TitleFa Column -->

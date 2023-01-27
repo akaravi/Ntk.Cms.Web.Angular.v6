@@ -1,14 +1,15 @@
 import { Directive, Input, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[tooltip]'
+  selector: '[cmsTooltip]'
 })
 export class TooltipDirective {
-  @Input('tooltip') tooltipTitle: string;
+  @Input('cmsTooltip')
+   tooltipTitle: string;
   @Input() placement: string;
   @Input() delay: number;
-  tooltip: HTMLElement;
-  // 호스트 요소와 tooltip 요소 간의 거리
+  cmsTooltip: HTMLElement;
+  // 호스트 요소와 cmsTooltip 요소 간의 거리
   offset = 10;
   constructor(
     private el: ElementRef,
@@ -17,61 +18,61 @@ export class TooltipDirective {
 
   @HostListener('mouseenter') onMouseEnter(): void {
 
-    if (!this.tooltip) { this.show(); }
+    if (!this.cmsTooltip) { this.show(); }
   }
 
   @HostListener('mouseleave') onMouseLeave(): void {
 
-    if (this.tooltip) { this.hide(); }
+    if (this.cmsTooltip) { this.hide(); }
   }
 
   show(): void {
 
     this.create();
     this.setPosition();
-    this.renderer.addClass(this.tooltip, 'ng-tooltip-show');
+    this.renderer.addClass(this.cmsTooltip, 'ng-cmsTooltip-show');
   }
 
   hide(): void {
 
-    this.renderer.removeClass(this.tooltip, 'ng-tooltip-show');
+    this.renderer.removeClass(this.cmsTooltip, 'ng-cmsTooltip-show');
     window.setTimeout(() => {
-      this.renderer.removeChild(document.body, this.tooltip);
-      this.tooltip = null;
+      this.renderer.removeChild(document.body, this.cmsTooltip);
+      this.cmsTooltip = null;
     }, this.delay);
   }
 
   create(): void {
-    this.tooltip = this.renderer.createElement('span');
+    this.cmsTooltip = this.renderer.createElement('span');
 
     this.renderer.appendChild(
-      this.tooltip,
+      this.cmsTooltip,
       this.renderer.createText(this.tooltipTitle) // textNode
     );
 
-    this.renderer.appendChild(document.body, this.tooltip);
-    // this.renderer.appendChild(this.el.nativeElement, this.tooltip);
+    this.renderer.appendChild(document.body, this.cmsTooltip);
+    // this.renderer.appendChild(this.el.nativeElement, this.cmsTooltip);
 
-    this.renderer.addClass(this.tooltip, 'ng-tooltip');
-    this.renderer.addClass(this.tooltip, `ng-tooltip-${this.placement}`);
+    this.renderer.addClass(this.cmsTooltip, 'ng-cmsTooltip');
+    this.renderer.addClass(this.cmsTooltip, `ng-cmsTooltip-${this.placement}`);
 
     // delay 설정
-    this.renderer.setStyle(this.tooltip, '-webkit-transition', `opacity ${this.delay}ms`);
-    this.renderer.setStyle(this.tooltip, '-moz-transition', `opacity ${this.delay}ms`);
-    this.renderer.setStyle(this.tooltip, '-o-transition', `opacity ${this.delay}ms`);
-    this.renderer.setStyle(this.tooltip, 'transition', `opacity ${this.delay}ms`);
+    this.renderer.setStyle(this.cmsTooltip, '-webkit-transition', `opacity ${this.delay}ms`);
+    this.renderer.setStyle(this.cmsTooltip, '-moz-transition', `opacity ${this.delay}ms`);
+    this.renderer.setStyle(this.cmsTooltip, '-o-transition', `opacity ${this.delay}ms`);
+    this.renderer.setStyle(this.cmsTooltip, 'transition', `opacity ${this.delay}ms`);
   }
 
   setPosition(): void {
     // 호스트 요소의 사이즈와 위치 정보
     const hostPos = this.el.nativeElement.getBoundingClientRect();
 
-    // tooltip 요소의 사이즈와 위치 정보
-    const tooltipPos = this.tooltip.getBoundingClientRect();
+    // cmsTooltip 요소의 사이즈와 위치 정보
+    const tooltipPos = this.cmsTooltip.getBoundingClientRect();
 
     // window의 scroll top
     // getBoundingClientRect 메소드는 viewport에서의 상대적인 위치를 반환한다.
-    // 스크롤이 발생한 경우, tooltip 요소의 top에 세로 스크롤 좌표값을 반영하여야 한다.
+    // 스크롤이 발생한 경우, cmsTooltip 요소의 top에 세로 스크롤 좌표값을 반영하여야 한다.
     const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
     let top, left;
@@ -96,8 +97,8 @@ export class TooltipDirective {
       left = hostPos.right + this.offset;
     }
 
-    // 스크롤이 발생한 경우, tooltip 요소의 top에 세로 스크롤 좌표값을 반영하여야 한다.
-    this.renderer.setStyle(this.tooltip, 'top', `${top + scrollPos}px`);
-    this.renderer.setStyle(this.tooltip, 'left', `${left}px`);
+    // 스크롤이 발생한 경우, cmsTooltip 요소의 top에 세로 스크롤 좌표값을 반영하여야 한다.
+    this.renderer.setStyle(this.cmsTooltip, 'top', `${top + scrollPos}px`);
+    this.renderer.setStyle(this.cmsTooltip, 'left', `${left}px`);
   }
 }
