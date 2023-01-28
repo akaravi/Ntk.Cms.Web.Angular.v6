@@ -1,24 +1,16 @@
 <mat-form-field style="width:100%" appearance="fill">
   <mat-label>{{optionLabel}}</mat-label>
-  <mat-chip-grid #chipList aria-label="tag selection"  [disabled]="optionDisabled">
-    <mat-chip
-      *ngFor="let item of tagDataModel"
-      (removed)="remove(item)">
+  <mat-chip-list #chipList aria-label="tag selection" [disabled]="optionDisabled">
+    <mat-chip *ngFor="let item of tagDataModel" (removed)="remove(item)">
       {{item.display}}
       <button matChipRemove>
         <mat-icon>cancel</mat-icon>
       </button>
     </mat-chip>
-    <input
-      [placeholder]="optionPlaceholder"
-      #tagInput
-      [matChipInputAddOnBlur]="addOnBlur"
-      [formControl]="tagCtrl"
-      [matAutocomplete]="auto"
-      [matChipInputFor]="chipList"
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+    <input [placeholder]="optionPlaceholder" #tagInput [matChipInputAddOnBlur]="addOnBlur" [formControl]="tagCtrl"
+      [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       (matChipInputTokenEnd)="add($event)">
-  </mat-chip-grid>
+  </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
     <mat-option *ngFor="let item of filteredOptions  | async" [value]="item">
       {{item.display}}

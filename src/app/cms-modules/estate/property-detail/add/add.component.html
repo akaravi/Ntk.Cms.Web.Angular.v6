@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -23,11 +23,13 @@
     </mat-form-field>
     <!-- LinkPropertyTypeLanduseId Field -->
     <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
-      [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [optionPlaceholder]="this.translate.instant('TITLE.user')">
+      [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
+      [optionPlaceholder]="this.translate.instant('TITLE.user')">
     </app-estate-property-type-landuse-selector>
     <!-- LinkPropertyDetailGroupId Field -->
-    <app-estate-property-detail-group-selector (optionChange)="onActionSelectorDetailGroup($event)" [(loading)]="loading"
-      [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+    <app-estate-property-detail-group-selector (optionChange)="onActionSelectorDetailGroup($event)"
+      [(loading)]="loading" [optionSelectForce]="dataModel.linkPropertyDetailGroupId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-estate-property-detail-group-selector>
     <!-- IconFont Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['iconFont']?.accessWatchField">
@@ -66,8 +68,9 @@
     </mat-form-field>
     <!-- InputDataType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{'TITLE.TypeId' | translate}}" [(ngModel)]="dataModel.inputDataType" name="dataModel.inputDataType"
-        #InputDataType="ngModel" panelClass="InputDataType-{{ dataModel.inputDataType }}">
+      <mat-select placeholder="{{'TITLE.TypeId' | translate}}" [(ngModel)]="dataModel.inputDataType"
+        name="dataModel.inputDataType" #InputDataType="ngModel"
+        panelClass="InputDataType-{{ dataModel.inputDataType }}">
         <mat-option *ngFor="
                       let item of dataModelInputDataTypeEnumResult.listItems;
                       index as i
@@ -157,19 +160,17 @@
 
     <mat-form-field style="width: 100%;" appearance="fill">
       <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
-      <mat-chip-grid #chipList aria-label="this.translate.instant('TITLE.key_word')">
+      <mat-chip-list #chipList aria-label="this.translate.instant('TITLE.key_word')">
         <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
           {{item}}
           <button matChipRemove>
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip>
-        <input placeholder="{{'TITLE.key_word' | translate}}+"
-               [matChipInputFor]="chipList"
-               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               [matChipInputAddOnBlur]="addOnBlurTag"
-               (matChipInputTokenEnd)="addTag($event)">
-      </mat-chip-grid>
+        <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
+          (matChipInputTokenEnd)="addTag($event)">
+      </mat-chip-list>
     </mat-form-field>
 
 

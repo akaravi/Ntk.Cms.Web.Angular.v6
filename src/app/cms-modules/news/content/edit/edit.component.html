@@ -154,17 +154,17 @@
 
         <mat-form-field style="width: 100%;" appearance="fill">
           <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
-          <mat-chip-grid #chipList aria-label="this.translate.instant('TITLE.key_word')">
+          <mat-chip-list #chipList aria-label="this.translate.instant('TITLE.key_word')">
             <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
               {{item}}
               <button matChipRemove>
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-chip>
-            <input placeholder="{{'TITLE.key_word' | translate}}+"[matChipInputFor]="chipList"
+            <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
               (matChipInputTokenEnd)="addTag($event)">
-          </mat-chip-grid>
+          </mat-chip-list>
         </mat-form-field>
 
 
@@ -184,8 +184,8 @@
         <p>{{'TITLE.Content_attachments' | translate}}</p>
         <div class="mb-3">
           <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
-          <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
-            aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+            <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+              aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
           </a>
         </div>
         <div class="mb-9">
