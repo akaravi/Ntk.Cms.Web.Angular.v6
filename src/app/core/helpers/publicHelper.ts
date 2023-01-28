@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,20 +14,17 @@ import {
   CoreSiteService,
   DataFieldInfoModel,
   EnumAnswerStatus,
-  EnumInfoModel,
-  EnumManageUserAccessUserTypes,
-  EnumTicketStatus,
+  EnumInfoModel, EnumTicketStatus,
   ErrorExceptionResult,
   ErrorExceptionResultBase,
-  TokenInfoModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'ntk-cms-filemanager';
 import { map } from 'rxjs/operators';
+import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 import { CmsToastrService } from '../services/cmsToastr.service';
-import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 // import { ProviderAst } from '@angular/compiler';
 
 @Injectable({
@@ -424,7 +422,7 @@ export class PublicHelper {
   }
   async getCurrentSite(): Promise<ErrorExceptionResult<CoreSiteModel>> {
     const storeSnapshot = this.cmsStoreService.getStateSnapshot();
-    if (storeSnapshot?.CoreSiteResultStore) {
+    if (storeSnapshot?.CoreSiteResultStore && storeSnapshot?.CoreSiteResultStore.item&& storeSnapshot?.CoreSiteResultStore?.item?.id>0) {
       return storeSnapshot.CoreSiteResultStore;
     }
     return await this.coreSiteService.ServiceCurrectSite()
@@ -435,7 +433,7 @@ export class PublicHelper {
   }
   async getCurrentSiteModule(): Promise<ErrorExceptionResult<CoreModuleModel>> {
     const storeSnapshot = this.cmsStoreService.getStateSnapshot();
-    if (storeSnapshot?.CoreModuleResultStore) {
+    if (storeSnapshot?.CoreModuleResultStore && storeSnapshot?.CoreModuleResultStore?.listItems?.length>0) {
       return storeSnapshot.CoreModuleResultStore;
     }
     return await this.coreModuleService.ServiceGetAllModuleName(null)

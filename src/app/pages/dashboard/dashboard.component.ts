@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleModel, EnumManageUserAccessUserTypes, ErrorExceptionResult, TokenInfoModel } from 'ntk-cms-api';
+import { CoreModuleModel, ErrorExceptionResult, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.getCurrentSiteModule();
+      this.cdr.detectChanges();
     });
     this.cmsApiStoreSubscribe = this.tokenHelper
       .getCurrentTokenOnChange()
@@ -42,7 +43,6 @@ export class DashboardComponent implements OnInit {
   }
   async getCurrentSiteModule(): Promise<void> {
     this.dataCoreModuleModelResult = await this.publicHelper.getCurrentSiteModule();
-
     this.checkModuleExist = new Map<string, CoreModuleModel>();
     if (this.dataCoreModuleModelResult && this.dataCoreModuleModelResult.listItems)
       this.dataCoreModuleModelResult.listItems.forEach((el) => this.checkModuleExist[el.className.toLowerCase()] = el);
