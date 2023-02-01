@@ -1,29 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HyperShopComponent } from './hyperShop.component';
-import { HyperShopRoutes } from './hyperShop.routing';
+import { NgModule } from '@angular/core';
+import { HyperShopComponent } from './hyper-shop.component';
+import { HyperShopRoutes } from './hyper-shop.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { SharedModule } from 'src/app/shared.module';
 
-import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import {
-   CoreAuthService,
-  CoreEnumService,
-  CoreModuleTagService,
-  HyperShopConfigurationService,
-  HyperShopCategoryService,
-  HyperShopContentService,
-  CoreModuleService
-} from 'ntk-cms-api';
-import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
+import {
+  CoreAuthService,
+  CoreEnumService, CoreModuleService, CoreModuleTagService, HyperShopCategoryService, HyperShopConfigurationService, HyperShopContentService
+} from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { HyperShopConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { HyperShopConfigSiteComponent } from './config/site/config-site.component';
 import { HyperShopCategoryAddComponent } from './category/add/add.component';
 import { HyperShopCategoryEditComponent } from './category/edit/edit.component';
 import { HyperShopCategoryListComponent } from './category/list/list.component';
@@ -54,11 +46,11 @@ import { HyperShopContentViewComponent } from './content/view/view.component';
     HyperShopRoutes,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
+
     SharedModule.forRoot(),
     AngularEditorModule,
-    
-    
+
+
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,

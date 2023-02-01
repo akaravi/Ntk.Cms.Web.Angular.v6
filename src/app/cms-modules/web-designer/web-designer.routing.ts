@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { WebDesignerMainIntroAddComponent } from './intro/add/add.component';
 import { WebDesignerMainIntroEditComponent } from './intro/edit/edit.component';
 import { WebDesignerMainIntroListComponent } from './intro/list/list.component';
@@ -9,7 +9,7 @@ import { WebDesignerMainPageDependencyListComponent } from './page-dependency/li
 import { WebDesignerMainPageTemplateListComponent } from './page-template/list/list.component';
 import { WebDesignerMainPageListGridComponent } from './page/list-grid/list-grid.component';
 import { WebDesignerMainPageListComponent } from './page/list/list.component';
-import { WebDesignerComponent } from './webDesigner.component';
+import { WebDesignerComponent } from './web-designer.component';
 const routes: Routes = [
   {
     path: '',

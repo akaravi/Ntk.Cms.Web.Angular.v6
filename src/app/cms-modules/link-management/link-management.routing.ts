@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LinkManagementAccountingDetailListComponent } from './accounting-detail/list/list.component';
 import { LinkManagementAccountingListComponent } from './accounting/list/list.component';
 import { LinkManagementBillboardPatternListComponent } from './billboard-pattern/list/list.component';
 import { LinkManagementBillboardAddComponent } from './billboard/add/add.component';
 import { LinkManagementBillboardEditComponent } from './billboard/edit/edit.component';
 import { LinkManagementBillboardListComponent } from './billboard/list/list.component';
-import { LinkManagementComponent } from './linkManagement.component';
+import { LinkManagementComponent } from './link-management.component';
 import { LinkManagementMemberListComponent } from './member/list/list.component';
 import { LinkManagementTargetBillboardLogListComponent } from './target-billboard-log/list/list.component';
 import { LinkManagementTargetAddComponent } from './target/add/add.component';

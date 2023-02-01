@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HyperShopContentModel } from 'ntk-cms-api';
+import { RouterModule, Routes } from '@angular/router';
 import { HyperShopCategoryListComponent } from './category/list/list.component';
-import { HyperShopConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { HyperShopConfigSiteComponent } from './config/site/config-site.component';
 import { HyperShopContentListComponent } from './content/list/list.component';
-import { HyperShopComponent } from './hyperShop.component';
+import { HyperShopComponent } from './hyper-shop.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HyperShopComponent,
     children: [
-     /* Config */
-     {
-      path: 'config',
-      loadChildren: () =>
-        import('./config/hyper-shop-config.module').then((m) => m.HyperShopConfigModule),
-    },
-    /* Config */
+      /* Config */
+      {
+        path: 'config',
+        loadChildren: () =>
+          import('./config/hyper-shop-config.module').then((m) => m.HyperShopConfigModule),
+      },
+      /* Config */
       {
         path: 'category',
         component: HyperShopCategoryListComponent

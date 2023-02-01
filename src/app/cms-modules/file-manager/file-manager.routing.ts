@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FileContentExplorerComponent } from './content/explorer/explorer.component';
 import { FileContentListComponent } from './content/list/list.component';
-import { FileManagerComponent } from './fileManager.component';
+import { FileManagerComponent } from './file-manager.component';
 
 
 const routes: Routes = [

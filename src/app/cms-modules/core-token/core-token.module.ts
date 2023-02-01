@@ -1,9 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreTokenComponent } from './coreToken.component';
-import { CoreTokenRoutes } from './coreToken.routing';
-import { CoreTokenUserListComponent } from './user/list/list.component';
-import { CoreTokenUserEditComponent } from './user/edit/edit.component';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   CoreEnumService,
   CoreModuleService,
@@ -15,25 +12,28 @@ import {
   CoreTokenUserService,
   CoreUserService
 } from 'ntk-cms-api';
-import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
-import { CoreTokenUserLogListComponent } from './userLog/list/list.component';
-import { CoreTokenUserLogEditComponent } from './userLog/edit/edit.component';
-import { CoreTokenUserBadLoginListComponent } from './userBadLogin/list/list.component';
-import { CoreTokenUserBadLoginEditComponent } from './userBadLogin/edit/edit.component';
-import { CoreTokenUserViewComponent } from './user/view/view.component';
-import { CoreTokenUserBadLoginViewComponent } from './userBadLogin/view/view.component';
-import { CoreTokenUserLogViewComponent } from './userLog/view/view.component';
-import { CoreTokenActivationListComponent } from './activation/list/list.component';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreTokenActivationEditComponent } from './activation/edit/edit.component';
+import { CoreTokenActivationListComponent } from './activation/list/list.component';
 import { CoreTokenActivationViewComponent } from './activation/view/view.component';
-import { CoreTokenMicroServiceListComponent } from './micro-service/list/list.component';
-import { CoreTokenMicroServiceEditComponent } from './micro-service/edit/edit.component';
-import { CoreTokenMicroServiceViewComponent } from './micro-service/view/view.component';
-import { CoreTokenMicroServiceLogListComponent } from './micro-service-log/list/list.component';
+import { CoreTokenComponent } from './core-token.component';
+import { CoreTokenRoutes } from './core-token.routing';
 import { CoreTokenMicroServiceLogEditComponent } from './micro-service-log/edit/edit.component';
+import { CoreTokenMicroServiceLogListComponent } from './micro-service-log/list/list.component';
 import { CoreTokenMicroServiceLogViewComponent } from './micro-service-log/view/view.component';
+import { CoreTokenMicroServiceEditComponent } from './micro-service/edit/edit.component';
+import { CoreTokenMicroServiceListComponent } from './micro-service/list/list.component';
+import { CoreTokenMicroServiceViewComponent } from './micro-service/view/view.component';
+import { CoreTokenUserEditComponent } from './user/edit/edit.component';
+import { CoreTokenUserListComponent } from './user/list/list.component';
+import { CoreTokenUserViewComponent } from './user/view/view.component';
+import { CoreTokenUserBadLoginEditComponent } from './userBadLogin/edit/edit.component';
+import { CoreTokenUserBadLoginListComponent } from './userBadLogin/list/list.component';
+import { CoreTokenUserBadLoginViewComponent } from './userBadLogin/view/view.component';
+import { CoreTokenUserLogEditComponent } from './userLog/edit/edit.component';
+import { CoreTokenUserLogListComponent } from './userLog/list/list.component';
+import { CoreTokenUserLogViewComponent } from './userLog/view/view.component';
 
 @NgModule({
   imports: [

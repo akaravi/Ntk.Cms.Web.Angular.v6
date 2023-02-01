@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CoreTokenActivationListComponent } from './activation/list/list.component';
-import { CoreTokenComponent } from './coreToken.component';
+import { CoreTokenComponent } from './core-token.component';
 import { CoreTokenMicroServiceLogListComponent } from './micro-service-log/list/list.component';
 import { CoreTokenMicroServiceListComponent } from './micro-service/list/list.component';
 import { CoreTokenUserListComponent } from './user/list/list.component';

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { TestComponent } from './test/test.component';
+import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   {
     path: 'test',
-    component:TestComponent
+    component: TestComponent
   },
   {
     path: '',
@@ -23,8 +23,8 @@ const routes: Routes = [
         loadChildren: () =>
           import('./builder/builder.module').then((m) => m.BuilderModule),
       },
-  
-  
+
+
 
       // ** cms */
       {
@@ -45,7 +45,7 @@ const routes: Routes = [
       {
         path: 'coretoken',
         loadChildren: () =>
-          import('../cms-modules/core-token/coreToken.module').then(m => m.CoreTokenModule)
+          import('../cms-modules/core-token/core-token.module').then(m => m.CoreTokenModule)
       },
       {
         path: 'corelog',
@@ -85,12 +85,12 @@ const routes: Routes = [
       {
         path: 'hypershop',
         loadChildren: () =>
-          import('../cms-modules/hyper-shop/hyperShop.module').then(m => m.HyperShopModule)
+          import('../cms-modules/hyper-shop/hyper-shop.module').then(m => m.HyperShopModule)
       },
       {
         path: 'linkmanagement',
         loadChildren: () =>
-          import('../cms-modules/link-management/linkManagement.module').then(m => m.LinkManagementModule)
+          import('../cms-modules/link-management/link-management.module').then(m => m.LinkManagementModule)
       },
       {
         path: 'member',
@@ -112,7 +112,7 @@ const routes: Routes = [
       {
         path: 'filemanager',
         loadChildren: () =>
-          import('../cms-modules/file-manager/fileManager.module').then(m => m.FileManagerModule)
+          import('../cms-modules/file-manager/file-manager.module').then(m => m.FileManagerModule)
       },
       {
         path: 'polling',
@@ -137,12 +137,17 @@ const routes: Routes = [
       {
         path: 'universalmenu',
         loadChildren: () =>
-          import('../cms-modules/universal-menu/universalMenu.module').then(m => m.UniversalMenuModule)
+          import('../cms-modules/universal-menu/universal-menu.module').then(m => m.UniversalMenuModule)
       },
       {
         path: 'webdesigner',
         loadChildren: () =>
-          import('../cms-modules/web-designer/webDesigner.module').then(m => m.WebDesignerModule)
+          import('../cms-modules/web-designer/web-designer.module').then(m => m.WebDesignerModule)
+      },
+      {
+        path: 'web-designer-builder',
+        loadChildren: () =>
+          import('../cms-modules/web-designer-builder/web-designer-builder.module').then(m => m.WebDesignerBuilderModule)
       },
       {
         path: 'estate',

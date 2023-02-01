@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { UniversalMenuComponent } from './universalMenu.component';
+import { RouterModule, Routes } from '@angular/router';
+import { UniversalMenuComponent } from './universal-menu.component';
 
 const routes: Routes = [
   {
