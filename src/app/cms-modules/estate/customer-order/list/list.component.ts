@@ -1,33 +1,28 @@
 
-import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  EstateCustomerOrderModel,
-  EstateCustomerOrderService,
-  EnumSortType,
-  ErrorExceptionResult,
-  FilterModel,
-  TokenInfoModel,
-  EnumRecordStatus,
-  FilterDataModel,
-  DataFieldInfoModel
+  DataFieldInfoModel, EnumRecordStatus, EnumSortType,
+  ErrorExceptionResult, EstateCustomerOrderModel,
+  EstateCustomerOrderService, FilterDataModel, FilterModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { MatSort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
-import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-estate-customer-order-list',
   templateUrl: './list.component.html',
@@ -198,7 +193,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/estate/customer-order/add-copy', this.tableRowSelected.id]);
   }
-  onActionbuttonEditRow(model: EstateCustomerOrderModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: EstateCustomerOrderModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -212,8 +207,13 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/estate/customer-order/edit', this.tableRowSelected.id]);
 
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/customer-order/edit/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/estate/customer-order/edit', this.tableRowSelected.id]);
+    }
   }
   onActionbuttonDeleteRow(model: EstateCustomerOrderModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
@@ -368,7 +368,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
