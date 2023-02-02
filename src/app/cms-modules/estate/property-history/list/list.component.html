@@ -137,7 +137,7 @@
                 <td>{{'TITLE.Id' | translate}}:</td>
                 <td> <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
                     &nbsp;
-                    <i class="flaticon2-copy"></i></span>{{row.id}}
+                    <i class="flaticon2-copy brown-color"></i></span>{{row.id}}
                 </td>
               </tr>
               <tr *ngIf="row.linkPropertyId && row.linkPropertyId.length>0">
@@ -146,7 +146,10 @@
                   <span class="navi-icon pointer" [cdkCopyToClipboard]="row.linkPropertyId" (click)="onActionCopied()">
                     {{row.linkPropertyId|estatePropertyInfo |async}}
                     &nbsp;
-                    <i class="flaticon2-copy"></i></span>
+                    <i class="flaticon2-copy brown-color" style="color: brown;"></i></span>
+                  <button mat-icon-button (click)="onActionbuttonQuickViewRow(row.linkPropertyId)">
+                    <mat-icon>visibility</mat-icon>
+                  </button>
                 </td>
               </tr>
               <tr *ngIf="row.linkCustomerOrderId && row.linkCustomerOrderId.length>0">
@@ -155,7 +158,7 @@
                     (click)="onActionCopied()">
                     {{row.linkCustomerOrderId |estateCustomerOrderInfo |async}}
                     &nbsp;
-                    <i class="flaticon2-copy"></i></span>
+                    <i class="flaticon2-copy brown-color"></i></span>
                 </td>
               </tr>
               <tr *ngIf="row.linkEstateUserId && row.linkEstateUserId.length>0">
@@ -164,7 +167,7 @@
                     (click)="onActionCopied()">
                     {{row.linkEstateUserId |estateAccountUserInfo |async}}
                     &nbsp;
-                    <i class="flaticon2-copy"></i></span>
+                    <i class="flaticon2-copy brown-color"></i></span>
                 </td>
               </tr>
               <tr *ngIf="row.linkEstateAgencyId && row.linkEstateAgencyId.length>0">
@@ -173,7 +176,7 @@
                     (click)="onActionCopied()">
                     {{row.linkEstateAgencyId |estateAccountAgencyInfo |async}}
                     &nbsp;
-                    <i class="flaticon2-copy"></i></span>
+                    <i class="flaticon2-copy brown-color"></i></span>
                 </td>
               </tr>
               <tr *ngIf="row.title && row.title.length>0">
