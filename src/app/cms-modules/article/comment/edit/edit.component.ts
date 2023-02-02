@@ -1,27 +1,20 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  ArticleCommentService,
-  ArticleCommentModel,
-  DataFieldInfoModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  ArticleCommentModel, ArticleCommentService, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult,
+  FormInfoModel
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ComponentActionEnum } from 'src/app/core/models/component-action-enum';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-article-comment-edit',
   templateUrl: './edit.component.html',
@@ -70,6 +63,7 @@ export class ArticleCommentEditComponent implements OnInit {
     } else if (this.requestContentId > 0) {
       this.ComponentAction = ComponentActionEnum.add;
       this.formInfo.formTitle = this.translate.instant('TITLE.Submit_A_New_Comment');
+      this.DataGetAccess();
     }
     if (this.ComponentAction === ComponentActionEnum.none) {
       this.cmsToastrService.typeErrorComponentAction();
@@ -79,6 +73,24 @@ export class ArticleCommentEditComponent implements OnInit {
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
+  }
+  DataGetAccess(): void {
+    this.commentService
+      .ServiceViewModel()
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            // this.dataAccessModel = next.access;
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+          }
+        },
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
+        }
+      }
+      );
   }
   DataGetOneContent(): void {
     if (this.requestId <= 0) {

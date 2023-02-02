@@ -1,5 +1,4 @@
-<app-cms-guide-notice [Key]="'estate.property.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'"
-  >
+<app-cms-guide-notice [Key]="'estate.property.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
 
 </app-cms-guide-notice>
 
@@ -43,14 +42,14 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button  *ngIf="dataModelResult.access.accessAddRow && optionloadByRoute " (click)="onActionbuttonNewRow()"
+    <button *ngIf="dataModelResult.access.accessAddRow && optionloadByRoute " (click)="onActionbuttonNewRow($event)"
       type="button" class="btn btn-outline-primary BTN-text" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button
       *ngIf="dataModelResult.access.accessEditRow && (tableRowSelected?.id?.length>0 || requestLinkPropertyTypeLanduseId?.length>0)"
-      (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning BTN-text" data-toggle="modal"
-      data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+      (click)="onActionbuttonEditRow(tableRowSelected,$event)" type="button" class="btn btn-outline-warning BTN-text"
+      data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button
       *ngIf="dataModelResult.access.accessDeleteRow && optionloadByRoute&& (tableRowSelected?.id?.length>0 || requestLinkPropertyTypeLanduseId?.length>0)"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger BTN-text">{{'ACTION.DELETE' |
@@ -402,7 +401,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-icon-button  (click)="onActionbuttonLinkTo(row)">
+          <button mat-icon-button (click)="onActionbuttonLinkTo(row)">
             <mat-icon>&#8599;</mat-icon>
           </button>
         </mat-cell>
@@ -412,7 +411,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.QUICK_VIEW' | translate}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-icon-button  (click)="onActionbuttonQuickViewRow(row)">
+          <button mat-icon-button (click)="onActionbuttonQuickViewRow(row)">
             <mat-icon>visibility</mat-icon>
           </button>
         </mat-cell>

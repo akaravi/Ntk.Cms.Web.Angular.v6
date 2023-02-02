@@ -1,31 +1,26 @@
 
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import {
-  EnumSortType,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  EstatePropertyCompanyModel,
-  EstatePropertyCompanyService,
-  TokenInfoModel,
-  EnumRecordStatus,
-  DataFieldInfoModel,
-} from 'ntk-cms-api';
-import { PublicHelper } from '../../../../core/helpers/publicHelper';
-import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
-import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subscription } from 'rxjs';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  DataFieldInfoModel, EnumRecordStatus, EnumSortType,
+  ErrorExceptionResult, EstatePropertyCompanyModel,
+  EstatePropertyCompanyService, FilterDataModel,
+  FilterModel, TokenInfoModel
+} from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { PublicHelper } from '../../../../core/helpers/publicHelper';
+import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
+import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 import { EstatePropertyCompanyDeleteComponent } from '../delete/delete.component';
 @Component({
   selector: 'app-estate-property-company-list',
@@ -53,6 +48,8 @@ export class EstatePropertyCompanyListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
   }
+  link: string;
+
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyCompanyModel> = new ErrorExceptionResult<EstatePropertyCompanyModel>();
 
@@ -158,7 +155,7 @@ export class EstatePropertyCompanyListComponent implements OnInit, OnDestroy {
     this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
-  onActionbuttonNewRow(): void {
+  onActionbuttonNewRow(event?: MouseEvent): void {
 
     if (
       this.dataModelResult == null ||
@@ -168,9 +165,15 @@ export class EstatePropertyCompanyListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    this.router.navigate(['/estate/property-company/add']);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/property-company/add/";
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/estate/property-company/add']);
+    }
   }
-  onActionbuttonEditRow(model: EstatePropertyCompanyModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: EstatePropertyCompanyModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -184,9 +187,15 @@ export class EstatePropertyCompanyListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/estate/property-company/edit', this.tableRowSelected.id]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/property-company/edit/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/estate/property-company/edit', this.tableRowSelected.id]);
+    }
   }
-  onActionbuttonProperty(model: EstatePropertyCompanyModel = this.tableRowSelected): void {
+  onActionbuttonProperty(model: EstatePropertyCompanyModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -200,7 +209,13 @@ export class EstatePropertyCompanyListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/estate/property/LinkCompanyId', this.tableRowSelected.id]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/property/LinkCompanyId/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/estate/property/LinkCompanyId', this.tableRowSelected.id]);
+    }
   }
   onActionbuttonDeleteRow(model: EstatePropertyCompanyModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {

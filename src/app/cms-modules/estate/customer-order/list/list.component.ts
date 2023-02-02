@@ -168,7 +168,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.filteModelContent.rowPerPage = event.pageSize;
     this.DataGetAll();
   }
-  onActionbuttonNewRow(): void {
+  onActionbuttonNewRow(event?: MouseEvent): void {
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -179,19 +179,36 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     }
     if (this.categoryModelSelected && this.categoryModelSelected.id && this.categoryModelSelected.id.length > 0) {
       this.router.navigate(['/estate/customer-order/add/LinkParentId', this.categoryModelSelected.id]);
+      if (event?.ctrlKey) {
+        this.link = "/#/estate/customer-order/add/LinkParentId/" + this.tableRowSelected.id;
+        window.open(this.link, "_blank");
+      } else {
+        this.router.navigate(['/estate/customer-order/add/LinkParentId', this.categoryModelSelected.id]);
+      }
     }
     else {
-      this.router.navigate(['/estate/customer-order/add']);
+      if (event?.ctrlKey) {
+        this.link = "/#/estate/customer-order/add/";
+        window.open(this.link, "_blank");
+      } else {
+        this.router.navigate(['/estate/customer-order/add']);
+      }
     }
   }
-  onActionbuttonCopyNewRow(model: EstateCustomerOrderModel = this.tableRowSelected): void {
+  onActionbuttonCopyNewRow(model: EstateCustomerOrderModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/estate/customer-order/add-copy', this.tableRowSelected.id]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/customer-order/add-copy/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/estate/customer-order/add-copy', this.tableRowSelected.id]);
+    }
   }
   onActionbuttonEditRow(model: EstateCustomerOrderModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
@@ -295,7 +312,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = model;
     window.open(this.tableRowSelected.urlViewContent, '_blank');
   }
-  onActionbuttonContentList(model: EstateCustomerOrderModel = this.tableRowSelected): void {
+  onActionbuttonContentList(model: EstateCustomerOrderModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
       const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
       this.cmsToastrService.typeErrorSelected(message);
@@ -303,7 +320,13 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     }
     this.tableRowSelected = model;
 
-    this.router.navigate(['/estate/property/LinkCustomerOrderId/', this.tableRowSelected.id]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/property/LinkCustomerOrderId/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/estate/property/LinkCustomerOrderId/', this.tableRowSelected.id]);
+    }
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;

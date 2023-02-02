@@ -15,17 +15,17 @@
   </ng-container>
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
+    <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow($event)" type="button"
       class="btn btn-outline-primary BTN-text" id="openModalButton" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessAddRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
-      (click)="onActionbuttonCopyNewRow()" type="button" class="btn btn-outline-primary BTN-text" id="openModalButton"
-      data-toggle="modal" data-target="#categoryModal">{{'ACTION.COPY' |
+      (click)="onActionbuttonCopyNewRow(tableRowSelected,$event)" type="button" class="btn btn-outline-primary BTN-text"
+      id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.COPY' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
-      (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning BTN-text" data-toggle="modal"
-      data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+      (click)="onActionbuttonEditRow(tableRowSelected,$event)" type="button" class="btn btn-outline-warning BTN-text"
+      data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
       (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger BTN-text">{{'ACTION.DELETE' |
       translate}}</button>
@@ -132,7 +132,8 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
-            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
+            <button mat-menu-item (click)="onActionbuttonEditRow(row,$event)"
+              *ngIf="dataModelResult.access.accessEditRow">
               <mat-icon>mode_edit</mat-icon>
               <span>{{'ACTION.EDIT' | translate}}</span>
             </button>
@@ -140,7 +141,7 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonContentList(row)">
+            <button mat-menu-item (click)="onActionbuttonContentList(row,$event)">
               <mat-icon>list</mat-icon>
               <span>{{'ACTION.SHOWPROPERTIES' | translate}}</span>
             </button>
@@ -192,13 +193,14 @@
                 <td></td>
                 <td>
 
-                  <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow"
+                  <a (click)="onActionbuttonEditRow(row,$event)" *ngIf="dataModelResult.access.accessEditRow"
                     class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
 
                   <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
                     class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
 
-                  <a (click)="onActionbuttonContentList(row)" class="link-primary pointer"> {{'ACTION.SHOWPROPERTIES' |
+                  <a (click)="onActionbuttonContentList(row,$event)" class="link-primary pointer">
+                    {{'ACTION.SHOWPROPERTIES' |
                     translate}} </a>|
 
                   <a (click)="onActionbuttonOpenBillboard(row)" class="link-primary pointer">

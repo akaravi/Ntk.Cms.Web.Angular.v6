@@ -13,14 +13,15 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow && this.categoryModelSelected?.id>0"
-      (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary BTN-text" id="openModalButton"
+      (click)="onActionbuttonNewRow($event)" type="button" class="btn btn-outline-primary BTN-text" id="openModalButton"
       data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
-    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id>0" (click)="onActionbuttonEditRow()"
-      type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
+    <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id>0"
+      (click)="onActionbuttonEditRow(tableRowSelected,$event)" type="button" class="btn btn-outline-warning"
+      data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id>0" (click)="onActionbuttonDeleteRow()"
       type="button" class="btn btn-outline-danger BTN-text">{{'ACTION.DELETE' | translate}}</button>
-    <button *ngIf="tableRowSelected.id>0" (click)="onActionbuttonComment()" type="button"
+    <button *ngIf="tableRowSelected.id>0" (click)="onActionbuttonComment(tableRowSelected,$event)" type="button"
       class="btn btn-outline-success BTN-text BTN-text">{{'ACTION.COMMENT' | translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
@@ -30,9 +31,11 @@
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -1px;"
+        title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
-    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn btn-outline-secondary BTN-icon">
+    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+      class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
     </button>
     <a *ngIf="this.categoryModelSelected?.id>0" class="btn btn-outline-info btn-sm BTN-text">
@@ -115,7 +118,8 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
-            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
+            <button mat-menu-item (click)="onActionbuttonEditRow(row,$event)"
+              *ngIf="dataModelResult.access.accessEditRow">
               <mat-icon>mode_edit</mat-icon>
               <span>{{'ACTION.EDIT' | translate}}</span>
             </button>
@@ -123,7 +127,7 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonComment(row)">
+            <button mat-menu-item (click)="onActionbuttonComment(row,$event)">
               <mat-icon>list</mat-icon>
               <span>{{'ACTION.COMMENT' | translate}}</span>
             </button>
@@ -171,13 +175,14 @@
                 <td></td>
                 <td>
 
-                  <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow"
+                  <a (click)="onActionbuttonEditRow(row,$event)" *ngIf="dataModelResult.access.accessEditRow"
                     class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
 
                   <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
                     class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
 
-                  <a (click)="onActionbuttonComment(row)" class="link-primary pointer"> {{'ACTION.COMMENT' | translate}}
+                  <a (click)="onActionbuttonComment(row,$event)" class="link-primary pointer"> {{'ACTION.COMMENT' |
+                    translate}}
                   </a>
                 </td>
               </tr>

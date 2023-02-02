@@ -422,7 +422,7 @@ export class PublicHelper {
   }
   async getCurrentSite(): Promise<ErrorExceptionResult<CoreSiteModel>> {
     const storeSnapshot = this.cmsStoreService.getStateSnapshot();
-    if (storeSnapshot?.CoreSiteResultStore && storeSnapshot?.CoreSiteResultStore.item&& storeSnapshot?.CoreSiteResultStore?.item?.id>0) {
+    if (storeSnapshot?.CoreSiteResultStore && storeSnapshot?.CoreSiteResultStore.item && storeSnapshot?.CoreSiteResultStore?.item?.id > 0) {
       return storeSnapshot.CoreSiteResultStore;
     }
     return await this.coreSiteService.ServiceCurrectSite()
@@ -433,7 +433,7 @@ export class PublicHelper {
   }
   async getCurrentSiteModule(): Promise<ErrorExceptionResult<CoreModuleModel>> {
     const storeSnapshot = this.cmsStoreService.getStateSnapshot();
-    if (storeSnapshot?.CoreModuleResultStore && storeSnapshot?.CoreModuleResultStore?.listItems?.length>0) {
+    if (storeSnapshot?.CoreModuleResultStore && storeSnapshot?.CoreModuleResultStore?.listItems?.length > 0) {
       return storeSnapshot.CoreModuleResultStore;
     }
     return await this.coreModuleService.ServiceGetAllModuleName(null)

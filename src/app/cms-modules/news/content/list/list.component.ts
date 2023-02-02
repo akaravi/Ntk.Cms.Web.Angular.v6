@@ -1,6 +1,11 @@
 
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel,
   EnumClauseType,
@@ -12,24 +17,19 @@ import {
   NewsCategoryModel,
   NewsContentModel,
   NewsContentService,
-  TokenInfoModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
-import { PublicHelper } from '../../../../core/helpers/publicHelper';
-import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
+import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
-import { PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { NewsContentDeleteComponent } from '../delete/delete.component';
-import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
-import { TranslateService } from '@ngx-translate/core';
+import { PublicHelper } from '../../../../core/helpers/publicHelper';
+import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
+import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
+import { NewsContentDeleteComponent } from '../delete/delete.component';
 @Component({
   selector: 'app-news-content-list',
   templateUrl: './list.component.html',
@@ -56,6 +56,8 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
   }
+  link: string;
+
   filteModelContent = new FilterModel();
   categoryModelSelected: NewsCategoryModel;
   dataModelResult: ErrorExceptionResult<NewsContentModel> = new ErrorExceptionResult<NewsContentModel>();
@@ -233,7 +235,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
     this.categoryModelSelected = model;
     this.DataGetAll();
   }
-  onActionbuttonNewRow(): void {
+  onActionbuttonNewRow(event?: MouseEvent): void {
     if (
       this.categoryModelSelected == null ||
       this.categoryModelSelected.id === 0
@@ -250,9 +252,15 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    this.router.navigate(['/news/content/add', this.categoryModelSelected.id]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/news/content/add/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/news/content/add', this.categoryModelSelected.id]);
+    }
   }
-  onActionbuttonEditRow(model: NewsContentModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: NewsContentModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -266,7 +274,13 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    this.router.navigate(['/news/content/edit', this.tableRowSelected.id]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/news/content/edit/" + this.tableRowSelected.id;
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/news/content/edit', this.tableRowSelected.id]);
+    }
   }
   onActionbuttonDeleteRow(model: NewsContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
@@ -411,12 +425,18 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   onActionTableRowMouseLeave(row: NewsContentModel): void {
     row["expanded"] = false;
   }
-  onActionbuttonComment(model: NewsContentModel = this.tableRowSelected): void {
+  onActionbuttonComment(model: NewsContentModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.router.navigate(['/news/comment/', model.id]);
+
+    if (event?.ctrlKey) {
+      this.link = "/#/news/comment/";
+      window.open(this.link, "_blank");
+    } else {
+      this.router.navigate(['/news/comment/', model.id]);
+    }
   }
   onActionbuttonLinkTo(model: NewsContentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {
