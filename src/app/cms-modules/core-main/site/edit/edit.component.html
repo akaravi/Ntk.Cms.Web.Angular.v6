@@ -61,7 +61,7 @@
           [optionPlaceholder]="this.translate.instant('TITLE.Website_Type')"
           [optionDisabled]="!fieldsInfo['linkSiteCategoryId']?.accessEditField"></app-core-sitecategory-selector>
         <!-- linkCreatedBySiteId Field -->
-        <app-core-site-selector (optionChange)="onActionSelectCategory($event)" [(loading)]="loading"
+        <app-core-site-selector (optionChange)="onActionSelectCreatedBy($event)" [(loading)]="loading"
           [optionSelectForce]="this.dataModel.linkCreatedBySiteId"
           [optionPlaceholder]="this.translate.instant('TITLE.Parent_Site')"
           [optionDisabled]="!fieldsInfo['linkCreatedBySiteId']?.accessEditField"></app-core-site-selector>

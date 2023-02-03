@@ -1,35 +1,27 @@
 
+import { ENTER } from '@angular/cdk/keycodes';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import * as Leaflet from 'leaflet';
+import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel,
-  CoreSiteModel,
-  CoreSiteService,
-  CoreEnumService,
-  DataFieldInfoModel,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  CoreSiteCategoryModel,
-  TokenInfoModel,
-  CoreUserModel,
-  EnumManageUserAccessDataTypes,
+  AccessModel, CoreEnumService, CoreSiteCategoryModel, CoreSiteModel,
+  CoreSiteService, CoreUserModel, DataFieldInfoModel,
+  EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
+import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { Map as leafletMap } from 'leaflet';
-import * as Leaflet from 'leaflet';
-import { TranslateService } from '@ngx-translate/core';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { Subscription } from 'rxjs';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
   selector: 'app-core-site-edit',
   templateUrl: './edit.component.html',
@@ -51,21 +43,21 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-    if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId>0) {
+    if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId > 0) {
       this.requestId = this.tokenInfo.siteId;
     }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId>0)  {
+      if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId > 0) {
         this.requestId = this.tokenInfo.siteId;
       }
       this.DataGetOne(this.requestId);
     });
-    
+
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
-      if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId>0)  {
+      if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId > 0) {
         this.requestId = this.tokenInfo.siteId;
       }
       this.DataGetOne(this.requestId);
@@ -127,7 +119,7 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorFormInvalid();
       return;
     }
-    if (this.dataModel.linkCreatedBySiteId <= 0) {
+    if (this.dataModel.linkSiteCategoryId <= 0) {
       this.cmsToastrService.typeErrorEdit(this.translate.instant('MESSAGE.Specify_the_source_code_of_the_program'));
 
       return;
@@ -149,8 +141,8 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     this.DataEditContent();
   }
   DataGetOne(id: number): void {
-    if(!id || id<=0)
-    return;
+    if (!id || id <= 0)
+      return;
     this.formInfo.formSubmitAllow = false;
     this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.formError = '';
@@ -303,6 +295,14 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     }
     this.dataModel.linkSiteCategoryId = model.id;
   }
+  onActionSelectCreatedBy(model: CoreSiteModel | null): void {
+    if (!model || model.id <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_site_is_not_clear');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    this.dataModel.linkCreatedBySiteId = model.id;
+  }
   onActionSelectorLinkResellerSiteIdSelect(model: CoreSiteModel | null): void {
     this.dataModel.linkResellerSiteId = null;
     if (!model || model.id <= 0) {
@@ -317,29 +317,29 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     }
     this.dataModel.linkResellerUserId = model.id;
   }
-   /**
+  /**
+  * tag
+  */
+  addOnBlurTag = true;
+  readonly separatorKeysCodes = [ENTER] as const;
+  addTag(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    // Add our item
+    if (value) {
+      this.keywordDataModel.push(value);
+    }
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  removeTag(item: string): void {
+    const index = this.keywordDataModel.indexOf(item);
+
+    if (index >= 0) {
+      this.keywordDataModel.splice(index, 1);
+    }
+  }
+  /**
    * tag
    */
-    addOnBlurTag = true;
-    readonly separatorKeysCodes = [ENTER] as const;
-    addTag(event: MatChipInputEvent): void {
-      const value = (event.value || '').trim();
-      // Add our item
-      if (value) {
-        this.keywordDataModel.push( value);
-      }
-      // Clear the input value
-      event.chipInput!.clear();
-    }
-  
-    removeTag(item: string): void {
-      const index = this.keywordDataModel.indexOf(item);
-  
-      if (index >= 0) {
-        this.keywordDataModel.splice(index, 1);
-      }
-    }
-    /**
-     * tag
-     */
 }
