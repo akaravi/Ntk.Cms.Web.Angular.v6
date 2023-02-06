@@ -11,10 +11,10 @@ export class WidgetInfoModel {
       return;
     }
     var findIndex = false;
-    for (let index = 0; index <this. items.length; index++) {
-      
-      if (this. items[index].key == model.key) {
-        this. items[index] = model;
+    for (let index = 0; index < this.items.length; index++) {
+
+      if (this.items[index].key == model.key) {
+        this.items[index] = model;
         findIndex = true;
         return
       }
@@ -24,12 +24,12 @@ export class WidgetInfoModel {
   }
 }
 export class WidgetContentInfoModel {
-  constructor(_key: string, _index: number, _count: number, _lint = '',_color='') {
+  constructor(_key: string, _index: number, _count: number, _lint = '', _color = '') {
     this.key = _key;
     this.index = _index;
     this.count = _count;
     this.link = _lint;
-    this.color=_color;
+    this.color = _color;
   }
   key = '';
   index = 0;

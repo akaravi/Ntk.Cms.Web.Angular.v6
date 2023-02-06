@@ -1,25 +1,21 @@
 import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-  OnDestroy,
+  AfterViewInit, Component, ElementRef, OnDestroy, OnInit,
+  ViewChild
 } from '@angular/core';
 
-import KTLayoutContent from '../../../assets/js/layout/base/content';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
-import { LayoutService } from 'src/app/core/services/layout.service';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { LayoutInitService } from 'src/app/core/services/layout-init.service';
+import { LayoutService } from 'src/app/core/services/layout.service';
+import KTLayoutContent from '../../../assets/js/layout/base/content';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
-export class LayoutComponent implements OnInit, AfterViewInit , OnDestroy {
+export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   // Public variables
   selfLayout = 'default';
   asideSelfDisplay: true;

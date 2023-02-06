@@ -1,45 +1,27 @@
 
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import * as Leaflet from 'leaflet';
-import { FormGroup } from '@angular/forms';
-import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FilterModel,
-  FormInfoModel,
-  ChartContentModel,
-  ChartContentService,
-  FilterDataModel,
-  ChartCategoryModel,
-  ChartContentTagService,
-  ChartContentTagModel,
-  ChartContentSimilarService,
-  ChartContentOtherInfoService,
-  ChartContentOtherInfoModel,
-  ChartContentSimilarModel,
-  AccessModel,
-  DataFieldInfoModel,
-  EnumClauseType,
-  ChartContentCategoryModel,
-  ChartContentCategoryService,
-  EnumManageUserAccessDataTypes
-} from 'ntk-cms-api';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { Map as leafletMap } from 'leaflet';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { ENTER } from '@angular/cdk/keycodes';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreLocationModel } from 'ntk-cms-api';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import * as Leaflet from 'leaflet';
+import { Map as leafletMap } from 'leaflet';
+import {
+  AccessModel, ChartCategoryModel, ChartContentCategoryModel,
+  ChartContentCategoryService, ChartContentModel, ChartContentOtherInfoModel, ChartContentOtherInfoService, ChartContentService, ChartContentSimilarModel, ChartContentSimilarService, ChartContentTagModel, ChartContentTagService, CoreEnumService, CoreLocationModel, DataFieldInfoModel,
+  EnumClauseType, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel,
+  FormInfoModel
+} from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { map, of } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-chart-content-edit',
@@ -469,7 +451,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorAddTag();
           }
-          
+
           return of(response);
         })).toPromise();
     }
@@ -481,7 +463,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorRemoveTag();
           }
-          
+
           return of(response);
         })).toPromise();
     }
@@ -790,30 +772,30 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     }
     this.dataModel.linkLocationId = model.id;
   }
-  	
-		 /**
+
+  /**
+* tag
+*/
+  addOnBlurTag = true;
+  readonly separatorKeysCodes = [ENTER] as const;
+  addTag(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    // Add our item
+    if (value) {
+      this.keywordDataModel.push(value);
+    }
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  removeTag(item: string): void {
+    const index = this.keywordDataModel.indexOf(item);
+
+    if (index >= 0) {
+      this.keywordDataModel.splice(index, 1);
+    }
+  }
+  /**
    * tag
    */
-      addOnBlurTag = true;
-      readonly separatorKeysCodes = [ENTER] as const;
-      addTag(event: MatChipInputEvent): void {
-        const value = (event.value || '').trim();
-        // Add our item
-        if (value) {
-          this.keywordDataModel.push( value);
-        }
-        // Clear the input value
-        event.chipInput!.clear();
-      }
-    
-      removeTag(item: string): void {
-        const index = this.keywordDataModel.indexOf(item);
-    
-        if (index >= 0) {
-          this.keywordDataModel.splice(index, 1);
-        }
-      }
-      /**
-       * tag
-       */
 }

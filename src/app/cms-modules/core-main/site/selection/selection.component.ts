@@ -1,7 +1,7 @@
 
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { environment } from '../../../../../environments/environment';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
   AuthRenewTokenModel,
   CoreAuthService,
@@ -11,10 +11,9 @@ import {
   FilterModel,
   FormInfoModel
 } from 'ntk-cms-api';
-import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 import { TranslationService } from 'src/app/core/i18n/translation.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { TranslateService } from '@ngx-translate/core';
+import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 
 
 @Component({
@@ -126,7 +125,7 @@ export class CoreSiteSelectionComponent implements OnInit {
       this.coreAuthService.ServiceRenewToken(authModel).subscribe({
         next: (ret) => {
           if (ret.isSuccess) {
-            
+
             setTimeout(() => this.router.navigate(['/dashboard/']), 5000);
           }
           this.loading.Stop(pName);

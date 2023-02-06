@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { KTUtil } from 'src/assets/js/components/util';
 import KTLayoutScrolltop from 'src/assets/js/layout/extended/scrolltop';
 
@@ -8,9 +8,9 @@ import KTLayoutScrolltop from 'src/assets/js/layout/extended/scrolltop';
   templateUrl: './scroll-top.component.html',
 })
 export class ScrollTopComponent implements OnInit, AfterViewInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngAfterViewInit() {
     KTUtil.ready(() => {

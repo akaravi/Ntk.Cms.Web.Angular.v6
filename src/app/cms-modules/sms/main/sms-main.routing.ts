@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { SmsMainApiNumberPermissionListComponent } from './api-number-permission/list/list.component';
+import { SmsMainApiNumberListComponent } from './api-number/list/list.component';
 import { SmsMainApiPathCompanyListComponent } from './api-path-company/list/list.component';
 import { SmsMainApiPathPermissionListComponent } from './api-path-permission/list/list.component';
 import { SmsMainApiPathPriceServiceListComponent } from './api-path-price-service/list/list.component';
 import { SmsMainApiPathEditComponent } from './api-path/edit/edit.component';
 import { SmsMainApiPathListComponent } from './api-path/list/list.component';
-import { SmsMainApiNumberListComponent } from './api-number/list/list.component';
-import { SmsMainApiPathPublicConfigListComponent } from './public-config/list/list.component';
-import { SmsMainComponent } from './sms-main.component';
-import { SmsMainApiNumberPermissionListComponent } from './api-number-permission/list/list.component';
 import { SmsMainCustomerCreditListComponent } from './customer-credit/list/list.component';
 import { SmsMainMessageContentListComponent } from './message-content/list/list.component';
+import { SmsMainApiPathPublicConfigListComponent } from './public-config/list/list.component';
+import { SmsMainComponent } from './sms-main.component';
 
 
 const routes: Routes = [
@@ -86,7 +86,7 @@ const routes: Routes = [
         path: 'message',
         component: SmsMainMessageContentListComponent
       },
-     ]
+    ]
   },
 ];
 

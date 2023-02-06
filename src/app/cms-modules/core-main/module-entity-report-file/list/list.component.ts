@@ -1,39 +1,29 @@
 
-import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreModuleEntityReportFileModel,
-  CoreModuleEntityReportFileService,
-  EnumSortType,
-  ErrorExceptionResult,
-  FilterModel,
-  TokenInfoModel,
-  FilterDataModel,
-  EnumRecordStatus,
-  DataFieldInfoModel,
-  CoreModuleEntityService,
-  CoreModuleEntityModel,
-  CoreEnumService,
-  EnumInfoModel,
+  CoreEnumService, CoreModuleEntityModel, CoreModuleEntityReportFileModel,
+  CoreModuleEntityReportFileService, CoreModuleEntityService, DataFieldInfoModel, EnumInfoModel, EnumRecordStatus, EnumSortType,
+  ErrorExceptionResult, FilterDataModel, FilterModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { MatSort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
-import { Subscription } from 'rxjs';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleEntityReportFileEditComponent } from '../edit/edit.component';
+import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CoreModuleEntityReportFileAddComponent } from '../add/add.component';
+import { CoreModuleEntityReportFileEditComponent } from '../edit/edit.component';
 @Component({
   selector: 'app-core-module-entity-report-file-list',
   templateUrl: './list.component.html',
@@ -58,7 +48,7 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     this.requestLinkModuleEntityId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleEntityReportFileId'));
 
     /*filter Sort*/
@@ -81,7 +71,7 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
   dataModelResult: ErrorExceptionResult<CoreModuleEntityReportFileModel> = new ErrorExceptionResult<CoreModuleEntityReportFileModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<CoreModuleEntityReportFileModel> = [];
@@ -207,7 +197,7 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
 
     const dialogRef = this.dialog.open(CoreModuleEntityReportFileAddComponent, {
       height: '90%',
-      data: { linkModuleEntityId: this.requestLinkModuleEntityId  }
+      data: { linkModuleEntityId: this.requestLinkModuleEntityId }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -352,23 +342,23 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
     this.router.navigate(['corelog/report-data/LinkModuleEntityReportFileId/', model.id]);
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -397,7 +387,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
- 
+
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

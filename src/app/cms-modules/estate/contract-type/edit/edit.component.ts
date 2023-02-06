@@ -1,29 +1,19 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstateContractTypeService,
-  EstateContractTypeModel,
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateContractTypeModel, EstateContractTypeService, FormInfoModel
+} from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-estate-contract-type-edit',
@@ -43,7 +33,7 @@ export class EstateContractTypeEditComponent implements OnInit {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id;
     }
@@ -133,7 +123,7 @@ export class EstateContractTypeEditComponent implements OnInit {
         this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      } 
+      }
     }
     );
   }

@@ -1,4 +1,6 @@
 
+import { SelectionModel } from '@angular/cdk/collections';
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,26 +8,24 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatDialog } from '@angular/material/dialog';
 import {
-  MatTreeNestedDataSource,
+  MatTreeNestedDataSource
 } from '@angular/material/tree';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   NewsCategoryModel,
-  NewsCategoryService,
+  NewsCategoryService
 } from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
-import { SelectionModel } from '@angular/cdk/collections';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-news-category-treeselector',
   templateUrl: './tree-selector.component.html',
@@ -40,7 +40,7 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.checklistSelection.changed.subscribe(x => {
       if (!this.runComplate) {
         return;
@@ -111,22 +111,23 @@ export class NewsCategoryTreeSelectorComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.categoryService.ServiceGetAll(this.filterModel).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.listItems;
           this.treeControl.dataNodes = this.dataModelResult.listItems;
           this.loadCheked();
         }
-        else{
+        else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
       },
-      error:(er) => {
+      error: (er) => {
         this.loading.Stop(pName);
         this.cmsToastrService.typeError(er);
-      }}
+      }
+    }
     );
   }
   /** Whether all the descendants of the node are selected */

@@ -1,32 +1,21 @@
 
+import { ENTER } from '@angular/cdk/keycodes';
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstatePropertyDetailService,
-  EstatePropertyDetailModel,
-  DataFieldInfoModel,
-  EstatePropertyTypeLanduseModel,
-  EstatePropertyDetailGroupModel,
-  EstateEnumService,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult, EstateEnumService, EstatePropertyDetailGroupModel, EstatePropertyDetailModel, EstatePropertyDetailService, EstatePropertyTypeLanduseModel, FormInfoModel
+} from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-estate-property-detail-add',
@@ -47,7 +36,7 @@ export class EstatePropertyDetailAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkPropertyTypeLanduseId = data.linkPropertyTypeLanduseId;
       this.requestLinkPropertyDetailGroupId = data.linkPropertyDetailGroupId;
@@ -182,30 +171,30 @@ export class EstatePropertyDetailAddComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }
-  	
-		 /**
+
+  /**
+* tag
+*/
+  addOnBlurTag = true;
+  readonly separatorKeysCodes = [ENTER] as const;
+  addTag(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    // Add our item
+    if (value) {
+      this.keywordDataModel.push(value);
+    }
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  removeTag(item: string): void {
+    const index = this.keywordDataModel.indexOf(item);
+
+    if (index >= 0) {
+      this.keywordDataModel.splice(index, 1);
+    }
+  }
+  /**
    * tag
    */
-      addOnBlurTag = true;
-      readonly separatorKeysCodes = [ENTER] as const;
-      addTag(event: MatChipInputEvent): void {
-        const value = (event.value || '').trim();
-        // Add our item
-        if (value) {
-          this.keywordDataModel.push( value);
-        }
-        // Clear the input value
-        event.chipInput!.clear();
-      }
-    
-      removeTag(item: string): void {
-        const index = this.keywordDataModel.indexOf(item);
-    
-        if (index >= 0) {
-          this.keywordDataModel.splice(index, 1);
-        }
-      }
-      /**
-       * tag
-       */
 }

@@ -36,7 +36,7 @@ export class CmsMemoComponent implements OnInit {
       this.requestTitle = data.title;
     }
 
-    if (!this.dataModel.id || this.dataModel.id.length==0)
+    if (!this.dataModel.id || this.dataModel.id.length == 0)
       this.dialogRef.close({ dialogChangedDate: true });
 
   }

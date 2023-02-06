@@ -1,17 +1,14 @@
 
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import {
-  CaptchaModel,
-  CoreAuthService,
-  AuthUserForgetPasswordModel,
-  AuthUserForgetPasswordEntryPinCodeModel,
-  FormInfoModel
-} from 'ntk-cms-api';
 import { Router } from '@angular/router';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  AuthUserForgetPasswordEntryPinCodeModel, AuthUserForgetPasswordModel, CaptchaModel,
+  CoreAuthService, FormInfoModel
+} from 'ntk-cms-api';
+import { Observable } from 'rxjs';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 enum ErrorStates {
   NotSubmitted,
   HasError,

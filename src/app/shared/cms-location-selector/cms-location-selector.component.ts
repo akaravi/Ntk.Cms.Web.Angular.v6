@@ -1,20 +1,15 @@
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  CoreLocationModel,
-  CoreLocationService,
-  EnumFilterDataModelSearchTypes,
-  EnumClauseType
-} from 'ntk-cms-api';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, CoreLocationModel,
+  CoreLocationService, EnumClauseType, EnumFilterDataModelSearchTypes, ErrorExceptionResult,
+  FilterDataModel,
+  FilterModel
+} from 'ntk-cms-api';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -76,9 +71,9 @@ export class CmsLocationSelectorComponent implements OnInit {
     if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0
       && model.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.title.length > 0
       && model.virtual_Parent.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.virtual_Parent.title.length > 0) {
-      return  model.virtual_Parent.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.titleML + ' > ' + model.titleML;
+      return model.virtual_Parent.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.titleML + ' > ' + model.titleML;
     }
-    if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0&& model.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.title.length > 0) {
+    if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0 && model.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.title.length > 0) {
       return model.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.titleML + ' > ' + model.titleML;
     }
     if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0) {
@@ -90,9 +85,9 @@ export class CmsLocationSelectorComponent implements OnInit {
     if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0
       && model.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.title.length > 0
       && model.virtual_Parent.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.virtual_Parent.title.length > 0) {
-      return  model.virtual_Parent.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.titleML + ' > ' + model.titleML;
+      return model.virtual_Parent.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.titleML + ' > ' + model.titleML;
     }
-    if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0&& model.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.title.length > 0) {
+    if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0 && model.virtual_Parent.virtual_Parent && model.virtual_Parent.virtual_Parent.title.length > 0) {
       return model.virtual_Parent.virtual_Parent.titleML + ' > ' + model.virtual_Parent.titleML + ' > ' + model.titleML;
     }
     if (model && model.virtual_Parent && model.virtual_Parent.title.length > 0) {

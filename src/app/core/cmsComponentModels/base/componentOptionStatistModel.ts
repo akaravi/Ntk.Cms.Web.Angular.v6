@@ -4,9 +4,9 @@ import { ComponentOptionModel } from './componentOptionModel';
 export class ComponentOptionStatistModel
   implements
   ComponentOptionModel<
-  ComponentOptionStatistDataModel,
-  ComponentOptionStatistChildMethodsModel,
-  ComponentOptionStatistParentMethodsModel
+    ComponentOptionStatistDataModel,
+    ComponentOptionStatistChildMethodsModel,
+    ComponentOptionStatistParentMethodsModel
   > {
   childMethods: ComponentOptionStatistChildMethodsModel;
   parentMethods: ComponentOptionStatistParentMethodsModel;

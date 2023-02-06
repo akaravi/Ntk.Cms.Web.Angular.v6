@@ -4,22 +4,19 @@ import {
   Component,
   Inject,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstatePropertyProjectModel,
-  EstatePropertyProjectService,
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes
-} from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  DataFieldInfoModel,
+  EnumManageUserAccessDataTypes, ErrorExceptionResult, EstatePropertyProjectModel,
+  EstatePropertyProjectService, FormInfoModel
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-estate-property-project-delete',
   templateUrl: './delete.component.html',

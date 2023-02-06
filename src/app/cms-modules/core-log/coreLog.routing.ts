@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CoreLogAvoidDuplicateDataEntryListComponent } from './avoid-duplicate/list/list.component';
 import { CoreLogComponent } from './coreLog.component';
 import { CoreLogCurrencyListComponent } from './currency/list/list.component';

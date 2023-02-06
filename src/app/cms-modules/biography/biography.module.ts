@@ -1,16 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BiographyRouting } from './biography.routing';
+import { NgModule } from '@angular/core';
 import { BiographyComponent } from './biography.component';
+import { BiographyRouting } from './biography.routing';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
-  CoreEnumService,
-  CoreModuleTagService,
   BiographyCategoryService,
   BiographyCommentService,
   BiographyConfigurationService,
-  BiographyContentAndParameterValueService,
-  BiographyContentOtherInfoService,
+  BiographyContentAndParameterValueService, BiographyContentCategoryService, BiographyContentOtherInfoService,
   BiographyContentParameterService,
   BiographyContentParameterTypeService,
   BiographyContentService,
@@ -18,28 +17,24 @@ import {
   BiographyContentTagService,
   BiographyShareMainAdminSettingService,
   BiographyShareReceiverCategoryService,
-  BiographyShareServerCategoryService,
-  BiographyContentCategoryService,
-  CoreModuleService
+  BiographyShareServerCategoryService, CoreEnumService, CoreModuleService, CoreModuleTagService
 } from 'ntk-cms-api';
-import { BiographyCategoryEditComponent } from './category/edit/edit.component';
-import { BiographyCategoryDeleteComponent } from './category/delete/delete.component';
-import { BiographyContentEditComponent } from './content/edit/edit.component';
-import { BiographyContentAddComponent } from './content/add/add.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared.module';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { BiographyCategorySelectorComponent } from './category/selector/selector.component';
-import { BiographyContentListComponent } from './content/list/list.component';
-import { BiographyCategoryTreeComponent } from './category/tree/tree.component';
-import { BiographyCommentListComponent } from './comment/list/list.component';
-import { BiographyCommentEditComponent } from './comment/edit/edit.component';
-import { AngularEditorModule } from '@kolkov/angular-editor';
-import { BiographyContentSelectorComponent } from './content/selector/selector.component';
-import { BiographyContentDeleteComponent } from './content/delete/delete.component';
-import { BiographyCategoryAddComponent } from './category/add/add.component';
+import { SharedModule } from 'src/app/shared.module';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { BiographyCategoryAddComponent } from './category/add/add.component';
+import { BiographyCategoryDeleteComponent } from './category/delete/delete.component';
+import { BiographyCategoryEditComponent } from './category/edit/edit.component';
+import { BiographyCategorySelectorComponent } from './category/selector/selector.component';
 import { BiographyCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
+import { BiographyCategoryTreeComponent } from './category/tree/tree.component';
+import { BiographyCommentEditComponent } from './comment/edit/edit.component';
+import { BiographyCommentListComponent } from './comment/list/list.component';
+import { BiographyContentAddComponent } from './content/add/add.component';
+import { BiographyContentDeleteComponent } from './content/delete/delete.component';
+import { BiographyContentEditComponent } from './content/edit/edit.component';
+import { BiographyContentListComponent } from './content/list/list.component';
+import { BiographyContentSelectorComponent } from './content/selector/selector.component';
 @NgModule({
   declarations: [
     BiographyComponent,
@@ -64,7 +59,7 @@ import { BiographyCategoryTreeSelectorComponent } from './category/tree-selector
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     CmsFileManagerModule
   ],
   providers: [

@@ -1,11 +1,11 @@
-import { Directive, Input, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[cmsTooltip]'
 })
 export class TooltipDirective {
   @Input('cmsTooltip')
-   tooltipTitle: string;
+  tooltipTitle: string;
   @Input() placement: string;
   @Input() delay: number;
   cmsTooltip: HTMLElement;

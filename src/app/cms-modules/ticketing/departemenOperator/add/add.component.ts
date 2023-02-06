@@ -2,23 +2,20 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel,
-  TicketingDepartemenOperatorModel,
-  TicketingDepartemenOperatorService,
-  CoreEnumService,
+  AccessModel, ApplicationSourceModel, CoreEnumService,
   DataFieldInfoModel,
   EnumInfoModel,
   ErrorExceptionResult,
-  FormInfoModel,
-  ApplicationSourceModel,
+  FormInfoModel, TicketingDepartemenOperatorModel,
+  TicketingDepartemenOperatorService
 } from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { TranslateService } from '@ngx-translate/core';
-import { PoinModel } from 'src/app/core/models/pointModel';
 
 @Component({
   selector: 'app-aplication-intro-add',
@@ -37,7 +34,7 @@ export class TicketingDepartemenOperatorAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   requestDepartemenId = 0;

@@ -1,4 +1,5 @@
 
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,28 +7,25 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatDialog } from '@angular/material/dialog';
 import {
-  MatTreeNestedDataSource,
+  MatTreeNestedDataSource
 } from '@angular/material/tree';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
-  ErrorExceptionResult,
-  FilterModel,
-  EstatePropertyProjectModel,
-  EstatePropertyProjectService,
+  ErrorExceptionResult, EstatePropertyProjectModel,
+  EstatePropertyProjectService, FilterModel
 } from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { EstatePropertyProjectEditComponent } from '../edit/edit.component';
-import { EstatePropertyProjectAddComponent } from '../add/add.component';
-import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { EstatePropertyProjectAddComponent } from '../add/add.component';
+import { EstatePropertyProjectEditComponent } from '../edit/edit.component';
 @Component({
   selector: 'app-estate-property-project-tree',
   templateUrl: './tree.component.html',
@@ -44,7 +42,7 @@ export class EstatePropertyProjectTreeComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | EstatePropertyProjectModel) {
     this.onActionSelectForce(x);

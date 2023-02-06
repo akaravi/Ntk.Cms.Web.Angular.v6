@@ -4,10 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  BaseModuleSiteCheckUserModel,
-  DonateConfigurationService,
-  CoreEnumService,
-  ErrorExceptionResult,
+  BaseModuleSiteCheckUserModel, CoreEnumService, DonateConfigurationService, ErrorExceptionResult,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -34,7 +31,7 @@ export class DonateConfigCheckUserComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
 
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;

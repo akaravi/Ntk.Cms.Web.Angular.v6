@@ -3,26 +3,22 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel,
-  CoreEnumService,
-  DataFieldInfoModel,
-  FormInfoModel,
-  BankPaymentConfigurationService,
+  AccessModel, BankPaymentConfigurationService,
   BankPaymentModuleConfigAdminMainValuesModel,
   BankPaymentModuleConfigSiteAccessValuesModel,
-  BankPaymentModuleConfigSiteValuesModel,
-  NtkCmsApiStoreService,
-  TokenInfoModel,
+  BankPaymentModuleConfigSiteValuesModel, CoreEnumService,
+  DataFieldInfoModel,
+  FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { PoinModel } from 'src/app/core/models/pointModel';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-bankpayment-config-mainadmin',
   templateUrl: './config-main-admin.component.html',

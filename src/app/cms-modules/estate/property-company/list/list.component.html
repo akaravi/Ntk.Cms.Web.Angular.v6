@@ -94,6 +94,14 @@
           </select>
         </mat-cell>
       </ng-container>
+      <!-- mainAdminRecordStatus Column -->
+      <ng-container matColumnDef="mainAdminRecordStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <i [ngClass]="row.mainAdminRecordStatus|statusClass"></i>
+        </mat-cell>
+      </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['title']?.fieldTitle}} </mat-header-cell>

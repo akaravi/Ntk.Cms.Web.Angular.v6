@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SplashScreenService } from './splash-screen.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class SplashScreenComponent implements OnInit {
   constructor(
     private el: ElementRef,
     private splashScreenService: SplashScreenService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.splashScreenService.init(this.splashScreen);

@@ -45,7 +45,7 @@ export class CmsRecordStatusSelfSaveDirective {
     const dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
     dataModelEnumRecordStatusResult.listItems.forEach(co => {
       const option = document.createElement('option');
-      option.innerHTML = ' '+co.title + ' ' + '<i Class="' + this.iconStatus(co.value) + '"></i>';
+      option.innerHTML = ' ' + co.title + ' ' + '<i Class="' + this.iconStatus(co.value) + '"></i>';
       option.value = co.value.toString();
       this.elRef.nativeElement.add(option);
     });
@@ -66,7 +66,7 @@ export class CmsRecordStatusSelfSaveDirective {
         if (next.isSuccess) {
           this.handleSuccessCase(element);
           this.cmsToastrService.typeSuccessSetStatus(next.errorMessage);
-          this.row.recordStatus = recordStatus|0;
+          this.row.recordStatus = recordStatus | 0;
           this.cdr.markForCheck();
         }
         else {

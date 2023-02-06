@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-web-designer-config',
   template: '<router-outlet></router-outlet>',

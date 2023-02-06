@@ -4,9 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  BaseModuleSiteCheckSiteModel,
-  BankPaymentConfigurationService,
-  CoreEnumService,
+  BankPaymentConfigurationService, BaseModuleSiteCheckSiteModel, CoreEnumService,
   ErrorExceptionResult,
   TokenInfoModel
 } from 'ntk-cms-api';
@@ -81,7 +79,7 @@ export class BankPaymentConfigCheckSiteComponent implements OnInit, OnDestroy {
             this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
         },
-        error:(er) => {
+        error: (er) => {
           this.loading.Stop(pName);
           this.cmsToastrService.typeErrorGetOne(er);
         }

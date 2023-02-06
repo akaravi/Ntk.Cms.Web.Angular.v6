@@ -1,4 +1,5 @@
 
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,28 +7,24 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
-import {
-  MatTreeNestedDataSource,
-} from '@angular/material/tree';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterModel,
-  CoreCpMainMenuModel,
-  CoreCpMainMenuService,
-  EnumSortType,
-} from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CoreCpMainMenuEditComponent } from '../edit/edit.component';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Subscription } from 'rxjs';
-import { CoreCpMainMenuAddComponent } from '../add/add.component';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import {
+  MatTreeNestedDataSource
+} from '@angular/material/tree';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreCpMainMenuModel,
+  CoreCpMainMenuService, CoreEnumService, EnumSortType, ErrorExceptionResult,
+  FilterModel
+} from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { CoreCpMainMenuAddComponent } from '../add/add.component';
+import { CoreCpMainMenuEditComponent } from '../edit/edit.component';
 
 
 @Component({
@@ -134,7 +131,7 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
-        this.dataModelSelect=result.model;
+        this.dataModelSelect = result.model;
         this.onActionEdit();
         //this.DataGetAll();
       }

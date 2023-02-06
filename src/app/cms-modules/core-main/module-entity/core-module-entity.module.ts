@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreModuleEntityRouting } from './core-module-entity.routing';
-import { CoreModuleEntityComponent } from './core-module-entity.component';
-import {
-  CoreModuleEntityService,
-} from 'ntk-cms-api';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import {
+  CoreModuleEntityService
+} from 'ntk-cms-api';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreSharedModule } from '../core.shared.module';
+import { CoreModuleModule } from '../module/coreModule.module';
+import { CoreModuleEntityComponent } from './core-module-entity.component';
+import { CoreModuleEntityRouting } from './core-module-entity.routing';
 import { CoreModuleEntityEditComponent } from './edit/edit.component';
 import { CoreModuleEntityListComponent } from './list/list.component';
 import { CoreModuleEntitySelectorComponent } from './selector/selector.component';
-import { CoreModuleModule } from '../module/coreModule.module';
 
 
 @NgModule({
@@ -36,7 +36,7 @@ import { CoreModuleModule } from '../module/coreModule.module';
     SharedModule.forRoot(),
     AngularEditorModule,
     CoreModuleModule,
-    
+
     CoreSharedModule,
   ],
   providers: [

@@ -1,12 +1,12 @@
 
-import { Component, OnInit, ViewChild, Inject, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DataFieldInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterModel, FormInfoModel, NewsCategoryModel, NewsCategoryService } from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { DataFieldInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterModel, FormInfoModel, NewsCategoryModel, NewsCategoryService } from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-news-category-delete',
   templateUrl: './delete.component.html',
@@ -22,7 +22,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -56,7 +56,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     this.categoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({
-        next:(ret) => {
+        next: (ret) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           this.dataModelResultCategory = ret;
           if (!ret.isSuccess) {
@@ -69,12 +69,13 @@ export class NewsCategoryDeleteComponent implements OnInit {
           }
           this.loading.Stop(pName);
         },
-        error:(er) => {
+        error: (er) => {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
-        }}
+        }
+      }
       );
   }
   DataGetAll(): void {
@@ -86,7 +87,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     this.categoryService
       .ServiceGetAll(filterModel)
       .subscribe({
-        next:(ret) => {
+        next: (ret) => {
           this.dataModelResultCategoryAllData = ret;
           if (!ret.isSuccess) {
             this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
@@ -98,12 +99,13 @@ export class NewsCategoryDeleteComponent implements OnInit {
           }
           this.loading.Stop(pName);
         },
-        error:(er) => {
+        error: (er) => {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formErrorStatus = true;
           this.cmsToastrService.typeError(er);
           this.loading.Stop(pName);
-        }}
+        }
+      }
       );
   }
   onFormMove(): void {
@@ -118,7 +120,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     if (this.dataModel.newCatId === this.requestId) {
       this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
       this.formInfo.formError =
-      this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
+        this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
       this.formInfo.buttonSubmittedEnabled = true;
     }
     this.formInfo.buttonSubmittedEnabled = false;
@@ -127,7 +129,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     this.categoryService
       .ServiceMove(this.requestId, this.dataModel.newCatId)
       .subscribe({
-        next:(ret) => {
+        next: (ret) => {
           if (!ret.isSuccess) {
             this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
             this.formInfo.formError = ret.errorMessage;
@@ -140,13 +142,14 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);
         },
-        error:(er) => {
+        error: (er) => {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.cmsToastrService.typeError(er);
           this.formInfo.buttonSubmittedEnabled = true;
           this.formInfo.formSubmitAllow = true;
           this.loading.Stop(pName);
-        }}
+        }
+      }
       );
   }
   onFormDelete(): void {
@@ -161,7 +164,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     this.categoryService
       .ServiceDelete(this.requestId)
       .subscribe({
-        next:(ret) => {
+        next: (ret) => {
           this.formInfo.formSubmitAllow = !ret.isSuccess;
           if (!ret.isSuccess) {
             this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
@@ -175,13 +178,14 @@ export class NewsCategoryDeleteComponent implements OnInit {
           this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);
         },
-        error:(er) => {
+        error: (er) => {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(er);
           this.formInfo.buttonSubmittedEnabled = true;
           this.loading.Stop(pName);
-        }}
+        }
+      }
       );
   }
   onFormChangeNewCatId(model: NewsCategoryModel): void {
@@ -194,7 +198,7 @@ export class NewsCategoryDeleteComponent implements OnInit {
     if (this.dataModel.newCatId === this.requestId) {
       this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
       this.formInfo.formError =
-      this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
+        this.translate.instant('ERRORMESSAGE.MESSAGE.The_delete_category_ID_is_the_same_as_the_alternate_category');
       this.formInfo.buttonSubmittedEnabled = false;
     } else {
       this.formInfo.buttonSubmittedEnabled = true;

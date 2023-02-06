@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CoreUserListComponent } from './list/list.component';
+import { RouterModule, Routes } from '@angular/router';
 import { CoreUserComponent } from './coreUser.component';
 import { CoreUserEditComponent } from './edit/edit.component';
+import { CoreUserListComponent } from './list/list.component';
 import { CoreUserResellerChartComponent } from './reseller-chart/reseller-chart.component';
 
 
@@ -14,7 +14,7 @@ const routes: Routes = [
       {
         path: '',
         component: CoreUserListComponent
-      },      {
+      }, {
         path: 'siteuser/:LinkSiteId',
         component: CoreUserListComponent
       },

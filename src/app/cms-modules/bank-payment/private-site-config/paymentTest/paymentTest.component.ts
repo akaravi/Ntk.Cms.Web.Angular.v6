@@ -1,27 +1,18 @@
 
+import { DOCUMENT } from '@angular/common';
 import {
-  CoreEnumService,
-  FormInfoModel,
-  BankPaymentPrivateSiteConfigService,
-  BankPaymentPrivateSiteConfigModel,
-  BankPaymentInjectOnlineTransactionDtoModel,
-  ErrorExceptionResult,
-  BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { DOCUMENT } from '@angular/common';
-import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  BankPaymentInjectOnlineTransactionDtoModel, BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel, BankPaymentPrivateSiteConfigModel, BankPaymentPrivateSiteConfigService, CoreEnumService, ErrorExceptionResult, FormInfoModel
+} from 'ntk-cms-api';
+import { map } from 'rxjs/operators';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-bankpayment-privateconfig-paymenttest',
   templateUrl: './paymentTest.component.html',
@@ -93,21 +84,21 @@ export class BankPaymentPrivateSiteConfigPaymentTestComponent implements OnInit 
     this.bankPaymentPrivateSiteConfigService.ServiceTestPay(this.dataModel).pipe(
       map(
         (next) => {
-        this.formInfo.formSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.isSuccess) {
-          localStorage.setItem('TransactionId', next.item.transactionId.toString());
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.Payment_request_was_successfully_registered');
-          this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Payment_request_was_successfully_registered'));
-          this.dataModelResultGotoBank = true;
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeErrorMessage(next.errorMessage);
-        }
-        this.loading.Stop(pName);
+          this.formInfo.formSubmitAllow = true;
+          this.dataModelResult = next;
+          if (next.isSuccess) {
+            localStorage.setItem('TransactionId', next.item.transactionId.toString());
+            this.formInfo.formAlert = this.translate.instant('MESSAGE.Payment_request_was_successfully_registered');
+            this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Payment_request_was_successfully_registered'));
+            this.dataModelResultGotoBank = true;
+          } else {
+            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+            this.formInfo.formError = next.errorMessage;
+            this.cmsToastrService.typeErrorMessage(next.errorMessage);
+          }
+          this.loading.Stop(pName);
 
-      },
+        },
         (error) => {
           this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(error);

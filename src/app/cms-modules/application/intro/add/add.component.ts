@@ -4,22 +4,21 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel, ApplicationEnumService,
+  AccessModel, ApplicationAppModel, ApplicationEnumService,
   ApplicationIntroModel,
   ApplicationIntroService,
   CoreEnumService,
   DataFieldInfoModel,
   EnumInfoModel,
   ErrorExceptionResult,
-  FormInfoModel,
+  FormInfoModel
 } from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { ApplicationAppModel } from 'ntk-cms-api';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-aplication-app-add',
   templateUrl: './add.component.html',

@@ -1,7 +1,7 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { NewsContentService, EnumRecordStatus, FilterDataModel, FilterModel, NewsCommentService } from 'ntk-cms-api';
+import { EnumRecordStatus, FilterDataModel, FilterModel, NewsCommentService, NewsContentService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -27,7 +27,7 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
     this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_News');
@@ -53,7 +53,7 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
-      
+
       },
       error: (er) => {
       }
@@ -65,16 +65,17 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     fastfilter.value = EnumRecordStatus.Available;
     filterStatist1.filters.push(fastfilter);
     this.service.ServiceGetCount(filterStatist1).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         if (ret.isSuccess) {
           this.modelData.set('Active', ret.totalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Active');
       }
       ,
-      error:(er) => {
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'Active');
-      }}
+      }
+    }
     );
     /**Comment */
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -85,15 +86,16 @@ export class NewsContentWidgetComponent implements OnInit, OnDestroy {
     this.loading.Start(this.constructor.name + 'Pending_Comment');
     this.modelData.set('Pending_Comment', 0);
     this.serviceComment.ServiceGetCount(filterStatist2).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         if (ret.isSuccess) {
           this.modelData.set('Pending_Comment', ret.totalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Pending_Comment');
       },
-      error:(er) => {
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'Pending_Comment');
-      }}
+      }
+    }
     );
   }
 }

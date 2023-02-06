@@ -1,10 +1,7 @@
-import {
-    CanActivate,
-    ActivatedRouteSnapshot,
-    RouterStateSnapshot,
-    Router,
-} from '@angular/router';
 import { Injectable, OnDestroy } from '@angular/core';
+import {
+    ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot
+} from '@angular/router';
 import { CoreAuthService, NtkCmsApiStoreService, SET_TOKEN_INFO, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 

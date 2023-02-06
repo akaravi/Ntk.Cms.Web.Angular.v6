@@ -1,30 +1,23 @@
-import { Router } from '@angular/router';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  TicketingFaqModel,
-  TicketingFaqService,
-  EnumSortType,
+  DataFieldInfoModel, EnumSortType,
   ErrorExceptionResult,
   FilterDataModel,
-  FilterModel,
-  TokenInfoModel,
-  TicketingDepartemenModel,
-  DataFieldInfoModel,
-  TicketingDepartemenService
+  FilterModel, TicketingDepartemenModel, TicketingDepartemenService, TicketingFaqModel,
+  TicketingFaqService, TokenInfoModel
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { MatSort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
-import { Subscription } from 'rxjs';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ticketing-faq-originlist',
@@ -42,7 +35,7 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private tokenHelper: TokenHelper,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Ascending;
@@ -60,7 +53,7 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
   dataDepartemenModelResult: ErrorExceptionResult<TicketingDepartemenModel> = new ErrorExceptionResult<TicketingDepartemenModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   loadingCat = new ProgressSpinnerModel();
@@ -182,10 +175,10 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
 
 
   onActionSelectorSelect(model: TicketingDepartemenModel | null): void {
-     /*filter */
+    /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent =  new FilterModel();
+    this.filteModelContent = new FilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */

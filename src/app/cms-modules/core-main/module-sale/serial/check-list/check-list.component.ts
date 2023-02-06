@@ -1,30 +1,21 @@
 
-import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreModuleSaleItemModel,
-  CoreModuleSaleSerialService,
-  ErrorExceptionResult,
+  CoreEnumService, CoreModuleCheckSerialForSiteDtoModel, CoreModuleModel, CoreModuleSaleHeaderModel, CoreModuleSaleInvoiceDetailModel,
+  CoreModuleSaleInvoiceModel, CoreModuleSaleItemModel,
+  CoreModuleSaleSerialService, CoreModuleService, DataFieldInfoModel, EnumInfoModel, ErrorExceptionResult,
   FilterModel,
-  TokenInfoModel,
-  DataFieldInfoModel,
-  CoreModuleSaleHeaderModel,
-  CoreEnumService,
-  EnumInfoModel,
-  CoreModuleService,
-  CoreModuleModel,
-  CoreModuleCheckSerialForSiteDtoModel,
-  CoreModuleSaleInvoiceDetailModel,
-  CoreModuleSaleInvoiceModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-core-modulesaleserial-check-list',
@@ -113,7 +104,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataCheckUseSerialForSite(serial: string): void {
-    
+
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
     const pName = this.constructor.name + 'main';

@@ -42,5 +42,5 @@ export class SingupRuleComponent implements OnInit {
       }
       );
   }
-  
+
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { DonateComponent } from './donate.component';
 import { DonateLogViewListComponent } from './log-view/list/list.component';
 import { DonateSponserListComponent } from './sponser/list/list.component';
@@ -96,7 +96,7 @@ const routes: Routes = [
         path: 'transaction/LinkTargetPeriodId/:LinkTargetPeriodId',
         component: DonateTransactionListComponent
       }
-/** */
+      /** */
     ]
   },
 ];

@@ -1,12 +1,6 @@
-import { Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import {
-  Component,
-  OnInit,
-  Input,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { RuleSet, QueryBuilderFieldMap, Rule } from 'ngx-ntk-query-builder';
+import { QueryBuilderFieldMap, Rule, RuleSet } from 'ngx-ntk-query-builder';
 import { AccessModel, EnumClauseType, FilterDataModel } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -36,7 +30,7 @@ export class CmsSearchListComponent implements OnInit {
     return this.optionsData;
   }
   allowLoadSearch = false;
-  allowSaveSearch=false;
+  allowSaveSearch = false;
   submited = false;
   showLabel = false;
   filters: Array<FilterDataModel>;
@@ -175,7 +169,7 @@ export class CmsSearchListComponent implements OnInit {
 
   onSubmit(): void {
     this.submited = true;
-    this.allowSaveSearch=true;
+    this.allowSaveSearch = true;
     this.getRules();
     if (this.optionsData.parentMethods) {
       this.optionsData.parentMethods.onSubmit(this.filters);
@@ -238,7 +232,7 @@ export class CmsSearchListComponent implements OnInit {
             this.getRules()
           }
           this.allowLoadSearch = true;
-          this.allowSaveSearch=true;
+          this.allowSaveSearch = true;
           return true;
         } catch (error) {
           //console.log(error);

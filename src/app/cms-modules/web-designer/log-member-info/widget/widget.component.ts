@@ -1,7 +1,7 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { WebDesignerLogMemberInfoService, EnumRecordStatus, FilterDataModel, FilterModel } from 'ntk-cms-api';
+import { EnumRecordStatus, FilterDataModel, FilterModel, WebDesignerLogMemberInfoService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -43,7 +43,7 @@ export class WebDesignerLogMemberInfoWidgetComponent implements OnInit, OnDestro
   }
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'Active', this.translate.instant('MESSAGE.Get_active_member_of_application_statistics'));
-    this.loading.Start(this.constructor.name + 'All' , this.translate.instant('MESSAGE.Get_statistics_on_all_member_of_application'));
+    this.loading.Start(this.constructor.name + 'All', this.translate.instant('MESSAGE.Get_statistics_on_all_member_of_application'));
     this.modelData.set('Active', 0);
     this.modelData.set('All', 1);
     this.service.ServiceGetCount(this.filteModelContent).subscribe({

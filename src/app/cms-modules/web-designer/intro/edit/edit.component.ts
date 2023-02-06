@@ -2,22 +2,18 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel,
-  WebDesignerMainIntroModel,
-  WebDesignerMainIntroService,
-  CoreEnumService,
+  AccessModel, CoreEnumService,
   DataFieldInfoModel,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EnumManageUserAccessDataTypes,
+  EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  FormInfoModel, WebDesignerMainIntroModel,
+  WebDesignerMainIntroService
 } from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-webdesigner-intro-edit',
   templateUrl: './edit.component.html',
@@ -34,7 +30,7 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     if (this.activatedRoute.snapshot.paramMap.get('Id')) {
       this.requestId = this.activatedRoute.snapshot.paramMap.get('Id');
@@ -111,7 +107,7 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.webDesignerMainIntroService
       .ServiceEdit(this.dataModel)
       .subscribe(

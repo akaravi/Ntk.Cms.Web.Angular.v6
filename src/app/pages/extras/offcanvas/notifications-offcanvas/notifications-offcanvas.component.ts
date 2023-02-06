@@ -8,7 +8,7 @@ import { LayoutService } from 'src/app/core/services/layout.service';
 export class NotificationsOffcanvasComponent implements OnInit {
   extrasNotificationsOffcanvasDirectionCSSClass: string;
 
-  constructor(private layout: LayoutService) {}
+  constructor(private layout: LayoutService) { }
   ngOnInit(): void {
     this.extrasNotificationsOffcanvasDirectionCSSClass = `offcanvas-${this.layout.getProp(
       'extras.notifications.offcanvas.direction'

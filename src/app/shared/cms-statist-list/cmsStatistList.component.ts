@@ -1,6 +1,4 @@
-import { Output, Input } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 
 @Component({

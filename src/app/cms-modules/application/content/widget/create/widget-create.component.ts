@@ -1,11 +1,11 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ApplicationAppService, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
+import { TranslateService } from '@ngx-translate/core';
+import { ApplicationAppService, FilterModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-application-app-widget-create',
   templateUrl: './widget-create.component.html',
@@ -20,7 +20,7 @@ export class ApplicationAppWidgetCreateComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-   }
+  }
   filteModelContent = new FilterModel();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;

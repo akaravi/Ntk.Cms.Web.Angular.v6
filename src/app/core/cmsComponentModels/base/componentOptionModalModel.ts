@@ -5,8 +5,8 @@ import { ComponentOptionModel } from './componentOptionModel';
 
 export class ComponentOptionModalModel
   implements ComponentOptionModel<ComponentOptionModalDataModel, ComponentOptionModalActionsModel, ComponentOptionModalMethodsModel> {
-    childMethods: ComponentOptionModalActionsModel;
-    parentMethods: ComponentOptionModalMethodsModel;
+  childMethods: ComponentOptionModalActionsModel;
+  parentMethods: ComponentOptionModalMethodsModel;
   data: ComponentOptionModalDataModel = new ComponentOptionModalDataModel();
 
   constructor() {

@@ -1,21 +1,16 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  ApiTelegramBotConfigModel,
-  ApiTelegramBotConfigService,
-  EnumFilterDataModelSearchTypes,
-  EnumClauseType
-} from 'ntk-cms-api';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  ApiTelegramBotConfigModel,
+  ApiTelegramBotConfigService, CoreEnumService, EnumClauseType, EnumFilterDataModelSearchTypes, ErrorExceptionResult,
+  FilterDataModel,
+  FilterModel
+} from 'ntk-cms-api';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({

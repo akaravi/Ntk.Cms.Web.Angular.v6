@@ -1,18 +1,15 @@
 import {
-  FormInfoModel,
-  DataFieldInfoModel,
-  EstateCustomerOrderModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
+  Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  DataFieldInfoModel,
+  EstateCustomerOrderModel, FormInfoModel
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 @Component({
   selector: 'app-estate-customer-order-action',

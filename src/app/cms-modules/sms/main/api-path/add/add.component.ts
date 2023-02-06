@@ -1,29 +1,20 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  SmsMainApiPathService,
-  SmsMainApiPathModel,
-  DataFieldInfoModel,
-  SmsMainApiPathCompanyModel,
-  SmsMainApiPathPublicConfigModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult,
+  FormInfoModel, SmsMainApiPathCompanyModel, SmsMainApiPathModel, SmsMainApiPathPublicConfigModel, SmsMainApiPathService
+} from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-sms-apipath-add',
@@ -90,32 +81,32 @@ export class SmsMainApiPathAddComponent implements OnInit {
 
   DataClone(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-      this.formInfo.formError = '';
-      const pName = this.constructor.name + 'main';
-      this.loading.Start(pName);
-      this.smsMainApiPathService.ServiceGetOneById(this.requestId).subscribe({
-        next: (ret) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+    this.formInfo.formError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+    this.smsMainApiPathService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-          if (ret.isSuccess) {
-            this.dataModel = ret.item;
-            ret.item.title = ret.item.title + " copy";
-            this.formInfo.formTitle = this.formInfo.formTitle;
-            this.formInfo.formAlert = '';
-          } else {
-            this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-            this.formInfo.formError = ret.errorMessage;
-            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-          }
-          this.loading.Stop(pName);
-
-        },
-        error: (er) => {
-          this.cmsToastrService.typeError(er);
-          this.loading.Stop(pName);
+        if (ret.isSuccess) {
+          this.dataModel = ret.item;
+          ret.item.title = ret.item.title + " copy";
+          this.formInfo.formTitle = this.formInfo.formTitle;
+          this.formInfo.formAlert = '';
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
+        this.loading.Stop(pName);
+
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
       }
-      );
+    }
+    );
   }
 
   DataGetAccess(): void {

@@ -1,24 +1,23 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreGuideRouting } from './coreGuide.routing';
-import { CoreGuideComponent } from './coreGuide.component';
-import {
-  CoreModuleService,
-  CoreGuideService,
-} from 'ntk-cms-api';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  CoreGuideService, CoreModuleService
+} from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared.module';
-import { CoreGuideTreeComponent } from './tree/tree.component';
-import { CoreGuideSelectorComponent } from './selector/selector.component';
-import { CoreGuideEditComponent } from './edit/edit.component';
 import { CoreGuideAddComponent } from './add/add.component';
+import { CoreGuideComponent } from './coreGuide.component';
+import { CoreGuideRouting } from './coreGuide.routing';
+import { CoreGuideEditComponent } from './edit/edit.component';
+import { CoreGuideSelectorComponent } from './selector/selector.component';
+import { CoreGuideTreeComponent } from './tree/tree.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
-import { CoreGuideListComponent } from './list/list.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { CoreInfoComponent } from '../site/info/core-info.component';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+import { CoreInfoComponent } from '../site/info/core-info.component';
+import { CoreGuideListComponent } from './list/list.component';
 
 
 @NgModule({
@@ -47,7 +46,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     InlineSVGModule,
 
     // CmsFileManagerModule,

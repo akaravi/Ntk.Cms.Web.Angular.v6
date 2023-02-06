@@ -1,11 +1,11 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CoreSiteService, EnumRecordStatus, FilterDataModel, FilterModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-import { TranslateService } from '@ngx-translate/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
@@ -96,7 +96,7 @@ export class CoreSiteWidgetCount2Component implements OnInit, OnDestroy {
       error: (er) => {
         this.loading.Stop(this.constructor.name + 'Active');
       }
-      }
+    }
     );
   }
   translateHelp(t: string, v: string): string {

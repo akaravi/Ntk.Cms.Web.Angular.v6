@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { ApplicationConfigCheckSiteComponent } from './check-site/check-site.component';
 import { ApplicationConfigCheckUserComponent } from './check-user/check-user.component';
 import { ApplicationConfigMainAdminComponent } from './main-admin/config-main-admin.component';

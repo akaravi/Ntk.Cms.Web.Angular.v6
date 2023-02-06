@@ -1,22 +1,16 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  EstatePropertyCompanyModel,
-  EstatePropertyCompanyService,
-  EnumFilterDataModelSearchTypes,
-  EnumClauseType
-} from 'ntk-cms-api';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, EnumClauseType, EnumFilterDataModelSearchTypes, ErrorExceptionResult, EstatePropertyCompanyModel,
+  EstatePropertyCompanyService, FilterDataModel,
+  FilterModel
+} from 'ntk-cms-api';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-estate-property-company-selector',
   templateUrl: './selector.component.html',

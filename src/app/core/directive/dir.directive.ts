@@ -1,9 +1,5 @@
 import {
-    Directive,
-    HostBinding,
-    Output,
-    Input,
-    EventEmitter
+  Directive, EventEmitter, HostBinding, Input, Output
 } from '@angular/core';
 
 export type LayoutDirection = 'ltr' | 'rtl';

@@ -1,33 +1,27 @@
 
-import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  EstateAccountAgencyUserModel,
-  EstateAccountAgencyUserService,
-  EnumSortType,
-  ErrorExceptionResult,
-  FilterModel,
-  TokenInfoModel,
-  EnumRecordStatus,
-  FilterDataModel,
-  DataFieldInfoModel
+  DataFieldInfoModel, EnumRecordStatus, EnumSortType,
+  ErrorExceptionResult, EstateAccountAgencyUserModel,
+  EstateAccountAgencyUserService, FilterDataModel, FilterModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { MatSort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
-import { Subscription } from 'rxjs';
-import { EstateAccountAgencyUserAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { EstateAccountAgencyUserAddComponent } from '../add/add.component';
 @Component({
   selector: 'app-estate-account-agency-type-user-list',
   templateUrl: './list.component.html',
@@ -44,11 +38,11 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -63,7 +57,7 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyUserModel> = new ErrorExceptionResult<EstateAccountAgencyUserModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstateAccountAgencyUserModel> = [];
@@ -71,7 +65,7 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<EstateAccountAgencyUserModel> = new MatTableDataSource<EstateAccountAgencyUserModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'linkEstateAccountAgencyId',
     'linkEstateAccountUserId',
@@ -204,7 +198,7 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
     }
 
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' ;
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?';
 
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
@@ -299,21 +293,21 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
 
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
 
   onActionbuttonReload(): void {

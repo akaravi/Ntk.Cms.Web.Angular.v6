@@ -1,23 +1,20 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  EstatePropertyTypeLanduseModel,
-  EstatePropertyTypeLanduseService
+  ErrorExceptionResult, EstatePropertyTypeLanduseModel,
+  EstatePropertyTypeLanduseService, FilterDataModel,
+  FilterModel
 } from 'ntk-cms-api';
-import { FormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -33,7 +30,7 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit, OnDes
     public translate: TranslateService,
     private tokenHelper: TokenHelper,
     public categoryService: EstatePropertyTypeLanduseService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: string | EstatePropertyTypeLanduseModel) {
     this.onActionSelectForce(x);

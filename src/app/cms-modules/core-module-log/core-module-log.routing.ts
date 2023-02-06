@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CoreModuleLogComponent } from './core-module-log.component';
 import { CoreModuleLogFavoriteListComponent } from './favorite/list/list.component';
 import { CoreModuleLogLikeListComponent } from './like/list/list.component';

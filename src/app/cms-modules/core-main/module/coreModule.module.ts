@@ -1,24 +1,22 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreModuleRouting } from './coreModule.routing';
-import { CoreModuleComponent } from './coreModule.component';
-import {
-  CoreModuleEntityService,
-  CoreModuleService,
-} from 'ntk-cms-api';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  CoreModuleService
+} from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared.module';
-import { CoreModuleTreeComponent } from './tree/tree.component';
-import { CoreModuleSelectorComponent } from './selector/selector.component';
-import { CoreModuleEditComponent } from './edit/edit.component';
 import { CoreModuleAddComponent } from './add/add.component';
+import { CoreModuleComponent } from './coreModule.component';
+import { CoreModuleRouting } from './coreModule.routing';
+import { CoreModuleEditComponent } from './edit/edit.component';
 import { CoreModuleListComponent } from './list/list.component';
+import { CoreModuleSelectorComponent } from './selector/selector.component';
+import { CoreModuleTreeComponent } from './tree/tree.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
-import { CoreModuleSelectionlistComponent } from './selectionlist/selectionlist.component';
-import { CoreModuleHeaderComponent } from './header/header.component';
 import { CoreSharedModule } from '../core.shared.module';
+import { CoreModuleSelectionlistComponent } from './selectionlist/selectionlist.component';
 
 
 @NgModule({
@@ -48,7 +46,7 @@ import { CoreSharedModule } from '../core.shared.module';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     CoreSharedModule,
   ],
   providers: [

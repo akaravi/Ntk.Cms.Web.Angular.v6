@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ArticleComponent } from './article.component';
-import { ArticleContentListComponent } from './content/list/list.component';
 import { ArticleCommentListComponent } from './comment/list/list.component';
-import { ArticleContentEditComponent } from './content/edit/edit.component';
 import { ArticleContentAddComponent } from './content/add/add.component';
+import { ArticleContentEditComponent } from './content/edit/edit.component';
+import { ArticleContentListComponent } from './content/list/list.component';
 
 const routes: Routes = [
   {

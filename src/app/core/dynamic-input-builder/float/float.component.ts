@@ -20,7 +20,7 @@ export class FloatComponent implements OnInit {
   @Input() optionTitle = '';
   @Input() optionPlaceholder = '';
 
-  
+
   private privateModelDate: number;
   get modelDate(): number {
     return this.privateModelDate;

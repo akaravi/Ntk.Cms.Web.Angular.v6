@@ -1,38 +1,34 @@
 
-import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
   BankPaymentPrivateSiteConfigModel,
-  BankPaymentPrivateSiteConfigService,
-  EnumSortType,
+  BankPaymentPrivateSiteConfigService, BankPaymentPublicConfigModel,
+  BankPaymentPublicConfigService, DataFieldInfoModel, EnumRecordStatus, EnumSortType,
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
-  TokenInfoModel,
-  EnumRecordStatus,
-  DataFieldInfoModel,
-  BankPaymentPublicConfigModel,
-  BankPaymentPublicConfigService
+  TokenInfoModel
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { MatSort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
-import { Subscription } from 'rxjs';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { BankPaymentPrivateSiteConfigAddComponent } from '../add/add.component';
 import { BankPaymentPrivateSiteConfigEditComponent } from '../edit/edit.component';
-import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { BankPaymentPrivateSiteConfigPaymentTestComponent } from '../paymentTest/paymentTest.component';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
-import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
 @Component({
   selector: 'app-bankpayment-privateconfig-list',
   templateUrl: './list.component.html',
@@ -56,7 +52,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -71,7 +67,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
   dataModelPublicResult: ErrorExceptionResult<BankPaymentPublicConfigModel> = new ErrorExceptionResult<BankPaymentPublicConfigModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<BankPaymentPrivateSiteConfigModel> = [];
@@ -81,7 +77,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   expandedElement: BankPaymentPrivateSiteConfigModel | null;
   cmsApiStoreSubscribe: Subscription;
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
     'Id',
@@ -108,22 +104,22 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       this.DataGetAll();
     });
     this.getPublicConfig();
-        //**بررسی تراکنش از قبل */
-        const transactionId = + localStorage.getItem('TransactionId')|0;
-        if (transactionId > 0) {
-          const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
-            // height: "90%",
-            data: {
-              id: transactionId,
-            },
-          });
-          dialogRef.afterClosed().subscribe((result) => {
-            if (result && result.dialogChangedDate) {
-              localStorage.removeItem('TransactionId');
-            }
-          });
+    //**بررسی تراکنش از قبل */
+    const transactionId = + localStorage.getItem('TransactionId') | 0;
+    if (transactionId > 0) {
+      const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
+        // height: "90%",
+        data: {
+          id: transactionId,
+        },
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result && result.dialogChangedDate) {
+          localStorage.removeItem('TransactionId');
         }
-        //**بررسی تراکنش از قبل */
+      });
+    }
+    //**بررسی تراکنش از قبل */
   }
   getPublicConfig(): void {
     const filter = new FilterModel();
@@ -136,7 +132,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     if (this.requestLinkPublicConfigId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
         this.tabledisplayedColumns,
@@ -163,7 +159,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
         if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
-        
+
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);
           }
@@ -239,10 +235,10 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     });
   }
   onActionSelectorSelect(model: BankPaymentPublicConfigModel | null): void {
-     /*filter */
+    /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent =  new FilterModel();
+    this.filteModelContent = new FilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -409,23 +405,23 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     });
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -454,7 +450,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
   onActionbuttonReload(): void {
     this.DataGetAll();
   }

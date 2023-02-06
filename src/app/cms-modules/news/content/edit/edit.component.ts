@@ -1,45 +1,27 @@
 
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import * as Leaflet from 'leaflet';
-import { FormGroup } from '@angular/forms';
-import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FilterModel,
-  FormInfoModel,
-  NewsContentModel,
-  NewsContentService,
-  FilterDataModel,
-  NewsCategoryModel,
-  NewsContentTagService,
-  NewsContentTagModel,
-  NewsContentSimilarService,
-  NewsContentOtherInfoService,
-  NewsContentOtherInfoModel,
-  NewsContentSimilarModel,
-  AccessModel,
-  DataFieldInfoModel,
-  EnumClauseType,
-  NewsContentCategoryModel,
-  NewsContentCategoryService,
-  EnumManageUserAccessDataTypes
-} from 'ntk-cms-api';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { Map as leafletMap } from 'leaflet';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { ENTER } from '@angular/cdk/keycodes';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreLocationModel } from 'ntk-cms-api';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import * as Leaflet from 'leaflet';
+import { Map as leafletMap } from 'leaflet';
+import {
+  AccessModel, CoreEnumService, CoreLocationModel, DataFieldInfoModel,
+  EnumClauseType, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel,
+  FormInfoModel, NewsCategoryModel, NewsContentCategoryModel,
+  NewsContentCategoryService, NewsContentModel, NewsContentOtherInfoModel, NewsContentOtherInfoService, NewsContentService, NewsContentSimilarModel, NewsContentSimilarService, NewsContentTagModel, NewsContentTagService
+} from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { map, of } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-news-content-edit',
   templateUrl: './edit.component.html',
@@ -200,7 +182,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
       );
   }
   DataTagGetAll(): void {
-    
+
     this.formInfo.formSubmitAllow = false;
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server');
     this.formInfo.formError = '';
@@ -220,7 +202,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           this.loading.Stop(pName);
           this.dataContentTagModelResult = ret;
           this.formInfo.formSubmitAllow = true;
-          
+
           if (ret.isSuccess) {
             const list = [];
             this.dataContentTagModelResult.listItems.forEach(x => {
@@ -396,7 +378,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   async DataActionAfterAddContentSuccessfulTag(model: NewsContentModel): Promise<any> {
     const dataListAdd = new Array<NewsContentTagModel>();
     const dataListDelete = new Array<NewsContentTagModel>();
-    
+
     if (this.tagIdsData) {
       this.tagIdsData.forEach(item => {
         const row = new NewsContentTagModel();
@@ -422,7 +404,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorAddTag();
           }
-          
+
           return of(response);
         })).toPromise();
     }
@@ -435,7 +417,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorRemoveTag();
           }
-          
+
           return of(response);
         })).toPromise();
     }
@@ -588,7 +570,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     );
   }
   onActionTagChange(ids: number[]): void {
-    
+
     this.tagIdsData = ids;
   }
   onActionContentSimilarSelect(model: NewsContentModel | null): void {
@@ -724,7 +706,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
     const value = (event.value || '').trim();
     // Add our item
     if (value) {
-      this.keywordDataModel.push( value);
+      this.keywordDataModel.push(value);
     }
     // Clear the input value
     event.chipInput!.clear();

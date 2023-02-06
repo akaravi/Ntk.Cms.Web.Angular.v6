@@ -1,40 +1,27 @@
 
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import * as Leaflet from 'leaflet';
-import { FormGroup } from '@angular/forms';
-import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  BlogContentModel,
-  BlogContentService,
-  BlogCategoryModel,
-  BlogContentTagService,
-  BlogContentTagModel,
-  BlogContentSimilarService,
-  BlogContentSimilarModel,
-  BlogContentOtherInfoService,
-  BlogContentOtherInfoModel,
-  AccessModel,
-  DataFieldInfoModel
-} from 'ntk-cms-api';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { Map as leafletMap } from 'leaflet';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { ENTER } from '@angular/cdk/keycodes';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import * as Leaflet from 'leaflet';
+import { Map as leafletMap } from 'leaflet';
+import {
+  AccessModel, BlogCategoryModel, BlogContentModel, BlogContentOtherInfoModel, BlogContentOtherInfoService, BlogContentService, BlogContentSimilarModel, BlogContentSimilarService, BlogContentTagModel, BlogContentTagService, CoreEnumService, CoreLocationModel, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult,
+  FormInfoModel
+} from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { PoinModel } from 'src/app/core/models/pointModel';
-import { CoreLocationModel } from 'ntk-cms-api';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
@@ -215,7 +202,6 @@ export class BlogContentAddComponent implements OnInit, AfterViewInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
 
     this.contentService
       .ServiceAdd(this.dataModel)
@@ -429,30 +415,30 @@ export class BlogContentAddComponent implements OnInit, AfterViewInit {
     }
     this.dataModel.linkLocationId = model.id;
   }
-  	
-		 /**
+
+  /**
+* tag
+*/
+  addOnBlurTag = true;
+  readonly separatorKeysCodes = [ENTER] as const;
+  addTag(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    // Add our item
+    if (value) {
+      this.keywordDataModel.push(value);
+    }
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  removeTag(item: string): void {
+    const index = this.keywordDataModel.indexOf(item);
+
+    if (index >= 0) {
+      this.keywordDataModel.splice(index, 1);
+    }
+  }
+  /**
    * tag
    */
-      addOnBlurTag = true;
-      readonly separatorKeysCodes = [ENTER] as const;
-      addTag(event: MatChipInputEvent): void {
-        const value = (event.value || '').trim();
-        // Add our item
-        if (value) {
-          this.keywordDataModel.push( value);
-        }
-        // Clear the input value
-        event.chipInput!.clear();
-      }
-    
-      removeTag(item: string): void {
-        const index = this.keywordDataModel.indexOf(item);
-    
-        if (index >= 0) {
-          this.keywordDataModel.splice(index, 1);
-        }
-      }
-      /**
-       * tag
-       */
 }

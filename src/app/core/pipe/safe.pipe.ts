@@ -2,11 +2,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {
   DomSanitizer,
-  SafeHtml,
-  SafeStyle,
-  SafeScript,
-  SafeUrl,
-  SafeResourceUrl,
+  SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl
 } from '@angular/platform-browser';
 
 /**
@@ -22,7 +18,7 @@ export class SafePipe implements PipeTransform {
    * @param _sanitizer: DomSanitezer
    */
   // tslint:disable-next-line
-  constructor(protected _sanitizer: DomSanitizer) {}
+  constructor(protected _sanitizer: DomSanitizer) { }
 
   /**
    * Transform

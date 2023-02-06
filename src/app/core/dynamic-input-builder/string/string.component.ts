@@ -26,7 +26,7 @@ export class StringComponent implements OnInit {
   @Input() optionTitle = '';
   @Input() optionPlaceholder = '';
   @Input() optionIconColor = '';
-  
+
   private privateModelDate = '';
   get modelDate(): string {
     return this.privateModelDate;
@@ -37,7 +37,7 @@ export class StringComponent implements OnInit {
   }
   itemSelected: Map<string, boolean> = new Map<string, boolean>();
 
-  colors = ['primary','accent','warn','primary','accent','warn','primary','accent','warn'];
+  colors = ['primary', 'accent', 'warn', 'primary', 'accent', 'warn', 'primary', 'accent', 'warn'];
 
   ngOnInit(): void {
   }

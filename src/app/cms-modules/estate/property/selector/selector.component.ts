@@ -1,23 +1,20 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  EstatePropertyModel,
-  EstatePropertyService
+  ErrorExceptionResult, EstatePropertyModel,
+  EstatePropertyService, FilterDataModel,
+  FilterModel
 } from 'ntk-cms-api';
-import { FormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -25,7 +22,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
-export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
+export class EstatePropertySelectorComponent implements OnInit, OnDestroy {
 
   constructor(
     public coreEnumService: CoreEnumService,
@@ -34,7 +31,7 @@ export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
     public categoryService: EstatePropertyService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
@@ -84,10 +81,10 @@ export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
   }
 
   displayFn(model?: EstatePropertyModel): string | undefined {
-    return model ? model.title + ' # '+ model.caseCode : undefined;
+    return model ? model.title + ' # ' + model.caseCode : undefined;
   }
   displayOption(model?: EstatePropertyModel): string | undefined {
-    return model ? model.title + ' # '+ model.caseCode : undefined;
+    return model ? model.title + ' # ' + model.caseCode : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstatePropertyModel[]> {
     const filterModel = new FilterModel();
@@ -120,7 +117,7 @@ export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
     filter.clauseType = EnumClauseType.Or;
     filterModel.filters.push(filter);
 
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -181,15 +178,15 @@ export class EstatePropertySelectorComponent implements OnInit , OnDestroy {
       }
       this.categoryService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
-        if (ret.isSuccess) {
-          this.filteredOptions = this.push(ret.item);
-          this.dataModelSelect = ret.item;
-          this.formControl.setValue(ret.item);
-          this.optionChange.emit(ret.item);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          if (ret.isSuccess) {
+            this.filteredOptions = this.push(ret.item);
+            this.dataModelSelect = ret.item;
+            this.formControl.setValue(ret.item);
+            this.optionChange.emit(ret.item);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
         }
-      }
       });
       return;
     }

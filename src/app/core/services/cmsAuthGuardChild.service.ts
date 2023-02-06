@@ -1,11 +1,8 @@
+import { Injectable } from '@angular/core';
 import {
-  CanActivateChild,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  Router,
+  ActivatedRouteSnapshot, CanActivateChild, Router, RouterStateSnapshot
 } from '@angular/router';
-import {Injectable} from '@angular/core';
-import {CoreAuthService} from 'ntk-cms-api';
+import { CoreAuthService } from 'ntk-cms-api';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +16,7 @@ export class CmsAuthGuardChild implements CanActivateChild {
     if (token && token.length > 0) {
       return true;
     }
-    this.router.navigate(['auth'], {queryParams: {returnUrl: state.url}});
+    this.router.navigate(['auth'], { queryParams: { returnUrl: state.url } });
 
     return false;
   }

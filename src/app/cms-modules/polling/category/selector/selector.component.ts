@@ -1,5 +1,7 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   EnumClauseType,
@@ -10,13 +12,10 @@ import {
   PollingCategoryModel,
   PollingCategoryService
 } from 'ntk-cms-api';
-import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -31,7 +30,7 @@ export class PollingCategorySelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public categoryService: PollingCategoryService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
   dataModelResult: ErrorExceptionResult<PollingCategoryModel> = new ErrorExceptionResult<PollingCategoryModel>();
@@ -98,7 +97,7 @@ export class PollingCategorySelectorComponent implements OnInit {
       filter.clauseType = EnumClauseType.Or;
       filterModel.filters.push(filter);
     }
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -153,15 +152,15 @@ export class PollingCategorySelectorComponent implements OnInit {
       }
       this.categoryService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
-        if (ret.isSuccess) {
-          this.filteredOptions = this.push(ret.item);
-          this.dataModelSelect = ret.item;
-          this.formControl.setValue(ret.item);
-          this.optionChange.emit(ret.item);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          if (ret.isSuccess) {
+            this.filteredOptions = this.push(ret.item);
+            this.dataModelSelect = ret.item;
+            this.formControl.setValue(ret.item);
+            this.optionChange.emit(ret.item);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
         }
-      }
       });
       return;
     }

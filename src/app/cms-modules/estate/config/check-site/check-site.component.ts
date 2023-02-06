@@ -4,11 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  BaseModuleSiteCheckSiteModel,
-  EstateConfigurationService,
-  CoreEnumService,
-  ErrorExceptionResult,
-  TokenInfoModel
+  BaseModuleSiteCheckSiteModel, CoreEnumService,
+  ErrorExceptionResult, EstateConfigurationService, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';

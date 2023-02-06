@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { BiographyComponent } from './biography.component';
-import { BiographyContentListComponent } from './content/list/list.component';
 import { BiographyCommentListComponent } from './comment/list/list.component';
-import { BiographyContentEditComponent } from './content/edit/edit.component';
 import { BiographyContentAddComponent } from './content/add/add.component';
+import { BiographyContentEditComponent } from './content/edit/edit.component';
+import { BiographyContentListComponent } from './content/list/list.component';
 const routes: Routes = [
   {
     path: '',

@@ -1,29 +1,19 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  ApiTelegramBotConfigService,
-  ApiTelegramBotConfigModel,
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
-  Input,
+  ChangeDetectorRef, Component, Inject, Input, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  ApiTelegramBotConfigModel, ApiTelegramBotConfigService, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  FormInfoModel
+} from 'ntk-cms-api';
+import { TreeModel } from 'ntk-cms-filemanager';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsViewComponent } from 'src/app/shared/cms-view/cms-view.component';
 
 @Component({

@@ -1,30 +1,24 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  SmsMainApiPathModel,
-  SmsMainApiPathService,
-  EnumFilterDataModelSearchTypes,
-  EnumClauseType,
-  SmsMainApiNumberModel,
-  SmsMainApiNumberService
-} from 'ntk-cms-api';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, EnumClauseType, EnumFilterDataModelSearchTypes, ErrorExceptionResult,
+  FilterDataModel,
+  FilterModel, SmsMainApiNumberModel,
+  SmsMainApiNumberService, SmsMainApiPathModel,
+  SmsMainApiPathService
+} from 'ntk-cms-api';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-sms-action-send-message-api',
   templateUrl: './send-message-api.component.html',
-  
+
 })
 export class SmsActionSendMessageApiComponent implements OnInit {
 
@@ -35,8 +29,8 @@ export class SmsActionSendMessageApiComponent implements OnInit {
     public translate: TranslateService,
     public pathService: SmsMainApiPathService,
     public numberService: SmsMainApiNumberService
-    ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+  ) {
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
 
   dataPathModelResult: ErrorExceptionResult<SmsMainApiPathModel> = new ErrorExceptionResult<SmsMainApiPathModel>();
@@ -78,7 +72,7 @@ export class SmsActionSendMessageApiComponent implements OnInit {
         }),
         // tap(() => this.myControl.setValue(this.options[0]))
       );
-      this.filteredNumberOptions = this.formNumberControl.valueChanges
+    this.filteredNumberOptions = this.formNumberControl.valueChanges
       .pipe(
         startWith(''),
         debounceTime(1500),
@@ -238,15 +232,15 @@ export class SmsActionSendMessageApiComponent implements OnInit {
       }
       this.pathService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
-        if (ret.isSuccess) {
-          this.filteredPathOptions = this.pushPath(ret.item);
-          this.dataPathModelSelect = ret.item;
-          this.formPathControl.setValue(ret.item);
-          this.optionPathChange.emit(ret.item);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          if (ret.isSuccess) {
+            this.filteredPathOptions = this.pushPath(ret.item);
+            this.dataPathModelSelect = ret.item;
+            this.formPathControl.setValue(ret.item);
+            this.optionPathChange.emit(ret.item);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
         }
-      }
       });
       return;
     }
@@ -271,15 +265,15 @@ export class SmsActionSendMessageApiComponent implements OnInit {
       }
       this.numberService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
-        if (ret.isSuccess) {
-          this.filteredNumberOptions = this.pushNumber(ret.item);
-          this.dataNumberModelSelect = ret.item;
-          this.formNumberControl.setValue(ret.item);
-          this.optionNumberChange.emit(ret.item);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          if (ret.isSuccess) {
+            this.filteredNumberOptions = this.pushNumber(ret.item);
+            this.dataNumberModelSelect = ret.item;
+            this.formNumberControl.setValue(ret.item);
+            this.optionNumberChange.emit(ret.item);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
         }
-      }
       });
       return;
     }

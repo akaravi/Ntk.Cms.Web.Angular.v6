@@ -1,9 +1,5 @@
 import {
-  Component,
-  OnInit,
-  Input,
-  ElementRef,
-  AfterViewInit,
+  AfterViewInit, Component, ElementRef, Input, OnInit
 } from '@angular/core';
 import KTLayoutExamples from '../../../assets/js/layout/extended/examples';
 
@@ -16,9 +12,9 @@ export class CodePreviewComponent implements OnInit, AfterViewInit {
   id = ++CodePreviewComponent.nextId;
   // Public properties
   @Input() viewItem: any;
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngAfterViewInit() {
     const elements = this.el.nativeElement.querySelectorAll(

@@ -68,26 +68,26 @@ export class AppComponent implements OnInit, OnDestroy {
     if (url.includes('?')) {
       const httpParams = new HttpParams({ fromString: url.split('?')[1] });
       const site = httpParams.get('site');
-      const siteId = +site ;
+      const siteId = +site;
       if (siteId > 0) {
         localStorage.setItem('siteId', site);
       }
       const siteType = httpParams.get('sitetype');
-      const siteTypeId = +siteType ;
+      const siteTypeId = +siteType;
       if (siteTypeId > 0) {
         localStorage.setItem('siteTypeId', siteType);
       }
       const ResellerSite = httpParams.get('rsite');
-      const ResellerSiteId = +ResellerSite ;
+      const ResellerSiteId = +ResellerSite;
       if (ResellerSiteId > 0) {
         localStorage.setItem('ResellerSiteId', ResellerSite);
       }
       const ResellerUser = httpParams.get('ruser');
-      const ResellerUserId = +ResellerUser ;
+      const ResellerUserId = +ResellerUser;
       if (ResellerUserId > 0) {
         localStorage.setItem('ResellerUserId', ResellerUser);
       }
-      
+
     }
 
 

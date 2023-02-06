@@ -1,6 +1,9 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreSiteCategoryCmsModuleModel,
   CoreSiteCategoryCmsModuleService,
@@ -11,14 +14,11 @@ import {
   FilterModel,
   TokenInfoModel
 } from 'ntk-cms-api';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatSort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { TranslateService } from '@ngx-translate/core';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-core-sitecategorycmsmodule-listview',
@@ -53,7 +53,7 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
   tableSource: MatTableDataSource<CoreSiteCategoryCmsModuleModel> = new MatTableDataSource<CoreSiteCategoryCmsModuleModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'virtual_CmsSiteCategory.title',
     'virtual_CmsModule.title',

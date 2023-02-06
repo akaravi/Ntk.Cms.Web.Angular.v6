@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
+import { TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { LayoutService } from 'src/app/core/services/layout.service';
@@ -8,7 +8,7 @@ import { LayoutService } from 'src/app/core/services/layout.service';
   selector: 'app-quick-actions-offcanvas',
   templateUrl: './quick-actions-offcanvas.component.html',
 })
-export class QuickActionsOffcanvasComponent implements OnInit , OnDestroy {
+export class QuickActionsOffcanvasComponent implements OnInit, OnDestroy {
 
   constructor(
     private layout: LayoutService,

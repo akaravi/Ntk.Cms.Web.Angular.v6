@@ -1,25 +1,19 @@
 
-import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  EstateAdsTypeService,
-  ErrorExceptionResult,
-  FilterModel,
-  TokenInfoModel,
-  EstateAdsTypeModel,
-  CoreEnumService,
-  EnumInfoModel,
-  CoreSiteService,
+  CoreEnumService, CoreSiteService, EnumInfoModel, ErrorExceptionResult, EstateAdsTypeModel, EstateAdsTypeService, FilterModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
-import { EstatePropertyAdsSalePaymentComponent } from '../sale-payment/sale-payment.component';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
-import { TranslateService } from '@ngx-translate/core';
+import { EstatePropertyAdsSalePaymentComponent } from '../sale-payment/sale-payment.component';
 
 @Component({
   selector: 'app-estate-property-ads-salelist',
@@ -40,7 +34,7 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkPropertyId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyId');
   }
   showBuy = false;

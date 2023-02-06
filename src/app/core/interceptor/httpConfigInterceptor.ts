@@ -1,9 +1,9 @@
-import { CmsToastrService } from '../services/cmsToastr.service';
-import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { CmsToastrService } from '../services/cmsToastr.service';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
@@ -22,7 +22,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
       this.cmsToastrService.typeErrorInternetConnection();
       // tslint:disable-next-line: deprecation
       // return Observable.throw(new HttpErrorResponse({ error: 'Internet is required.' }));
-      return ;
+      return;
     }
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {

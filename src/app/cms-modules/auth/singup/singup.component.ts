@@ -1,14 +1,14 @@
 
-import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
-import { AuthUserSignInModel, AuthUserSignUpModel, CaptchaModel, CoreAuthService, FormInfoModel } from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { MatDialog } from '@angular/material/dialog';
-import { SingupRuleComponent } from '../singupRule/singupRule.Component';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthUserSignInModel, AuthUserSignUpModel, CaptchaModel, CoreAuthService, FormInfoModel } from 'ntk-cms-api';
+import { Observable } from 'rxjs';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { SingupRuleComponent } from '../singupRule/singupRule.Component';
 @Component({
   selector: 'app-auth-singup',
   templateUrl: './singup.component.html',
@@ -167,9 +167,9 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
     });
   }
   onRoulaccespt(): void {
-    const dialogRef = this.dialog.open(SingupRuleComponent,{
-      height:"90%",
-      width:"90%",
+    const dialogRef = this.dialog.open(SingupRuleComponent, {
+      height: "90%",
+      width: "90%",
     });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);

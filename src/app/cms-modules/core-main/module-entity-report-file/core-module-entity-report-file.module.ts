@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  CoreModuleEntityReportFileService,
-} from 'ntk-cms-api';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import {
+  CoreModuleEntityReportFileService
+} from 'ntk-cms-api';
+import { SharedModule } from 'src/app/shared.module';
 import { CoreSharedModule } from '../core.shared.module';
-import { CoreModuleEntityReportFileEditComponent } from './edit/edit.component';
-import { CoreModuleEntityReportFileListComponent } from './list/list.component';
-import { CoreModuleEntityReportFileComponent } from './core-module-entity-report-file.component';
-import { CoreModuleEntityReportFileRouting } from './core-module-entity-report-file.routing';
 import { CoreModuleEntityModule } from '../module-entity/core-module-entity.module';
 import { CoreModuleEntityReportFileAddComponent } from './add/add.component';
+import { CoreModuleEntityReportFileComponent } from './core-module-entity-report-file.component';
+import { CoreModuleEntityReportFileRouting } from './core-module-entity-report-file.routing';
+import { CoreModuleEntityReportFileEditComponent } from './edit/edit.component';
+import { CoreModuleEntityReportFileListComponent } from './list/list.component';
 
 
 @NgModule({
@@ -35,7 +35,7 @@ import { CoreModuleEntityReportFileAddComponent } from './add/add.component';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     CoreSharedModule,
     CoreModuleEntityModule,
   ],

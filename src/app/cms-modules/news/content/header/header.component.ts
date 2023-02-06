@@ -1,27 +1,20 @@
 
 import {
-  EnumInfoModel,
-  ErrorExceptionResult,
-  NewsContentModel,
-  NewsContentService,
-  DataFieldInfoModel,
-  EnumRecordStatus,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectorRef,
-  OnDestroy,
+  ChangeDetectorRef, Component, Input, OnDestroy, OnInit
 } from '@angular/core';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { MatDialog } from '@angular/material/dialog';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  DataFieldInfoModel, EnumInfoModel, EnumRecordStatus, ErrorExceptionResult,
+  NewsContentModel,
+  NewsContentService
+} from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 
 
 @Component({
@@ -29,7 +22,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class NewsContentHeaderComponent implements OnInit ,OnDestroy {
+export class NewsContentHeaderComponent implements OnInit, OnDestroy {
   constructor(
     private headerService: NewsContentService,
     public publicHelper: PublicHelper,
@@ -39,7 +32,7 @@ export class NewsContentHeaderComponent implements OnInit ,OnDestroy {
     public translate: TranslateService,
     public tokenHelper: TokenHelper
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionId = 0;
   loading = new ProgressSpinnerModel();
@@ -71,7 +64,7 @@ export class NewsContentHeaderComponent implements OnInit ,OnDestroy {
 
     this.headerService.setAccessLoad();
     this.headerService.ServiceGetOneById(this.optionId).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {
           this.dataModelResult = ret;
@@ -80,18 +73,19 @@ export class NewsContentHeaderComponent implements OnInit ,OnDestroy {
         }
         this.loading.Stop(pName);
       },
-      error:(er) => {
+      error: (er) => {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      }}
+      }
+    }
     );
   }
-  onActionbuttonLinkTo(model: NewsContentModel=this.dataModelResult.item): void {
+  onActionbuttonLinkTo(model: NewsContentModel = this.dataModelResult.item): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus !=EnumRecordStatus.Available) {
+    if (model.recordStatus != EnumRecordStatus.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
@@ -101,7 +95,7 @@ export class NewsContentHeaderComponent implements OnInit ,OnDestroy {
       width: "90%",
       data: {
         title: model.title,
-        urlViewContentQRCodeBase64:model.urlViewContentQRCodeBase64,
+        urlViewContentQRCodeBase64: model.urlViewContentQRCodeBase64,
         urlViewContent: model.urlViewContent,
       },
     });

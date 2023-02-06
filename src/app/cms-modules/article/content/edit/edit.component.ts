@@ -1,44 +1,26 @@
 
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import * as Leaflet from 'leaflet';
-import { FormGroup } from '@angular/forms';
-import {
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FilterModel,
-  FormInfoModel,
-  ArticleContentModel,
-  ArticleContentService,
-  FilterDataModel,
-  ArticleCategoryModel,
-  ArticleContentTagService,
-  ArticleContentTagModel,
-  ArticleContentSimilarService,
-  ArticleContentOtherInfoService,
-  ArticleContentOtherInfoModel,
-  ArticleContentSimilarModel,
-  AccessModel,
-  DataFieldInfoModel,
-  EnumClauseType,
-  ArticleContentCategoryService,
-  ArticleContentCategoryModel,
-  EnumManageUserAccessDataTypes
-} from 'ntk-cms-api';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { Map as leafletMap } from 'leaflet';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { ENTER } from '@angular/cdk/keycodes';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreLocationModel } from 'ntk-cms-api';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import * as Leaflet from 'leaflet';
+import { Map as leafletMap } from 'leaflet';
+import {
+  AccessModel, ArticleCategoryModel, ArticleContentCategoryModel, ArticleContentCategoryService, ArticleContentModel, ArticleContentOtherInfoModel, ArticleContentOtherInfoService, ArticleContentService, ArticleContentSimilarModel, ArticleContentSimilarService, ArticleContentTagModel, ArticleContentTagService, CoreLocationModel, DataFieldInfoModel,
+  EnumClauseType, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel,
+  FormInfoModel
+} from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { map, of } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-article-content-edit',
   templateUrl: './edit.component.html',
@@ -413,14 +395,14 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
       });
     }
     if (dataListAdd && dataListAdd.length > 0) {
-       this.contentTagService.ServiceAddBatch(dataListAdd).pipe(
+      this.contentTagService.ServiceAddBatch(dataListAdd).pipe(
         map(response => {
           if (response.isSuccess) {
             this.cmsToastrService.typeSuccessAddTag();
           } else {
             this.cmsToastrService.typeErrorAddTag();
           }
-          
+
           return of(response);
         })).toPromise();
     }
@@ -432,7 +414,7 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorRemoveTag();
           }
-          
+
           return of(response);
         })).toPromise();
     }
@@ -710,16 +692,16 @@ export class ArticleContentEditComponent implements OnInit, AfterViewInit {
     }
     this.dataModel.linkLocationId = model.id;
   }
- /**
-   * tag
-   */
+  /**
+    * tag
+    */
   addOnBlurTag = true;
   readonly separatorKeysCodes = [ENTER] as const;
   addTag(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
     // Add our item
     if (value) {
-      this.keywordDataModel.push( value);
+      this.keywordDataModel.push(value);
     }
     // Clear the input value
     event.chipInput!.clear();

@@ -1,11 +1,11 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { EnumRecordStatus, FilterDataModel, FilterModel, CoreModuleLogReportAbuseService } from 'ntk-cms-api';
+import { TranslateService } from '@ngx-translate/core';
+import { CoreModuleLogReportAbuseService, EnumRecordStatus, FilterDataModel, FilterModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-ReportAbuse-widget2',
   templateUrl: './widget2.component.html',

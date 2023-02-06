@@ -1,33 +1,26 @@
 
-import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
-  CoreUserClaimContentModel,
-  CoreUserClaimContentService,
-  ErrorExceptionResult,
+  CoreUserClaimCheckDtoModel, CoreUserClaimCheckModel, CoreUserClaimContentModel,
+  CoreUserClaimContentService, CoreUserClaimTypeModel,
+  CoreUserClaimTypeService, DataFieldInfoModel, ErrorExceptionResult,
   FilterModel,
-  TokenInfoModel,
-  DataFieldInfoModel,
-  CoreUserClaimTypeModel,
-  CoreUserClaimTypeService,
-  CoreUserClaimCheckModel,
-  CoreUserClaimCheckDtoModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 
-import { Subscription } from 'rxjs';
-import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
-import { CoreUserClaimContentAddComponent } from '../add/add.component';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { CoreUserClaimContentAddComponent } from '../add/add.component';
+import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
 
 @Component({
   selector: 'app-core-userclaimcontent-checklist',
@@ -65,7 +58,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
   dataModelResult: ErrorExceptionResult<CoreUserClaimCheckModel> = new ErrorExceptionResult<CoreUserClaimCheckModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowSelected: CoreUserClaimCheckModel = new CoreUserClaimCheckModel();

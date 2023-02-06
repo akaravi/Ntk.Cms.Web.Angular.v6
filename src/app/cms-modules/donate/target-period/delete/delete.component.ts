@@ -4,22 +4,20 @@ import {
   Component,
   Inject,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {
-  DataFieldInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  DonateTargetPeriodModel,
-  DonateTargetPeriodService,
-  EnumManageUserAccessDataTypes
-} from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  DataFieldInfoModel, DonateTargetPeriodModel,
+  DonateTargetPeriodService,
+  EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  FormInfoModel
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-donate-target-period-delete',
@@ -36,7 +34,7 @@ export class DonateTargetPeriodDeleteComponent implements OnInit {
     public translate: TranslateService,
     private cmsToastrService: CmsToastrService
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = +data.id || 0;
     }

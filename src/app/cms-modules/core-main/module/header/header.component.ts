@@ -1,25 +1,20 @@
 
 import {
-  EnumInfoModel,
-  ErrorExceptionResult,
+  ChangeDetectorRef, Component, Input, OnDestroy, OnInit
+} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
+import {
   CoreModuleModel,
   CoreModuleService,
-  DataFieldInfoModel,
+  DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult
 } from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectorRef,
-  OnDestroy,
-} from '@angular/core';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { MatDialog } from '@angular/material/dialog';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-core-module-header',
   templateUrl: './header.component.html',

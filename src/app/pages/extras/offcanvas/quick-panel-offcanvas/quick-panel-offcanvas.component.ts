@@ -12,7 +12,7 @@ export class QuickPanelOffcanvasComponent implements OnInit {
     | 'kt_quick_panel_notifications'
     | 'kt_quick_panel_settings' = 'kt_quick_panel_logs';
 
-  constructor(private layout: LayoutService) {}
+  constructor(private layout: LayoutService) { }
 
   ngOnInit(): void {
     this.extrasQuickPanelOffcanvasDirectionCSSClass = `offcanvas-${this.layout.getProp(

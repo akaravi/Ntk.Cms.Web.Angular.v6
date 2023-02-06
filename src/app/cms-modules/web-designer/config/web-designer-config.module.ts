@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
   CoreModuleService,
-  WebDesignerConfigurationService,
+  WebDesignerConfigurationService
 } from 'ntk-cms-api';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
-import { AngularEditorModule } from '@kolkov/angular-editor';
+import { WebDesignerConfigCheckSiteComponent } from './check-site/check-site.component';
+import { WebDesignerConfigCheckUserComponent } from './check-user/check-user.component';
 import { WebDesignerConfigMainAdminComponent } from './main-admin/config-main-admin.component';
 import { WebDesignerConfigSiteComponent } from './site/config-site.component';
-import { WebDesignerConfigCheckUserComponent } from './check-user/check-user.component';
-import { WebDesignerConfigCheckSiteComponent } from './check-site/check-site.component';
 import { WebDesignerConfigRouting } from './web-designer-config.routing';
 @NgModule({
   declarations: [

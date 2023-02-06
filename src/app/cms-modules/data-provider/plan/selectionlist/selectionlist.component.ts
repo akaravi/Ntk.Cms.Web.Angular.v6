@@ -1,11 +1,10 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { CoreEnumService, ErrorExceptionResult, FilterModel, DataProviderPlanModel, DataProviderPlanService } from 'ntk-cms-api';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslateService } from '@ngx-translate/core';
+import { CoreEnumService, DataProviderPlanModel, DataProviderPlanService, ErrorExceptionResult, FilterModel } from 'ntk-cms-api';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
@@ -20,7 +19,7 @@ export class DataProviderPlanSelectionlistComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     private cmsToastrService: CmsToastrService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<DataProviderPlanModel> = new ErrorExceptionResult<DataProviderPlanModel>();
   dataModelSelect: DataProviderPlanModel[] = [];

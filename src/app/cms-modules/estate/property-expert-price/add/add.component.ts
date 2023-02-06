@@ -1,34 +1,20 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstatePropertyExpertPriceModel,
-  EstatePropertyExpertPriceService,
-  DataFieldInfoModel,
-  CoreLocationModel,
-  EstatePropertyTypeUsageModel,
-  EstatePropertyTypeLanduseModel,
-  CoreCurrencyModel,
-  EstatePropertyExpertPriceTypeEnum,
-  EstateEnumService,
-  EstateContractTypeModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreCurrencyModel, CoreEnumService, CoreLocationModel, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult, EstateContractTypeModel, EstateEnumService, EstatePropertyExpertPriceModel,
+  EstatePropertyExpertPriceService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FormInfoModel
+} from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-estate-property-expert-price-add',
@@ -45,7 +31,7 @@ export class EstatePropertyExpertPriceAddComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
-    private estateEnumService:EstateEnumService,
+    private estateEnumService: EstateEnumService,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -83,7 +69,7 @@ export class EstatePropertyExpertPriceAddComponent implements OnInit {
     this.getEnumRecordStatus();
     this.getEstatePropertyExpertPriceTypeEnum();
     this.DataGetAccess();
-    
+
   }
   async getEnumRecordStatus(): Promise<void> {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();

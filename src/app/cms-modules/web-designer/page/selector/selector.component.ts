@@ -1,21 +1,16 @@
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService,
-  ErrorExceptionResult,
+  CoreEnumService, EnumClauseType, EnumFilterDataModelSearchTypes, EnumPageAbilityType, ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
   WebDesignerMainPageModel,
-  WebDesignerMainPageService,
-  EnumFilterDataModelSearchTypes,
-  EnumClauseType,
-  EnumPageAbilityType
+  WebDesignerMainPageService
 } from 'ntk-cms-api';
-import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-webdesigner-page-selector',
   templateUrl: './selector.component.html',
@@ -26,7 +21,7 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public categoryService: WebDesignerMainPageService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionMasterTemplateId(x: string) {
     this.masterTemplateId = x;

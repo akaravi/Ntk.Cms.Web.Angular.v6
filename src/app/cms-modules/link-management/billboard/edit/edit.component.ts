@@ -1,35 +1,22 @@
 
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  LinkManagementBillboardModel,
-  LinkManagementBillboardService,
-  DataFieldInfoModel,
-  AccessModel,
-  LinkManagementBillboardPatternModel,
-  LinkManagementMemberModel,
-  LinkManagementBillboardTargetCategoryService,
-  LinkManagementBillboardTargetCategoryModel,
-  FilterModel,
-  FilterDataModel,
-  EnumClauseType,
-  EnumManageUserAccessDataTypes,
-} from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { Map as leafletMap } from 'leaflet';
+import {
+  AccessModel, DataFieldInfoModel, EnumClauseType, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel,
+  LinkManagementBillboardModel, LinkManagementBillboardPatternModel, LinkManagementBillboardService, LinkManagementBillboardTargetCategoryModel, LinkManagementBillboardTargetCategoryService, LinkManagementMemberModel
+} from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 @Component({
   selector: 'app-linkmanagement-Billboard-edit',
@@ -49,7 +36,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.loadingOption.cdr = this.cdr;
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { DataProviderClientChargeComponent } from './client/charge/charge.component';
 import { DataProviderClientListComponent } from './client/list/list.component';
 import { DataProviderComponent } from './data-provider.component';
@@ -7,7 +7,6 @@ import { DataProviderLogClientListComponent } from './log-client/list/list.compo
 import { DataProviderLogPlanListComponent } from './log-plan/list/list.component';
 import { DataProviderLogSourceListComponent } from './log-source/list/list.component';
 import { DataProviderPlanClientListComponent } from './plan-client/list/list.component';
-import { DataProviderPlanPriceChargeComponent } from './plan-price/charge/charge.component';
 import { DataProviderPlanPriceListComponent } from './plan-price/list/list.component';
 import { DataProviderPlanSourceListComponent } from './plan-source/list/list.component';
 import { DataProviderPlanListComponent } from './plan/list/list.component';

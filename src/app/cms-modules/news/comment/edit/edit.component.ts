@@ -1,28 +1,19 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  NewsCommentService,
-  NewsCommentModel,
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  FormInfoModel, NewsCommentModel, NewsCommentService
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ComponentActionEnum } from 'src/app/core/models/component-action-enum';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-news-comment-edit',
   templateUrl: './edit.component.html',
@@ -42,7 +33,7 @@ export class NewsCommentEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = +data.id || 0;
       this.requestParentId = +data.parentId || 0;
@@ -85,7 +76,7 @@ export class NewsCommentEditComponent implements OnInit {
     this.commentService
       .ServiceViewModel()
       .subscribe({
-        next:(ret) => {
+        next: (ret) => {
           if (ret.isSuccess) {
             // this.dataAccessModel = next.access;
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
@@ -93,9 +84,10 @@ export class NewsCommentEditComponent implements OnInit {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
-        error:(er) => {
+        error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
-        }}
+        }
+      }
       );
   }
   DataGetOneContent(): void {
@@ -110,7 +102,7 @@ export class NewsCommentEditComponent implements OnInit {
     this.commentService.setAccessLoad();
     this.commentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.commentService.ServiceGetOneById(this.requestId).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         this.dataModel = ret.item;
         if (ret.isSuccess) {
@@ -122,20 +114,21 @@ export class NewsCommentEditComponent implements OnInit {
         }
         this.loading.Stop(pName);
       },
-      error:(er) => {
+      error: (er) => {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      }}
+      }
+    }
     );
   }
   DataAddContent(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.dataModel.linkContentId = this.requestContentId;
     this.commentService.ServiceAdd(this.dataModel).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
         if (ret.isSuccess) {
@@ -149,11 +142,12 @@ export class NewsCommentEditComponent implements OnInit {
         }
         this.loading.Stop(pName);
       },
-      error:(er) => {
+      error: (er) => {
         this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      }}
+      }
+    }
     );
   }
   DataEditContent(): void {
@@ -162,7 +156,7 @@ export class NewsCommentEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.commentService.ServiceEdit(this.dataModel).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
         if (ret.isSuccess) {
@@ -176,11 +170,12 @@ export class NewsCommentEditComponent implements OnInit {
         }
         this.loading.Stop(pName);
       },
-      error:(er) => {
+      error: (er) => {
         this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      }}
+      }
+    }
     );
   }
   onFormSubmit(): void {

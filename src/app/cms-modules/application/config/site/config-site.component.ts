@@ -2,27 +2,22 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel,
-  CoreEnumService,
-  DataFieldInfoModel,
-  FormInfoModel,
-  ApplicationConfigurationService,
+  AccessModel, ApplicationConfigurationService,
   ApplicationModuleConfigSiteAccessValuesModel,
   ApplicationModuleConfigSiteValuesModel,
-  ApplicationModuleSiteStorageValuesModel,
-  TokenInfoModel,
-  EnumInfoModel,
-  ErrorExceptionResult,
+  ApplicationModuleSiteStorageValuesModel, CoreEnumService,
+  DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult, FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { PoinModel } from 'src/app/core/models/pointModel';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-application-config-site',
   templateUrl: './config-site.component.html',
@@ -57,7 +52,7 @@ export class ApplicationConfigSiteComponent implements OnInit {
   appLanguage = 'fa';
   fileManagerTree: TreeModel;
   mapMarker: any;
-  mapOptonCenter =new PoinModel();
+  mapOptonCenter = new PoinModel();
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.tokenHelper.getCurrentToken().then((value) => {

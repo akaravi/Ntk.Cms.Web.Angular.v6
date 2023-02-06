@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChartRouting } from './chart.routing';
+import { NgModule } from '@angular/core';
 import { ChartComponent } from './chart.component';
+import { ChartRouting } from './chart.routing';
 
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  CoreEnumService,
-  CoreModuleTagService,
   ChartCategoryService,
   ChartCommentService,
   ChartConfigurationService,
@@ -20,31 +19,27 @@ import {
   ChartContentTagService,
   ChartShareMainAdminSettingService,
   ChartShareReceiverCategoryService,
-  ChartShareServerCategoryService,
-  CoreModuleService
+  ChartShareServerCategoryService, CoreEnumService, CoreModuleService, CoreModuleTagService
 } from 'ntk-cms-api';
-import { ChartCategoryEditComponent } from './category/edit/edit.component';
 import { ChartCategoryDeleteComponent } from './category/delete/delete.component';
-import { ChartContentEditComponent } from './content/edit/edit.component';
+import { ChartCategoryEditComponent } from './category/edit/edit.component';
 import { ChartContentAddComponent } from './content/add/add.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartContentEditComponent } from './content/edit/edit.component';
 
 import { SharedModule } from 'src/app/shared.module';
 
-import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { ChartCategorySelectorComponent } from './category/selector/selector.component';
-import { ChartContentListComponent } from './content/list/list.component';
-import { ChartCategoryTreeComponent } from './category/tree/tree.component';
-import { ChartCommentListComponent } from './comment/list/list.component';
-import { ChartCommentEditComponent } from './comment/edit/edit.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { ChartContentSelectorComponent } from './content/selector/selector.component';
-import { ChartContentDeleteComponent } from './content/delete/delete.component';
-import { ChartCategoryAddComponent } from './category/add/add.component';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { ChartConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { ChartConfigSiteComponent } from './config/site/config-site.component';
+import { ChartCategoryAddComponent } from './category/add/add.component';
+import { ChartCategorySelectorComponent } from './category/selector/selector.component';
 import { ChartCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
+import { ChartCategoryTreeComponent } from './category/tree/tree.component';
+import { ChartCommentEditComponent } from './comment/edit/edit.component';
+import { ChartCommentListComponent } from './comment/list/list.component';
+import { ChartContentDeleteComponent } from './content/delete/delete.component';
+import { ChartContentListComponent } from './content/list/list.component';
+import { ChartContentSelectorComponent } from './content/selector/selector.component';
 
 
 @NgModule({
@@ -71,7 +66,7 @@ import { ChartCategoryTreeSelectorComponent } from './category/tree-selector/tre
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     CmsFileManagerModule
   ],
   providers: [

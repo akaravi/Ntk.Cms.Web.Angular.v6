@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
   CoreModuleService,
-  LinkManagementConfigurationService,
+  LinkManagementConfigurationService
 } from 'ntk-cms-api';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
-import { AngularEditorModule } from '@kolkov/angular-editor';
+import { LinkManagementConfigCheckSiteComponent } from './check-site/check-site.component';
+import { LinkManagementConfigCheckUserComponent } from './check-user/check-user.component';
+import { LinkManagementConfigRouting } from './link-management-config.routing';
 import { LinkManagementConfigMainAdminComponent } from './main-admin/config-main-admin.component';
 import { LinkManagementConfigSiteComponent } from './site/config-site.component';
-import { LinkManagementConfigCheckUserComponent } from './check-user/check-user.component';
-import { LinkManagementConfigCheckSiteComponent } from './check-site/check-site.component';
-import { LinkManagementConfigRouting } from './link-management-config.routing';
 
 
 @NgModule({

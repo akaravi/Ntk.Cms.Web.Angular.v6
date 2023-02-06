@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreSiteCategoryRouting } from './coreSiteCategory.routing';
-import { CoreSiteCategoryComponent } from './coreSiteCategory.component';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   CoreModuleService,
   CoreSiteCategoryCmsModuleService,
-  CoreSiteCategoryService,
+  CoreSiteCategoryService
 } from 'ntk-cms-api';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
-import { CoreSiteCategoryTreeComponent } from './tree/tree.component';
-import { CoreSiteCategorySelectorComponent } from './selector/selector.component';
-import { CoreSiteCategoryEditComponent } from './edit/edit.component';
 import { CoreSiteCategoryAddComponent } from './add/add.component';
+import { CoreSiteCategoryComponent } from './coreSiteCategory.component';
+import { CoreSiteCategoryRouting } from './coreSiteCategory.routing';
+import { CoreSiteCategoryEditComponent } from './edit/edit.component';
 import { CoreSiteCategoryListComponent } from './list/list.component';
+import { CoreSiteCategorySelectorComponent } from './selector/selector.component';
+import { CoreSiteCategoryTreeComponent } from './tree/tree.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
@@ -46,7 +46,7 @@ import { CoreModuleModule } from '../module/coreModule.module';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     CoreModuleModule,
   ],
   providers: [

@@ -11,7 +11,7 @@ export class NotificationsDropdownInnerComponent implements OnInit {
     | 'topbar_notifications_notifications'
     | 'topbar_notifications_events'
     | 'topbar_notifications_logs' = 'topbar_notifications_notifications';
-  constructor(private layout: LayoutService) {}
+  constructor(private layout: LayoutService) { }
 
   ngOnInit(): void {
     this.extrasNotificationsDropdownStyle = this.layout.getProp(

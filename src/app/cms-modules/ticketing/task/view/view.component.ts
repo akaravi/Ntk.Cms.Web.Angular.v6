@@ -1,32 +1,23 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  TicketingTaskModel,
-  TicketingTaskService,
-  TokenInfoModel,
-  DataFieldInfoModel,
-  TicketingEnumService,
-  ErrorExceptionResultBase,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  OnDestroy,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject,
+  OnDestroy, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, TicketingEnumService, TicketingTaskModel,
+  TicketingTaskService,
+  TokenInfoModel
+} from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-ticketing-task-view',
@@ -62,7 +53,7 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
   dataModelEnumTicketStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataTaskReadedResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
-  
+
   fileManagerOpenForm = false;
 
   cmsApiStoreSubscribe: Subscription;
@@ -87,8 +78,9 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
   getEnumTicketStatus(): void {
     this.ticketingEnumService.ServiceEnumTicketStatus().subscribe({
       next: (ret) => {
-      this.dataModelEnumTicketStatusResult = ret;
-    }});
+        this.dataModelEnumTicketStatusResult = ret;
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -114,7 +106,7 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.id;
           this.formInfo.formAlert = '';
-          
+
           this.dataTaskReaded(this.requestId);
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');

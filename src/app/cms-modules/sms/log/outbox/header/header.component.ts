@@ -1,25 +1,20 @@
 
 import {
-  EnumInfoModel,
+  ChangeDetectorRef, Component, Input, OnDestroy, OnInit
+} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  DataFieldInfoModel, EnumInfoModel,
   ErrorExceptionResult,
   SmsLogOutBoxModel,
-  SmsLogOutBoxService,
-  DataFieldInfoModel,
+  SmsLogOutBoxService
 } from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectorRef,
-  OnDestroy,
-} from '@angular/core';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { MatDialog } from '@angular/material/dialog';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
@@ -27,7 +22,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class SmsLogOutBoxHeaderComponent implements OnInit ,OnDestroy {
+export class SmsLogOutBoxHeaderComponent implements OnInit, OnDestroy {
   constructor(
     private headerService: SmsLogOutBoxService,
     public publicHelper: PublicHelper,
@@ -37,7 +32,7 @@ export class SmsLogOutBoxHeaderComponent implements OnInit ,OnDestroy {
     public translate: TranslateService,
     public tokenHelper: TokenHelper
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionId = '';
   loading = new ProgressSpinnerModel();
@@ -69,7 +64,7 @@ export class SmsLogOutBoxHeaderComponent implements OnInit ,OnDestroy {
 
     this.headerService.setAccessLoad();
     this.headerService.ServiceGetOneById(this.optionId).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {
           this.dataModelResult = ret;
@@ -78,10 +73,11 @@ export class SmsLogOutBoxHeaderComponent implements OnInit ,OnDestroy {
         }
         this.loading.Stop(pName);
       },
-      error:(er) => {
+      error: (er) => {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      }}
+      }
+    }
     );
   }
 

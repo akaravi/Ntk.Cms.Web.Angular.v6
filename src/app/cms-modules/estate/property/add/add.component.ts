@@ -1,57 +1,30 @@
 
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {
-  EstatePropertyModel,
-  EstatePropertyService,
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstatePropertyTypeLanduseModel,
-  DataFieldInfoModel,
-  EstateAccountUserModel,
-  CoreUserModel,
-  CoreLocationModel,
-  EstateContractTypeModel,
-  EstateContractModel,
-  EstateContractTypeService,
-  EstatePropertyTypeUsageModel,
-  EstatePropertyDetailGroupService,
-  FilterDataModel,
-  FilterModel,
-  EstatePropertyDetailValueModel,
-  EnumInputDataType,
-  EstatePropertyTypeModel,
-  EstatePropertyTypeService,
-  EstatePropertyTypeLanduseService,
-  TokenInfoModel,
-  CoreCurrencyModel,
-  EstatePropertyProjectModel,
-  EstatePropertyCompanyModel,
-  EstateAccountAgencyModel,
-  EnumRecordStatus,
-  EnumManageUserAccessUserTypes,
-} from 'ntk-cms-api';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { CmsFormsErrorStateMatcher } from 'src/app/core/pipe/cmsFormsErrorStateMatcher';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatStepper } from '@angular/material/stepper';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { MatStepper } from '@angular/material/stepper';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import { TranslateService } from '@ngx-translate/core';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
+import {
+  CoreCurrencyModel, CoreEnumService, CoreLocationModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessUserTypes, EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractModel, EstateContractTypeModel, EstateContractTypeService, EstatePropertyCompanyModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertyProjectModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeLanduseService, EstatePropertyTypeModel,
+  EstatePropertyTypeService, EstatePropertyTypeUsageModel, FilterDataModel,
+  FilterModel, FormInfoModel, TokenInfoModel
+} from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { Subscription } from 'rxjs';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { EstatePropertyActionComponent } from '../action/action.component';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsFormsErrorStateMatcher } from 'src/app/core/pipe/cmsFormsErrorStateMatcher';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
 import { EstatePropertyExpertPriceInquiryListComponent } from '../../property-expert-price/inquiry-list/inquiry-list.component';
+import { EstatePropertyActionComponent } from '../action/action.component';
 import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
 @Component({
   selector: 'app-estate-property-add',
@@ -91,7 +64,7 @@ export class EstatePropertyAddComponent implements OnInit {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      
+
     });
   }
 

@@ -1,28 +1,20 @@
 
+import { DOCUMENT } from '@angular/common';
 import {
-  CoreEnumService,
-  FormInfoModel,
-  ErrorExceptionResult,
-  SmsApiSendMessageTestDtoModel,
-  SmsApiSendResultModel,
-  SmsMainApiPathService,
-  SmsMainApiPathModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { DOCUMENT } from '@angular/common';
-import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, ErrorExceptionResult, FormInfoModel, SmsApiSendMessageTestDtoModel,
+  SmsApiSendResultModel, SmsMainApiPathModel, SmsMainApiPathService
+} from 'ntk-cms-api';
+import { map } from 'rxjs/operators';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
@@ -43,7 +35,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
     public publicHelper: PublicHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
     if (data && data.linkApiPathId) {
       this.requestLinkApiPathId = data.linkApiPathId;
@@ -108,7 +100,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
         this.loading.Stop(pName);
 
       },
-      (error) => {
+        (error) => {
           this.formInfo.formSubmitAllow = true;
           this.cmsToastrService.typeError(error);
           this.loading.Stop(pName);

@@ -1,39 +1,31 @@
 
-import { Router } from '@angular/router';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  EstatePropertyDetailGroupModel,
-  EstatePropertyDetailGroupService,
-  EnumSortType,
-  ErrorExceptionResult,
-  FilterModel,
-  TokenInfoModel,
-  EnumRecordStatus,
-  FilterDataModel,
-  DataFieldInfoModel,
-  EstatePropertyTypeLanduseService,
-  EstatePropertyTypeLanduseModel,
-  EditStepDtoModel,
-  EnumActionGoStep
+  DataFieldInfoModel, EditStepDtoModel,
+  EnumActionGoStep, EnumRecordStatus, EnumSortType,
+  ErrorExceptionResult, EstatePropertyDetailGroupModel,
+  EstatePropertyDetailGroupService, EstatePropertyTypeLanduseModel, EstatePropertyTypeLanduseService, FilterDataModel, FilterModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { MatSort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
-import { Subscription } from 'rxjs';
-import { EstatePropertyDetailGroupEditComponent } from '../edit/edit.component';
-import { EstatePropertyDetailGroupAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { EstatePropertyDetailGroupAddComponent } from '../add/add.component';
+import { EstatePropertyDetailGroupEditComponent } from '../edit/edit.component';
 @Component({
   selector: 'app-estate-property-detail-group-list',
   templateUrl: './list.component.html'
@@ -50,11 +42,11 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'ShowInFormOrder';
     this.filteModelContent.sortType = EnumSortType.Ascending;
@@ -71,7 +63,7 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
     new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstatePropertyDetailGroupModel> = [];
@@ -79,7 +71,7 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
   tableSource: MatTableDataSource<EstatePropertyDetailGroupModel> = new MatTableDataSource<EstatePropertyDetailGroupModel>();
 
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'IconFont',
     'Title',
@@ -380,8 +372,8 @@ export class EstatePropertyDetailGroupListComponent implements OnInit, OnDestroy
     dialogRef.afterClosed().subscribe((result) => {
     });
     //open popup 
-   }
-   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  }
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;

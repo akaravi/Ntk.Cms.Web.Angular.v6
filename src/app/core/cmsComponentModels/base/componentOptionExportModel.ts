@@ -4,9 +4,9 @@ import { ComponentOptionModel } from './componentOptionModel';
 export class ComponentOptionExportModel
   implements
   ComponentOptionModel<
-  ComponentOptionExportDataModel,
-  ComponentOptionExportChildMethodsModel,
-  ComponentOptionExportParentMethodsModel
+    ComponentOptionExportDataModel,
+    ComponentOptionExportChildMethodsModel,
+    ComponentOptionExportParentMethodsModel
   > {
   childMethods: ComponentOptionExportChildMethodsModel;
   parentMethods: ComponentOptionExportParentMethodsModel;
@@ -25,5 +25,5 @@ export class ComponentOptionExportParentMethodsModel {
 }
 export class ComponentOptionExportDataModel {
   show = false;
-  inProcess=false;
+  inProcess = false;
 }

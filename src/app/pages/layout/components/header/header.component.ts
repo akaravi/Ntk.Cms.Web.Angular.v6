@@ -1,24 +1,15 @@
 import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-  OnDestroy,
+  AfterViewInit, Component, ElementRef, OnDestroy, OnInit,
+  ViewChild
 } from '@angular/core';
 import {
-  Router,
-  NavigationStart,
-  RouteConfigLoadStart,
-  RouteConfigLoadEnd,
-  NavigationEnd,
-  NavigationCancel,
+  NavigationCancel, NavigationEnd, NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router
 } from '@angular/router';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/core/services/layout.service';
+import { KTUtil } from '../../../../../assets/js/components/util';
 import KTLayoutHeader from '../../../../../assets/js/layout/base/header';
 import KTLayoutHeaderMenu from '../../../../../assets/js/layout/base/header-menu';
-import { KTUtil } from '../../../../../assets/js/components/util';
-import { Subscription, Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',

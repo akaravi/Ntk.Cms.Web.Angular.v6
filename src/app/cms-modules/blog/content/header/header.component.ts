@@ -1,24 +1,18 @@
 
 import {
-  EnumInfoModel,
-  ErrorExceptionResult,
-  BlogContentModel,
-  BlogContentService,
-  DataFieldInfoModel,
-  EnumRecordStatus,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Input, OnInit
 } from '@angular/core';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  BlogContentModel,
+  BlogContentService,
+  DataFieldInfoModel, EnumInfoModel, EnumRecordStatus, ErrorExceptionResult
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 
 
 @Component({
@@ -83,7 +77,7 @@ export class BlogContentHeaderComponent implements OnInit {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus !=EnumRecordStatus.Available) {
+    if (model.recordStatus != EnumRecordStatus.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }

@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PollingRouting } from './polling.routing';
+import { NgModule } from '@angular/core';
 import { PollingComponent } from './polling.component';
+import { PollingRouting } from './polling.routing';
 
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   CoreEnumService,
   CoreModuleService,
@@ -12,29 +13,25 @@ import {
   PollingConfigurationService,
   PollingContentService,
   PollingOptionService,
-  PollingVoteService,
-
+  PollingVoteService
 } from 'ntk-cms-api';
-import { PollingCategoryEditComponent } from './category/edit/edit.component';
 import { PollingCategoryDeleteComponent } from './category/delete/delete.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PollingCategoryEditComponent } from './category/edit/edit.component';
 
 import { SharedModule } from 'src/app/shared.module';
 
-import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { PollingCategorySelectorComponent } from './category/selector/selector.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { PollingContentListComponent } from './content/list/list.component';
-import { PollingContentAddComponent } from './content/add/add.component';
-import { PollingContentEditComponent } from './content/edit/edit.component';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { PollingCategoryAddComponent } from './category/add/add.component';
+import { PollingCategorySelectorComponent } from './category/selector/selector.component';
 import { PollingCategoryTreeComponent } from './category/tree/tree.component';
+import { PollingContentAddComponent } from './content/add/add.component';
 import { PollingContentDeleteComponent } from './content/delete/delete.component';
+import { PollingContentEditComponent } from './content/edit/edit.component';
+import { PollingContentListComponent } from './content/list/list.component';
 import { PollingVoteEditComponent } from './vote/edit/edit.component';
 import { PollingVoteListComponent } from './vote/list/list.component';
-import { PollingCategoryAddComponent } from './category/add/add.component';
-import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { PollingConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { PollingConfigSiteComponent } from './config/site/config-site.component';
 
 
 @NgModule({
@@ -60,7 +57,7 @@ import { PollingConfigSiteComponent } from './config/site/config-site.component'
 
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     CmsFileManagerModule
   ],
   providers: [

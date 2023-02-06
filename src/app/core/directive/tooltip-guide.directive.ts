@@ -1,4 +1,4 @@
-import { Directive, Input, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
 import { CoreGuideService } from 'ntk-cms-api';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -46,7 +46,7 @@ export class TooltipGuideDirective {
   }
 
   @HostListener('mouseleave') onMouseLeave(): void {
-    this.statusIsRun=false;
+    this.statusIsRun = false;
 
     if (this.tooltip) { this.hide(); }
   }
@@ -57,7 +57,7 @@ export class TooltipGuideDirective {
       this.coreGuideService.ServiceGetOneById(this.cmsTooltipGuide).pipe(
         map(
           (next) => {
-            if(this.statusIsRun==false){
+            if (this.statusIsRun == false) {
               if (this.tooltip) { this.hide(); }
               return;
             }
@@ -92,7 +92,7 @@ export class TooltipGuideDirective {
             } else {
               if (!environment.production) {
                 //console.log('tooltip',next.errorMessage);
-                this.cmsToastrService.typeErrorMessage("kay:"+this.cmsTooltipGuide+"-"+next.errorMessage);
+                this.cmsToastrService.typeErrorMessage("kay:" + this.cmsTooltipGuide + "-" + next.errorMessage);
               }
               /*run */
               this.create('Identity :' + this.cmsTooltipGuide);
@@ -103,7 +103,7 @@ export class TooltipGuideDirective {
           },
           (error) => {
             if (!environment.production) {
-              this.cmsToastrService.typeError("kay:"+this.cmsTooltipGuide+"-"+error);
+              this.cmsToastrService.typeError("kay:" + this.cmsTooltipGuide + "-" + error);
             }
           })
       ).toPromise();
@@ -112,7 +112,7 @@ export class TooltipGuideDirective {
       this.coreGuideService.ServiceGetOneByKey(this.tooltipGuide).pipe(
         map(
           (next) => {
-            if(this.statusIsRun==false){
+            if (this.statusIsRun == false) {
               if (this.tooltip) { this.hide(); }
               return;
             }
@@ -146,7 +146,7 @@ export class TooltipGuideDirective {
             } else {
               if (!environment.production) {
                 // console.log('tooltip',next.errorMessage);
-                this.cmsToastrService.typeErrorMessage("kay:"+this.cmsTooltipGuide+"-"+next.errorMessage);
+                this.cmsToastrService.typeErrorMessage("kay:" + this.cmsTooltipGuide + "-" + next.errorMessage);
               }
               /*run */
               this.create('Key :' + this.tooltipGuide);
@@ -157,7 +157,7 @@ export class TooltipGuideDirective {
           },
           (error) => {
             if (!environment.production) {
-              this.cmsToastrService.typeError("kay:"+this.cmsTooltipGuide+"-"+error);
+              this.cmsToastrService.typeError("kay:" + this.cmsTooltipGuide + "-" + error);
             }
           })
       ).toPromise();

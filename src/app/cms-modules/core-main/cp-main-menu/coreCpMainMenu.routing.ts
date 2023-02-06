@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CoreCpMainMenuListComponent } from './list/list.component';
+import { RouterModule, Routes } from '@angular/router';
 import { CoreCpMainMenuComponent } from './coreCpMainMenu.component';
 import { CoreCpMainMenuEditComponent } from './edit/edit.component';
+import { CoreCpMainMenuListComponent } from './list/list.component';
 
 
 const routes: Routes = [

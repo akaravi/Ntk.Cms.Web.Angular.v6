@@ -1,5 +1,5 @@
-import { ElementRef, Injectable } from '@angular/core';
 import { animate, AnimationBuilder, style } from '@angular/animations';
+import { ElementRef, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class SplashScreenService {
    *
    * @param animationBuilder: AnimationBuilder
    */
-  constructor(private animationBuilder: AnimationBuilder) {}
+  constructor(private animationBuilder: AnimationBuilder) { }
 
   /**
    * Init

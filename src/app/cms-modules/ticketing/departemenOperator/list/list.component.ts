@@ -1,33 +1,26 @@
-import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  TicketingDepartemenOperatorModel,
-  TicketingDepartemenOperatorService,
-  ApplicationSourceModel,
-  CoreAuthService,
-  EnumSortType,
+  ApplicationSourceModel, DataFieldInfoModel, EnumRecordStatus, EnumSortType,
   ErrorExceptionResult,
   FilterDataModel,
-  FilterModel,
-  NtkCmsApiStoreService,
-  TokenInfoModel,
-  EnumRecordStatus,
-  DataFieldInfoModel
+  FilterModel, TicketingDepartemenOperatorModel,
+  TicketingDepartemenOperatorService, TokenInfoModel
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { MatSort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
-import { Subscription } from 'rxjs';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 
 @Component({
   selector: 'app-ticketing-departemenoperator-list',
@@ -45,11 +38,11 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -66,7 +59,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
   dataModelResult: ErrorExceptionResult<TicketingDepartemenOperatorModel> = new ErrorExceptionResult<TicketingDepartemenOperatorModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<TicketingDepartemenOperatorModel> = [];
@@ -74,7 +67,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
   tableSource: MatTableDataSource<TicketingDepartemenOperatorModel> = new MatTableDataSource<TicketingDepartemenOperatorModel>();
   categoryModelSelected: ApplicationSourceModel;
 
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
@@ -108,8 +101,8 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
   }
 
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,[],this.tokenInfo);
-    
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+
     if (this.requestDepartemenId === 0) {
       this.tabledisplayedColumns = this.publicHelper.listRemoveIfExist(
         this.tabledisplayedColumns,
@@ -119,7 +112,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
     this.tableRowsSelected = [];
     this.tableRowSelected = new TicketingDepartemenOperatorModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -141,7 +134,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
         if (next.isSuccess) {
           this.dataModelResult = next;
           this.tableSource.data = next.listItems;
-      
+
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.access);
           }
@@ -215,10 +208,10 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
   }
 
   onActionSelectorSelect(model: ApplicationSourceModel | null): void {
-     /*filter */
+    /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent =  new FilterModel();
+    this.filteModelContent = new FilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -241,7 +234,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
       return;
     }
 
-  
+
     this.router.navigate(['/application/app/edit/', this.tableRowSelected.id]);
 
   }
@@ -309,23 +302,23 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
 
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -354,7 +347,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
 
   onActionbuttonReload(): void {
     this.DataGetAll();

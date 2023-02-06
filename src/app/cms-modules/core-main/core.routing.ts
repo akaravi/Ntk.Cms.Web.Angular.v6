@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CoreComponent } from './core.component';
 
 
@@ -101,7 +101,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./guides/coreGuide.module').then((m) => m.CoreGuideCmsModule),
       }
-     
+
     ]
   },
 ];

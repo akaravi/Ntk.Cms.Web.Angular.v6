@@ -1,22 +1,19 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  EstatePropertyDetailModel,
-  EstatePropertyDetailService
+  ErrorExceptionResult, EstatePropertyDetailModel,
+  EstatePropertyDetailService, FilterDataModel,
+  FilterModel
 } from 'ntk-cms-api';
-import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-estate-property-detail-selector',
@@ -29,7 +26,7 @@ export class EstatePropertyDetailSelectorComponent implements OnInit {
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public categoryService: EstatePropertyDetailService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<EstatePropertyDetailModel> = new ErrorExceptionResult<EstatePropertyDetailModel>();
   dataModelSelect: EstatePropertyDetailModel = new EstatePropertyDetailModel();
@@ -96,7 +93,7 @@ export class EstatePropertyDetailSelectorComponent implements OnInit {
       filter.clauseType = EnumClauseType.Or;
       filterModel.filters.push(filter);
     }
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -157,15 +154,15 @@ export class EstatePropertyDetailSelectorComponent implements OnInit {
       }
       this.categoryService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
-        if (ret.isSuccess) {
-          this.filteredOptions = this.push(ret.item);
-          this.dataModelSelect = ret.item;
-          this.formControl.setValue(ret.item);
-          this.optionChange.emit(ret.item);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          if (ret.isSuccess) {
+            this.filteredOptions = this.push(ret.item);
+            this.dataModelSelect = ret.item;
+            this.formControl.setValue(ret.item);
+            this.optionChange.emit(ret.item);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
         }
-      }
       });
       return;
     }

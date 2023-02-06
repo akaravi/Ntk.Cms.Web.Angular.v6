@@ -1,22 +1,17 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  CoreUserGroupModel,
-  CoreUserGroupService,
-  EnumFilterDataModelSearchTypes,
-  EnumClauseType
-} from 'ntk-cms-api';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, CoreUserGroupModel,
+  CoreUserGroupService, EnumClauseType, EnumFilterDataModelSearchTypes, ErrorExceptionResult,
+  FilterDataModel,
+  FilterModel
+} from 'ntk-cms-api';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -32,8 +27,8 @@ export class CoreUserGroupSelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public categoryService: CoreUserGroupService) {
-      this.loading.cdr = this.cdr;
-      this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<CoreUserGroupModel> = new ErrorExceptionResult<CoreUserGroupModel>();
   dataModelSelect: CoreUserGroupModel = new CoreUserGroupModel();

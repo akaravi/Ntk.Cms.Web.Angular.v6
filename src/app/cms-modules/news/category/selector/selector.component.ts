@@ -1,5 +1,7 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   EnumClauseType,
@@ -10,13 +12,10 @@ import {
   NewsCategoryModel,
   NewsCategoryService
 } from 'ntk-cms-api';
-import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-news-category-selector',
   templateUrl: './selector.component.html',
@@ -26,9 +25,9 @@ export class NewsCategorySelectorComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
     private cdr: ChangeDetectorRef,
-    public translate: TranslateService, 
+    public translate: TranslateService,
     public categoryService: NewsCategoryService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<NewsCategoryModel> = new ErrorExceptionResult<NewsCategoryModel>();
   dataModelSelect: NewsCategoryModel = new NewsCategoryModel();
@@ -149,7 +148,7 @@ export class NewsCategorySelectorComponent implements OnInit {
             this.formControl.setValue(ret.item);
             this.optionChange.emit(ret.item);
           }
-          else{
+          else {
             this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
         }

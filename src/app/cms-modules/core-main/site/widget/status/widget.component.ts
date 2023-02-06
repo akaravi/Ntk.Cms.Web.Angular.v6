@@ -83,7 +83,7 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
       },
-      error:(er) => {
+      error: (er) => {
       }
     }
     );
@@ -123,7 +123,7 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
             }
 
           },
-          error:(er) => {
+          error: (er) => {
             this.cmsToastrService.typeErrorAccessChange(er);
           }
         }

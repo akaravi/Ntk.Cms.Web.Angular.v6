@@ -4,10 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  BaseModuleSiteCheckUserModel,
-  DataProviderConfigurationService,
-  CoreEnumService,
-  ErrorExceptionResult,
+  BaseModuleSiteCheckUserModel, CoreEnumService, DataProviderConfigurationService, ErrorExceptionResult,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -33,7 +30,7 @@ export class DataProviderConfigCheckUserComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;

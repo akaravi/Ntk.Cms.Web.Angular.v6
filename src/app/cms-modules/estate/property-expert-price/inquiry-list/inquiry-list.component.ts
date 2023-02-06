@@ -1,34 +1,19 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstatePropertyExpertPriceModel,
-  EstatePropertyExpertPriceService,
-  DataFieldInfoModel,
-  CoreLocationModel,
-  EstatePropertyTypeUsageModel,
-  EstatePropertyTypeLanduseModel,
-  CoreCurrencyModel,
-  EstatePriceInquiryDtoModel,
-  ErrorExceptionResultBase,
-  EstateEnumService,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { TreeModel } from 'ntk-cms-filemanager';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreCurrencyModel, CoreEnumService, CoreLocationModel, EnumInfoModel,
+  ErrorExceptionResult, EstateEnumService, EstatePriceInquiryDtoModel, EstatePropertyExpertPriceModel,
+  EstatePropertyExpertPriceService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FormInfoModel
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-estate-property-expert-price-inquiry-list',

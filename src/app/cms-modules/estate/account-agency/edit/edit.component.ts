@@ -1,41 +1,25 @@
 
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstateAccountAgencyService,
-  EstateAccountAgencyModel,
-  DataFieldInfoModel,
-  CoreUserModel,
-  EnumManageUserAccessDataTypes,
-  EstateAccountUserModel,
-  EstateAccountAgencyUserModel,
-  EstateAccountAgencyUserService,
-  FilterModel,
-  FilterDataModel,
-  EstateAccountUserService,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { MatTableDataSource } from '@angular/material/table';
+import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { TranslateService } from '@ngx-translate/core';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import {
+  CoreEnumService, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountAgencyService, EstateAccountAgencyUserModel,
+  EstateAccountAgencyUserService, EstateAccountUserModel, EstateAccountUserService, FilterDataModel, FilterModel, FormInfoModel
+} from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { MatTableDataSource } from '@angular/material/table';
+import { PoinModel } from 'src/app/core/models/pointModel';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
@@ -50,7 +34,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     private dialogRef: MatDialogRef<EstateAccountAgencyEditComponent>,
     public coreEnumService: CoreEnumService,
     public estateAccountAgencyService: EstateAccountAgencyService,
-    private estateAccountUserService:EstateAccountUserService,
+    private estateAccountUserService: EstateAccountUserService,
     private cmsToastrService: CmsToastrService,
     private estateAccountAgencyUserService: EstateAccountAgencyUserService,
     public publicHelper: PublicHelper,
@@ -65,7 +49,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.CheckIsAdmin();
     this.DataGetAccess();
-    
+
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -81,9 +65,9 @@ export class EstateAccountAgencyEditComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
   loadingOption = new ProgressSpinnerModel();
-  
+
   optionTabledataSource = new MatTableDataSource<EstateAccountAgencyUserModel>();
-  optionTabledisplayedColumns = ['LinkEstateAccountUserId','LinkEstateAccountAgencyId','AccessShareUserToAgency','AccessShareAgencyToUser','Action'];
+  optionTabledisplayedColumns = ['LinkEstateAccountUserId', 'LinkEstateAccountAgencyId', 'AccessShareUserToAgency', 'AccessShareAgencyToUser', 'Action'];
 
   /** map */
   viewMap = false;
@@ -251,7 +235,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
       // }
     }
   }
-   dataEstateAccountUserModel: EstateAccountAgencyUserModel[] = [];
+  dataEstateAccountUserModel: EstateAccountAgencyUserModel[] = [];
   DataGetAllGroup(): void {
 
     if (this.requestId.length <= 0) {
@@ -298,7 +282,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     this.loading.Start(pName);
     this.estateAccountAgencyUserService.ServiceAdd(this.dataEstateAccountAgencyUserModel).subscribe({
       next: (ret) => {
-       
+
         if (ret.isSuccess) {
           this.formInfo.formAlert = '';
           this.optionTabledataSource.data = ret.listItems;
@@ -315,7 +299,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
         this.loading.Stop(pName);
       }
     });
-  
+
   }
   onActionDataGetDeleteGroup(model: EstateAccountAgencyUserModel): void {
     const pName = this.constructor.name + 'onActionDataGetDeleteGroup';
@@ -346,7 +330,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     }
 
   }
-  
+
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;

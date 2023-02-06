@@ -67,6 +67,7 @@ export class EstatePropertyCompanyListComponent implements OnInit, OnDestroy {
     'LinkMainImageIdSrc',
     'Id',
     'RecordStatus',
+    'mainAdminRecordStatus',
     'Title',
     'CreatedDate',
     'Action',

@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { BuilderComponent } from './builder.component';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgbNavModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from 'src/app/shared.module';
+import { BuilderComponent } from './builder.component';
 
 @NgModule({
   declarations: [BuilderComponent],
@@ -23,4 +23,4 @@ import { SharedModule } from 'src/app/shared.module';
     SharedModule.forRoot(),
   ],
 })
-export class BuilderModule {}
+export class BuilderModule { }

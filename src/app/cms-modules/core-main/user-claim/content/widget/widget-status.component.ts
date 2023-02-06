@@ -1,6 +1,7 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreUserClaimCheckModel,
   CoreUserClaimContentService,
@@ -16,7 +17,6 @@ import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CoreUserClaimContentAddComponent } from '../add/add.component';
 import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-core-userclaimcontent-widget-status',

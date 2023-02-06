@@ -1,20 +1,15 @@
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  CoreUserGroupModel,
-  CoreUserGroupService,
-  EnumFilterDataModelSearchTypes,
-  EnumClauseType
-} from 'ntk-cms-api';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, CoreUserGroupModel,
+  CoreUserGroupService, EnumClauseType, EnumFilterDataModelSearchTypes, ErrorExceptionResult,
+  FilterDataModel,
+  FilterModel
+} from 'ntk-cms-api';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 
 @Component({
@@ -29,11 +24,11 @@ export class CmsUserGroupSelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public categoryService: CoreUserGroupService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<CoreUserGroupModel> = new ErrorExceptionResult<CoreUserGroupModel>();
   dataModelSelect: CoreUserGroupModel = new CoreUserGroupModel();
-  @Input()  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   formControl = new FormControl();
   filteredOptions: Observable<CoreUserGroupModel[]>;
   @Input() optionDisabled = false;
@@ -118,7 +113,7 @@ export class CmsUserGroupSelectorComponent implements OnInit {
 
       }
     }
-    
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 

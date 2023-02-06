@@ -1,32 +1,18 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  CoreSiteModel,
-  FilterModel,
-  FilterDataModel,
-  CoreSiteUserService,
-  CoreSiteUserModel,
-  AccessModel,
-  DataFieldInfoModel,
-  CoreUserModel,
-  CoreUserGroupModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  AccessModel, CoreEnumService, CoreSiteModel, CoreSiteUserModel, CoreSiteUserService, CoreUserGroupModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-core-site-user-edit',

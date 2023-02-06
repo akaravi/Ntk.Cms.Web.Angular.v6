@@ -1,36 +1,22 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstatePropertyModel,
-  EstatePropertyService,
-  TokenInfoModel,
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes,
-  EstateContractModel,
-  EstateContractTypeService,
-  EstateContractTypeModel,
-  EnumInputDataType,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  OnDestroy,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject,
+  OnDestroy, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { MatTableDataSource } from '@angular/material/table';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DataFieldInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateContractModel, EstateContractTypeModel, EstateContractTypeService, EstatePropertyModel,
+  EstatePropertyService, FormInfoModel, TokenInfoModel
+} from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-estate-property-quick-view',
@@ -66,7 +52,7 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
-  optionTabledisplayedColumns = ['LinkEstateContractTypeId','Price'];// 'SalePrice', 'DepositPrice', 'RentPrice', 'PeriodPrice'];
+  optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'Price'];// 'SalePrice', 'DepositPrice', 'RentPrice', 'PeriodPrice'];
   fileManagerOpenForm = false;
   errorMessage: string = '';
   propertyTypeLanduse: string = '';
@@ -134,21 +120,21 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
 
           this.formInfo.formTitle = this.formInfo.formTitle;
           this.formInfo.formAlert = '';
-                      /** load Value */
-                      if (this.dataModel.propertyDetailGroups)
-                      this.dataModel.propertyDetailGroups.forEach(itemGroup => {
-                        itemGroup.propertyDetails.forEach(element => {
-                          this.propertyDetails[element.id] = 0;
-        
-                          if (this.dataModel.propertyDetailValues) {
-                            const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
-                            if (value) {
-                              this.propertyDetails[element.id] = value.value;
-                            }
-                          }
-                        });
-                      });
-                    /** load Value */
+          /** load Value */
+          if (this.dataModel.propertyDetailGroups)
+            this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+              itemGroup.propertyDetails.forEach(element => {
+                this.propertyDetails[element.id] = 0;
+
+                if (this.dataModel.propertyDetailValues) {
+                  const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
+                  if (value) {
+                    this.propertyDetails[element.id] = value.value;
+                  }
+                }
+              });
+            });
+          /** load Value */
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;

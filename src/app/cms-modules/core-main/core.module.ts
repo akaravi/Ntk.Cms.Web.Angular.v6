@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CoreModuleService } from 'ntk-cms-api';
 import { CoreComponent } from './core.component';
 import { CoreRoutes } from './core.routing';
-import { CoreModuleService } from 'ntk-cms-api';
 
 @NgModule({
   imports: [

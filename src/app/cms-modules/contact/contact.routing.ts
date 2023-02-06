@@ -1,9 +1,9 @@
-import { ContactContentListComponent } from './content/list/list.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ContactComponent } from './contact.component';
 import { ContactContentAddComponent } from './content/add/add.component';
 import { ContactContentEditComponent } from './content/edit/edit.component';
+import { ContactContentListComponent } from './content/list/list.component';
 
 
 const routes: Routes = [
@@ -11,13 +11,13 @@ const routes: Routes = [
     path: '',
     component: ContactComponent,
     children: [
-        /* Config */
-        {
-          path: 'config',
-          loadChildren: () =>
-            import('./config/contact-config.module').then((m) => m.ContactConfigModule),
-        },
-        /* Config */
+      /* Config */
+      {
+        path: 'config',
+        loadChildren: () =>
+          import('./config/contact-config.module').then((m) => m.ContactConfigModule),
+      },
+      /* Config */
       {
         path: 'content',
         component: ContactContentListComponent

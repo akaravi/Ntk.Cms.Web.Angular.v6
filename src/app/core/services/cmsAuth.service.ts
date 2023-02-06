@@ -1,8 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Observable, BehaviorSubject, of, Subscription } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { TokenInfoModel } from 'ntk-cms-api';
+import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -50,7 +50,7 @@ export class CmsAuthService implements OnDestroy {
     //   finalize(() => this.isLoadingSubject.next(false))
     // );
   }
-  
+
   private getAuthFromLocalStorage(): TokenInfoModel {
     try {
       const authData = JSON.parse(

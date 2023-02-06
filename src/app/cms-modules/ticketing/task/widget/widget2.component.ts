@@ -1,11 +1,11 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { TicketingTaskService, FilterDataModel, FilterModel, EnumTicketStatus } from 'ntk-cms-api';
+import { TranslateService } from '@ngx-translate/core';
+import { EnumTicketStatus, FilterDataModel, FilterModel, TicketingTaskService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { WidgetInfoModel, WidgetContentInfoModel } from 'src/app/core/models/widget-info-model';
-import { TranslateService } from '@ngx-translate/core';
+import { WidgetContentInfoModel, WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 @Component({
   selector: 'app-ticketing-task-widget2',
   templateUrl: './widget2.component.html',
@@ -78,7 +78,7 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
     this.service.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          this.widgetInfoModel.set(new WidgetContentInfoModel('Read', 1, ret.totalRowCount, '/ticketing/task/listTicketStatus/'+EnumTicketStatus.Read));
+          this.widgetInfoModel.set(new WidgetContentInfoModel('Read', 1, ret.totalRowCount, '/ticketing/task/listTicketStatus/' + EnumTicketStatus.Read));
         }
         this.loading.Stop(this.constructor.name + 'Read');
       }
@@ -96,7 +96,7 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
     this.service.ServiceGetCount(filterStatist2).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          this.widgetInfoModel.set(new WidgetContentInfoModel('Unread', 0, ret.totalRowCount, '/ticketing/task/listTicketStatus/'+EnumTicketStatus.Unread));
+          this.widgetInfoModel.set(new WidgetContentInfoModel('Unread', 0, ret.totalRowCount, '/ticketing/task/listTicketStatus/' + EnumTicketStatus.Unread));
         }
         this.loading.Stop(this.constructor.name + 'Unread');
       }
@@ -114,7 +114,7 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
     this.service.ServiceGetCount(filterStatist3).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          this.widgetInfoModel.set(new WidgetContentInfoModel('Answered', 2, ret.totalRowCount, '/ticketing/task/listTicketStatus/'+EnumTicketStatus.Answered));
+          this.widgetInfoModel.set(new WidgetContentInfoModel('Answered', 2, ret.totalRowCount, '/ticketing/task/listTicketStatus/' + EnumTicketStatus.Answered));
         }
         this.loading.Stop(this.constructor.name + 'Answered');
       }

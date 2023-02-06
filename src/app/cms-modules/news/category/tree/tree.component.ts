@@ -1,4 +1,5 @@
 
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,28 +7,27 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {
-  MatTreeNestedDataSource,
+  MatTreeNestedDataSource
 } from '@angular/material/tree';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   NewsCategoryModel,
-  NewsCategoryService,
+  NewsCategoryService
 } from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { NewsCategoryEditComponent } from '../edit/edit.component';
-import { NewsCategoryDeleteComponent } from '../delete/delete.component';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
-import { NewsCategoryAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { NewsCategoryAddComponent } from '../add/add.component';
+import { NewsCategoryDeleteComponent } from '../delete/delete.component';
+import { NewsCategoryEditComponent } from '../edit/edit.component';
 
 
 @Component({
@@ -44,7 +44,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | NewsCategoryModel) {
     this.onActionSelectForce(x);
@@ -74,7 +74,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + '.ServiceGetAll';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_categories'));
     this.categoryService.ServiceGetAll(this.filterModel).subscribe({
-     next: (ret) => {
+      next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.listItems;
@@ -84,10 +84,11 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
         }
         this.loading.Stop(pName);
       },
-      error:(er) => {
+      error: (er) => {
         this.loading.Stop(pName);
         this.cmsToastrService.typeError(er);
-      }}
+      }
+    }
     );
   }
   onActionSelect(model: NewsCategoryModel): void {
@@ -154,7 +155,7 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(NewsCategoryDeleteComponent, {
       height: '90%',
-      data: { Id:id }
+      data: { Id: id }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {

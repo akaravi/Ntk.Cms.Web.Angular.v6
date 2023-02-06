@@ -1,5 +1,9 @@
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { Component, OnInit, Input, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { ENTER } from '@angular/cdk/keycodes';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreLocationModel,
   CoreLocationService,
@@ -8,15 +12,10 @@ import {
   FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
-import { Output } from '@angular/core';
-import { ENTER } from '@angular/cdk/keycodes';
-import { FormControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 class chipModel {
   display: string;
   value: number;
@@ -171,7 +170,10 @@ export class CmsLocationCompleteComponent implements OnInit {
 
   onActionChange(): void {
     const retIds = [];
-    this.tagDataModel.forEach(x => { retIds.push(x.value); });
+    this.tagDataModel.forEach(x => {
+      if (retIds.findIndex(y => y == x.value) < 0)
+        retIds.push(x.value);
+    });
     this.selectForceStatus = false;
     this.optionChange.emit(retIds);
   }
@@ -199,10 +201,11 @@ export class CmsLocationCompleteComponent implements OnInit {
       map((next) => {
         if (next.isSuccess) {
           next.listItems.forEach(val => {
-            this.tagDataModel.push({
-              value: val.id,
-              display: this.displayOption(val) //val.titleML
-            });
+            if (this.tagDataModel.findIndex(y => y.value == val.id) < 0)
+              this.tagDataModel.push({
+                value: val.id,
+                display: this.displayOption(val) //val.titleML
+              });
           });
         } else {
           this.cmsToastrService.typeErrorGetAll(next.errorMessage);

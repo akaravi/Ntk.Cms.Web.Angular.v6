@@ -1,17 +1,16 @@
 
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import {
-  CaptchaModel,
-  CoreAuthService,
-  FormInfoModel,
-  AuthUserSignInBySmsDtoModel,
-} from 'ntk-cms-api';
 import { Router } from '@angular/router';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  AuthUserSignInBySmsDtoModel, CaptchaModel,
+  CoreAuthService,
+  FormInfoModel
+} from 'ntk-cms-api';
+import { Observable } from 'rxjs';
 import { TranslationService } from 'src/app/core/i18n/translation.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 enum ErrorStates {
   NotSubmitted,
   HasError,
@@ -58,7 +57,7 @@ export class AuthSingInBySmsComponent implements OnInit {
   prorocess: processModel;
   buttonnResendSmsDisable = true;
   onActionSubmitOrderCodeBySms(): void {
-    
+
     if (this.forgetState == 'entrycode') {
       if (!this.dataModelAuthUserSignInBySms.captchaText || this.dataModelAuthUserSignInBySms.captchaText.length == 0) {
         this.cmsToastrService.typeWarningMessage(this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSetCpatcha'));

@@ -1,4 +1,5 @@
 
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,28 +7,25 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
-import {
-  MatTreeNestedDataSource,
-} from '@angular/material/tree';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterModel,
-  DataProviderPlanClientModel,
-  DataProviderPlanClientService,
-} from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import {
+  MatTreeNestedDataSource
+} from '@angular/material/tree';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DataProviderPlanClientModel,
+  DataProviderPlanClientService, ErrorExceptionResult,
+  FilterModel
+} from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { DataProviderPlanClientAddComponent } from '../add/add.component';
-import { DataProviderPlanClientEditComponent } from '../edit/edit.component';
 import { DataProviderPlanClientDeleteComponent } from '../delete/delete.component';
-import { TranslateService } from '@ngx-translate/core';
+import { DataProviderPlanClientEditComponent } from '../edit/edit.component';
 
 @Component({
   selector: 'app-data-provider-plan-client-tree',
@@ -43,7 +41,7 @@ export class DataProviderPlanClientTreeComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     private translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | DataProviderPlanClientModel) {
     this.onActionSelectForce(x);

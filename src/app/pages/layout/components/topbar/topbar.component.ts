@@ -1,16 +1,16 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { TokenInfoModel } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { LayoutService } from 'src/app/core/services/layout.service';
-import KTLayoutQuickSearch from '../../../../../assets/js/layout/extended/quick-search';
-import KTLayoutQuickNotifications from '../../../../../assets/js/layout/extended/quick-notifications';
+import { KTUtil } from '../../../../../assets/js/components/util';
+import KTLayoutHeaderTopbar from '../../../../../assets/js/layout/base/header-topbar';
 import KTLayoutQuickActions from '../../../../../assets/js/layout/extended/quick-actions';
 import KTLayoutQuickCartPanel from '../../../../../assets/js/layout/extended/quick-cart';
+import KTLayoutQuickNotifications from '../../../../../assets/js/layout/extended/quick-notifications';
 import KTLayoutQuickPanel from '../../../../../assets/js/layout/extended/quick-panel';
+import KTLayoutQuickSearch from '../../../../../assets/js/layout/extended/quick-search';
 import KTLayoutQuickUser from '../../../../../assets/js/layout/extended/quick-user';
-import KTLayoutHeaderTopbar from '../../../../../assets/js/layout/base/header-topbar';
-import { KTUtil } from '../../../../../assets/js/components/util';
-import { NtkCmsApiStoreService, TokenInfoModel } from 'ntk-cms-api';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 
 @Component({
   selector: 'app-topbar',

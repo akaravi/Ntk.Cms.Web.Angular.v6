@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { SmsActionSendMessageComponent } from './send-message/send-message.component';
 import { SmsActionComponent } from './sms-action.component';
 
@@ -20,7 +20,7 @@ const routes: Routes = [
         path: 'send-message/outbox-extras',
         component: SmsActionSendMessageComponent
       },
-    
+
     ]
   },
 ];

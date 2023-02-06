@@ -4,12 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  BaseModuleSiteCheckSiteModel,
-  ArticleConfigurationService,
-  CoreEnumService,
-  ErrorExceptionResult,
-  NtkCmsApiStoreService,
-  TokenInfoModel
+  ArticleConfigurationService, BaseModuleSiteCheckSiteModel, CoreEnumService,
+  ErrorExceptionResult, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -83,7 +79,7 @@ export class ArticleConfigCheckSiteComponent implements OnInit, OnDestroy {
             this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
         },
-        error:(er) => {
+        error: (er) => {
           this.loading.Stop(pName);
           this.cmsToastrService.typeErrorGetOne(er);
         }

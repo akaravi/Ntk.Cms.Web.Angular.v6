@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ApplicationAppListComponent } from './content/list/list.component';
+import { RouterModule, Routes } from '@angular/router';
 import { ApplicationComponent } from './application.component';
-import { ApplicationIntroListComponent } from './intro/list/list.component';
-import { ApplicationMemberInfoListComponent } from './memberInfo/list/list.component';
-import { ApplicationSourceListComponent } from './source/list/list.component';
-import { ApplicationThemeConfigListComponent } from './themeConfig/list/list.component';
-import { ApplicationSourceAddComponent } from './source/add/add.component';
-import { ApplicationSourceEditComponent } from './source/edit/edit.component';
-import { ApplicationAppEditComponent } from './content/edit/edit.component';
 import { ApplicationAppAddComponent } from './content/add/add.component';
-import { ApplicationLogNotificationListComponent } from './notification/list/list.component';
+import { ApplicationAppEditComponent } from './content/edit/edit.component';
+import { ApplicationAppListComponent } from './content/list/list.component';
 import { ApplicationIntroAddComponent } from './intro/add/add.component';
 import { ApplicationIntroEditComponent } from './intro/edit/edit.component';
+import { ApplicationIntroListComponent } from './intro/list/list.component';
+import { ApplicationMemberInfoListComponent } from './memberInfo/list/list.component';
+import { ApplicationLogNotificationListComponent } from './notification/list/list.component';
+import { ApplicationSourceAddComponent } from './source/add/add.component';
+import { ApplicationSourceEditComponent } from './source/edit/edit.component';
+import { ApplicationSourceListComponent } from './source/list/list.component';
+import { ApplicationThemeConfigListComponent } from './themeConfig/list/list.component';
 
 
 const routes: Routes = [

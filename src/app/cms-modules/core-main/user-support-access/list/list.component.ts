@@ -1,34 +1,29 @@
 
-import { ActivatedRoute, Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreUserSupportAccessModel,
-  CoreUserSupportAccessService,
-  EnumSortType,
-  ErrorExceptionResult,
-  FilterModel,
-  TokenInfoModel,
-  FilterDataModel,
-  EnumRecordStatus,
-  DataFieldInfoModel
+  CoreUserSupportAccessService, DataFieldInfoModel, EnumRecordStatus, EnumSortType,
+  ErrorExceptionResult, FilterDataModel, FilterModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { MatSort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
-import { Subscription } from 'rxjs';
-import { CoreUserSupportAccessEditComponent } from '../edit/edit.component';
-import { CoreUserSupportAccessAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { CoreUserSupportAccessAddComponent } from '../add/add.component';
+import { CoreUserSupportAccessEditComponent } from '../edit/edit.component';
 @Component({
   selector: 'app-core-user-support-access-list',
   templateUrl: './list.component.html',
@@ -37,8 +32,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class CoreUserSupportAccessListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   requestLinkUserId = 0;
-  requestModuleName='';
-  requestModuleEntityName='';
+  requestModuleName = '';
+  requestModuleEntityName = '';
   constructor(
     public contentService: CoreUserSupportAccessService,
     public publicHelper: PublicHelper,
@@ -57,11 +52,11 @@ export class CoreUserSupportAccessListComponent implements OnInit, OnDestroy {
     this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
     this.requestModuleName = this.activatedRoute.snapshot.paramMap.get('ModuleName');
     this.requestModuleEntityName = this.activatedRoute.snapshot.paramMap.get('ModuleEntityName');
-   
+
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'LinkSiteId';
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -89,7 +84,7 @@ export class CoreUserSupportAccessListComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<CoreUserSupportAccessModel> = new ErrorExceptionResult<CoreUserSupportAccessModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<CoreUserSupportAccessModel> = [];
@@ -210,10 +205,10 @@ export class CoreUserSupportAccessListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CoreUserSupportAccessAddComponent, {
       height: '90%',
       data: {
-        linkSiteId:this.requestLinkSiteId,
-        linkUserId:this.requestLinkUserId,
-        moduleName:this.requestModuleName,
-        moduleEntityName:this.requestModuleEntityName
+        linkSiteId: this.requestLinkSiteId,
+        linkUserId: this.requestLinkUserId,
+        moduleName: this.requestModuleName,
+        moduleEntityName: this.requestModuleEntityName
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -225,7 +220,7 @@ export class CoreUserSupportAccessListComponent implements OnInit, OnDestroy {
 
   onActionbuttonEditRow(model: CoreUserSupportAccessModel = this.tableRowSelected): void {
 
-    if (!model || !model.linkSiteId || model.linkSiteId === 0|| !model.linkUserId || model.linkUserId === 0) {
+    if (!model || !model.linkSiteId || model.linkSiteId === 0 || !model.linkUserId || model.linkUserId === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -240,12 +235,12 @@ export class CoreUserSupportAccessListComponent implements OnInit, OnDestroy {
     }
     const dialogRef = this.dialog.open(CoreUserSupportAccessEditComponent, {
       height: '90%',
-      data: { 
+      data: {
         linkSiteId: this.tableRowSelected.linkSiteId,
         linkUserId: this.tableRowSelected.linkUserId,
         moduleName: this.tableRowSelected.moduleName,
         moduleEntityName: this.tableRowSelected.moduleEntityName,
-       }
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -254,7 +249,7 @@ export class CoreUserSupportAccessListComponent implements OnInit, OnDestroy {
     });
   }
   onActionbuttonDeleteRow(model: CoreUserSupportAccessModel = this.tableRowSelected): void {
-    if (!model || !model.linkSiteId || model.linkSiteId === 0|| !model.linkUserId || model.linkUserId === 0) {
+    if (!model || !model.linkSiteId || model.linkSiteId === 0 || !model.linkUserId || model.linkUserId === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -367,23 +362,23 @@ export class CoreUserSupportAccessListComponent implements OnInit, OnDestroy {
 
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -412,7 +407,7 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
 
   onActionbuttonReload(): void {
     this.DataGetAll();

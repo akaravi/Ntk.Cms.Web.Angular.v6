@@ -1,21 +1,16 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  ApplicationMemberInfoModel,
-  ApplicationMemberInfoService,
-  EnumFilterDataModelSearchTypes,
-  EnumClauseType
-} from 'ntk-cms-api';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  ApplicationMemberInfoModel,
+  ApplicationMemberInfoService, CoreEnumService, EnumClauseType, EnumFilterDataModelSearchTypes, ErrorExceptionResult,
+  FilterDataModel,
+  FilterModel
+} from 'ntk-cms-api';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-application-memberinfo-selector',
   templateUrl: './selector.component.html',
@@ -187,13 +182,13 @@ export class ApplicationMemberInfoSelectorComponent implements OnInit {
       }
       this.categoryService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
-        if (ret.isSuccess) {
-          this.filteredOptions = this.push(ret.item);
-          this.dataModelSelect = ret.item;
-          this.formControl.setValue(ret.item);
-          this.optionChange.emit(ret.item);
+          if (ret.isSuccess) {
+            this.filteredOptions = this.push(ret.item);
+            this.dataModelSelect = ret.item;
+            this.formControl.setValue(ret.item);
+            this.optionChange.emit(ret.item);
+          }
         }
-      }
       });
       return;
     }

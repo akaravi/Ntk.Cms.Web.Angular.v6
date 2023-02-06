@@ -1,4 +1,5 @@
 
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,28 +7,25 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
-import {
-  MatTreeNestedDataSource,
-} from '@angular/material/tree';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterModel,
-  DonateSponsorModel,
-  DonateSponsorService,
-} from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import {
+  MatTreeNestedDataSource
+} from '@angular/material/tree';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DonateSponsorModel,
+  DonateSponsorService, ErrorExceptionResult,
+  FilterModel
+} from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { DonateSponserAddComponent } from '../add/add.component';
-import { DonateSponserEditComponent } from '../edit/edit.component';
 import { DonateSponserDeleteComponent } from '../delete/delete.component';
-import { TranslateService } from '@ngx-translate/core';
+import { DonateSponserEditComponent } from '../edit/edit.component';
 
 
 @Component({
@@ -44,7 +42,7 @@ export class DonateSponserTreeComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | DonateSponsorModel) {
     this.onActionSelectForce(x);

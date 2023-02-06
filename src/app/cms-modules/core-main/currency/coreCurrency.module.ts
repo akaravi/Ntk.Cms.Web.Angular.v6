@@ -1,17 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreCurrencyRouting } from './coreCurrency.routing';
-import { CoreCurrencyComponent } from './coreCurrency.component';
-import {
-  CoreModuleService,
-  CoreCurrencyService,
-} from 'ntk-cms-api';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  CoreCurrencyService, CoreModuleService
+} from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared.module';
-import { CoreCurrencySelectorComponent } from './selector/selector.component';
-import { CoreCurrencyEditComponent } from './edit/edit.component';
 import { CoreCurrencyAddComponent } from './add/add.component';
+import { CoreCurrencyComponent } from './coreCurrency.component';
+import { CoreCurrencyRouting } from './coreCurrency.routing';
+import { CoreCurrencyEditComponent } from './edit/edit.component';
 import { CoreCurrencyListComponent } from './list/list.component';
+import { CoreCurrencySelectorComponent } from './selector/selector.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
@@ -40,7 +39,7 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     CmsFileManagerModule
 
   ],

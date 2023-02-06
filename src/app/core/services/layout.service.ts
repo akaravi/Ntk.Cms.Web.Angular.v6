@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { BehaviorSubject } from 'rxjs';
 import * as objectPath from 'object-path';
+import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { DefaultLayoutConfig } from '../configs/default-layout.config';
 
 const LAYOUT_CONFIG_LOCAL_STORAGE_KEY = `${environment.appVersion}-layoutConfig`;
@@ -33,7 +33,7 @@ export class LayoutService {
     aside_menu: {},
   };
 
-  constructor() {}
+  constructor() { }
 
   initConfig(): any {
     const configFromLocalStorage = localStorage.getItem(

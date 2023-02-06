@@ -1,30 +1,19 @@
 import {
-  CoreEnumService,
-  FormInfoModel,
-  ErrorExceptionResult,
-  SmsApiSendMessageDtoModel,
-  SmsApiSendResultModel,
-  SmsMainApiPathService,
-  SmsMainApiPathModel,
-  SmsMainApiNumberModel,
-  SmsMainMessageCategoryModel,
-  SmsMainMessageContentModel,
-  EnumManageUserAccessDataTypes,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ChangeDetectorRef,
-  ElementRef,
+  ChangeDetectorRef, Component, ElementRef, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { TranslateService } from '@ngx-translate/core';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { CronOptions } from 'ngx-ntk-cron-editor';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { CronOptions } from 'ngx-ntk-cron-editor';
+import {
+  CoreEnumService, ErrorExceptionResult, FormInfoModel, SmsApiSendMessageDtoModel,
+  SmsApiSendResultModel, SmsMainApiNumberModel, SmsMainApiPathModel, SmsMainApiPathService, SmsMainMessageCategoryModel,
+  SmsMainMessageContentModel
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 export class DateByClock {
   date: Date;
   clock: string;
@@ -55,7 +44,7 @@ export class SmsActionSendMessageComponent implements OnInit {
     }
     this.dataModel.scheduleCron = "";
 
-    if (this.router && this.router.getCurrentNavigation()&& this.router.getCurrentNavigation().extras.state != null) {
+    if (this.router && this.router.getCurrentNavigation() && this.router.getCurrentNavigation().extras.state != null) {
       this.receiverNumber = this.router.getCurrentNavigation().extras.state.ReceiverNumber;
       this.senderNumber = this.router.getCurrentNavigation().extras.state.SenderNumber;
       this.linkApiPathId = this.router.getCurrentNavigation().extras.state.LinkApiPathId;
@@ -79,7 +68,7 @@ export class SmsActionSendMessageComponent implements OnInit {
   dataModelDateByClockExpire: DateByClock = new DateByClock();
   formInfo: FormInfoModel = new FormInfoModel();
   clipboardText = '';
-  
+
 
   // Hangfire 1.7+ compatible expression: '3 2 12 1/1 ?'
   // Quartz compatible expression: '4 3 2 12 1/1 ? *'
@@ -186,8 +175,8 @@ export class SmsActionSendMessageComponent implements OnInit {
     this.dataModelParentSelected = model;
     if (model && model.id.length > 0) {
       this.dataModel.linkApiPathId = model.id;
-      this.dataModel.linkFromNumber=null;
-      
+      this.dataModel.linkFromNumber = null;
+
     }
   }
   dataMessageCategoryModel: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();

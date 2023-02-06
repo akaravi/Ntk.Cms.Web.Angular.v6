@@ -1,12 +1,12 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { KTUtil } from '../../../../../assets/js/components/util';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationCancel, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import KTLayoutStickyCard from '../../../../../assets/js/layout/base/sticky-card';
-import KTLayoutStretchedCard from '../../../../../assets/js/layout/base/stretched-card';
+import { LayoutService } from 'src/app/core/services/layout.service';
+import { KTUtil } from '../../../../../assets/js/components/util';
 import KTLayoutAside from '../../../../../assets/js/layout/base/aside';
 import KTLayoutAsideMenu from '../../../../../assets/js/layout/base/aside-menu';
-import { LayoutService } from 'src/app/core/services/layout.service';
+import KTLayoutStickyCard from '../../../../../assets/js/layout/base/sticky-card';
+import KTLayoutStretchedCard from '../../../../../assets/js/layout/base/stretched-card';
 
 @Component({
   selector: 'app-scripts-init',

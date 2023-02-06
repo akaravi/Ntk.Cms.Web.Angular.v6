@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { BankPaymentComponent } from './bank-payment.component';
 import { BankPaymentPrivateSiteConfigListComponent } from './private-site-config/list/list.component';
 import { BankPaymentPublicConfigListComponent } from './public-config/list/list.component';

@@ -1,22 +1,15 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  CoreUserClaimTypeService,
-  CoreUserClaimTypeModel,
-  DataFieldInfoModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Input, OnInit
 } from '@angular/core';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, CoreUserClaimTypeModel, CoreUserClaimTypeService, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-core-userclaimtype-header',

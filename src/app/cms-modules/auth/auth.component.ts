@@ -40,10 +40,10 @@ export class AuthComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.Receiving_Information_From_The_Server'));
     this.configService.ServiceIp().subscribe({
       next: (ret) => {
-          this.publicHelper.appServerVersion = ret.appVersion
+        this.publicHelper.appServerVersion = ret.appVersion
         this.loading.Stop(pName);
       },
-      error:(er) => {
+      error: (er) => {
         this.cmsToastrService.typeErrorGetOne(er);
         this.loading.Stop(pName);
       }

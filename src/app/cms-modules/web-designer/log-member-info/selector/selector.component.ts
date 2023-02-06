@@ -1,21 +1,17 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService,
-  ErrorExceptionResult,
+  CoreEnumService, EnumClauseType, EnumFilterDataModelSearchTypes, ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
   WebDesignerLogMemberInfoModel,
-  WebDesignerLogMemberInfoService,
-  EnumFilterDataModelSearchTypes,
-  EnumClauseType
+  WebDesignerLogMemberInfoService
 } from 'ntk-cms-api';
-import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-webdesigner-logmemberinfo-selector',
   templateUrl: './selector.component.html',
@@ -68,7 +64,7 @@ export class WebDesignerLogMemberInfoSelectorComponent implements OnInit {
       );
   }
   displayFn(model?: WebDesignerLogMemberInfoModel): string | undefined {
-    return model ? model.deviceId  : undefined;
+    return model ? model.deviceId : undefined;
   }
   displayOption(model?: WebDesignerLogMemberInfoModel): string | undefined {
     return model ? model.deviceId : undefined;
@@ -180,13 +176,13 @@ export class WebDesignerLogMemberInfoSelectorComponent implements OnInit {
       }
       this.categoryService.ServiceGetOneById(id).subscribe({
         next: (ret) => {
-        if (ret.isSuccess) {
-          this.filteredOptions = this.push(ret.item);
-          this.dataModelSelect = ret.item;
-          this.formControl.setValue(ret.item);
-          this.optionChange.emit(ret.item);
+          if (ret.isSuccess) {
+            this.filteredOptions = this.push(ret.item);
+            this.dataModelSelect = ret.item;
+            this.formControl.setValue(ret.item);
+            this.optionChange.emit(ret.item);
+          }
         }
-      }
       });
       return;
     }

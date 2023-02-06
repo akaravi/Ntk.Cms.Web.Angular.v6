@@ -1,18 +1,13 @@
 import {
-  Component,
-  Input,
-  OnInit,
-  ViewChild,
-  TemplateRef,
-  ViewContainerRef,
-  DoCheck,
-} from '@angular/core';
-import {
   OverlayConfig,
-  OverlayRef,
+  OverlayRef
 } from '@angular/cdk/overlay';
-import { OverlayService } from '../overlay/overlay.service';
+import {
+  Component, DoCheck, Input,
+  OnInit, TemplateRef, ViewChild, ViewContainerRef
+} from '@angular/core';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { OverlayService } from '../overlay/overlay.service';
 
 @Component({
   selector: 'app-progress-spinner',

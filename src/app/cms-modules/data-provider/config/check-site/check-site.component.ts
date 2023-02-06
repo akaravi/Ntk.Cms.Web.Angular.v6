@@ -4,10 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  BaseModuleSiteCheckSiteModel,
-  DataProviderConfigurationService,
-  CoreEnumService,
-  ErrorExceptionResult,
+  BaseModuleSiteCheckSiteModel, CoreEnumService, DataProviderConfigurationService, ErrorExceptionResult,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -33,7 +30,7 @@ export class DataProviderConfigCheckSiteComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -87,7 +84,7 @@ export class DataProviderConfigCheckSiteComponent implements OnInit, OnDestroy {
             this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
         },
-        error:(er) => {
+        error: (er) => {
           this.loading.Stop(pName);
 
           this.cmsToastrService.typeErrorGetOne(er);

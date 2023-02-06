@@ -1,3 +1,4 @@
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -5,30 +6,29 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
 import {
-  MatTreeNestedDataSource,
+  MatTreeNestedDataSource
 } from '@angular/material/tree';
 import {
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   SmsMainMessageCategoryModel,
-  SmsMainMessageCategoryService,
+  SmsMainMessageCategoryService
 } from 'ntk-cms-api';
 
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { SmsMainMessageCategoryEditComponent } from '../edit/edit.component';
 import { SmsMainMessageCategoryDeleteComponent } from '../delete/delete.component';
+import { SmsMainMessageCategoryEditComponent } from '../edit/edit.component';
 
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { SmsMainMessageCategoryAddComponent } from '../add/add.component';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 
 @Component({
@@ -46,7 +46,7 @@ export class SmsMainMessageCategoryTreeComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: string | SmsMainMessageCategoryModel) {
     this.onActionSelectForce(x);

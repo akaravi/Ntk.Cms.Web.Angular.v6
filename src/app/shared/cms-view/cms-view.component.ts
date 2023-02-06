@@ -22,7 +22,7 @@ export class CmsViewComponent implements OnInit, OnDestroy {
       this.optionTitle = data.optionTitle;
     }
   }
-  @Input() optionMethod =1;
+  @Input() optionMethod = 1;
   @Input() optionListItems: any[];
   @Input() optionItem: any;
   @Input() optionTitle: "";

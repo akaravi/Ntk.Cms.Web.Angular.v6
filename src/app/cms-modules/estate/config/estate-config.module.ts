@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   CoreModuleService,
-  EstateConfigurationService,
+  EstateConfigurationService
 } from 'ntk-cms-api';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
 
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { EstateConfigCheckSiteComponent } from './check-site/check-site.component';
+import { EstateConfigCheckUserComponent } from './check-user/check-user.component';
+import { EstateConfigRouting } from './estate-config.routing';
 import { EstateConfigMainAdminComponent } from './main-admin/config-main-admin.component';
 import { EstateConfigSiteComponent } from './site/config-site.component';
-import { EstateConfigCheckUserComponent } from './check-user/check-user.component';
-import { EstateConfigCheckSiteComponent } from './check-site/check-site.component';
-import { EstateConfigRouting } from './estate-config.routing';
 
 
 @NgModule({

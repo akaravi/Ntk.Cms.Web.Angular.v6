@@ -6,7 +6,8 @@ import {
   EnumFilterDataModelSearchTypes,
   EnumRecordStatus,
   FilterDataModel,
-  FilterModel} from 'ntk-cms-api';
+  FilterModel
+} from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';

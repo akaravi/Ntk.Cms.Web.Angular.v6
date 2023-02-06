@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './error1.component.html',
 })
 export class Error1Component implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

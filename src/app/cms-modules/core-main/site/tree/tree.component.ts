@@ -1,4 +1,5 @@
 
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,28 +7,25 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
-import {
-  MatTreeNestedDataSource,
-} from '@angular/material/tree';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterModel,
-  CoreSiteModel,
-  CoreSiteService,
-} from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Subscription } from 'rxjs';
-import { CoreSiteDeleteComponent } from '../delete/delete.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CoreSiteEditComponent } from '../edit/edit.component';
-import { CoreSiteAddComponent } from '../add/add.component';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import {
+  MatTreeNestedDataSource
+} from '@angular/material/tree';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, CoreSiteModel,
+  CoreSiteService, ErrorExceptionResult,
+  FilterModel
+} from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { CoreSiteAddComponent } from '../add/add.component';
+import { CoreSiteDeleteComponent } from '../delete/delete.component';
+import { CoreSiteEditComponent } from '../edit/edit.component';
 
 
 @Component({
@@ -89,11 +87,11 @@ export class CoreSiteTreeComponent implements OnInit, OnDestroy {
         this.loading.Stop(pName);
 
       },
-      error:(er) => {
+      error: (er) => {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
-      }
+    }
     );
   }
   onActionSelect(model: CoreSiteModel): void {

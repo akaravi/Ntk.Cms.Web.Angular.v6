@@ -1,11 +1,11 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { WebDesignerLogMemberInfoService, EnumRecordStatus, FilterDataModel, FilterModel } from 'ntk-cms-api';
+import { TranslateService } from '@ngx-translate/core';
+import { EnumRecordStatus, FilterDataModel, FilterModel, WebDesignerLogMemberInfoService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-import { TranslateService } from '@ngx-translate/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
@@ -53,7 +53,7 @@ export class WebDesignerLogMemberInfoWidget2Component implements OnInit, OnDestr
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Active',this.translate.instant('MESSAGE.Get_active_registered_members'));
+    this.loading.Start(this.constructor.name + 'Active', this.translate.instant('MESSAGE.Get_active_registered_members'));
     this.loading.Start(this.constructor.name + 'All', this.translate.instant('MESSAGE.Get_all_registered_members'));
     this.modelData.set('Active', 0);
     this.modelData.set('All', 1);

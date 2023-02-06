@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { EstateConfigCheckSiteComponent } from './check-site/check-site.component';
 import { EstateConfigCheckUserComponent } from './check-user/check-user.component';
 import { EstateConfigMainAdminComponent } from './main-admin/config-main-admin.component';

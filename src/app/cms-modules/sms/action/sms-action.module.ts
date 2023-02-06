@@ -1,13 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { SmsActionComponent } from './sms-action.component';
 import { SmsActionRoutes } from './sms-action.routing';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from 'src/app/shared.module';
-import { AngularEditorModule } from '@kolkov/angular-editor';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatStepperModule } from '@angular/material/stepper';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { CronEditorModule } from 'ngx-ntk-cron-editor';
 import {
   ContactCategoryService,
   ContactContentService,
@@ -17,16 +21,11 @@ import {
   CoreModuleTagService,
   SmsMainApiPathService
 } from 'ntk-cms-api';
-import {MatIconModule} from '@angular/material/icon';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatStepperModule} from '@angular/material/stepper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { SmsActionSendMessageComponent } from './send-message/send-message.component';
+import { SmsMainModule } from '../main/sms-main.module';
 import { SmsSharedModule } from '../sms.shared.module';
 import { SmsActionSendMessageApiComponent } from './send-message-api/send-message-api.component';
-import { SmsMainModule } from '../main/sms-main.module';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { CronEditorModule } from 'ngx-ntk-cron-editor';
+import { SmsActionSendMessageComponent } from './send-message/send-message.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +38,8 @@ import { CronEditorModule } from 'ngx-ntk-cron-editor';
     SmsMainModule,
     SmsActionRoutes,
     FormsModule,
-    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
-    
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+
     SharedModule.forRoot(),
     //AngularEditorModule,
     NgxMaterialTimepickerModule,
@@ -54,11 +53,11 @@ import { CronEditorModule } from 'ngx-ntk-cron-editor';
     CoreModuleService,
     CoreEnumService,
     CoreAuthService,
-    CmsConfirmationDialogService ,
+    CmsConfirmationDialogService,
     CoreModuleTagService,
     SmsMainApiPathService,
-    ContactCategoryService, 
-    ContactContentService, 
+    ContactCategoryService,
+    ContactContentService,
   ]
 })
 export class SmsActionModule { }

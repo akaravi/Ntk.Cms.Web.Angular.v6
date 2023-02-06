@@ -1,4 +1,5 @@
 
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,28 +7,23 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
-import {
-  MatTreeNestedDataSource,
-} from '@angular/material/tree';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterModel,
-  CoreLocationModel,
-  CoreLocationService,
-  FilterDataModel,
-} from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CoreLocationEditComponent } from '../edit/edit.component';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { map, Observable, Subscription } from 'rxjs';
-import { CoreLocationAddComponent } from '../add/add.component';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import {
+  MatTreeNestedDataSource
+} from '@angular/material/tree';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, CoreLocationModel,
+  CoreLocationService, ErrorExceptionResult, FilterDataModel, FilterModel
+} from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { CoreLocationAddComponent } from '../add/add.component';
+import { CoreLocationEditComponent } from '../edit/edit.component';
 
 
 @Component({
@@ -96,7 +92,7 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
     }
     );
   }
-  DataGetAllChild(parentModel: CoreLocationModel):void {
+  DataGetAllChild(parentModel: CoreLocationModel): void {
     var filterModel = new FilterModel();
     filterModel.rowPerPage = 200;
     filterModel.accessLoad = true;
@@ -108,10 +104,10 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-     this.categoryService.ServiceGetAllTree(filterModel).subscribe({
+    this.categoryService.ServiceGetAllTree(filterModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          parentModel.children= ret.listItems;
+          parentModel.children = ret.listItems;
           this.dataSource.data = null;
           this.dataSource.data = this.dataModelResult.listItems;
           this.loading.Stop(pName);
@@ -120,12 +116,12 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
-        return ;
+        return;
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-        return ;
+        return;
       }
     }
     );
@@ -134,7 +130,7 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
     if (this.dataModelSelect && this.dataModelSelect.id > 0 && (this.dataModelSelect.children == null || this.dataModelSelect.children?.length == 0)) {
-       this.DataGetAllChild(this.dataModelSelect)
+      this.DataGetAllChild(this.dataModelSelect)
     }
   }
   onActionReload(): void {

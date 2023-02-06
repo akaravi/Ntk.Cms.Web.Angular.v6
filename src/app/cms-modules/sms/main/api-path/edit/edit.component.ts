@@ -1,32 +1,22 @@
 
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  SmsMainApiPathService,
-  SmsMainApiPathModel,
-  DataFieldInfoModel,
-  SmsMainApiPathCompanyModel,
-  SmsMainApiPathPublicConfigModel,
-  SmsMainApiPathAliasJsonModel,
-  EnumManageUserAccessDataTypes,
-} from 'ntk-cms-api';
-import {
-  Component,
+  ChangeDetectorRef, Component,
   OnInit,
-  ViewChild,
-  ChangeDetectorRef,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { MatStepper } from '@angular/material/stepper';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  FormInfoModel, SmsMainApiPathAliasJsonModel, SmsMainApiPathCompanyModel, SmsMainApiPathModel, SmsMainApiPathPublicConfigModel, SmsMainApiPathService
+} from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { MatStepper } from '@angular/material/stepper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-sms-apipath-edit',
@@ -45,7 +35,7 @@ export class SmsMainApiPathEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (this.activatedRoute.snapshot.paramMap.get('Id')) {
       this.requestId = this.activatedRoute.snapshot.paramMap.get('Id');
     }

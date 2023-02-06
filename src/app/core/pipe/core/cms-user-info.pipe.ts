@@ -1,4 +1,4 @@
-import { PipeTransform, Pipe } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { CoreUserService } from 'ntk-cms-api';
 import { map, Observable } from 'rxjs';
 
@@ -7,18 +7,18 @@ export class CmsUserInfoPipe implements PipeTransform {
   constructor(public service: CoreUserService) {
 
   }
-  transform(value: number):Observable< string> {
+  transform(value: number): Observable<string> {
     if (!value || value <= 0) {
-      return new Observable< string>();
+      return new Observable<string>();
     }
     return this.service.ServiceGetOneById(value)
       .pipe(
-        map( (ret) => {
+        map((ret) => {
           var retOut = '';
           if (ret.isSuccess) {
             if (ret.item.username && ret.item.username.length > 0)
               retOut = ret.item.username
-               ///** */
+            ///** */
             if (ret.item.email && ret.item.email.length > 0) {
               if (retOut.length > 0)
                 retOut = retOut + " | ";
@@ -45,9 +45,9 @@ export class CmsUserInfoPipe implements PipeTransform {
           }
           return retOut;
         },
-         (er) => {
-          return '';
-        })  // needed only if you need projection
+          (er) => {
+            return '';
+          })  // needed only if you need projection
       );
 
   }

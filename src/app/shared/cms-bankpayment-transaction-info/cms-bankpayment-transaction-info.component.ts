@@ -1,23 +1,14 @@
 import {
-  ErrorExceptionResult,
-  BankPaymentTransactionService,
-  BankPaymentTransactionModel,
-  EnumInfoModel,
-  BankPaymentEnumService,
-  EnumTransactionRecordStatus,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectorRef,
-  Inject,
+  ChangeDetectorRef, Component, Inject, Input, OnInit
 } from '@angular/core';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  BankPaymentEnumService, BankPaymentTransactionModel, BankPaymentTransactionService, EnumInfoModel, EnumTransactionRecordStatus, ErrorExceptionResult
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-cms-bankpayment-transaction-info',
@@ -27,7 +18,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class CmsBankpaymentTransactionInfoComponent implements OnInit {
   static nextId = 0;
   id = ++CmsBankpaymentTransactionInfoComponent.nextId;
-  requestId=0;
+  requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public bankPaymentTransactionService: BankPaymentTransactionService,
@@ -38,9 +29,9 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestId =+ data.id || 0;
+      this.requestId = + data.id || 0;
     }
 
   }
@@ -62,26 +53,26 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
       this.dataModelEnumTransactionRecordStatusResult = next;
     });
   }
-  TransactionSuccessful=EnumTransactionRecordStatus.TransactionSuccessful;
+  TransactionSuccessful = EnumTransactionRecordStatus.TransactionSuccessful;
   DataGeOne(): void {
-      const pName = this.constructor.name + 'main';
-      this.loading.Start(pName);
-      this.bankPaymentTransactionService.ServiceGetOneById(this.requestId).subscribe(
-        (next) => {
-          if (next.isSuccess) {
-            this.dataModelResult = next;
-            
-          }
-          else {
-            this.cmsToastrService.typeErrorMessage(next.errorMessage);
-          }
-          this.loading.Stop(pName);
-        },
-        (error) => {
-          this.cmsToastrService.typeError(error);
-          this.loading.Stop(pName);
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+    this.bankPaymentTransactionService.ServiceGetOneById(this.requestId).subscribe(
+      (next) => {
+        if (next.isSuccess) {
+          this.dataModelResult = next;
+
         }
-      );
+        else {
+          this.cmsToastrService.typeErrorMessage(next.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+      }
+    );
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: true });

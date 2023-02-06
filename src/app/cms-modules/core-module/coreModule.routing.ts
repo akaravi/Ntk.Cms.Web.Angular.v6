@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CoreModuleComponent } from './coreModule.component';
 import { CoreModuleSiteCreditChargeComponent } from './site-credit/charge/charge.component';
 import { CoreModuleSiteCreditListComponent } from './site-credit/list/list.component';

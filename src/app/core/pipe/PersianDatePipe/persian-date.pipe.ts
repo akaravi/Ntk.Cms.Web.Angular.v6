@@ -34,7 +34,7 @@ export class PersianDate {
       return this.persianCalendarService.PersianCalendar(d);
     }
     if (typeof value === typeof Date) {
-      if (!value ) {
+      if (!value) {
         return '';
       }
       return this.persianCalendarService.PersianCalendar(value);

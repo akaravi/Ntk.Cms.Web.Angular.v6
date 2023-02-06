@@ -1,48 +1,26 @@
 
+import { HttpClient } from '@angular/common/http';
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstateCustomerOrderService,
-  EstateCustomerOrderModel,
-  DataFieldInfoModel,
-  EstatePropertyTypeLanduseModel,
-  EstatePropertyTypeUsageModel,
-  EstateContractTypeModel,
-  FilterDataModel,
-  FilterModel,
-  EstatePropertyDetailGroupService,
-  EstateAccountUserModel,
-  EnumInputDataType,
-  EstatePropertyDetailValueModel,
-  CoreCurrencyModel,
-  EnumManageUserAccessDataTypes,
-  EnumRecordStatus,
-  EstateCustomerCategoryModel,
-  EnumManageUserAccessUserTypes,
-  EstatePropertyService,
-  EstateAccountAgencyModel,
-  TokenInfoModel,
-} from 'ntk-cms-api';
-import {
-  Component,
+  ChangeDetectorRef, Component,
   OnInit,
-  ViewChild,
-  ChangeDetectorRef,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, EnumManageUserAccessUserTypes, EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
+  EstatePropertyTypeUsageModel, FilterDataModel,
+  FilterModel, FormInfoModel, TokenInfoModel
+} from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { EstatePropertyListComponent } from '../../property/list/list.component';
-import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
-import { EstateCustomerOrderActionComponent } from '../action/action.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { EstatePropertyListComponent } from '../../property/list/list.component';
+import { EstateCustomerOrderActionComponent } from '../action/action.component';
 
 @Component({
   selector: 'app-estate-customer-order-edit',
@@ -55,7 +33,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     private router: Router,
     public coreEnumService: CoreEnumService,
     public estateCustomerOrderService: EstateCustomerOrderService,
-    private estatePropertyService:EstatePropertyService,
+    private estatePropertyService: EstatePropertyService,
 
     public estatePropertyDetailGroupService: EstatePropertyDetailGroupService,
     private cmsToastrService: CmsToastrService,
@@ -357,7 +335,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
         });
       });
     // ** Save Value */
-    if ((this.tokenHelper.CheckIsAdmin()|| this.tokenHelper.CheckIsSupport()|| this.tokenHelper.tokenInfo.userAccessUserType==EnumManageUserAccessUserTypes.ResellerCpSite|| this.tokenHelper.tokenInfo.userAccessUserType==EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available)  {
+    if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available) {
       const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
         // height: '90%',
         data: { model: this.dataModel }

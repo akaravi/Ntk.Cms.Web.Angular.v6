@@ -7,7 +7,7 @@ import { LayoutService } from 'src/app/core/services/layout.service';
 })
 export class CartOffcanvasComponent implements OnInit {
   extrasCartOffcanvasDirectionCSSClass = 'offcanvas-right';
-  constructor(private layout: LayoutService) {}
+  constructor(private layout: LayoutService) { }
 
   ngOnInit(): void {
     this.extrasCartOffcanvasDirectionCSSClass = `offcanvas-${this.layout.getProp(

@@ -1,3 +1,4 @@
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -5,30 +6,25 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {
-  MatTreeNestedDataSource,
+  MatTreeNestedDataSource
 } from '@angular/material/tree';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreAuthService,
-  CoreEnumService,
-  ErrorExceptionResult,
+  CoreEnumService, EnumSortType, ErrorExceptionResult,
   FilterModel,
   WebDesignerMainMenuModel,
-  WebDesignerMainMenuService,
-  NtkCmsApiStoreService,
-  EnumSortType,
+  WebDesignerMainMenuService
 } from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { WebDesignerMainMenuEditComponent } from '../edit/edit.component';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
-import { WebDesignerMainMenuAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { WebDesignerMainMenuAddComponent } from '../add/add.component';
+import { WebDesignerMainMenuEditComponent } from '../edit/edit.component';
 @Component({
   selector: 'app-webdesigner-menu-tree',
   templateUrl: './tree.component.html',
@@ -43,7 +39,7 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.filterModel.sortColumn = 'ShowInMenuOrder';
     this.filterModel.sortType = EnumSortType.Ascending;
   }

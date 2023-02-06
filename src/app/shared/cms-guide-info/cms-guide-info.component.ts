@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CoreGuideService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
   selector: 'app-cms-guide-info',
   templateUrl: './cms-guide-info.component.html',
 })
-export class CmsGuideinfoComponent implements OnInit ,OnDestroy {
+export class CmsGuideinfoComponent implements OnInit, OnDestroy {
   static nextId = 0;
   id = ++CmsGuideinfoComponent.nextId;
   @Input() Identity: number;

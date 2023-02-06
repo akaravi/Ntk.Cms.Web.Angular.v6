@@ -1,18 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreDeviceRouting } from './coreDevice.routing';
-import { CoreDeviceComponent } from './coreDevice.component';
-import {
-  CoreModuleService,
-  CoreDeviceService,
-} from 'ntk-cms-api';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  CoreDeviceService, CoreModuleService
+} from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared.module';
-import { CoreDeviceTreeComponent } from './tree/tree.component';
-import { CoreDeviceSelectorComponent } from './selector/selector.component';
-import { CoreDeviceEditComponent } from './edit/edit.component';
 import { CoreDeviceAddComponent } from './add/add.component';
+import { CoreDeviceComponent } from './coreDevice.component';
+import { CoreDeviceRouting } from './coreDevice.routing';
+import { CoreDeviceEditComponent } from './edit/edit.component';
 import { CoreDeviceListComponent } from './list/list.component';
+import { CoreDeviceSelectorComponent } from './selector/selector.component';
+import { CoreDeviceTreeComponent } from './tree/tree.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
@@ -39,10 +38,10 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     CommonModule,
     FormsModule,
     CoreDeviceRouting,
-    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }), 
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     // CmsFileManagerModule
 
   ],

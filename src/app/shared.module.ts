@@ -8,11 +8,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-  MatNativeDateModule,
-  MatRippleModule,
+  DateAdapter, MatNativeDateModule,
+  MatRippleModule, MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -43,28 +41,20 @@ import { MatTreeModule } from '@angular/material/tree';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxNtkQueryBuilderModule } from 'ngx-ntk-query-builder';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { TreeModule } from '@circlon/angular-tree-component';
-import { TruncatePipe } from './core/pipe/truncate.pipe';
+import { NgxNtkQueryBuilderModule } from 'ngx-ntk-query-builder';
 import { PersianDate } from './core/pipe/PersianDatePipe/persian-date.pipe';
-import { CmsSearchListComponent } from './shared/cms-search-list/cmsSearchList.component';
-import { CmsStatistListComponent } from './shared/cms-statist-list/cmsStatistList.component';
+import { TruncatePipe } from './core/pipe/truncate.pipe';
 import { CmsExportListComponent } from './shared/cms-export-list/cmsExportList.component';
 import { CmsMapComponent } from './shared/cms-map/cms-map.component';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { CmsSearchListComponent } from './shared/cms-search-list/cmsSearchList.component';
+import { CmsStatistListComponent } from './shared/cms-statist-list/cmsStatistList.component';
 
-import { RecordStatusClassPipe } from './core/pipe/recordStatusClass.pipe';
-import { BoolStatusClassPipe } from './core/pipe/boolStatusClass.pipe';
-import { PersianDateFull } from './core/pipe/PersianDatePipe/persian-date-full.pipe';
-import { ProgressSpinnerComponent } from './shared/progress-spinner/progress-spinner.component';
-import { OverlayService } from './shared/overlay/overlay.service';
-import { HttpConfigInterceptor } from './core/interceptor/httpConfigInterceptor';
-import { KeysPipe } from './core/pipe/keys.pipe';
-import { EnumsPipe } from './core/pipe/enums.pipe';
-import { PrettyjsonPipe } from './core/pipe/prettyjson.pipe';
-import { CmsSiteSelectorComponent } from './shared/cms-site-selector/cmsSiteSelector.component';
-import { CmsUserSelectorComponent } from './shared/cms-user-selector/cmsUserSelector.component';
-import { CmsMemberSelectorComponent } from './shared/cms-member-selector/cmsMemberSelector.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 import {
   ApplicationAppService,
   BankPaymentEnumService,
@@ -85,71 +75,79 @@ import {
   SmsMainApiNumberService,
   SmsMainApiPathService
 } from 'ntk-cms-api';
-import { PasswordStrengthComponent } from './shared/password-strength/password-strength.component';
-import { CmsJsonListComponent } from './shared/cms-json-list/cmsJsonList.component';
-import { CmsGuideinfoComponent } from './shared/cms-guide-info/cms-guide-info.component';
-import { TooltipGuideDirective } from './core/directive/tooltip-guide.directive';
-import { TooltipDirective } from './core/directive/tooltip.directive';
-import { CmsFormBuilderPropertiesComponent } from './shared/cms-form-builder-properties/cms-form-builder-properties.component';
-import { CmsModuleSelectorComponent } from './shared/cms-module-selector/cms-module-selector.component';
-import { CmsSiteCategorySelectorComponent } from './shared/cms-site-category-selector/cmsSiteCategorySelector.component';
-import { CmsUserGroupSelectorComponent } from './shared/cms-user-group-selector/cmsUserGroupSelector.component';
-import { CmsTitlePipe } from './core/pipe/cms-title.pipe';
-import { CmsApplicationSelectorComponent } from './shared/cms-application-selector/cms-application-selector.component';
-import { CmsBankpaymentGridComponent } from './shared/cms-bankpayment-grid/cms-bankpayment-grid.component';
-import { CmsCurrencySelectorComponent } from './shared/cms-currency-selector/cms-currency-selector.component';
-import { CmsLocationSelectorComponent } from './shared/cms-location-selector/cms-location-selector.component';
-import { ValueArrayPipe } from './core/pipe/valueArray.pipe';
-import { StringComponent } from './core/dynamic-input-builder/string/string.component';
-import { IntComponent } from './core/dynamic-input-builder/int/int.component';
-import { BooleanComponent } from './core/dynamic-input-builder/boolean/boolean.component';
-import { FloatComponent } from './core/dynamic-input-builder/float/float.component';
-import { DateComponent } from './core/dynamic-input-builder/date/date.component';
-import { TextAreaComponent } from './core/dynamic-input-builder/text-area/text-area.component';
-import { LanguageSelectorComponent } from './shared/language-selector/language-selector.component';
-import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
-import { CmsSiteCategorySelectionListComponent } from './shared/cms-site-category-selection-list/cmsSiteCategorySelectionList.component';
-import { CmsFilesSelectorComponent } from './shared/cms-files-selector/cms-files-selector.component';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { ClipboardModule } from '@angular/cdk/clipboard';
-import { CmsTagAutocompleteComponent } from './shared/cms-tag-autocomplete/cms-tag-autocomplete.component';
-import { CmsTokenAccessComponent } from './shared/cms-token-access/cmsTokenAccess.component';
-import { CmsHtmlNoticeComponent } from './shared/cms-html-notice/cms-html-notice.component';
-import { CmsHtmlCardComponent } from './shared/cms-html-card/cms-html-card.component';
-import { CmsHtmlModalComponent } from './shared/cms-html-modal/cms-html-modal.component';
-import { CmsHtmlListComponent } from './shared/cms-html-list/cms-html-list.component';
-import { CmsHtmlTreeComponent } from './shared/cms-html-tree/cms-html-tree.component';
+import { SmsMainApiNumberSelectorComponent } from './cms-modules/sms/main/api-number/selector/selector.component';
+import { SmsMainApiPathSelectorComponent } from './cms-modules/sms/main/api-path/selector/selector.component';
 import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooterDirective, CmsHtmlTreeHeaderDirective } from './core/directive/cms-html-tree.directive';
-import { FirstLetterPipe } from './core/pipe/first-letter.pipe';
-import { SafePipe } from './core/pipe/safe.pipe';
+import { CmsRecordStatusSelfSaveDirective } from './core/directive/cms-record-status-self-save.directive';
+import { DirDirective } from './core/directive/dir.directive';
 import { MatInputCommifiedDirective } from './core/directive/mat-input-commified.directive';
 import { PhoneDirective } from './core/directive/phone.directive';
-import { CmsImageThumbnailPipe } from './core/pipe/cms-image-thumbnail.pipe';
-import { CmsLocationCompleteComponent } from './shared/cms-location-autocomplete/cms-location-autocomplete.component';
-import { CmsQDocComponent } from './shared/cms-qdoc/cms-qdoc.component';
-import { CmsLinkToComponent } from './shared/cms-link-to/cms-link-to.component';
-import { CmsBankpaymentTransactionInfoComponent } from './shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
-import { CmsViewComponent } from './shared/cms-view/cms-view.component';
-import { DirDirective } from './core/directive/dir.directive';
-import { InlineSVGModule } from 'ng-inline-svg-2';
-import { CmsGuideNoticeComponent } from './shared/cms-guide-notice/cms-guide-notice.component';
-import { CodePreviewComponent } from './shared/code-preview/code-preview.component';
-import { CmsSiteCreditViewComponent } from './shared/cms-site-credit-view/cms-site-credit-view.component';
-import { CmsSiteUserCreditViewComponent } from './shared/cms-site-user-credit-view/cms-site-user-credit-view.component';
 import { SelfSaveDirective } from './core/directive/self-save.directive';
-import { CmsRecordStatusSelfSaveDirective } from './core/directive/cms-record-status-self-save.directive';
-import { CmsMemoComponent } from './shared/cms-memo/cms-memo.component';
-import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/material/material.persian-date.adapter';
-import { TranslateModule } from '@ngx-translate/core';
+import { TooltipGuideDirective } from './core/directive/tooltip-guide.directive';
+import { TooltipDirective } from './core/directive/tooltip.directive';
+import { BooleanComponent } from './core/dynamic-input-builder/boolean/boolean.component';
+import { DateComponent } from './core/dynamic-input-builder/date/date.component';
+import { FloatComponent } from './core/dynamic-input-builder/float/float.component';
+import { IntComponent } from './core/dynamic-input-builder/int/int.component';
+import { StringComponent } from './core/dynamic-input-builder/string/string.component';
+import { TextAreaComponent } from './core/dynamic-input-builder/text-area/text-area.component';
+import { HttpConfigInterceptor } from './core/interceptor/httpConfigInterceptor';
+import { BoolStatusClassPipe } from './core/pipe/boolStatusClass.pipe';
+import { CmsImageThumbnailPipe } from './core/pipe/cms-image-thumbnail.pipe';
+import { CmsTitlePipe } from './core/pipe/cms-title.pipe';
+import { CmsModuleInfoPipe } from './core/pipe/core/cms-module-info.pipe';
+import { CmsSiteInfoPipe } from './core/pipe/core/cms-site-info.pipe';
+import { CmsUserInfoPipe } from './core/pipe/core/cms-user-info.pipe';
+import { EnumsPipe } from './core/pipe/enums.pipe';
+import { FirstLetterPipe } from './core/pipe/first-letter.pipe';
+import { KeysPipe } from './core/pipe/keys.pipe';
+import { PersianDateFull } from './core/pipe/PersianDatePipe/persian-date-full.pipe';
+import { PrettyjsonPipe } from './core/pipe/prettyjson.pipe';
+import { RecordStatusClassPipe } from './core/pipe/recordStatusClass.pipe';
+import { SafePipe } from './core/pipe/safe.pipe';
+import { ValueArrayPipe } from './core/pipe/valueArray.pipe';
+import { CmsAccessInfoComponent } from './shared/cms-access-info/cms-access-info.component';
+import { CmsApplicationSelectorComponent } from './shared/cms-application-selector/cms-application-selector.component';
+import { CmsBankpaymentGridComponent } from './shared/cms-bankpayment-grid/cms-bankpayment-grid.component';
+import { CmsBankpaymentTransactionInfoComponent } from './shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
 import { CmsContactCategoryTreeSelectorComponent } from './shared/cms-contact-category-tree-selector/cms-contact-category-tree-selector.component';
 import { CmsContactContentSelectionListComponent } from './shared/cms-contact-content-selection-list/cms-contact-content-selection-list.component';
-import { CmsAccessInfoComponent } from './shared/cms-access-info/cms-access-info.component';
-import { CmsUserInfoPipe } from './core/pipe/core/cms-user-info.pipe';
-import { CmsSiteInfoPipe } from './core/pipe/core/cms-site-info.pipe';
-import { CmsModuleInfoPipe } from './core/pipe/core/cms-module-info.pipe';
-import { SmsMainApiPathSelectorComponent } from './cms-modules/sms/main/api-path/selector/selector.component';
-import { SmsMainApiNumberSelectorComponent } from './cms-modules/sms/main/api-number/selector/selector.component';
+import { CmsCurrencySelectorComponent } from './shared/cms-currency-selector/cms-currency-selector.component';
 import { CmsExportEntityComponent } from './shared/cms-export-entity/cms-export-entity.component';
+import { CmsFilesSelectorComponent } from './shared/cms-files-selector/cms-files-selector.component';
+import { CmsFormBuilderPropertiesComponent } from './shared/cms-form-builder-properties/cms-form-builder-properties.component';
+import { CmsGuideinfoComponent } from './shared/cms-guide-info/cms-guide-info.component';
+import { CmsGuideNoticeComponent } from './shared/cms-guide-notice/cms-guide-notice.component';
+import { CmsHtmlCardComponent } from './shared/cms-html-card/cms-html-card.component';
+import { CmsHtmlListComponent } from './shared/cms-html-list/cms-html-list.component';
+import { CmsHtmlModalComponent } from './shared/cms-html-modal/cms-html-modal.component';
+import { CmsHtmlNoticeComponent } from './shared/cms-html-notice/cms-html-notice.component';
+import { CmsHtmlTreeComponent } from './shared/cms-html-tree/cms-html-tree.component';
+import { CmsJsonListComponent } from './shared/cms-json-list/cmsJsonList.component';
+import { CmsLinkToComponent } from './shared/cms-link-to/cms-link-to.component';
+import { CmsLocationCompleteComponent } from './shared/cms-location-autocomplete/cms-location-autocomplete.component';
+import { CmsLocationSelectorComponent } from './shared/cms-location-selector/cms-location-selector.component';
+import { CmsMemberSelectorComponent } from './shared/cms-member-selector/cmsMemberSelector.component';
+import { CmsMemoComponent } from './shared/cms-memo/cms-memo.component';
+import { CmsModuleSelectorComponent } from './shared/cms-module-selector/cms-module-selector.component';
+import { CmsQDocComponent } from './shared/cms-qdoc/cms-qdoc.component';
+import { CmsSiteCategorySelectionListComponent } from './shared/cms-site-category-selection-list/cmsSiteCategorySelectionList.component';
+import { CmsSiteCategorySelectorComponent } from './shared/cms-site-category-selector/cmsSiteCategorySelector.component';
+import { CmsSiteCreditViewComponent } from './shared/cms-site-credit-view/cms-site-credit-view.component';
+import { CmsSiteSelectorComponent } from './shared/cms-site-selector/cmsSiteSelector.component';
+import { CmsSiteUserCreditViewComponent } from './shared/cms-site-user-credit-view/cms-site-user-credit-view.component';
+import { CmsTagAutocompleteComponent } from './shared/cms-tag-autocomplete/cms-tag-autocomplete.component';
+import { CmsTokenAccessComponent } from './shared/cms-token-access/cmsTokenAccess.component';
+import { CmsUserGroupSelectorComponent } from './shared/cms-user-group-selector/cmsUserGroupSelector.component';
+import { CmsUserSelectorComponent } from './shared/cms-user-selector/cmsUserSelector.component';
+import { CmsViewComponent } from './shared/cms-view/cms-view.component';
+import { CodePreviewComponent } from './shared/code-preview/code-preview.component';
+import { LanguageSelectorComponent } from './shared/language-selector/language-selector.component';
+import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/material/material.persian-date.adapter';
+import { OverlayService } from './shared/overlay/overlay.service';
+import { PasswordStrengthComponent } from './shared/password-strength/password-strength.component';
+import { ProgressSpinnerComponent } from './shared/progress-spinner/progress-spinner.component';
 
 @NgModule({
   imports: [

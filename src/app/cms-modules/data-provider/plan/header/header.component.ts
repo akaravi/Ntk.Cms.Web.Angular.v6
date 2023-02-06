@@ -1,27 +1,19 @@
 
 import {
-  EnumInfoModel,
-  ErrorExceptionResult,
-  DataProviderPlanModel,
-  DataProviderPlanService,
-  DataFieldInfoModel,
-  EnumRecordStatus,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectorRef,
-  OnDestroy,
+  ChangeDetectorRef, Component, Input, OnDestroy, OnInit
 } from '@angular/core';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { MatDialog } from '@angular/material/dialog';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  DataFieldInfoModel, DataProviderPlanModel,
+  DataProviderPlanService, EnumInfoModel, EnumRecordStatus, ErrorExceptionResult
+} from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 @Component({
   selector: 'app-data-provider-plan-header',
   templateUrl: './header.component.html',
@@ -37,7 +29,7 @@ export class DataProviderPlanHeaderComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     public tokenHelper: TokenHelper
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionId = 0;
   loading = new ProgressSpinnerModel();
@@ -90,7 +82,7 @@ export class DataProviderPlanHeaderComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus !=EnumRecordStatus.Available) {
+    if (model.recordStatus != EnumRecordStatus.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }

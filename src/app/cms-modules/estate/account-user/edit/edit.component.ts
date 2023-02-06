@@ -1,41 +1,26 @@
 
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstateAccountUserService,
-  EstateAccountUserModel,
-  DataFieldInfoModel,
-  CoreLocationModel,
-  CoreUserModel,
-  EnumManageUserAccessDataTypes,
-  EstateAccountAgencyUserService,
-  EstateAccountAgencyUserModel,
-  EstateAccountAgencyModel,
-  FilterDataModel,
-  FilterModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { MatTableDataSource } from '@angular/material/table';
+import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { TranslateService } from '@ngx-translate/core';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import {
+  CoreEnumService, CoreLocationModel,
+  CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountAgencyUserModel, EstateAccountAgencyUserService, EstateAccountUserModel, EstateAccountUserService, FilterDataModel,
+  FilterModel, FormInfoModel
+} from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { MatTableDataSource } from '@angular/material/table';
+import { PoinModel } from 'src/app/core/models/pointModel';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-estate-account-user-edit',
@@ -81,7 +66,7 @@ export class EstateAccountUserEditComponent implements OnInit {
   fileManagerOpenForm = false;
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateAccountAgencyUserModel>();
-  optionTabledisplayedColumns = ['LinkEstateAccountUserId', 'LinkEstateAccountAgencyId', 'AccessShareUserToAgency', 'AccessShareAgencyToUser','Action'];
+  optionTabledisplayedColumns = ['LinkEstateAccountUserId', 'LinkEstateAccountAgencyId', 'AccessShareUserToAgency', 'AccessShareAgencyToUser', 'Action'];
 
   /** map */
   viewMap = false;

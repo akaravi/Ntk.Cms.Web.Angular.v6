@@ -1,28 +1,20 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  SmsMainMessageContentService,
-  SmsMainMessageContentModel,
-  DataFieldInfoModel,
-  SmsMainMessageCategoryModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult,
+  FormInfoModel, SmsMainMessageCategoryModel, SmsMainMessageContentModel, SmsMainMessageContentService
+} from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-sms-main-message-content-add',
@@ -42,7 +34,7 @@ export class SmsMainMessageContentAddComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    
+
     if (data && data.linkCategoryId && data.linkCategoryId.length > 0)
       this.dataModel.linkCategoryId = data.linkCategoryId;
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
@@ -147,7 +139,7 @@ export class SmsMainMessageContentAddComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }
-  
+
   onActionSelectCategory(model: SmsMainMessageCategoryModel | null): void {
     if (!model || model.id?.length == 0) {
       const message = this.translate.instant('MESSAGE.Category_is_not_clear');

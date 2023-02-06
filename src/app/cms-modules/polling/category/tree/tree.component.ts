@@ -1,5 +1,5 @@
 
-import { ProgressSpinnerModel } from './../../../../core/models/progressSpinnerModel';
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -7,29 +7,29 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
 import {
-  MatTreeNestedDataSource,
+  MatTreeNestedDataSource
 } from '@angular/material/tree';
 import {
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   PollingCategoryModel,
-  PollingCategoryService,
+  PollingCategoryService
 } from 'ntk-cms-api';
+import { ProgressSpinnerModel } from './../../../../core/models/progressSpinnerModel';
 
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { PollingCategoryEditComponent } from '../edit/edit.component';
 import { PollingCategoryDeleteComponent } from '../delete/delete.component';
+import { PollingCategoryEditComponent } from '../edit/edit.component';
 
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { PollingCategoryAddComponent } from '../add/add.component';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -47,7 +47,7 @@ export class PollingCategoryTreeComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | PollingCategoryModel) {
     this.onActionSelectForce(x);

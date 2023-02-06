@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import {
-  ApplicationConfigurationService, CoreModuleService,
-} from 'ntk-cms-api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  ApplicationConfigurationService, CoreModuleService
+} from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared.module';
 
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ApplicationConfigRouting } from './application-config.routing';
+import { ApplicationConfigCheckSiteComponent } from './check-site/check-site.component';
+import { ApplicationConfigCheckUserComponent } from './check-user/check-user.component';
 import { ApplicationConfigMainAdminComponent } from './main-admin/config-main-admin.component';
 import { ApplicationConfigSiteComponent } from './site/config-site.component';
-import { ApplicationConfigCheckUserComponent } from './check-user/check-user.component';
-import { ApplicationConfigCheckSiteComponent } from './check-site/check-site.component';
-import { ApplicationConfigRouting } from './application-config.routing';
 
 
 @NgModule({

@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  BankPaymentConfigurationService, CoreModuleService,
-} from 'ntk-cms-api';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import {
+  BankPaymentConfigurationService, CoreModuleService
+} from 'ntk-cms-api';
+import { SharedModule } from 'src/app/shared.module';
+import { BankPaymentConfigRouting } from './bank-payment-config.routing';
+import { BankPaymentConfigCheckSiteComponent } from './check-site/check-site.component';
+import { BankPaymentConfigCheckUserComponent } from './check-user/check-user.component';
 import { BankPaymentConfigMainAdminComponent } from './main-admin/config-main-admin.component';
 import { BankPaymentConfigSiteComponent } from './site/config-site.component';
-import { BankPaymentConfigCheckUserComponent } from './check-user/check-user.component';
-import { BankPaymentConfigCheckSiteComponent } from './check-site/check-site.component';
-import { BankPaymentConfigRouting } from './bank-payment-config.routing';
 @NgModule({
   declarations: [
     /*Config*/

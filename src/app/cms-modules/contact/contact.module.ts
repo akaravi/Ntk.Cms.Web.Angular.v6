@@ -1,36 +1,34 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContactRouting } from './contact.routing';
+import { NgModule } from '@angular/core';
 import { ContactComponent } from './contact.component';
+import { ContactRouting } from './contact.routing';
 
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  CoreEnumService,
-  CoreModuleService,
-  CoreModuleTagService,
   ContactCategoryService,
   ContactConfigurationService,
-  ContactContentService,
-
+  ContactContentService, CoreEnumService,
+  CoreModuleService,
+  CoreModuleTagService
 } from 'ntk-cms-api';
-import { ContactCategoryEditComponent } from './category/edit/edit.component';
 import { ContactCategoryDeleteComponent } from './category/delete/delete.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContactCategoryEditComponent } from './category/edit/edit.component';
 
 import { SharedModule } from 'src/app/shared.module';
 
-import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { ContactCategorySelectorComponent } from './category/selector/selector.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { ContactContentListComponent } from './content/list/list.component';
+import { CmsFileManagerModule } from 'ntk-cms-filemanager';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { ContactCategoryAddComponent } from './category/add/add.component';
+import { ContactCategorySelectorComponent } from './category/selector/selector.component';
+import { ContactCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
+import { ContactCategoryTreeComponent } from './category/tree/tree.component';
 import { ContactContentAddComponent } from './content/add/add.component';
 import { ContactContentEditComponent } from './content/edit/edit.component';
-import { ContactCategoryTreeComponent } from './category/tree/tree.component';
-import { ContactCategoryAddComponent } from './category/add/add.component';
-import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { ContactContentSelectorComponent } from './content/selector/selector.component';
-import { ContactCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
+import { ContactContentListComponent } from './content/list/list.component';
 import { ContactContentSelectionlistComponent } from './content/selection-list/selectionlist.component';
+import { ContactContentSelectorComponent } from './content/selector/selector.component';
 
 
 @NgModule({
@@ -56,7 +54,7 @@ import { ContactContentSelectionlistComponent } from './content/selection-list/s
 
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     CmsFileManagerModule
   ],
   providers: [
@@ -69,7 +67,7 @@ import { ContactContentSelectionlistComponent } from './content/selection-list/s
     CmsConfirmationDialogService,
     ContactCategoryService,
     ContactContentService,
-  
+
   ]
 })
 export class ContactModule { }

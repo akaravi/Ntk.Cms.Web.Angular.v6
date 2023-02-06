@@ -1,33 +1,21 @@
 
+import { HttpClient } from '@angular/common/http';
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstateBillboardService,
-  EstateBillboardModel,
-  DataFieldInfoModel,
-  EstatePropertyDetailGroupService,
-  CoreCurrencyModel,
-  EnumManageUserAccessDataTypes,
-} from 'ntk-cms-api';
-import {
-  Component,
+  ChangeDetectorRef, Component,
   OnInit,
-  ViewChild,
-  ChangeDetectorRef,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateBillboardModel, EstateBillboardService, EstatePropertyDetailGroupService, FormInfoModel
+} from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-estate-billboard-edit',

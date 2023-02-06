@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   CoreModuleService,
-  TicketingConfigurationService,
+  TicketingConfigurationService
 } from 'ntk-cms-api';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
 
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { TicketingConfigCheckSiteComponent } from './check-site/check-site.component';
+import { TicketingConfigCheckUserComponent } from './check-user/check-user.component';
 import { TicketingConfigMainAdminComponent } from './main-admin/config-main-admin.component';
 import { TicketingConfigSiteComponent } from './site/config-site.component';
-import { TicketingConfigCheckUserComponent } from './check-user/check-user.component';
-import { TicketingConfigCheckSiteComponent } from './check-site/check-site.component';
 import { TicketingConfigRouting } from './ticketing-config.routing';
 
 

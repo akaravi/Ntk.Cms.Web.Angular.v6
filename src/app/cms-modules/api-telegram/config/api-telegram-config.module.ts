@@ -1,19 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  ApiTelegramConfigurationService, CoreModuleService,
-} from 'ntk-cms-api';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import {
+  ApiTelegramConfigurationService, CoreModuleService
+} from 'ntk-cms-api';
+import { SharedModule } from 'src/app/shared.module';
+import { ApiTelegramConfigRouting } from './api-telegram-config.routing';
+import { ApiTelegramConfigCheckSiteComponent } from './check-site/check-site.component';
+import { ApiTelegramConfigCheckUserComponent } from './check-user/check-user.component';
 import { ApiTelegramConfigMainAdminComponent } from './main-admin/config-main-admin.component';
 import { ApiTelegramConfigSiteComponent } from './site/config-site.component';
-import { ApiTelegramConfigCheckUserComponent } from './check-user/check-user.component';
-import { ApiTelegramConfigCheckSiteComponent } from './check-site/check-site.component';
-import { ApiTelegramConfigRouting } from './api-telegram-config.routing';
-import { ApiTelegramBotConfigAddComponent } from '../bot-config/add/add.component';
-import { ApiTelegramBotConfigEditComponent } from '../bot-config/edit/edit.component';
-import { ApiTelegramBotConfigListComponent } from '../bot-config/list/list.component';
 @NgModule({
   declarations: [
     /*Config*/

@@ -1,26 +1,20 @@
 
+import { DOCUMENT } from '@angular/common';
 import {
-  ErrorExceptionResult,
-  FormInfoModel,
-  BankPaymentPrivateSiteConfigModel,
-  CoreModuleSiteUserCreditCalculateDtoModel,
-  CoreModuleSiteUserCreditPaymentDtoModel,
-  BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel,
-  CoreModuleSiteUserCreditService,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { BankPaymentInjectPaymentGotoBankStep1CalculateModel } from 'ntk-cms-api/lib/models/dto/bankPayment/bankPaymentInjectPaymentGotoBankStep1CalculateModel';
-import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel, BankPaymentPrivateSiteConfigModel,
+  CoreModuleSiteUserCreditCalculateDtoModel,
+  CoreModuleSiteUserCreditPaymentDtoModel, CoreModuleSiteUserCreditService, ErrorExceptionResult,
+  FormInfoModel
+} from 'ntk-cms-api';
+import { BankPaymentInjectPaymentGotoBankStep1CalculateModel } from 'ntk-cms-api/lib/models/dto/bankPayment/bankPaymentInjectPaymentGotoBankStep1CalculateModel';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-coremodule-site-user-credit-charge-payment',

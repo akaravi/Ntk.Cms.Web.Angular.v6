@@ -1,32 +1,25 @@
 
+import { ENTER } from '@angular/cdk/keycodes';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import * as Leaflet from 'leaflet';
+import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel,
-  CoreSiteModel,
-  CoreSiteService,
-  CoreEnumService,
-  DataFieldInfoModel,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  CoreSiteCategoryModel,
-  EnumSiteStatus,
-  EnumLanguage,
+  AccessModel, CoreEnumService, CoreSiteCategoryModel, CoreSiteModel,
+  CoreSiteService, DataFieldInfoModel,
+  EnumInfoModel, EnumLanguage, EnumSiteStatus, ErrorExceptionResult,
+  FormInfoModel
 } from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { Map as leafletMap } from 'leaflet';
-import * as Leaflet from 'leaflet';
-import { TranslateService } from '@ngx-translate/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
   selector: 'app-core-site-add',
   templateUrl: './add.component.html',
@@ -46,8 +39,8 @@ export class CoreSiteAddComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-    this.dataModel.ownerSiteSetStatus=EnumSiteStatus.Active;
-    this.dataModel.userLanguage=EnumLanguage.fa;
+    this.dataModel.ownerSiteSetStatus = EnumSiteStatus.Active;
+    this.dataModel.userLanguage = EnumLanguage.fa;
   }
   requestId = 0;
 
@@ -245,29 +238,29 @@ export class CoreSiteAddComponent implements OnInit {
     }
     this.dataModel.linkSiteCategoryId = model.id;
   }
-   /**
+  /**
+  * tag
+  */
+  addOnBlurTag = true;
+  readonly separatorKeysCodes = [ENTER] as const;
+  addTag(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    // Add our item
+    if (value) {
+      this.keywordDataModel.push(value);
+    }
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  removeTag(item: string): void {
+    const index = this.keywordDataModel.indexOf(item);
+
+    if (index >= 0) {
+      this.keywordDataModel.splice(index, 1);
+    }
+  }
+  /**
    * tag
    */
-    addOnBlurTag = true;
-    readonly separatorKeysCodes = [ENTER] as const;
-    addTag(event: MatChipInputEvent): void {
-      const value = (event.value || '').trim();
-      // Add our item
-      if (value) {
-        this.keywordDataModel.push( value);
-      }
-      // Clear the input value
-      event.chipInput!.clear();
-    }
-  
-    removeTag(item: string): void {
-      const index = this.keywordDataModel.indexOf(item);
-  
-      if (index >= 0) {
-        this.keywordDataModel.splice(index, 1);
-      }
-    }
-    /**
-     * tag
-     */
 }

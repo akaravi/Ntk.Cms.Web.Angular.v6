@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './blog.component';
-import { BlogContentListComponent } from './content/list/list.component';
 import { BlogCommentListComponent } from './comment/list/list.component';
-import { BlogContentEditComponent } from './content/edit/edit.component';
 import { BlogContentAddComponent } from './content/add/add.component';
-import { BlogConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
-import { BlogConfigSiteComponent } from './config/site/config-site.component';
+import { BlogContentEditComponent } from './content/edit/edit.component';
+import { BlogContentListComponent } from './content/list/list.component';
 
 
 const routes: Routes = [
@@ -14,13 +12,13 @@ const routes: Routes = [
     path: '',
     component: BlogComponent,
     children: [
-         /* Config */
-         {
-          path: 'config',
-          loadChildren: () =>
-            import('./config/blog-config.module').then((m) => m.BlogConfigModule),
-        },
-        /* Config */
+      /* Config */
+      {
+        path: 'config',
+        loadChildren: () =>
+          import('./config/blog-config.module').then((m) => m.BlogConfigModule),
+      },
+      /* Config */
       {
         path: 'content',
         // resolve: {categoryList: CategoryResolver},

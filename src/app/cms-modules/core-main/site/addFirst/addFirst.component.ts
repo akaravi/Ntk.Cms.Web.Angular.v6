@@ -1,5 +1,10 @@
 
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
   AuthRenewTokenModel,
 
@@ -12,15 +17,9 @@ import {
   FilterModel,
   FormInfoModel
 } from 'ntk-cms-api';
-import { environment } from '../../../../../environments/environment';
-import { Router } from '@angular/router';
-import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { MatStepper } from '@angular/material/stepper';
-import { FormGroup } from '@angular/forms';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-core-site-add-first',

@@ -1,9 +1,6 @@
 import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, ElementRef, OnInit,
+  ViewChild
 } from '@angular/core';
 
 const documents = {
@@ -96,9 +93,9 @@ export class SearchDropdownInnerComponent implements OnInit {
   data: any[] = [];
   loading: boolean;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   /**
    * Search

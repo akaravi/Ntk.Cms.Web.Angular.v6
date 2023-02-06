@@ -1,39 +1,33 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  WebDesignerMainPageDependencyModel,
-  WebDesignerMainPageDependencyService,
-  EnumSortType,
-  ErrorExceptionResult,
-  FilterModel,
-  TokenInfoModel,
-  FilterDataModel,
-  EnumRecordStatus,
-  DataFieldInfoModel,
   CoreModuleModel,
-  CoreModuleService
+  CoreModuleService, DataFieldInfoModel, EnumRecordStatus, EnumSortType,
+  ErrorExceptionResult, FilterDataModel, FilterModel,
+  TokenInfoModel, WebDesignerMainPageDependencyModel,
+  WebDesignerMainPageDependencyService
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
-import { MatSort } from '@angular/material/sort';
-import { PageEvent } from '@angular/material/paginator';
-import { Subscription } from 'rxjs';
-import { WebDesignerMainPageDependencyEditComponent } from '../edit/edit.component';
-import { WebDesignerMainPageDependencyAddComponent } from '../add/add.component';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { WebDesignerMainPageDependencyAutoAddPageComponent } from '../auto-add-page/auto-add-page.component';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
+import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { environment } from 'src/environments/environment';
+import { WebDesignerMainPageDependencyAddComponent } from '../add/add.component';
+import { WebDesignerMainPageDependencyAutoAddPageComponent } from '../auto-add-page/auto-add-page.component';
+import { WebDesignerMainPageDependencyEditComponent } from '../edit/edit.component';
 @Component({
   selector: 'app-webdesigner-pagedependency-list',
   templateUrl: './list.component.html',
@@ -53,12 +47,12 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public dialog: MatDialog) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkModuleId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkModuleId'));
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    
+
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'LinkModuleId';
     this.filteModelContent.sortType = EnumSortType.Ascending;
@@ -74,7 +68,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     = new ErrorExceptionResult<WebDesignerMainPageDependencyModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-  
+
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<WebDesignerMainPageDependencyModel> = [];
@@ -82,7 +76,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   tableSource: MatTableDataSource<WebDesignerMainPageDependencyModel> = new MatTableDataSource<WebDesignerMainPageDependencyModel>();
   dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
   categoryModelSelected = new CoreModuleModel();
-  tabledisplayedColumns: string[]=[];
+  tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'RecordStatus',
@@ -119,11 +113,11 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns=this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource,['RecordStatus','Title','CmsModuleClassName','ClassActionName'],this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, ['RecordStatus', 'Title', 'CmsModuleClassName', 'ClassActionName'], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new WebDesignerMainPageDependencyModel();
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_list'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
     const filter = new FilterDataModel();
     /*filter CLone*/
@@ -143,7 +137,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(next.access);
           }
-        
+
         }
         this.loading.Stop(pName);
       },
@@ -386,23 +380,23 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     window.open(urlTemplate, '_blank');
   }
   onActionbuttonExport(): void {
-            //open popup
-        const dialogRef = this.dialog.open(CmsExportListComponent, {
-          height: "50%",
-          width: "50%",
-          data: {
-            service: this.contentService,
-            filterModel: this.filteModelContent,
-            title: ''
-          },
-        }
-        );
-        dialogRef.afterClosed().subscribe((result) => {
-        });
-        //open popup 
-        
+    //open popup
+    const dialogRef = this.dialog.open(CmsExportListComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        service: this.contentService,
+        filterModel: this.filteModelContent,
+        title: ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+    //open popup 
+
   }
-onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
+  onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -431,12 +425,12 @@ onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     });
     //open popup
   }
-  
+
   onActionSelectorSelect(model: CoreModuleModel | null): void {
-     /*filter */
-    var sortColumn = this.filteModelContent.sortColumn;
-    var sortType = this.filteModelContent.sortType;
-    this.filteModelContent =  new FilterModel();
+    /*filter */
+    const sortColumn = this.filteModelContent.sortColumn;
+    const sortType = this.filteModelContent.sortType;
+    this.filteModelContent = new FilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */

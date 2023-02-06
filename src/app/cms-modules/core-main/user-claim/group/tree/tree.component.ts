@@ -1,4 +1,5 @@
 
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,27 +7,24 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
-import {
-  MatTreeNestedDataSource,
-} from '@angular/material/tree';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterModel,
-  CoreUserClaimGroupModel,
-  CoreUserClaimGroupService,
-} from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { CoreUserClaimGroupEditComponent } from '../edit/edit.component';
-import { CoreUserClaimGroupAddComponent } from '../add/add.component';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import {
+  MatTreeNestedDataSource
+} from '@angular/material/tree';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, CoreUserClaimGroupModel,
+  CoreUserClaimGroupService, ErrorExceptionResult,
+  FilterModel
+} from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { CoreUserClaimGroupAddComponent } from '../add/add.component';
+import { CoreUserClaimGroupEditComponent } from '../edit/edit.component';
 
 
 @Component({

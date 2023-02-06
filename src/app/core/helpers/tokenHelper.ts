@@ -69,26 +69,24 @@ export class TokenHelper implements OnDestroy {
   CheckIsAdmin(): boolean {
     if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
       || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
-      
+
       || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
       || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
-      )
-    {
-      this.isAdminSite=true;
+    ) {
+      this.isAdminSite = true;
       return true;
     }
-    this.isAdminSite=false;
+    this.isAdminSite = false;
     return false;
   }
   CheckIsSupport(): boolean {
     if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
       || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
-      )
-    {
-      this.isSupportSite=true;
+    ) {
+      this.isSupportSite = true;
       return true;
     }
-    this.isSupportSite=false;
+    this.isSupportSite = false;
     return false;
   }
   getDeviceToken(): void {
@@ -129,11 +127,11 @@ export class TokenHelper implements OnDestroy {
         }
       } else if (this.tokenInfo.userId <= 0) {
 
-        if (this.router&& this.router.url.indexOf('/auth/singin') < 0) {
+        if (this.router && this.router.url.indexOf('/auth/singin') < 0) {
           this.router.navigate(['/auth/singin']);
         }
       } else if (this.tokenInfo.userId > 0 && this.tokenInfo.siteId <= 0) {
-        if (this.router&& this.router.url.indexOf('/core/site/selection') < 0) {
+        if (this.router && this.router.url.indexOf('/core/site/selection') < 0) {
           this.router.navigate(['/core/site/selection']);
         }
       }
@@ -144,7 +142,7 @@ export class TokenHelper implements OnDestroy {
       }
 
       if (this.tokenInfo && this.tokenInfo.userId > 0 && this.tokenInfo.siteId <= 0) {
-        if (this.router&& this.router.url.indexOf('/core/site/selection') < 0) {
+        if (this.router && this.router.url.indexOf('/core/site/selection') < 0) {
           this.router.navigate(['/core/site/selection']);
         }
       }

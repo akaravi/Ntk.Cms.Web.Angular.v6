@@ -1,49 +1,32 @@
 
-import { ActivatedRoute, Router } from "@angular/router";
 import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ChangeDetectorRef,
-  AfterViewInit,
-  Input,
-  Inject,
+  AfterViewInit, ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit
 } from "@angular/core";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { PageEvent } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
+import { ActivatedRoute, Router } from "@angular/router";
+import { TranslateService } from '@ngx-translate/core';
 import {
-  EstatePropertyModel,
-  EstatePropertyService,
-  EnumSortType,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  TokenInfoModel,
-  EstatePropertyTypeLanduseModel,
-  EnumRecordStatus,
-  DataFieldInfoModel,
-  EnumFilterDataModelSearchTypes,
-  EnumManageUserAccessDataTypes,
-  EnumClauseType,
-  FormInfoModel,
+  DataFieldInfoModel, EnumClauseType, EnumFilterDataModelSearchTypes,
+  EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
+  ErrorExceptionResult, EstatePropertyModel,
+  EstatePropertyService, EstatePropertyTypeLanduseModel, FilterDataModel,
+  FilterModel, FormInfoModel, TokenInfoModel
 } from "ntk-cms-api";
+import { Subscription } from "rxjs";
 import { ComponentOptionSearchModel } from "src/app/core/cmsComponentModels/base/componentOptionSearchModel";
+import { ComponentOptionStatistModel } from "src/app/core/cmsComponentModels/base/componentOptionStatistModel";
 import { PublicHelper } from "src/app/core/helpers/publicHelper";
+import { TokenHelper } from "src/app/core/helpers/tokenHelper";
 import { ProgressSpinnerModel } from "src/app/core/models/progressSpinnerModel";
 import { CmsToastrService } from "src/app/core/services/cmsToastr.service";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { ComponentOptionExportModel } from "src/app/core/cmsComponentModels/base/componentOptionExportModel";
-import { ComponentOptionStatistModel } from "src/app/core/cmsComponentModels/base/componentOptionStatistModel";
-import { MatSort } from "@angular/material/sort";
-import { PageEvent } from "@angular/material/paginator";
-import { Subscription } from "rxjs";
 import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service";
-import { TokenHelper } from "src/app/core/helpers/tokenHelper";
-import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
-import { TranslateService } from '@ngx-translate/core';
-import { CmsMemoComponent } from "src/app/shared/cms-memo/cms-memo.component";
-import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
-import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
 import { CmsExportEntityComponent } from "src/app/shared/cms-export-entity/cms-export-entity.component";
+import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
+import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
+import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
 
 
 @Component({
@@ -479,10 +462,10 @@ export class EstatePropertyQuickListComponent
   }
 
   onActionSelectorSelect(model: EstatePropertyTypeLanduseModel | null): void {
-     /*filter */
+    /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent =  new FilterModel();
+    this.filteModelContent = new FilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -813,7 +796,7 @@ export class EstatePropertyQuickListComponent
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus !=EnumRecordStatus.Available) {
+    if (model.recordStatus != EnumRecordStatus.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }

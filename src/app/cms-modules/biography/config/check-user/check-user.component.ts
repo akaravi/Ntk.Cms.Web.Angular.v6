@@ -81,7 +81,7 @@ export class BiographyConfigCheckUserComponent implements OnInit, OnDestroy {
             this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
         },
-        error:(er) => {
+        error: (er) => {
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }

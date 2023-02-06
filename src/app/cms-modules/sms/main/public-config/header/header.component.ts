@@ -1,22 +1,15 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  SmsMainApiPathPublicConfigService,
-  SmsMainApiPathPublicConfigModel,
-  DataFieldInfoModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Input, OnInit
 } from '@angular/core';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult, SmsMainApiPathPublicConfigModel, SmsMainApiPathPublicConfigService
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-sms-publicconfig-header',
@@ -32,7 +25,7 @@ export class SmsMainApiPathPublicConfigHeaderComponent implements OnInit {
     public translate: TranslateService,
     private cmsToastrService: CmsToastrService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionId = '';
   loading = new ProgressSpinnerModel();

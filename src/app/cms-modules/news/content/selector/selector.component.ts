@@ -1,5 +1,7 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   EnumClauseType,
@@ -10,13 +12,10 @@ import {
   NewsContentModel,
   NewsContentService
 } from 'ntk-cms-api';
-import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-news-content-selector',
   templateUrl: './selector.component.html',
@@ -28,7 +27,7 @@ export class NewsContentSelectorComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     public contentService: NewsContentService) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   dataModelResult: ErrorExceptionResult<NewsContentModel> = new ErrorExceptionResult<NewsContentModel>();
   dataModelSelect: NewsContentModel = new NewsContentModel();
@@ -131,16 +130,16 @@ export class NewsContentSelectorComponent implements OnInit {
   onActionSelectForce(id: number | NewsContentModel): void {
     if (typeof id === 'number' && id > 0) {
       this.contentService.ServiceGetOneById(id).subscribe({
-        next:(ret) => {
-        if (ret.isSuccess) {
-          this.filteredOptions = this.push(ret.item);
-          this.dataModelSelect = ret.item;
-          this.formControl.setValue(ret.item);
+        next: (ret) => {
+          if (ret.isSuccess) {
+            this.filteredOptions = this.push(ret.item);
+            this.dataModelSelect = ret.item;
+            this.formControl.setValue(ret.item);
+          }
+          else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
         }
-        else{
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-      }
       });
       return;
     }

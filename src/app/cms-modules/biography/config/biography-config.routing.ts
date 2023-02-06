@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { BiographyConfigCheckSiteComponent } from './check-site/check-site.component';
 import { BiographyConfigCheckUserComponent } from './check-user/check-user.component';
 import { BiographyConfigMainAdminComponent } from './main-admin/config-main-admin.component';

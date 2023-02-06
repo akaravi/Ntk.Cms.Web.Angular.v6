@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   CoreModuleService,
-  DonateConfigurationService,
+  DonateConfigurationService
 } from 'ntk-cms-api';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
 
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { DonateConfigCheckSiteComponent } from './check-site/check-site.component';
+import { DonateConfigCheckUserComponent } from './check-user/check-user.component';
+import { DonateConfigRouting } from './donate-config.routing';
 import { DonateConfigMainAdminComponent } from './main-admin/config-main-admin.component';
 import { DonateConfigSiteComponent } from './site/config-site.component';
-import { DonateConfigCheckUserComponent } from './check-user/check-user.component';
-import { DonateConfigCheckSiteComponent } from './check-site/check-site.component';
-import { DonateConfigRouting } from './donate-config.routing';
 
 
 @NgModule({

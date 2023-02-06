@@ -1,18 +1,14 @@
 import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  ViewChild,
-  ElementRef,
-  OnDestroy,
+  AfterViewInit, Component, ElementRef,
+  OnDestroy, OnInit, ViewChild
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import KTLayoutExamples from '../../../assets/js/layout/extended/examples';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import {  TokenInfoModel } from 'ntk-cms-api';
+import { TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { LayoutService } from 'src/app/core/services/layout.service';
+import KTLayoutExamples from '../../../assets/js/layout/extended/examples';
 
 @Component({
   selector: 'app-builder',

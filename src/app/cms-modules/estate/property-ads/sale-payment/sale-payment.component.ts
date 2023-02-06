@@ -1,27 +1,18 @@
 
+import { DOCUMENT } from '@angular/common';
 import {
-  ErrorExceptionResult,
-  FormInfoModel,
-  BankPaymentPrivateSiteConfigModel,
-  EstateModuleSalePropertyAdsCalculateDtoModel,
-  EstateModuleSalePropertyAdsPaymentDtoModel,
-  BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel,
-  EstateAdsTypeService,
-  EstatePropertyAdsService,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit
 } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { BankPaymentInjectPaymentGotoBankStep1CalculateModel } from 'ntk-cms-api/lib/models/dto/bankPayment/bankPaymentInjectPaymentGotoBankStep1CalculateModel';
-import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  BankPaymentInjectPaymentGotoBankStep2LandingSitePageModel, BankPaymentPrivateSiteConfigModel, ErrorExceptionResult, EstateAdsTypeService, EstateModuleSalePropertyAdsCalculateDtoModel,
+  EstateModuleSalePropertyAdsPaymentDtoModel, EstatePropertyAdsService, FormInfoModel
+} from 'ntk-cms-api';
+import { BankPaymentInjectPaymentGotoBankStep1CalculateModel } from 'ntk-cms-api/lib/models/dto/bankPayment/bankPaymentInjectPaymentGotoBankStep1CalculateModel';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-estate-property-ads-salepayment',
@@ -44,7 +35,7 @@ export class EstatePropertyAdsSalePaymentComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       if (data.linkPropertyId && data.linkPropertyId.length > 0) {
         this.requestLinkPropertyId = data.linkPropertyId;

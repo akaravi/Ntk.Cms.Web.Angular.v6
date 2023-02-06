@@ -4,12 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  BaseModuleSiteCheckUserModel,
-  BankPaymentConfigurationService,
-  CoreEnumService,
-  ErrorExceptionResult,
-  NtkCmsApiStoreService,
-  TokenInfoModel
+  BankPaymentConfigurationService, BaseModuleSiteCheckUserModel, CoreEnumService,
+  ErrorExceptionResult, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -82,7 +78,7 @@ export class BankPaymentConfigCheckUserComponent implements OnInit, OnDestroy {
             this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
           }
         },
-        error:(er) => {
+        error: (er) => {
           this.cmsToastrService.typeErrorGetOne(er);
           this.loading.Stop(pName);
         }

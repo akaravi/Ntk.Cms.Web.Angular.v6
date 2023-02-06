@@ -1,28 +1,19 @@
 
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  NewsCategoryService,
-  NewsCategoryModel,
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  FormInfoModel, NewsCategoryModel, NewsCategoryService
+} from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-news-category-edit',
   templateUrl: './edit.component.html',
@@ -40,7 +31,7 @@ export class NewsCategoryEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = +data.id || 0;
     }
@@ -63,7 +54,7 @@ export class NewsCategoryEditComponent implements OnInit {
   }
   ngOnInit(): void {
     if (this.requestId > 0) {
-      this.formInfo.formTitle =  this.translate.instant('TITLE.Register_New_Categories');
+      this.formInfo.formTitle = this.translate.instant('TITLE.Register_New_Categories');
       this.DataGetOneContent();
     } else {
       this.cmsToastrService.typeErrorComponentAction();
@@ -87,7 +78,7 @@ export class NewsCategoryEditComponent implements OnInit {
     this.categoryService.setAccessLoad();
     this.categoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.categoryService.ServiceGetOneById(this.requestId).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         this.dataModel = ret.item;
         if (ret.isSuccess) {
@@ -100,10 +91,11 @@ export class NewsCategoryEditComponent implements OnInit {
         }
         this.loading.Stop(pName);
       },
-      error:(er) => {
+      error: (er) => {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      }}
+      }
+    }
     );
   }
 
@@ -111,10 +103,10 @@ export class NewsCategoryEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
     this.categoryService.ServiceEdit(this.dataModel).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
         if (ret.isSuccess) {
@@ -128,11 +120,12 @@ export class NewsCategoryEditComponent implements OnInit {
         }
         this.loading.Stop(pName);
       },
-      error:(er) => {
+      error: (er) => {
         this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      }}
+      }
+    }
     );
   }
   onFormSubmit(): void {

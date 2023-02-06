@@ -1,31 +1,25 @@
 
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  LinkManagementTargetModel,
-  LinkManagementTargetService,
-  DataFieldInfoModel,
-  AccessModel,
-  LinkManagementTargetCategoryModel,
-  LinkManagementBillboardPatternModel,
-  LinkManagementEnumService,
-} from 'ntk-cms-api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { Map as leafletMap } from 'leaflet';
+import {
+  AccessModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult,
+  FormInfoModel, LinkManagementBillboardPatternModel,
+  LinkManagementEnumService, LinkManagementTargetCategoryModel, LinkManagementTargetModel,
+  LinkManagementTargetService
+} from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 @Component({
   selector: 'app-linkmanagement-target-add',

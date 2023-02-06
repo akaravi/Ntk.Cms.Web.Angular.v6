@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const SUCCESS_ICON =  'https://i.pinimg.com/originals/7b/dd/1b/7bdd1bc7db7fd48025d4e39a0e2f0fd8.jpg';
-const ERROR_ICON =  'https://www.seekpng.com/png/detail/334-3345964_error-icon-download-attention-symbol.png';
+const SUCCESS_ICON = 'https://i.pinimg.com/originals/7b/dd/1b/7bdd1bc7db7fd48025d4e39a0e2f0fd8.jpg';
+const ERROR_ICON = 'https://www.seekpng.com/png/detail/334-3345964_error-icon-download-attention-symbol.png';
 const LOADING_ICON = 'https://replit.com/public/images/loading_dots.gif';
 /**
  * `persistOnChange` directive takes an Input - @param observableFn which @returns an Observable ideally returned by an http request.
@@ -28,7 +28,7 @@ export class SelfSaveDirective {
     private elRef: ElementRef,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document
-  ) {}
+  ) { }
   @HostListener('change')
   onChange() {
     if (this.observableFn instanceof Function) {

@@ -43,7 +43,7 @@ export class ApplicationMemberInfoWidgetComponent implements OnInit, OnDestroy {
   }
   onActionStatist(): void {
     this.loading.Start(this.constructor.name + 'Active', this.translate.instant('MESSAGE.Get_active_member_of_application_statistics'));
-    this.loading.Start(this.constructor.name + 'All' , this.translate.instant('MESSAGE.Get_statistics_on_all_member_of_application'));
+    this.loading.Start(this.constructor.name + 'All', this.translate.instant('MESSAGE.Get_statistics_on_all_member_of_application'));
     this.modelData.set('Active', 0);
     this.modelData.set('All', 1);
     this.service.ServiceGetCount(this.filteModelContent).subscribe({

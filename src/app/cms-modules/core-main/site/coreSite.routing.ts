@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CoreSiteAddFirstComponent } from './addFirst/addFirst.component';
-import { CoreSiteSelectionComponent } from './selection/selection.component';
-import { CoreSiteListComponent } from './list/list.component';
-import { CoreSiteModuleListComponent } from './moduleList/moduleList.component';
-import { CoreSiteModuleEditComponent } from './moduleEdit/moduleEdit.component';
-import { CoreSiteModuleAddComponent } from './moduleAdd/moduleAdd.component';
+import { RouterModule, Routes } from '@angular/router';
 import { CoreSiteAddComponent } from './add/add.component';
+import { CoreSiteAddFirstComponent } from './addFirst/addFirst.component';
 import { CoreSiteEditComponent } from './edit/edit.component';
-import { CoreSiteUserListComponent } from './userList/userList.component';
 import { CoreInfoComponent } from './info/core-info.component';
+import { CoreSiteListComponent } from './list/list.component';
+import { CoreSiteModuleAddComponent } from './moduleAdd/moduleAdd.component';
+import { CoreSiteModuleEditComponent } from './moduleEdit/moduleEdit.component';
+import { CoreSiteModuleListComponent } from './moduleList/moduleList.component';
 import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.component';
+import { CoreSiteSelectionComponent } from './selection/selection.component';
+import { CoreSiteUserListComponent } from './userList/userList.component';
 
 const routes: Routes = [
   {

@@ -1,22 +1,19 @@
 
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  EstateAccountAgencyModel,
-  EstateAccountAgencyService
+  ErrorExceptionResult, EstateAccountAgencyModel,
+  EstateAccountAgencyService, FilterDataModel,
+  FilterModel
 } from 'ntk-cms-api';
-import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -95,17 +92,17 @@ export class EstateAccountAgencySelectorComponent implements OnInit {
     // this.loading.backdropEnabled = false;
     let filter = new FilterDataModel();
     if (typeof text === 'string' && text.length > 0) {
-    filter.propertyName = 'Title';
-    filter.value = text;
-    filter.searchType = EnumFilterDataModelSearchTypes.Contains;
-    filterModel.filters.push(filter);
-    /* */
-    filter = new FilterDataModel();
-    filter.propertyName = 'Id';
-    filter.value = text;
-    filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-    filter.clauseType = EnumClauseType.Or;
-    filterModel.filters.push(filter);
+      filter.propertyName = 'Title';
+      filter.value = text;
+      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+      filterModel.filters.push(filter);
+      /* */
+      filter = new FilterDataModel();
+      filter.propertyName = 'Id';
+      filter.value = text;
+      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+      filter.clauseType = EnumClauseType.Or;
+      filterModel.filters.push(filter);
     }
     /* */
     if (typeof text === 'number' && text > 0) {

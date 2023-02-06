@@ -7,7 +7,7 @@ import { LayoutService } from 'src/app/core/services/layout.service';
 })
 export class CartDropdownInnerComponent implements OnInit {
   extrasCartDropdownStyle: 'light' | 'dark' = 'light';
-  constructor(private layout: LayoutService) {}
+  constructor(private layout: LayoutService) { }
 
   ngOnInit(): void {
     this.extrasCartDropdownStyle = this.layout.getProp(

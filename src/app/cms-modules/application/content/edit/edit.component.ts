@@ -3,27 +3,21 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import * as Leaflet from 'leaflet';
+import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, ApplicationEnumService,
-  ApplicationAppModel,
-  ApplicationAppService,
-  CoreEnumService,
+  AccessModel, ApplicationAppModel,
+  ApplicationAppService, ApplicationEnumService, ApplicationSourceModel, ApplicationThemeConfigModel, CoreEnumService,
   DataFieldInfoModel,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  ApplicationSourceModel,
-  EnumManageUserAccessDataTypes,
+  EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  FormInfoModel
 } from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ApplicationThemeConfigModel } from 'ntk-cms-api';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { Map as leafletMap } from 'leaflet';
-import * as Leaflet from 'leaflet';
-import { TranslateService } from '@ngx-translate/core';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
 @Component({
   selector: 'app-aplication-app-edit',

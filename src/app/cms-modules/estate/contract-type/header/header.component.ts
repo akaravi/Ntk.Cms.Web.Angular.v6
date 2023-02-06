@@ -1,22 +1,18 @@
 
 import {
-  EnumInfoModel,
-  ErrorExceptionResult,
-  EstateContractTypeModel,
-  EstateContractTypeService,
-  DataFieldInfoModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Input, OnInit
 } from '@angular/core';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult,
+  EstateContractTypeModel,
+  EstateContractTypeService
+} from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
@@ -33,7 +29,7 @@ export class EstateContractTypeHeaderComponent implements OnInit {
     public translate: TranslateService,
     public dialog: MatDialog
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionId = '';
   loading = new ProgressSpinnerModel();

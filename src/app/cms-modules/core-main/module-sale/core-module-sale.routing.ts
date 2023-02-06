@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CoreModuleSaleHeaderGroupListComponent } from './header-group/list/list.component';
 import { CoreModuleSaleHeaderListComponent } from './header/list/list.component';
 import { CoreModuleSaleHeaderSaleListComponent } from './header/sale-list/sale-list.component';

@@ -1,22 +1,14 @@
 import {
-  ErrorExceptionResult,
-  BlogCategoryModel,
-  BankPaymentPrivateSiteConfigService,
-  BankPaymentPrivateSiteConfigModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output
 } from '@angular/core';
+import {
+  BankPaymentPrivateSiteConfigModel, BankPaymentPrivateSiteConfigService, BlogCategoryModel, ErrorExceptionResult
+} from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { NodeInterface } from 'ntk-cms-filemanager';
 import { TranslateService } from '@ngx-translate/core';
+import { NodeInterface } from 'ntk-cms-filemanager';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 
 @Component({
   selector: 'app-cms-bankpayment-grid',
@@ -27,15 +19,15 @@ export class CmsBankpaymentGridComponent implements OnInit {
   id = ++CmsBankpaymentGridComponent.nextId;
   constructor(
     public bankPaymentPrivateSiteConfigService: BankPaymentPrivateSiteConfigService,
-    
+
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() optionMasterItem = false;
-  errorMessage='';
+  errorMessage = '';
   @Output() optionChange = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
   dataModelSelect: BankPaymentPrivateSiteConfigModel = new BankPaymentPrivateSiteConfigModel();
 
@@ -58,7 +50,7 @@ export class CmsBankpaymentGridComponent implements OnInit {
       const pName = this.constructor.name + 'main';
       this.loading.Start(pName);
       this.bankPaymentPrivateSiteConfigService.ServicePaymentGatewayCoreList().subscribe({
-        next(ret){
+        next(ret) {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             if (this.dataModelResult.listItems && this.dataModelResult.listItems.length == 1) {
@@ -66,17 +58,18 @@ export class CmsBankpaymentGridComponent implements OnInit {
             }
           }
           else {
-            this.errorMessage=ret.errorMessage;
+            this.errorMessage = ret.errorMessage;
           }
           this.loading.Stop(pName);
 
         },
         error(er) {
-          this.errorMessage=er;
+          this.errorMessage = er;
 
           this.loading.Stop(pName);
 
-        }}
+        }
+      }
       );
     }
     else {
@@ -85,21 +78,20 @@ export class CmsBankpaymentGridComponent implements OnInit {
       this.bankPaymentPrivateSiteConfigService.ServicePaymentGatewayList().subscribe({
         next(ret) {
           if (ret.isSuccess) {
-                this.dataModelResult = ret;
-                if(!this.dataModelResult.listItems|| this.dataModelResult.listItems.length==0)
-                {
-                  this.errorMessage=this.translate.instant('MESSAGE.Payment_portal_is_not_active');  
-                }
-              }
-              else {
-                this.errorMessage=ret.errorMessage;
-              }
-              this.loading.Stop(pName); 
-        },error(er){
-          this.errorMessage=er;
+            this.dataModelResult = ret;
+            if (!this.dataModelResult.listItems || this.dataModelResult.listItems.length == 0) {
+              this.errorMessage = this.translate.instant('MESSAGE.Payment_portal_is_not_active');
+            }
+          }
+          else {
+            this.errorMessage = ret.errorMessage;
+          }
+          this.loading.Stop(pName);
+        }, error(er) {
+          this.errorMessage = er;
           this.loading.Stop(pName);
         }
-       
+
       }
       );
     }

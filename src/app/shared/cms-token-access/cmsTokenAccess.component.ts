@@ -2,9 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {
   AuthRenewTokenModel,
-  CoreAuthService,
-  TokenInfoModel,
-  CoreSiteModel
+  CoreAuthService, CoreSiteModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -13,7 +11,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-cms-token-access',
   templateUrl: './cmsTokenAccess.component.html',
-  
+
 })
 export class CmsTokenAccessComponent implements OnInit, OnDestroy {
   static nextId = 0;

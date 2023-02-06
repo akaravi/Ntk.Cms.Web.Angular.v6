@@ -1,26 +1,19 @@
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  EstateBillboardService,
-  EstateBillboardModel,
-  DataFieldInfoModel,
-  CoreCurrencyModel,
-} from 'ntk-cms-api';
-import {
-  Component,
+  ChangeDetectorRef, Component,
   OnInit,
-  ViewChild,
-  ChangeDetectorRef,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult, EstateBillboardModel, EstateBillboardService, FormInfoModel
+} from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 
 @Component({
@@ -40,7 +33,7 @@ export class EstateBillboardAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
   }
@@ -55,7 +48,7 @@ export class EstateBillboardAddComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  
+
   dataModel: EstateBillboardModel = new EstateBillboardModel();
   dataModelCorCurrencySelector = new CoreCurrencyModel();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -100,7 +93,7 @@ export class EstateBillboardAddComponent implements OnInit {
 
     this.estateBillboardService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
-        
+
         if (ret.isSuccess) {
           this.DataGetOneContent();
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');

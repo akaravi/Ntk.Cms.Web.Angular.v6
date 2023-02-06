@@ -1,31 +1,22 @@
 
-import { Router } from '@angular/router';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreModuleSaleHeaderService,
-  ErrorExceptionResult,
-  FilterModel,
-  TokenInfoModel,
-  DataFieldInfoModel,
-  CoreModuleSaleHeaderModel,
-  CoreEnumService,
-  EnumInfoModel,
-  CoreModuleService,
-  CoreModuleModel,
-  CoreModuleSaleInvoiceDetailModel,
+  CoreEnumService, CoreModuleModel, CoreModuleSaleHeaderModel, CoreModuleSaleHeaderService, CoreModuleSaleInvoiceDetailModel,
   CoreModuleSaleInvoiceModel,
-  CoreModuleSaleItemModel,
-  CoreSiteService,
+  CoreModuleSaleItemModel, CoreModuleService, CoreSiteService, DataFieldInfoModel, EnumInfoModel, ErrorExceptionResult,
+  FilterModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
-import { CoreModuleSaleHeaderSalePaymentComponent } from '../sale-payment/sale-payment.component';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
-import { TranslateService } from '@ngx-translate/core';
+import { CoreModuleSaleHeaderSalePaymentComponent } from '../sale-payment/sale-payment.component';
 
 @Component({
   selector: 'app-core-modulesaleheader-sale-list',

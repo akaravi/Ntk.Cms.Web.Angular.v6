@@ -1,26 +1,19 @@
 import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  ArticleCategoryService,
-  ArticleCategoryModel,
-  DataFieldInfoModel,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  ArticleCategoryModel, ArticleCategoryService, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult,
+  FormInfoModel
+} from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-article-category-add',
   templateUrl: './add.component.html',
@@ -65,7 +58,7 @@ export class ArticleCategoryAddComponent implements OnInit {
     this.dataModel.linkMainImageIdSrc = model.downloadLinksrc;
   }
   ngOnInit(): void {
-    this.formInfo.formTitle =  this.translate.instant('TITLE.Register_New_Categories');
+    this.formInfo.formTitle = this.translate.instant('TITLE.Register_New_Categories');
     this.getEnumRecordStatus();
     this.DataGetAccess();
   }
@@ -83,7 +76,7 @@ export class ArticleCategoryAddComponent implements OnInit {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
         },
-        error:(er) => {
+        error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
         }
       }
@@ -109,7 +102,7 @@ export class ArticleCategoryAddComponent implements OnInit {
         }
         this.loading.Stop(pName);
       },
-      error:(er) => {
+      error: (er) => {
         this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);

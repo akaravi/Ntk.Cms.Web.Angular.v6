@@ -36,7 +36,7 @@ export class ProgressSpinnerModel {
   consoleLog = true;
   guid = '';
   processInfo = new Map<string, ProcessInfoModel>();
-  
+
   displayItem(name: string): boolean {
     if (!this.processInfo) {
       return false;

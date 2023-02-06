@@ -1,11 +1,11 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { NewsContentService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
+import { TranslateService } from '@ngx-translate/core';
+import { EnumRecordStatus, FilterDataModel, FilterModel, NewsContentService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-news-content-widget2',
   templateUrl: './widget2.component.html',
@@ -24,7 +24,7 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   filteModelContent = new FilterModel();
   modelData = new Map<string, number>();
@@ -49,20 +49,21 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionStatist(): void {
-    this.loading.Start(this.constructor.name + 'Active',this.translate.instant('MESSAGE.Get_active_news_statistics'));
-    this.loading.Start(this.constructor.name + 'All',this.translate.instant('MESSAGE.Get_statistics_on_all_news'));
+    this.loading.Start(this.constructor.name + 'Active', this.translate.instant('MESSAGE.Get_active_news_statistics'));
+    this.loading.Start(this.constructor.name + 'All', this.translate.instant('MESSAGE.Get_statistics_on_all_news'));
     this.modelData.set('Active', 0);
     this.modelData.set('All', 1);
     this.service.ServiceGetCount(this.filteModelContent).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         if (ret.isSuccess) {
           this.modelData.set('All', ret.totalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'All');
       },
-      error:(er) => {
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'All');
-      }}
+      }
+    }
     );
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
@@ -70,16 +71,17 @@ export class NewsContentWidget2Component implements OnInit, OnDestroy {
     fastfilter.value = EnumRecordStatus.Available;
     filterStatist1.filters.push(fastfilter);
     this.service.ServiceGetCount(filterStatist1).subscribe({
-      next:(ret) => {
+      next: (ret) => {
         if (ret.isSuccess) {
           this.modelData.set('Active', ret.totalRowCount);
         }
         this.loading.Stop(this.constructor.name + 'Active');
       }
       ,
-      error:(er) => {
+      error: (er) => {
         this.loading.Stop(this.constructor.name + 'Active');
-      }}
+      }
+    }
     );
   }
   translateHelp(t: string, v: string): string {

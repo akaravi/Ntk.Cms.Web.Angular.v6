@@ -1,6 +1,6 @@
 
 import {
-  Component,
+  Component
 } from '@angular/core';
 
 import { ApiTelegramActionSendMessageComponent } from '../send-message/send-message.component';
@@ -10,5 +10,5 @@ import { ApiTelegramActionSendMessageComponent } from '../send-message/send-mess
   styleUrls: ['./send-message-simple.component.scss'],
 })
 export class ApiTelegramActionSendMessageSimpleComponent extends ApiTelegramActionSendMessageComponent {
- 
+
 }

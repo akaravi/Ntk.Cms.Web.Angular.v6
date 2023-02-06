@@ -1,4 +1,5 @@
 
+import { NestedTreeControl } from '@angular/cdk/tree';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,28 +7,27 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {
-  MatTreeNestedDataSource,
+  MatTreeNestedDataSource
 } from '@angular/material/tree';
+import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
   LinkManagementBillboardPatternModel,
-  LinkManagementBillboardPatternService,
+  LinkManagementBillboardPatternService
 } from 'ntk-cms-api';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { LinkManagementBillboardPatternEditComponent } from '../edit/edit.component';
-import { LinkManagementBillboardPatternDeleteComponent } from '../delete/delete.component';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { Subscription } from 'rxjs';
-import { LinkManagementBillboardPatternAddComponent } from '../add/add.component';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { TranslateService } from '@ngx-translate/core';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { LinkManagementBillboardPatternAddComponent } from '../add/add.component';
+import { LinkManagementBillboardPatternDeleteComponent } from '../delete/delete.component';
+import { LinkManagementBillboardPatternEditComponent } from '../edit/edit.component';
 
 
 @Component({
@@ -44,7 +44,7 @@ export class LinkManagementBillboardPatternTreeComponent implements OnInit, OnDe
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: number | LinkManagementBillboardPatternModel) {
     this.onActionSelectForce(x);
@@ -92,7 +92,7 @@ export class LinkManagementBillboardPatternTreeComponent implements OnInit, OnDe
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
-      }
+    }
     );
   }
   onActionSelect(model: LinkManagementBillboardPatternModel): void {

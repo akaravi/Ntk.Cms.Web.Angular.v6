@@ -1,22 +1,16 @@
-import { Component, OnInit, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import {
-  CoreEnumService,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  CoreCurrencyModel,
-  CoreCurrencyService,
-  EnumFilterDataModelSearchTypes,
-  EnumClauseType,
-  EnumManageUserAccessDataTypes
-} from 'ntk-cms-api';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreCurrencyModel,
+  CoreCurrencyService, CoreEnumService, EnumClauseType, EnumFilterDataModelSearchTypes, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  FilterDataModel,
+  FilterModel
+} from 'ntk-cms-api';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 
 @Component({
@@ -87,9 +81,9 @@ export class CmsCurrencySelectorComponent implements OnInit {
   async DataGetAll(text: string | number | any): Promise<CoreCurrencyModel[]> {
     if (this.dateUseStore) {
       //** */
-      
+
       this.dataModelResult = await this.publicHelper.getCurrency();
-      if (this.dataModelResult.isSuccess){
+      if (this.dataModelResult.isSuccess) {
         /*select First Item */
         if (this.optionSelectFirstItem &&
           (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id <= 0) &&

@@ -499,7 +499,7 @@ export class CmsToastrService {
     }
     this.toastr.error(message, this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeErrorForNotComplete'));
   }
-  
+
   typeWarningRecordStatusNoAvailable(str: string = ''): void {
 
     let message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeWarningRecordStatusNoAvailable');

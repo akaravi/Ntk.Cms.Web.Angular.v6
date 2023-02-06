@@ -2,23 +2,19 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, ApplicationEnumService,
   ApplicationIntroModel,
-  ApplicationIntroService,
-  CoreEnumService,
+  ApplicationIntroService, ApplicationSourceModel, CoreEnumService,
   DataFieldInfoModel,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  ApplicationSourceModel,
-  EnumManageUserAccessDataTypes,
+  EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  FormInfoModel
 } from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-aplication-intro-edit',
   templateUrl: './edit.component.html',
@@ -82,7 +78,7 @@ export class ApplicationIntroEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.get_information_from_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.get_information_from_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_from_the_server'));
     /*َAccess Field*/
     this.applicationIntroService.setAccessLoad();
     this.applicationIntroService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
@@ -115,7 +111,7 @@ export class ApplicationIntroEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.applicationIntroService
       .ServiceEdit(this.dataModel)
       .subscribe({

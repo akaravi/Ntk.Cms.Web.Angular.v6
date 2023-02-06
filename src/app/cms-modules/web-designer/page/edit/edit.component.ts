@@ -1,32 +1,20 @@
+import { ENTER } from '@angular/cdk/keycodes';
 import {
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  WebDesignerMainPageService,
-  WebDesignerMainPageModel,
-  DataFieldInfoModel,
-  WebDesignerMainPageTemplateModel,
-  WebDesignerMainPageDependencyModel,
-  WebDesignerEnumService,
-  CoreSiteCategoryModel,
-  EnumManageUserAccessDataTypes,
-} from 'ntk-cms-api';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Inject,
-  ChangeDetectorRef,
+  ChangeDetectorRef, Component, Inject, OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { TranslateService } from '@ngx-translate/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
+import {
+  CoreSiteCategoryModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  FormInfoModel, WebDesignerEnumService, WebDesignerMainPageDependencyModel, WebDesignerMainPageModel, WebDesignerMainPageService, WebDesignerMainPageTemplateModel
+} from 'ntk-cms-api';
+import { TreeModel } from 'ntk-cms-filemanager';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
   selector: 'app-webdesigner-page-edit',
   templateUrl: './edit.component.html',
@@ -44,7 +32,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public publicHelper: PublicHelper,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id + '';
     }
@@ -119,7 +107,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName,this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
     this.webDesignerMainPageService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.formSubmitAllow = true;
@@ -197,31 +185,31 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     }
     this.dataModel.pageDependencyIsDefaultPageLinkSiteCategoryId = model.id;
   }
-  
-		
-		 /**
+
+
+  /**
+* tag
+*/
+  addOnBlurTag = true;
+  readonly separatorKeysCodes = [ENTER] as const;
+  addTag(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    // Add our item
+    if (value) {
+      this.keywordDataModel.push(value);
+    }
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  removeTag(item: string): void {
+    const index = this.keywordDataModel.indexOf(item);
+
+    if (index >= 0) {
+      this.keywordDataModel.splice(index, 1);
+    }
+  }
+  /**
    * tag
    */
-      addOnBlurTag = true;
-      readonly separatorKeysCodes = [ENTER] as const;
-      addTag(event: MatChipInputEvent): void {
-        const value = (event.value || '').trim();
-        // Add our item
-        if (value) {
-          this.keywordDataModel.push( value);
-        }
-        // Clear the input value
-        event.chipInput!.clear();
-      }
-    
-      removeTag(item: string): void {
-        const index = this.keywordDataModel.indexOf(item);
-    
-        if (index >= 0) {
-          this.keywordDataModel.splice(index, 1);
-        }
-      }
-      /**
-       * tag
-       */
 }

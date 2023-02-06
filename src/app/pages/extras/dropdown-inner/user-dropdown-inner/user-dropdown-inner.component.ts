@@ -1,14 +1,14 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { LayoutService } from 'src/app/core/services/layout.service';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { CoreAuthService, EnumManageUserAccessDataTypes, EnumTicketStatus, ErrorExceptionResultBase, FilterDataModel, FilterModel, TicketingTaskService, TokenInfoModel } from 'ntk-cms-api';
-import { map } from 'rxjs/operators';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { environment } from 'src/environments/environment';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslateService } from '@ngx-translate/core';
+import { CoreAuthService, EnumManageUserAccessDataTypes, EnumTicketStatus, ErrorExceptionResultBase, FilterDataModel, FilterModel, TicketingTaskService, TokenInfoModel } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { LayoutService } from 'src/app/core/services/layout.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-user-dropdown-inner',
   templateUrl: './user-dropdown-inner.component.html',

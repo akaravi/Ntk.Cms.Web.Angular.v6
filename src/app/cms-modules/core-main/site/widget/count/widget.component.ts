@@ -1,7 +1,7 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreSiteService, EnumRecordStatus, FilterDataModel, FilterModel, NtkCmsApiStoreService } from 'ntk-cms-api';
+import { CoreSiteService, EnumRecordStatus, FilterDataModel, FilterModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -61,7 +61,7 @@ export class CoreSiteWidgetCountComponent implements OnInit, OnDestroy {
       error: (er) => {
         this.loading.Stop(this.constructor.name + 'All');
       }
-      }
+    }
     );
 
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
@@ -80,7 +80,7 @@ export class CoreSiteWidgetCountComponent implements OnInit, OnDestroy {
       error: (er) => {
         this.loading.Stop(this.constructor.name + 'Active');
       }
-      }
+    }
     );
   }
 }

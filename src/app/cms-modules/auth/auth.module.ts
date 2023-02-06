@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthRoutingModule } from './auth.routing';
-import { AuthSingInComponent } from './singin/singin.component';
-import { AuthForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { AuthSingoutComponent } from './singout/singout.component';
-import { AuthComponent } from './auth.component';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CoreAuthService, CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared.module';
+import { AuthComponent } from './auth.component';
+import { AuthRoutingModule } from './auth.routing';
+import { AuthForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AuthSingInBySmsComponent } from './singin-bysms/singin-bysms.component';
+import { AuthSingInComponent } from './singin/singin.component';
+import { AuthSingoutComponent } from './singout/singout.component';
 import { AuthSingUpComponent } from './singup/singup.component';
 import { SingupRuleComponent } from './singupRule/singupRule.Component';
-import { AuthSingInBySmsComponent } from './singin-bysms/singin-bysms.component';
-import { CoreAuthService, CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
 @NgModule({
   declarations: [
     AuthSingInComponent,

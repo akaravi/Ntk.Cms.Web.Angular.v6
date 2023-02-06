@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreUserGroupRouting } from './coreUserGroup.routing';
-import { CoreUserGroupComponent } from './coreUserGroup.component';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   CoreModuleService,
-  CoreUserGroupService,
+  CoreUserGroupService
 } from 'ntk-cms-api';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
-import { CoreUserGroupTreeComponent } from './tree/tree.component';
-import { CoreUserGroupSelectorComponent } from './selector/selector.component';
-import { CoreUserGroupEditComponent } from './edit/edit.component';
 import { CoreUserGroupAddComponent } from './add/add.component';
+import { CoreUserGroupComponent } from './coreUserGroup.component';
+import { CoreUserGroupRouting } from './coreUserGroup.routing';
+import { CoreUserGroupEditComponent } from './edit/edit.component';
 import { CoreUserGroupListComponent } from './list/list.component';
+import { CoreUserGroupSelectorComponent } from './selector/selector.component';
+import { CoreUserGroupTreeComponent } from './tree/tree.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
@@ -43,10 +43,10 @@ import { CoreUserGroupSelectionlistComponent } from './selectionlist/selectionli
     FormsModule,
     CoreUserGroupRouting,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
-    
+
     SharedModule.forRoot(),
     AngularEditorModule,
-    
+
     // CmsFileManagerModule
 
   ],

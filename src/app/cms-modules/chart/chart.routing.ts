@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ChartComponent } from './chart.component';
-import { ChartContentListComponent } from './content/list/list.component';
 import { ChartCommentListComponent } from './comment/list/list.component';
-import { ChartContentEditComponent } from './content/edit/edit.component';
 import { ChartContentAddComponent } from './content/add/add.component';
-import { ChartConfigSiteComponent } from './config/site/config-site.component';
-import { ChartConfigMainAdminComponent } from './config/main-admin/config-main-admin.component';
+import { ChartContentEditComponent } from './content/edit/edit.component';
+import { ChartContentListComponent } from './content/list/list.component';
 
 
 

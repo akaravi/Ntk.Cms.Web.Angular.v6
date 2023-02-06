@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { SmsConfigCheckSiteComponent } from './check-site/check-site.component';
 import { SmsConfigCheckUserComponent } from './check-user/check-user.component';
 import { SmsConfigMainAdminComponent } from './main-admin/config-main-admin.component';

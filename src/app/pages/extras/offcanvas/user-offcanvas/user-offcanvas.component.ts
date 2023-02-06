@@ -80,8 +80,8 @@ export class UserOffcanvasComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-  dataTaskGetCountViewerModelResult =new ErrorExceptionResultBase();
-  dataTaskGetCountEditorModelResult =new ErrorExceptionResultBase();
+  dataTaskGetCountViewerModelResult = new ErrorExceptionResultBase();
+  dataTaskGetCountEditorModelResult = new ErrorExceptionResultBase();
   DataTaskViewerGetCount(): void {
 
     const pName = this.constructor.name + 'main';

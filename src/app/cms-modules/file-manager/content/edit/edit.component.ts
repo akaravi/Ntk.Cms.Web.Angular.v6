@@ -1,32 +1,24 @@
 
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import * as Leaflet from 'leaflet';
-import { FormGroup } from '@angular/forms';
-import {
-  CoreEnumService,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  FileContentModel,
-  FileContentService,
-  FileCategoryModel,
-  DataFieldInfoModel,
-  AccessModel,
-  EnumManageUserAccessDataTypes,
-} from 'ntk-cms-api';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { TreeModel } from 'ntk-cms-filemanager';
-import { Map as leafletMap } from 'leaflet';
-import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { ENTER } from '@angular/cdk/keycodes';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
-import { PoinModel } from 'src/app/core/models/pointModel';
-import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import * as Leaflet from 'leaflet';
+import { Map as leafletMap } from 'leaflet';
+import {
+  AccessModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FileCategoryModel, FileContentModel,
+  FileContentService, FormInfoModel
+} from 'ntk-cms-api';
+import { TreeModel } from 'ntk-cms-filemanager';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { PoinModel } from 'src/app/core/models/pointModel';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
   selector: 'app-file-content-edit',
@@ -46,7 +38,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr;this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -304,30 +296,30 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
 
   receiveZoom(zoom: number): void {
   }
-  
-		 /**
+
+  /**
+* tag
+*/
+  addOnBlurTag = true;
+  readonly separatorKeysCodes = [ENTER] as const;
+  addTag(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    // Add our item
+    if (value) {
+      this.keywordDataModel.push(value);
+    }
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  removeTag(item: string): void {
+    const index = this.keywordDataModel.indexOf(item);
+
+    if (index >= 0) {
+      this.keywordDataModel.splice(index, 1);
+    }
+  }
+  /**
    * tag
    */
-      addOnBlurTag = true;
-      readonly separatorKeysCodes = [ENTER] as const;
-      addTag(event: MatChipInputEvent): void {
-        const value = (event.value || '').trim();
-        // Add our item
-        if (value) {
-          this.keywordDataModel.push( value);
-        }
-        // Clear the input value
-        event.chipInput!.clear();
-      }
-    
-      removeTag(item: string): void {
-        const index = this.keywordDataModel.indexOf(item);
-    
-        if (index >= 0) {
-          this.keywordDataModel.splice(index, 1);
-        }
-      }
-      /**
-       * tag
-       */
 }
