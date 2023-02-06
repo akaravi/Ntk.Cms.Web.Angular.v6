@@ -29,7 +29,27 @@
             RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-
+        <!-- MainAdminRecordStatus Field -->
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
+          <mat-select placeholder="{{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}}"
+            [disabled]="!fieldsInfo['mainAdminRecordStatus']?.accessEditField"
+            [(ngModel)]="dataModel.mainAdminRecordStatus" name="dataModel.mainAdminRecordStatus"
+            #MainAdminRecordStatus="ngModel" panelClass="MainAdminRecordStatus-{{ dataModel.mainAdminRecordStatus }}"
+            required>
+            <mat-option *ngFor="
+            let item of dataModelEnumRecordStatusResult.listItems;
+            index as i
+          " [value]="item.value">{{ item.description }}</mat-option>
+          </mat-select>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['mainAdminRecordStatus']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-error *ngIf="MainAdminRecordStatus.errors?.required">
+            {{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['title']?.accessWatchField">
           <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
