@@ -105,6 +105,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     'LinkUserId',
     'LinkUserGroupId',
     'RecordStatus',
+    'CreatedDate',
     'virtual_CmsUser.name',
     'virtual_CmsUser.lastName',
     'virtual_CmsUserGroup.title',
@@ -497,7 +498,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {

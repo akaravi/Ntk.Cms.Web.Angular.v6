@@ -91,6 +91,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     'Name',
     'LastName',
     'CompanyName',
+    'CreatedDate',
     'Action'
   ];
 
@@ -439,7 +440,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {

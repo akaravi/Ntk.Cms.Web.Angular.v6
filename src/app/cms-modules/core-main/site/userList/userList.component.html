@@ -64,7 +64,7 @@
   <ng-container cms-action-area>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-    
+
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
@@ -101,6 +101,7 @@
           </select>
         </mat-cell>
       </ng-container>
+
       <!-- Name Column -->
       <ng-container matColumnDef="virtual_CmsUser.name">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.Name' | translate}} </mat-header-cell>
