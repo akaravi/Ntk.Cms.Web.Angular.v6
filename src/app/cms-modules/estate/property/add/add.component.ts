@@ -347,8 +347,8 @@ export class EstatePropertyAddComponent implements OnInit {
   }
   onActionSelectorProject(model: EstatePropertyProjectModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = this.translate.instant('MESSAGE.information_area_is_not_clear');
-      this.cmsToastrService.typeWarningSelected(message);
+      //const message = this.translate.instant('MESSAGE.information_area_is_not_clear');
+      //this.cmsToastrService.typeWarningSelected(message);
       this.dataModel.linkPropertyProjectId = null;
       return;
     }
@@ -356,8 +356,8 @@ export class EstatePropertyAddComponent implements OnInit {
   }
   onActionSelectorCompany(model: EstatePropertyCompanyModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = this.translate.instant('MESSAGE.information_area_is_not_clear');
-      this.cmsToastrService.typeWarningSelected(message);
+      //const message = this.translate.instant('MESSAGE.information_area_is_not_clear');
+      //this.cmsToastrService.typeWarningSelected(message);
       this.dataModel.linkPropertyCompanyId = null;
       return;
     }

@@ -1,141 +1,86 @@
-<input name="data-Authorization" id="data-Authorization" value="@ViewBag.Token" style="visibility:hidden" />
-<input name="data-DeviceToken" id="data-DeviceToken" value="@ViewBag.DeviceToken" style="visibility:hidden" />
-<input name="data-id" id="data-id" value="{{dataModel.cmsPage?.id}}" style="visibility:hidden" />
-
-<input name="data-PathMvcCms" id="data-PathMvcCms" value="@ViewBag.PathMvcCms" style="visibility:hidden" />
-<input name="data-PathApiCms" id="data-PathApiCms" value="@ViewBag.PathApiCms" style="visibility:hidden" />
-<input name="data-PathMvcViewPage" id="data-PathMvcViewPage" value="@ViewBag.PathMvcViewPage"
-  style="visibility:hidden" />
-
-<input name="data-theme" id="data-theme" value="{{dataModel.cmsPageTemplate?.folder}}" style="visibility:hidden" />
-<input name="data-ConfigRouteTemplateFileImage" id="data-ConfigRouteTemplateFileImage"
-  value="{{dataModel.configRouteTemplateFileImage}}" style="visibility:hidden" />
-<input name="data-ConfigRouteFileStorage" id="data-ConfigRouteFileStorage" value="{{dataModel.configRouteFileStorage}}"
-  style="visibility:hidden" />
-<input name="data-PageJsonValue" id="data-PageJsonValue" value="{{dataModel.cmsPage?.pageJsonValue}}"
-  style="visibility:hidden" />
-<input name="data-PageJsonValueDefaultByAdmin" id="data-PageJsonValueDefaultByAdmin"
-  value="{{dataModel.cmsPage?.pageJsonValueDefaultByAdmin}}" style="visibility:hidden" />
-
-<div class="container">
-  <input type="hidden" id="mfn-public-id" value="0" />
-  <input type="hidden" id="mfn-publicContainer-id" value="0" />
-  <input type="hidden" id="mfn-publicElement-id" value="0" />
-  <input type="hidden" id="mfn-publicWidget-id" value="0" />
-
-  <!-- Header | Add Section  -->
-  <!-- @await Html.PartialAsync(ConfigValueModel.Partial_HtmlBuilderHeader, Model) -->
-  <app-web-designer-builder-html-header [(dataModel)]="dataModel"></app-web-designer-builder-html-header>
-
-</div>
-<!-- this Area fore clone-->
-<div style="display: none">
-  <div id="import_text">
-    <button class="mfn-container-import-data btn btn-primary inpout-data">
-      {{'htmlbuilder.EnterInformation'|translate}}
-    </button>
-    <textarea id="importCode" style="width: 100%;" rows="10"></textarea>
-    <button class="mybtn" onclick="ImportCodeDb(1)" style="margin:7px;">Import1</button>
-    <button class="mybtn" onclick="ImportCodeDb(2)" style="margin:7px;">Import2</button>
-    <button class="mybtn" onclick="ImportCodeDb(3)" style="margin:7px;">Import3</button>
-  </div>
-  <div id="export_text">
-    <textarea id="exportCode" style="width: 100%; " rows="10"></textarea>محتوای کد های صفحه در حافظه ی clipboard کپی
-    شد<br />
-    <button class="mybtn" onclick="ExportCodeDb(1)" style="margin:7px;">Export1</button>
-    <button class="mybtn" onclick="ExportCodeDb(2)" style="margin:7px;">Export2</button>
-    <button class="mybtn" onclick="ExportCodeDb(3)" style="margin:7px;">Export3</button>
-
-  </div>
-</div>
-<!-- this Area for clone-->
-
-<div id="main-setting" class="mfn-popup mfn-popup-main-setting">
-  <div class="mfn-popup-inside">
-    <div class="mfn-popup-header">
-      <div class="mfn-ph-left">
-        <span class="mfn-ph-btn mfn-ph-desc">
-          تنظیمات اصلی صفحه
-        </span>
-      </div>
-      <div class="mfn-ph-right"><a class="mfn-ph-btn mfn-main-close dashicons dashicons-no" href="#"></a></div>
+<div class="row">
+  <div Class="col-xl-2">
+    <!--begin::tree-->
+    <div class="ntk-cms-html-tree-header">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">ذخیره
+        محتوا</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">حذف محتوا</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">بارگزاری مجدد
+        محتوا</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">بارگزاری پیش فرض
+        محتوا</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">بارگزاری پیش فرض
+        محتوا</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">درون ریزی
+        محتوا</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">بررون ریزی
+        محتوا</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">تاریخچه تغییرات
+        محتوا</button>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
     </div>
-    <div class="mfn-popup-content">
-      <form action="" method="POST" id="formBouilderSetting">
-        <!--Main Setting _______ -->
-        <!-- @await Html.PartialAsync(ConfigValueModel.Partial_HtmlBuilderBody, Model) -->
-        <app-web-designer-builder-html-body [(dataModel)]="dataModel"></app-web-designer-builder-html-body>
-        <!--Main Setting _______ -->
-      </form>
-      <div class="col-xs-12">
-        <div class="mfn-popup-close mfn-main-close" href="#">ذخیره تغییرات</div>
-      </div>
+    <div class="ntk-cms-html-tree-header">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      سایز نمایش
+      <br>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary">lg</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary">md</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary">sm</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary">xs</button>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </div>
+    <div class="ntk-cms-html-tree-header">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      نمایش
+      <br>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">پیش نمایش</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">پیش نمایش با صفحه
+        مادر</button>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </div>
+    <div class="ntk-cms-html-tree-body">
+      body
+    </div>
+    <div class="ntk-cms-html-tree-footer">
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      tree-footer
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--end::tree-->
   </div>
-</div>
-<div style="margin-top:200px" class="col-sm-9 col-sm-offset-1 col-md-8 col-md-offset-2">
-  <form action="" method="POST" id="formBouilder">
-    <div id="mfn-desk" class="clearfix"></div>
-  </form>
-</div>
+  <div Class="col-xl-10">
+    <!--begin::Header-->
+    <div class="ntk-cms-html-list-header">
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary">ایجاد
+        ردیف</button>
 
-<!-- New | container _______ -->
-<!-- @await Html.PartialAsync(ConfigValueModel.Partial_HtmlBuilderContainer, Model) -->
-<app-web-designer-builder-html-container [(dataModel)]="dataModel"></app-web-designer-builder-html-container>
-<!--/New | container _______ -->
-<!-- New | element _______ -->
-<!-- @await Html.PartialAsync(ConfigValueModel.Partial_HtmlBuilderRow, Model) -->
-<app-web-designer-builder-html-row [(dataModel)]="dataModel"></app-web-designer-builder-html-row>
-<!--/New | element _______ -->
-<!-- Popup | Add widgets ___ -->
-<!-- @await Html.PartialAsync(ConfigValueModel.Partial_HtmlBuilderWidgetsItems, Model) -->
-<app-web-designer-builder-html-items [(dataModel)]="dataModel"></app-web-designer-builder-html-items>
-<!--/Popup | Add widgets ___ -->
-<!-- New | widgets _________ -->
-<div id="mfn-widgets" class="clearfix">
-  <!-- @if (dataModel.ModuleInfoes != null)
-  {
-  foreach (var item in dataModel.ModuleInfoes)
-  { -->
-
-  <!-- @await Html.PartialAsync("Partial_" + item.ModuleName + "Module", item) -->
-  <app-web-designer-builder-module-blog [(dataModel)]="dataModel"></app-web-designer-builder-module-blog>
-  <app-web-designer-builder-module-news [(dataModel)]="dataModel"></app-web-designer-builder-module-news>
-  <app-web-designer-builder-module-ticketing [(dataModel)]="dataModel"></app-web-designer-builder-module-ticketing>
-
-  <!-- }
-  } -->
-</div>
-<!--/New | widgets _________ -->
-<!-- Modal -->
-<div class="col-xs-12">
-  <div class="modal " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="widgetInputField">
-            <img id="popupAlertIcon" src="" style="width:43px;height:43px;" />
-            <div style='margin: 9px 5px 5px 5px;text-align: center;display: inline-block;'>
-              <h4 class="modal-title">
-                <p id="myModalTitle"></p>
-              </h4>
-            </div>
-          </div>
-        </div>
-        <div style='text-align: center;'>
-          <div class="modal-body">
-
-            <div type="text" id="popupAlertMessage">............</div>
-
-            <div class="mfn-container-load-alert"></div>
-          </div>
-        </div>
-        <div class="modal-footer" style="text-align:left;padding:20px;">
-          <button id="closemodal" class="mybtn" data-dismiss="modal" style="margin:7px;">
-            {{'htmlbuilder.CLOSE'|translate}}
-          </button>
-        </div>
-      </div>
     </div>
+    <!--end::Header-->
+
+    <!--begin::Body-->
+    <div>
+      <app-progress-spinner [options]="loading"> </app-progress-spinner>
+      Body
+    </div>
+    <!--end::Body-->
+    <!--begin::Footer-->
+    <div class="ntk-cms-html-list-footer">
+      footer
+    </div>
+    <!--end::Footer-->
   </div>
 </div>

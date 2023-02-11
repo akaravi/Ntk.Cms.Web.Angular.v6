@@ -11,13 +11,15 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
-      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+      class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected?.id?.length>0"
       (click)="onActionbuttonEditRow()" type="button" class="btn btn-outline-warning" data-toggle="modal"
       data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id?.length>0"
-      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
+      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' |
+      translate}}</button>
     <a class="btn btn-outline-info btn-sm BTN-text">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
@@ -26,9 +28,11 @@
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -1px;"
+        title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
-    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn btn-outline-secondary BTN-icon">
+    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+      class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
     </button>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
@@ -43,7 +47,7 @@
   <ng-container cms-action-area>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-    
+
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
   </ng-container>
@@ -62,58 +66,61 @@
               <mat-card-header>
                 <mat-card-title>
                   {{row.title}}
-                  <i [ngClass]="row.recordStatus|statusClass" ></i>
-         
+                  <i [ngClass]="row.recordStatus|statusClass"></i>
+
                 </mat-card-title>
-                <mat-card-subtitle>  {{'TITLE.Id' | translate}}: {{row.id}}</mat-card-subtitle>
+                <mat-card-subtitle> {{'TITLE.Id' | translate}}: {{row.id}}</mat-card-subtitle>
               </mat-card-header>
-              <img mat-card-image src="{{row.thumbnailImageSrc}}">
+              <img mat-card-image style="max-height: 300px" src="{{row.thumbnailImageSrc}}">
               <mat-card-content>
-                 {{'Template title' | translate}} :
+                {{'Template title' | translate}} :
                 {{row.linkPageTemplateGuId | cmstitle :
-                  dataModelWebDesignerMainPageTemplateResult.listItems}} 
-                  <br>
-                   {{'TITLE.Default_template_classification_system' | translate}} :
-                  {{row.pageDependencyIsDefaultPageLinkSiteCategoryId | cmstitle : dataModelCoreSiteCategoryResult.listItems }}
-                  <br>
-                    {{'TITLE.System_default' | translate}} :
-                  <i [ngClass]="row.pageDependencyIsDefaultPage | boolclass"></i>
+                dataModelWebDesignerMainPageTemplateResult.listItems}}
+                <br>
+                {{'TITLE.Default_template_classification_system' | translate}} :
+                {{row.pageDependencyIsDefaultPageLinkSiteCategoryId | cmstitle :
+                dataModelCoreSiteCategoryResult.listItems }}
+                <br>
+                {{'TITLE.System_default' | translate}} :
+                <i [ngClass]="row.pageDependencyIsDefaultPage | boolclass"></i>
                 <p>
                   {{row.description }}
                 </p>
               </mat-card-content>
-              <mat-card-actions>    
-          <!-- Action Menu -->
-          <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #actionMenu="matMenu">
-            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
-              <mat-icon>mode_edit</mat-icon>
-              <span>{{'ACTION.EDIT' | translate}}</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
-              <mat-icon>delete_forever</mat-icon>
-              <span>{{'ACTION.DELETE' | translate}}</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonHtmlEditor(row)">
-              <mat-icon>view_module</mat-icon>
-              <span>{{'ACTION.PAGE_DESIGN' | translate}}</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonHtmlView(row)">
-              <mat-icon>view_module</mat-icon>
-              <span>{{'ACTION.SHOW_PAGE' | translate}}</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonHtmlViewWithOutParent(row)"
-              *ngIf="row.linkPageParentGuId?.length>0">
-              <mat-icon>view_module</mat-icon>
-              <span>{{'ACTION.DISPLAY_PAGE_WITHOUT_PARENT' | translate}}</span>
-            </button>
-            <button mat-menu-item (click)="onActionbuttonSiteRouteView(row)">
-              <mat-icon>view_module</mat-icon>
-              <span>{{'ACTION.SHOW_WEB' | translate}}</span>
-            </button>
-          </mat-menu>
+              <mat-card-actions>
+                <!-- Action Menu -->
+                <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #actionMenu="matMenu">
+                  <button mat-menu-item (click)="onActionbuttonEditRow(row)"
+                    *ngIf="dataModelResult.access.accessEditRow">
+                    <mat-icon>mode_edit</mat-icon>
+                    <span>{{'ACTION.EDIT' | translate}}</span>
+                  </button>
+                  <button mat-menu-item (click)="onActionbuttonDeleteRow(row)"
+                    *ngIf="dataModelResult.access.accessDeleteRow">
+                    <mat-icon>delete_forever</mat-icon>
+                    <span>{{'ACTION.DELETE' | translate}}</span>
+                  </button>
+                  <button mat-menu-item (click)="onActionbuttonHtmlEditor(row)">
+                    <mat-icon>view_module</mat-icon>
+                    <span>{{'ACTION.PAGE_DESIGN' | translate}}</span>
+                  </button>
+                  <button mat-menu-item (click)="onActionbuttonHtmlView(row)">
+                    <mat-icon>view_module</mat-icon>
+                    <span>{{'ACTION.SHOW_PAGE' | translate}}</span>
+                  </button>
+                  <button mat-menu-item (click)="onActionbuttonHtmlViewWithOutParent(row)"
+                    *ngIf="row.linkPageParentGuId?.length>0">
+                    <mat-icon>view_module</mat-icon>
+                    <span>{{'ACTION.DISPLAY_PAGE_WITHOUT_PARENT' | translate}}</span>
+                  </button>
+                  <button mat-menu-item (click)="onActionbuttonSiteRouteView(row)">
+                    <mat-icon>view_module</mat-icon>
+                    <span>{{'ACTION.SHOW_WEB' | translate}}</span>
+                  </button>
+                </mat-menu>
               </mat-card-actions>
             </mat-card>
           </div>
