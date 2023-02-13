@@ -614,7 +614,7 @@
                 <mat-slide-toggle *ngIf="contractTypeSelected.salePriceAllowAgreement"
                   [(ngModel)]="contractDataModel.salePriceByAgreement" (change)="onActionClickSalePriceAllowAgreement()"
                   name="contractDataModel.salePriceAllowAgreement">
-                  {{'TITLE.Sale_Agreement' | translate}}
+                  {{'TITLE.Agreement' | translate}}
                 </mat-slide-toggle>
               </div>
             </div>
@@ -640,7 +640,7 @@
                 <mat-slide-toggle *ngIf="contractTypeSelected.depositPriceAllowAgreement"
                   [(ngModel)]="contractDataModel.depositPriceByAgreement"
                   (change)="onActionClickDepositPriceByAgreement()" name="contractDataModel.depositPriceByAgreement">
-                  {{'TITLE.Mortage_Agreement' | translate}}
+                  {{'TITLE.Agreement' | translate}}
                 </mat-slide-toggle>
               </div>
             </div>
@@ -666,7 +666,7 @@
                 <mat-slide-toggle *ngIf="contractTypeSelected.rentPriceAllowAgreement"
                   [(ngModel)]="contractDataModel.rentPriceByAgreement" (change)="onActionClickRentPriceAllowAgreement()"
                   name="contractDataModel.rentPriceByAgreement">
-                  {{'TITLE.Lease_Agreement' | translate}}
+                  {{'TITLE.Agreement' | translate}}
                 </mat-slide-toggle>
               </div>
             </div>
@@ -694,7 +694,7 @@
                   *ngIf="contractTypeSelected.hasPeriodPrice && contractTypeSelected.periodPriceAllowAgreement"
                   [(ngModel)]="contractDataModel.periodPriceByAgreement"
                   (change)="onActionClickPeriodPriceAllowAgreement()" name="contractDataModel.periodPriceByAgreement">
-                  {{'TITLE.Lease_Agreement' | translate}}
+                  {{'TITLE.Agreement' | translate}}
                 </mat-slide-toggle>
               </div>
             </div>
@@ -872,6 +872,11 @@
             </div>
             <br>
             <br>
+
+
+            <p>{{'TITLE.virtual_tour' | translate}}</p>
+            <app-cms-file-360-view-list [(dataModel)]="dataModel.file360Views"></app-cms-file-360-view-list>
+
           </div>
 
           <div class="col-md-6 col-sm-6 col-xs-9" height="300px" width="300px" style="float: left; text-align: center;">

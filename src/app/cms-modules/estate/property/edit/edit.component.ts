@@ -291,9 +291,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     }
 
     this.mapModel.on('click', (e) => {
-      // @ts-ignore
       const lat = e.latlng.lat;
-      // @ts-ignore
       const lon = e.latlng.lng;
       if (this.mapMarker !== undefined) {
         this.mapModel.removeLayer(this.mapMarker);
@@ -646,9 +644,6 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryListComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
-      if (result && result.dialogChangedDate) {
-
-      }
     });
   }
   onActionbuttonQuickListSearchTitle(): void {
@@ -661,8 +656,6 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       data: { searchTitle: this.dataModel.title }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-      }
     });
   }
   onActionbuttonQuickListSearchCustomerTel(): void {
@@ -675,8 +668,6 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       data: { searchCustomerTel: this.dataModel.aboutCustomerTel }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-      }
     });
   }
   onActionbuttonQuickListSearchCustomerMobile(): void {
@@ -689,8 +680,6 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       data: { searchCustomerTel: this.dataModel.aboutCustomerMobile }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-      }
     });
   }
   onActionbuttonQuickListSearchCaseCode(): void {
@@ -703,8 +692,6 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       data: { searchCaseCode: this.dataModel.caseCode }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
-      }
     });
   }
 
