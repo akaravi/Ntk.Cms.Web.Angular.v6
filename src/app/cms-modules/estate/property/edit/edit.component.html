@@ -7,7 +7,7 @@
     class="link-primary pointer float-right">
     {{'ACTION.VIEW_USER' | translate}} </a>
 
-  <div *ngIf="dataModel.linkSiteId!=tokenHelper.tokenInfo.siteId" class="float-right">
+  <div *ngIf="dataModel.linkSiteId!==tokenHelper.tokenInfo.siteId" class="float-right">
     <a routerLink="{{'/core/site/edit/'+dataModel.linkSiteId}}" target="_blank" class="link-primary pointer">
       {{'ACTION.VIEW_SITE' | translate}} </a>
     |&nbsp;
@@ -443,117 +443,116 @@
         <app-estate-property-company-selector *ngIf="this.tokenHelper.isAdminSite" [(loading)]="loading"
           (optionChange)="onActionSelectorCompany($event)" [optionSelectForce]="dataModel.linkPropertyCompanyId"
           [optionPlaceholder]="this.translate.instant('TITLE.Company')">
-          </app-estate-property-company-selector>
+        </app-estate-property-company-selector>
 
-          <!-- LinkPropertyProjectId Field -->
-          <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite" [(loading)]="loading"
-            (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
-            [optionPlaceholder]="this.translate.instant('TITLE.Project')">
-          </app-estate-property-project-selector>
+        <!-- LinkPropertyProjectId Field -->
+        <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite" [(loading)]="loading"
+          (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Project')">
+        </app-estate-property-project-selector>
 
-          <hr>
+        <hr>
 
-          <mat-accordion class="example-headers-align">
-            <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i"
-              [expanded]="step === i" (opened)="setStep(i)">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  {{itemGroup.title}}
-                </mat-panel-title>
-                <mat-panel-description>
-                  {{itemGroup.description}}
-                  <mat-icon>{{itemGroup.iconFont}}</mat-icon>
-                </mat-panel-description>
-              </mat-expansion-panel-header>
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i"
+            [expanded]="step === i" (opened)="setStep(i)">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{itemGroup.title}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{itemGroup.description}}
+                <mat-icon>{{itemGroup.iconFont}}</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
 
-              <!-- value-->
-              <ng-container *ngFor="let itemDetail of itemGroup.propertyDetails">
-                <ng-container [ngSwitch]="itemDetail.inputDataType">
-                  <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
-                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                      aria-hidden="true"></i>&nbsp;&nbsp;
-                    <app-input-string [(model)]="propertyDetails[itemDetail.id]"
-                      [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
-                      [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
-                      [optionDefaultValue]="itemDetail.configValueDefaultValue" [optionRequired]="itemDetail.required"
-                      [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
-                    </app-input-string>
-                  </div>
-                  <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.Int" class="ntk-full-width">
-                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                      aria-hidden="true"></i>&nbsp;&nbsp;
-                    <app-input-int [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
-                      [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
-                    </app-input-int>
-                  </div>
-                  <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
-                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                      aria-hidden="true"></i>&nbsp;&nbsp;
-                    <app-input-boolean [(model)]="propertyDetails[itemDetail.id]">{{itemDetail.title}}
-                    </app-input-boolean>
-                  </div>
-                  <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
-                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                      aria-hidden="true"></i>&nbsp;&nbsp;
-                    <app-input-float [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
-                      [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
-                    </app-input-float>
-                  </div>
-                  <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.Date" class="ntk-full-width">
-                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                      aria-hidden="true"></i>&nbsp;&nbsp;
-                    <label style="color:'{{itemDetail.iconColor}}';">{{itemDetail.title}}</label>
-                    <app-input-date [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required">
-                    </app-input-date>
-                  </div>
-                  <!-- ngSwitchCase-->
-                  <div *ngSwitchCase="enumInputDataType.TextArea" class="ntk-full-width">
-                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                      aria-hidden="true"></i>&nbsp;&nbsp;
-                    <app-input-textarea [(model)]="propertyDetails[itemDetail.id]"
-                      [optionRequired]="itemDetail.required" [optionTitle]="itemDetail.title"
-                      style="color:'{{itemDetail.iconColor}}';">
-                    </app-input-textarea>
-                  </div>
-                  <!-- ngSwitchCase-->
-                  <div *ngSwitchDefault class="ntk-full-width">
-                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                      aria-hidden="true"></i>&nbsp;&nbsp;
-                    <app-input-string [(model)]="propertyDetails[itemDetail.id]"
-                      [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
-                      [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
-                      [optionDefaultValue]="itemDetail.configValueDefaultValue" [optionRequired]="itemDetail.required"
-                      [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
-                    </app-input-string>
-                  </div>
-                </ng-container>
+            <!-- value-->
+            <ng-container *ngFor="let itemDetail of itemGroup.propertyDetails">
+              <ng-container [ngSwitch]="itemDetail.inputDataType">
+                <!-- ngSwitchCase-->
+                <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
+                  <app-input-string [(model)]="propertyDetails[itemDetail.id]"
+                    [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
+                    [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
+                    [optionDefaultValue]="itemDetail.configValueDefaultValue" [optionRequired]="itemDetail.required"
+                    [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                  </app-input-string>
+                </div>
+                <!-- ngSwitchCase-->
+                <div *ngSwitchCase="enumInputDataType.Int" class="ntk-full-width">
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
+                  <app-input-int [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
+                    [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                  </app-input-int>
+                </div>
+                <!-- ngSwitchCase-->
+                <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
+                  <app-input-boolean [(model)]="propertyDetails[itemDetail.id]">{{itemDetail.title}}
+                  </app-input-boolean>
+                </div>
+                <!-- ngSwitchCase-->
+                <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
+                  <app-input-float [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
+                    [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                  </app-input-float>
+                </div>
+                <!-- ngSwitchCase-->
+                <div *ngSwitchCase="enumInputDataType.Date" class="ntk-full-width">
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
+                  <label style="color:'{{itemDetail.iconColor}}';">{{itemDetail.title}}</label>
+                  <app-input-date [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required">
+                  </app-input-date>
+                </div>
+                <!-- ngSwitchCase-->
+                <div *ngSwitchCase="enumInputDataType.TextArea" class="ntk-full-width">
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
+                  <app-input-textarea [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
+                    [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                  </app-input-textarea>
+                </div>
+                <!-- ngSwitchCase-->
+                <div *ngSwitchDefault class="ntk-full-width">
+                  <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                    aria-hidden="true"></i>&nbsp;&nbsp;
+                  <app-input-string [(model)]="propertyDetails[itemDetail.id]"
+                    [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
+                    [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
+                    [optionDefaultValue]="itemDetail.configValueDefaultValue" [optionRequired]="itemDetail.required"
+                    [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                  </app-input-string>
+                </div>
               </ng-container>
-              <mat-action-row>
-                <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">{{'ACTION.PREVIOUS' |
-                  translate}}</button>
-                <button mat-button type="button" color="primary" *ngIf="(i+1)<dataModel.propertyDetailGroups.length"
-                  (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
-                <button mat-button type="button" color="primary" *ngIf="(i+1)==dataModel.propertyDetailGroups.length"
-                  (click)="nextStep()">{{'ACTION.END' | translate}}</button>
+            </ng-container>
+            <mat-action-row>
+              <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">{{'ACTION.PREVIOUS' |
+                translate}}</button>
+              <button mat-button type="button" color="primary" *ngIf="(i+1)<dataModel.propertyDetailGroups.length"
+                (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
+              <button mat-button type="button" color="primary" *ngIf="(i+1)===dataModel.propertyDetailGroups.length"
+                (click)="nextStep()">{{'ACTION.END' | translate}}</button>
 
-              </mat-action-row>
-            </mat-expansion-panel>
-            <br>
+            </mat-action-row>
+          </mat-expansion-panel>
+          <br>
 
-          </mat-accordion>
-          <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-            <button type="button" mat-raised-button color="accent" matStepperPrevious>
-              {{'ACTION.BEFOR' | translate}}
-            </button>
-            <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-              {{'ACTION.NEXT' | translate}}
-            </button>
-          </div>
+        </mat-accordion>
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
       </mat-step>
       <mat-step label="{{'TITLE.Contract' | translate}}" state="seo">
         <p>{{'TITLE.If_you_sell_your_property_activate_the_option_below' | translate}}</p>
@@ -583,6 +582,7 @@
           [optionPlaceholder]="this.translate.instant('TITLE.Type_Of_Transaction')"
           [optionSelectForce]="contractDataModel.linkEstateContractTypeId">
         </app-estate-contract-type-selector>
+
         <div class="container" *ngIf="contractTypeSelected && contractTypeSelected.id.length>0">
           <br>
 
@@ -597,7 +597,7 @@
             <div class="row" *ngIf="contractTypeSelected.hasSalePrice">
               <div class="col-6">
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>{{'TITLE.SalePrice' | translate}}</mat-label>
+                  <mat-label>{{contractTypeSelected.titleSalePriceML}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.salePrice" name="contractDataModel.salePrice"
                     [disabled]="contractDataModel.salePriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.salePrice = 0">
@@ -623,7 +623,7 @@
               <div class="col-6">
                 <!-- DepositPrice Field -->
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>{{'TITLE.DepositPrice' | translate}}</mat-label>
+                  <mat-label>{{contractTypeSelected.titleDepositPriceML}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.depositPrice" name="contractDataModel.depositPrice"
                     [disabled]="contractDataModel.depositPriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.depositPrice = 0">
@@ -649,7 +649,7 @@
               <div class="col-6">
                 <!-- RentPrice Field -->
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>{{'TITLE.RentPrice' | translate}}</mat-label>
+                  <mat-label>{{contractTypeSelected.titleRentPriceML}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.rentPrice" name="contractDataModel.rentPrice"
                     [disabled]="contractDataModel.rentPriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.rentPrice = 0">
@@ -675,7 +675,7 @@
               <div class="col-6">
                 <!-- periodPrice Field -->
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>{{'TITLE.PeriodPrice' | translate}}</mat-label>
+                  <mat-label>{{contractTypeSelected.titlePeriodPriceML}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.periodPrice" name="contractDataModel.periodPrice"
                     [disabled]="contractDataModel.periodPriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.periodPrice = 0">

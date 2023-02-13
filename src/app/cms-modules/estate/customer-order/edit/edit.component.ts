@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, EnumManageUserAccessUserTypes, EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
+  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, EnumManageUserAccessUserTypes, EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateContractTypeService, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
   EstatePropertyTypeUsageModel, FilterDataModel,
   FilterModel, FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
@@ -33,6 +33,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     private router: Router,
     public coreEnumService: CoreEnumService,
     public estateCustomerOrderService: EstateCustomerOrderService,
+    private estateContractTypeService: EstateContractTypeService,
     private estatePropertyService: EstatePropertyService,
 
     public estatePropertyDetailGroupService: EstatePropertyDetailGroupService,
@@ -149,6 +150,19 @@ export class EstateCustomerOrderEditComponent implements OnInit {
               });
             });
           /** load Value */
+          /** */
+          if (this.dataModel.linkContractTypeId.length > 0) {
+            this.estateContractTypeService.ServiceGetOneById(this.dataModel.linkContractTypeId).subscribe({
+              next: (ret) => {
+                if (ret.isSuccess) {
+                  this.contractTypeSelected = ret.item;
+                } else {
+                  this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+                }
+              }
+            });
+          }
+          /** */
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;

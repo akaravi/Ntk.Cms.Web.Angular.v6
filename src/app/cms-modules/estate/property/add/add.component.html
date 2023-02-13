@@ -237,8 +237,7 @@
         <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite"
           (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading"
           [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField"
-          [optionSelectForce]="dataModel.linkEstateAgencyId"
-          [optionSelectUserId]="this.tokenInfo.userId"
+          [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
         </app-estate-account-agency-selector>
 
@@ -427,7 +426,7 @@
                 translate}}</button>
               <button mat-button type="button" color="primary" *ngIf="(i+1)<dataModel.propertyDetailGroups.length"
                 (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
-              <button mat-button type="button" color="primary" *ngIf="(i+1)==dataModel.propertyDetailGroups.length"
+              <button mat-button type="button" color="primary" *ngIf="(i+1)===dataModel.propertyDetailGroups.length"
                 (click)="nextStep()">{{'ACTION.END' | translate}}</button>
             </mat-action-row>
           </mat-expansion-panel>
@@ -519,7 +518,7 @@
             <div class="row" *ngIf="contractTypeSelected.hasSalePrice">
               <div class="col-6">
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>{{'TITLE.SalePrice' | translate}}</mat-label>
+                  <mat-label>{{contractTypeSelected.titleSalePriceML}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.salePrice" name="contractDataModel.salePrice"
                     [disabled]="contractDataModel.salePriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.salePrice = 0">
@@ -545,7 +544,7 @@
               <div class="col-6">
                 <!-- DepositPrice Field -->
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>{{'TITLE.DepositPrice' | translate}}</mat-label>
+                  <mat-label>{{contractTypeSelected.titleDepositPriceML}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.depositPrice" name="contractDataModel.depositPrice"
                     [disabled]="contractDataModel.depositPriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.depositPrice = 0">
@@ -571,7 +570,7 @@
               <div class="col-6">
                 <!-- RentPrice Field -->
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>{{'TITLE.RentPrice' | translate}}</mat-label>
+                  <mat-label>{{contractTypeSelected.titleRentPriceML}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.rentPrice" name="contractDataModel.rentPrice"
                     [disabled]="contractDataModel.rentPriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.rentPrice = 0">
@@ -597,7 +596,7 @@
               <div class="col-6">
                 <!-- periodPrice Field -->
                 <mat-form-field class="ntk-full-width">
-                  <mat-label>{{'TITLE.PeriodPrice' | translate}}</mat-label>
+                  <mat-label>{{contractTypeSelected.titlePeriodPriceML}}</mat-label>
                   <input matInput [(ngModel)]="contractDataModel.periodPrice" name="contractDataModel.periodPrice"
                     [disabled]="contractDataModel.periodPriceByAgreement" type="number" placeholder="0" />
                   <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.periodPrice = 0">

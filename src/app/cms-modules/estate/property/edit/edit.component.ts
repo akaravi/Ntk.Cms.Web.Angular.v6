@@ -113,6 +113,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
+
   getEstateContractType(): void {
     const pName = this.constructor.name + 'getEstateContractType';
     this.loading.Start(pName, this.translate.instant('TITLE.Get_Estate_Contract_Type'));
@@ -177,6 +178,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
               this.dataFileModelImgaes.set(+element, link);
             });
           }
+
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -454,7 +456,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.dataModel.contracts = [];
     }
 
-    var accepted = false;
+    let accepted = false;
     if (this.contractTypeSelected.hasSalePrice) {
       if (this.contractDataModel.salePrice && this.contractDataModel.salePrice > 0)
         accepted = true;
@@ -519,7 +521,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       return;
     }
-    let contracts: any
+    var contracts: any
     this.contractDataModel = this.dataModel.contracts[index];
     contracts = this.dataModel.contracts.splice(index, 1);
     this.contractDataModel = contracts;
