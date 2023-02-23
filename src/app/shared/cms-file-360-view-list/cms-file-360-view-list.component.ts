@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleEntityReportFileModel, File360ViewModel, FormInfoModel } from 'ntk-cms-api';
-import { TreeModel } from 'ntk-cms-filemanager';
+import { File360ViewModel, FormInfoModel } from 'ntk-cms-api';
+import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
@@ -14,8 +15,10 @@ export class CmsFile360ViewListComponent implements OnInit {
   static nextId = 0;
   id = ++CmsFile360ViewListComponent.nextId;
   constructor(private cmsToastrService: CmsToastrService,
+    public publicHelper: PublicHelper,
     public translate: TranslateService,
   ) {
+    this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
 
   }
   public fileList: File360ViewModel[] = [];
@@ -26,6 +29,7 @@ export class CmsFile360ViewListComponent implements OnInit {
       model = [];
     }
     this.fileList = model;
+    this.optionTabledataSource.data = this.fileList;
   }
   get dataModel(): File360ViewModel[] {
     return this.fileList;
@@ -37,7 +41,7 @@ export class CmsFile360ViewListComponent implements OnInit {
   optionTabledataSource = new MatTableDataSource<File360ViewModel>();
   optionTabledisplayedColumns = ['Title', 'Description', 'LinkFileId', 'Action'];
 
-  selectFileTypeReport = ['jpeg'];
+  selectFileTypeReport = ['jpeg', 'jpg'];
 
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
@@ -54,10 +58,15 @@ export class CmsFile360ViewListComponent implements OnInit {
 
   }
   // CoreModuleEntityReportFileModel
-  onActionFileSelect(model: CoreModuleEntityReportFileModel): void {
-    this.dataDetailModel.linkFileId = model.linkFileId;
-    this.dataDetailModel.linkFileIdSrc = model.linkFileIdSrc;
+  onActionFileSelect(model: NodeInterface): void {
+    if (!model || !model.id || model.id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.dataDetailModel.linkFileId = model.id;
+    this.dataDetailModel.linkFileIdSrc = model.downloadLinksrc;
   }
+
   onActionOptionAddToList(): void {
     if (!this.fileList) {
       this.fileList = [];
@@ -65,7 +74,6 @@ export class CmsFile360ViewListComponent implements OnInit {
     this.fileList.push(this.dataDetailModel);
     this.dataModelChange.emit(this.fileList);
     this.showAddOption = !this.showAddOption;
-    console.log(this.dataDetailModel);
   }
   onFormCancel(): void {
   }
