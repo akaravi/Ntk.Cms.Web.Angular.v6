@@ -39,7 +39,7 @@ export class CmsFile360ViewListComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<File360ViewModel>();
-  optionTabledisplayedColumns = ['Title', 'Description', 'LinkFileId', 'Action'];
+  optionTabledisplayedColumns = ['LinkFileIdThumbnailSrc', 'Title', 'Description', 'Action'];
 
   selectFileTypeReport = ['jpeg', 'jpg'];
 
@@ -57,39 +57,40 @@ export class CmsFile360ViewListComponent implements OnInit {
   ngOnDestroy(): void {
 
   }
-  // CoreModuleEntityReportFileModel
   onActionFileSelect(model: NodeInterface): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
     this.dataDetailModel.linkFileId = model.id;
-    this.dataDetailModel.linkFileIdSrc = model.downloadLinksrc;
+    this.dataDetailModel.linkFileIdThumbnailSrc = model.downloadLinksrc;
   }
 
-  onActionOptionAddToList(): void {
+  onActionSubmitList(): void {
     if (!this.fileList) {
       this.fileList = [];
     }
     this.fileList.push(this.dataDetailModel);
+    this.dataModel = this.fileList;
     this.dataModelChange.emit(this.fileList);
     this.showAddOption = !this.showAddOption;
   }
-  onFormCancel(): void {
-  }
-  onOpenPage(): void {
+
+  onActionViewAdd(): void {
     this.dataDetailModel = new File360ViewModel();
     this.showAddOption = !this.showAddOption;
   }
 
   onActionOptionRemoveFromList(index: number): void {
+
     if (index < 0) {
       return;
     }
     if (!this.fileList || this.fileList.length === 0) {
       return;
     }
-    this.fileList = this.fileList.splice(index, 1);
+    this.fileList.splice(index, 1);
+    this.dataModel = this.fileList;
     this.dataModelChange.emit(this.fileList);
   }
 }

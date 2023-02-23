@@ -1,52 +1,61 @@
 <!-- <p>نمایش تور یافت نشد...</p> -->
 
-<button (click)="showAddOption=!showAddOption" *ngIf="!showAddOption" type="button" mat-button
+<button (click)="onActionViewAdd()" *ngIf="!showAddOption" type="button" mat-button
     class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
     {{'ACTION.Add_To_List' | translate}}
 </button>
 
-<div *ngIf="showAddOption">
+<div *ngIf="showAddOption" class="example-container mat-elevation-z8">
+    <div class="m-2">
 
-    <!-- Title Field -->
-    <mat-form-field class="ntk-full-width mb-1">
-        <mat-label>{{'TITLE.title' | translate}}</mat-label>
-        <input matInput [(ngModel)]="dataDetailModel.title" name="dataDetailModel.title" #Title type="text"
-            placeholder="{{'TITLE.title' | translate}}" minlength="3" maxlength="100" required />
-        <mat-icon matSuffix *ngIf="dataDetailModel.title" class="pointer" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataDetailModel.title = ''">close</mat-icon>
-        <mat-icon class="pointer" matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
+        <!-- Title Field -->
+        <mat-form-field class="ntk-full-width mb-1">
+            <mat-label>{{'TITLE.Photography_Place' | translate}}</mat-label>
+            <input matInput [(ngModel)]="dataDetailModel.title" name="dataDetailModel.title" #Title type="text"
+                placeholder="{{'TITLE.Photography_Place' | translate}}" minlength="3" maxlength="100" required />
+            <mat-icon matSuffix *ngIf="dataDetailModel.title" class="pointer" matSuffix mat-icon-button
+                aria-label="Clear" (click)="dataDetailModel.title = ''">close</mat-icon>
+            <mat-icon class="pointer" matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
 
-    <!-- Description Field -->
-    <mat-form-field class="ntk-full-width mb-1">
-        <mat-label>{{'TITLE.DESCRIPTION' | translate}}</mat-label>
-        <input matInput [(ngModel)]="dataDetailModel.description" name="dataDetailModel.description" #Description
-            type="text" placeholder="{{'TITLE.DESCRIPTION' | translate}}" minlength="3" maxlength="100" required />
-        <mat-icon matSuffix *ngIf="dataDetailModel.description" class="pointer" matSuffix mat-icon-button
-            aria-label="Clear" (click)="dataDetailModel.description = ''">close</mat-icon>
-        <mat-icon class="pointer" matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
+        <!-- Description Field -->
+        <mat-form-field class="ntk-full-width mb-1">
+            <mat-label>{{'TITLE.DESCRIPTION' | translate}}</mat-label>
+            <input matInput [(ngModel)]="dataDetailModel.description" name="dataDetailModel.description" #Description
+                type="text" placeholder="{{'TITLE.DESCRIPTION' | translate}}" minlength="3" maxlength="100" required />
+            <mat-icon matSuffix *ngIf="dataDetailModel.description" class="pointer" matSuffix mat-icon-button
+                aria-label="Clear" (click)="dataDetailModel.description = ''">close</mat-icon>
+            <mat-icon class="pointer" matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
 
-    <mat-form-field class="ntk-full-width">
-        <input matInput [(ngModel)]="dataDetailModel.linkFileId" name="dataDetailModel.linkFileId" #LinkFileId
-            type="text" placeholder="{{'TITLE.Report_File_ID' | translate}}"
-            (click)="fileManagerOpenFormReport = true" />
-        <mat-icon matSuffix *ngIf="dataDetailModel.linkFileId" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataDetailModel.linkFileId = null">close</mat-icon>
-        <mat-icon matSuffix (click)="fileManagerOpenFormReport = true">mode_edit</mat-icon>
-    </mat-form-field>
-    <cms-file-manager (itemSelected)="onActionFileSelect($event)" [language]="appLanguage" [isPopup]="true"
-        [(openForm)]="fileManagerOpenFormReport" [tree]="fileManagerTree" [openDirectUploadView]="true"
-        [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeReport"
-        [openFilemanagerButtonView]="false"></cms-file-manager>
+        <mat-form-field class="ntk-full-width">
+            <input matInput [(ngModel)]="dataDetailModel.linkFileId" name="dataDetailModel.linkFileId" #LinkFileId
+                type="text" placeholder="{{'TITLE.Report_File_ID' | translate}}"
+                (click)="fileManagerOpenFormReport = true" />
+            <mat-icon matSuffix *ngIf="dataDetailModel.linkFileId" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataDetailModel.linkFileId = null">close</mat-icon>
+            <mat-icon matSuffix (click)="fileManagerOpenFormReport = true">mode_edit</mat-icon>
+        </mat-form-field>
+        <cms-file-manager (itemSelected)="onActionFileSelect($event)" [language]="appLanguage" [isPopup]="true"
+            [(openForm)]="fileManagerOpenFormReport" [tree]="fileManagerTree" [openDirectUploadView]="true"
+            [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeReport"
+            [openFilemanagerButtonView]="false"></cms-file-manager>
 
-    <div class="form-actions">
-        <button type="button" (click)="showAddOption=!showAddOption" class="btn btn-light">
-            <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-        </button>
-        <button type="submit" (click)="onActionOptionAddToList()" class="btn btn-success">
-            <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-        </button>
+        <a href="{{dataDetailModel.linkFileIdThumbnailSrc | cmsthumbnail}}" target="_blank">
+            <img *ngIf="dataDetailModel?.linkFileIdThumbnailSrc?.length>0" style="vertical-align:middle;"
+                class="ntk-hover-zoom" aria-hidden src="{{dataDetailModel.linkFileIdThumbnailSrc | cmsthumbnail}}"
+                height="50" width="50" />
+        </a>
+
+        <div class="form-actions" style="direction:ltr">
+            <button type="button" (click)="onActionSubmitList()" class="btn btn-success">
+                <i class="fa fa-check-square-o"></i> {{'ACTION.ADD' | translate}}
+            </button>
+            <button type="button" (click)="showAddOption=!showAddOption" class="btn btn-light">
+                <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+            </button>
+        </div>
+        <br>
     </div>
 
 </div>
@@ -58,9 +67,23 @@
 <!-- TABLE  -->
 <div class="example-container mat-elevation-z8" *ngIf="!showAddOption">
     <mat-table [dataSource]="optionTabledataSource" multiTemplateDataRows>
+        <!-- LnkFileIdThumbnailSrc Column -->
+        <ng-container matColumnDef="LinkFileIdThumbnailSrc">
+            <mat-header-cell *matHeaderCellDef> {{'TITLE.PHOTO' | translate}}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <ng-container *ngIf="row.linkFileIdThumbnailSrc">
+                    <a href="{{row.linkFileIdThumbnailSrc }}" target="_blank">
+                        <img *ngIf="row?.linkFileIdThumbnailSrc?.length>0" style="vertical-align:middle;"
+                            class="ntk-hover-zoom" aria-hidden src="{{row.linkFileIdThumbnailSrc }}" height="50"
+                            width="50" />
+                    </a>
+                </ng-container>
+            </mat-cell>
+        </ng-container>
         <!-- title Column -->
         <ng-container matColumnDef="Title">
-            <mat-header-cell *matHeaderCellDef> {{'TITLE.title' | translate}}
+            <mat-header-cell *matHeaderCellDef> {{'TITLE.Photography_Place' | translate}}
             </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <ng-container *ngIf="row.title">
@@ -78,21 +101,10 @@
                 </ng-container>
             </mat-cell>
         </ng-container>
-        <!-- LinkFileId Column -->
-        <ng-container matColumnDef="LinkFileId">
-            <mat-header-cell *matHeaderCellDef> {{'TITLE.File_ID' | translate}}
-            </mat-header-cell>
-            <mat-cell *matCellDef="let row">
-                <ng-container *ngIf="row.linkFileId">
-                    {{ row.linkFileId}}
-                </ng-container>
-            </mat-cell>
-        </ng-container>
-
 
         <!-- Action Column -->
         <ng-container matColumnDef="Action">
-            <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> {{'TITLE.Delete' | translate}} </mat-header-cell>
             <mat-cell *matCellDef="let row; let i = index" class='Action'>
                 <button mat-icon-button>
                     <small (click)="onActionOptionRemoveFromList(i)">

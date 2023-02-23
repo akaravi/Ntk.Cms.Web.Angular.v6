@@ -833,7 +833,7 @@
       <div class="row alert alert-custom alert-white alert-shadow gutter-b">
         <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
 
-          <div class="col-md-6 col-sm-6 col-xs-9" style="float: right;">
+          <div class="col-md-12 col-sm-12">
 
             <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
             <div class="mb-3">
@@ -871,28 +871,19 @@
               </app-cms-files-selector>
             </div>
             <br>
+
+            <hr>
             <br>
-
-
-            <p>{{'TITLE.virtual_tour' | translate}}</p>
+            <h3>{{'TITLE.virtual_tour' | translate}}</h3>
+            در این بخش میتوانید عکس های 360 درجه خود به همراه توضیحات را بارگذاری کنید
+            <br>
             <app-cms-file-360-view-list [(dataModel)]="dataModel.file360Views"></app-cms-file-360-view-list>
 
           </div>
 
-          <div class="col-md-6 col-sm-6 col-xs-9" height="300px" width="300px" style="float: left; text-align: center;">
-            <div *ngIf="dataModel?.urlViewContentQRCodeBase64?.length>0 && dataModel?.urlViewContent?.length>0">
-              <a href="{{dataModel.urlViewContent}}" target="_blank">
-                <img [src]="dataModel.urlViewContentQRCodeBase64" alt="{{'TITLE.Scan_the_barcode' | translate}}"
-                  height="200px" width="200px">
-              </a>
-              <span class="navi-icon" [cdkCopyToClipboard]="dataModel.urlViewContent" (click)="onActionCopied()">
-                <i class="flaticon2-copy"></i></span>
-              <br>
-              <app-cms-qdoc [optionUrl]="dataModel.urlViewContent"></app-cms-qdoc>
-            </div>
-          </div>
+
           <div>
-            <div class="col-md-12 col-sm-12 col-xs-18" style="float: right;">
+            <div class="col-md-12 col-sm-12 col-xs-18">
               <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
                 <button type="button" mat-raised-button color="accent" matStepperPrevious>
                   {{'ACTION.BEFOR' | translate}}
