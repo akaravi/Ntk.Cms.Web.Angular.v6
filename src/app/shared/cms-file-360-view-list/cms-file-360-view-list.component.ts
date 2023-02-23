@@ -67,6 +67,9 @@ export class CmsFile360ViewListComponent implements OnInit {
   }
 
   onActionSubmitList(): void {
+    if (!this.dataDetailModel.linkFileId || this.dataDetailModel.linkFileId <= 0) {
+      this.cmsToastrService.typeErrorMessage('فایل انتخاب نشده');
+    }
     if (!this.fileList) {
       this.fileList = [];
     }
