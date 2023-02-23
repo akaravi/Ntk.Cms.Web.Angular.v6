@@ -1,6 +1,6 @@
 <!-- <p>نمایش تور یافت نشد...</p> -->
 
-<button (click)="showAddOption=!showAddOption" type="button" mat-button
+<button (click)="showAddOption=!showAddOption" *ngIf="!showAddOption" type="button" mat-button
     class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
     {{'ACTION.Add_To_List' | translate}}
 </button>
