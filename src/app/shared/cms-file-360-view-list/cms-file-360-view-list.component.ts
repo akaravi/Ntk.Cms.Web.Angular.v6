@@ -70,17 +70,25 @@ export class CmsFile360ViewListComponent implements OnInit {
     if (!this.fileList) {
       this.fileList = [];
     }
-    this.fileList.push(this.dataDetailModel);
+    if (this.selectIndex > -1 && this.fileList && this.fileList.length > 0) {
+      this.fileList[this.selectIndex] = this.dataDetailModel;
+      this.selectIndex = -1;
+    } else {
+      this.fileList.push(this.dataDetailModel);
+    }
     this.dataModel = this.fileList;
     this.dataModelChange.emit(this.fileList);
-    this.showAddOption = !this.showAddOption;
+    this.showAddOption = false;
   }
 
   onActionViewAdd(): void {
     this.dataDetailModel = new File360ViewModel();
-    this.showAddOption = !this.showAddOption;
+    this.showAddOption = true;
   }
-
+  onActionCancel():void{
+    this.showAddOption = false;
+this.    selectIndex = -1;
+  }
   onActionOptionRemoveFromList(index: number): void {
 
     if (index < 0) {
@@ -92,5 +100,18 @@ export class CmsFile360ViewListComponent implements OnInit {
     this.fileList.splice(index, 1);
     this.dataModel = this.fileList;
     this.dataModelChange.emit(this.fileList);
+  }
+  selectIndex = -1;
+  onActionOptionEditFromList(index: number): void {
+
+    if (index < 0) {
+      return;
+    }
+    if (!this.fileList || this.fileList.length === 0) {
+      return;
+    }
+    this.selectIndex = index;
+    this.dataDetailModel = this.fileList[index];
+    this.showAddOption = true;
   }
 }
