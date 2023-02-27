@@ -278,6 +278,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
+        console.log("Error", er);
         this.loading.Stop(pName);
       }
     }
@@ -462,7 +463,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
