@@ -96,4 +96,19 @@ export class CmsFile360ViewListComponent implements OnInit {
     this.dataModel = this.fileList;
     this.dataModelChange.emit(this.fileList);
   }
+  onActionOptionEditFromList(index: number): void {
+
+    if (index < 0) {
+      return;
+    }
+    if (!this.fileList || this.fileList.length === 0) {
+      return;
+    }
+    this.dataDetailModel = this.fileList[index];
+    this.fileList.splice(index, 1);
+    this.dataModel = this.fileList;
+    this.showAddOption = !this.showAddOption;
+    this.dataModelChange.emit(this.fileList);
+
+  }
 }
