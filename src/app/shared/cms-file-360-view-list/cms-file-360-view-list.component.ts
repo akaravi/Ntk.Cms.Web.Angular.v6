@@ -46,7 +46,7 @@ export class CmsFile360ViewListComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
 
-  showAddOption: boolean = false;
+  showAddOption = false;
   fileManagerOpenFormReport = false;
 
   ngOnInit(): void {
@@ -54,9 +54,7 @@ export class CmsFile360ViewListComponent implements OnInit {
 
   }
 
-  ngOnDestroy(): void {
 
-  }
   onActionFileSelect(model: NodeInterface): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -67,28 +65,29 @@ export class CmsFile360ViewListComponent implements OnInit {
   }
 
   onActionSubmitList(): void {
+    if (!this.dataDetailModel.linkFileId || this.dataDetailModel.linkFileId <= 0) {
+      this.cmsToastrService.typeErrorMessage('فایل انتخاب نشده');
+    }
     if (!this.fileList) {
       this.fileList = [];
     }
-    if (this.selectIndex > -1 && this.fileList && this.fileList.length > 0) {
+    if (this.selectIndex >= 0) {
       this.fileList[this.selectIndex] = this.dataDetailModel;
-      this.selectIndex = -1;
-    } else {
+    }
+    else {
       this.fileList.push(this.dataDetailModel);
     }
     this.dataModel = this.fileList;
     this.dataModelChange.emit(this.fileList);
-    this.showAddOption = false;
+    this.showAddOption = !this.showAddOption;
+    this.selectIndex = -1;
   }
 
   onActionViewAdd(): void {
     this.dataDetailModel = new File360ViewModel();
-    this.showAddOption = true;
+    this.showAddOption = !this.showAddOption;
   }
-  onActionCancel():void{
-    this.showAddOption = false;
-this.    selectIndex = -1;
-  }
+
   onActionOptionRemoveFromList(index: number): void {
 
     if (index < 0) {
@@ -110,8 +109,12 @@ this.    selectIndex = -1;
     if (!this.fileList || this.fileList.length === 0) {
       return;
     }
-    this.selectIndex = index;
     this.dataDetailModel = this.fileList[index];
-    this.showAddOption = true;
+    //this.fileList.splice(index, 1);
+    this.selectIndex = index;
+    this.dataModel = this.fileList;
+    this.showAddOption = !this.showAddOption;
+    //this.dataModelChange.emit(this.fileList);
+
   }
 }

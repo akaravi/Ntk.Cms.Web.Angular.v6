@@ -28,9 +28,11 @@
       <mat-icon class="pointer" matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
+
+
     <mat-form-field class="ntk-full-width">
       <input matInput [(ngModel)]="dataDetailModel.linkFileId" name="dataDetailModel.linkFileId" #LinkFileId type="text"
-        placeholder="فایل عکس 360" (click)="fileManagerOpenFormReport = true" />
+        placeholder="{{'TITLE.View_360_File_ID' | translate}}" (click)="fileManagerOpenFormReport = true" />
       <mat-icon matSuffix *ngIf="dataDetailModel.linkFileId" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataDetailModel.linkFileId = null">close</mat-icon>
       <mat-icon matSuffix (click)="fileManagerOpenFormReport = true">mode_edit</mat-icon>
@@ -40,16 +42,36 @@
       [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeReport"
       [openFilemanagerButtonView]="false"></cms-file-manager>
 
-    <a href="{{dataDetailModel.linkFileIdSrc}}" target="_blank">
+    <a href="{{dataDetailModel.linkFileIdThumbnailSrc | cmsthumbnail}}" target="_blank">
       <img *ngIf="dataDetailModel?.linkFileIdThumbnailSrc?.length>0" style="vertical-align:middle;"
-        class="ntk-hover-zoom" aria-hidden src="{{dataDetailModel.linkFileIdThumbnailSrc}}" height="50" width="50" />
+        class="ntk-hover-zoom" aria-hidden src="{{dataDetailModel.linkFileIdThumbnailSrc | cmsthumbnail}}" height="50"
+        width="50" />
     </a>
 
+    <hr>
+    تنظیمات تور
+    <p>در ورود این تنظیمات با مدیریت سامانه هماهنگ باشید</p>
+    <div *ngFor="let item of dataDetailModel.hotSpots;" style="background-color: bisque;">
+
+    </div>
+
+
+
+
+    <!-- configDataJson Field -->
+    <mat-form-field class="ntk-full-width mb-1" style="visibility: hidden;">
+      <mat-label>{{'TITLE.configDataJson' | translate}}</mat-label>
+      <input matInput [(ngModel)]="dataDetailModel.configDataJson" name="dataDetailModel.configDataJson" #Description
+        type="text" placeholder="{{'TITLE.configDataJson' | translate}}" minlength="0" maxlength="10000" required />
+      <mat-icon matSuffix *ngIf="dataDetailModel.configDataJson" class="pointer" matSuffix mat-icon-button
+        aria-label="Clear" (click)="dataDetailModel.configDataJson = ''">close</mat-icon>
+      <mat-icon class="pointer" matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
     <div class="form-actions" style="direction:ltr">
       <button type="button" (click)="onActionSubmitList()" class="btn btn-success">
         <i class="fa fa-check-square-o"></i> {{'ACTION.ADD' | translate}}
       </button>
-      <button type="button" (click)="onActionCancel()" class="btn btn-light">
+      <button type="button" (click)="showAddOption=!showAddOption" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>
     </div>
@@ -102,22 +124,13 @@
     <!-- Action Column -->
     <ng-container matColumnDef="Action">
       <mat-header-cell *matHeaderCellDef> {{'TITLE.Delete' | translate}} </mat-header-cell>
-      <mat-cell *matCellDef="let row; let i = index" class='Action'>
-        <button mat-icon-button>
-          <small (click)="onActionOptionRemoveFromList(i)">
-            <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false"
-              style="color: red;">delete</mat-icon>
-          </small>
-        </button>
-        <button mat-icon-button>
-          <small (click)="onActionOptionEditFromList(i)">
-            <mat-icon matTooltip="{{'ACTION.EDIT' | translate}}" matTooltipPosition="before" aria-hidden="false"
-              style="color: Blue;">edit</mat-icon>
-          </small>
-        </button>
+      <mat-cell *matCellDef="let row; let i = renderIndex;" class='Action'>
+        <small (click)="onActionOptionEditFromList(i)"><mat-icon matTooltip="{{'ACTION.EDIT' | translate}}"
+            matTooltipPosition="before" aria-hidden="false" style="color: blue;">edit</mat-icon></small>|
+        <small (click)="onActionOptionRemoveFromList(i)"><mat-icon matTooltip="{{'ACTION.DELETE' | translate}}"
+            matTooltipPosition="before" aria-hidden="false" style="color: red;">delete</mat-icon></small>
       </mat-cell>
-    </ng-container>>
-
+    </ng-container>
     <mat-header-row *matHeaderRowDef="optionTabledisplayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: optionTabledisplayedColumns;">
     </mat-row>
