@@ -51,12 +51,12 @@
     <hr>
     تنظیمات تور
     <p>در ورود این تنظیمات با مدیریت سامانه هماهنگ باشید</p>
-    <div style="background-color: bisque;">
-
-      <button (click)="onActionShowHotspotAdd()" type="button" mat-button
-        class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
-        {{'ACTION.ADD' | translate}}
-      </button>
+    <div style="background-color: bisque;padding:5px">
+      <div class="form-actions" style="direction:ltr">
+        <button (click)="onActionShowHotspotAdd()" type="button" class="btn btn-success">
+          {{'ACTION.ADD' | translate}}
+        </button>
+      </div>
       <!--TABLE HOTSPOT-->
       <mat-table #table [dataSource]="tableHotSpotdataSource" matSort>
         <ng-container matColumnDef="sceneId">
@@ -194,8 +194,8 @@
         <mat-row *matRowDef="let row; columns: tableHotspotDisplayedColumns;"></mat-row>
 
       </mat-table>
-
       <!--TABLE HOTSPOT-->
+
     </div>
 
 

@@ -151,32 +151,16 @@ export class CmsFile360ViewListComponent implements OnInit {
     }
   }
   updateEdit() {
-
     //updateEdit
     this.editdisabled = true;
     const indexId = this.dataDetailModel.hotSpots.findIndex(x => x.sceneId == this.oldHotspot.sceneId);
     if (indexId >= 0)
       this.dataDetailModel.hotSpots[indexId] = this.editHotspot;
-    // this.userServ.updateUser(this.editHotspot)
-    //   .subscribe((data: any) => {
-    //     this.editHotspot = {};
     this.editdisabled = false;
-    //     if (data.Data && data.Status == 1) {
     this.oldHotspot = new File360TourHotSpotModel();
     this.editHotspot = new File360TourHotSpotModel();
-    //       this.toastr.success(data.Message, 'Success!');
-    //     } else {
-    //       this.cancelEdit();
-    //       this.toastr.error(data.Message, 'Error!');
-    //     }
-    //   }, err => {
-    //     this.toastr.error("Please try after some time", 'Error!');
-    //     this.editdisabled = false;
-    //     this.cancelEdit();
-    //   });
   }
   cancelEdit() {
-
     //cancel
     this.editHotspot = new File360TourHotSpotModel();
     if (this.oldHotspot && this.oldHotspot.sceneId) {
