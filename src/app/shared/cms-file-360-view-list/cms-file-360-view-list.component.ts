@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
-import { File360ViewModel, FormInfoModel } from 'ntk-cms-api';
+import { File360TourHotSpotModel, File360ViewModel, FormInfoModel } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -29,7 +29,8 @@ export class CmsFile360ViewListComponent implements OnInit {
       model = [];
     }
     this.fileView360List = model;
-    this.optionTabledataSource.data = this.fileView360List;
+    this.tabledataSource.data = this.fileView360List;
+    this.tableHotSpotdataSource.data = [];
   }
   get dataModel(): File360ViewModel[] {
     return this.fileView360List;
@@ -38,8 +39,10 @@ export class CmsFile360ViewListComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   loading = new ProgressSpinnerModel();
   loadingOption = new ProgressSpinnerModel();
-  optionTabledataSource = new MatTableDataSource<File360ViewModel>();
-  optionTabledisplayedColumns = ['LinkFileIdThumbnailSrc', 'Title', 'Description', 'Action'];
+  tabledataSource = new MatTableDataSource<File360ViewModel>();
+  tableHotSpotdataSource = new MatTableDataSource<File360TourHotSpotModel>();
+  tabledisplayedColumns = ['LinkFileIdThumbnailSrc', 'Title', 'Description', 'Action'];
+  tableHotspotDisplayedColumns = ['sceneId', 'type', 'text', 'url', 'pitch', 'yaw', 'Action'];
 
   selectFileTypeReport = ['jpeg', 'jpg'];
 
@@ -65,6 +68,7 @@ export class CmsFile360ViewListComponent implements OnInit {
   }
 
   onActionSubmitView360(): void {
+
     if (!this.dataDetailModel.linkFileId || this.dataDetailModel.linkFileId <= 0) {
       this.cmsToastrService.typeErrorMessage('فایل انتخاب نشده');
     }
@@ -87,7 +91,20 @@ export class CmsFile360ViewListComponent implements OnInit {
     this.dataDetailModel = new File360ViewModel();
     this.showAddView360 = !this.showAddView360;
   }
+  sceneId = 0;
+  onActionShowHotspotAdd(): void {
 
+    if (!this.dataDetailModel)
+      this.dataDetailModel = new File360ViewModel();
+    if (!this.dataDetailModel.hotSpots)
+      this.dataDetailModel.hotSpots = [];
+    this.editHotspot = new File360TourHotSpotModel();
+    const sceneNew = new File360TourHotSpotModel();
+    this.sceneId++;
+    sceneNew.sceneId = this.sceneId + "1";
+    this.dataDetailModel.hotSpots.push(sceneNew);
+    this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+  }
   onActionOptionRemoveView360(index: number): void {
 
     if (index < 0) {
@@ -110,11 +127,55 @@ export class CmsFile360ViewListComponent implements OnInit {
       return;
     }
     this.dataDetailModel = this.fileView360List[index];
-    //this.fileView360List.splice(index, 1);
+    if (!this.dataDetailModel.hotSpots)
+      this.dataDetailModel.hotSpots = [];
+    this.oldHotspot = new File360TourHotSpotModel();
+    this.editHotspot = new File360TourHotSpotModel();
+    this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
     this.selectIndex = index;
-    this.dataModel = this.fileView360List;
     this.showAddView360 = !this.showAddView360;
-    //this.dataModelChange.emit(this.fileView360List);
+  }
+  editHotspot: File360TourHotSpotModel; oldHotspot: File360TourHotSpotModel; editdisabled: boolean
 
+  editROw(usr: File360TourHotSpotModel) {
+
+    console.log(usr)
+    this.editHotspot = usr && usr.sceneId ? usr : new File360TourHotSpotModel();
+    this.oldHotspot = { ...this.editHotspot };
+  }
+  updateEdit() {
+
+    //updateEdit
+    this.editdisabled = true;
+    const indexId = this.dataDetailModel.hotSpots.findIndex(x => x.sceneId == this.oldHotspot.sceneId);
+    if (indexId >= 0)
+      this.dataDetailModel.hotSpots[indexId] = this.editHotspot;
+    // this.userServ.updateUser(this.editHotspot)
+    //   .subscribe((data: any) => {
+    //     this.editHotspot = {};
+    this.editdisabled = false;
+    //     if (data.Data && data.Status == 1) {
+    this.oldHotspot = new File360TourHotSpotModel();
+    this.editHotspot = new File360TourHotSpotModel();
+    //       this.toastr.success(data.Message, 'Success!');
+    //     } else {
+    //       this.cancelEdit();
+    //       this.toastr.error(data.Message, 'Error!');
+    //     }
+    //   }, err => {
+    //     this.toastr.error("Please try after some time", 'Error!');
+    //     this.editdisabled = false;
+    //     this.cancelEdit();
+    //   });
+  }
+  cancelEdit() {
+
+    //cancel
+    this.editHotspot = new File360TourHotSpotModel();
+    if (this.oldHotspot && this.oldHotspot.sceneId) {
+      if (!this.dataDetailModel.hotSpots)
+        this.dataDetailModel.hotSpots = [];
+      this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+    }
   }
 }

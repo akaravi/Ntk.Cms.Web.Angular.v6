@@ -51,11 +51,150 @@
     <hr>
     تنظیمات تور
     <p>در ورود این تنظیمات با مدیریت سامانه هماهنگ باشید</p>
-    <div *ngFor="let item of dataDetailModel.hotSpots;" style="background-color: bisque;">
-      <ng-container matColumnDef="dataDetailModel.hotSpots">
-        <th mat-header-cell *matHeaderCellDef> pitch </th>
-        <td mat-cell *matCellDef="let row"> {{row.pitch}} </td>
-      </ng-container>
+    <div style="background-color: bisque;">
+
+      <button (click)="onActionShowHotspotAdd()" type="button" mat-button
+        class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
+        {{'ACTION.Add_To_List' | translate}}
+      </button>
+      <!--TABLE HOTSPOT-->
+      <mat-table #table [dataSource]="tableHotSpotdataSource" matSort>
+        <ng-container matColumnDef="sceneId">
+          <mat-header-cell *matHeaderCellDef>sceneId</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+              <p class="text-truncate">{{row.sceneId || 'N/A'}} </p>
+            </ng-container>
+            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="sceneId" [disabled]="editdisabled" name="sceneId"
+                  [(ngModel)]="row.sceneId">
+              </mat-form-field>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="pitch">
+          <mat-header-cell *matHeaderCellDef>pitch</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+              <p class="text-truncate">{{row.pitch || 'N/A'}} </p>
+            </ng-container>
+            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="pitch" [disabled]="editdisabled" name="pitch" [(ngModel)]="row.pitch">
+              </mat-form-field>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="yaw">
+          <mat-header-cell *matHeaderCellDef>yaw</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+              <p class="text-truncate">{{row.yaw || 'N/A'}} </p>
+            </ng-container>
+            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="yaw" [disabled]="editdisabled" name="yaw" [(ngModel)]="row.yaw">
+              </mat-form-field>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="type">
+          <mat-header-cell *matHeaderCellDef>type</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+              <p class="text-truncate">{{row.type}}</p>
+            </ng-container>
+            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+              <mat-form-field appearance="outline">
+                <mat-select placeholder="Select" [disabled]="editdisabled" name="type" [(ngModel)]="row.type">
+                  <mat-option [value]="'scene'">scene</mat-option>
+                  <mat-option [value]="'info'">info</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="targetYaw">
+          <mat-header-cell *matHeaderCellDef>targetYaw</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+              <p class="text-truncate">{{row.targetYaw || 'N/A'}} </p>
+            </ng-container>
+            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="targetYaw" [disabled]="editdisabled" name="targetYaw"
+                  [(ngModel)]="row.targetYaw">
+              </mat-form-field>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="targetPitch">
+          <mat-header-cell *matHeaderCellDef>targetPitch</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+              <p class="text-truncate">{{row.targetPitch || 'N/A'}} </p>
+            </ng-container>
+            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="targetPitch" [disabled]="editdisabled" name="targetPitch"
+                  [(ngModel)]="row.targetPitch">
+              </mat-form-field>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="text">
+          <mat-header-cell *matHeaderCellDef>text</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+              <p class="text-truncate">{{row.text || 'N/A'}} </p>
+            </ng-container>
+            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="text" [disabled]="editdisabled" name="text" [(ngModel)]="row.text">
+              </mat-form-field>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="url">
+          <mat-header-cell *matHeaderCellDef>url</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+              <p class="text-truncate">{{row.url || 'N/A'}} </p>
+            </ng-container>
+            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="url" [disabled]="editdisabled" name="url" [(ngModel)]="row.url">
+              </mat-form-field>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
+        <!-- ACTION -->
+        <ng-container matColumnDef="Action">
+          <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <span>
+              <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+                <mat-icon matTooltip="edit" (click)="editROw(row)">edit</mat-icon>
+              </ng-container>
+              <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+                <button type="button" mat-raised-button color="accent" matTooltip="Update" class="mr-10 mb-6"
+                  [disabled]="editdisabled" (click)="updateEdit()">Update</button>
+                <button type="button" mat-raised-button color="warn" matTooltip="Cancel" [disabled]="editdisabled"
+                  (click)="cancelEdit()">Cancel</button>
+              </ng-container>
+            </span>
+
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="tableHotspotDisplayedColumns; sticky:true"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: tableHotspotDisplayedColumns;"></mat-row>
+
+      </mat-table>
+
+      <!--TABLE HOTSPOT-->
     </div>
 
 
@@ -72,7 +211,7 @@
     </mat-form-field>
     <div class="form-actions" style="direction:ltr">
       <button type="button" (click)="onActionSubmitView360()" class="btn btn-success">
-        <i class="fa fa-check-square-o"></i> {{'ACTION.ADD' | translate}}
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SUBMIT_BUTTON' | translate}}
       </button>
       <button type="button" (click)="showAddView360=!showAddView360" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
@@ -89,7 +228,7 @@
 </app-progress-spinner>
 <!-- TABLE View360 -->
 <div class="example-container mat-elevation-z8" *ngIf="!showAddView360">
-  <mat-table [dataSource]="optionTabledataSource" multiTemplateDataRows>
+  <mat-table [dataSource]="tabledataSource" multiTemplateDataRows>
     <!-- LnkFileIdThumbnailSrc Column -->
     <ng-container matColumnDef="LinkFileIdThumbnailSrc">
       <mat-header-cell *matHeaderCellDef> {{'TITLE.PHOTO' | translate}}
@@ -134,8 +273,8 @@
             matTooltipPosition="before" aria-hidden="false" style="color: red;">delete</mat-icon></small>
       </mat-cell>
     </ng-container>
-    <mat-header-row *matHeaderRowDef="optionTabledisplayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: optionTabledisplayedColumns;">
+    <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: tabledisplayedColumns;">
     </mat-row>
   </mat-table>
 </div>

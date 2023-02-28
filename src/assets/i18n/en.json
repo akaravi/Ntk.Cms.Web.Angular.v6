@@ -21,6 +21,7 @@
   "ACTION.BUY": "Buy",
   "ACTION.PRICE": "Price",
   "ACTION.DATA": "Data",
+  "ACTION.SUBMIT_BUTTON": "SUBMIT",
   "ACTION.CLIENT": "Client",
   "ACTION.SOURCE": "Source",
   "ACTION.VIEW_STATISTICS": "View statistics",
