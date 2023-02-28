@@ -19,7 +19,7 @@ export class CmsFile360ViewListComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-
+    this.sceneId = Math.floor(Math.random() * 1000);
   }
   public fileView360List: File360ViewModel[] = [];
   public dataDetailModel: File360ViewModel = new File360ViewModel();
@@ -142,6 +142,11 @@ export class CmsFile360ViewListComponent implements OnInit {
     console.log(usr)
     this.editHotspot = usr && usr.sceneId ? usr : new File360TourHotSpotModel();
     this.oldHotspot = { ...this.editHotspot };
+  }
+  removeROw(usr: File360TourHotSpotModel) {
+    const indexId = this.dataDetailModel.hotSpots.findIndex(x => x.sceneId == usr.sceneId);
+    if (indexId >= 0)
+      this.dataDetailModel.hotSpots.splice(indexId, 1);
   }
   updateEdit() {
 

@@ -55,7 +55,7 @@
 
       <button (click)="onActionShowHotspotAdd()" type="button" mat-button
         class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
-        {{'ACTION.Add_To_List' | translate}}
+        {{'ACTION.Add' | translate}}
       </button>
       <!--TABLE HOTSPOT-->
       <mat-table #table [dataSource]="tableHotSpotdataSource" matSort>
@@ -175,7 +175,8 @@
           <mat-cell *matCellDef="let row">
             <span>
               <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
-                <mat-icon matTooltip="edit" (click)="editROw(row)">edit</mat-icon>
+                <mat-icon matTooltip="ویرایش" (click)="editROw(row)">edit</mat-icon>
+                <mat-icon matTooltip="حذف" (click)="removeROw(row)">delete</mat-icon>
               </ng-container>
               <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
                 <button type="button" mat-raised-button color="accent" matTooltip="Update" class="mr-10 mb-6"
