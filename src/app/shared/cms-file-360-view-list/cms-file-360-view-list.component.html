@@ -1,11 +1,11 @@
 <!-- <p>نمایش تور یافت نشد...</p> -->
 
-<button (click)="onActionViewAdd()" *ngIf="!showAddOption" type="button" mat-button
+<button (click)="onActionShowView360Add()" *ngIf="!showAddView360" type="button" mat-button
   class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
   {{'ACTION.Add_To_List' | translate}}
 </button>
 
-<div *ngIf="showAddOption" class="example-container mat-elevation-z8">
+<div *ngIf="showAddView360" class="example-container mat-elevation-z8">
   <div class="m-2">
 
     <!-- Title Field -->
@@ -52,7 +52,10 @@
     تنظیمات تور
     <p>در ورود این تنظیمات با مدیریت سامانه هماهنگ باشید</p>
     <div *ngFor="let item of dataDetailModel.hotSpots;" style="background-color: bisque;">
-
+      <ng-container matColumnDef="dataDetailModel.hotSpots">
+        <th mat-header-cell *matHeaderCellDef> pitch </th>
+        <td mat-cell *matCellDef="let row"> {{row.pitch}} </td>
+      </ng-container>
     </div>
 
 
@@ -68,10 +71,10 @@
       <mat-icon class="pointer" matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <div class="form-actions" style="direction:ltr">
-      <button type="button" (click)="onActionSubmitList()" class="btn btn-success">
+      <button type="button" (click)="onActionSubmitView360()" class="btn btn-success">
         <i class="fa fa-check-square-o"></i> {{'ACTION.ADD' | translate}}
       </button>
-      <button type="button" (click)="showAddOption=!showAddOption" class="btn btn-light">
+      <button type="button" (click)="showAddView360=!showAddView360" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>
     </div>
@@ -84,8 +87,8 @@
 
 <app-progress-spinner [options]="loadingOption">
 </app-progress-spinner>
-<!-- TABLE  -->
-<div class="example-container mat-elevation-z8" *ngIf="!showAddOption">
+<!-- TABLE View360 -->
+<div class="example-container mat-elevation-z8" *ngIf="!showAddView360">
   <mat-table [dataSource]="optionTabledataSource" multiTemplateDataRows>
     <!-- LnkFileIdThumbnailSrc Column -->
     <ng-container matColumnDef="LinkFileIdThumbnailSrc">
@@ -125,9 +128,9 @@
     <ng-container matColumnDef="Action">
       <mat-header-cell *matHeaderCellDef> {{'TITLE.Delete' | translate}} </mat-header-cell>
       <mat-cell *matCellDef="let row; let i = renderIndex;" class='Action'>
-        <small (click)="onActionOptionEditFromList(i)"><mat-icon matTooltip="{{'ACTION.EDIT' | translate}}"
+        <small (click)="onActionOptionEditView360(i)"><mat-icon matTooltip="{{'ACTION.EDIT' | translate}}"
             matTooltipPosition="before" aria-hidden="false" style="color: blue;">edit</mat-icon></small>|
-        <small (click)="onActionOptionRemoveFromList(i)"><mat-icon matTooltip="{{'ACTION.DELETE' | translate}}"
+        <small (click)="onActionOptionRemoveView360(i)"><mat-icon matTooltip="{{'ACTION.DELETE' | translate}}"
             matTooltipPosition="before" aria-hidden="false" style="color: red;">delete</mat-icon></small>
       </mat-cell>
     </ng-container>
@@ -136,4 +139,4 @@
     </mat-row>
   </mat-table>
 </div>
-<!-- TABLE  -->
+<!-- TABLE View360 -->

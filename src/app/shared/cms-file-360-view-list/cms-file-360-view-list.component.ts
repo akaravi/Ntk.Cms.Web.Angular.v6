@@ -21,18 +21,18 @@ export class CmsFile360ViewListComponent implements OnInit {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
 
   }
-  public fileList: File360ViewModel[] = [];
+  public fileView360List: File360ViewModel[] = [];
   public dataDetailModel: File360ViewModel = new File360ViewModel();
   @Output() dataModelChange: EventEmitter<File360ViewModel[]> = new EventEmitter<File360ViewModel[]>();
   @Input() set dataModel(model: File360ViewModel[]) {
     if (!model) {
       model = [];
     }
-    this.fileList = model;
-    this.optionTabledataSource.data = this.fileList;
+    this.fileView360List = model;
+    this.optionTabledataSource.data = this.fileView360List;
   }
   get dataModel(): File360ViewModel[] {
-    return this.fileList;
+    return this.fileView360List;
   }
 
   formInfo: FormInfoModel = new FormInfoModel();
@@ -46,7 +46,7 @@ export class CmsFile360ViewListComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
 
-  showAddOption = false;
+  showAddView360 = false;
   fileManagerOpenFormReport = false;
 
   ngOnInit(): void {
@@ -64,57 +64,57 @@ export class CmsFile360ViewListComponent implements OnInit {
     this.dataDetailModel.linkFileIdThumbnailSrc = model.downloadLinksrc;
   }
 
-  onActionSubmitList(): void {
+  onActionSubmitView360(): void {
     if (!this.dataDetailModel.linkFileId || this.dataDetailModel.linkFileId <= 0) {
       this.cmsToastrService.typeErrorMessage('فایل انتخاب نشده');
     }
-    if (!this.fileList) {
-      this.fileList = [];
+    if (!this.fileView360List) {
+      this.fileView360List = [];
     }
     if (this.selectIndex >= 0) {
-      this.fileList[this.selectIndex] = this.dataDetailModel;
+      this.fileView360List[this.selectIndex] = this.dataDetailModel;
     }
     else {
-      this.fileList.push(this.dataDetailModel);
+      this.fileView360List.push(this.dataDetailModel);
     }
-    this.dataModel = this.fileList;
-    this.dataModelChange.emit(this.fileList);
-    this.showAddOption = !this.showAddOption;
+    this.dataModel = this.fileView360List;
+    this.dataModelChange.emit(this.fileView360List);
+    this.showAddView360 = !this.showAddView360;
     this.selectIndex = -1;
   }
 
-  onActionViewAdd(): void {
+  onActionShowView360Add(): void {
     this.dataDetailModel = new File360ViewModel();
-    this.showAddOption = !this.showAddOption;
+    this.showAddView360 = !this.showAddView360;
   }
 
-  onActionOptionRemoveFromList(index: number): void {
+  onActionOptionRemoveView360(index: number): void {
 
     if (index < 0) {
       return;
     }
-    if (!this.fileList || this.fileList.length === 0) {
+    if (!this.fileView360List || this.fileView360List.length === 0) {
       return;
     }
-    this.fileList.splice(index, 1);
-    this.dataModel = this.fileList;
-    this.dataModelChange.emit(this.fileList);
+    this.fileView360List.splice(index, 1);
+    this.dataModel = this.fileView360List;
+    this.dataModelChange.emit(this.fileView360List);
   }
   selectIndex = -1;
-  onActionOptionEditFromList(index: number): void {
+  onActionOptionEditView360(index: number): void {
 
     if (index < 0) {
       return;
     }
-    if (!this.fileList || this.fileList.length === 0) {
+    if (!this.fileView360List || this.fileView360List.length === 0) {
       return;
     }
-    this.dataDetailModel = this.fileList[index];
-    //this.fileList.splice(index, 1);
+    this.dataDetailModel = this.fileView360List[index];
+    //this.fileView360List.splice(index, 1);
     this.selectIndex = index;
-    this.dataModel = this.fileList;
-    this.showAddOption = !this.showAddOption;
-    //this.dataModelChange.emit(this.fileList);
+    this.dataModel = this.fileView360List;
+    this.showAddView360 = !this.showAddView360;
+    //this.dataModelChange.emit(this.fileView360List);
 
   }
 }
