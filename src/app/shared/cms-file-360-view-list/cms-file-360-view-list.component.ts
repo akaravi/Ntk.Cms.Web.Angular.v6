@@ -145,8 +145,10 @@ export class CmsFile360ViewListComponent implements OnInit {
   }
   removeROw(usr: File360TourHotSpotModel) {
     const indexId = this.dataDetailModel.hotSpots.findIndex(x => x.sceneId == usr.sceneId);
-    if (indexId >= 0)
+    if (indexId >= 0) {
       this.dataDetailModel.hotSpots.splice(indexId, 1);
+      this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+    }
   }
   updateEdit() {
 
