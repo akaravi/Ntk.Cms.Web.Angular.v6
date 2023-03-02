@@ -31,15 +31,7 @@
       <mat-icon class="pointer" matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
-    <!-- Description Field -->
-    <mat-form-field class="ntk-full-width mb-1">
-      <mat-label>{{'TITLE.DESCRIPTION' | translate}}</mat-label>
-      <input matInput [(ngModel)]="dataDetailModel.description" name="dataDetailModel.description" #Description
-        type="text" placeholder="{{'TITLE.DESCRIPTION' | translate}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataDetailModel.description" class="pointer" matSuffix mat-icon-button
-        aria-label="Clear" (click)="dataDetailModel.description = ''">close</mat-icon>
-      <mat-icon class="pointer" matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
+
 
 
 
@@ -55,10 +47,9 @@
       [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeReport"
       [openFilemanagerButtonView]="false"></cms-file-manager>
 
-    <a href="{{dataDetailModel.linkFileIdThumbnailSrc | cmsthumbnail}}" target="_blank">
-      <img *ngIf="dataDetailModel?.linkFileIdThumbnailSrc?.length>0" style="vertical-align:middle;"
-        class="ntk-hover-zoom" aria-hidden src="{{dataDetailModel.linkFileIdThumbnailSrc | cmsthumbnail}}" height="50"
-        width="50" />
+    <a href="{{dataDetailModel.panorama | cmsthumbnail}}" target="_blank">
+      <img *ngIf="dataDetailModel?.panorama?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+        src="{{dataDetailModel.panorama | cmsthumbnail}}" height="50" width="50" />
     </a>
 
     <hr>
@@ -75,10 +66,10 @@
         <ng-container matColumnDef="sceneId">
           <mat-header-cell *matHeaderCellDef>sceneId</mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+            <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate">{{row.sceneId || 'N/A'}} </p>
             </ng-container>
-            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+            <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <input matInput style="direction: ltr; text-align: left;" placeholder="sceneId"
                   [disabled]="editdisabled" name="sceneId" [(ngModel)]="row.sceneId">
@@ -89,10 +80,10 @@
         <ng-container matColumnDef="pitch">
           <mat-header-cell *matHeaderCellDef>pitch</mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+            <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate">{{row.pitch || 'N/A'}} </p>
             </ng-container>
-            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+            <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <input matInput style="direction: ltr; text-align: left;" type="number" placeholder="pitch"
                   [disabled]="editdisabled" name="pitch" [(ngModel)]="row.pitch">
@@ -103,10 +94,10 @@
         <ng-container matColumnDef="yaw">
           <mat-header-cell *matHeaderCellDef>yaw</mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+            <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate grid-row-ltr-center">{{row.yaw || 'N/A'}} </p>
             </ng-container>
-            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+            <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <input matInput style="direction: ltr; text-align: left;" type="number" placeholder="yaw"
                   [disabled]="editdisabled" name="yaw" [(ngModel)]="row.yaw">
@@ -117,10 +108,10 @@
         <ng-container matColumnDef="type">
           <mat-header-cell *matHeaderCellDef>type</mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+            <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate grid-row-ltr-center">{{row.type}}</p>
             </ng-container>
-            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+            <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <mat-select placeholder="Select" [disabled]="editdisabled" name="type" [(ngModel)]="row.type">
                   <mat-option [value]="'scene'">scene</mat-option>
@@ -133,10 +124,10 @@
         <ng-container matColumnDef="targetYaw">
           <mat-header-cell *matHeaderCellDef>targetYaw</mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+            <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate grid-row-ltr-center">{{row.targetYaw || 'N/A'}} </p>
             </ng-container>
-            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+            <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <input matInput style="direction: ltr; text-align: left;" placeholder="targetYaw"
                   [disabled]="editdisabled" name="targetYaw" [(ngModel)]="row.targetYaw">
@@ -147,10 +138,10 @@
         <ng-container matColumnDef="targetPitch">
           <mat-header-cell *matHeaderCellDef>targetPitch</mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+            <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate grid-row-ltr-center">{{row.targetPitch || 'N/A'}} </p>
             </ng-container>
-            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+            <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <input matInput style="direction: ltr; text-align: left;" placeholder="targetPitch"
                   [disabled]="editdisabled" name="targetPitch" [(ngModel)]="row.targetPitch">
@@ -161,10 +152,10 @@
         <ng-container matColumnDef="text">
           <mat-header-cell *matHeaderCellDef>text</mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+            <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate">{{row.text || 'N/A'}} </p>
             </ng-container>
-            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+            <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <input matInput style="direction: ltr; text-align: left;" placeholder="text" [disabled]="editdisabled"
                   name="text" [(ngModel)]="row.text">
@@ -175,10 +166,10 @@
         <ng-container matColumnDef="url">
           <mat-header-cell *matHeaderCellDef>url</mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+            <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate grid-row-ltr">{{row.url || 'N/A'}} </p>
             </ng-container>
-            <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+            <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <input matInput style="direction: ltr; text-align: left;" placeholder="url" [disabled]="editdisabled"
                   name="url" [(ngModel)]="row.url">
@@ -191,11 +182,11 @@
           <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <span class="m-1" style="text-align: center;">
-              <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
+              <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
                 <mat-icon matTooltip="ویرایش" (click)="editROw(row)">edit</mat-icon>
                 <mat-icon matTooltip="حذف" (click)="removeROw(row)">delete</mat-icon>
               </ng-container>
-              <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
+              <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
                 <button type="button" mat-raised-button color="accent" matTooltip="Update" class="mb-2"
                   [disabled]="editdisabled" (click)="updateEdit()">Update</button>
                 <button type="button" mat-raised-button color="warn" matTooltip="Cancel" [disabled]="editdisabled"
@@ -223,15 +214,6 @@
 
 
 
-    <!-- configDataJson Field -->
-    <mat-form-field class="ntk-full-width mb-1" style="visibility: hidden;">
-      <mat-label>{{'TITLE.configDataJson' | translate}}</mat-label>
-      <input matInput [(ngModel)]="dataDetailModel.configDataJson" name="dataDetailModel.configDataJson" #Description
-        type="text" placeholder="{{'TITLE.configDataJson' | translate}}" minlength="0" maxlength="10000" required />
-      <mat-icon matSuffix *ngIf="dataDetailModel.configDataJson" class="pointer" matSuffix mat-icon-button
-        aria-label="Clear" (click)="dataDetailModel.configDataJson = ''">close</mat-icon>
-      <mat-icon class="pointer" matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
     <div class="form-actions" style="direction:ltr">
       <button type="button" (click)="onActionSubmitView360()" class="btn btn-success">
         <i class="fa fa-check-square-o"></i> {{'ACTION.SUBMIT_BUTTON' | translate}}
@@ -251,14 +233,14 @@
 <div class="example-container mat-elevation-z8" *ngIf="!showAddView360">
   <mat-table [dataSource]="tabledataSource" multiTemplateDataRows>
     <!-- LnkFileIdThumbnailSrc Column -->
-    <ng-container matColumnDef="LinkFileIdThumbnailSrc">
+    <ng-container matColumnDef="panorama">
       <mat-header-cell *matHeaderCellDef> {{'TITLE.PHOTO' | translate}}
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <ng-container *ngIf="row.linkFileIdThumbnailSrc">
-          <a href="{{row.linkFileIdThumbnailSrc }}" target="_blank">
-            <img *ngIf="row?.linkFileIdThumbnailSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
-              aria-hidden src="{{row.linkFileIdThumbnailSrc }}" height="50" width="50" />
+        <ng-container *ngIf="row.panorama">
+          <a href="{{row.panorama }}" target="_blank">
+            <img *ngIf="row?.panorama?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+              src="{{row.panorama }}" height="50" width="50" />
           </a>
         </ng-container>
       </mat-cell>

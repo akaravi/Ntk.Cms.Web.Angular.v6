@@ -107,6 +107,8 @@ import { PrettyjsonPipe } from './core/pipe/prettyjson.pipe';
 import { RecordStatusClassPipe } from './core/pipe/recordStatusClass.pipe';
 import { SafePipe } from './core/pipe/safe.pipe';
 import { ValueArrayPipe } from './core/pipe/valueArray.pipe';
+import { Cms360ImageListComponent } from './shared/cms-360-image-list/cms-360-image-list.component';
+import { Cms360TourListComponent } from './shared/cms-360-tour-list/cms-360-tour-list.component';
 import { CmsAccessInfoComponent } from './shared/cms-access-info/cms-access-info.component';
 import { CmsApplicationSelectorComponent } from './shared/cms-application-selector/cms-application-selector.component';
 import { CmsBankpaymentGridComponent } from './shared/cms-bankpayment-grid/cms-bankpayment-grid.component';
@@ -148,7 +150,6 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/mater
 import { OverlayService } from './shared/overlay/overlay.service';
 import { PasswordStrengthComponent } from './shared/password-strength/password-strength.component';
 import { ProgressSpinnerComponent } from './shared/progress-spinner/progress-spinner.component';
-import { CmsFile360ViewListComponent } from './shared/cms-file-360-view-list/cms-file-360-view-list.component';
 
 @NgModule({
   imports: [
@@ -242,7 +243,8 @@ import { CmsFile360ViewListComponent } from './shared/cms-file-360-view-list/cms
     CmsMemberSelectorComponent,
     CmsModuleSelectorComponent,
     CmsExportEntityComponent,
-    CmsFile360ViewListComponent,
+    Cms360ImageListComponent,
+    Cms360TourListComponent,
     CmsQDocComponent,
     CmsViewComponent,
     CmsLinkToComponent,
@@ -374,7 +376,8 @@ import { CmsFile360ViewListComponent } from './shared/cms-file-360-view-list/cms
     CmsMemberSelectorComponent,
     CmsModuleSelectorComponent,
     CmsExportEntityComponent,
-    CmsFile360ViewListComponent,
+    Cms360ImageListComponent,
+    Cms360TourListComponent,
     CmsMapComponent,
     CmsQDocComponent,
     CmsViewComponent,
