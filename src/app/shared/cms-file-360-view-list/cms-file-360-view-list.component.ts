@@ -1,12 +1,20 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import { File360TourHotSpotModel, File360ViewModel, FormInfoModel } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
+import 'pannellum-next/src/js/libpannellum';
+import 'pannellum-next/src/js/pannellum';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-
+declare var pannellum: any;
+export class PostionViewModel {
+  viewerGetYaw: 0;
+  viewerGetPitch: 0;
+  clickGetYaw: 0;
+  clickGetPitch: 0;
+}
 @Component({
   selector: 'app-cms-file-360-view-list',
   templateUrl: './cms-file-360-view-list.component.html'
@@ -57,7 +65,52 @@ export class CmsFile360ViewListComponent implements OnInit {
 
   }
 
+  @ViewChild('container') container: ElementRef;
+  viewer: any;
+  options: any;
+  postionView: PostionViewModel;
 
+
+  ngAfterViewInit(): void {
+
+    //this.actionPannellumLoad('https://apifile.ir/images/91188/5d8310e9e57046e4ba4e672db0b47cb7.jpg');
+
+    // this.viewer.on('mouseup', function (event) {
+    //   this.viewerGetYaw = this.viewer.getYaw();
+    //   this.viewerGetPitch = this.viewer.getPitch();
+    // });
+    //this.viewer.on('mouseup', this.onActionPannellumClick);
+  }
+  actionPannellumLoad(str: string): void {
+    const defaultOptions = {
+      "type": "equirectangular",
+      "panorama": str,
+      "autoLoad": true,
+      "autoRotate": 1.5,
+      "crossOrigin": "anonymous"
+    };
+    const combinedOptions = Object.assign({}, defaultOptions, this.options);
+    this.viewer = pannellum.viewer(this.container.nativeElement, combinedOptions);
+    // this.viewer.on('mouseup', (e, a) => {
+    //   //console.log(window);
+    //   //console.log(e)
+    // })
+  }
+
+  onActionPannellumClick(e): void {
+    this.postionView = new PostionViewModel();
+    this.postionView.viewerGetYaw = this.viewer.getYaw();
+    this.postionView.viewerGetPitch = this.viewer.getPitch();
+    const coords = this.viewer.mouseEventToCoords(e);
+    this.postionView.clickGetYaw = coords[1];
+    this.postionView.clickGetPitch = coords[0];
+  }
+  onActionPannellumClickLastPoint(): void {
+    if (this.postionView && (this.postionView.clickGetYaw != 0 || this.postionView.clickGetPitch != 0)) {
+      this.editHotspot.yaw = this.postionView.clickGetYaw;
+      this.editHotspot.pitch = this.postionView.clickGetPitch;
+    }
+  }
   onActionFileSelect(model: NodeInterface): void {
     if (!model || !model.id || model.id === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -65,6 +118,7 @@ export class CmsFile360ViewListComponent implements OnInit {
     }
     this.dataDetailModel.linkFileId = model.id;
     this.dataDetailModel.linkFileIdThumbnailSrc = model.downloadLinksrc;
+    this.actionPannellumLoad(this.dataDetailModel.linkFileIdSrc);
   }
 
   onActionSubmitView360(): void {
@@ -119,7 +173,6 @@ export class CmsFile360ViewListComponent implements OnInit {
   }
   selectIndex = -1;
   onActionOptionEditView360(index: number): void {
-
     if (index < 0) {
       return;
     }
@@ -129,6 +182,8 @@ export class CmsFile360ViewListComponent implements OnInit {
     this.dataDetailModel = this.fileView360List[index];
     if (!this.dataDetailModel.hotSpots)
       this.dataDetailModel.hotSpots = [];
+
+    this.actionPannellumLoad(this.dataDetailModel.linkFileIdSrc);
     this.oldHotspot = new File360TourHotSpotModel();
     this.editHotspot = new File360TourHotSpotModel();
     this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
@@ -138,8 +193,7 @@ export class CmsFile360ViewListComponent implements OnInit {
   editHotspot: File360TourHotSpotModel; oldHotspot: File360TourHotSpotModel; editdisabled: boolean
 
   editROw(usr: File360TourHotSpotModel) {
-
-    console.log(usr)
+    //console.log(usr)
     this.editHotspot = usr && usr.sceneId ? usr : new File360TourHotSpotModel();
     this.oldHotspot = { ...this.editHotspot };
   }
@@ -170,3 +224,4 @@ export class CmsFile360ViewListComponent implements OnInit {
     }
   }
 }
+

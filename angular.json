@@ -50,8 +50,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/ngx-toastr/toastr.css"
-              
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/pannellum-next/src/css/pannellum.css"
             ],
             "scripts": [
               "node_modules/apexcharts/dist/apexcharts.min.js"

@@ -58,6 +58,7 @@
     "ntk-cms-api": "^1.2.134",
     "ntk-cms-filemanager": "^1.2.19",
     "object-path": "^0.11.8",
+    "pannellum-next": "^2.5.7",
     "perfect-scrollbar": "^1.5.5",
     "rxjs": "~7.8.0",
     "socicon": "^3.0.5",

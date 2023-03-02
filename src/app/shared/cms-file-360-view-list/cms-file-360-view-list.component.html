@@ -1,5 +1,19 @@
 <!-- <p>نمایش تور یافت نشد...</p> -->
+<div [id]="id" class="container" #container (click)="onActionPannellumClick($event)"
+  style="height: 380px; width: 100%;direction: ltr;"></div>
+<div *ngIf="postionView">
+  viewer Yaw:{{postionView.viewerGetYaw}}
+  <br>
+  viewer Pitch:{{postionView.viewerGetPitch}}
+  <br>
+  click Yaw:{{postionView.clickGetYaw}}
+  <br>
+  click Pitch:{{postionView.clickGetPitch}}
+</div>
+<br>
+<!-- <button (click)="onActionPannellumClick($event)" type="button">me</button> -->
 
+{{this.viewer|json}}
 <button (click)="onActionShowView360Add()" *ngIf="!showAddView360" type="button" mat-button
   class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
   {{'ACTION.Add_To_List' | translate}}
@@ -81,7 +95,8 @@
             </ng-container>
             <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
               <mat-form-field appearance="outline">
-                <input matInput placeholder="pitch" [disabled]="editdisabled" name="pitch" [(ngModel)]="row.pitch">
+                <input matInput type="number" placeholder="pitch" [disabled]="editdisabled" name="pitch"
+                  [(ngModel)]="row.pitch">
               </mat-form-field>
             </ng-container>
           </mat-cell>
@@ -94,7 +109,8 @@
             </ng-container>
             <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
               <mat-form-field appearance="outline">
-                <input matInput placeholder="yaw" [disabled]="editdisabled" name="yaw" [(ngModel)]="row.yaw">
+                <input matInput type="number" placeholder="yaw" [disabled]="editdisabled" name="yaw"
+                  [(ngModel)]="row.yaw">
               </mat-form-field>
             </ng-container>
           </mat-cell>
@@ -183,6 +199,11 @@
                   [disabled]="editdisabled" (click)="updateEdit()">Update</button>
                 <button type="button" mat-raised-button color="warn" matTooltip="Cancel" [disabled]="editdisabled"
                   (click)="cancelEdit()">Cancel</button>
+
+                <button type="button" *ngIf="postionView" mat-raised-button color="warn"
+                  matTooltip="ثبت آخرین نقطه کلیک شده" [disabled]="editdisabled"
+                  (click)="onActionPannellumClickLastPoint()">ثبت نقطه</button>
+
               </ng-container>
             </span>
 

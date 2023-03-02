@@ -18,7 +18,7 @@ ng serve  --open
 ===================RTL
 npm run rtl
 =========================================
-npm rebuild node-sass 
+npm rebuild node-sass
 
 =========================================
 این سه با ورژن 14 مشکل دارند
@@ -115,3 +115,4 @@ npm install depcheck -g
 depcheck
 
 ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+http://localhost:4200/#/estate/property/edit/63fcd99b5513193e755bd4ad
