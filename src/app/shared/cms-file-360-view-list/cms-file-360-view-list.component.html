@@ -1,6 +1,7 @@
 <!-- <p>نمایش تور یافت نشد...</p> -->
 <div [id]="id" class="container" #container (click)="onActionPannellumClick($event)"
-  style="height: 380px; width: 100%;direction: ltr;"></div>
+  style="height: 380px; width: 100%;direction: ltr;">
+</div>
 <div *ngIf="postionView">
   viewer Yaw:{{postionView.viewerGetYaw}}
   <br>
@@ -11,9 +12,7 @@
   click Pitch:{{postionView.clickGetPitch}}
 </div>
 <br>
-<!-- <button (click)="onActionPannellumClick($event)" type="button">me</button> -->
 
-{{this.viewer|json}}
 <button (click)="onActionShowView360Add()" *ngIf="!showAddView360" type="button" mat-button
   class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
   {{'ACTION.Add_To_List' | translate}}
@@ -105,7 +104,7 @@
           <mat-header-cell *matHeaderCellDef>yaw</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
-              <p class="text-truncate">{{row.yaw || 'N/A'}} </p>
+              <p class="text-truncate grid-row-ltr-center">{{row.yaw || 'N/A'}} </p>
             </ng-container>
             <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
               <mat-form-field appearance="outline" style="width: 100%;">
@@ -119,7 +118,7 @@
           <mat-header-cell *matHeaderCellDef>type</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
-              <p class="text-truncate">{{row.type}}</p>
+              <p class="text-truncate grid-row-ltr-center">{{row.type}}</p>
             </ng-container>
             <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
               <mat-form-field appearance="outline" style="width: 100%;">
@@ -135,7 +134,7 @@
           <mat-header-cell *matHeaderCellDef>targetYaw</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
-              <p class="text-truncate">{{row.targetYaw || 'N/A'}} </p>
+              <p class="text-truncate grid-row-ltr-center">{{row.targetYaw || 'N/A'}} </p>
             </ng-container>
             <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
               <mat-form-field appearance="outline" style="width: 100%;">
@@ -149,7 +148,7 @@
           <mat-header-cell *matHeaderCellDef>targetPitch</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
-              <p class="text-truncate">{{row.targetPitch || 'N/A'}} </p>
+              <p class="text-truncate grid-row-ltr-center">{{row.targetPitch || 'N/A'}} </p>
             </ng-container>
             <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
               <mat-form-field appearance="outline" style="width: 100%;">
@@ -177,7 +176,7 @@
           <mat-header-cell *matHeaderCellDef>url</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <ng-container *ngIf="!editHotspot.sceneId || !row.sceneId || row.sceneId!==editHotspot.sceneId">
-              <p class="text-truncate">{{row.url || 'N/A'}} </p>
+              <p class="text-truncate grid-row-ltr">{{row.url || 'N/A'}} </p>
             </ng-container>
             <ng-container *ngIf="editHotspot.sceneId && row.sceneId && row.sceneId===editHotspot.sceneId">
               <mat-form-field appearance="outline" style="width: 100%;">
@@ -237,7 +236,7 @@
       <button type="button" (click)="onActionSubmitView360()" class="btn btn-success">
         <i class="fa fa-check-square-o"></i> {{'ACTION.SUBMIT_BUTTON' | translate}}
       </button>
-      <button type="button" (click)="showAddView360=!showAddView360" class="btn btn-light">
+      <button type="button" (click)="onActionCancellView360()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>
     </div>
@@ -245,8 +244,6 @@
   </div>
 
 </div>
-
-
 
 <app-progress-spinner [options]="loadingOption">
 </app-progress-spinner>

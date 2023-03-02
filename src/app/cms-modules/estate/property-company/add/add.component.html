@@ -165,7 +165,7 @@
             [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
         <hr>
-        <p>{{'TITLE.List_of_attached_photos' | translate}}</p>
+        <p *ngIf="dataFileModelImgaes && dataFileModelImgaes.size>0">{{'TITLE.List_of_attached_photos' | translate}}</p>
         <app-cms-files-selector [(dataFileModel)]="dataFileModelImgaes" [openDirectUploadView]="true"
           [optionFileType]="selectFileTypeMainImage">
         </app-cms-files-selector>
