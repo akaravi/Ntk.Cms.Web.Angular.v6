@@ -51,7 +51,7 @@ export class Cms360ImageListComponent implements OnInit {
   tabledataSource = new MatTableDataSource<File360ViewModel>();
   tableHotSpotdataSource = new MatTableDataSource<File360TourHotSpotModel>();
   tabledisplayedColumns = ['panorama', 'Title', 'Description', 'Action'];
-  tableHotspotDisplayedColumns = ['guid', 'type', 'text', 'url', 'pitch', 'yaw', 'Action'];
+  tableHotspotDisplayedColumns = ['sceneId', 'type', 'text', 'url', 'pitch', 'yaw', 'Action'];
 
   selectFileTypeReport = ['jpeg', 'jpg'];
 
@@ -109,8 +109,8 @@ export class Cms360ImageListComponent implements OnInit {
   onActionPannellumDestroy(): void {
     this.container.nativeElement.style.display = 'none';
     this.postionView = null;
-
-    this.viewer.destroy();
+    if (this.viewer)
+      this.viewer.destroy();
   }
   onActionPannellumClickLastPoint(): void {
     if (this.postionView && (this.postionView.clickGetYaw != 0 || this.postionView.clickGetPitch != 0)) {

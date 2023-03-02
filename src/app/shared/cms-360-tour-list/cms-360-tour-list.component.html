@@ -255,13 +255,13 @@
         </ng-container>
       </mat-cell>
     </ng-container>
-    <!-- Description Column -->
-    <ng-container matColumnDef="Description">
-      <mat-header-cell *matHeaderCellDef> {{'TITLE.DESCRIPTION' | translate}}
+    <!-- linkFileId Column -->
+    <ng-container matColumnDef="linkFileId">
+      <mat-header-cell *matHeaderCellDef> sceneId
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <ng-container *ngIf="row.description">
-          {{ row.description}}
+        <ng-container>
+          {{ row.linkFileId}}
         </ng-container>
       </mat-cell>
     </ng-container>

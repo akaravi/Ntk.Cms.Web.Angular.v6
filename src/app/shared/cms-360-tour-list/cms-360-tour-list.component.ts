@@ -28,9 +28,11 @@ export class Cms360TourListComponent implements OnInit {
     public translate: TranslateService,
   ) {
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
-    this.guid = Math.floor(Math.random() * 1000);
-  }
 
+  }
+  getGuid(): string {
+    return Math.floor(Math.random() * 1000) + "";
+  }
 
   public scenesList: File360TourScenesModel[] = [];
   public dataDetailModel: File360TourScenesModel = new File360TourScenesModel();
@@ -48,6 +50,7 @@ export class Cms360TourListComponent implements OnInit {
 
 
     Object.keys(model.scenes).map(key => {
+      model.scenes[key].guid = this.getGuid();
       this.scenesList.push(model.scenes[key]);
     });
 
@@ -71,8 +74,8 @@ export class Cms360TourListComponent implements OnInit {
   loadingOption = new ProgressSpinnerModel();
   tabledataSource = new MatTableDataSource<File360TourScenesModel>();
   tableHotSpotdataSource = new MatTableDataSource<File360TourHotSpotModel>();
-  tabledisplayedColumns = ['panorama', 'Title', 'Description', 'Action'];
-  tableHotspotDisplayedColumns = ['guid', 'type', 'text', 'url', 'pitch', 'yaw', 'Action'];
+  tabledisplayedColumns = ['linkFileId', 'panorama', 'Title', 'Action'];
+  tableHotspotDisplayedColumns = ['sceneId', 'type', 'text', 'url', 'pitch', 'yaw', 'Action'];
 
   selectFileTypeReport = ['jpeg', 'jpg'];
 
@@ -130,8 +133,8 @@ export class Cms360TourListComponent implements OnInit {
   onActionPannellumDestroy(): void {
     this.container.nativeElement.style.display = 'none';
     this.postionView = null;
-
-    this.viewer.destroy();
+    if (this.viewer)
+      this.viewer.destroy();
   }
   onActionPannellumClickLastPoint(): void {
     if (this.postionView && (this.postionView.clickGetYaw != 0 || this.postionView.clickGetPitch != 0)) {
@@ -181,7 +184,7 @@ export class Cms360TourListComponent implements OnInit {
     this.dataDetailModel = new File360TourScenesModel();
     this.showAddView360 = !this.showAddView360;
   }
-  guid = 0;
+
   onActionShowHotspotAdd(): void {
 
     if (!this.dataDetailModel)
@@ -190,8 +193,8 @@ export class Cms360TourListComponent implements OnInit {
       this.dataDetailModel.hotSpots = [];
     this.editHotspot = new File360TourHotSpotModel();
     const sceneNew = new File360TourHotSpotModel();
-    this.guid++;
-    sceneNew.guid = this.guid + "1";
+
+    sceneNew.guid = this.getGuid();
     this.dataDetailModel.hotSpots.push(sceneNew);
     this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
   }
