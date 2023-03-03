@@ -2,15 +2,21 @@
 <div [id]="id" class="container" #container (click)="onActionPannellumClick($event)"
   style="height: 380px; width: 100%;direction: ltr;">
 </div>
-<div *ngIf="postionView">
-  viewer Yaw:{{postionView.viewerGetYaw}}
-  <br>
-  viewer Pitch:{{postionView.viewerGetPitch}}
-  <br>
-  click Yaw:{{postionView.clickGetYaw}}
-  <br>
-  click Pitch:{{postionView.clickGetPitch}}
-</div>
+<table *ngIf="postionView" class="grid-row-ltr-center">
+  <tr>
+    <td>viewer Yaw</td>
+    <td>viewer Pitch</td>
+    <td>click Yaw</td>
+    <td>click Pitch</td>
+  </tr>
+  <tr>
+    <td>{{postionView.viewerGetYaw}}</td>
+    <td>{{postionView.viewerGetPitch}}</td>
+    <td>{{postionView.clickGetYaw}}</td>
+    <td>{{postionView.clickGetPitch}}</td>
+  </tr>
+</table>
+
 <br>
 
 <button (click)="onActionShowView360Add()" *ngIf="!showAddView360" type="button" mat-button
@@ -56,9 +62,8 @@
       [openFilemanagerButtonView]="false"></cms-file-manager>
 
     <a href="{{dataDetailModel.panorama | cmsthumbnail}}" target="_blank">
-      <img *ngIf="dataDetailModel?.panorama?.length>0" style="vertical-align:middle;"
-        class="ntk-hover-zoom" aria-hidden src="{{dataDetailModel.panorama | cmsthumbnail}}" height="50"
-        width="50" />
+      <img *ngIf="dataDetailModel?.panorama?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+        src="{{dataDetailModel.panorama | cmsthumbnail}}" height="50" width="50" />
     </a>
 
     <hr>
@@ -123,8 +128,8 @@
             <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <mat-select placeholder="Select" [disabled]="editdisabled" name="type" [(ngModel)]="row.type">
-                  <mat-option [value]="'scene'">scene</mat-option>
-                  <mat-option [value]="'info'">info</mat-option>
+                  <mat-option [value]="'scene'">صحنه</mat-option>
+                  <mat-option [value]="'info'">اطلاعات</mat-option>
                 </mat-select>
               </mat-form-field>
             </ng-container>
@@ -257,8 +262,8 @@
       <mat-cell *matCellDef="let row">
         <ng-container *ngIf="row.panorama">
           <a href="{{row.panorama }}" target="_blank">
-            <img *ngIf="row?.panorama?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
-              aria-hidden src="{{row.panorama }}" height="50" width="50" />
+            <img *ngIf="row?.panorama?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+              src="{{row.panorama }}" height="50" width="50" />
           </a>
         </ng-container>
       </mat-cell>

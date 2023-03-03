@@ -2,22 +2,32 @@
 <div [id]="id" class="container" #container (click)="onActionPannellumClick($event)"
   style="height: 380px; width: 100%;direction: ltr;">
 </div>
-<div *ngIf="postionView">
-  viewer Yaw:{{postionView.viewerGetYaw}}
-  <br>
-  viewer Pitch:{{postionView.viewerGetPitch}}
-  <br>
-  click Yaw:{{postionView.clickGetYaw}}
-  <br>
-  click Pitch:{{postionView.clickGetPitch}}
-</div>
+<table *ngIf="postionView" class="grid-row-ltr-center">
+  <tr>
+    <td>viewer Yaw</td>
+    <td>viewer Pitch</td>
+    <td>click Yaw</td>
+    <td>click Pitch</td>
+  </tr>
+  <tr>
+    <td>{{postionView.viewerGetYaw}}</td>
+    <td>{{postionView.viewerGetPitch}}</td>
+    <td>{{postionView.clickGetYaw}}</td>
+    <td>{{postionView.clickGetPitch}}</td>
+  </tr>
+</table>
+
 <br>
 
 <button (click)="onActionShowView360Add()" *ngIf="!showAddView360" type="button" mat-button
   class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
   {{'ACTION.Add_To_List' | translate}}
 </button>
-
+<button (click)="actionPannellumTourLoad()"
+  *ngIf="this.privateDataModel && this.privateDataModel && this.privateDataModel.scenes" type="button" mat-button
+  class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
+  نمایش تور
+</button>
 <div *ngIf="showAddView360" class="example-container mat-elevation-z8">
   <div class="m-2">
 
@@ -77,6 +87,24 @@
             </ng-container>
           </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="sceneIdSelector">
+          <mat-header-cell *matHeaderCellDef>sceneId</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
+              <p class="text-truncate grid-row-ltr-center">{{row.sceneId}}</p>
+            </ng-container>
+            <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-select placeholder="Select" [disabled]="editdisabled" name="sceneId" [(ngModel)]="row.sceneId">
+                  <mat-option *ngFor="
+                  let item of this.scenesList;
+                  index as i
+                " [value]="item.linkFileId">{{ item.title }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </ng-container>
+          </mat-cell>
+        </ng-container>
         <ng-container matColumnDef="pitch">
           <mat-header-cell *matHeaderCellDef>pitch</mat-header-cell>
           <mat-cell *matCellDef="let row">
@@ -114,8 +142,8 @@
             <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <mat-select placeholder="Select" [disabled]="editdisabled" name="type" [(ngModel)]="row.type">
-                  <mat-option [value]="'scene'">scene</mat-option>
-                  <mat-option [value]="'info'">info</mat-option>
+                  <mat-option [value]="'scene'">صحنه</mat-option>
+                  <mat-option [value]="'info'">اطلاعات</mat-option>
                 </mat-select>
               </mat-form-field>
             </ng-container>

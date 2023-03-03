@@ -36,7 +36,7 @@ export class Cms360TourListComponent implements OnInit {
 
   public scenesList: File360TourScenesModel[] = [];
   public dataDetailModel: File360TourScenesModel = new File360TourScenesModel();
-  private privateDataModel: File360TourModel;
+  privateDataModel: File360TourModel;
   @Output() dataModelChange: EventEmitter<File360TourModel> = new EventEmitter<File360TourModel>();
   @Input() set dataModel(model: File360TourModel) {
     if (!model) {
@@ -53,7 +53,13 @@ export class Cms360TourListComponent implements OnInit {
       model.scenes[key].guid = this.getGuid();
       this.scenesList.push(model.scenes[key]);
     });
-
+    this.scenesList.forEach(element => {
+      if (!element.hotSpots)
+        element.hotSpots = [];
+      element.hotSpots.forEach(h => {
+        h.guid = this.getGuid();
+      });
+    });
     this.privateDataModel = model;
     this.tabledataSource.data = this.scenesList;
     this.tableHotSpotdataSource.data = [];
@@ -75,7 +81,7 @@ export class Cms360TourListComponent implements OnInit {
   tabledataSource = new MatTableDataSource<File360TourScenesModel>();
   tableHotSpotdataSource = new MatTableDataSource<File360TourHotSpotModel>();
   tabledisplayedColumns = ['linkFileId', 'panorama', 'Title', 'Action'];
-  tableHotspotDisplayedColumns = ['sceneId', 'type', 'text', 'url', 'pitch', 'yaw', 'Action'];
+  tableHotspotDisplayedColumns = ['sceneId', 'sceneIdSelector', 'type', 'text', 'url', 'pitch', 'yaw', 'Action'];
 
   selectFileTypeReport = ['jpeg', 'jpg'];
 
@@ -99,7 +105,7 @@ export class Cms360TourListComponent implements OnInit {
   ngAfterViewInit(): void {
     this.container.nativeElement.style.display = 'none';
   }
-  actionPannellumLoad(str: string, hotSpots: File360TourHotSpotModel[]): void {
+  actionPannellumImageLoad(str: string, hotSpots: File360TourHotSpotModel[]): void {
     const defaultOptions = {
       "type": "equirectangular",//equirectangular, cubemap, or multires.
       "panorama": str,
@@ -116,7 +122,19 @@ export class Cms360TourListComponent implements OnInit {
     this.viewer = pannellum.viewer(this.container.nativeElement, combinedOptions);
     this.container.nativeElement.style.display = 'block';
   }
-
+  actionPannellumTourLoad(): void {
+    this.actionPrivateDataModelOptimaze();
+    const defaultOptions = {};
+    defaultOptions['default'] = this.privateDataModel.Default;
+    if (this.privateDataModel && this.privateDataModel.scenes) {
+      defaultOptions['scenes'] = this.privateDataModel.scenes;
+    }
+    const combinedOptions = Object.assign({}, defaultOptions, this.options);
+    if (this.viewer)
+      this.onActionPannellumDestroy();
+    this.viewer = pannellum.viewer(this.container.nativeElement, combinedOptions);
+    this.container.nativeElement.style.display = 'block';
+  }
   onActionPannellumClick(e): void {
     if (!this.viewer)
       return;
@@ -150,7 +168,7 @@ export class Cms360TourListComponent implements OnInit {
     this.dataDetailModel.linkFileId = model.id;
     this.dataDetailModel.panorama = model.downloadLinksrc;
     this.dataDetailModel.preview = model.downloadLinksrc;
-    this.actionPannellumLoad(this.dataDetailModel.panorama, []);
+    this.actionPannellumImageLoad(this.dataDetailModel.panorama, []);
   }
 
   onActionSubmitView360(): void {
@@ -167,14 +185,27 @@ export class Cms360TourListComponent implements OnInit {
     else {
       this.scenesList.push(this.dataDetailModel);
     }
-    this.privateDataModel.scenes = new Map<string, File360TourScenesModel>;
-    this.scenesList.forEach(element => {
-      this.privateDataModel.scenes[element.linkFileId] = element;
-    });
+
+    this.actionPrivateDataModelOptimaze();
     this.dataModelChange.emit(this.privateDataModel);
     this.showAddView360 = !this.showAddView360;
     this.selectIndex = -1;
     this.onActionPannellumDestroy();
+  }
+  actionPrivateDataModelOptimaze() {
+    if (!this.privateDataModel.Default)
+      this.privateDataModel.Default = new File360TourDefaultModel();
+    this.privateDataModel.scenes = new Map<string, File360TourScenesModel>;
+    this.scenesList.forEach(element => {
+      this.privateDataModel.scenes[element.linkFileId] = element;
+      this.privateDataModel.scenes[element.linkFileId].hfov = 110;
+    });
+
+    if (!this.privateDataModel.Default.firstScene || this.privateDataModel.Default.firstScene.length == 0) {
+      if (this.privateDataModel.scenes && this.scenesList && this.scenesList.length > 0)
+        this.privateDataModel.Default.firstScene = this.scenesList[0].linkFileId + "";
+      this.privateDataModel.Default.sceneFadeDuration = 1000;
+    }
   }
   onActionCancellView360(): void {
     this.showAddView360 = false;
@@ -192,10 +223,11 @@ export class Cms360TourListComponent implements OnInit {
     if (!this.dataDetailModel.hotSpots)
       this.dataDetailModel.hotSpots = [];
     this.editHotspot = new File360TourHotSpotModel();
-    const sceneNew = new File360TourHotSpotModel();
+    const hotspot = new File360TourHotSpotModel();
 
-    sceneNew.guid = this.getGuid();
-    this.dataDetailModel.hotSpots.push(sceneNew);
+    hotspot.guid = this.getGuid();
+
+    this.dataDetailModel.hotSpots.push(hotspot);
     this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
   }
   onActionOptionRemoveView360(index: number): void {
@@ -207,10 +239,8 @@ export class Cms360TourListComponent implements OnInit {
       return;
     }
     this.scenesList.splice(index, 1);
-    this.privateDataModel.scenes = new Map<string, File360TourScenesModel>;
-    this.scenesList.forEach(element => {
-      this.privateDataModel.scenes[element.linkFileId] = element;
-    });
+
+    this.actionPrivateDataModelOptimaze();
     this.dataModelChange.emit(this.privateDataModel);
     this.onActionPannellumDestroy();
   }
@@ -226,7 +256,7 @@ export class Cms360TourListComponent implements OnInit {
     if (!this.dataDetailModel.hotSpots)
       this.dataDetailModel.hotSpots = [];
 
-    this.actionPannellumLoad(this.dataDetailModel.panorama, this.dataDetailModel.hotSpots);
+    this.actionPannellumImageLoad(this.dataDetailModel.panorama, this.dataDetailModel.hotSpots);
     this.oldHotspot = new File360TourHotSpotModel();
     this.editHotspot = new File360TourHotSpotModel();
     this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
