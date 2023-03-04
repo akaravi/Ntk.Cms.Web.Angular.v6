@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
-import { File360TourDefaultModel, File360TourHotSpotModel, File360TourModel, File360TourScenesModel, FormInfoModel } from 'ntk-cms-api';
+import { File360TourDefaultModel, File360TourHotSpotModel, File360TourModel, File360TourScenesModel, File360ViewModel, FormInfoModel } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import 'pannellum-next/src/js/libpannellum';
 import 'pannellum-next/src/js/pannellum';
@@ -67,21 +67,20 @@ export class Cms360TourListComponent implements OnInit {
   get dataModel(): File360TourModel {
     return this.privateDataModel;
   }
-  @Input() set dataImageModel(model: File360TourScenesModel[]) {
+  @Input() set dataImageModel(model: File360ViewModel[]) {
     if (!model) {
       model = [];
     }
-    // this.scenesList = model;
-    // this.tabledataSource.data = this.scenesList;
-    // this.tableHotSpotdataSource.data = [];
+    this.privateDataImageModel = model;
   }
+  privateDataImageModel: File360ViewModel[];
   formInfo: FormInfoModel = new FormInfoModel();
   loading = new ProgressSpinnerModel();
   loadingOption = new ProgressSpinnerModel();
   tabledataSource = new MatTableDataSource<File360TourScenesModel>();
   tableHotSpotdataSource = new MatTableDataSource<File360TourHotSpotModel>();
   tabledisplayedColumns = ['linkFileId', 'panorama', 'Title', 'Action'];
-  tableHotspotDisplayedColumns = ['sceneId', 'sceneIdSelector', 'type', 'text', 'url', 'pitch', 'yaw', 'Action'];
+  tableHotspotDisplayedColumns = ['sceneIdSelector', 'type', 'text', 'url', 'pitch', 'yaw', 'Action'];
 
   selectFileTypeReport = ['jpeg', 'jpg'];
 
@@ -93,7 +92,6 @@ export class Cms360TourListComponent implements OnInit {
 
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
-
   }
 
   @ViewChild('container') container: ElementRef;
@@ -154,6 +152,7 @@ export class Cms360TourListComponent implements OnInit {
     if (this.viewer)
       this.viewer.destroy();
   }
+
   onActionPannellumClickLastPoint(): void {
     if (this.postionView && (this.postionView.clickGetYaw != 0 || this.postionView.clickGetPitch != 0)) {
       this.editHotspot.yaw = this.postionView.clickGetYaw;
@@ -294,6 +293,25 @@ export class Cms360TourListComponent implements OnInit {
       if (!this.dataDetailModel.hotSpots)
         this.dataDetailModel.hotSpots = [];
       this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+    }
+  }
+  onActionImportFile360View(): void {
+    if (this.privateDataImageModel && this.privateDataImageModel.length > 0) {
+      this.actionPrivateDataModelOptimaze();
+      this.privateDataImageModel.forEach(element => {
+        if (!this.privateDataModel.scenes[element.linkFileId] && element.linkFileId > 0) {
+          const scense = new File360TourScenesModel();
+          scense.guid = this.getGuid();
+          scense.linkFileId = element.linkFileId;
+          scense.title = element.title
+          scense.hotSpots = element.hotSpots;
+          scense.panorama = element.panorama;
+          scense.preview = element.preview;
+          scense.hfov = 110;
+          this.privateDataModel.scenes[element.linkFileId] = scense;
+        }
+      });
+      this.dataModel = this.privateDataModel;
     }
   }
 }

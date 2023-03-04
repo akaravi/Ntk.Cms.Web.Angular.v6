@@ -20,12 +20,16 @@
 <br>
 
 <button (click)="onActionShowView360Add()" *ngIf="!showAddView360" type="button" mat-button
-  class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
+  class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px;">
   {{'ACTION.Add_To_List' | translate}}
 </button>
+<button (click)="onActionImportFile360View()" *ngIf="privateDataImageModel && privateDataImageModel.length > 0"
+  type="button" mat-button class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px ">
+  ورود اطلاعات عکس های 360
+</button>
 <button (click)="actionPannellumTourLoad()"
-  *ngIf="this.privateDataModel && this.privateDataModel && this.privateDataModel.scenes" type="button" mat-button
-  class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
+  *ngIf="this.privateDataModel && this.privateDataModel && this.privateDataModel.scenes && scenesList && scenesList.length > 0"
+  type="button" mat-button class="btn btn-light-primary font-size-h6 px-3 py-2" style="margin: 10px ">
   نمایش تور
 </button>
 <div *ngIf="showAddView360" class="example-container mat-elevation-z8">
@@ -74,7 +78,7 @@
       <!--TABLE HOTSPOT-->
       <mat-table #table [dataSource]="tableHotSpotdataSource" matSort>
         <ng-container matColumnDef="sceneId">
-          <mat-header-cell *matHeaderCellDef>sceneId</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>شناسه صحنه</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate">{{row.sceneId || 'N/A'}} </p>
@@ -88,7 +92,7 @@
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="sceneIdSelector">
-          <mat-header-cell *matHeaderCellDef>sceneId</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>شناسه صحنه</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate grid-row-ltr-center">{{row.sceneId}}</p>
@@ -285,7 +289,7 @@
     </ng-container>
     <!-- linkFileId Column -->
     <ng-container matColumnDef="linkFileId">
-      <mat-header-cell *matHeaderCellDef> sceneId
+      <mat-header-cell *matHeaderCellDef> شناسه صحنه
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
         <ng-container>

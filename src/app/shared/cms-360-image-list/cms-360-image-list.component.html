@@ -78,14 +78,14 @@
       <!--TABLE HOTSPOT-->
       <mat-table #table [dataSource]="tableHotSpotdataSource" matSort>
         <ng-container matColumnDef="sceneId">
-          <mat-header-cell *matHeaderCellDef>sceneId</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>شناسه صحنه</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate">{{row.sceneId || 'N/A'}} </p>
             </ng-container>
             <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
-                <input matInput style="direction: ltr; text-align: left;" placeholder="sceneId"
+                <input matInput style="direction: ltr; text-align: left;" placeholder="شناسه صحنه"
                   [disabled]="editdisabled" name="sceneId" [(ngModel)]="row.sceneId">
               </mat-form-field>
             </ng-container>
