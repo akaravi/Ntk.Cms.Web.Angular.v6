@@ -196,8 +196,16 @@ export class Cms360TourListComponent implements OnInit {
       this.privateDataModel.Default = new File360TourDefaultModel();
     this.privateDataModel.scenes = new Map<string, File360TourScenesModel>;
     this.scenesList.forEach(element => {
-      this.privateDataModel.scenes[element.linkFileId] = element;
-      this.privateDataModel.scenes[element.linkFileId].hfov = 110;
+      if (element.title && element.title.length > 0) {
+        const hotSpots: File360TourHotSpotModel[] = [];
+        element.hotSpots.forEach(elementHotspot => {
+          if (elementHotspot.type && elementHotspot.type.length > 0)
+            hotSpots.push(elementHotspot);
+        });
+        element.hotSpots = hotSpots;
+        this.privateDataModel.scenes[element.linkFileId] = element;
+        this.privateDataModel.scenes[element.linkFileId].hfov = 110;
+      }
     });
 
     if (!this.privateDataModel.Default.firstScene || this.privateDataModel.Default.firstScene.length == 0) {

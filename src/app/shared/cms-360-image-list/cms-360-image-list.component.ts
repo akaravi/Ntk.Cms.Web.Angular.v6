@@ -102,7 +102,20 @@ export class Cms360ImageListComponent implements OnInit {
     this.viewer = pannellum.viewer(this.container.nativeElement, combinedOptions);
     this.container.nativeElement.style.display = 'block';
   }
+  actionPrivateDataModelOptimaze() {
+    const hotSpots: File360TourHotSpotModel[] = [];
+    this.privateDataModel.forEach(element => {
 
+      element.hotSpots.forEach(elementHotspot => {
+        if (elementHotspot.type && elementHotspot.type.length > 0)
+          hotSpots.push(elementHotspot);
+      });
+      element.hotSpots = hotSpots;
+
+    });
+
+
+  }
   onActionPannellumClick(e): void {
     if (!this.viewer)
       return;
@@ -153,6 +166,7 @@ export class Cms360ImageListComponent implements OnInit {
     else {
       this.privateDataModel.push(this.dataDetailModel);
     }
+    this.actionPrivateDataModelOptimaze()
     this.dataModel = this.privateDataModel;
     this.dataModelChange.emit(this.privateDataModel);
     this.showAddView360 = !this.showAddView360;
@@ -165,6 +179,7 @@ export class Cms360ImageListComponent implements OnInit {
   }
   onActionShowView360Add(): void {
     this.dataDetailModel = new File360ViewModel();
+
     this.showAddView360 = !this.showAddView360;
   }
 
@@ -175,10 +190,10 @@ export class Cms360ImageListComponent implements OnInit {
     if (!this.dataDetailModel.hotSpots)
       this.dataDetailModel.hotSpots = [];
     this.editHotspot = new File360TourHotSpotModel();
-    const sceneNew = new File360TourHotSpotModel();
-
-    sceneNew.guid = this.getGuid();
-    this.dataDetailModel.hotSpots.push(sceneNew);
+    const hotspot = new File360TourHotSpotModel();
+    hotspot.type = "info";
+    hotspot.guid = this.getGuid();
+    this.dataDetailModel.hotSpots.push(hotspot);
     this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
   }
   onActionOptionRemoveView360(index: number): void {
@@ -190,6 +205,7 @@ export class Cms360ImageListComponent implements OnInit {
       return;
     }
     this.privateDataModel.splice(index, 1);
+    this.actionPrivateDataModelOptimaze()
     this.dataModel = this.privateDataModel;
     this.dataModelChange.emit(this.privateDataModel);
     this.onActionPannellumDestroy();

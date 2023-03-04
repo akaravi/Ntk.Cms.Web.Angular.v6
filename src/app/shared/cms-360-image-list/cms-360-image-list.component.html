@@ -120,7 +120,7 @@
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="type">
-          <mat-header-cell *matHeaderCellDef>type</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>نوع</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate grid-row-ltr-center">{{row.type}}</p>
@@ -128,7 +128,6 @@
             <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <mat-select placeholder="Select" [disabled]="editdisabled" name="type" [(ngModel)]="row.type">
-                  <mat-option [value]="'scene'">صحنه</mat-option>
                   <mat-option [value]="'info'">اطلاعات</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -164,7 +163,7 @@
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="text">
-          <mat-header-cell *matHeaderCellDef>text</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>توضیحات</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate">{{row.text || 'N/A'}} </p>
@@ -178,7 +177,7 @@
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="url">
-          <mat-header-cell *matHeaderCellDef>url</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>آدرس وب سایت</mat-header-cell>
           <mat-cell *matCellDef="let row">
             <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
               <p class="text-truncate grid-row-ltr">{{row.url || 'N/A'}} </p>
