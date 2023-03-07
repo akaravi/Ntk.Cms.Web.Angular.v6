@@ -75,7 +75,7 @@ export class DynamicFormBuilderCmsComponent implements OnInit, AfterViewInit {
 
 
 
-        switch (x.fieldType) {
+        switch (x.FieldTypeString) {
           case 'System.String':
             this.fields.push({
               type: 'text',
