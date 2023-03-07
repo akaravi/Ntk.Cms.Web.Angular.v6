@@ -63,24 +63,24 @@ export class CmsSearchListComponent implements OnInit {
       this.optionsData.data.access.fieldsInfo.forEach((column) => {
         if (!column.accessSearchField) { return; }
         if (
-          column.FieldTypeString === 'System.Int32' ||
-          column.FieldTypeString === 'System.Int64'
+          column.fieldTypeString === 'System.Int32' ||
+          column.fieldTypeString === 'System.Int64'
         ) {
           this.fieldMap[column.fieldName] = {
             name: column.fieldTitle,
             type: 'integer',
           };
-        } else if (column.FieldTypeString === 'System.String') {
+        } else if (column.fieldTypeString === 'System.String') {
           this.fieldMap[column.fieldName] = {
             name: column.fieldTitle,
             type: 'string',
           };
-        } else if (column.FieldTypeString === 'MongoDB.Bson.ObjectId') {
+        } else if (column.fieldTypeString === 'MongoDB.Bson.ObjectId') {
           this.fieldMap[column.fieldName] = {
             name: column.fieldName,
             type: 'string',
           };
-        } else if (column.FieldTypeString === 'System.Boolean') {
+        } else if (column.fieldTypeString === 'System.Boolean') {
           this.fieldMap[column.fieldName] = {
             name: column.fieldTitle,
             type: 'select',
@@ -90,13 +90,13 @@ export class CmsSearchListComponent implements OnInit {
               { name: 'خیر', value: false },
             ],
           };
-        } else if (column.FieldTypeString === 'System.DateTime') {
+        } else if (column.fieldTypeString === 'System.DateTime') {
           this.fieldMap[column.fieldName] = {
             name: column.fieldTitle,
             type: 'date',
             settings: {},
           };
-        } else if (column.FieldTypeString === 'link') {
+        } else if (column.fieldTypeString === 'link') {
           this.fieldMap[column.fieldName] = {
             name: column.fieldTitle,
             type: 'string',
