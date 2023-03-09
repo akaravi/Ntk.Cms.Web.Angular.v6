@@ -80,6 +80,7 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.dataModelResult = ret;
           this.dataSource.data = this.dataModelResult.listItems;
+          this.cdr.detectChanges();
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -93,10 +94,10 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
     );
   }
   DataGetAllChild(parentModel: CoreLocationModel): void {
-    var filterModel = new FilterModel();
+    const filterModel = new FilterModel();
     filterModel.rowPerPage = 200;
     filterModel.accessLoad = true;
-    var filter = new FilterDataModel();
+    const filter = new FilterDataModel();
     filter.propertyName = 'LinkParentId';
     filter.value = parentModel.id;
     filterModel.filters.push(filter);
@@ -110,6 +111,7 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
           parentModel.children = ret.listItems;
           this.dataSource.data = null;
           this.dataSource.data = this.dataModelResult.listItems;
+          this.cdr.detectChanges();
           this.loading.Stop(pName);
           return;
 
@@ -191,10 +193,7 @@ export class CoreLocationTreeComponent implements OnInit, OnDestroy {
   }
 
   onActionDelete(): void {
-    // this.categoryService.ServiceDelete(this.getNodeOfId.id).subscribe((res) => {
-    //   if (res.isSuccess) {
-    //   }
-    // });
+
     let id = 0;
     if (this.dataModelSelect && this.dataModelSelect.id > 0) {
       id = this.dataModelSelect.id;
