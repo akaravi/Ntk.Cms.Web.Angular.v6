@@ -2,7 +2,7 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, ChartConfigurationService,
@@ -33,6 +33,7 @@ export class ChartConfigSiteComponent implements OnInit {
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
@@ -63,7 +64,7 @@ export class ChartConfigSiteComponent implements OnInit {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-
+    this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.onLoadDate();

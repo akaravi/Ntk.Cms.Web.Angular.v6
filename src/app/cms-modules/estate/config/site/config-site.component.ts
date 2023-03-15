@@ -31,10 +31,10 @@ export class EstateConfigSiteComponent implements OnInit {
   constructor(
     private configService: EstateConfigurationService,
     public publicHelper: PublicHelper,
-    private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,

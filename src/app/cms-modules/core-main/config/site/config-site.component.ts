@@ -27,12 +27,12 @@ export class CoreConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;
   constructor(
     private configService: CoreConfigurationService,
-    private activatedRoute: ActivatedRoute,
-    private tokenHelper: TokenHelper,
+     private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
@@ -66,7 +66,7 @@ export class CoreConfigSiteComponent implements OnInit {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-
+    this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.onLoadDate();
