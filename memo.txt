@@ -2,7 +2,26 @@ npm install --save --legacy-peer-deps
 npm i --legacy-peer-deps
 
 ========================*
+node --max-old-space-size=1024 index.js #increase to 1gb
+node --max-old-space-size=2048 index.js #increase to 2gb
+node --max-old-space-size=3072 index.js #increase to 3gb
+node --max-old-space-size=4096 index.js #increase to 4gb
+node --max-old-space-size=5120 index.js #increase to 5gb
+node --max-old-space-size=6144 index.js #increase to 6gb
+node --max-old-space-size=7168 index.js #increase to 7gb
+node --max-old-space-size=8192 index.js #increase to 8gb
 
+See the current value of max-old-space-size (in MB)
+node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(1024*1024))'
+
+setx NODE_OPTIONS "--max-old-space-size=8384" 
+# formula:
+export NODE_OPTIONS="--max-old-space-size=(X * 1024)" # Increase to X GB
+
+node --max-old-space-size=4096 `which npm` install
+npm install --max-old-space-size=4096
+
+========================*
 git init
 git add README.md
 git commit -m "first commit"
@@ -103,7 +122,8 @@ npm install
 =========================
 npm uninstall -g @angular/cli
 npm cache clean
-npm install -g @angular/cli
+
+
 
 npm update @angular/cli @angular/cdk rxjs
 npm install -S @angular/material @angular/cdk @angular/animations
