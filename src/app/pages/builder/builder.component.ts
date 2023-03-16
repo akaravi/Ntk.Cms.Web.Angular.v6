@@ -8,7 +8,7 @@ import { TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { LayoutService } from 'src/app/core/services/layout.service';
-import KTLayoutExamples from '../../../assets/js/layout/extended/examples';
+//import KTLayoutExamples from '../../../assets/js/layout/extended/examples';
 
 @Component({
   selector: 'app-builder',
@@ -64,7 +64,7 @@ export class BuilderComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     // init code preview examples
     // see /src/assets/js/layout/extended/examples.js
-    const elements = this.el.nativeElement.querySelectorAll('.example');
-    KTLayoutExamples.init(elements);
+    // const elements = this.el.nativeElement.querySelectorAll('.example');
+    // KTLayoutExamples.init(elements);
   }
 }
