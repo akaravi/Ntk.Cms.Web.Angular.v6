@@ -619,17 +619,6 @@ karavi tooltip guid
     border-style: solid;
     border-color: #555 transparent transparent transparent;
   }
-  .mdc-text-field{
-    padding: 0px !important;
-  }
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background-color: transparent!important;
-}
-.mat-mdc-input-element{
-  //background-color: red!important;
-  padding-top: 10px!important;
-  padding-bottom: 10px!important;
-}
 
   /* Toggle this class when clicking on the popup container (hide and show the popup) */
   .popup .show {
@@ -648,3 +637,16 @@ karavi tooltip guid
     from {opacity: 0;}
     to {opacity:1 ;}
   }
+
+  /* optimaze */
+  .mdc-text-field{
+    padding: 0px !important;
+  }
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent!important;
+}
+.mat-mdc-input-element{
+  //background-color: red!important;
+  padding-top: 10px!important;
+  padding-bottom: 10px!important;
+}
