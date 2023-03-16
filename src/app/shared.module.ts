@@ -76,8 +76,8 @@ import {
   SmsMainApiPathService
 } from 'ntk-cms-api';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { SmsMainApiNumberSelectorComponent } from './cms-modules/sms/main/api-number/selector/selector.component';
-import { SmsMainApiPathSelectorComponent } from './cms-modules/sms/main/api-path/selector/selector.component';
+
+
 import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooterDirective, CmsHtmlTreeHeaderDirective } from './core/directive/cms-html-tree.directive';
 import { CmsRecordStatusSelfSaveDirective } from './core/directive/cms-record-status-self-save.directive';
 import { DirDirective } from './core/directive/dir.directive';
@@ -150,6 +150,8 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/mater
 import { OverlayService } from './shared/overlay/overlay.service';
 import { PasswordStrengthComponent } from './shared/password-strength/password-strength.component';
 import { ProgressSpinnerComponent } from './shared/progress-spinner/progress-spinner.component';
+import { CmsSmsMainApiNumberSelectorComponent } from './shared/cms-sms-api-number-selector/cms-sms-api-number-selector.component';
+import { CmsSmsMainApiPathSelectorComponent } from './shared/cms-sms-apipath-selector/cms-sms-apipath-selector.component';
 
 @NgModule({
   imports: [
@@ -272,8 +274,9 @@ import { ProgressSpinnerComponent } from './shared/progress-spinner/progress-spi
     CmsContactCategoryTreeSelectorComponent,
     CmsContactContentSelectionListComponent,
     CmsAccessInfoComponent,
-    SmsMainApiPathSelectorComponent,
-    SmsMainApiNumberSelectorComponent,
+    CmsSmsMainApiPathSelectorComponent,
+    CmsSmsMainApiNumberSelectorComponent,
+
     /** input */
     StringComponent,
     IntComponent,
@@ -405,8 +408,8 @@ import { ProgressSpinnerComponent } from './shared/progress-spinner/progress-spi
     CmsContactCategoryTreeSelectorComponent,
     CmsContactContentSelectionListComponent,
     CmsAccessInfoComponent,
-    SmsMainApiPathSelectorComponent,
-    SmsMainApiNumberSelectorComponent,
+    CmsSmsMainApiPathSelectorComponent,
+    CmsSmsMainApiNumberSelectorComponent,
     /** input */
     StringComponent,
     IntComponent,

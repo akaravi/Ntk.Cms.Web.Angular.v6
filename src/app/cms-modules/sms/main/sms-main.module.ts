@@ -43,7 +43,9 @@ import { SmsMainApiNumberPermissionListComponent } from './api-number-permission
 import { SmsMainApiNumberAddComponent } from './api-number/add/add.component';
 import { SmsMainApiNumberEditComponent } from './api-number/edit/edit.component';
 import { SmsMainApiNumberListComponent } from './api-number/list/list.component';
+import { SmsMainApiNumberSelectorComponent } from './api-number/selector/selector.component';
 import { SmsMainApiPathSelectionlistComponent } from './api-path/selectionlist/selectionlist.component';
+import { SmsMainApiPathSelectorComponent } from './api-path/selector/selector.component';
 import { SmsMainApiPathSendTestComponent } from './api-path/sendTest/sendTest.component';
 import { SmsMainCustomerCreditAddComponent } from './customer-credit/add/add.component';
 import { SmsMainCustomerCreditEditComponent } from './customer-credit/edit/edit.component';
@@ -88,6 +90,7 @@ import { SmsMainApiPathPublicConfigTreeComponent } from './public-config/tree/tr
     SmsMainApiPathListComponent,
     SmsMainApiPathAddComponent,
     SmsMainApiPathEditComponent,
+    SmsMainApiPathSelectorComponent,
 
     SmsMainApiPathSendTestComponent,
     SmsMainApiPathSelectionlistComponent,
@@ -103,6 +106,7 @@ import { SmsMainApiPathPublicConfigTreeComponent } from './public-config/tree/tr
     SmsMainApiNumberListComponent,
     SmsMainApiNumberAddComponent,
     SmsMainApiNumberEditComponent,
+    SmsMainApiNumberSelectorComponent,
     /*Permission*/
     SmsMainApiNumberPermissionListComponent,
     SmsMainApiNumberPermissionAddComponent,
@@ -143,6 +147,7 @@ import { SmsMainApiPathPublicConfigTreeComponent } from './public-config/tree/tr
     SmsMainApiPathListComponent,
     SmsMainApiPathAddComponent,
     SmsMainApiPathEditComponent,
+    SmsMainApiPathSelectorComponent,
 
     SmsMainApiPathSendTestComponent,
     SmsMainApiPathSelectionlistComponent,
@@ -158,6 +163,7 @@ import { SmsMainApiPathPublicConfigTreeComponent } from './public-config/tree/tr
     SmsMainApiNumberListComponent,
     SmsMainApiNumberAddComponent,
     SmsMainApiNumberEditComponent,
+    SmsMainApiNumberSelectorComponent,
     /*Permission*/
     SmsMainApiNumberPermissionListComponent,
     SmsMainApiNumberPermissionAddComponent,

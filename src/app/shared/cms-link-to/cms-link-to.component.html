@@ -83,16 +83,16 @@
                 <div class="col-md-6 col-sm-6 col-xs-9" style="padding-top: 40px;">
 
                     <!-- LinkPrivateSiteConfigId Field -->
-                    <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)"
+                    <app-cms-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)"
                         [(loading)]="loading" [optionSelectForce]="dataModel.linkApiPathId"
                         [optionPlaceholder]="this.translate.instant('TITLE.Direction')" [optionSelectFirstItem]="true">
-                    </app-sms-apipath-selector>
-                    <app-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [(loading)]="loading"
+                    </app-cms-sms-apipath-selector>
+                    <app-cms-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [(loading)]="loading"
                         (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]=""
                         [optionLinkApiPathId]="dataModel.linkApiPathId"
                         [optionPlaceholder]="this.translate.instant('TITLE.sender_number')"
                         [optionSelectFirstItem]="true" [optionSelectFirstItemOnChangeApi]="true">
-                    </app-sms-api-number-selector>
+                    </app-cms-sms-api-number-selector>
 
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-9">
