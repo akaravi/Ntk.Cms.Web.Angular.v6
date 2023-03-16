@@ -154,7 +154,7 @@
         <!-- KeywordModel Field -->
         <mat-form-field style="width: 100%;" appearance="fill">
           <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
-          <mat-chip-list #chipList aria-label="this.translate.instant('TITLE.key_word')">
+          <mat-chip-grid #chipList aria-label="this.translate.instant('TITLE.key_word')">
             <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
               {{item}}
               <button matChipRemove>
@@ -163,8 +163,8 @@
             </mat-chip>
             <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
-              (matChipInputTokenEnd)="addTag($event)">
-          </mat-chip-list>
+              (matChipInputTokenEnd)="addTag($event)"/>
+          </mat-chip-grid>
         </mat-form-field>
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
