@@ -18,26 +18,29 @@
         class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4 input-ltr-center"
         placeholder="{{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}}" minlength="5"
         maxlength="50" required />
-      <mat-icon matSuffix *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.email = ''">
+      <mat-icon *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.email = ''">
         close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-      
+
       <mat-error *ngIf="Email.errors?.required">
-        {{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
+        {{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}} <strong>{{'MESSAGE.required' |
+          translate}}</strong>
       </mat-error>
     </mat-form-field>
+
     <!--Password Field-->
     <mat-form-field class="ntk-full-width">
       <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.password" name="dataModel.password"
-        [disabled]=" !formInfo.buttonSubmittedEnabled" #Password type="password"
-        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center" autocomplete="off"
-        placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="50" required />
-      <mat-icon matSuffix *ngIf="dataModel.password" matSuffix mat-icon-button aria-label="Clear"
+      <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="dataModel.password"
+        name="dataModel.password" [disabled]=" !formInfo.buttonSubmittedEnabled" #Password type="password"
+        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
+        autocomplete="off" placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="50" required />
+      <mat-icon mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePassword">
+        {{hidePassword ? 'visibility_off' : 'visibility'}}
+      </mat-icon>
+      <mat-icon *ngIf="dataModel.password" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.password = ''">
         close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-error *ngIf="Password.errors?.required">
         {{'AUTH.INPUT.PASSWORD' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
@@ -50,12 +53,11 @@
         <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
         <input matInput [(ngModel)]="dataModel.captchaText" name="dataModel.captchaText"
           [disabled]=" !formInfo.buttonSubmittedEnabled" #captchaText type="number"
-          class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4 input-ltr-center" autocomplete="off"
-          placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
-        <mat-icon matSuffix *ngIf="dataModel.captchaText" matSuffix mat-icon-button aria-label="Clear"
+          class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4 input-ltr-center"
+          autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
+        <mat-icon *ngIf="dataModel.captchaText" matSuffix mat-icon-button aria-label="Clear"
           (click)="dataModel.captchaText = ''">
           close</mat-icon>
-        <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-error *ngIf="captchaText.errors?.required">
           {{'AUTH.INPUT.CAPTCHACODE' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
@@ -67,14 +69,14 @@
         class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
         {{'AUTH.LOGIN.BUTTON' | translate}}
       </button>
-        <div class="pb-lg-0 pb-0">
-          <button type="button" [routerLink]="['/auth/singup']" [disabled]=" !formInfo.buttonSubmittedEnabled"
-            class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
-            {{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}
-            <br>
-          </button>
-        </div>
-        <div class="row">
+      <div class="pb-lg-0 pb-0">
+        <button type="button" [routerLink]="['/auth/singup']" [disabled]=" !formInfo.buttonSubmittedEnabled"
+          class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
+          {{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}
+          <br>
+        </button>
+      </div>
+      <div class="row">
         <div class="col-12 col-lg-6">
           <button type="button" [routerLink]="['/auth/singinbysms']" [disabled]=" !formInfo.buttonSubmittedEnabled"
             class="btn btn-primary font-weight-bolder font-size-h5  col-12" style="margin: 1px;">
@@ -86,7 +88,7 @@
             class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
             {{'AUTH.FORGOT.TITLE' | translate}}
           </button>
-        </div>    
+        </div>
       </div>
     </div>
     <!--end::Action-->

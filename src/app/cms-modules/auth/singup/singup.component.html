@@ -60,8 +60,8 @@
           <mat-label> {{'AUTH.INPUT.MOBILE' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.mobile" name="dataModel.mobile" class="input-Mobile"
             [disabled]=" !formInfo.buttonSubmittedEnabled" #Mobile type="text" autocomplete="off"
-            class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center" placeholder="009891"
-            minlength="0" maxlength="50" />
+            class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
+            placeholder="009891" minlength="0" maxlength="50" />
           <mat-icon matSuffix *ngIf="dataModel.mobile" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.mobile = ''">
             close</mat-icon>
@@ -73,14 +73,19 @@
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.password" name="dataModel.password"
-            [disabled]=" !formInfo.buttonSubmittedEnabled" #Password type="{{(PasswordView? 'text':'password')}}"
-            class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center" autocomplete="off"
-            placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="100" required />
+          <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="dataModel.password"
+            name="dataModel.password" [disabled]=" !formInfo.buttonSubmittedEnabled" #Password
+            type="{{(PasswordView? 'text':'password')}}"
+            class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
+            autocomplete="off" placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="100"
+            required />
+          <mat-icon mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword">
+            {{hidePassword ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
           <mat-icon matSuffix *ngIf="dataModel.password" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.password = ''">
             close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ Password.value.length }} / 50</mat-hint>
           <mat-error *ngIf="Password.errors?.required">
             Password is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -91,14 +96,18 @@
         </app-password-strength>
         <mat-form-field class="ntk-full-width">
           <mat-label> {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}</mat-label>
-          <input matInput [(ngModel)]="RePasswordModel" name="RePasswordModel"
-            [disabled]=" !formInfo.buttonSubmittedEnabled" #RePassword type="password"
-            class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center" autocomplete="off"
-            placeholder=" {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}" minlength="3" maxlength="100" required />
+          <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="RePasswordModel"
+            name="RePasswordModel" [disabled]=" !formInfo.buttonSubmittedEnabled" #RePassword type="password"
+            class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
+            autocomplete="off" placeholder=" {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}" minlength="3"
+            maxlength="100" required />
+          <mat-icon mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword">
+            {{hidePassword ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
           <mat-icon matSuffix *ngIf="RePasswordModel" matSuffix mat-icon-button aria-label="Clear"
             (click)="RePasswordModel = ''">
             close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="end">{{ RePassword.value.length }} / 50</mat-hint>
           <mat-error *ngIf="RePassword.errors?.required">
             RePassword is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -114,12 +123,11 @@
           <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.captchaText" name="dataModel.captchaText"
             [disabled]=" !formInfo.buttonSubmittedEnabled" #captchaText type="number"
-            class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center" autocomplete="off"
-            placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
+            class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
+            autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
           <mat-icon matSuffix *ngIf="dataModel.captchaText" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.captchaText = ''">
             close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-error *ngIf="captchaText.errors?.required">
             captchaText is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>

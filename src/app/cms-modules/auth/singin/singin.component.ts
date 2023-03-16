@@ -26,6 +26,7 @@ export class AuthSingInComponent implements OnInit {
     this.firstRun = true;
   }
   firstRun = true;
+  hidePassword = true;
   loading = new ProgressSpinnerModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModel: AuthUserSignInModel = new AuthUserSignInModel();

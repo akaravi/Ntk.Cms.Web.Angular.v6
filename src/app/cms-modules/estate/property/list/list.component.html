@@ -152,7 +152,7 @@
       <!-- CreatedYaer Field -->
       <mat-form-field class="ntk-full-width"
         *ngIf="this.filteModelContent.linkPropertyTypeLanduseId && PropertyTypeSelected?.titleCreatedYaer?.length>1">
-        <mat-label class="text-white">{{PropertyTypeSelected.titleCreatedYaer}}</mat-label>
+        <mat-label>{{PropertyTypeSelected.titleCreatedYaer}}</mat-label>
         <input matInput [(ngModel)]="filteModelContent.createdYaer" name="filteModelContent.createdYaer" #CreatedYaer
           type="number" placeholder="{{fieldsInfo['createdYaer']?.fieldTitle}}" />
         <mat-icon matPrefix *ngIf="filteModelContent.createdYaer" matPrefix mat-icon-button aria-label="Clear"
@@ -162,7 +162,7 @@
       <!-- Partition Field -->
       <mat-form-field class="ntk-full-width"
         *ngIf="this.filteModelContent.linkPropertyTypeLanduseId && PropertyTypeSelected?.titlePartition?.length>1">
-        <mat-label class="text-white">{{PropertyTypeSelected.titlePartition}}</mat-label>
+        <mat-label>{{PropertyTypeSelected.titlePartition}}</mat-label>
         <input matInput [(ngModel)]="filteModelContent.partition" name="filteModelContent.partition" #Partition
           type="number" placeholder="{{PropertyTypeSelected.titlePartition}}" />
         <mat-icon matPrefix *ngIf="filteModelContent.partition" matPrefix mat-icon-button aria-label="Clear"
@@ -171,7 +171,7 @@
       </mat-form-field>
       <!-- Area Field -->
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['area']?.accessWatchField">
-        <mat-label class="text-white">{{fieldsInfo['area']?.fieldTitle}}</mat-label>
+        <mat-label>{{fieldsInfo['area']?.fieldTitle}}</mat-label>
         <input matInput [(ngModel)]="filteModelContent.area" name="filteModelContent.area" #Area type="number"
           pattern="(d{3})" placeholder="{{fieldsInfo['area']?.fieldTitle}}" step="10" />
         <mat-icon matPrefix *ngIf="filteModelContent.area" matPrefix mat-icon-button aria-label="Clear"
@@ -193,7 +193,7 @@
         <div class="col-md-6 col-sm-6 col-xs-9">
           <!-- SalePriceMin Field -->
           <mat-form-field class="ntk-full-width" *ngIf=" contractTypeSelected?.hasSalePrice">
-            <mat-label class="text-white">{{'TITLE.SalePriceMin' | translate}} </mat-label>
+            <mat-label>{{'TITLE.SalePriceMin' | translate}} </mat-label>
             <input matInput [(ngModel)]="filteModelContent.salePriceMin" name="filteModelContent.salePriceMin"
               #SalePriceMin type="number" step="1000000" />
             <mat-icon matPrefix *ngIf="filteModelContent.salePriceMin" matPrefix mat-icon-button aria-label="Clear"
@@ -202,7 +202,7 @@
           </mat-form-field>
           <!-- RentPriceMin Field -->
           <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected?.hasRentPrice">
-            <mat-label class="text-white">{{'TITLE.RentPriceMin' | translate}}</mat-label>
+            <mat-label>{{'TITLE.RentPriceMin' | translate}}</mat-label>
             <input matInput [(ngModel)]="filteModelContent.rentPriceMin" name="filteModelContent.rentPriceMin"
               #RentPriceMin type="number" step="1000000" />
             <mat-icon matPrefix *ngIf="filteModelContent.rentPriceMin" matPrefix mat-icon-button aria-label="Clear"
@@ -211,7 +211,7 @@
           </mat-form-field>
           <!-- DepositPriceMin Field -->
           <mat-form-field class="ntk-full-width" *ngIf=" contractTypeSelected?.hasDepositPrice">
-            <mat-label class="text-white">{{'TITLE.DepositPriceMin' | translate}} </mat-label>
+            <mat-label>{{'TITLE.DepositPriceMin' | translate}} </mat-label>
             <input matInput [(ngModel)]="filteModelContent.depositPriceMin" name="filteModelContent.depositPriceMin"
               #DepositPriceMin type="number" step="1000000" />
             <mat-icon matPrefix *ngIf="filteModelContent.depositPriceMin" matPrefix mat-icon-button aria-label="Clear"
@@ -220,7 +220,7 @@
           </mat-form-field>
           <!-- PeriodPriceMin Field -->
           <mat-form-field class="ntk-full-width" *ngIf=" contractTypeSelected?.hasDepositPrice">
-            <mat-label class="text-white">{{'TITLE.PeriodPriceMin' | translate}} </mat-label>
+            <mat-label>{{'TITLE.PeriodPriceMin' | translate}} </mat-label>
             <input matInput [(ngModel)]="filteModelContent.periodPriceMin" name="filteModelContent.periodPriceMin"
               #PeriodPriceMin type="number" step="1000000" />
             <mat-icon matPrefix *ngIf="filteModelContent.periodPriceMin" matPrefix mat-icon-button aria-label="Clear"
@@ -231,7 +231,7 @@
         <div class="col-md-6 col-sm-6 col-xs-9">
           <!-- SalePriceMax Field -->
           <mat-form-field class="ntk-full-width" *ngIf=" contractTypeSelected?.hasSalePrice">
-            <mat-label class="text-white"> {{'TITLE.SalePriceMax' | translate}}</mat-label>
+            <mat-label> {{'TITLE.SalePriceMax' | translate}}</mat-label>
             <input matInput [(ngModel)]="filteModelContent.salePriceMax" name="filteModelContent.salePriceMax"
               #SalePriceMax type="number" step="1000000" />
             <mat-icon matPrefix *ngIf="filteModelContent.salePriceMax" matPrefix mat-icon-button aria-label="Clear"
@@ -240,7 +240,7 @@
           </mat-form-field>
           <!-- RentPriceMax Field -->
           <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected?.hasRentPrice">
-            <mat-label class="text-white">{{'TITLE.RentPriceMax' | translate}} </mat-label>
+            <mat-label>{{'TITLE.RentPriceMax' | translate}} </mat-label>
             <input matInput [(ngModel)]="filteModelContent.rentPriceMax" name="filteModelContent.rentPriceMax"
               #RentPriceMax type="number" step="1000000" />
             <mat-icon matPrefix *ngIf="filteModelContent.rentPriceMax" matPrefix mat-icon-button aria-label="Clear"
@@ -249,7 +249,7 @@
           </mat-form-field>
           <!-- DepositPriceMax Field -->
           <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected?.hasDepositPrice">
-            <mat-label class="text-white">{{'TITLE.DepositPriceMax' | translate}}</mat-label>
+            <mat-label>{{'TITLE.DepositPriceMax' | translate}}</mat-label>
             <input matInput [(ngModel)]="filteModelContent.depositPriceMax" name="filteModelContent.depositPriceMax"
               #DepositPriceMax type="number" step="1000000" />
             <mat-icon matPrefix *ngIf="filteModelContent.depositPriceMax" matPrefix mat-icon-button aria-label="Clear"
@@ -258,7 +258,7 @@
           </mat-form-field>
           <!-- PeriodPriceMax Field -->
           <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected?.hasDepositPrice">
-            <mat-label class="text-white">{{'TITLE.PeriodPriceMax' | translate}} </mat-label>
+            <mat-label>{{'TITLE.PeriodPriceMax' | translate}} </mat-label>
             <input matInput [(ngModel)]="filteModelContent.periodPriceMax" name="filteModelContent.periodPriceMax"
               #PeriodPriceMax type="number" step="1000000" />
             <mat-icon matPrefix *ngIf="filteModelContent.periodPriceMax" matPrefix mat-icon-button aria-label="Clear"
@@ -266,8 +266,6 @@
             <mat-icon matPrefix> mode_edit</mat-icon>
           </mat-form-field>
         </div>
-
-
       </div>
 
     </app-cms-search-list>
@@ -304,6 +302,7 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            style="background: none; border: none;"
             [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select>
         </mat-cell>
@@ -355,15 +354,15 @@
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}">
+        <mat-cell *matCellDef="let row" style="direction: ltr; justify-content: center; text-align: center;">
           {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.updatedDate)
-          }}
+        <mat-cell *matCellDef="let row" style="direction: ltr; justify-content: center; text-align: center;">
+          {{ publicHelper.LocaleDateTime(row.updatedDate) }}
         </mat-cell>
       </ng-container>
       <!-- Action Column -->

@@ -1,4 +1,4 @@
-<div *ngIf="optionsData.data.show" class="alert alert-primary" style="direction: ltr">
+<div *ngIf="optionsData.data.show" class="alert alert-primary">
         <ngx-ntk-query-builder [(ngModel)]="query" [fieldMap]="fieldMap" [language]="lang">
         </ngx-ntk-query-builder>
         <ng-content></ng-content>
@@ -14,7 +14,7 @@
         <a *ngIf="allowLoadSearch" href="javascript:void(0)" (click)="onActionLoadRules()" style="float: left;"
                 class="btn btn-raised mr-1 shadow-z-3 btn-success d-none d-lg-inline popup">{{'ACTION.LOAD'
                 | translate}}</a>
-        
+
         <a href="javascript:void(0)" (click)="onSubmit()"
                 class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
 

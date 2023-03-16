@@ -40,6 +40,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   RePasswordModel = '';
   PasswordView = false;
   loginAuto = false;
+  hidePassword = true;
   ngOnInit(): void {
     this.onCaptchaOrder();
   }
