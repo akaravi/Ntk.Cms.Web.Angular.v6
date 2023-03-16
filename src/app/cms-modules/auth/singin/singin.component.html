@@ -18,8 +18,7 @@
         class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4 input-ltr-center"
         placeholder="{{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}}" minlength="5"
         maxlength="50" required />
-      <mat-icon *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.email = ''">
-        close</mat-icon>
+
 
       <mat-error *ngIf="Email.errors?.required">
         {{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}} <strong>{{'MESSAGE.required' |
@@ -34,13 +33,11 @@
         name="dataModel.password" [disabled]=" !formInfo.buttonSubmittedEnabled" #Password type="password"
         class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
         autocomplete="off" placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="50" required />
-      <mat-icon mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hidePassword">
+      <mat-icon *ngIf="dataModel.password" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
         {{hidePassword ? 'visibility_off' : 'visibility'}}
       </mat-icon>
-      <mat-icon *ngIf="dataModel.password" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.password = ''">
-        close</mat-icon>
+
       <mat-error *ngIf="Password.errors?.required">
         {{'AUTH.INPUT.PASSWORD' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
