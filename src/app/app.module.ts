@@ -41,7 +41,6 @@ export function CreateTranslateLoader(http: HttpClient): any {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-
     TranslateModule.forRoot(),
     SharedModule.forRoot(),
     ToastrModule.forRoot({

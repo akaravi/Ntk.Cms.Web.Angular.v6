@@ -28,7 +28,6 @@ export class FooterComponent implements OnInit, AfterViewInit {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     const currentDate = new Date();
     this.currentYear = currentDate.getFullYear().toString();
-    this.publicHelper.appServerVersion
   }
   loading = new ProgressSpinnerModel();
 
@@ -47,15 +46,16 @@ export class FooterComponent implements OnInit, AfterViewInit {
   GetServiceVer(): void {
     const pName = this.constructor.name + 'ServiceIp';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_from_the_server'));
-    this.configService.ServiceIp().subscribe(
-      async (next) => {
-        this.publicHelper.appServerVersion = next.appVersion
+    this.configService.ServiceIp().subscribe({
+      next: (ret) => {
+        this.publicHelper.appServerVersion = ret.appVersion
         this.loading.Stop(pName);
       },
-      (error) => {
-        this.cmsToastrService.typeErrorGetOne(error);
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
+    }
     );
   }
 }
