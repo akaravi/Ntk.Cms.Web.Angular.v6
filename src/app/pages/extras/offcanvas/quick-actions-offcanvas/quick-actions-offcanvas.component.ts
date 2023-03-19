@@ -22,9 +22,8 @@ export class QuickActionsOffcanvasComponent implements OnInit, OnDestroy {
     });
   }
   tokenInfo: TokenInfoModel;
-  extrasQuickActionsOffcanvasDirectionCSSClasses = 'offcanvas-right';
   cmsApiStoreSubscribe: Subscription;
-
+  extrasQuickActionsOffcanvasDirectionCSSClasses = 'offcanvas-right';
   ngOnInit(): void {
     this.extrasQuickActionsOffcanvasDirectionCSSClasses = `offcanvas-${this.layout.getProp(
       'extras.quickActions.offcanvas.direction'

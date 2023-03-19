@@ -12,7 +12,7 @@
       <br>
       <p *ngIf="dataModelResult.item?.userTitle?.length>0">
 
-       {{'TITLE.your_name' | translate}}:
+        {{'TITLE.your_name' | translate}}:
         <br>
         {{dataModelResult.item.userTitle}}
       </p>
@@ -22,7 +22,7 @@
     <div class="col-md-12 col-sm-12 col-xs-18">
       <p *ngIf="dataModelResult.item?.siteTitle?.length>0">
 
-     {{'TITLE.system_title' | translate}}:
+        {{'TITLE.system_title' | translate}}:
         <br>
         {{dataModelResult.item.siteTitle}}
       </p>
@@ -33,7 +33,8 @@
 
 <!-- آدرس وب سایت -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.item?.urlSiteHome?.length>0">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"
+  *ngIf="dataModelResult.item?.urlSiteHome?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
@@ -42,7 +43,7 @@
       </div>
       <div class="col-11">
         <h5>
-            {{'TITLE.website_address' | translate}}
+          {{'TITLE.website_address' | translate}}
         </h5>
       </div>
     </div>
@@ -55,7 +56,7 @@
     </p>
     <br>
     <h5>
-     {{'TITLE.website_address' | translate}}
+      {{'TITLE.website_address' | translate}}
     </h5>
     <a href="{{dataModelResult.item?.urlSiteHome}}">
       {{dataModelResult.item.urlSiteHome}}
@@ -79,7 +80,8 @@
 </div>
 <!-- آدرس سامانه مدیریت محتوا -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.item?.urlSiteCPanel?.length>0">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"
+  *ngIf="dataModelResult.item?.urlSiteCPanel?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
@@ -95,9 +97,11 @@
     <br>
     <h4>{{'TITLE.DESCRIPTION' | translate}}:</h4>
     <p>
-    {{'TITLE.In_this_section_you_can_see_the_link_of_your_content_management_system_and_copyit_and_share_it_with_others' | translate}}
+      {{'TITLE.In_this_section_you_can_see_the_link_of_your_content_management_system_and_copyit_and_share_it_with_others'
+      | translate}}
       <br>
-      {{'TITLE.The_content_management_system_allows_you_to_add,_edit_and_delete_content_to_your_site_and_manage_all_parts_of_your_site.' | translate}}
+      {{'TITLE.The_content_management_system_allows_you_to_add,_edit_and_delete_content_to_your_site_and_manage_all_parts_of_your_site.'
+      | translate}}
       <br>
       {{'TITLE.You_can_also_get_your_link_as_a_barcode_by_clicking_on_the_Barcode_option.' | translate}}
     </p>
@@ -128,7 +132,8 @@
 
 <!-- آدرس اشتراک گزاری وب سایت -->
 
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"  *ngIf="dataModelResult.item?.urlResellerSiteShortLinkUrl?.length>0">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"
+  *ngIf="dataModelResult.item?.urlResellerSiteShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
@@ -144,13 +149,15 @@
     <br>
     <h4>{{'TITLE.DESCRIPTION' | translate}}:</h4>
     <p>
-     {{'TITLE.In_this_section,_you_can_see_the_link_of_your_website's_sharing_address_and_copy_it_and_share_it_with_others' |translate}}
+      {{'TITLE.In_this_section_you_can_see_the_link_of_your_website_s_sharing_address_and_copy_it_and_share_it_with_others'
+      |translate}}
       <br>
       {{'TITLE.You_can_see_the_list_of_sites_under_your_collection_by_clicking_on_the_view_chart_option' | translate}}
       <br>
-      {{'TITLE.You_can_also_see_the_number_of_visits_to_your_site_by_clicking_on_the_view_statistics_option' | translate}}
+      {{'TITLE.You_can_also_see_the_number_of_visits_to_your_site_by_clicking_on_the_view_statistics_option' |
+      translate}}
       <br>
-      {{'TITLE.In_addition,_click_on_the_barcode_option_to_receive_your_link_as_a_barcode.' | translate}}
+      {{'TITLE.In_addition_click_on_the_barcode_option_to_receive_your_link_as_a_barcode' | translate}}
     </p>
     <br>
     <h5>
@@ -186,7 +193,8 @@
 </div>
 
 <!-- آدرس اشتراک گزاری با حساب کاربری شما -->
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert" *ngIf="dataModelResult.item?.urlResellerUserShortLinkUrl?.length>0">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"
+  *ngIf="dataModelResult.item?.urlResellerUserShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
@@ -195,20 +203,22 @@
       </div>
       <div class="col-11" *ngIf="dataModelResult.item?.urlResellerUser?.length>0">
         <h5>
-         {{'TITLE.Sharing_address_with_your_user_account' | translate}}
-                </h5>
+          {{'TITLE.Sharing_address_with_your_user_account' | translate}}
+        </h5>
       </div>
     </div>
     <br>
     <h4>{{'TITLE.DESCRIPTION' | translate}}:</h4>
     <p>
-      {{'TITLE.In_this_section,_you_can_view_the_link_of_the_sharing_address_with_your_account_and_copy_it_with-others_Share-let_the.' | translate}}
+      {{'TITLE.In_this_section_you_can_view_the_link_of_the_sharing_address_with_your_account_and_copy_it_with-others_Share-let_the.'
+      | translate}}
       <br>
       {{'TITLE.You_can_see_the_list_of_sites_under_your_collection_by_clicking_on_the_view_chart_option' | translate}}
-       <br>
-    {{'TITLE.You_can_also_see_the_number_of_visits_to_your_site_by_clicking_on_the_view_statistics_option.' | translate}}
       <br>
-      {{'TITLE.In_addition,_click_on_the_barcode_option_to_receive_your_link_as_a_barcode' | translate}}
+      {{'TITLE.You_can_also_see_the_number_of_visits_to_your_site_by_clicking_on_the_view_statistics_option' |
+      translate}}
+      <br>
+      {{'TITLE.In_addition_click_on_the_barcode_option_to_receive_your_link_as_a_barcode' | translate}}
     </p>
     <br>
     <h5>
@@ -244,7 +254,8 @@
 </div>
 
 <!-- آدرس اشتراک گزاری با دسته بندی سامانه موجود -->
-<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert" *ngIf="dataModelResult.item?.urlResellerSiteCategoryShortLinkUrl?.length>0">
+<div class="row alert alert-custom alert-white alert-shadow gutter-b" role="alert"
+  *ngIf="dataModelResult.item?.urlResellerSiteCategoryShortLinkUrl?.length>0">
   <div class="col-md-6 col-sm-6 col-xs-9">
     <div class="row">
       <div class="col-1 alert-icon alert-icon-top">
@@ -260,15 +271,17 @@
     <br>
     <h4>{{'TITLE.DESCRIPTION' | translate}}:</h4>
     <p>
-      {{'TITLE.In_this_section,_you_can_view_the_sharing_address_link_with_the_category_of_your_existing_system_and_copy_it_and_share_it_with_others.' | translate}}
+      {{'TITLE.In_this_section_you_can_view_the_sharing_address_link_with_the_category_of_your_existing_system_and_copy_it_and_share_it_with_others.'
+      | translate}}
       <br>
       {{'TITLE.You_can_see_the_list_of_sites_under_your_collection_by_clicking_on_the_view_chart_option' | translate}}
       <br>
-      {{'TITLE.You_can_also_see_the_number_of_visits_to_your_site_by_clicking_on_the_view_statistics_option.' | translate}}
+      {{'TITLE.You_can_also_see_the_number_of_visits_to_your_site_by_clicking_on_the_view_statistics_option' |
+      translate}}
       <br>
-      {{'TITLE.In_addition,_click_on_the_barcode_option_to_receive_your_link_as_a_barcode' | translate}}
+      {{'TITLE.In_addition_click_on_the_barcode_option_to_receive_your_link_as_a_barcode' | translate}}
     </p>
-    <div >
+    <div>
       <br>
       <h5>
         {{'TITLE.Sharing_address_with_existing_system_category' | translate}}
@@ -291,7 +304,7 @@
       </button>
       <button mat-button (click)="onActionbuttonResllerUserCategoryShortLinklinkTo()" class="border">
         <mat-icon>qr_code_2</mat-icon>
-      <span> {{'ACTION.QRCODE' | translate}}</span>
+        <span> {{'ACTION.QRCODE' | translate}}</span>
       </button>
       <br>
       <br>
