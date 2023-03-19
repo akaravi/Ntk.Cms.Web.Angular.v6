@@ -10,6 +10,8 @@ node --max-old-space-size=5120 index.js #increase to 5gb
 node --max-old-space-size=6144 index.js #increase to 6gb
 node --max-old-space-size=7168 index.js #increase to 7gb
 node --max-old-space-size=8192 index.js #increase to 8gb
+node --max-old-space-size=16384 index.js #increase to 16gb
+node --max-old-space-size=32768 index.js #increase to 32gb
 
 See the current value of max-old-space-size (in MB)
 node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(1024*1024))'
