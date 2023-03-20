@@ -56,7 +56,7 @@
     "ngx-ntk-query-builder": "^1.0.16",
     "ngx-ntk-smart-module": "^1.1.6",
     "ngx-toastr": "^16.1.0",
-    "ntk-cms-api": "^1.2.138",
+    "ntk-cms-api": "^1.2.139",
     "ntk-cms-filemanager": "^1.2.19",
     "object-path": "^0.11.8",
     "pannellum-next": "^2.5.7",

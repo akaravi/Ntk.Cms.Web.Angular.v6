@@ -178,6 +178,12 @@
           <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles" [openDirectUploadView]="true">
           </app-cms-files-selector>
         </div>
+        <h3>{{'TITLE.image_360' | translate}}</h3>
+        <app-cms-360-image-list [(dataModel)]="dataModel.file360Views"></app-cms-360-image-list>
+        <br>
+        <h3>{{'TITLE.virtual_tour' | translate}}</h3>
+        <app-cms-360-tour-list [(dataModel)]="dataModel.file360Tour"
+          [dataImageModel]="dataModel.file360Views"></app-cms-360-tour-list>
         <!-- LinkFilePodcastIdSrc Field -->
         <div class="mb-3">
           <audio *ngIf="dataModel?.linkFilePodcastIdSrc?.length>0" controls>
