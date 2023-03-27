@@ -1,4 +1,5 @@
-<app-cms-guide-notice [Key]="'donate.targetperiod.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+<app-cms-guide-notice [Key]="'donate.targetperiod.list'"
+  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
 
 <app-donate-target-header *ngIf="this.requestLinkTargeId>0" [optionId]="this.requestLinkTargeId">
 </app-donate-target-header>
@@ -17,9 +18,9 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
 
-    <button *ngIf="dataModelResult.access.accessAddRow && this.requestLinkTargeId>0"
-      (click)="onActionbuttonNewRow()" type="button" class="btn btn-outline-primary" id="openModalButton"
-      data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
+    <button *ngIf="dataModelResult.access.accessAddRow && this.requestLinkTargeId>0" (click)="onActionbuttonNewRow()"
+      type="button" class="btn btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id>0" (click)="onActionbuttonEditRow()"
       type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
       translate}}</button>
@@ -33,9 +34,11 @@
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -1px;"
+        title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
-    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn btn-outline-secondary BTN-icon">
+    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+      class="btn btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
     </button>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
@@ -47,7 +50,7 @@
   <ng-container cms-action-area>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-    
+
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
@@ -88,7 +91,8 @@
       </ng-container>
       <!-- SupportRequiredPayment Column -->
       <ng-container matColumnDef="SupportRequiredPayment">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['supportRequiredPayment']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['supportRequiredPayment']?.fieldTitle}}
+        </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.supportRequiredPayment) }} </mat-cell>
       </ng-container>
       <!-- LinkTargeId Column -->
@@ -99,12 +103,14 @@
       </ng-container>
       <!-- ShareBeginDate Column -->
       <ng-container matColumnDef="ShareBeginDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['shareBeginDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['shareBeginDate']?.fieldTitle}}
+        </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.shareBeginDate) }} </mat-cell>
       </ng-container>
       <!-- ShareExpireDate Column -->
       <ng-container matColumnDef="ShareExpireDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['shareExpireDate']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['shareExpireDate']?.fieldTitle}}
+        </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.shareExpireDate) }} </mat-cell>
       </ng-container>
       <!-- CurrentClickCount Column -->
@@ -136,7 +142,7 @@
         <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class='Action'>
           <!-- Action Menu -->
-          <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
+          <button mat-icon-button type="button" [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
@@ -148,7 +154,7 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonDonateTargetPeriodAccountRow(row)" >
+            <button mat-menu-item (click)="onActionbuttonDonateTargetPeriodAccountRow(row)">
               <mat-icon>shopping_cart</mat-icon>
               <span>{{'ACTION.Donate_Money' | translate}}</span>
             </button>

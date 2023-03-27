@@ -9,7 +9,8 @@
         class="btn btn-outline-warning">{{'ACTION.EDIT' | translate}}</button>
     <button *ngIf="dataModelResult.access.accessDeleteRow && dataModelSelect?.id>0" (click)="onActionDelete()"
         type="button" class="btn btn-outline-danger">{{'ACTION.DELETE' | translate}}</button>
-    <button *ngIf="dataModelResult.access.accessWatchRow" (click)="onActionReload()" type="button" class="btn btn-outline-secondary BTN-icon">
+    <button *ngIf="dataModelResult.access.accessWatchRow" (click)="onActionReload()" type="button"
+        class="btn btn-outline-secondary BTN-icon">
         <mat-icon style="font-size: 20px;margin: -6px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
@@ -20,21 +21,23 @@
     <mat-tree class="category-tree cursor-pointer" [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
             [ngStyle]="{'background': dataModelSelect.id>0 && dataModelSelect.id === node.id ? '#d3d3da' : '' }">
-            <button mat-icon-button disabled></button>
-            <img *ngIf="node.linkMainImageIdSrc" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{node.linkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" />
+            <button mat-icon-button type="button" disabled></button>
+            <img *ngIf="node.linkMainImageIdSrc" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+                src="{{node.linkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" />
             {{node.title}}
         </mat-tree-node>
         <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
             <li>
                 <div class="mat-tree-node" (click)="onActionSelect(node)"
                     [ngStyle]="{'background': dataModelSelect.id>0 && dataModelSelect.id === node.id ? '#d3d3da' : '' }">
-                    <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.title"
+                    <button mat-icon-button type="button" matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.title"
                         (click)="onActionSelect(node)">
                         <mat-icon class="mat-icon-rtl-mirror">
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
                         </mat-icon>
                     </button>
-                    <img *ngIf="node.linkMainImageIdSrc" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{node.linkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" />
+                    <img *ngIf="node.linkMainImageIdSrc" style="vertical-align:middle;" class="ntk-hover-zoom"
+                        aria-hidden src="{{node.linkMainImageIdSrc | cmsthumbnail}}" height="25" width="25" />
                     {{node.title}}
                 </div>
                 <ul [class.category-tree-invisible]="!treeControl.isExpanded(node)">

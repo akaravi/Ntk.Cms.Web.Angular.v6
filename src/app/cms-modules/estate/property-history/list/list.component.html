@@ -113,7 +113,7 @@
         <mat-cell *matCellDef="let row" class=' Action'>
 
           <!-- Action Menu -->
-          <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
+          <button mat-icon-button type="button" [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #actionMenu="matMenu">
@@ -147,7 +147,7 @@
                     {{row.linkPropertyId|estatePropertyInfo |async}}
                     &nbsp;
                     <i class="flaticon2-copy brown-color" style="color: brown;"></i></span>
-                  <button mat-icon-button (click)="onActionbuttonQuickViewRow(row.linkPropertyId)">
+                  <button mat-icon-button type="button" (click)="onActionbuttonQuickViewRow(row.linkPropertyId)">
                     <mat-icon>visibility</mat-icon>
                   </button>
                 </td>

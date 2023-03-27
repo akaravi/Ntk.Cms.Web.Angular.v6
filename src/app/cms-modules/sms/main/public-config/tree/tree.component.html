@@ -19,7 +19,7 @@
     <mat-tree class="category-tree cursor-pointer" [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onActionSelect(node)"
             [ngStyle]="{'background': dataModelSelect.id?.length>0 && dataModelSelect.id === node.id ? '#d3d3da' : '' }">
-            <button mat-icon-button disabled></button>
+            <button mat-icon-button type="button" disabled></button>
             <img style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{node.linkMainImageIdSrc }}"
                 height="40" width="40" />&nbsp;
             {{node.title}}
@@ -28,7 +28,7 @@
             <li>
                 <div class="mat-tree-node" (click)="onActionSelect(node)"
                     [ngStyle]="{'background': dataModelSelect.id?.length>0 && dataModelSelect.id === node.id ? '#d3d3da' : '' }">
-                    <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.title"
+                    <button mat-icon-button type="button" matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.title"
                         (click)="onActionSelect(node)">
                         <mat-icon class="mat-icon-rtl-mirror">
                             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}

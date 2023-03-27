@@ -234,7 +234,7 @@
               *ngIf="this.dataEstateAccountAgencyUserModel.linkEstateAccountAgencyId && this.dataEstateAccountAgencyUserModel.linkEstateAccountAgencyId.length>0"
               type="button" class="btn btn-success">&#x2b;</button>
           </div>
-          
+
         </div>
         <app-progress-spinner [options]="loadingOption">
         </app-progress-spinner>
@@ -286,7 +286,7 @@
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row" class='Action'>
-                <button mat-icon-button>
+                <button mat-icon-button type="button">
                   <small (click)="onActionDataGetDeleteGroup(row)">
                     <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before"
                       aria-hidden="false" style="color: red;">delete</mat-icon>

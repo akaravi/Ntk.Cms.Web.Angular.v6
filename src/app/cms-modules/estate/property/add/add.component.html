@@ -717,7 +717,7 @@
             <ng-container matColumnDef="Action">
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
-                <button mat-icon-button>
+                <button mat-icon-button type="button" type="button">
                   <small (click)="onActionOptionRemoveFromList(i)">
                     <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before"
                       aria-hidden="false" style="color: red;">delete</mat-icon>
