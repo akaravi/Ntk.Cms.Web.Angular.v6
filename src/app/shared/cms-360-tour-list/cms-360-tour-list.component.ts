@@ -221,6 +221,7 @@ export class Cms360TourListComponent implements OnInit {
   onActionShowView360Add(): void {
     this.dataDetailModel = new File360TourScenesModel();
     this.showAddView360 = !this.showAddView360;
+    this.tableHotSpotdataSource.data = [];
   }
 
   onActionShowHotspotAdd(): void {
