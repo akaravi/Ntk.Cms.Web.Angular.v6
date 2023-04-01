@@ -49,9 +49,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/pannellum-next/src/css/pannellum.css"
+              "node_modules/pannellum-next/src/css/pannellum.css",
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/apexcharts/dist/apexcharts.min.js"
@@ -110,7 +110,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "host": "0.0.0.0",
-            "port": 4202
+            "port": 4201
           },
           "configurations": {
             "production": {

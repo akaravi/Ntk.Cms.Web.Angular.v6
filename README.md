@@ -1,5 +1,5 @@
 
-# Ntk Cms
+# Ntk Cms v6.0.0
 
 Ntk Cms is an e-commerce built with Angular 14 (Angular CLI). You can create, moderate and manage pages, real estates, orders, customers, carts, admins and more with this admin pannel.
 
@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Technologies
 Project is created with:
-* Angular version: 14.2.0
+* Angular version: 15.2.0
 * Rxjs version : 7.5
 * TypeScript version: 4.8
 * Bootstrap version: 5.2
@@ -24,7 +24,7 @@ Project is created with:
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4201/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
