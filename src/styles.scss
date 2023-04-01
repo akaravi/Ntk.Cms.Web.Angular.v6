@@ -30,14 +30,14 @@
  karavi import
 */
 @import "leaflet/dist/leaflet.css";
-@import "ngx-ntk-smart-module/src/assets/ngx-ntk-smart-modal.scss";
-@import "ntk-cms-filemanager/src/assets/file-manager.styles.scss";
+@import "ngx-ntk-smart-module/loader";
+@import "ngx-ntk-smart-module/modal";
+@import "ntk-cms-filemanager/filemanager";
 // boostrap 5
 @import 'ngx-toastr/toastr-bs5-alert';
 /*
  karavi import
 */
-
 // hide bootstrap dropdown arrow globally
 .dropdown-toggle::after {
     display: none !important;
