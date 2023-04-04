@@ -1,6 +1,10 @@
 npm install --save --legacy-peer-deps
 npm i --legacy-peer-deps
 
+
+برای رفع مشکل نام فولدر ها
+git config core.ignorecase false
+
 ========================*
 node --max-old-space-size=1024 index.js #increase to 1gb
 node --max-old-space-size=2048 index.js #increase to 2gb
@@ -16,7 +20,7 @@ node --max-old-space-size=32768 index.js #increase to 32gb
 See the current value of max-old-space-size (in MB)
 node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(1024*1024))'
 
-setx NODE_OPTIONS "--max-old-space-size=8384" 
+setx NODE_OPTIONS "--max-old-space-size=8384"
 # formula:
 export NODE_OPTIONS="--max-old-space-size=(X * 1024)" # Increase to X GB
 
@@ -42,10 +46,7 @@ npm run rtl
 npm rebuild node-sass
 
 =========================================
-این سه با ورژن 14 مشکل دارند
- "ngx-awesome-uploader": "^13.0.1",
- "ngx-icon-picker": "^1.9.1",
- "ntk-cms-filemanager": "^1.2.15",
+
 =========================================Update all npm
 npm i -g npm-check-updates
 ncu -u
