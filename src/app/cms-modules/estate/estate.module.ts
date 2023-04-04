@@ -163,6 +163,10 @@ import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/he
 import { EstatePropertyActionComponent } from './property/action/action.component';
 import { EstatePropertyQuickListComponent } from './property/quick-list/quick-list.component';
 import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
+import { EstatePropertySupplierCategoryAddComponent } from './property-supplier-category/add/add.component';
+import { EstatePropertySupplierCategoryEditComponent } from './property-supplier-category/edit/edit.component';
+import { EstatePropertySupplierCategorySelectorComponent } from './property-supplier-category/selector/selector.component';
+import { EstatePropertySupplierCategoryTreeComponent } from './property-supplier-category/tree/tree.component';
 
 @NgModule({
   declarations: [
@@ -217,6 +221,11 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstatePropertySupplierDeleteComponent,
     EstatePropertySupplierTreeComponent,
     EstatePropertySupplierHeaderComponent,
+    /* */
+    EstatePropertySupplierCategoryAddComponent,
+    EstatePropertySupplierCategoryEditComponent,
+    EstatePropertySupplierCategorySelectorComponent,
+    EstatePropertySupplierCategoryTreeComponent,
     /* */
     EstatePropertyTypeUsageAddComponent,
     EstatePropertyTypeUsageEditComponent,

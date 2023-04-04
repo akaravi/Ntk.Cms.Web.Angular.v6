@@ -1,0 +1,111 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- LinkMainImageId Field -->
+    <div class="mb-3">
+      <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
+        <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+          aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+      </a>
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.PICTURE' | translate}}
+        </mat-label>
+        <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
+          type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+          (click)="fileManagerOpenForm = true" />
+        <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.linkMainImageId = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
+        [openDirectUploadView]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree"
+        [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
+        [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
+
+    <!-- Title Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+        placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.title = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Title.errors?.required">
+        {{fieldsInfo['title']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- IconFont Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['iconFont']?.accessWatchField">
+      <mat-label> {{fieldsInfo['iconFont']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.iconFont" name="dataModel.iconFont" #IconFont
+        [iconPicker]="dataModel.iconFont" [ipIconPack]="['fa']" [ipPosition]="'top'"
+        (iconPickerSelect)="onIconPickerSelect($event)" type="text"
+        [disabled]="!fieldsInfo['iconFont']?.accessEditField" placeholder="{{fieldsInfo['iconFont']?.fieldTitle}}" />
+      <span class="input-group-addon"><i [ngClass]="dataModel.iconFont"></i></span>
+      <mat-icon>{{dataModel.iconFont}}</mat-icon>
+      <mat-icon matSuffix *ngIf="dataModel.iconFont" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.iconFont = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <!-- IconColor Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['iconColor']?.accessWatchField">
+      <mat-label> {{fieldsInfo['iconColor']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.iconColor" name="dataModel.iconColor" #IconColor
+        [value]="dataModel.iconColor" [style.background]="dataModel.iconColor" [(colorPicker)]="dataModel.iconColor"
+        type="text" [disabled]="!fieldsInfo['iconColor']?.accessEditField"
+        placeholder="{{fieldsInfo['iconColor']?.fieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.iconColor" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.iconColor = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!-- Description Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+        placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.description = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+      <mat-error *ngIf="Description.errors?.required">
+        Description is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>
