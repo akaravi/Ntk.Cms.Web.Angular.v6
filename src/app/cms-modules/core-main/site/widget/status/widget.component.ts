@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
-import { PersianCalendarService } from 'src/app/core/pipe/PersianDatePipe/persian-date.service';
+import { PersianCalendarService } from 'src/app/core/pipe/persianDatePipe/persian-date.service';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
