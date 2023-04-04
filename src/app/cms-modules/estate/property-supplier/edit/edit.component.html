@@ -1,0 +1,280 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
+        <!-- RecordStatus Field -->
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
+          <mat-label>{{fieldsInfo['recordStatus']?.fieldTitle}}</mat-label>
+          <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+            [disabled]="!fieldsInfo['recordStatus']?.accessEditField" name="dataModel.recordStatus"
+            #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
+            <mat-option *ngFor="
+                let item of dataModelEnumRecordStatusResult.listItems;
+                index as i
+              " [value]="item.value">{{ item.description }}</mat-option>
+          </mat-select>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['recordStatus']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-error *ngIf="RecordStatus.errors?.required">
+            RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- MainAdminRecordStatus Field -->
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
+          <mat-select placeholder="{{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}}"
+            [disabled]="!fieldsInfo['mainAdminRecordStatus']?.accessEditField"
+            [(ngModel)]="dataModel.mainAdminRecordStatus" name="dataModel.mainAdminRecordStatus"
+            #MainAdminRecordStatus="ngModel" panelClass="MainAdminRecordStatus-{{ dataModel.mainAdminRecordStatus }}"
+            required>
+            <mat-option *ngFor="
+                    let item of dataModelEnumRecordStatusResult.listItems;
+                    index as i
+                  " [value]="item.value">{{ item.description }}</mat-option>
+          </mat-select>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['mainAdminRecordStatus']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+          <mat-error *ngIf="MainAdminRecordStatus.errors?.required">
+            {{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- Title Field -->
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['title']?.accessWatchField">
+          <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+            disabled="{{!fieldsInfo['title']?.accessEditField}}" placeholder="{{fieldsInfo['title']?.fieldTitle}}"
+            minlength="3" maxlength="100" required />
+          <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.title = ''">close</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['title']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+          <mat-error *ngIf="Title.errors?.required">
+            {{fieldsInfo['title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- Description Field -->
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['description']?.accessWatchField">
+          <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
+          <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+            disabled="{{!fieldsInfo['description']?.accessEditField}}"
+            placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows="5"></textarea>
+          <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.description = ''">close</mat-icon>
+          <mat-icon matTooltip="{{fieldsInfo['description']?.FieldDescription}}" matSuffix>info</mat-icon>
+          <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
+          <mat-error *ngIf="Description.errors?.required">
+            {{fieldsInfo['description']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+        <!-- LinkLocationId Field -->
+        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [(loading)]="loading"
+          [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"
+          [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+        </app-cms-location-selector>
+
+        <hr class="pb-5" />
+        <!-- editorConfig Field -->
+        <label> {{fieldsInfo['body']?.fieldTitle}} </label>
+        <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text')" [config]="publicHelper.editorConfig"
+          id="main" [(ngModel)]="dataModel.body" name="dataModel.body"></angular-editor>
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onActionBackToParent()">
+            {{'ACTION.BACK' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="{{'TITLE.Search_Engines' | translate}}" state="seo">
+        <p>{{'TITLE.This_section_helps_search_engines_better_index_content' | translate}}</p>
+        <!-- Source Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['source']?.accessWatchField">
+          <mat-label>{{fieldsInfo['source']?.fieldTitle}}</mat-label>
+          <input matInput [(ngModel)]="dataModel.source" name="dataModel.source" #Source type="text" dir="ltr"
+            style="text-align: left;" placeholder="{{'TITLE.Content_reference_website_link' | translate}}"
+            disabled="{{!fieldsInfo['source']?.accessEditField}}" minlength="3" maxlength="500" />
+          <mat-icon matSuffix *ngIf="dataModel.source" matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataModel.source = ''">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-hint align="start">
+            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+            <strong class="info-field-text">{{fieldsInfo['source']?.FieldDescription}}</strong>
+          </mat-hint>
+          <mat-hint align="end">{{ Source.value.length }} / 500</mat-hint>
+        </mat-form-field>
+
+        <!-- KeywordModel Field -->
+        <mat-form-field style="width: 100%;" appearance="fill">
+          <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
+          <mat-chip-grid #chipList aria-label="this.translate.instant('TITLE.key_word')">
+            <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
+              {{item}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
+              (matChipInputTokenEnd)="addTag($event)"/>
+          </mat-chip-grid>
+        </mat-form-field>
+
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
+        <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
+        <!-- LinkMainImageIdSrc Field -->
+        <div class="mb-3">
+          <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
+            <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+              aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+          </a>
+        </div>
+        <div class="mb-9">
+          <mat-form-field class="ntk-full-width">
+            <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Original_Photo' | translate}}</mat-label>
+            <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId
+              type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+              (click)="fileManagerOpenForm = true" />
+            <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear"
+              (click)="dataModel.linkMainImageId = null">close</mat-icon>
+            <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
+          </mat-form-field>
+          <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage"
+            [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openDirectUploadView]="true"
+            [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
+            [openFilemanagerButtonView]="false"></cms-file-manager>
+        </div>
+        <p *ngIf="dataFileModelImgaes && dataFileModelImgaes.size>0">{{'TITLE.List_of_attached_photos' | translate}}</p>
+        <app-cms-files-selector [(dataFileModel)]="dataFileModelImgaes" [openDirectUploadView]="true"
+          [optionFileType]="selectFileTypeMainImage">
+        </app-cms-files-selector>
+        <br>
+        <div>
+          <p>{{'TITLE.List_of_attached_files' | translate}}</p>
+          <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles" [openDirectUploadView]="true">
+          </app-cms-files-selector>
+        </div>
+        <h3>{{'TITLE.image_360' | translate}}</h3>
+        <app-cms-360-image-list [(dataModel)]="dataModel.file360Views"></app-cms-360-image-list>
+        <br>
+        <h3>{{'TITLE.virtual_tour' | translate}}</h3>
+        <app-cms-360-tour-list [(dataModel)]="dataModel.file360Tour"
+          [dataImageModel]="dataModel.file360Views"></app-cms-360-tour-list>
+        <!-- LinkFilePodcastIdSrc Field -->
+        <div class="mb-3">
+          <audio *ngIf="dataModel?.linkFilePodcastIdSrc?.length>0" controls>
+            <source src="{{dataModel.linkFilePodcastIdSrc | cmsthumbnail}}" type="audio/mp3">
+            Your browser does not support the audio tag.
+          </audio>
+        </div>
+        <div class="mb-9">
+          <mat-form-field class="ntk-full-width">
+            <input matInput [(ngModel)]="dataModel.linkFilePodcastId" name="dataModel.linkFilePodcastId"
+              #LinkFilePodcastId type="text" placeholder="{{'TITLE.Audio_File_ID' | translate}}"
+              (click)="fileManagerOpenFormPodcast = true" />
+            <mat-icon matSuffix *ngIf="dataModel.linkFilePodcastId" matSuffix mat-icon-button aria-label="Clear"
+              (click)="dataModel.linkFilePodcastId = null">close</mat-icon>
+            <mat-icon matSuffix (click)="fileManagerOpenFormPodcast = true">mode_edit</mat-icon>
+          </mat-form-field>
+          <cms-file-manager (itemSelected)="onActionFileSelectedLinkFilePodcastId($event)" [language]="appLanguage"
+            [isPopup]="true" [(openForm)]="fileManagerOpenFormPodcast" [tree]="fileManagerTree"
+            [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+            [selectFileType]="selectFileTypePodcast" [openFilemanagerButtonView]="false"></cms-file-manager>
+        </div>
+        <!-- LinkFileMovieId Field -->
+        <div class="mb-3">
+          <video *ngIf="dataModel?.linkFileMovieIdSrc?.length>0" controls>
+            <source src="{{dataModel.linkFileMovieIdSrc }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="mb-9">
+          <mat-form-field class="ntk-full-width">
+            <input matInput [(ngModel)]="dataModel.linkFileMovieId" name="dataModel.linkFileMovieId" #LinkFileMovieId
+              type="text" placeholder="{{'TITLE.Video_File_ID' | translate}}"
+              (click)="fileManagerOpenFormMovie = true" />
+            <mat-icon matSuffix *ngIf="dataModel.linkFileMovieId" matSuffix mat-icon-button aria-label="Clear"
+              (click)="dataModel.linkFileMovieId = null">close</mat-icon>
+            <mat-icon matSuffix (click)="fileManagerOpenFormMovie = true">mode_edit</mat-icon>
+          </mat-form-field>
+          <cms-file-manager (itemSelected)="onActionFileSelectedLinkFileMovieId($event)" [language]="appLanguage"
+            [isPopup]="true" [(openForm)]="fileManagerOpenFormMovie" [tree]="fileManagerTree"
+            [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+            [selectFileType]="selectFileTypeMovie" [openFilemanagerButtonView]="false"></cms-file-manager>
+        </div>
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+        </div>
+      </mat-step>
+
+      <mat-step label="{{'TITLE.Location' | translate}} " state="loaction">
+
+        <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>
+        <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
+          id='main-map'></app-cms-map>
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onActionBackToParent()">
+            {{'ACTION.BACK' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="main">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="seo">
+        <mat-icon>call_end</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="file">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="loaction">
+        <mat-icon>forum</mat-icon>
+      </ng-template>
+    </mat-horizontal-stepper>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

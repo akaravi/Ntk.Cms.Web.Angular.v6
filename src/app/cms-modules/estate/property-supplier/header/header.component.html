@@ -1,0 +1,26 @@
+<div class="table">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <div class="tr">
+        <div class="td small-width">
+            <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="'./assets/media/svg/icons/Communication/Flag.svg'"></span>
+        </div>
+        <div class="td large-width" style="color: darkblue;">
+            <h5><b>{{'TITLE.Selected_Supplier'|translate}}</b> </h5>
+        </div>
+        <div class="td" style="text-align: left;">
+            <!-- *ngIf="dataModelResult?.item?.id" -->
+        </div>
+    </div>
+    <div class="tr">
+        <div class="td small-width">{{fieldsInfo['id']?.fieldTitle}} : </div>
+        <div class="td large-width">{{dataModelResult?.item?.id}}</div>
+        <div class="td"></div>
+
+        <div style="clear: both;"></div>
+    </div>
+    <div class="tr">
+        <div class="td small-width">{{fieldsInfo['title']?.fieldTitle}} : </div>
+        <div class="td large-width">{{dataModelResult?.item?.title}}</div>
+        <div style="clear: both;"></div>
+    </div>
+</div>

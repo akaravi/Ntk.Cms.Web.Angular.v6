@@ -25,6 +25,9 @@ import { EstatePropertyHistoryListComponent } from './property-history/list/list
 import { EstatePropertyProjectAddComponent } from './property-project/add/add.component';
 import { EstatePropertyProjectEditComponent } from './property-project/edit/edit.component';
 import { EstatePropertyProjectListComponent } from './property-project/list/list.component';
+import { EstatePropertySupplierAddComponent } from './property-supplier/add/add.component';
+import { EstatePropertySupplierEditComponent } from './property-supplier/edit/edit.component';
+import { EstatePropertySupplierListComponent } from './property-supplier/list/list.component';
 import { EstatePropertyTypeLanduseListComponent } from './property-type-landuse/list/list.component';
 import { EstatePropertyTypeUsageListComponent } from './property-type-usage/list/list.component';
 import { EstatePropertyAddComponent } from './property/add/add.component';
@@ -147,6 +150,24 @@ const routes: Routes = [
       {
         path: 'property-company/edit/:id',
         component: EstatePropertyCompanyEditComponent
+      },
+      /**/
+      /**/
+      {
+        path: 'property-supplier',
+        component: EstatePropertySupplierListComponent
+      },
+      {
+        path: 'property-supplier/LinkProjectId/:LinkProjectId',
+        component: EstatePropertySupplierListComponent
+      },
+      {
+        path: 'property-supplier/add',
+        component: EstatePropertySupplierAddComponent
+      },
+      {
+        path: 'property-supplier/edit/:id',
+        component: EstatePropertySupplierEditComponent
       },
       /**/
       {
