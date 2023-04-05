@@ -8,11 +8,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-  MatNativeDateModule,
-  MatRippleModule
+  DateAdapter, MatNativeDateModule,
+  MatRippleModule, MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -41,12 +39,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { TreeModule } from '@circlon/angular-tree-component';
 import { NgxNtkQueryBuilderModule } from 'ngx-ntk-query-builder';
-import { PersianDate } from './core/pipe/persianDatePipe/persian-date.pipe';
+import { PersianDate } from './core/pipe/persian-date/persian-date.pipe';
 import { TruncatePipe } from './core/pipe/truncate.pipe';
 import { CmsExportListComponent } from './shared/cms-export-list/cmsExportList.component';
 import { CmsMapComponent } from './shared/cms-map/cms-map.component';
@@ -104,7 +102,7 @@ import { CmsUserInfoPipe } from './core/pipe/core/cms-user-info.pipe';
 import { EnumsPipe } from './core/pipe/enums.pipe';
 import { FirstLetterPipe } from './core/pipe/first-letter.pipe';
 import { KeysPipe } from './core/pipe/keys.pipe';
-import { PersianDateFull } from './core/pipe/persianDatePipe/persian-date-full.pipe';
+import { PersianDateFull } from './core/pipe/persian-date/persian-date-full.pipe';
 import { PrettyjsonPipe } from './core/pipe/prettyjson.pipe';
 import { RecordStatusClassPipe } from './core/pipe/recordStatusClass.pipe';
 import { SafePipe } from './core/pipe/safe.pipe';
