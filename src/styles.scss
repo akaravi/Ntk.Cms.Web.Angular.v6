@@ -3,22 +3,18 @@
 // Global vendors
 //@import "bootstrap/dist/css/bootstrap.css";
 @import 'bootstrap/scss/bootstrap.scss';
-@import 'font-awesome/scss/font-awesome.scss';
 // => Material
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
-
-
 @import "perfect-scrollbar/css/perfect-scrollbar.css";
 
 // Global fonts
+@import 'font-awesome/scss/font-awesome.scss';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "socicon/css/socicon.css";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "./assets/plugins/flaticon/flaticon.css";
 @import "./assets/plugins/flaticon2/flaticon.css";
 @import "./assets/plugins/keenthemes-icons/font/ki.css";
-
-
 @import url("./assets/fonts/fontiran.css");
 
 // Metronic styles (replace these path when using RTL css below)
@@ -35,6 +31,7 @@
 @import "ntk-cms-filemanager/filemanager";
 // boostrap 5
 @import 'ngx-toastr/toastr-bs5-alert';
+
 /*
  karavi import
 */
@@ -96,38 +93,48 @@ text-left {
     text-align: left !important;
     direction: rtl;
 }
+
 text-right {
     text-align: right !important;
     direction: rtl;
 }
+
 .timepicker {
     direction: ltr !important;
 }
+
 .grid-row-ltr {
     direction: ltr !important;
     text-align: left !important;
 }
+
 .grid-row-ltr-center {
-  direction: ltr !important;
-  text-align: center !important;
+    direction: ltr !important;
+    text-align: center !important;
 }
+
 .input-ltr {
     direction: ltr !important;
     text-align: left !important;
 }
-.input-ltr-center  {
+
+.input-ltr-center {
     direction: ltr !important;
-    text-align: center  !important;
+    text-align: center !important;
 }
+
 .input-Mobile {
     direction: ltr !important;
 }
+
 .color-red {
     color: red;
 }
+
 .color-green {
     color: green;
 }
+
 .category-tree-invisible {
     display: none;
 }
@@ -138,10 +145,12 @@ text-right {
     margin-bottom: 0;
     list-style-type: none;
 }
+
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 
-  }
+}
+
 /*
  * This padding sets alignment of the nested nodes.
  */
@@ -192,6 +201,7 @@ mat-paginator {
     margin-right: 5px !important;
 
 }
+
 .BTN-icon {
     margin-right: 5px !important;
     padding-bottom: 0px !important;
@@ -502,9 +512,11 @@ mat-paginator {
 .mat-icon-button.mat-submit {
     color: #3c64bb;
 }
-ngb-modal-window  {
+
+ngb-modal-window {
     z-index: 1060 !important;
-  }
+}
+
 /*mat-raised-button*/
 /*
 karavi
@@ -590,10 +602,10 @@ karavi tooltip guid
     position: relative;
     display: inline-block;
     cursor: pointer;
-  }
+}
 
-  /* The actual popup (appears on top) */
-  .popup .popuptext {
+/* The actual popup (appears on top) */
+.popup .popuptext {
     visibility: hidden;
     width: 100px;
     background-color: #555;
@@ -606,10 +618,10 @@ karavi tooltip guid
     bottom: 125%;
     left: 110%;
     margin-left: -80px;
-  }
+}
 
-  /* Popup arrow */
-  .popup .popuptext::after {
+/* Popup arrow */
+.popup .popuptext::after {
     content: "";
     position: absolute;
     top: 100%;
@@ -618,35 +630,47 @@ karavi tooltip guid
     border-width: 5px;
     border-style: solid;
     border-color: #555 transparent transparent transparent;
-  }
+}
 
-  /* Toggle this class when clicking on the popup container (hide and show the popup) */
-  .popup .show {
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s
-  }
-
-  /* Add animation (fade in the popup) */
-  @-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
-  }
-
-  /* optimaze */
-  .mdc-text-field{
-    padding: 0px !important;
-  }
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    background-color: transparent!important;
 }
-.mat-mdc-input-element{
-  //background-color: red!important;
-  padding-top: 10px!important;
-  padding-bottom: 10px!important;
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* optimaze */
+.mdc-text-field {
+    padding: 0px !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+}
+
+.mat-mdc-input-element {
+    //background-color: red!important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
