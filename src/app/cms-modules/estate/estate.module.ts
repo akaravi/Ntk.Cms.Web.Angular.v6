@@ -112,7 +112,7 @@ import { estateAccountUserInfoPipe } from 'src/app/core/pipe/esate/estate-accoun
 import { estateCustomerOrderInfoPipe } from 'src/app/core/pipe/esate/estate-customer-order-info.pipe';
 import { estatePropertyCompanyInfoPipe } from 'src/app/core/pipe/esate/estate-property-company-info.pipe';
 import { estatePropertyInfoPipe } from 'src/app/core/pipe/esate/estate-property-info.pipe';
-import { estatePropertyProjectInfoPipe } from 'src/app/core/pipe/esate/estate-property-project-info.pipe';
+import { estatePropertyProjectInfoPipe } from 'src/app/core/pipe/esate/estate-property-p-roject-info.pipe';
 import { estatePropertySupplierInfoPipe } from 'src/app/core/pipe/esate/estate-property-supplier-info.pipe';
 import { EstateAccountAgencyAdsAddComponent } from './account-agency-ads/add/add.component';
 import { EstateAccountAgencyAdsEditComponent } from './account-agency-ads/edit/edit.component';
