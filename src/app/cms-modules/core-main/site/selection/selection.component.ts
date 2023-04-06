@@ -82,8 +82,7 @@ export class CoreSiteSelectionComponent implements OnInit {
     }
     this.selectSiteId = id;
     this.formInfo.buttonSubmittedEnabled = false;
-    let authModel: AuthRenewTokenModel;
-    authModel = new AuthRenewTokenModel();
+    const authModel= new AuthRenewTokenModel();
     authModel.siteId = id;
     authModel.lang = this.translationService.getSelectedLanguage();
 

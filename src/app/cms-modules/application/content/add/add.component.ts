@@ -140,9 +140,9 @@ export class ApplicationAppAddComponent implements OnInit {
       );
   }
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
-    if (event.previouslySelectedIndex < event.selectedIndex) {
+    // if (event.previouslySelectedIndex < event.selectedIndex) {
 
-    }
+    // }
   }
   receiveMap(model: leafletMap = this.mapModel): void {
     if (!model) {
