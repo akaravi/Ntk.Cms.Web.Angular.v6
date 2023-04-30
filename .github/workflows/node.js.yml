@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
+#change by karavi go to archive
+#name: Node.js CI
 
 on:
   push:
@@ -41,16 +41,16 @@ jobs:
       uses: cpina/github-action-push-to-another-repository@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        
+
       with:
         source-directory: 'dist/ntk-cms-web'
         destination-github-username: 'akaravi'
         destination-repository-name: 'Ntk.Cms.Web.Angular.Publish'
         user-email: karavi.alireza@gmail.com
-        #destination-repository-username : 
+        #destination-repository-username :
         commit-message: See $GITHUB_REF
         target-branch: main
-    
+
     - name: Webhook Sms
       uses: joelwmale/webhook-action@master
       with:
@@ -60,10 +60,10 @@ jobs:
     - name: Webhook Plesk
       uses: joelwmale/webhook-action@master
       with:
-        url: 'https://s12.ntkhost.com:8443/modules/git/public/web-hook.php?uuid=47f7837e-b1f8-7b19-e512-f0b454bf5a66'    
-  
+        url: 'https://s12.ntkhost.com:8443/modules/git/public/web-hook.php?uuid=47f7837e-b1f8-7b19-e512-f0b454bf5a66'
+
     - name: Test get variable exported by push-to-another-repository
-      run: echo $DESTINATION_CLONED_DIRECTORY    
+      run: echo $DESTINATION_CLONED_DIRECTORY
 
 
-            
+
